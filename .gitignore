@@ -1,0 +1,17 @@
+.venv/
+venv/
+env/
+.env/
+env
+.env
+py37/
+py38/
+
+.idea/
+*.iml
+
+.DS_Store
+
+sphinx/build/
+
+*.log
