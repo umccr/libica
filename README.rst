@@ -1,3 +1,6 @@
+.. image:: https://github.com/umccr/libiap/workflows/Pull%20Request%20Build/badge.svg
+    :target: https://github.com/umccr/libiap/actions
+
 libiap
 ======
 
@@ -61,3 +64,10 @@ Documentation
 
     (cd sphinx && make github)
 
+License
+-------
+
+MIT License and DISCLAIMER
+
+.. image:: https://img.shields.io/badge/License-MIT-yellow.svg
+    :target: https://opensource.org/licenses/MIT

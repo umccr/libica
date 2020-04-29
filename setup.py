@@ -9,8 +9,8 @@ setup(
     version=__version__,
     packages=find_packages(),
     url="https://github.com/umccr/libiap",
-    license="TBA",  # FIXME
-    author="UMCCR",
+    license="MIT",
+    author="UMCCR and Contributors",
     author_email="services@umccr.org",
     description="Python SDK/Library for IAP",
     long_description=long_description,
