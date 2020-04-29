@@ -72,7 +72,7 @@ class LibGDSUnitTests(TestCase):
         self.assertRaises(AssertionError)
 
     @patch.dict(os.environ, clear=True)
-    @patch('libiap.libgds.requests')
+    @patch('libiap.rest.requests')
     def test_iap_auth_token_invalid(self, mock_requests):
         msg = "401 Client Error: Unauthorized for url: " \
               "https://aps2.platform.illumina.com/v1/files?pageSize=1000&volume.name=test"
@@ -84,7 +84,7 @@ class LibGDSUnitTests(TestCase):
         self.assertRaises(HTTPError)
 
     @patch.dict(os.environ, clear=True)
-    @patch('libiap.libgds.requests')
+    @patch('libiap.rest.requests')
     def test_list_files(self, mock_requests):
         mock_response = Mock()
         mock_response.status_code = 200
@@ -105,7 +105,7 @@ class LibGDSUnitTests(TestCase):
         self.assertEqual(1, cnt)
 
     @patch.dict(os.environ, clear=True)
-    @patch('libiap.libgds.requests')
+    @patch('libiap.rest.requests')
     def test_list_files_pagination(self, mock_requests):
         sampling = 2
         samples = _items(sampling)
@@ -153,7 +153,7 @@ class LibGDSUnitTests(TestCase):
         self.assertEqual(sampling, cnt)
 
     @patch.dict(os.environ, clear=True)
-    @patch('libiap.libgds.requests')
+    @patch('libiap.rest.requests')
     def test_get_file(self, mock_requests):
         file_id = f"fil.{_rand(32)}"
         mock_response = Mock()
