@@ -21,6 +21,8 @@ setup(
             "sphinx",
         ],
         "test": [
+            "pytest",
+            "flake8",
         ],
     },
     install_requires=[

@@ -25,9 +25,19 @@ TL;DR
 Development
 -----------
 
+- Setup choice Python virtual environment e.g. ``python -m venv venv`` and, then::
+
+    pip install '.[test,dev]' .
+
+
 - Run unit test suite::
 
     python -m unittest
+
+- Or run with ``pytest``::
+
+    pytest
+
 
 - Run individual test case::
 
