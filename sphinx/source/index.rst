@@ -6,11 +6,14 @@
 Welcome to libiap's documentation!
 ==================================
 
+.. include:: ../../README.rst
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-.. include:: ../../README.rst
+   developer/index.rst
+   user/index.rst
 
 Indices and tables
 ==================

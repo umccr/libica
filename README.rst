@@ -1,10 +1,11 @@
 .. image:: https://github.com/umccr/libiap/workflows/Pull%20Request%20Build/badge.svg
     :target: https://github.com/umccr/libiap/actions
+    :alt: PR Build Status Badge
 
 libiap
 ======
 
-Python SDK/Library for IAP -- https://iap-docs.readme.io
+Python SDK/Library for IAP -- https://umccr.github.io/libiap/
 
 TL;DR
 -----
@@ -28,7 +29,7 @@ TL;DR
 Development
 -----------
 
-- Setup choice Python virtual environment e.g. ``python -m venv venv`` and, then::
+- Setup Python virtual environment e.g. ``python -m venv venv`` and, then::
 
     pip install '.[test,dev]' .
 
@@ -71,3 +72,4 @@ MIT License and DISCLAIMER
 
 .. image:: https://img.shields.io/badge/License-MIT-yellow.svg
     :target: https://opensource.org/licenses/MIT
+    :alt: MIT License

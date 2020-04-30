@@ -19,6 +19,9 @@ setup(
         "dev": [
             "pipdeptree",
             "sphinx",
+            "twine",
+            "setuptools",
+            "wheel",
         ],
         "test": [
             "pytest",
