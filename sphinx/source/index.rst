@@ -14,6 +14,7 @@ Welcome to libiap's documentation!
 
    developer/index.rst
    user/index.rst
+   changelog/index.rst
 
 Indices and tables
 ==================

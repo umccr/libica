@@ -1,5 +1,5 @@
-CONTRIBUTING
-============
+DEVELOPER GUIDE
+===============
 
 Clone Note
 ----------

@@ -14,6 +14,7 @@
     <script src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="DEVELOPER GUIDE" href="developer/index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -32,12 +33,15 @@
             
   <div class="section" id="welcome-to-libiap-s-documentation">
 <h1>Welcome to libiap’s documentation!<a class="headerlink" href="#welcome-to-libiap-s-documentation" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-</div>
+<a class="reference external image-reference" href="https://github.com/umccr/libiap/actions"><img alt="PR Build Status Badge" src="https://github.com/umccr/libiap/workflows/Pull%20Request%20Build/badge.svg" /></a>
 </div>
 <div class="section" id="libiap">
 <h1>libiap<a class="headerlink" href="#libiap" title="Permalink to this headline">¶</a></h1>
-<p>Python SDK/Library for IAP – <a class="reference external" href="https://iap-docs.readme.io">https://iap-docs.readme.io</a></p>
+<p>Python SDK/Library for IAP – <a class="reference external" href="https://umccr.github.io/libiap/">https://umccr.github.io/libiap/</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="coverage">Coverage</a></p></li>
+<li><p><a class="reference external" href="libiap">PyDoc</a></p></li>
+</ul>
 <div class="section" id="tl-dr">
 <h2>TL;DR<a class="headerlink" href="#tl-dr" title="Permalink to this headline">¶</a></h2>
 <ul>
@@ -60,12 +64,13 @@
 </pre></div>
 </div>
 </li>
+<li><p>More examples/tutorials available at <a class="reference external" href="user">User Guide</a></p></li>
 </ul>
 </div>
 <div class="section" id="development">
 <h2>Development<a class="headerlink" href="#development" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p>Setup choice Python virtual environment e.g. <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">venv</span></code> and, then:</p>
+<li><p>Setup Python virtual environment e.g. <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">venv</span> <span class="pre">venv</span></code> and, then:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="s1">&#39;.[test,dev]&#39;</span> <span class="o">.</span>
 </pre></div>
 </div>
@@ -85,6 +90,14 @@
 </pre></div>
 </div>
 </li>
+<li><p>Pilot run or Integration Test:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">IAP_BASE_URL</span><span class="o">=&lt;</span><span class="n">baseUrl</span><span class="o">&gt;</span>
+<span class="n">export</span> <span class="n">IAP_AUTH_TOKEN</span><span class="o">=&lt;</span><span class="n">tok</span><span class="o">&gt;</span>
+<span class="n">python</span> <span class="n">pilot</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+<li><p>See <a class="reference external" href="developer">Developer Guide</a> for more notes</p></li>
 </ul>
 </div>
 <div class="section" id="documentation">
@@ -99,12 +112,44 @@
 </div>
 </li>
 <li><p>Browse doc locally in <code class="docutils literal notranslate"><span class="pre">sphinx/build/html/index.html</span></code></p></li>
-<li><p>If all good, build for github page:</p>
+<li><p>Build for github page:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">cd</span> <span class="n">sphinx</span> <span class="o">&amp;&amp;</span> <span class="n">make</span> <span class="n">github</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
+<li><p>If everything looks good, make all docs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">doc</span>
+</pre></div>
+</div>
+</li>
 </ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>MIT License and DISCLAIMER</p>
+<a class="reference external image-reference" href="https://opensource.org/licenses/MIT"><img alt="MIT License" src="https://img.shields.io/badge/License-MIT-yellow.svg" /></a>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer/index.html">DEVELOPER GUIDE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#clone-note">Clone Note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#workflow-note">Workflow Note</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#feature-developer">Feature Developer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="developer/index.html#release-maintainer">Release Maintainer</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">USER GUIDE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/index.html#basic">Basic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/index.html#rest-client">REST Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user/index.html#example-pilot-py">Example <code class="docutils literal notranslate"><span class="pre">pilot.py</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog/index.html">CHANGE LOG</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog/index.html#id1">0.1.0</a></li>
+</ul>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -133,11 +178,18 @@
 
 
 <h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer/index.html">DEVELOPER GUIDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user/index.html">USER GUIDE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog/index.html">CHANGE LOG</a></li>
+</ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="developer/index.html" title="next chapter">DEVELOPER GUIDE</a></li>
   </ul></li>
 </ul>
 </div>
@@ -164,7 +216,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, UMCCR.
+      &copy;2020, UMCCR and Contributors.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.3</a>

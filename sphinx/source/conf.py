@@ -13,16 +13,16 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-
+from libiap import __version__
 
 # -- Project information -----------------------------------------------------
 
 project = 'libiap'
-copyright = '2020, UMCCR'
-author = 'UMCCR'
+copyright = '2020, UMCCR and Contributors'
+author = 'UMCCR and Contributors'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.0'
+release = __version__
 
 
 # -- General configuration ---------------------------------------------------

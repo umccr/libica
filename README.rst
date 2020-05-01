@@ -7,6 +7,9 @@ libiap
 
 Python SDK/Library for IAP -- https://umccr.github.io/libiap/
 
+* `Coverage <coverage>`_
+* `PyDoc <libiap>`_
+
 TL;DR
 -----
 
@@ -26,6 +29,8 @@ TL;DR
     for file in libgds.list_files(volume_name='my-gds-volume-name'):
         print(file)
 
+- More examples/tutorials available at `User Guide <user>`_
+
 Development
 -----------
 
@@ -42,10 +47,17 @@ Development
 
     pytest
 
-
 - Run individual test case::
 
     python -m unittest tests.test_libgds.LibGDSUnitTests.test_list_files_pagination
+
+- Pilot run or Integration Test::
+
+    export IAP_BASE_URL=<baseUrl>
+    export IAP_AUTH_TOKEN=<tok>
+    python pilot.py
+
+- See `Developer Guide <developer>`_ for more notes
 
 Documentation
 -------------
@@ -61,9 +73,13 @@ Documentation
 
 - Browse doc locally in ``sphinx/build/html/index.html``
 
-- If all good, build for github page::
+- Build for github page::
 
     (cd sphinx && make github)
+
+- If everything looks good, make all docs::
+
+    make doc
 
 License
 -------

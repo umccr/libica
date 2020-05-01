@@ -22,10 +22,13 @@ setup(
             "twine",
             "setuptools",
             "wheel",
+            "pdoc3",
         ],
         "test": [
             "pytest",
+            "pytest-cov",
             "flake8",
+            "mockito",
         ],
     },
     install_requires=[
