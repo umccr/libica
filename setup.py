@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 from libiap import __version__
 
-with open("README.rst", "r") as fh:
+with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(
@@ -14,6 +14,7 @@ setup(
     author_email="services@umccr.org",
     description="Python SDK/Library for IAP",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     python_requires=">=3.7",
     extras_require={
         "dev": [

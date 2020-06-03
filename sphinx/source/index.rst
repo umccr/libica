@@ -6,7 +6,7 @@
 Welcome to libiap's documentation!
 ==================================
 
-.. include:: ../../README.rst
+.. include:: main.rst
 
 .. toctree::
    :maxdepth: 2

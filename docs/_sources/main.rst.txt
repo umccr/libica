@@ -8,7 +8,8 @@ libiap
 
 Python SDK/Library for IAP -- https://umccr-illumina.github.io/libiap/
 
-* `Coverage <https://umccr-illumina.github.io/libiap/coverage/>`_
+* Documentation as of libiap-|release|
+* `Test Coverage <https://umccr-illumina.github.io/libiap/coverage/>`_
 * `PyDoc <https://umccr-illumina.github.io/libiap/libiap/>`_
 
 TL;DR
@@ -35,23 +36,6 @@ TL;DR
 Development
 -----------
 
-- Setup Python virtual environment e.g. ``python -m venv venv`` and, then::
-
-    pip install '.[test,dev]' .
-
-
-- Run unit test suite::
-
-    python -m unittest
-
-- Or run with ``pytest``::
-
-    pytest
-
-- Run individual test case::
-
-    python -m unittest tests.test_libgds.LibGDSUnitTests.test_list_files_pagination
-
 - Pilot run or Integration Test::
 
     export IAP_BASE_URL=<baseUrl>
@@ -60,27 +44,6 @@ Development
 
 - See `Developer Guide <https://umccr-illumina.github.io/libiap/developer/>`_ for more notes
 
-Documentation
--------------
-
-- Use Sphinx and reStructuredText
-
-- Document sources are in ``sphinx/source/*.rst``
-
-- Build doc like so::
-
-    (cd sphinx && make clean)
-    (cd sphinx && make html)
-
-- Browse doc locally in ``sphinx/build/html/index.html``
-
-- Build for github page::
-
-    (cd sphinx && make github)
-
-- If everything looks good, make all docs::
-
-    make doc
 
 License
 -------

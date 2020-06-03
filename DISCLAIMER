@@ -7,9 +7,9 @@ LIBIAP MAKES NO GUARANTEE OF VALIDITY WITH IAP WEB SERVICES
    "correct behaviour" when interfacing IAP web services and endpoints.
 
 2. As "libiap" project sought to maintain most upto date upstream API compatible with
-   IAP web services, however, project does not gurantee this is the case all the time.
+   IAP web services, however, project does not guarantee this is the case all the time.
 
-3. "libiap" makes no gurantee about any damages to your data due to any mis-use/mis-configure
+3. "libiap" makes no guarantee about any damages to your data due to any mis-use/mis-configure
    or unintentional and/or un-discovered potential software bug. See "AS IS" clause, MIT license.
 
 4. Project also does not able to provide any support, if, discerning issue is
