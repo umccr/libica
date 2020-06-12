@@ -6,6 +6,7 @@ env
 .env
 py37/
 py38/
+local/
 
 .idea/
 *.iml
@@ -25,3 +26,6 @@ dist/
 *.egg-info/
 htmlcov/
 .coverage
+.coverage.*
+
+node_modules/

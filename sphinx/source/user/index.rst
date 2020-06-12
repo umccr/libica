@@ -1,6 +1,13 @@
 USER GUIDE
 ==========
 
+OpenAPI
+-------
+
+* For usage of sub-packages (e.g. ``libiap.openapi.libwes``), please refer to OpenAPI documentation available at:
+
+    `https://umccr-illumina.github.io/libiap/openapi/ <https://umccr-illumina.github.io/libiap/openapi/>`_
+
 Basic
 -----
 

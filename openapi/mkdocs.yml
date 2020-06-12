@@ -1,0 +1,29 @@
+site_name: libiap
+nav:
+  - libwes: libwes/README.md
+  - libtes: libtes/README.md
+  - libgds: libgds/README.md
+  - libens: libens/README.md
+  - libconsole: libconsole/README.md
+
+theme:
+  name:
+    material
+
+repo_name: umccr-illumina/libiap
+repo_url: https://github.com/umccr-illumina/libiap
+
+extra:
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: https://github.com/umccr-illumina/libiap
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/umccr
+
+markdown_extensions:
+  - admonition
+  - codehilite
+  - toc:
+      permalink: true
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink

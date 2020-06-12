@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Welcome to libiap’s documentation! &#8212; libiap 0.2.0rc1 documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to libiap’s documentation! &#8212; libiap 0.2.0 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -38,9 +39,10 @@
 <h1>libiap<a class="headerlink" href="#libiap" title="Permalink to this headline">¶</a></h1>
 <p>Python SDK/Library for IAP – <a class="reference external" href="https://umccr-illumina.github.io/libiap/">https://umccr-illumina.github.io/libiap/</a></p>
 <ul class="simple">
-<li><p>Documentation as of libiap-0.2.0rc1</p></li>
-<li><p><a class="reference external" href="https://umccr-illumina.github.io/libiap/coverage/">Test Coverage</a></p></li>
+<li><p>Documentation as of libiap-0.2.0</p></li>
+<li><p><a class="reference external" href="https://umccr-illumina.github.io/libiap/openapi/">OpenAPI</a></p></li>
 <li><p><a class="reference external" href="https://umccr-illumina.github.io/libiap/libiap/">PyDoc</a></p></li>
+<li><p><a class="reference external" href="https://umccr-illumina.github.io/libiap/coverage/">Test Coverage</a></p></li>
 </ul>
 <div class="section" id="tl-dr">
 <h2>TL;DR<a class="headerlink" href="#tl-dr" title="Permalink to this headline">¶</a></h2>
@@ -61,6 +63,44 @@
 
 <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">libgds</span><span class="o">.</span><span class="n">list_files</span><span class="p">(</span><span class="n">volume_name</span><span class="o">=</span><span class="s1">&#39;my-gds-volume-name&#39;</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Using OpenAPI:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">libiap.openapi</span> <span class="kn">import</span> <span class="n">libwes</span>
+<span class="kn">from</span> <span class="nn">libiap.openapi.libwes</span> <span class="kn">import</span> <span class="n">WorkflowList</span><span class="p">,</span> <span class="n">WorkflowCompact</span>
+
+<span class="n">iap_auth_token</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;IAP_AUTH_TOKEN&quot;</span><span class="p">)</span>
+<span class="n">iap_base_url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;IAP_BASE_URL&quot;</span><span class="p">)</span>
+
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libwes</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">host</span><span class="o">=</span><span class="n">iap_base_url</span><span class="p">,</span>
+    <span class="n">api_key</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="n">iap_auth_token</span>
+    <span class="p">},</span>
+    <span class="n">api_key_prefix</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s2">&quot;Bearer&quot;</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+
+<span class="k">with</span> <span class="n">libwes</span><span class="o">.</span><span class="n">ApiClient</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">api_client</span><span class="p">:</span>
+
+    <span class="n">wfl_api</span><span class="p">:</span> <span class="n">libwes</span><span class="o">.</span><span class="n">WorkflowsApi</span> <span class="o">=</span> <span class="n">libwes</span><span class="o">.</span><span class="n">WorkflowsApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">page_token</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">wfl_list</span><span class="p">:</span> <span class="n">WorkflowList</span> <span class="o">=</span> <span class="n">wfl_api</span><span class="o">.</span><span class="n">list_workflows</span><span class="p">(</span><span class="n">page_size</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span><span class="p">)</span>
+            <span class="c1"># print(wfl_list)</span>
+            <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">wfl_list</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
+                <span class="n">wfl</span><span class="p">:</span> <span class="n">WorkflowCompact</span> <span class="o">=</span> <span class="n">item</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">wfl</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">wfl</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">page_token</span> <span class="o">=</span> <span class="n">wfl_list</span><span class="o">.</span><span class="n">next_page_token</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">wfl_list</span><span class="o">.</span><span class="n">next_page_token</span><span class="p">:</span>
+                <span class="k">break</span>
+    <span class="k">except</span> <span class="n">libwes</span><span class="o">.</span><span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
@@ -98,6 +138,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="user/index.html">USER GUIDE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user/index.html#openapi">OpenAPI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user/index.html#basic">Basic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user/index.html#rest-client">REST Client</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user/index.html#example-pilot-py">Example <code class="docutils literal notranslate"><span class="pre">pilot.py</span></code></a></li>
@@ -105,6 +146,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="changelog/index.html">CHANGE LOG</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="changelog/index.html#id1">0.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog/index.html#id2">0.2.0</a></li>
 </ul>
 </li>
 </ul>
@@ -178,7 +220,7 @@
       &copy;2020, UMCCR and Contributors.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.0.4</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.0</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

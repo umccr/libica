@@ -18,6 +18,10 @@ github:
 	@make html
 	@cp -a build/html/. ../docs
 
+local:
+	@make html
+	@cp -a build/html/. ../local
+
 #.PHONY: clean
 #clean:
 #	@rm -rf "$(BUILDDIR)"/*

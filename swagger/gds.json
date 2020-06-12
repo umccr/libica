@@ -1,0 +1,2546 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Genomic Data Store Service",
+    "version": "v1"
+  },
+  "host": "aps2.platform.illumina.com",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/v1/files/{fileId}": {
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Get details about a file, including a pre-signed URL for download",
+        "description": "Get information and details for the specified file ID, including metadata and a pre-signed URL for file download. The URL can be used as a curl command or directly with S3.",
+        "operationId": "getFile",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fileId",
+            "description": "Unique identifier for the file to retrieve.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "tenantId",
+            "description": "Optional parameter to see shared data in another tenant",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/FileResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "File not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Update a file entry in GDS and get temporary credentials for upload",
+        "description": "Update a file entry in GDS. Returns temporary credentials for file upload directly to S3 when the include=objectStoreAccess parameter is used. Note that the currently supported changes to the file resource are updating the file type and the underlying content.",
+        "operationId": "updateFile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fileId",
+            "description": "Unique identifier for the file to be updated.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "description": "Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateFileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/FileWriteableResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "File not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Permanently delete a file",
+        "description": "Permanently delete a file entry and its underlying content",
+        "operationId": "deleteFile",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fileId",
+            "description": "Unique identifier for the file to delete.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content."
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "File not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/files": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Create a file entry in GDS and get temporary credentials for upload",
+        "description": "Create a file entry in GDS. Returns temporary credentials for file upload directly to S3 when the include=objectStoreAccess parameter is used. Volume ID or volume name is required for file creation. If a folder path is provided and does not exist, GDS creates the folder path in the appropriate account automatically.",
+        "operationId": "createFile",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "include",
+            "description": "Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateFileRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created new File.",
+            "schema": {
+              "$ref": "#/definitions/FileWriteableResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "A conflict was found. Make sure the new File doesn't already exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Get a list of files",
+        "description": "Given a volumeId or volume name, get a list of files accessible by the JWT. The default sort returned is alphabetical, ascending. The default page size is 10 items",
+        "operationId": "listFiles",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "volume.id",
+            "description": "Optional field that specifies comma-separated volume IDs to include in the list",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "in": "query",
+            "name": "volume.name",
+            "description": "Optional field that specifies comma-separated volume names to include in the list",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "in": "query",
+            "name": "path",
+            "description": "Optional field that specifies comma-separated paths to include in the list. Value can use wildcards (e.g. /a/b/c/*) or exact matches (e.g. /a/b/c/d/).",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "in": "query",
+            "name": "isUploaded",
+            "description": "Optional field to filter by Uploaded files",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "archiveStatus",
+            "description": "Optional field that specifies comma-separated Archive Statuses to include in the list",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "recursive",
+            "description": "Optional field to specify if files should be returned recursively in and under the specified paths, or only directly in the specified paths",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "description": "START_DESC END_DESC",
+            "type": "integer",
+            "format": "int32",
+            "maximum": 10000,
+            "minimum": 0
+          },
+          {
+            "in": "query",
+            "name": "pageToken",
+            "description": "START_DESC END_DESC",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "description": "START_DESC END_DESC",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "tenantId",
+            "description": "Optional parameter to see shared data in another tenant",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/FileListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/files/{fileId}:destroy": {
+      "delete": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Permanently delete a file",
+        "description": "This endpoint will be deprecated with the EarlyAccess launch. Utilize DELETE: v1/files/{fileId} instead.",
+        "operationId": "destroyFile-deprecated",
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fileId",
+            "description": "Unique identifier for the file to delete.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content."
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "File not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/files/{fileId}:archive": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Archive a file",
+        "description": "Archives a file to a lower storage cost tier.",
+        "operationId": "archiveFile",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fileId",
+            "description": "Unique identifier for the file to be archived.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FileArchiveRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/FileResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "File not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/files/{fileId}:unarchive": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Unarchive a file",
+        "description": "Unarchive a file from a lower storage cost tier.",
+        "operationId": "unarchiveFile",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "fileId",
+            "description": "Unique identifier for the file to be unarchived.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FileUnarchiveRequest"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted.",
+            "schema": {
+              "$ref": "#/definitions/FileResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "File not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/folders": {
+      "get": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Get a list of folders",
+        "description": "Given a volumeId or volume name, get a list of folders accessible by the JWT. The default sort returned is alphabetical, ascending. The default page size is 10 items",
+        "operationId": "listFolders",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "volume.id",
+            "description": "Optional field that specifies comma-separated volume IDs to include in the list",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "in": "query",
+            "name": "volume.name",
+            "description": "Optional field that specifies comma-separated volume names to include in the list",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "in": "query",
+            "name": "path",
+            "description": "Optional field that specifies comma-separated paths to include in the list. Value can use wildcards (e.g. /a/b/c/*) or exact matches (e.g. /a/b/c/d/).",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "in": "query",
+            "name": "jobStatuses",
+            "description": "Optional field that specifies comma-separated JobStatuses to include in the list",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "acls",
+            "description": "Optional field that specifies comma-separated acls to include in the list",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "csv"
+          },
+          {
+            "in": "query",
+            "name": "recursive",
+            "description": "Optional field to specify if folders should be returned recursively in and under the specified paths, or only directly in the specified paths",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "description": "START_DESC END_DESC",
+            "type": "integer",
+            "format": "int32",
+            "maximum": 10000,
+            "minimum": 0
+          },
+          {
+            "in": "query",
+            "name": "pageToken",
+            "description": "START_DESC END_DESC",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "description": "START_DESC END_DESC",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "tenantId",
+            "description": "Optional parameter to see shared data in another tenant",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/FolderListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Create a folder in GDS and receive credentials for upload",
+        "description": "Create a folder entry in GDS. Returns temporary credentials for folder upload directly to S3 when the include=objectStoreAccess parameter is used. Volume ID or volume name is required for folder creation. If a folder path is provided and does not exist, GDS automatically creates the folder path in the appropriate account.",
+        "operationId": "createFolder",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "include",
+            "description": "Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateFolderRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created new Folder.",
+            "schema": {
+              "$ref": "#/definitions/FolderWriteableResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "A conflict was found. Make sure the new Folder doesn't already exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/folders/{folderId}": {
+      "get": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Get information about a folder in GDS.",
+        "description": "Get information for the specified folder ID.",
+        "operationId": "getFolder",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "folderId",
+            "description": "Unique identifier for the folder to retrieve.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "tenantId",
+            "description": "Optional parameter to see shared data in another tenant",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/FolderResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Folder not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Update a folder content or acl",
+        "description": "Update an existing folder in GDS and return upload credentials for that folder. Changes to the folder name and other metadata are not supported at this time.  Optionally overwrite the acl for this folder if acl is provided in the request.",
+        "operationId": "updateFolder",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "folderId",
+            "description": "Unique identifier for the folder to be updated.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "description": "Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/FolderUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/FolderWriteableResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Folder not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Deletes a folder by id",
+        "operationId": "deleteFolder",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "folderId",
+            "description": "Unique identifier for the folder to be deleted.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted.",
+            "schema": {
+              "$ref": "#/definitions/FolderResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Folder not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/folders/{folderId}:archive": {
+      "post": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Archive a folder",
+        "description": "Archives a folder to a lower storage cost tier.",
+        "operationId": "archiveFolder",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "folderId",
+            "description": "Unique identifier for the folder to be archived.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FolderArchiveRequest"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted.",
+            "schema": {
+              "$ref": "#/definitions/FolderResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Folder not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator."
+          }
+        }
+      }
+    },
+    "/v1/folders/{folderId}:unarchive": {
+      "post": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Unarchive a folder",
+        "description": "Unarchive a folder from a lower storage cost tier.",
+        "operationId": "unarchiveFolder",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "folderId",
+            "description": "Unique identifier for the folder to be unarchived.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FolderUnarchiveRequest"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted.",
+            "schema": {
+              "$ref": "#/definitions/FolderResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Folder not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator."
+          }
+        }
+      }
+    },
+    "/v1/folders/{folderId}/sessions/{sessionId}": {
+      "get": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Get status of a folder upload in GDS",
+        "description": "Get status of a folder upload in GDS.",
+        "operationId": "getFolderSession",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "folderId",
+            "description": "Unique identifier for the folder related to the upload session.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "description": "The id of the upload session",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Completed upload session.",
+            "schema": {
+              "$ref": "#/definitions/SessionResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          }
+        }
+      }
+    },
+    "/v1/folders/{folderId}/sessions/{sessionId}:complete": {
+      "post": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Complete a folder upload in GDS",
+        "description": "Complete a folder upload in GDS.",
+        "operationId": "completeFolderSession",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "folderId",
+            "description": "Unique identifier for the folder related to the upload session.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "path",
+            "name": "sessionId",
+            "description": "The id of the upload session",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "The request body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CompleteSessionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Completed upload session.",
+            "schema": {
+              "$ref": "#/definitions/SessionResponse"
+            }
+          },
+          "202": {
+            "description": "Upload session in progress.",
+            "schema": {
+              "$ref": "#/definitions/SessionResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/volumes": {
+      "get": {
+        "tags": [
+          "Volumes"
+        ],
+        "summary": "Get a list of volumes",
+        "description": "Get a list of volumes accessible by the current JWT token’s tenant ID in GDS. The default sort returned is alphabetical, ascending. The default page size is 10 items.",
+        "operationId": "listVolumes",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pageSize",
+            "description": "START_DESC END_DESC",
+            "type": "integer",
+            "format": "int32",
+            "maximum": 1000,
+            "minimum": 0
+          },
+          {
+            "in": "query",
+            "name": "pageToken",
+            "description": "START_DESC END_DESC",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "description": "START_DESC END_DESC",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "tenantId",
+            "description": "Optional parameter to see shared data in another tenant",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/VolumeListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Volumes"
+        ],
+        "summary": "Create a volume in GDS and receive temporary credentials for upload",
+        "description": "Create a volume in GDS to hold folders and files. Returns upload credentials to the root folder of the volume when the include=objectStoreAccess parameter is used. You must create a volume prior to uploading files or folders.",
+        "operationId": "createVolume",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "include",
+            "description": "Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateVolumeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created new Volume.",
+            "schema": {
+              "$ref": "#/definitions/CreateVolumeResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "A conflict was found. Make sure the new Volume doesn't already exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/volumes/{volumeId}": {
+      "get": {
+        "tags": [
+          "Volumes"
+        ],
+        "summary": "Get information for the specified volume ID or volume name",
+        "operationId": "getVolume",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "volumeId",
+            "description": "Unique identifier for the volume to retrieve information for.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "tenantId",
+            "description": "Optional parameter to see shared data in another tenant",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/VolumeResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Volume not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Volumes"
+        ],
+        "summary": "Deletes a volume by Id",
+        "operationId": "deleteVolume",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "volumeId",
+            "description": "Unique identifier for the Volume to be deleted.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted.",
+            "schema": {
+              "$ref": "#/definitions/VolumeResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Volume not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ArchiveStatuses": {
+      "description": "The valid Archive Status values for files in GDS",
+      "enum": [
+        "None",
+        "Archived",
+        "Unarchiving"
+      ],
+      "type": "string"
+    },
+    "StorageTier": {
+      "description": "StorageTier",
+      "enum": [
+        "None",
+        "Standard",
+        "Archive",
+        "DeepArchive"
+      ],
+      "type": "string"
+    },
+    "FileResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "A unique identifier for this File",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of this File",
+          "type": "string"
+        },
+        "volumeId": {
+          "description": "The unique identifier of the volume where the file resides",
+          "type": "string"
+        },
+        "volumeName": {
+          "description": "The name of the volume where the file resides",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the File",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "The unique identifier for this File's Tenant",
+          "type": "string"
+        },
+        "subTenantId": {
+          "description": "The unique identifier for this File's Sub Tenant",
+          "type": "string"
+        },
+        "path": {
+          "description": "The (GDS) path to this File",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "The date & time this File was created, in GDS",
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "The creator of this File",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "The date & time this File was updated, in GDS",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "The updator of this File",
+          "type": "string"
+        },
+        "inheritedAcl": {
+          "description": "The inherited list of Id(s) that have access to this File",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "urn": {
+          "description": "The Universal Resource Name, unique to this File",
+          "type": "string"
+        },
+        "sizeInBytes": {
+          "format": "int64",
+          "description": "The File's Size in bytes",
+          "type": "integer"
+        },
+        "isUploaded": {
+          "description": "The current upload state of the File",
+          "type": "boolean"
+        },
+        "archiveStatus": {
+          "$ref": "#/definitions/ArchiveStatuses"
+        },
+        "timeArchived": {
+          "format": "date-time",
+          "description": "The date & time this File was archived",
+          "type": "string"
+        },
+        "storageTier": {
+          "$ref": "#/definitions/StorageTier"
+        },
+        "presignedUrl": {
+          "description": "The presigned Url allowing access to this File",
+          "type": "string"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code that uniquely identifies the type of error that occurred",
+          "type": "string"
+        },
+        "message": {
+          "description": "Description of the error that occurred",
+          "type": "string"
+        },
+        "details": {
+          "description": "Additional details for conditions that caused the error",
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "UpdateFileRequest": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The new file type (e.g. \"text/plain\").",
+          "type": "string"
+        }
+      }
+    },
+    "ObjectStorageCredentialsResponse": {
+      "description": "The temporaryUploadCredentials/objectStorageCredentialsResponse will be deprecated. Use objectStoreAccess/awsS3TemporaryUploadCredentials instead.",
+      "type": "object",
+      "properties": {
+        "accessKey": {
+          "description": "Access key for use with AWS S3",
+          "type": "string"
+        },
+        "secretKey": {
+          "description": "Secret key for use with AWS S3",
+          "type": "string"
+        },
+        "sessionToken": {
+          "description": "Token for use with AWS S3",
+          "type": "string"
+        },
+        "region": {
+          "description": "AWS region the folder will/does reside in",
+          "type": "string"
+        },
+        "bucketName": {
+          "description": "AWS bucket the folder will/does reside in",
+          "type": "string"
+        },
+        "serviceUrl": {
+          "description": "Service URL for multi-regional support",
+          "type": "string"
+        },
+        "uploadLocation": {
+          "description": "AWS upload location for this folder",
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "description": "expiration for temporary credentials",
+          "type": "string"
+        }
+      }
+    },
+    "AwsS3TemporaryUploadCredentials": {
+      "description": "AwsS3TemporaryUploadCredentials",
+      "type": "object",
+      "properties": {
+        "access_Key_Id": {
+          "description": "Access key for use with AWS S3",
+          "type": "string"
+        },
+        "secret_Access_Key": {
+          "description": "Secret key for use with AWS S3",
+          "type": "string"
+        },
+        "session_Token": {
+          "description": "Token for use with AWS S3",
+          "type": "string"
+        },
+        "region": {
+          "description": "AWS region the folder will/does reside in",
+          "type": "string"
+        },
+        "bucketName": {
+          "description": "AWS bucket the folder will/does reside in",
+          "type": "string"
+        },
+        "keyPrefix": {
+          "description": "AWS upload location for this folder",
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "description": "expiration for temporary credentials",
+          "type": "string"
+        }
+      }
+    },
+    "ObjectStoreAccess": {
+      "description": "ObjectStoreAccess to get the temporaryCredentials per provider",
+      "type": "object",
+      "properties": {
+        "sessionId": {
+          "type": "string"
+        },
+        "awsS3TemporaryUploadCredentials": {
+          "$ref": "#/definitions/AwsS3TemporaryUploadCredentials"
+        }
+      }
+    },
+    "FileWriteableResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "A unique identifier for this File",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of this File",
+          "type": "string"
+        },
+        "volumeId": {
+          "description": "The unique identifier of the volume where the file resides",
+          "type": "string"
+        },
+        "volumeName": {
+          "description": "The name of the volume where the file resides",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the File",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "The unique identifier for this File's Tenant",
+          "type": "string"
+        },
+        "subTenantId": {
+          "description": "The unique identifier for this File's Sub Tenant",
+          "type": "string"
+        },
+        "path": {
+          "description": "The (GDS) path to this File",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "The date & time this File was created, in GDS",
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "The creator of this File",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "The date & time this File was updated, in GDS",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "The updator of this File",
+          "type": "string"
+        },
+        "inheritedAcl": {
+          "description": "The inherited list of Id(s) that have access to this File",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "urn": {
+          "description": "The Universal Resource Name, unique to this File",
+          "type": "string"
+        },
+        "sizeInBytes": {
+          "format": "int64",
+          "description": "The File's Size in bytes",
+          "type": "integer"
+        },
+        "isUploaded": {
+          "description": "The current upload state of the File",
+          "type": "boolean"
+        },
+        "archiveStatus": {
+          "$ref": "#/definitions/ArchiveStatuses"
+        },
+        "timeArchived": {
+          "format": "date-time",
+          "description": "The date & time this File was archived",
+          "type": "string"
+        },
+        "storageTier": {
+          "$ref": "#/definitions/StorageTier"
+        },
+        "temporaryUploadCredentials": {
+          "$ref": "#/definitions/ObjectStorageCredentialsResponse"
+        },
+        "objectStoreAccess": {
+          "$ref": "#/definitions/ObjectStoreAccess"
+        }
+      }
+    },
+    "CreateFileRequest": {
+      "description": "CreateFileRequest Model",
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the file to be uploaded, case sensitive.",
+          "pattern": "^[^/]+$",
+          "type": "string"
+        },
+        "volumeId": {
+          "description": "Volume ID to which the file will be uploaded",
+          "type": "string"
+        },
+        "folderPath": {
+          "description": "Optional folder path where the file will be uploaded to",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional file content type, e.g. text/plain, application/json",
+          "type": "string"
+        },
+        "volumeName": {
+          "description": "Name of the Volume",
+          "type": "string"
+        }
+      }
+    },
+    "FileListResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "description": "Items in paged list",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FileResponse"
+          }
+        },
+        "itemCount": {
+          "format": "int32",
+          "description": "Number of items included in the page",
+          "type": "integer"
+        },
+        "firstPageToken": {
+          "description": "PageToken for first paged list",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "PageToken for the next paged list",
+          "type": "string"
+        },
+        "prevPageToken": {
+          "description": "PageToken for the previous paged list",
+          "type": "string"
+        },
+        "lastPageToken": {
+          "description": "PageToken for the last paged list. Only included when totalItemCount is listed",
+          "type": "string"
+        },
+        "totalItemCount": {
+          "format": "int64",
+          "description": "Total number of items in all pages. Only included when requested",
+          "type": "integer"
+        },
+        "totalPageCount": {
+          "format": "int64",
+          "description": "Total number of pages. Only included when totalItemCount is listed",
+          "type": "integer"
+        }
+      }
+    },
+    "FileArchiveStorageTier": {
+      "enum": [
+        "Archive",
+        "DeepArchive"
+      ],
+      "type": "string"
+    },
+    "FileArchiveRequest": {
+      "description": "FileArchiveRequest to specify the Storage Tier",
+      "required": [
+        "storageTier"
+      ],
+      "type": "object",
+      "properties": {
+        "storageTier": {
+          "$ref": "#/definitions/FileArchiveStorageTier"
+        }
+      }
+    },
+    "FileUnarchiveRequest": {
+      "description": "FileUnarchiveRequest to specify the RestoreSpeed",
+      "required": [
+        "restoreSpeed"
+      ],
+      "type": "object",
+      "properties": {
+        "restoreSpeed": {
+          "description": "The desired Restore Speed to move the File to the Standard Storage Tier. Valid values are Economy and Standard.",
+          "type": "string"
+        }
+      }
+    },
+    "JobStatus": {
+      "description": "The valid Job Status values for folders in GDS",
+      "enum": [
+        "None",
+        "Archiving",
+        "Unarchiving",
+        "Deleting"
+      ],
+      "type": "string"
+    },
+    "FolderResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "A unique identifier for this Folder",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of this Folder",
+          "type": "string"
+        },
+        "volumeId": {
+          "description": "The unique identifier for this Folder's Volume",
+          "type": "string"
+        },
+        "volumeName": {
+          "description": "The name of this Folder's Volume",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "The unique identifier for this Folders's Tenant",
+          "type": "string"
+        },
+        "subTenantId": {
+          "description": "The unique identifier for this Folder's Sub Tenant",
+          "type": "string"
+        },
+        "urn": {
+          "description": "The Universal Resource Name, unique to this Folder",
+          "type": "string"
+        },
+        "path": {
+          "description": "The (GDS) folder path to this Folder",
+          "type": "string"
+        },
+        "acl": {
+          "description": "The list of directly specified Id(s) that have access to this Folder",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "inheritedAcl": {
+          "description": "The inherited list of Id(s) that have access to this Folder",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "The date & time this Folder was created, in GDS",
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "The creator of this Folder",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "The date & time this Folder was updated, in GDS",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "The updator of this Folder",
+          "type": "string"
+        },
+        "jobStatus": {
+          "$ref": "#/definitions/JobStatus"
+        },
+        "archiveJobStorageTier": {
+          "$ref": "#/definitions/StorageTier"
+        }
+      }
+    },
+    "FolderListResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "description": "Items in paged list",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FolderResponse"
+          }
+        },
+        "itemCount": {
+          "format": "int32",
+          "description": "Number of items included in the page",
+          "type": "integer"
+        },
+        "firstPageToken": {
+          "description": "PageToken for first paged list",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "PageToken for the next paged list",
+          "type": "string"
+        },
+        "prevPageToken": {
+          "description": "PageToken for the previous paged list",
+          "type": "string"
+        },
+        "lastPageToken": {
+          "description": "PageToken for the last paged list. Only included when totalItemCount is listed",
+          "type": "string"
+        },
+        "totalItemCount": {
+          "format": "int64",
+          "description": "Total number of items in all pages. Only included when requested",
+          "type": "integer"
+        },
+        "totalPageCount": {
+          "format": "int64",
+          "description": "Total number of pages. Only included when totalItemCount is listed",
+          "type": "integer"
+        }
+      }
+    },
+    "CreateFolderRequest": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Folder name, unique to this path, for the folder being created",
+          "pattern": "^[^/]+$",
+          "type": "string"
+        },
+        "folderPath": {
+          "description": "Path from the root folder to the location for the folder being created; must start and end with '/'",
+          "type": "string"
+        },
+        "volumeId": {
+          "description": "The unique identifier for this Folder's Volume",
+          "type": "string"
+        },
+        "volumeName": {
+          "description": "The unique name for the Folder's Volume",
+          "type": "string"
+        },
+        "acl": {
+          "description": "Optional array to replace the acl on the resource.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "FolderWriteableResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "A unique identifier for this Folder",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of this Folder",
+          "type": "string"
+        },
+        "volumeId": {
+          "description": "The unique identifier for this Folder's Volume",
+          "type": "string"
+        },
+        "volumeName": {
+          "description": "The name of this Folder's Volume",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "The unique identifier for this Folders's Tenant",
+          "type": "string"
+        },
+        "subTenantId": {
+          "description": "The unique identifier for this Folder's Sub Tenant",
+          "type": "string"
+        },
+        "urn": {
+          "description": "The Universal Resource Name, unique to this Folder",
+          "type": "string"
+        },
+        "path": {
+          "description": "The (GDS) folder path to this Folder",
+          "type": "string"
+        },
+        "acl": {
+          "description": "The list of directly specified Id(s) that have access to this Folder",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "inheritedAcl": {
+          "description": "The inherited list of Id(s) that have access to this Folder",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "The date & time this Folder was created, in GDS",
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "The creator of this Folder",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "The date & time this Folder was updated, in GDS",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "The updator of this Folder",
+          "type": "string"
+        },
+        "jobStatus": {
+          "$ref": "#/definitions/JobStatus"
+        },
+        "archiveJobStorageTier": {
+          "$ref": "#/definitions/StorageTier"
+        },
+        "temporaryUploadCredentials": {
+          "$ref": "#/definitions/ObjectStorageCredentialsResponse"
+        },
+        "objectStoreAccess": {
+          "$ref": "#/definitions/ObjectStoreAccess"
+        }
+      }
+    },
+    "FolderUpdateRequest": {
+      "type": "object",
+      "properties": {
+        "acl": {
+          "description": "Optional array to replace the acl on the resource.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "FolderArchiveStorageTier": {
+      "enum": [
+        "Archive",
+        "DeepArchive"
+      ],
+      "type": "string"
+    },
+    "FolderArchiveRequest": {
+      "description": "FolderArchiveRequest to specify the Storage Tier",
+      "required": [
+        "storageTier"
+      ],
+      "type": "object",
+      "properties": {
+        "storageTier": {
+          "$ref": "#/definitions/FolderArchiveStorageTier"
+        }
+      }
+    },
+    "FolderUnarchiveRequest": {
+      "required": [
+        "restoreSpeed"
+      ],
+      "type": "object",
+      "properties": {
+        "restoreSpeed": {
+          "description": "The desired Restore Speed to move the Files in the Folder to the Standard Storage Tier. Valid values are Economy and Standard.",
+          "type": "string"
+        }
+      }
+    },
+    "SessionStatus": {
+      "enum": [
+        "Open",
+        "Closed",
+        "Completed"
+      ],
+      "type": "string"
+    },
+    "SessionResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "A unique identifier for this Session",
+          "type": "string"
+        },
+        "folderUrn": {
+          "description": "The Universal Resource Name of the Folder associated with the Session",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/SessionStatus"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "The date & time this Session was created, in GDS",
+          "type": "string"
+        },
+        "timeCredentialsExpire": {
+          "format": "date-time",
+          "description": "The date & time this upload session expires",
+          "type": "string"
+        },
+        "timeClosed": {
+          "format": "date-time",
+          "description": "The date & time this Session was closed, in GDS",
+          "type": "string"
+        },
+        "timeCompleted": {
+          "format": "date-time",
+          "description": "The date & time this Session was completed, in GDS",
+          "type": "string"
+        }
+      }
+    },
+    "CompleteSessionRequest": {
+      "required": [
+        "expectedSessionFileCount"
+      ],
+      "type": "object",
+      "properties": {
+        "expectedSessionFileCount": {
+          "format": "int32",
+          "description": "User-defined count used for reconciling files uploaded when closing the session",
+          "type": "integer",
+          "x-omitempty": false
+        }
+      }
+    },
+    "VolumeResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "A unique identifier for this Volume",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of this Volume",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "The unique identifier for this Volume's Tenant",
+          "type": "string"
+        },
+        "subTenantId": {
+          "description": "The unique identifier for this Volume's Sub Tenant",
+          "type": "string"
+        },
+        "urn": {
+          "description": "The Universal Resource Name, unique to this Volume",
+          "type": "string"
+        },
+        "inheritedAcl": {
+          "description": "The inherited list of Id(s) that have access to this Volume",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "The date & time this Volume was created, in GDS",
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "The creator of this Volume",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "The date & time this Volume was updated, in GDS",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "The updator of this Volume",
+          "type": "string"
+        },
+        "jobStatus": {
+          "$ref": "#/definitions/JobStatus"
+        }
+      }
+    },
+    "VolumeListResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "description": "Items in paged list",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VolumeResponse"
+          }
+        },
+        "itemCount": {
+          "format": "int32",
+          "description": "Number of items included in the page",
+          "type": "integer"
+        },
+        "firstPageToken": {
+          "description": "PageToken for first paged list",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "PageToken for the next paged list",
+          "type": "string"
+        },
+        "prevPageToken": {
+          "description": "PageToken for the previous paged list",
+          "type": "string"
+        },
+        "lastPageToken": {
+          "description": "PageToken for the last paged list. Only included when totalItemCount is listed",
+          "type": "string"
+        },
+        "totalItemCount": {
+          "format": "int64",
+          "description": "Total number of items in all pages. Only included when requested",
+          "type": "integer"
+        },
+        "totalPageCount": {
+          "format": "int64",
+          "description": "Total number of pages. Only included when totalItemCount is listed",
+          "type": "integer"
+        }
+      }
+    },
+    "CreateVolumeRequest": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name for the volume",
+          "type": "string"
+        }
+      }
+    },
+    "CreateVolumeResponse": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "A unique identifier for this Volume",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of this Volume",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "The unique identifier for this Volume's Tenant",
+          "type": "string"
+        },
+        "subTenantId": {
+          "description": "The unique identifier for this Volume's Sub Tenant",
+          "type": "string"
+        },
+        "urn": {
+          "description": "The Universal Resource Name, unique to this Volume",
+          "type": "string"
+        },
+        "inheritedAcl": {
+          "description": "The inherited list of Id(s) that have access to this Volume",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "The date & time this Volume was created, in GDS",
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "The creator of this Volume",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "The date & time this Volume was updated, in GDS",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "The updator of this Volume",
+          "type": "string"
+        },
+        "jobStatus": {
+          "$ref": "#/definitions/JobStatus"
+        },
+        "temporaryUploadCredentials": {
+          "$ref": "#/definitions/ObjectStorageCredentialsResponse"
+        },
+        "objectStoreAccess": {
+          "$ref": "#/definitions/ObjectStoreAccess"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

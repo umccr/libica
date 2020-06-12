@@ -24,6 +24,8 @@ setup(
             "setuptools",
             "wheel",
             "pdoc3",
+            "mkdocs",
+            "mkdocs-material",
         ],
         "test": [
             "pytest",
@@ -34,5 +36,9 @@ setup(
     },
     install_requires=[
         "requests",
+        "python-dateutil",
+        "six",
+        "urllib3",
+        "certifi",
     ],
 )
