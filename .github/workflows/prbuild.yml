@@ -16,12 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '12.x'
-    - name: Install prism-cli
-      run: yarn global add @stoplight/prism-cli
+    - name: Docker compose up Prism mock API microservices
+      run: docker-compose up -d
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
@@ -39,3 +35,5 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+    - name: Docker compose down Prism mock API microservices
+      run: docker-compose down
