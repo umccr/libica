@@ -15,7 +15,19 @@ local:
 	@py.test --cov-config=.coveragerc --cov-report html:local/coverage --cov=libiap
 	@(cd openapi && mkdocs build --clean -d ../local/openapi)
 
-test:
+up:
+	@docker-compose up -d
+
+down:
+	@docker-compose down
+
+unit:
+	@py.test tests/unit libiap/openapi
+
+it: | up
+	@py.test tests/integration/
+
+test: | up
 	@py.test
 
 pilot:
@@ -24,6 +36,13 @@ pilot:
 .PHONY: dist
 dist:
 	@python setup.py sdist bdist_wheel
+
+# Usage: make testpypi version=0.2.0
+testpypi: dist/libiap-$(version).tar.gz
+	@twine upload --repository testpypi --sign dist/libiap-$(version)*
+
+pypi: dist/libiap-$(version).tar.gz
+	@twine upload --sign dist/libiap-$(version)*
 
 .PHONY: getapi genapi mvapidoc rmapi
 getapi:

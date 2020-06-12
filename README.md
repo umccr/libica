@@ -71,12 +71,38 @@ with libwes.ApiClient(configuration) as api_client:
 
 ## Development
 
-- Pilot run or Integration Test:
+- Setup virtual environment and activate it
+
+- To run unit tests suite
+```commandline
+make unit
+```
+
+- To bring up _mock_ API _μ_-services
+```commandline
+make up
+```
+
+- To run integration tests suite (required services fully up)
+```commandline
+make it
+```
+
+- To run full test suite (required services fully up)
+```commandline
+make test
+```
+
+- To make _Pilot_ run:
 ```
 export IAP_BASE_URL=<baseUrl>
 export IAP_AUTH_TOKEN=<tok>
-python pilot.py
+make pilot
+(or)
+python3 pilot.py
 ```
+
+- Most of the dev pipelines are in [`Makefile`](Makefile) workflow
 
 - See [Developer Guide](https://umccr-illumina.github.io/libiap/developer/) for more notes
 
