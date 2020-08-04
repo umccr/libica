@@ -1,13 +1,11 @@
-import logging
 import os
 from contextlib import closing
 from unittest import TestCase
 
 from libiap.openapi import libwes
-from libiap.openapi.libwes import WorkflowList, WorkflowCompact, Workflow
-from tests.integration import WES_MOCK_EP
-
-logger = logging.getLogger(__name__)
+from libiap.openapi.libwes import WorkflowList, WorkflowCompact, Workflow, WorkflowVersion, \
+    UpdateWorkflowVersionRequest, WorkflowLanguage
+from . import _logger, MOCK_EP
 
 
 class LibWESIntegrationTests(TestCase):
@@ -20,7 +18,7 @@ class LibWESIntegrationTests(TestCase):
 
         if iap_base_url is None or iap_auth_token is None:
             iap_auth_token = "MOCK"
-            iap_base_url = WES_MOCK_EP
+            iap_base_url = MOCK_EP
 
         self.configuration = libwes.Configuration(
             host=iap_base_url,
@@ -43,7 +41,7 @@ class LibWESIntegrationTests(TestCase):
         wfl_id = os.getenv("IAP_WES_WORKFLOW_ID", "mock")
         wfl: Workflow = wfl_api.get_workflow(workflow_id=wfl_id)
         self.assertIsNotNone(wfl)
-        logger.info(wfl.name)
+        _logger.info(wfl.name)
 
     def test_list_workflows(self):
         wfl_api: libwes.WorkflowsApi = libwes.WorkflowsApi(self.api_client)
@@ -52,13 +50,47 @@ class LibWESIntegrationTests(TestCase):
             while True:
                 wfl_list: WorkflowList = wfl_api.list_workflows(page_size=1000, page_token=page_token)
                 self.assertIsNotNone(wfl_list.items)
-                # logger.info(wfl_list)
+                # _logger.info(wfl_list)
                 for item in wfl_list.items:
                     wfl: WorkflowCompact = item
-                    # logger.info(wfl.id)
-                    logger.info(wfl.name)
+                    # _logger.info(wfl.id)
+                    _logger.info(wfl.name)
                 page_token = wfl_list.next_page_token
                 if not wfl_list.next_page_token:
                     break
         except libwes.ApiException as e:
-            logger.error(e)
+            _logger.error(e)
+
+    def test_get_workflow_version(self):
+        """
+        python -m unittest tests.integration.test_libwes.LibWESIntegrationTests.test_get_workflow_version
+        """
+        wfv_api: libwes.WorkflowVersionsApi = libwes.WorkflowVersionsApi(self.api_client)
+        wfv: WorkflowVersion = wfv_api.get_workflow_version(workflow_id="wfl.id_does_matter", version_name="v1")
+        self.assertIsNotNone(wfv)
+        _logger.info(wfv)
+
+    def test_update_workflow_version(self):
+        """
+        python -m unittest tests.integration.test_libwes.LibWESIntegrationTests.test_update_workflow_version
+        """
+        wfv_api: libwes.WorkflowVersionsApi = libwes.WorkflowVersionsApi(self.api_client)
+
+        current_wfv: WorkflowVersion = wfv_api.get_workflow_version(workflow_id="wfl.id", version_name="current_ver")
+        desc = current_wfv.definition
+        _logger.info(desc)
+
+        body: UpdateWorkflowVersionRequest = UpdateWorkflowVersionRequest(
+            version="0.2-redirect-nolisting",
+            description="Uses sambamda slice and samtools to extract hla contigs, chr6 hla region and unmapped bams. "
+                        "Align all to razers3 and then place through optitype workflow",
+            language=WorkflowLanguage(name="CWL", version="1.1"),
+            definition={'$graph': [{'class': "..."}]}
+        )
+
+        wfv: WorkflowVersion = wfv_api.update_workflow_version(
+            workflow_id="wfl.id_does_matter", version_name="0.2-redirect-nolisting", body=body
+        )
+
+        self.assertIsNotNone(wfv)
+        _logger.info(wfv)

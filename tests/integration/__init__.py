@@ -1,6 +1,10 @@
-# See docker-compose.yml
-WES_MOCK_EP = "http://0.0.0.0:4010"
-TES_MOCK_EP = "http://0.0.0.0:4011"
-GDS_MOCK_EP = "http://0.0.0.0:4012"
-ENS_MOCK_EP = "http://0.0.0.0:4013"
-CSL_MOCK_EP = "http://0.0.0.0:4014"
+import logging
+
+handler = logging.StreamHandler()
+formatter = logging.Formatter('%(asctime)s %(name)-12s %(levelname)-8s %(message)s')
+handler.setFormatter(formatter)
+_logger = logging.getLogger()
+_logger.addHandler(handler)
+_logger.setLevel(logging.DEBUG)
+
+MOCK_EP = "http://localhost"

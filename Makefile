@@ -21,13 +21,16 @@ up:
 down:
 	@docker-compose down
 
+test_iap_mock:
+	@curl -s -H "Authorization: Bearer Test" -X GET http://localhost/v1/workflows/runs/wfr.anything_work | jq
+
 unit:
-	@py.test tests/unit libiap/openapi
+	@py.test --no-cov tests/unit libiap/openapi
 
-it: | up
-	@py.test tests/integration/
+it:
+	@py.test --no-cov tests/integration/
 
-test: | up
+test:
 	@py.test
 
 pilot:

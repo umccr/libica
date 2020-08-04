@@ -15,7 +15,7 @@ setup(
     description="Python SDK/Library for IAP",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    python_requires=">=3.7",
+    python_requires=">=3.6",
     extras_require={
         "dev": [
             "pipdeptree",

@@ -2,6 +2,7 @@
 
 Python SDK/Library for IAP -- https://umccr-illumina.github.io/libiap/
 
+* Tested for Python 3.6, 3.7, 3.8 
 * [OpenAPI](https://umccr-illumina.github.io/libiap/openapi/)
 * [PyDoc](https://umccr-illumina.github.io/libiap/libiap/)
 * [Test Coverage](https://umccr-illumina.github.io/libiap/coverage/)
