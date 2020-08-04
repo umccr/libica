@@ -1,1 +1,555 @@
-{"swagger":"2.0","info":{"version":"v1","title":"Event Notification Service"},"host":"aps2.platform.illumina.com","paths":{"/v1/subscriptions":{"get":{"tags":["Subscriptions"],"summary":"Get a list of subscriptions.","description":"Get a list of subscriptions accessible by the current JWT token’s tenant Id.","operationId":"listSubscriptions","consumes":[],"produces":["application/json"],"parameters":[{"name":"eventType","in":"query","description":"Optional event type for filtering returned subscriptions","required":false,"type":"string","maxLength":255},{"name":"pageSize","in":"query","description":"Optional parameter to define the page size returned. Valid inputs range from 1-1000.","required":false,"type":"integer","format":"int32","maximum":1000.0,"minimum":1.0},{"name":"pageToken","in":"query","description":"Utilized for navigation after initial listing. Valid values include those of\r\nfirstPageToken, nextPageToken, and previousPageToken in the list response.\r\nWhen there are no more pages, the nextPageToken will be null.","required":false,"type":"string"}],"responses":{"200":{"description":"Subscriptions found and returned successfully.","schema":{"$ref":"#/definitions/SubscriptionList"}},"400":{"description":"An invalid or missing input parameter will result in a bad request.","schema":{"$ref":"#/definitions/ErrorResponse"}},"401":{"description":"The acting identity cannot be authenticated and authorized.","schema":{"$ref":"#/definitions/ErrorResponse"}},"403":{"description":"The acting identity is not authorized to access subscriptions.","schema":{"$ref":"#/definitions/ErrorResponse"}},"default":{"description":"Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.","schema":{"$ref":"#/definitions/ErrorResponse"}}}},"post":{"tags":["Subscriptions"],"summary":"Creates a subscription to an event type and defines how those events get delivered.","description":"Events can be delivered to AWS SQS, AWS SNS, or can be used to launch a WES workflow.","operationId":"createSubscription","consumes":["application/json-patch+json","application/json","text/json","application/*+json"],"produces":["application/json"],"parameters":[{"name":"request","in":"body","required":false,"schema":{"$ref":"#/definitions/CreateSubscriptionRequest"}}],"responses":{"201":{"description":"The subscription is created successfully.","schema":{"$ref":"#/definitions/Subscription"}},"400":{"description":"An invalid or missing input parameter will result in a bad request.","schema":{"$ref":"#/definitions/ErrorResponse"}},"401":{"description":"The acting identity cannot be authenticated and authorized.","schema":{"$ref":"#/definitions/ErrorResponse"}},"403":{"description":"The acting identity is not authorized to subscribe to the given event type or deliver to the given delivery target.","schema":{"$ref":"#/definitions/ErrorResponse"}},"409":{"description":"The given delivery target is not valid or cannot be delivered to.","schema":{"$ref":"#/definitions/ErrorResponse"}},"default":{"description":"Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.","schema":{"$ref":"#/definitions/ErrorResponse"}}}}},"/v1/subscriptions/{subscriptionId}":{"get":{"tags":["Subscriptions"],"summary":"Given a subscription id, returns information about that subscription.","description":"Given a subscription id, returns information about that subscription accessible by the current JWT token’s tenant Id.","operationId":"getSubscription","consumes":[],"produces":["application/json"],"parameters":[{"name":"subscriptionId","in":"path","description":"Id of the subscription to return","required":true,"type":"string","maxLength":255}],"responses":{"200":{"description":"Subscription for the given ID is found and returned successfully.","schema":{"$ref":"#/definitions/Subscription"}},"400":{"description":"An invalid or missing input parameter will result in a bad request.","schema":{"$ref":"#/definitions/ErrorResponse"}},"401":{"description":"The acting identity cannot be authenticated and authorized.","schema":{"$ref":"#/definitions/ErrorResponse"}},"403":{"description":"The acting identity is not authorized to access the subscription for the given ID.","schema":{"$ref":"#/definitions/ErrorResponse"}},"404":{"description":"Could not find a subscription for the given ID.","schema":{"$ref":"#/definitions/ErrorResponse"}},"410":{"description":"The subscription for the given ID has been disabled.","schema":{"$ref":"#/definitions/ErrorResponse"}},"default":{"description":"Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.","schema":{"$ref":"#/definitions/ErrorResponse"}}}},"delete":{"tags":["Subscriptions"],"summary":"Given a subscription id, disables the specified subscription.","description":"Given a subscription id, disables that subscription with the current JWT token’s tenant Id.","operationId":"disableSubscription","consumes":[],"produces":["application/json"],"parameters":[{"name":"subscriptionId","in":"path","description":"Id of the subscription to be disabled","required":true,"type":"string","maxLength":255}],"responses":{"200":{"description":"Subscription for the given ID is disabled successfully.","schema":{"$ref":"#/definitions/Subscription"}},"400":{"description":"An invalid or missing input parameter will result in a bad request.","schema":{"$ref":"#/definitions/ErrorResponse"}},"401":{"description":"The acting identity cannot be authenticated and authorized.","schema":{"$ref":"#/definitions/ErrorResponse"}},"403":{"description":"The acting identity is not authorized to disable the subscription for the given ID.","schema":{"$ref":"#/definitions/ErrorResponse"}},"404":{"description":"Could not find a subscription for the given ID.","schema":{"$ref":"#/definitions/ErrorResponse"}},"410":{"description":"The subscription for the given ID has been disabled.","schema":{"$ref":"#/definitions/ErrorResponse"}},"default":{"description":"Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.","schema":{"$ref":"#/definitions/ErrorResponse"}}}}}},"definitions":{"SubscriptionList":{"type":"object","properties":{"items":{"uniqueItems":false,"type":"array","items":{"$ref":"#/definitions/Subscription"}},"itemCount":{"format":"int32","type":"integer"},"firstPageToken":{"type":"string"},"nextPageToken":{"type":"string"},"prevPageToken":{"type":"string"},"lastPageToken":{"type":"string"},"totalItemCount":{"format":"int64","type":"integer"},"totalPageCount":{"format":"int64","type":"integer"},"sortedBy":{"enum":["id"],"type":"string"},"sortDirection":{"enum":["Asc","Desc","Ascending","Descending"],"type":"string"}}},"Subscription":{"description":"Details for an Event Notification Service subscription","type":"object","properties":{"id":{"description":"Unique id of the subscription","type":"string"},"urn":{"description":"URN of the subscription","type":"string"},"type":{"description":"Type of event the subscription matches","type":"string"},"actions":{"description":"Types of actions the subscription matches for the event type","uniqueItems":false,"type":"array","items":{"type":"string"}},"filterExpression":{"description":"JSON-structured filter expression for events matching the subscription","type":"string"},"name":{"description":"Name of the subscription","type":"string"},"description":{"description":"Optional description for the subscription","type":"string"},"deliveryTarget":{"$ref":"#/definitions/DeliveryTarget","description":"Configuration for the action to perform for events matching the subscription"},"tenantId":{"description":"Tenant id of the subscription owner","type":"string"},"createdByUserId":{"description":"User id for the creator of the subscription","type":"string"},"timeCreated":{"format":"date-time","description":"Timestamp when the subscription was created","type":"string"},"deletedByUserId":{"description":"Id of the user who deleted the subscription, if applicable","type":"string"},"timeDeleted":{"format":"date-time","description":"Timestamp when the subscription was deleted, if applicable","type":"string"},"isDeleted":{"description":"Whether or not the subscription has been deleted","type":"boolean"}}},"DeliveryTarget":{"description":"Configuration for the action to perform for events matching this subscription; only one delivery type may be specified","type":"object","properties":{"awsSnsTopic":{"$ref":"#/definitions/DeliveryTargetAwsSnsTopic","description":"Configuration for the AWS SNS delivery topic, if applicable; only one delivery type may be specified"},"awsSqsQueue":{"$ref":"#/definitions/DeliveryTargetAwsSqsQueue","description":"Configuration for the AWS SQS delivery queue, if applicable; only one delivery type may be specified"},"workflowRunLaunch":{"$ref":"#/definitions/DeliveryTargetWorkflowRunLaunch","description":"Configuration for delivery as WES workflow run launch, if applicable; only one delivery type may be specified"}}},"DeliveryTargetAwsSnsTopic":{"description":"Configuration for an AWS SNS delivery topic","required":["topicArn"],"type":"object","properties":{"topicArn":{"description":"ARN for the AWS SNS topic","type":"string"}}},"DeliveryTargetAwsSqsQueue":{"description":"Configuration for an AWS SQS delivery queue","required":["queueUrl"],"type":"object","properties":{"queueUrl":{"description":"URL for the AWS SQS queue","type":"string"}}},"DeliveryTargetWorkflowRunLaunch":{"description":"Configuration for a delivery via WES workflow run launch","required":["id","version","name"],"type":"object","properties":{"id":{"description":"Id of the workflow to launch","type":"string"},"version":{"description":"Version of the workflow to launch, for the given id","type":"string"},"name":{"description":"Name for the workflowRun","type":"string"},"input":{"description":"Arguments for the workflowRun","type":"object"}}},"ErrorResponse":{"description":"Details for an error which occurred","type":"object","properties":{"code":{"description":"Error code which uniquely identifies the type of error which occurred","type":"string"},"message":{"description":"Description of the error which occurred","type":"string"},"details":{"description":"Additional details for conditions which caused the error","uniqueItems":false,"type":"array","items":{"type":"object"}}}},"CreateSubscriptionRequest":{"required":["type","name","deliveryTarget"],"type":"object","properties":{"type":{"description":"Event type which will be subscribed to","maxLength":255,"pattern":"^[a-zA-Z]+[.a-zA-Z]*$","type":"string"},"actions":{"description":"Actions which will be subscribed to for the event type","maxLength":255,"uniqueItems":false,"type":"array","items":{"type":"string"}},"name":{"description":"Name of the subscription","maxLength":255,"pattern":"^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$","type":"string"},"description":{"description":"Optional description for the subscription","maxLength":8192,"type":"string"},"filterExpression":{"description":"JSON-structured filter expression for events matching the subscription","maxLength":8192,"type":"string"},"deliveryTarget":{"$ref":"#/definitions/DeliveryTarget","description":"Configuration for the action to perform for events matching this subscription; only one delivery type may be specified"}}}},"securityDefinitions":{"Bearer":{"name":"Authorization","in":"header","type":"apiKey","description":"JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""}},"security":[{"Bearer":[]}],"tags":[]}
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1",
+    "title": "Event Notification Service"
+  },
+  "host": "aps2.platform.illumina.com",
+  "paths": {
+    "/v1/subscriptions": {
+      "get": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Get a list of subscriptions.",
+        "description": "Get a list of subscriptions accessible by the current JWT token’s tenant Id.",
+        "operationId": "listSubscriptions",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "eventType",
+            "in": "query",
+            "description": "Optional event type for filtering returned subscriptions",
+            "required": false,
+            "type": "string",
+            "maxLength": 255
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Optional parameter to define the page size returned. Valid inputs range from 1-1000.",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "maximum": 1000.0,
+            "minimum": 1.0
+          },
+          {
+            "name": "pageToken",
+            "in": "query",
+            "description": "Utilized for navigation after initial listing. Valid values include those of\r\nfirstPageToken, nextPageToken, and previousPageToken in the list response.\r\nWhen there are no more pages, the nextPageToken will be null.",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subscriptions found and returned successfully.",
+            "schema": {
+              "$ref": "#/definitions/SubscriptionList"
+            }
+          },
+          "400": {
+            "description": "An invalid or missing input parameter will result in a bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "The acting identity cannot be authenticated and authorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "The acting identity is not authorized to access subscriptions.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Creates a subscription to an event type and defines how those events get delivered.",
+        "description": "Events can be delivered to AWS SQS, AWS SNS, or can be used to launch a WES workflow.",
+        "operationId": "createSubscription",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "request",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/CreateSubscriptionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "The subscription is created successfully.",
+            "schema": {
+              "$ref": "#/definitions/Subscription"
+            }
+          },
+          "400": {
+            "description": "An invalid or missing input parameter will result in a bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "The acting identity cannot be authenticated and authorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "The acting identity is not authorized to subscribe to the given event type or deliver to the given delivery target.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "The given delivery target is not valid or cannot be delivered to.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/subscriptions/{subscriptionId}": {
+      "get": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Given a subscription id, returns information about that subscription.",
+        "description": "Given a subscription id, returns information about that subscription accessible by the current JWT token’s tenant Id.",
+        "operationId": "getSubscription",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "Id of the subscription to return",
+            "required": true,
+            "type": "string",
+            "maxLength": 255
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subscription for the given ID is found and returned successfully.",
+            "schema": {
+              "$ref": "#/definitions/Subscription"
+            }
+          },
+          "400": {
+            "description": "An invalid or missing input parameter will result in a bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "The acting identity cannot be authenticated and authorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "The acting identity is not authorized to access the subscription for the given ID.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Could not find a subscription for the given ID.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "410": {
+            "description": "The subscription for the given ID has been disabled.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Subscriptions"
+        ],
+        "summary": "Given a subscription id, disables the specified subscription.",
+        "description": "Given a subscription id, disables that subscription with the current JWT token’s tenant Id.",
+        "operationId": "disableSubscription",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "subscriptionId",
+            "in": "path",
+            "description": "Id of the subscription to be disabled",
+            "required": true,
+            "type": "string",
+            "maxLength": 255
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subscription for the given ID is disabled successfully.",
+            "schema": {
+              "$ref": "#/definitions/Subscription"
+            }
+          },
+          "400": {
+            "description": "An invalid or missing input parameter will result in a bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "The acting identity cannot be authenticated and authorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "The acting identity is not authorized to disable the subscription for the given ID.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Could not find a subscription for the given ID.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "410": {
+            "description": "The subscription for the given ID has been disabled.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SubscriptionList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Subscription"
+          }
+        },
+        "itemCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstPageToken": {
+          "type": "string"
+        },
+        "nextPageToken": {
+          "type": "string"
+        },
+        "prevPageToken": {
+          "type": "string"
+        },
+        "lastPageToken": {
+          "type": "string"
+        },
+        "totalItemCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalPageCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "sortedBy": {
+          "enum": [
+            "id"
+          ],
+          "type": "string"
+        },
+        "sortDirection": {
+          "enum": [
+            "Asc",
+            "Desc",
+            "Ascending",
+            "Descending"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "Subscription": {
+      "description": "Details for an Event Notification Service subscription",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique id of the subscription",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the subscription",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of event the subscription matches",
+          "type": "string"
+        },
+        "actions": {
+          "description": "Types of actions the subscription matches for the event type",
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "filterExpression": {
+          "description": "JSON-structured filter expression for events matching the subscription",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the subscription",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional description for the subscription",
+          "type": "string"
+        },
+        "deliveryTarget": {
+          "$ref": "#/definitions/DeliveryTarget",
+          "description": "Configuration for the action to perform for events matching the subscription"
+        },
+        "tenantId": {
+          "description": "Tenant id of the subscription owner",
+          "type": "string"
+        },
+        "createdByUserId": {
+          "description": "User id for the creator of the subscription",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Timestamp when the subscription was created",
+          "type": "string"
+        },
+        "deletedByUserId": {
+          "description": "Id of the user who deleted the subscription, if applicable",
+          "type": "string"
+        },
+        "timeDeleted": {
+          "format": "date-time",
+          "description": "Timestamp when the subscription was deleted, if applicable",
+          "type": "string"
+        },
+        "isDeleted": {
+          "description": "Whether or not the subscription has been deleted",
+          "type": "boolean"
+        }
+      }
+    },
+    "DeliveryTarget": {
+      "description": "Configuration for the action to perform for events matching this subscription; only one delivery type may be specified",
+      "type": "object",
+      "properties": {
+        "awsSnsTopic": {
+          "$ref": "#/definitions/DeliveryTargetAwsSnsTopic",
+          "description": "Configuration for the AWS SNS delivery topic, if applicable; only one delivery type may be specified"
+        },
+        "awsSqsQueue": {
+          "$ref": "#/definitions/DeliveryTargetAwsSqsQueue",
+          "description": "Configuration for the AWS SQS delivery queue, if applicable; only one delivery type may be specified"
+        },
+        "workflowRunLaunch": {
+          "$ref": "#/definitions/DeliveryTargetWorkflowRunLaunch",
+          "description": "Configuration for delivery as WES workflow run launch, if applicable; only one delivery type may be specified"
+        }
+      }
+    },
+    "DeliveryTargetAwsSnsTopic": {
+      "description": "Configuration for an AWS SNS delivery topic",
+      "required": [
+        "topicArn"
+      ],
+      "type": "object",
+      "properties": {
+        "topicArn": {
+          "description": "ARN for the AWS SNS topic",
+          "type": "string"
+        }
+      }
+    },
+    "DeliveryTargetAwsSqsQueue": {
+      "description": "Configuration for an AWS SQS delivery queue",
+      "required": [
+        "queueUrl"
+      ],
+      "type": "object",
+      "properties": {
+        "queueUrl": {
+          "description": "URL for the AWS SQS queue",
+          "type": "string"
+        }
+      }
+    },
+    "DeliveryTargetWorkflowRunLaunch": {
+      "description": "Configuration for a delivery via WES workflow run launch",
+      "required": [
+        "id",
+        "version",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the workflow to launch",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the workflow to launch, for the given id",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name for the workflowRun",
+          "type": "string"
+        },
+        "input": {
+          "description": "Arguments for the workflowRun",
+          "type": "object"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "description": "Details for an error which occurred",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code which uniquely identifies the type of error which occurred",
+          "type": "string"
+        },
+        "message": {
+          "description": "Description of the error which occurred",
+          "type": "string"
+        },
+        "details": {
+          "description": "Additional details for conditions which caused the error",
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "CreateSubscriptionRequest": {
+      "required": [
+        "type",
+        "name",
+        "deliveryTarget"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Event type which will be subscribed to",
+          "maxLength": 255,
+          "pattern": "^[a-zA-Z]+[.a-zA-Z]*$",
+          "type": "string"
+        },
+        "actions": {
+          "description": "Actions which will be subscribed to for the event type",
+          "maxLength": 255,
+          "uniqueItems": false,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "description": "Name of the subscription",
+          "maxLength": 255,
+          "pattern": "^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional description for the subscription",
+          "maxLength": 8192,
+          "type": "string"
+        },
+        "filterExpression": {
+          "description": "JSON-structured filter expression for events matching the subscription",
+          "maxLength": 8192,
+          "type": "string"
+        },
+        "deliveryTarget": {
+          "$ref": "#/definitions/DeliveryTarget",
+          "description": "Configuration for the action to perform for events matching this subscription; only one delivery type may be specified"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Bearer": {
+      "name": "Authorization",
+      "in": "header",
+      "type": "apiKey",
+      "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
+    }
+  },
+  "security": [
+    {
+      "Bearer": []
+    }
+  ],
+  "tags": []
+}
