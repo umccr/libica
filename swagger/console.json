@@ -123,8 +123,8 @@
         "tags": [
           "Tokens"
         ],
-        "summary": "Creates a JWT token to call stratus services.",
-        "description": "This endpoint creates a JWT token to call stratus services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.",
+        "summary": "Creates a JWT token to call IAP services.",
+        "description": "This endpoint creates a JWT token to call IAP services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.",
         "operationId": "createToken",
         "produces": [
           "application/json"
@@ -134,6 +134,12 @@
             "in": "header",
             "name": "X-API-Key",
             "description": "Api Key can be passed in header to generate a JWT.",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "clientId",
+            "description": "Optionally pass client Id from calling app to set as authorized party on JWT.",
             "type": "string"
           },
           {
@@ -462,7 +468,60 @@
         }
       }
     },
-    "/v1/usages/periods": { },
+    "/v1/usages/periods": {
+      "get": {
+        "tags": [
+          "Usages"
+        ],
+        "summary": "Get periods detail info ",
+        "description": "This endpoint provides the periods details",
+        "operationId": "getUsagePeriods",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "type": "integer",
+            "format": "int32",
+            "default": 26
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The periods are returned successfully.",
+            "schema": {
+              "$ref": "#/definitions/UsageResponse"
+            }
+          },
+          "400": {
+            "description": "An invalid or missing input parameter will result in a bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "The acting identity cannot be authenticated and authorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "The acting identity is not authorized to subscribe to the given event type or deliver to the given delivery target.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/workgroups": {
       "get": {
         "tags": [
@@ -608,9 +667,11 @@
       "type": "object",
       "properties": {
         "access_token": {
+          "description": "The returned token is either a psToken or a JWT token depending on the context of the call.",
           "type": "string"
         },
         "token_type": {
+          "description": "The type of token requested.",
           "type": "string"
         }
       }
@@ -620,6 +681,7 @@
       "type": "object",
       "properties": {
         "access_token": {
+          "description": "This is either a psToken or a JWT token depending on the context of the call.",
           "type": "string"
         }
       }

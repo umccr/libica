@@ -1432,6 +1432,10 @@
           "description": "Workflow type",
           "type": "string"
         },
+        "createdByClientId": {
+          "description": "Client ID of the Origin Request",
+          "type": "string"
+        },
         "timeCreated": {
           "format": "date-time",
           "description": "Time (in UTC) the resource was created",
@@ -1737,6 +1741,10 @@
           "description": "Workflow type",
           "type": "string"
         },
+        "createdByClientId": {
+          "description": "Client ID of the Origin Request",
+          "type": "string"
+        },
         "timeCreated": {
           "format": "date-time",
           "description": "Time (in UTC) the resource was created",
@@ -1859,6 +1867,10 @@
           "description": "Status of the workflow version",
           "type": "string"
         },
+        "createdByClientId": {
+          "description": "Client ID of the Origin Request",
+          "type": "string"
+        },
         "timeCreated": {
           "format": "date-time",
           "description": "Time (in UTC) the resource was created",
@@ -1941,6 +1953,10 @@
         },
         "workflowVersion": {
           "$ref": "#/definitions/WorkflowVersionCompact"
+        },
+        "createdByClientId": {
+          "description": "Client ID of the Origin Request",
+          "type": "string"
         },
         "timeCreated": {
           "format": "date-time",
@@ -2074,6 +2090,10 @@
         "workflowVersion": {
           "$ref": "#/definitions/WorkflowVersionCompact"
         },
+        "createdByClientId": {
+          "description": "Client ID of the Origin Request",
+          "type": "string"
+        },
         "input": {
           "description": "Input to workflow run, as JSON"
         },
@@ -2148,6 +2168,10 @@
       "description": "Information about a specific event in the workflow run history",
       "type": "object",
       "properties": {
+        "name": {
+          "description": "Name of the event, such as the name of the step/task for state-level events and run name for run-level events",
+          "type": "string"
+        },
         "eventId": {
           "format": "int64",
           "description": "Identifier for the history event, if any",
@@ -2281,6 +2305,10 @@
           "description": "The error cause of a failed signal.",
           "type": "string"
         },
+        "createdByClientId": {
+          "description": "Client ID of the Origin Request",
+          "type": "string"
+        },
         "timeCreated": {
           "format": "date-time",
           "description": "Time (in UTC) the resource was created",
@@ -2386,6 +2414,10 @@
         },
         "errorCause": {
           "description": "The error cause of a failed signal.",
+          "type": "string"
+        },
+        "createdByClientId": {
+          "description": "Client ID of the Origin Request",
           "type": "string"
         },
         "timeCreated": {
@@ -2529,6 +2561,10 @@
           "description": "Status of the workflow version",
           "type": "string"
         },
+        "createdByClientId": {
+          "description": "Client ID of the Origin Request",
+          "type": "string"
+        },
         "definition": {
           "description": "Definition of the workflow version",
           "type": "string"
@@ -2659,6 +2695,9 @@
         },
         "input": {
           "description": "Input for the launched workflow run. Must resolve to a JSON object."
+        },
+        "engineParameters": {
+          "description": "Runtime options for launching workflows (currently only used for Airflow     and otherwise ignored). Must resolve to a JSON object."
         }
       }
     }

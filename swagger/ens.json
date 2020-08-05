@@ -1,10 +1,13 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "v1",
-    "title": "Event Notification Service"
+    "title": "Event Notification Service",
+    "version": "v1"
   },
   "host": "aps2.platform.illumina.com",
+  "schemes": [
+    "https"
+  ],
   "paths": {
     "/v1/subscriptions": {
       "get": {
@@ -14,34 +17,30 @@
         "summary": "Get a list of subscriptions.",
         "description": "Get a list of subscriptions accessible by the current JWT token’s tenant Id.",
         "operationId": "listSubscriptions",
-        "consumes": [],
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "eventType",
             "in": "query",
+            "name": "eventType",
             "description": "Optional event type for filtering returned subscriptions",
-            "required": false,
             "type": "string",
             "maxLength": 255
           },
           {
-            "name": "pageSize",
             "in": "query",
+            "name": "pageSize",
             "description": "Optional parameter to define the page size returned. Valid inputs range from 1-1000.",
-            "required": false,
             "type": "integer",
             "format": "int32",
-            "maximum": 1000.0,
-            "minimum": 1.0
+            "maximum": 1000,
+            "minimum": 1
           },
           {
-            "name": "pageToken",
             "in": "query",
+            "name": "pageToken",
             "description": "Utilized for navigation after initial listing. Valid values include those of\r\nfirstPageToken, nextPageToken, and previousPageToken in the list response.\r\nWhen there are no more pages, the nextPageToken will be null.",
-            "required": false,
             "type": "string"
           }
         ],
@@ -96,9 +95,8 @@
         ],
         "parameters": [
           {
-            "name": "request",
             "in": "body",
-            "required": false,
+            "name": "body",
             "schema": {
               "$ref": "#/definitions/CreateSubscriptionRequest"
             }
@@ -152,14 +150,13 @@
         "summary": "Given a subscription id, returns information about that subscription.",
         "description": "Given a subscription id, returns information about that subscription accessible by the current JWT token’s tenant Id.",
         "operationId": "getSubscription",
-        "consumes": [],
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "subscriptionId",
             "in": "path",
+            "name": "subscriptionId",
             "description": "Id of the subscription to return",
             "required": true,
             "type": "string",
@@ -218,14 +215,13 @@
         "summary": "Given a subscription id, disables the specified subscription.",
         "description": "Given a subscription id, disables that subscription with the current JWT token’s tenant Id.",
         "operationId": "disableSubscription",
-        "consumes": [],
         "produces": [
           "application/json"
         ],
         "parameters": [
           {
-            "name": "subscriptionId",
             "in": "path",
+            "name": "subscriptionId",
             "description": "Id of the subscription to be disabled",
             "required": true,
             "type": "string",
@@ -280,143 +276,6 @@
     }
   },
   "definitions": {
-    "SubscriptionList": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "uniqueItems": false,
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/Subscription"
-          }
-        },
-        "itemCount": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "firstPageToken": {
-          "type": "string"
-        },
-        "nextPageToken": {
-          "type": "string"
-        },
-        "prevPageToken": {
-          "type": "string"
-        },
-        "lastPageToken": {
-          "type": "string"
-        },
-        "totalItemCount": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "totalPageCount": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "sortedBy": {
-          "enum": [
-            "id"
-          ],
-          "type": "string"
-        },
-        "sortDirection": {
-          "enum": [
-            "Asc",
-            "Desc",
-            "Ascending",
-            "Descending"
-          ],
-          "type": "string"
-        }
-      }
-    },
-    "Subscription": {
-      "description": "Details for an Event Notification Service subscription",
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "Unique id of the subscription",
-          "type": "string"
-        },
-        "urn": {
-          "description": "URN of the subscription",
-          "type": "string"
-        },
-        "type": {
-          "description": "Type of event the subscription matches",
-          "type": "string"
-        },
-        "actions": {
-          "description": "Types of actions the subscription matches for the event type",
-          "uniqueItems": false,
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "filterExpression": {
-          "description": "JSON-structured filter expression for events matching the subscription",
-          "type": "string"
-        },
-        "name": {
-          "description": "Name of the subscription",
-          "type": "string"
-        },
-        "description": {
-          "description": "Optional description for the subscription",
-          "type": "string"
-        },
-        "deliveryTarget": {
-          "$ref": "#/definitions/DeliveryTarget",
-          "description": "Configuration for the action to perform for events matching the subscription"
-        },
-        "tenantId": {
-          "description": "Tenant id of the subscription owner",
-          "type": "string"
-        },
-        "createdByUserId": {
-          "description": "User id for the creator of the subscription",
-          "type": "string"
-        },
-        "timeCreated": {
-          "format": "date-time",
-          "description": "Timestamp when the subscription was created",
-          "type": "string"
-        },
-        "deletedByUserId": {
-          "description": "Id of the user who deleted the subscription, if applicable",
-          "type": "string"
-        },
-        "timeDeleted": {
-          "format": "date-time",
-          "description": "Timestamp when the subscription was deleted, if applicable",
-          "type": "string"
-        },
-        "isDeleted": {
-          "description": "Whether or not the subscription has been deleted",
-          "type": "boolean"
-        }
-      }
-    },
-    "DeliveryTarget": {
-      "description": "Configuration for the action to perform for events matching this subscription; only one delivery type may be specified",
-      "type": "object",
-      "properties": {
-        "awsSnsTopic": {
-          "$ref": "#/definitions/DeliveryTargetAwsSnsTopic",
-          "description": "Configuration for the AWS SNS delivery topic, if applicable; only one delivery type may be specified"
-        },
-        "awsSqsQueue": {
-          "$ref": "#/definitions/DeliveryTargetAwsSqsQueue",
-          "description": "Configuration for the AWS SQS delivery queue, if applicable; only one delivery type may be specified"
-        },
-        "workflowRunLaunch": {
-          "$ref": "#/definitions/DeliveryTargetWorkflowRunLaunch",
-          "description": "Configuration for delivery as WES workflow run launch, if applicable; only one delivery type may be specified"
-        }
-      }
-    },
     "DeliveryTargetAwsSnsTopic": {
       "description": "Configuration for an AWS SNS delivery topic",
       "required": [
@@ -447,8 +306,8 @@
       "description": "Configuration for a delivery via WES workflow run launch",
       "required": [
         "id",
-        "version",
-        "name"
+        "name",
+        "version"
       ],
       "type": "object",
       "properties": {
@@ -465,8 +324,144 @@
           "type": "string"
         },
         "input": {
-          "description": "Arguments for the workflowRun",
-          "type": "object"
+          "description": "Arguments for the workflowRun"
+        }
+      }
+    },
+    "DeliveryTarget": {
+      "description": "Configuration for the action to perform for events matching this subscription; only one delivery type may be specified",
+      "type": "object",
+      "properties": {
+        "awsSnsTopic": {
+          "$ref": "#/definitions/DeliveryTargetAwsSnsTopic"
+        },
+        "awsSqsQueue": {
+          "$ref": "#/definitions/DeliveryTargetAwsSqsQueue"
+        },
+        "workflowRunLaunch": {
+          "$ref": "#/definitions/DeliveryTargetWorkflowRunLaunch"
+        }
+      }
+    },
+    "Subscription": {
+      "description": "Details for an Event Notification Service subscription",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique id of the subscription",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the subscription",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of event the subscription matches",
+          "type": "string"
+        },
+        "actions": {
+          "description": "Types of actions the subscription matches for the event type",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "filterExpression": {
+          "description": "JSON-structured filter expression for events matching the subscription",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the subscription",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional description for the subscription",
+          "type": "string"
+        },
+        "deliveryTarget": {
+          "$ref": "#/definitions/DeliveryTarget"
+        },
+        "tenantId": {
+          "description": "Tenant id of the subscription owner",
+          "type": "string"
+        },
+        "createdByUserId": {
+          "description": "User id for the creator of the subscription",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Timestamp when the subscription was created",
+          "type": "string"
+        },
+        "deletedByUserId": {
+          "description": "Id of the user who deleted the subscription, if applicable",
+          "type": "string"
+        },
+        "timeDeleted": {
+          "format": "date-time",
+          "description": "Timestamp when the subscription was deleted, if applicable",
+          "type": "string"
+        },
+        "isDeleted": {
+          "description": "Whether or not the subscription has been deleted",
+          "type": "boolean"
+        }
+      }
+    },
+    "SubscriptionListSortFields": {
+      "enum": [
+        "id"
+      ],
+      "type": "string"
+    },
+    "SortDirection": {
+      "enum": [
+        "Asc",
+        "Desc",
+        "Ascending",
+        "Descending"
+      ],
+      "type": "string"
+    },
+    "SubscriptionList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Subscription"
+          }
+        },
+        "itemCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstPageToken": {
+          "type": "string"
+        },
+        "nextPageToken": {
+          "type": "string"
+        },
+        "prevPageToken": {
+          "type": "string"
+        },
+        "lastPageToken": {
+          "type": "string"
+        },
+        "totalItemCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalPageCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "sortedBy": {
+          "$ref": "#/definitions/SubscriptionListSortFields"
+        },
+        "sortDirection": {
+          "$ref": "#/definitions/SortDirection"
         }
       }
     },
@@ -484,7 +479,6 @@
         },
         "details": {
           "description": "Additional details for conditions which caused the error",
-          "uniqueItems": false,
           "type": "array",
           "items": {
             "type": "object"
@@ -494,9 +488,9 @@
     },
     "CreateSubscriptionRequest": {
       "required": [
-        "type",
+        "deliveryTarget",
         "name",
-        "deliveryTarget"
+        "type"
       ],
       "type": "object",
       "properties": {
@@ -509,7 +503,6 @@
         "actions": {
           "description": "Actions which will be subscribed to for the event type",
           "maxLength": 255,
-          "uniqueItems": false,
           "type": "array",
           "items": {
             "type": "string"
@@ -532,24 +525,22 @@
           "type": "string"
         },
         "deliveryTarget": {
-          "$ref": "#/definitions/DeliveryTarget",
-          "description": "Configuration for the action to perform for events matching this subscription; only one delivery type may be specified"
+          "$ref": "#/definitions/DeliveryTarget"
         }
       }
     }
   },
   "securityDefinitions": {
     "Bearer": {
+      "type": "apiKey",
       "name": "Authorization",
       "in": "header",
-      "type": "apiKey",
       "description": "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\""
     }
   },
   "security": [
     {
-      "Bearer": []
+      "Bearer": [ ]
     }
-  ],
-  "tags": []
+  ]
 }
