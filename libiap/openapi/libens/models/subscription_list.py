@@ -41,8 +41,8 @@ class SubscriptionList(object):
         'last_page_token': 'str',
         'total_item_count': 'int',
         'total_page_count': 'int',
-        'sorted_by': 'str',
-        'sort_direction': 'str'
+        'sorted_by': 'SubscriptionListSortFields',
+        'sort_direction': 'SortDirection'
     }
 
     attribute_map = {
@@ -271,7 +271,7 @@ class SubscriptionList(object):
 
 
         :return: The sorted_by of this SubscriptionList.  # noqa: E501
-        :rtype: str
+        :rtype: SubscriptionListSortFields
         """
         return self._sorted_by
 
@@ -281,14 +281,8 @@ class SubscriptionList(object):
 
 
         :param sorted_by: The sorted_by of this SubscriptionList.  # noqa: E501
-        :type: str
+        :type: SubscriptionListSortFields
         """
-        allowed_values = ["id"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and sorted_by not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `sorted_by` ({0}), must be one of {1}"  # noqa: E501
-                .format(sorted_by, allowed_values)
-            )
 
         self._sorted_by = sorted_by
 
@@ -298,7 +292,7 @@ class SubscriptionList(object):
 
 
         :return: The sort_direction of this SubscriptionList.  # noqa: E501
-        :rtype: str
+        :rtype: SortDirection
         """
         return self._sort_direction
 
@@ -308,14 +302,8 @@ class SubscriptionList(object):
 
 
         :param sort_direction: The sort_direction of this SubscriptionList.  # noqa: E501
-        :type: str
+        :type: SortDirection
         """
-        allowed_values = ["Asc", "Desc", "Ascending", "Descending"]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and sort_direction not in allowed_values:  # noqa: E501
-            raise ValueError(
-                "Invalid value for `sort_direction` ({0}), must be one of {1}"  # noqa: E501
-                .format(sort_direction, allowed_values)
-            )
 
         self._sort_direction = sort_direction
 

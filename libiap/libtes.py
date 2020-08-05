@@ -1,19 +1,8 @@
 # -*- coding: utf-8 -*-
 
 """libtes module
-
-Facade module interface for underlay TES API operations
-https://aps2.platform.illumina.com/tes/swagger/index.html
-
-Should retain/suppress all IAP TES API calls here, including handle
-any specific exceptions.
-
-Goal is, so that else where in code, just ``import libtes`` and use it!
-
-If unsure, start with Pass-through call.
-
-Example usage:
- - See unit test cases in tests/test_libtes.py
+This module may deprecate in future.
+Please use libiap.openapi when possible for better upstream support.
 """
 
 

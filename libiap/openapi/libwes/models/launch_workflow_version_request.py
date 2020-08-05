@@ -34,15 +34,17 @@ class LaunchWorkflowVersionRequest(object):
     """
     openapi_types = {
         'name': 'str',
-        'input': 'object'
+        'input': 'object',
+        'engine_parameters': 'object'
     }
 
     attribute_map = {
         'name': 'name',
-        'input': 'input'
+        'input': 'input',
+        'engine_parameters': 'engineParameters'
     }
 
-    def __init__(self, name=None, input=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, input=None, engine_parameters=None, local_vars_configuration=None):  # noqa: E501
         """LaunchWorkflowVersionRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -50,11 +52,14 @@ class LaunchWorkflowVersionRequest(object):
 
         self._name = None
         self._input = None
+        self._engine_parameters = None
         self.discriminator = None
 
         self.name = name
         if input is not None:
             self.input = input
+        if engine_parameters is not None:
+            self.engine_parameters = engine_parameters
 
     @property
     def name(self):
@@ -103,6 +108,29 @@ class LaunchWorkflowVersionRequest(object):
         """
 
         self._input = input
+
+    @property
+    def engine_parameters(self):
+        """Gets the engine_parameters of this LaunchWorkflowVersionRequest.  # noqa: E501
+
+        Runtime options for launching workflows (currently only used for Airflow     and otherwise ignored). Must resolve to a JSON object.  # noqa: E501
+
+        :return: The engine_parameters of this LaunchWorkflowVersionRequest.  # noqa: E501
+        :rtype: object
+        """
+        return self._engine_parameters
+
+    @engine_parameters.setter
+    def engine_parameters(self, engine_parameters):
+        """Sets the engine_parameters of this LaunchWorkflowVersionRequest.
+
+        Runtime options for launching workflows (currently only used for Airflow     and otherwise ignored). Must resolve to a JSON object.  # noqa: E501
+
+        :param engine_parameters: The engine_parameters of this LaunchWorkflowVersionRequest.  # noqa: E501
+        :type: object
+        """
+
+        self._engine_parameters = engine_parameters
 
     def to_dict(self):
         """Returns the model properties as a dict"""

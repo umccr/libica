@@ -72,8 +72,8 @@ class SubscriptionList(object):
         &#39;last_page_token&#39;: &#39;str&#39;,
         &#39;total_item_count&#39;: &#39;int&#39;,
         &#39;total_page_count&#39;: &#39;int&#39;,
-        &#39;sorted_by&#39;: &#39;str&#39;,
-        &#39;sort_direction&#39;: &#39;str&#39;
+        &#39;sorted_by&#39;: &#39;SubscriptionListSortFields&#39;,
+        &#39;sort_direction&#39;: &#39;SortDirection&#39;
     }
 
     attribute_map = {
@@ -302,7 +302,7 @@ class SubscriptionList(object):
 
 
         :return: The sorted_by of this SubscriptionList.  # noqa: E501
-        :rtype: str
+        :rtype: SubscriptionListSortFields
         &#34;&#34;&#34;
         return self._sorted_by
 
@@ -312,14 +312,8 @@ class SubscriptionList(object):
 
 
         :param sorted_by: The sorted_by of this SubscriptionList.  # noqa: E501
-        :type: str
+        :type: SubscriptionListSortFields
         &#34;&#34;&#34;
-        allowed_values = [&#34;id&#34;]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and sorted_by not in allowed_values:  # noqa: E501
-            raise ValueError(
-                &#34;Invalid value for `sorted_by` ({0}), must be one of {1}&#34;  # noqa: E501
-                .format(sorted_by, allowed_values)
-            )
 
         self._sorted_by = sorted_by
 
@@ -329,7 +323,7 @@ class SubscriptionList(object):
 
 
         :return: The sort_direction of this SubscriptionList.  # noqa: E501
-        :rtype: str
+        :rtype: SortDirection
         &#34;&#34;&#34;
         return self._sort_direction
 
@@ -339,14 +333,8 @@ class SubscriptionList(object):
 
 
         :param sort_direction: The sort_direction of this SubscriptionList.  # noqa: E501
-        :type: str
+        :type: SortDirection
         &#34;&#34;&#34;
-        allowed_values = [&#34;Asc&#34;, &#34;Desc&#34;, &#34;Ascending&#34;, &#34;Descending&#34;]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and sort_direction not in allowed_values:  # noqa: E501
-            raise ValueError(
-                &#34;Invalid value for `sort_direction` ({0}), must be one of {1}&#34;  # noqa: E501
-                .format(sort_direction, allowed_values)
-            )
 
         self._sort_direction = sort_direction
 
@@ -442,8 +430,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;last_page_token&#39;: &#39;str&#39;,
         &#39;total_item_count&#39;: &#39;int&#39;,
         &#39;total_page_count&#39;: &#39;int&#39;,
-        &#39;sorted_by&#39;: &#39;str&#39;,
-        &#39;sort_direction&#39;: &#39;str&#39;
+        &#39;sorted_by&#39;: &#39;SubscriptionListSortFields&#39;,
+        &#39;sort_direction&#39;: &#39;SortDirection&#39;
     }
 
     attribute_map = {
@@ -672,7 +660,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
 
         :return: The sorted_by of this SubscriptionList.  # noqa: E501
-        :rtype: str
+        :rtype: SubscriptionListSortFields
         &#34;&#34;&#34;
         return self._sorted_by
 
@@ -682,14 +670,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
 
         :param sorted_by: The sorted_by of this SubscriptionList.  # noqa: E501
-        :type: str
+        :type: SubscriptionListSortFields
         &#34;&#34;&#34;
-        allowed_values = [&#34;id&#34;]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and sorted_by not in allowed_values:  # noqa: E501
-            raise ValueError(
-                &#34;Invalid value for `sorted_by` ({0}), must be one of {1}&#34;  # noqa: E501
-                .format(sorted_by, allowed_values)
-            )
 
         self._sorted_by = sorted_by
 
@@ -699,7 +681,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
 
         :return: The sort_direction of this SubscriptionList.  # noqa: E501
-        :rtype: str
+        :rtype: SortDirection
         &#34;&#34;&#34;
         return self._sort_direction
 
@@ -709,14 +691,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
 
         :param sort_direction: The sort_direction of this SubscriptionList.  # noqa: E501
-        :type: str
+        :type: SortDirection
         &#34;&#34;&#34;
-        allowed_values = [&#34;Asc&#34;, &#34;Desc&#34;, &#34;Ascending&#34;, &#34;Descending&#34;]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and sort_direction not in allowed_values:  # noqa: E501
-            raise ValueError(
-                &#34;Invalid value for `sort_direction` ({0}), must be one of {1}&#34;  # noqa: E501
-                .format(sort_direction, allowed_values)
-            )
 
         self._sort_direction = sort_direction
 
@@ -917,7 +893,7 @@ def prev_page_token(self):
 # noqa: E501</p>
 <p>:return: The sort_direction of this SubscriptionList.
 # noqa: E501
-:rtype: str</p></div>
+:rtype: SortDirection</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -928,7 +904,7 @@ def sort_direction(self):
 
 
     :return: The sort_direction of this SubscriptionList.  # noqa: E501
-    :rtype: str
+    :rtype: SortDirection
     &#34;&#34;&#34;
     return self._sort_direction</code></pre>
 </details>
@@ -939,7 +915,7 @@ def sort_direction(self):
 # noqa: E501</p>
 <p>:return: The sorted_by of this SubscriptionList.
 # noqa: E501
-:rtype: str</p></div>
+:rtype: SubscriptionListSortFields</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -950,7 +926,7 @@ def sorted_by(self):
 
 
     :return: The sorted_by of this SubscriptionList.  # noqa: E501
-    :rtype: str
+    :rtype: SubscriptionListSortFields
     &#34;&#34;&#34;
     return self._sorted_by</code></pre>
 </details>

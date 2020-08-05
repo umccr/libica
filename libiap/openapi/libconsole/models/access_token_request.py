@@ -56,6 +56,7 @@ class AccessTokenRequest(object):
     def access_token(self):
         """Gets the access_token of this AccessTokenRequest.  # noqa: E501
 
+        This is either a psToken or a JWT token depending on the context of the call.  # noqa: E501
 
         :return: The access_token of this AccessTokenRequest.  # noqa: E501
         :rtype: str
@@ -66,6 +67,7 @@ class AccessTokenRequest(object):
     def access_token(self, access_token):
         """Sets the access_token of this AccessTokenRequest.
 
+        This is either a psToken or a JWT token depending on the context of the call.  # noqa: E501
 
         :param access_token: The access_token of this AccessTokenRequest.  # noqa: E501
         :type: str

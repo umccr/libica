@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **description** | **str** | Description of the workflow version | [optional] 
 **language** | [**WorkflowLanguage**](WorkflowLanguage.md) |  | [optional] 
 **status** | **str** | Status of the workflow version | [optional] 
+**created_by_client_id** | **str** | Client ID of the Origin Request | [optional] 
 **time_created** | **datetime** | Time (in UTC) the resource was created | [optional] 
 **time_modified** | **datetime** | Time (in UTC) the resource was modified | [optional] 
 **created_by** | **str** | User that created the resource | [optional] 

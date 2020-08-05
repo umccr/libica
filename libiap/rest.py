@@ -1,15 +1,8 @@
 # -*- coding: utf-8 -*-
 
 """rest module
-
-Adapter/Wrapper module interface for performing `requests` REST API calls,
-specifically tailored for handling IAP services endpoints.
-
-Should retain/suppress all requests API calls here, including handle
-any specific exceptions and data type that need for processing response.
-
-Goal is, so that else where in code, it does not need to call and handle
-API responses directly, but just `from libiap import rest` and use it!
+This module may deprecate in future.
+Please use libiap.openapi when possible for better upstream support.
 """
 
 import copy

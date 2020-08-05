@@ -74,7 +74,7 @@ conf = libiap.openapi.libens.Configuration(
 
     _default = None
 
-    def __init__(self, host="http://aps2.platform.illumina.com",
+    def __init__(self, host="https://aps2.platform.illumina.com",
                  api_key=None, api_key_prefix=None,
                  username=None, password=None,
                  discard_unknown_keys=False,
@@ -362,7 +362,7 @@ conf = libiap.openapi.libens.Configuration(
         """
         return [
             {
-                'url': "//aps2.platform.illumina.com/",
+                'url': "https://aps2.platform.illumina.com/",
                 'description': "No description provided",
             }
         ]

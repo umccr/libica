@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **error** | **str** | Error for a failed workflow run | [optional] 
 **error_cause** | **str** | Error cause for a failed workflow run | [optional] 
 **workflow_version** | [**WorkflowVersionCompact**](WorkflowVersionCompact.md) |  | [optional] 
+**created_by_client_id** | **str** | Client ID of the Origin Request | [optional] 
 **input** | [**object**](.md) | Input to workflow run, as JSON | [optional] 
 **output** | [**object**](.md) | Output from workflow run, as JSON | [optional] 
 **definition** | **str** | Definition of the workflow version | [optional] 

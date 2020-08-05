@@ -43,6 +43,7 @@ class WorkflowRunCompact(object):
         'error': 'str',
         'error_cause': 'str',
         'workflow_version': 'WorkflowVersionCompact',
+        'created_by_client_id': 'str',
         'time_created': 'datetime',
         'time_modified': 'datetime',
         'created_by': 'str',
@@ -62,6 +63,7 @@ class WorkflowRunCompact(object):
         'error': 'error',
         'error_cause': 'errorCause',
         'workflow_version': 'workflowVersion',
+        'created_by_client_id': 'createdByClientId',
         'time_created': 'timeCreated',
         'time_modified': 'timeModified',
         'created_by': 'createdBy',
@@ -70,7 +72,7 @@ class WorkflowRunCompact(object):
         'acl': 'acl'
     }
 
-    def __init__(self, id=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         """WorkflowRunCompact - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -86,6 +88,7 @@ class WorkflowRunCompact(object):
         self._error = None
         self._error_cause = None
         self._workflow_version = None
+        self._created_by_client_id = None
         self._time_created = None
         self._time_modified = None
         self._created_by = None
@@ -114,6 +117,8 @@ class WorkflowRunCompact(object):
             self.error_cause = error_cause
         if workflow_version is not None:
             self.workflow_version = workflow_version
+        if created_by_client_id is not None:
+            self.created_by_client_id = created_by_client_id
         if time_created is not None:
             self.time_created = time_created
         if time_modified is not None:
@@ -360,6 +365,29 @@ class WorkflowRunCompact(object):
         """
 
         self._workflow_version = workflow_version
+
+    @property
+    def created_by_client_id(self):
+        """Gets the created_by_client_id of this WorkflowRunCompact.  # noqa: E501
+
+        Client ID of the Origin Request  # noqa: E501
+
+        :return: The created_by_client_id of this WorkflowRunCompact.  # noqa: E501
+        :rtype: str
+        """
+        return self._created_by_client_id
+
+    @created_by_client_id.setter
+    def created_by_client_id(self, created_by_client_id):
+        """Sets the created_by_client_id of this WorkflowRunCompact.
+
+        Client ID of the Origin Request  # noqa: E501
+
+        :param created_by_client_id: The created_by_client_id of this WorkflowRunCompact.  # noqa: E501
+        :type: str
+        """
+
+        self._created_by_client_id = created_by_client_id
 
     @property
     def time_created(self):

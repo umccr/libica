@@ -33,6 +33,7 @@ class WorkflowRunHistoryEvent(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'name': 'str',
         'event_id': 'int',
         'previous_event_id': 'int',
         'event_type': 'str',
@@ -41,6 +42,7 @@ class WorkflowRunHistoryEvent(object):
     }
 
     attribute_map = {
+        'name': 'name',
         'event_id': 'eventId',
         'previous_event_id': 'previousEventId',
         'event_type': 'eventType',
@@ -48,12 +50,13 @@ class WorkflowRunHistoryEvent(object):
         'event_details': 'eventDetails'
     }
 
-    def __init__(self, event_id=None, previous_event_id=None, event_type=None, timestamp=None, event_details=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, event_id=None, previous_event_id=None, event_type=None, timestamp=None, event_details=None, local_vars_configuration=None):  # noqa: E501
         """WorkflowRunHistoryEvent - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
+        self._name = None
         self._event_id = None
         self._previous_event_id = None
         self._event_type = None
@@ -61,6 +64,8 @@ class WorkflowRunHistoryEvent(object):
         self._event_details = None
         self.discriminator = None
 
+        if name is not None:
+            self.name = name
         if event_id is not None:
             self.event_id = event_id
         if previous_event_id is not None:
@@ -71,6 +76,29 @@ class WorkflowRunHistoryEvent(object):
             self.timestamp = timestamp
         if event_details is not None:
             self.event_details = event_details
+
+    @property
+    def name(self):
+        """Gets the name of this WorkflowRunHistoryEvent.  # noqa: E501
+
+        Name of the event, such as the name of the step/task for state-level events and run name for run-level events  # noqa: E501
+
+        :return: The name of this WorkflowRunHistoryEvent.  # noqa: E501
+        :rtype: str
+        """
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        """Sets the name of this WorkflowRunHistoryEvent.
+
+        Name of the event, such as the name of the step/task for state-level events and run name for run-level events  # noqa: E501
+
+        :param name: The name of this WorkflowRunHistoryEvent.  # noqa: E501
+        :type: str
+        """
+
+        self._name = name
 
     @property
     def event_id(self):

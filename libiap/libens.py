@@ -1,19 +1,8 @@
 # -*- coding: utf-8 -*-
 
 """libens module
-
-Facade module interface for underlay ENS API operations
-https://aps2.platform.illumina.com/ens/swagger/index.html
-
-Should retain/suppress all IAP ENS API calls here, including handle
-any specific exceptions.
-
-Goal is, so that else where in code, just ``import libens`` and use it!
-
-If unsure, start with Pass-through call.
-
-Example usage:
- - See unit test cases in tests/test_libens.py
+This module may deprecate in future.
+Please use libiap.openapi when possible for better upstream support.
 """
 
 from libiap import rest

@@ -20,5 +20,7 @@ from libiap.openapi.libens.models.delivery_target_aws_sns_topic import DeliveryT
 from libiap.openapi.libens.models.delivery_target_aws_sqs_queue import DeliveryTargetAwsSqsQueue
 from libiap.openapi.libens.models.delivery_target_workflow_run_launch import DeliveryTargetWorkflowRunLaunch
 from libiap.openapi.libens.models.error_response import ErrorResponse
+from libiap.openapi.libens.models.sort_direction import SortDirection
 from libiap.openapi.libens.models.subscription import Subscription
 from libiap.openapi.libens.models.subscription_list import SubscriptionList
+from libiap.openapi.libens.models.subscription_list_sort_fields import SubscriptionListSortFields

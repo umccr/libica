@@ -61,6 +61,7 @@ class TokenResponse(object):
     def access_token(self):
         """Gets the access_token of this TokenResponse.  # noqa: E501
 
+        The returned token is either a psToken or a JWT token depending on the context of the call.  # noqa: E501
 
         :return: The access_token of this TokenResponse.  # noqa: E501
         :rtype: str
@@ -71,6 +72,7 @@ class TokenResponse(object):
     def access_token(self, access_token):
         """Sets the access_token of this TokenResponse.
 
+        The returned token is either a psToken or a JWT token depending on the context of the call.  # noqa: E501
 
         :param access_token: The access_token of this TokenResponse.  # noqa: E501
         :type: str
@@ -82,6 +84,7 @@ class TokenResponse(object):
     def token_type(self):
         """Gets the token_type of this TokenResponse.  # noqa: E501
 
+        The type of token requested.  # noqa: E501
 
         :return: The token_type of this TokenResponse.  # noqa: E501
         :rtype: str
@@ -92,6 +95,7 @@ class TokenResponse(object):
     def token_type(self, token_type):
         """Sets the token_type of this TokenResponse.
 
+        The type of token requested.  # noqa: E501
 
         :param token_type: The token_type of this TokenResponse.  # noqa: E501
         :type: str

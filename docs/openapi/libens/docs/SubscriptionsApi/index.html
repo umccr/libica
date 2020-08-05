@@ -266,7 +266,7 @@
                 
                 
                 <h1 id="libiapopenapilibenssubscriptionsapi">libiap.openapi.libens.SubscriptionsApi<a class="headerlink" href="#libiapopenapilibenssubscriptionsapi" title="Permanent link">&para;</a></h1>
-<p>All URIs are relative to <em><a href="http://aps2.platform.illumina.com">http://aps2.platform.illumina.com</a></em></p>
+<p>All URIs are relative to <em><a href="https://aps2.platform.illumina.com">https://aps2.platform.illumina.com</a></em></p>
 <table>
 <thead>
 <tr>
@@ -300,7 +300,7 @@
 </table>
 <h1 id="create_subscription"><strong>create_subscription</strong><a class="headerlink" href="#create_subscription" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>Subscription create_subscription(request=request)</p>
+<p>Subscription create_subscription(body=body)</p>
 </blockquote>
 <p>Creates a subscription to an event type and defines how those events get delivered.</p>
 <p>Events can be delivered to AWS SQS, AWS SNS, or can be used to launch a WES workflow.</p>
@@ -313,10 +313,10 @@
 <span class="kn">import</span> <span class="nn">libiap.openapi.libens</span>
 <span class="kn">from</span> <span class="nn">libiap.openapi.libens.rest</span> <span class="kn">import</span> <span class="n">ApiException</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-<span class="c1"># Defining the host is optional and defaults to http://aps2.platform.illumina.com</span>
+<span class="c1"># Defining the host is optional and defaults to https://aps2.platform.illumina.com</span>
 <span class="c1"># See configuration.py for a list of all supported configuration parameters.</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://aps2.platform.illumina.com&quot;</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span>
 <span class="p">)</span>
 
 <span class="c1"># The client must configure the authentication and authorization parameters</span>
@@ -326,7 +326,7 @@
 
 <span class="c1"># Configure API key authorization: Bearer</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
     <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
     <span class="p">}</span>
@@ -338,11 +338,11 @@
 <span class="k">with</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">ApiClient</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">api_client</span><span class="p">:</span>
     <span class="c1"># Create an instance of the API class</span>
     <span class="n">api_instance</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">SubscriptionsApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
-    <span class="n">request</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">CreateSubscriptionRequest</span><span class="p">()</span> <span class="c1"># CreateSubscriptionRequest |  (optional)</span>
+    <span class="n">body</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">CreateSubscriptionRequest</span><span class="p">()</span> <span class="c1"># CreateSubscriptionRequest |  (optional)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Creates a subscription to an event type and defines how those events get delivered.</span>
-        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">request</span><span class="p">)</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">create_subscription</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
         <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling SubscriptionsApi-&gt;create_subscription: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
@@ -361,7 +361,7 @@
 </thead>
 <tbody>
 <tr>
-<td><strong>request</strong></td>
+<td><strong>body</strong></td>
 <td><a href="../CreateSubscriptionRequest/"><strong>CreateSubscriptionRequest</strong></a></td>
 <td></td>
 <td>[optional]</td>
@@ -435,10 +435,10 @@
 <span class="kn">import</span> <span class="nn">libiap.openapi.libens</span>
 <span class="kn">from</span> <span class="nn">libiap.openapi.libens.rest</span> <span class="kn">import</span> <span class="n">ApiException</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-<span class="c1"># Defining the host is optional and defaults to http://aps2.platform.illumina.com</span>
+<span class="c1"># Defining the host is optional and defaults to https://aps2.platform.illumina.com</span>
 <span class="c1"># See configuration.py for a list of all supported configuration parameters.</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://aps2.platform.illumina.com&quot;</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span>
 <span class="p">)</span>
 
 <span class="c1"># The client must configure the authentication and authorization parameters</span>
@@ -448,7 +448,7 @@
 
 <span class="c1"># Configure API key authorization: Bearer</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
     <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
     <span class="p">}</span>
@@ -562,10 +562,10 @@
 <span class="kn">import</span> <span class="nn">libiap.openapi.libens</span>
 <span class="kn">from</span> <span class="nn">libiap.openapi.libens.rest</span> <span class="kn">import</span> <span class="n">ApiException</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-<span class="c1"># Defining the host is optional and defaults to http://aps2.platform.illumina.com</span>
+<span class="c1"># Defining the host is optional and defaults to https://aps2.platform.illumina.com</span>
 <span class="c1"># See configuration.py for a list of all supported configuration parameters.</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://aps2.platform.illumina.com&quot;</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span>
 <span class="p">)</span>
 
 <span class="c1"># The client must configure the authentication and authorization parameters</span>
@@ -575,7 +575,7 @@
 
 <span class="c1"># Configure API key authorization: Bearer</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
     <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
     <span class="p">}</span>
@@ -689,10 +689,10 @@
 <span class="kn">import</span> <span class="nn">libiap.openapi.libens</span>
 <span class="kn">from</span> <span class="nn">libiap.openapi.libens.rest</span> <span class="kn">import</span> <span class="n">ApiException</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-<span class="c1"># Defining the host is optional and defaults to http://aps2.platform.illumina.com</span>
+<span class="c1"># Defining the host is optional and defaults to https://aps2.platform.illumina.com</span>
 <span class="c1"># See configuration.py for a list of all supported configuration parameters.</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://aps2.platform.illumina.com&quot;</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span>
 <span class="p">)</span>
 
 <span class="c1"># The client must configure the authentication and authorization parameters</span>
@@ -702,7 +702,7 @@
 
 <span class="c1"># Configure API key authorization: Bearer</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libens</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
     <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
     <span class="p">}</span>

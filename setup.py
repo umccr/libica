@@ -19,7 +19,6 @@ setup(
     extras_require={
         "dev": [
             "pipdeptree",
-            "sphinx",
             "twine",
             "setuptools",
             "wheel",

@@ -43,6 +43,7 @@ class WorkflowRun(object):
         'error': 'str',
         'error_cause': 'str',
         'workflow_version': 'WorkflowVersionCompact',
+        'created_by_client_id': 'str',
         'input': 'object',
         'output': 'object',
         'definition': 'str',
@@ -65,6 +66,7 @@ class WorkflowRun(object):
         'error': 'error',
         'error_cause': 'errorCause',
         'workflow_version': 'workflowVersion',
+        'created_by_client_id': 'createdByClientId',
         'input': 'input',
         'output': 'output',
         'definition': 'definition',
@@ -76,7 +78,7 @@ class WorkflowRun(object):
         'acl': 'acl'
     }
 
-    def __init__(self, id=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, input=None, output=None, definition=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, input=None, output=None, definition=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         """WorkflowRun - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -92,6 +94,7 @@ class WorkflowRun(object):
         self._error = None
         self._error_cause = None
         self._workflow_version = None
+        self._created_by_client_id = None
         self._input = None
         self._output = None
         self._definition = None
@@ -123,6 +126,8 @@ class WorkflowRun(object):
             self.error_cause = error_cause
         if workflow_version is not None:
             self.workflow_version = workflow_version
+        if created_by_client_id is not None:
+            self.created_by_client_id = created_by_client_id
         if input is not None:
             self.input = input
         if output is not None:
@@ -375,6 +380,29 @@ class WorkflowRun(object):
         """
 
         self._workflow_version = workflow_version
+
+    @property
+    def created_by_client_id(self):
+        """Gets the created_by_client_id of this WorkflowRun.  # noqa: E501
+
+        Client ID of the Origin Request  # noqa: E501
+
+        :return: The created_by_client_id of this WorkflowRun.  # noqa: E501
+        :rtype: str
+        """
+        return self._created_by_client_id
+
+    @created_by_client_id.setter
+    def created_by_client_id(self, created_by_client_id):
+        """Sets the created_by_client_id of this WorkflowRun.
+
+        Client ID of the Origin Request  # noqa: E501
+
+        :param created_by_client_id: The created_by_client_id of this WorkflowRun.  # noqa: E501
+        :type: str
+        """
+
+        self._created_by_client_id = created_by_client_id
 
     @property
     def input(self):

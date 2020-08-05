@@ -1,12 +1,9 @@
 # libiap
 
-Python SDK/Library for IAP -- https://umccr-illumina.github.io/libiap/
+Python SDK/Library for [IAP](https://iap-docs.readme.io/docs) -- https://umccr-illumina.github.io/libiap/
 
-* Tested for Python 3.6, 3.7, 3.8 
-* [OpenAPI](https://umccr-illumina.github.io/libiap/openapi/)
-* [PyDoc](https://umccr-illumina.github.io/libiap/libiap/)
-* [Test Coverage](https://umccr-illumina.github.io/libiap/coverage/)
-
+- Tested for Python 3.6, 3.7, 3.8
+- [Test Coverage](https://umccr-illumina.github.io/libiap/coverage/)
 
 ## TL;DR
 
@@ -22,14 +19,6 @@ export IAP_AUTH_TOKEN=<tok>
 ```
 
 - Somewhere in your Python code:
-```python
-from libiap import libgds
-
-for file in libgds.list_files(volume_name='my-gds-volume-name'):
-    print(file)
-```
-
-- Using OpenAPI:
 ```python
 import os
 from libiap.openapi import libwes
@@ -67,8 +56,10 @@ with libwes.ApiClient(configuration) as api_client:
         print(e)
 ```
 
-- More examples/tutorials available at [User Guide](https://umccr-illumina.github.io/libiap/user/)
-
+More examples available at:
+- [libiap.openapi documentation](https://umccr-illumina.github.io/libiap/openapi/)
+- [PyDoc](https://umccr-illumina.github.io/libiap/libiap/)
+- [Wiki](https://github.com/umccr-illumina/libiap/wiki)
 
 ## Development
 
@@ -94,18 +85,7 @@ make it
 make test
 ```
 
-- To make _Pilot_ run:
-```
-export IAP_BASE_URL=<baseUrl>
-export IAP_AUTH_TOKEN=<tok>
-make pilot
-(or)
-python3 pilot.py
-```
-
 - Most of the dev pipelines are in [`Makefile`](Makefile) workflow
-
-- See [Developer Guide](https://umccr-illumina.github.io/libiap/developer/) for more notes
 
 
 ## License

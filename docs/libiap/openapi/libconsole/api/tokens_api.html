@@ -68,9 +68,9 @@ class TokensApi(object):
         self.api_client = api_client
 
     def create_token(self, **kwargs):  # noqa: E501
-        &#34;&#34;&#34;Creates a JWT token to call stratus services.  # noqa: E501
+        &#34;&#34;&#34;Creates a JWT token to call IAP services.  # noqa: E501
 
-        This endpoint creates a JWT token to call stratus services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
+        This endpoint creates a JWT token to call IAP services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         &gt;&gt;&gt; thread = api.create_token(async_req=True)
@@ -78,6 +78,7 @@ class TokensApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str x_api_key: Api Key can be passed in header to generate a JWT.
+        :param str client_id: Optionally pass client Id from calling app to set as authorized party on JWT.
         :param str api_key: OBSOLETE: api key should now be passed as as an X-API-Key header.
         :param str domain: Optionally pass the domain name you are logging into
         :param str data: Data is a custom meta data field that will be applied to the session field in the JWT payload.
@@ -101,9 +102,9 @@ class TokensApi(object):
         return self.create_token_with_http_info(**kwargs)  # noqa: E501
 
     def create_token_with_http_info(self, **kwargs):  # noqa: E501
-        &#34;&#34;&#34;Creates a JWT token to call stratus services.  # noqa: E501
+        &#34;&#34;&#34;Creates a JWT token to call IAP services.  # noqa: E501
 
-        This endpoint creates a JWT token to call stratus services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
+        This endpoint creates a JWT token to call IAP services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         &gt;&gt;&gt; thread = api.create_token_with_http_info(async_req=True)
@@ -111,6 +112,7 @@ class TokensApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str x_api_key: Api Key can be passed in header to generate a JWT.
+        :param str client_id: Optionally pass client Id from calling app to set as authorized party on JWT.
         :param str api_key: OBSOLETE: api key should now be passed as as an X-API-Key header.
         :param str domain: Optionally pass the domain name you are logging into
         :param str data: Data is a custom meta data field that will be applied to the session field in the JWT payload.
@@ -137,6 +139,7 @@ class TokensApi(object):
 
         all_params = [
             &#39;x_api_key&#39;,
+            &#39;client_id&#39;,
             &#39;api_key&#39;,
             &#39;domain&#39;,
             &#39;data&#39;,
@@ -169,6 +172,8 @@ class TokensApi(object):
         path_params = {}
 
         query_params = []
+        if &#39;client_id&#39; in local_var_params and local_var_params[&#39;client_id&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;clientId&#39;, local_var_params[&#39;client_id&#39;]))  # noqa: E501
         if &#39;api_key&#39; in local_var_params and local_var_params[&#39;api_key&#39;] is not None:  # noqa: E501
             query_params.append((&#39;api_key&#39;, local_var_params[&#39;api_key&#39;]))  # noqa: E501
         if &#39;domain&#39; in local_var_params and local_var_params[&#39;domain&#39;] is not None:  # noqa: E501
@@ -588,9 +593,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self.api_client = api_client
 
     def create_token(self, **kwargs):  # noqa: E501
-        &#34;&#34;&#34;Creates a JWT token to call stratus services.  # noqa: E501
+        &#34;&#34;&#34;Creates a JWT token to call IAP services.  # noqa: E501
 
-        This endpoint creates a JWT token to call stratus services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
+        This endpoint creates a JWT token to call IAP services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         &gt;&gt;&gt; thread = api.create_token(async_req=True)
@@ -598,6 +603,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
         :param async_req bool: execute request asynchronously
         :param str x_api_key: Api Key can be passed in header to generate a JWT.
+        :param str client_id: Optionally pass client Id from calling app to set as authorized party on JWT.
         :param str api_key: OBSOLETE: api key should now be passed as as an X-API-Key header.
         :param str domain: Optionally pass the domain name you are logging into
         :param str data: Data is a custom meta data field that will be applied to the session field in the JWT payload.
@@ -621,9 +627,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         return self.create_token_with_http_info(**kwargs)  # noqa: E501
 
     def create_token_with_http_info(self, **kwargs):  # noqa: E501
-        &#34;&#34;&#34;Creates a JWT token to call stratus services.  # noqa: E501
+        &#34;&#34;&#34;Creates a JWT token to call IAP services.  # noqa: E501
 
-        This endpoint creates a JWT token to call stratus services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
+        This endpoint creates a JWT token to call IAP services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         &gt;&gt;&gt; thread = api.create_token_with_http_info(async_req=True)
@@ -631,6 +637,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
         :param async_req bool: execute request asynchronously
         :param str x_api_key: Api Key can be passed in header to generate a JWT.
+        :param str client_id: Optionally pass client Id from calling app to set as authorized party on JWT.
         :param str api_key: OBSOLETE: api key should now be passed as as an X-API-Key header.
         :param str domain: Optionally pass the domain name you are logging into
         :param str data: Data is a custom meta data field that will be applied to the session field in the JWT payload.
@@ -657,6 +664,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
         all_params = [
             &#39;x_api_key&#39;,
+            &#39;client_id&#39;,
             &#39;api_key&#39;,
             &#39;domain&#39;,
             &#39;data&#39;,
@@ -689,6 +697,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         path_params = {}
 
         query_params = []
+        if &#39;client_id&#39; in local_var_params and local_var_params[&#39;client_id&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;clientId&#39;, local_var_params[&#39;client_id&#39;]))  # noqa: E501
         if &#39;api_key&#39; in local_var_params and local_var_params[&#39;api_key&#39;] is not None:  # noqa: E501
             query_params.append((&#39;api_key&#39;, local_var_params[&#39;api_key&#39;]))  # noqa: E501
         if &#39;domain&#39; in local_var_params and local_var_params[&#39;domain&#39;] is not None:  # noqa: E501
@@ -1079,9 +1089,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 <span>def <span class="ident">create_token</span></span>(<span>self, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Creates a JWT token to call stratus services.
+<div class="desc"><p>Creates a JWT token to call IAP services.
 # noqa: E501</p>
-<p>This endpoint creates a JWT token to call stratus services. Authorization can be a Bearer psToken,
+<p>This endpoint creates a JWT token to call IAP services. Authorization can be a Bearer psToken,
 Basic Base64 encoded username:password or Basic with apiKey.
 # noqa: E501
 This method makes a synchronous HTTP request by default. To make an
@@ -1091,6 +1101,7 @@ asynchronous HTTP request, please pass async_req=True</p>
 </code></pre>
 <p>:param async_req bool: execute request asynchronously
 :param str x_api_key: Api Key can be passed in header to generate a JWT.
+:param str client_id: Optionally pass client Id from calling app to set as authorized party on JWT.
 :param str api_key: OBSOLETE: api key should now be passed as as an X-API-Key header.
 :param str domain: Optionally pass the domain name you are logging into
 :param str data: Data is a custom meta data field that will be applied to the session field in the JWT payload.
@@ -1114,9 +1125,9 @@ returns the request thread.</p></div>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def create_token(self, **kwargs):  # noqa: E501
-    &#34;&#34;&#34;Creates a JWT token to call stratus services.  # noqa: E501
+    &#34;&#34;&#34;Creates a JWT token to call IAP services.  # noqa: E501
 
-    This endpoint creates a JWT token to call stratus services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
+    This endpoint creates a JWT token to call IAP services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
     &gt;&gt;&gt; thread = api.create_token(async_req=True)
@@ -1124,6 +1135,7 @@ returns the request thread.</p></div>
 
     :param async_req bool: execute request asynchronously
     :param str x_api_key: Api Key can be passed in header to generate a JWT.
+    :param str client_id: Optionally pass client Id from calling app to set as authorized party on JWT.
     :param str api_key: OBSOLETE: api key should now be passed as as an X-API-Key header.
     :param str domain: Optionally pass the domain name you are logging into
     :param str data: Data is a custom meta data field that will be applied to the session field in the JWT payload.
@@ -1151,9 +1163,9 @@ returns the request thread.</p></div>
 <span>def <span class="ident">create_token_with_http_info</span></span>(<span>self, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Creates a JWT token to call stratus services.
+<div class="desc"><p>Creates a JWT token to call IAP services.
 # noqa: E501</p>
-<p>This endpoint creates a JWT token to call stratus services. Authorization can be a Bearer psToken,
+<p>This endpoint creates a JWT token to call IAP services. Authorization can be a Bearer psToken,
 Basic Base64 encoded username:password or Basic with apiKey.
 # noqa: E501
 This method makes a synchronous HTTP request by default. To make an
@@ -1163,6 +1175,7 @@ asynchronous HTTP request, please pass async_req=True</p>
 </code></pre>
 <p>:param async_req bool: execute request asynchronously
 :param str x_api_key: Api Key can be passed in header to generate a JWT.
+:param str client_id: Optionally pass client Id from calling app to set as authorized party on JWT.
 :param str api_key: OBSOLETE: api key should now be passed as as an X-API-Key header.
 :param str domain: Optionally pass the domain name you are logging into
 :param str data: Data is a custom meta data field that will be applied to the session field in the JWT payload.
@@ -1188,9 +1201,9 @@ returns the request thread.</p></div>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def create_token_with_http_info(self, **kwargs):  # noqa: E501
-    &#34;&#34;&#34;Creates a JWT token to call stratus services.  # noqa: E501
+    &#34;&#34;&#34;Creates a JWT token to call IAP services.  # noqa: E501
 
-    This endpoint creates a JWT token to call stratus services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
+    This endpoint creates a JWT token to call IAP services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
     &gt;&gt;&gt; thread = api.create_token_with_http_info(async_req=True)
@@ -1198,6 +1211,7 @@ returns the request thread.</p></div>
 
     :param async_req bool: execute request asynchronously
     :param str x_api_key: Api Key can be passed in header to generate a JWT.
+    :param str client_id: Optionally pass client Id from calling app to set as authorized party on JWT.
     :param str api_key: OBSOLETE: api key should now be passed as as an X-API-Key header.
     :param str domain: Optionally pass the domain name you are logging into
     :param str data: Data is a custom meta data field that will be applied to the session field in the JWT payload.
@@ -1224,6 +1238,7 @@ returns the request thread.</p></div>
 
     all_params = [
         &#39;x_api_key&#39;,
+        &#39;client_id&#39;,
         &#39;api_key&#39;,
         &#39;domain&#39;,
         &#39;data&#39;,
@@ -1256,6 +1271,8 @@ returns the request thread.</p></div>
     path_params = {}
 
     query_params = []
+    if &#39;client_id&#39; in local_var_params and local_var_params[&#39;client_id&#39;] is not None:  # noqa: E501
+        query_params.append((&#39;clientId&#39;, local_var_params[&#39;client_id&#39;]))  # noqa: E501
     if &#39;api_key&#39; in local_var_params and local_var_params[&#39;api_key&#39;] is not None:  # noqa: E501
         query_params.append((&#39;api_key&#39;, local_var_params[&#39;api_key&#39;]))  # noqa: E501
     if &#39;domain&#39; in local_var_params and local_var_params[&#39;domain&#39;] is not None:  # noqa: E501

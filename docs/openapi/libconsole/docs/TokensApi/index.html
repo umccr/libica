@@ -279,7 +279,7 @@
 <tr>
 <td><a href="./#create_token"><strong>create_token</strong></a></td>
 <td><strong>POST</strong> /v1/tokens</td>
-<td>Creates a JWT token to call stratus services.</td>
+<td>Creates a JWT token to call IAP services.</td>
 </tr>
 <tr>
 <td><a href="./#get_token_details"><strong>get_token_details</strong></a></td>
@@ -300,10 +300,10 @@
 </table>
 <h1 id="create_token"><strong>create_token</strong><a class="headerlink" href="#create_token" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>TokenResponse create_token(x_api_key=x_api_key, api_key=api_key, domain=domain, data=data, scopes=scopes, acl=acl, mem=mem, cwid=cwid, return_session_token=return_session_token)</p>
+<p>TokenResponse create_token(x_api_key=x_api_key, client_id=client_id, api_key=api_key, domain=domain, data=data, scopes=scopes, acl=acl, mem=mem, cwid=cwid, return_session_token=return_session_token)</p>
 </blockquote>
-<p>Creates a JWT token to call stratus services.</p>
-<p>This endpoint creates a JWT token to call stratus services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.</p>
+<p>Creates a JWT token to call IAP services.</p>
+<p>This endpoint creates a JWT token to call IAP services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.</p>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Api Key Authentication (Basic):</li>
@@ -349,6 +349,7 @@
     <span class="c1"># Create an instance of the API class</span>
     <span class="n">api_instance</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">TokensApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
     <span class="n">x_api_key</span> <span class="o">=</span> <span class="s1">&#39;x_api_key_example&#39;</span> <span class="c1"># str | Api Key can be passed in header to generate a JWT. (optional)</span>
+<span class="n">client_id</span> <span class="o">=</span> <span class="s1">&#39;client_id_example&#39;</span> <span class="c1"># str | Optionally pass client Id from calling app to set as authorized party on JWT. (optional)</span>
 <span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;api_key_example&#39;</span> <span class="c1"># str | OBSOLETE: api key should now be passed as as an X-API-Key header. (optional)</span>
 <span class="n">domain</span> <span class="o">=</span> <span class="s1">&#39;domain_example&#39;</span> <span class="c1"># str | Optionally pass the domain name you are logging into (optional)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;data_example&#39;</span> <span class="c1"># str | Data is a custom meta data field that will be applied to the session field in the JWT payload. (optional)</span>
@@ -359,8 +360,8 @@
 <span class="n">return_session_token</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># bool | By default, this endpoint returns a JWT token. You can specify returnSessionToken=true to get an Illumina psToken instead. (optional)</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Creates a JWT token to call stratus services.</span>
-        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">create_token</span><span class="p">(</span><span class="n">x_api_key</span><span class="o">=</span><span class="n">x_api_key</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">scopes</span><span class="o">=</span><span class="n">scopes</span><span class="p">,</span> <span class="n">acl</span><span class="o">=</span><span class="n">acl</span><span class="p">,</span> <span class="n">mem</span><span class="o">=</span><span class="n">mem</span><span class="p">,</span> <span class="n">cwid</span><span class="o">=</span><span class="n">cwid</span><span class="p">,</span> <span class="n">return_session_token</span><span class="o">=</span><span class="n">return_session_token</span><span class="p">)</span>
+        <span class="c1"># Creates a JWT token to call IAP services.</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">create_token</span><span class="p">(</span><span class="n">x_api_key</span><span class="o">=</span><span class="n">x_api_key</span><span class="p">,</span> <span class="n">client_id</span><span class="o">=</span><span class="n">client_id</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">scopes</span><span class="o">=</span><span class="n">scopes</span><span class="p">,</span> <span class="n">acl</span><span class="o">=</span><span class="n">acl</span><span class="p">,</span> <span class="n">mem</span><span class="o">=</span><span class="n">mem</span><span class="p">,</span> <span class="n">cwid</span><span class="o">=</span><span class="n">cwid</span><span class="p">,</span> <span class="n">return_session_token</span><span class="o">=</span><span class="n">return_session_token</span><span class="p">)</span>
         <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling TokensApi-&gt;create_token: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
@@ -411,6 +412,7 @@
     <span class="c1"># Create an instance of the API class</span>
     <span class="n">api_instance</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">TokensApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
     <span class="n">x_api_key</span> <span class="o">=</span> <span class="s1">&#39;x_api_key_example&#39;</span> <span class="c1"># str | Api Key can be passed in header to generate a JWT. (optional)</span>
+<span class="n">client_id</span> <span class="o">=</span> <span class="s1">&#39;client_id_example&#39;</span> <span class="c1"># str | Optionally pass client Id from calling app to set as authorized party on JWT. (optional)</span>
 <span class="n">api_key</span> <span class="o">=</span> <span class="s1">&#39;api_key_example&#39;</span> <span class="c1"># str | OBSOLETE: api key should now be passed as as an X-API-Key header. (optional)</span>
 <span class="n">domain</span> <span class="o">=</span> <span class="s1">&#39;domain_example&#39;</span> <span class="c1"># str | Optionally pass the domain name you are logging into (optional)</span>
 <span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;data_example&#39;</span> <span class="c1"># str | Data is a custom meta data field that will be applied to the session field in the JWT payload. (optional)</span>
@@ -421,8 +423,8 @@
 <span class="n">return_session_token</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># bool | By default, this endpoint returns a JWT token. You can specify returnSessionToken=true to get an Illumina psToken instead. (optional)</span>
 
     <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Creates a JWT token to call stratus services.</span>
-        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">create_token</span><span class="p">(</span><span class="n">x_api_key</span><span class="o">=</span><span class="n">x_api_key</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">scopes</span><span class="o">=</span><span class="n">scopes</span><span class="p">,</span> <span class="n">acl</span><span class="o">=</span><span class="n">acl</span><span class="p">,</span> <span class="n">mem</span><span class="o">=</span><span class="n">mem</span><span class="p">,</span> <span class="n">cwid</span><span class="o">=</span><span class="n">cwid</span><span class="p">,</span> <span class="n">return_session_token</span><span class="o">=</span><span class="n">return_session_token</span><span class="p">)</span>
+        <span class="c1"># Creates a JWT token to call IAP services.</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">create_token</span><span class="p">(</span><span class="n">x_api_key</span><span class="o">=</span><span class="n">x_api_key</span><span class="p">,</span> <span class="n">client_id</span><span class="o">=</span><span class="n">client_id</span><span class="p">,</span> <span class="n">api_key</span><span class="o">=</span><span class="n">api_key</span><span class="p">,</span> <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span> <span class="n">scopes</span><span class="o">=</span><span class="n">scopes</span><span class="p">,</span> <span class="n">acl</span><span class="o">=</span><span class="n">acl</span><span class="p">,</span> <span class="n">mem</span><span class="o">=</span><span class="n">mem</span><span class="p">,</span> <span class="n">cwid</span><span class="o">=</span><span class="n">cwid</span><span class="p">,</span> <span class="n">return_session_token</span><span class="o">=</span><span class="n">return_session_token</span><span class="p">)</span>
         <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling TokensApi-&gt;create_token: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
@@ -444,6 +446,12 @@
 <td><strong>x_api_key</strong></td>
 <td><strong>str</strong></td>
 <td>Api Key can be passed in header to generate a JWT.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>client_id</strong></td>
+<td><strong>str</strong></td>
+<td>Optionally pass client Id from calling app to set as authorized party on JWT.</td>
 <td>[optional]</td>
 </tr>
 <tr>

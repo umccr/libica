@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for libiap/openapi/libwes/models/workflow_language.py: 61%</title>
+    <title>Coverage for libiap/openapi/libwes/models/workflow_language.py: 79%</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript" src="jquery.hotkeys.js"></script>
@@ -17,13 +17,13 @@
 <div id="header">
     <div class="content">
         <h1>Coverage for <b>libiap/openapi/libwes/models/workflow_language.py</b> :
-            <span class="pc_cov">61%</span>
+            <span class="pc_cov">79%</span>
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
             56 statements &nbsp;
-            <span class="run shortkey_r button_toggle_run">34 run</span>
-            <span class="mis show_mis shortkey_m button_toggle_mis">22 missing</span>
+            <span class="run shortkey_r button_toggle_run">44 run</span>
+            <span class="mis show_mis shortkey_m button_toggle_mis">12 missing</span>
             <span class="exc show_exc shortkey_x button_toggle_exc">0 excluded</span>
         </h2>
     </div>
@@ -118,7 +118,7 @@
     <p id="t65" class="pln"><span class="n"><a href="#t65">65</a></span><span class="t"><span class="str">        :return: The name of this WorkflowLanguage.  # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
     <p id="t66" class="pln"><span class="n"><a href="#t66">66</a></span><span class="t"><span class="str">        :rtype: str</span>&nbsp;</span><span class="r"></span></p>
     <p id="t67" class="pln"><span class="n"><a href="#t67">67</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t68" class="mis show_mis"><span class="n"><a href="#t68">68</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_name</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t68" class="run"><span class="n"><a href="#t68">68</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_name</span>&nbsp;</span><span class="r"></span></p>
     <p id="t69" class="pln"><span class="n"><a href="#t69">69</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t70" class="run"><span class="n"><a href="#t70">70</a></span><span class="t">    <span class="op">@</span><span class="nam">name</span><span class="op">.</span><span class="nam">setter</span>&nbsp;</span><span class="r"></span></p>
     <p id="t71" class="run"><span class="n"><a href="#t71">71</a></span><span class="t">    <span class="key">def</span> <span class="nam">name</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">name</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -143,7 +143,7 @@
     <p id="t90" class="pln"><span class="n"><a href="#t90">90</a></span><span class="t"><span class="str">        :return: The version of this WorkflowLanguage.  # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
     <p id="t91" class="pln"><span class="n"><a href="#t91">91</a></span><span class="t"><span class="str">        :rtype: str</span>&nbsp;</span><span class="r"></span></p>
     <p id="t92" class="pln"><span class="n"><a href="#t92">92</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t93" class="mis show_mis"><span class="n"><a href="#t93">93</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_version</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t93" class="run"><span class="n"><a href="#t93">93</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">_version</span>&nbsp;</span><span class="r"></span></p>
     <p id="t94" class="pln"><span class="n"><a href="#t94">94</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t95" class="run"><span class="n"><a href="#t95">95</a></span><span class="t">    <span class="op">@</span><span class="nam">version</span><span class="op">.</span><span class="nam">setter</span>&nbsp;</span><span class="r"></span></p>
     <p id="t96" class="run"><span class="n"><a href="#t96">96</a></span><span class="t">    <span class="key">def</span> <span class="nam">version</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">version</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
@@ -159,27 +159,27 @@
     <p id="t106" class="pln"><span class="n"><a href="#t106">106</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t107" class="run"><span class="n"><a href="#t107">107</a></span><span class="t">    <span class="key">def</span> <span class="nam">to_dict</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t108" class="pln"><span class="n"><a href="#t108">108</a></span><span class="t">        <span class="str">"""Returns the model properties as a dict"""</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t109" class="mis show_mis"><span class="n"><a href="#t109">109</a></span><span class="t">        <span class="nam">result</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t109" class="run"><span class="n"><a href="#t109">109</a></span><span class="t">        <span class="nam">result</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
     <p id="t110" class="pln"><span class="n"><a href="#t110">110</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t111" class="mis show_mis"><span class="n"><a href="#t111">111</a></span><span class="t">        <span class="key">for</span> <span class="nam">attr</span><span class="op">,</span> <span class="nam">_</span> <span class="key">in</span> <span class="nam">six</span><span class="op">.</span><span class="nam">iteritems</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">openapi_types</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t112" class="mis show_mis"><span class="n"><a href="#t112">112</a></span><span class="t">            <span class="nam">value</span> <span class="op">=</span> <span class="nam">getattr</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">attr</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t113" class="mis show_mis"><span class="n"><a href="#t113">113</a></span><span class="t">            <span class="key">if</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">value</span><span class="op">,</span> <span class="nam">list</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t111" class="run"><span class="n"><a href="#t111">111</a></span><span class="t">        <span class="key">for</span> <span class="nam">attr</span><span class="op">,</span> <span class="nam">_</span> <span class="key">in</span> <span class="nam">six</span><span class="op">.</span><span class="nam">iteritems</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">openapi_types</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t112" class="run"><span class="n"><a href="#t112">112</a></span><span class="t">            <span class="nam">value</span> <span class="op">=</span> <span class="nam">getattr</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">attr</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t113" class="run"><span class="n"><a href="#t113">113</a></span><span class="t">            <span class="key">if</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">value</span><span class="op">,</span> <span class="nam">list</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t114" class="mis show_mis"><span class="n"><a href="#t114">114</a></span><span class="t">                <span class="nam">result</span><span class="op">[</span><span class="nam">attr</span><span class="op">]</span> <span class="op">=</span> <span class="nam">list</span><span class="op">(</span><span class="nam">map</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p id="t115" class="pln"><span class="n"><a href="#t115">115</a></span><span class="t">                    <span class="key">lambda</span> <span class="nam">x</span><span class="op">:</span> <span class="nam">x</span><span class="op">.</span><span class="nam">to_dict</span><span class="op">(</span><span class="op">)</span> <span class="key">if</span> <span class="nam">hasattr</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="str">"to_dict"</span><span class="op">)</span> <span class="key">else</span> <span class="nam">x</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t116" class="pln"><span class="n"><a href="#t116">116</a></span><span class="t">                    <span class="nam">value</span>&nbsp;</span><span class="r"></span></p>
     <p id="t117" class="pln"><span class="n"><a href="#t117">117</a></span><span class="t">                <span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t118" class="mis show_mis"><span class="n"><a href="#t118">118</a></span><span class="t">            <span class="key">elif</span> <span class="nam">hasattr</span><span class="op">(</span><span class="nam">value</span><span class="op">,</span> <span class="str">"to_dict"</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t118" class="run"><span class="n"><a href="#t118">118</a></span><span class="t">            <span class="key">elif</span> <span class="nam">hasattr</span><span class="op">(</span><span class="nam">value</span><span class="op">,</span> <span class="str">"to_dict"</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t119" class="mis show_mis"><span class="n"><a href="#t119">119</a></span><span class="t">                <span class="nam">result</span><span class="op">[</span><span class="nam">attr</span><span class="op">]</span> <span class="op">=</span> <span class="nam">value</span><span class="op">.</span><span class="nam">to_dict</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t120" class="mis show_mis"><span class="n"><a href="#t120">120</a></span><span class="t">            <span class="key">elif</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">value</span><span class="op">,</span> <span class="nam">dict</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t120" class="run"><span class="n"><a href="#t120">120</a></span><span class="t">            <span class="key">elif</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">value</span><span class="op">,</span> <span class="nam">dict</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t121" class="mis show_mis"><span class="n"><a href="#t121">121</a></span><span class="t">                <span class="nam">result</span><span class="op">[</span><span class="nam">attr</span><span class="op">]</span> <span class="op">=</span> <span class="nam">dict</span><span class="op">(</span><span class="nam">map</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p id="t122" class="pln"><span class="n"><a href="#t122">122</a></span><span class="t">                    <span class="key">lambda</span> <span class="nam">item</span><span class="op">:</span> <span class="op">(</span><span class="nam">item</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">,</span> <span class="nam">item</span><span class="op">[</span><span class="num">1</span><span class="op">]</span><span class="op">.</span><span class="nam">to_dict</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t123" class="pln"><span class="n"><a href="#t123">123</a></span><span class="t">                    <span class="key">if</span> <span class="nam">hasattr</span><span class="op">(</span><span class="nam">item</span><span class="op">[</span><span class="num">1</span><span class="op">]</span><span class="op">,</span> <span class="str">"to_dict"</span><span class="op">)</span> <span class="key">else</span> <span class="nam">item</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p id="t124" class="pln"><span class="n"><a href="#t124">124</a></span><span class="t">                    <span class="nam">value</span><span class="op">.</span><span class="nam">items</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t125" class="pln"><span class="n"><a href="#t125">125</a></span><span class="t">                <span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t126" class="pln"><span class="n"><a href="#t126">126</a></span><span class="t">            <span class="key">else</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t127" class="mis show_mis"><span class="n"><a href="#t127">127</a></span><span class="t">                <span class="nam">result</span><span class="op">[</span><span class="nam">attr</span><span class="op">]</span> <span class="op">=</span> <span class="nam">value</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t127" class="run"><span class="n"><a href="#t127">127</a></span><span class="t">                <span class="nam">result</span><span class="op">[</span><span class="nam">attr</span><span class="op">]</span> <span class="op">=</span> <span class="nam">value</span>&nbsp;</span><span class="r"></span></p>
     <p id="t128" class="pln"><span class="n"><a href="#t128">128</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t129" class="mis show_mis"><span class="n"><a href="#t129">129</a></span><span class="t">        <span class="key">return</span> <span class="nam">result</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t129" class="run"><span class="n"><a href="#t129">129</a></span><span class="t">        <span class="key">return</span> <span class="nam">result</span>&nbsp;</span><span class="r"></span></p>
     <p id="t130" class="pln"><span class="n"><a href="#t130">130</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t131" class="run"><span class="n"><a href="#t131">131</a></span><span class="t">    <span class="key">def</span> <span class="nam">to_str</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t132" class="pln"><span class="n"><a href="#t132">132</a></span><span class="t">        <span class="str">"""Returns the string representation of the model"""</span>&nbsp;</span><span class="r"></span></p>
@@ -207,7 +207,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.1</a>,
-            created at 2020-06-12 11:09
+            created at 2020-08-06 00:25
         </p>
     </div>
 </div>

@@ -48,6 +48,7 @@ class WorkflowSignalCompact(object):
         'result': 'object',
         'error': 'str',
         'error_cause': 'str',
+        'created_by_client_id': 'str',
         'time_created': 'datetime',
         'time_modified': 'datetime',
         'created_by': 'str',
@@ -72,6 +73,7 @@ class WorkflowSignalCompact(object):
         'result': 'result',
         'error': 'error',
         'error_cause': 'errorCause',
+        'created_by_client_id': 'createdByClientId',
         'time_created': 'timeCreated',
         'time_modified': 'timeModified',
         'created_by': 'createdBy',
@@ -80,7 +82,7 @@ class WorkflowSignalCompact(object):
         'acl': 'acl'
     }
 
-    def __init__(self, id=None, href=None, send_heartbeat_href=None, send_success_response_href=None, send_failure_response_href=None, name=None, status=None, type=None, description=None, inputs=None, workflow_run=None, timeout_seconds=None, result=None, error=None, error_cause=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, href=None, send_heartbeat_href=None, send_success_response_href=None, send_failure_response_href=None, name=None, status=None, type=None, description=None, inputs=None, workflow_run=None, timeout_seconds=None, result=None, error=None, error_cause=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         """WorkflowSignalCompact - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -101,6 +103,7 @@ class WorkflowSignalCompact(object):
         self._result = None
         self._error = None
         self._error_cause = None
+        self._created_by_client_id = None
         self._time_created = None
         self._time_modified = None
         self._created_by = None
@@ -139,6 +142,8 @@ class WorkflowSignalCompact(object):
             self.error = error
         if error_cause is not None:
             self.error_cause = error_cause
+        if created_by_client_id is not None:
+            self.created_by_client_id = created_by_client_id
         if time_created is not None:
             self.time_created = time_created
         if time_modified is not None:
@@ -494,6 +499,29 @@ class WorkflowSignalCompact(object):
         """
 
         self._error_cause = error_cause
+
+    @property
+    def created_by_client_id(self):
+        """Gets the created_by_client_id of this WorkflowSignalCompact.  # noqa: E501
+
+        Client ID of the Origin Request  # noqa: E501
+
+        :return: The created_by_client_id of this WorkflowSignalCompact.  # noqa: E501
+        :rtype: str
+        """
+        return self._created_by_client_id
+
+    @created_by_client_id.setter
+    def created_by_client_id(self, created_by_client_id):
+        """Sets the created_by_client_id of this WorkflowSignalCompact.
+
+        Client ID of the Origin Request  # noqa: E501
+
+        :param created_by_client_id: The created_by_client_id of this WorkflowSignalCompact.  # noqa: E501
+        :type: str
+        """
+
+        self._created_by_client_id = created_by_client_id
 
     @property
     def time_created(self):

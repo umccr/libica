@@ -1,19 +1,8 @@
 # -*- coding: utf-8 -*-
 
 """libwes module
-
-Facade module interface for underlay WES API operations
-https://aps2.platform.illumina.com/wes/swagger/index.html
-
-Should retain/suppress all IAP WES API calls here, including handle
-any specific exceptions.
-
-Goal is, so that else where in code, just ``import libwes`` and use it!
-
-If unsure, start with Pass-through call.
-
-Example usage:
- - See unit test cases in tests/test_libwes.py
+This module may deprecate in future.
+Please use libiap.openapi when possible for better upstream support.
 """
 
 

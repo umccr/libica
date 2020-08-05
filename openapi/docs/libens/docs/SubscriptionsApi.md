@@ -1,6 +1,6 @@
 # libiap.openapi.libens.SubscriptionsApi
 
-All URIs are relative to *http://aps2.platform.illumina.com*
+All URIs are relative to *https://aps2.platform.illumina.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create_subscription**
-> Subscription create_subscription(request=request)
+> Subscription create_subscription(body=body)
 
 Creates a subscription to an event type and defines how those events get delivered.
 
@@ -26,10 +26,10 @@ import time
 import libiap.openapi.libens
 from libiap.openapi.libens.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://aps2.platform.illumina.com
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = libiap.openapi.libens.Configuration(
-    host = "http://aps2.platform.illumina.com"
+    host = "https://aps2.platform.illumina.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -39,7 +39,7 @@ configuration = libiap.openapi.libens.Configuration(
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libens.Configuration(
-    host = "http://aps2.platform.illumina.com",
+    host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
     }
@@ -51,11 +51,11 @@ configuration = libiap.openapi.libens.Configuration(
 with libiap.openapi.libens.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libiap.openapi.libens.SubscriptionsApi(api_client)
-    request = libiap.openapi.libens.CreateSubscriptionRequest() # CreateSubscriptionRequest |  (optional)
+    body = libiap.openapi.libens.CreateSubscriptionRequest() # CreateSubscriptionRequest |  (optional)
 
     try:
         # Creates a subscription to an event type and defines how those events get delivered.
-        api_response = api_instance.create_subscription(request=request)
+        api_response = api_instance.create_subscription(body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling SubscriptionsApi->create_subscription: %s\n" % e)
@@ -65,7 +65,7 @@ with libiap.openapi.libens.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | [**CreateSubscriptionRequest**](CreateSubscriptionRequest.md)|  | [optional] 
+ **body** | [**CreateSubscriptionRequest**](CreateSubscriptionRequest.md)|  | [optional] 
 
 ### Return type
 
@@ -108,10 +108,10 @@ import time
 import libiap.openapi.libens
 from libiap.openapi.libens.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://aps2.platform.illumina.com
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = libiap.openapi.libens.Configuration(
-    host = "http://aps2.platform.illumina.com"
+    host = "https://aps2.platform.illumina.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -121,7 +121,7 @@ configuration = libiap.openapi.libens.Configuration(
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libens.Configuration(
-    host = "http://aps2.platform.illumina.com",
+    host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
     }
@@ -191,10 +191,10 @@ import time
 import libiap.openapi.libens
 from libiap.openapi.libens.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://aps2.platform.illumina.com
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = libiap.openapi.libens.Configuration(
-    host = "http://aps2.platform.illumina.com"
+    host = "https://aps2.platform.illumina.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -204,7 +204,7 @@ configuration = libiap.openapi.libens.Configuration(
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libens.Configuration(
-    host = "http://aps2.platform.illumina.com",
+    host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
     }
@@ -274,10 +274,10 @@ import time
 import libiap.openapi.libens
 from libiap.openapi.libens.rest import ApiException
 from pprint import pprint
-# Defining the host is optional and defaults to http://aps2.platform.illumina.com
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
 configuration = libiap.openapi.libens.Configuration(
-    host = "http://aps2.platform.illumina.com"
+    host = "https://aps2.platform.illumina.com"
 )
 
 # The client must configure the authentication and authorization parameters
@@ -287,7 +287,7 @@ configuration = libiap.openapi.libens.Configuration(
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libens.Configuration(
-    host = "http://aps2.platform.illumina.com",
+    host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
     }

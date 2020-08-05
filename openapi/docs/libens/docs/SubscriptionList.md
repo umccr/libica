@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **last_page_token** | **str** |  | [optional] 
 **total_item_count** | **int** |  | [optional] 
 **total_page_count** | **int** |  | [optional] 
-**sorted_by** | **str** |  | [optional] 
-**sort_direction** | **str** |  | [optional] 
+**sorted_by** | [**SubscriptionListSortFields**](SubscriptionListSortFields.md) |  | [optional] 
+**sort_direction** | [**SortDirection**](SortDirection.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

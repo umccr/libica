@@ -46,7 +46,7 @@ class SubscriptionsApi(object):
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param CreateSubscriptionRequest request:
+        :param CreateSubscriptionRequest body:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -71,7 +71,7 @@ class SubscriptionsApi(object):
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param CreateSubscriptionRequest request:
+        :param CreateSubscriptionRequest body:
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -89,7 +89,7 @@ class SubscriptionsApi(object):
         local_var_params = locals()
 
         all_params = [
-            'request'
+            'body'
         ]
         all_params.extend(
             [
@@ -121,8 +121,8 @@ class SubscriptionsApi(object):
         local_var_files = {}
 
         body_params = None
-        if 'request' in local_var_params:
-            body_params = local_var_params['request']
+        if 'body' in local_var_params:
+            body_params = local_var_params['body']
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501

@@ -4,18 +4,18 @@ All URIs are relative to *https://aps2.platform.illumina.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_token**](TokensApi.md#create_token) | **POST** /v1/tokens | Creates a JWT token to call stratus services.
+[**create_token**](TokensApi.md#create_token) | **POST** /v1/tokens | Creates a JWT token to call IAP services.
 [**get_token_details**](TokensApi.md#get_token_details) | **GET** /v1/tokens/details | Get current tokens info require authorization Bearer token
 [**refresh_token**](TokensApi.md#refresh_token) | **POST** /v1/tokens:refresh | Refresh session psToken.
 [**revoke_token**](TokensApi.md#revoke_token) | **DELETE** /v1/tokens | Revokes an access token.
 
 
 # **create_token**
-> TokenResponse create_token(x_api_key=x_api_key, api_key=api_key, domain=domain, data=data, scopes=scopes, acl=acl, mem=mem, cwid=cwid, return_session_token=return_session_token)
+> TokenResponse create_token(x_api_key=x_api_key, client_id=client_id, api_key=api_key, domain=domain, data=data, scopes=scopes, acl=acl, mem=mem, cwid=cwid, return_session_token=return_session_token)
 
-Creates a JWT token to call stratus services.
+Creates a JWT token to call IAP services.
 
-This endpoint creates a JWT token to call stratus services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.
+This endpoint creates a JWT token to call IAP services. Authorization can be a Bearer psToken,  Basic Base64 encoded username:password or Basic with apiKey.
 
 ### Example
 
@@ -62,6 +62,7 @@ with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libiap.openapi.libconsole.TokensApi(api_client)
     x_api_key = 'x_api_key_example' # str | Api Key can be passed in header to generate a JWT. (optional)
+client_id = 'client_id_example' # str | Optionally pass client Id from calling app to set as authorized party on JWT. (optional)
 api_key = 'api_key_example' # str | OBSOLETE: api key should now be passed as as an X-API-Key header. (optional)
 domain = 'domain_example' # str | Optionally pass the domain name you are logging into (optional)
 data = 'data_example' # str | Data is a custom meta data field that will be applied to the session field in the JWT payload. (optional)
@@ -72,8 +73,8 @@ cwid = 'cwid_example' # str | Set the current workgroup on the token. Used for a
 return_session_token = True # bool | By default, this endpoint returns a JWT token. You can specify returnSessionToken=true to get an Illumina psToken instead. (optional)
 
     try:
-        # Creates a JWT token to call stratus services.
-        api_response = api_instance.create_token(x_api_key=x_api_key, api_key=api_key, domain=domain, data=data, scopes=scopes, acl=acl, mem=mem, cwid=cwid, return_session_token=return_session_token)
+        # Creates a JWT token to call IAP services.
+        api_response = api_instance.create_token(x_api_key=x_api_key, client_id=client_id, api_key=api_key, domain=domain, data=data, scopes=scopes, acl=acl, mem=mem, cwid=cwid, return_session_token=return_session_token)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling TokensApi->create_token: %s\n" % e)
@@ -122,6 +123,7 @@ with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libiap.openapi.libconsole.TokensApi(api_client)
     x_api_key = 'x_api_key_example' # str | Api Key can be passed in header to generate a JWT. (optional)
+client_id = 'client_id_example' # str | Optionally pass client Id from calling app to set as authorized party on JWT. (optional)
 api_key = 'api_key_example' # str | OBSOLETE: api key should now be passed as as an X-API-Key header. (optional)
 domain = 'domain_example' # str | Optionally pass the domain name you are logging into (optional)
 data = 'data_example' # str | Data is a custom meta data field that will be applied to the session field in the JWT payload. (optional)
@@ -132,8 +134,8 @@ cwid = 'cwid_example' # str | Set the current workgroup on the token. Used for a
 return_session_token = True # bool | By default, this endpoint returns a JWT token. You can specify returnSessionToken=true to get an Illumina psToken instead. (optional)
 
     try:
-        # Creates a JWT token to call stratus services.
-        api_response = api_instance.create_token(x_api_key=x_api_key, api_key=api_key, domain=domain, data=data, scopes=scopes, acl=acl, mem=mem, cwid=cwid, return_session_token=return_session_token)
+        # Creates a JWT token to call IAP services.
+        api_response = api_instance.create_token(x_api_key=x_api_key, client_id=client_id, api_key=api_key, domain=domain, data=data, scopes=scopes, acl=acl, mem=mem, cwid=cwid, return_session_token=return_session_token)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling TokensApi->create_token: %s\n" % e)
@@ -144,6 +146,7 @@ return_session_token = True # bool | By default, this endpoint returns a JWT tok
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **x_api_key** | **str**| Api Key can be passed in header to generate a JWT. | [optional] 
+ **client_id** | **str**| Optionally pass client Id from calling app to set as authorized party on JWT. | [optional] 
  **api_key** | **str**| OBSOLETE: api key should now be passed as as an X-API-Key header. | [optional] 
  **domain** | **str**| Optionally pass the domain name you are logging into | [optional] 
  **data** | **str**| Data is a custom meta data field that will be applied to the session field in the JWT payload. | [optional] 

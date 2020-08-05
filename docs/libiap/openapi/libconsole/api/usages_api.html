@@ -289,6 +289,116 @@ class UsagesApi(object):
             _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
             _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
             _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+            collection_formats=collection_formats)
+
+    def get_usage_periods(self, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Get periods detail info   # noqa: E501
+
+        This endpoint provides the periods details  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.get_usage_periods(async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param int limit:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: UsageResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;_return_http_data_only&#39;] = True
+        return self.get_usage_periods_with_http_info(**kwargs)  # noqa: E501
+
+    def get_usage_periods_with_http_info(self, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Get periods detail info   # noqa: E501
+
+        This endpoint provides the periods details  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.get_usage_periods_with_http_info(async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param int limit:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(UsageResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+
+        local_var_params = locals()
+
+        all_params = [
+            &#39;limit&#39;
+        ]
+        all_params.extend(
+            [
+                &#39;async_req&#39;,
+                &#39;_return_http_data_only&#39;,
+                &#39;_preload_content&#39;,
+                &#39;_request_timeout&#39;
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+            if key not in all_params:
+                raise ApiTypeError(
+                    &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                    &#34; to method get_usage_periods&#34; % key
+                )
+            local_var_params[key] = val
+        del local_var_params[&#39;kwargs&#39;]
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if &#39;limit&#39; in local_var_params and local_var_params[&#39;limit&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;limit&#39;, local_var_params[&#39;limit&#39;]))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+            [&#39;application/json&#39;])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = [&#39;Basic&#39;, &#39;Bearer&#39;]  # noqa: E501
+
+        return self.api_client.call_api(
+            &#39;/v1/usages/periods&#39;, &#39;GET&#39;,
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=&#39;UsageResponse&#39;,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get(&#39;async_req&#39;),
+            _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+            _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+            _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
             collection_formats=collection_formats)</code></pre>
 </details>
 </section>
@@ -547,6 +657,116 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
             _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
             _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+            collection_formats=collection_formats)
+
+    def get_usage_periods(self, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Get periods detail info   # noqa: E501
+
+        This endpoint provides the periods details  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.get_usage_periods(async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param int limit:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: UsageResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;_return_http_data_only&#39;] = True
+        return self.get_usage_periods_with_http_info(**kwargs)  # noqa: E501
+
+    def get_usage_periods_with_http_info(self, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Get periods detail info   # noqa: E501
+
+        This endpoint provides the periods details  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.get_usage_periods_with_http_info(async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param int limit:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(UsageResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+
+        local_var_params = locals()
+
+        all_params = [
+            &#39;limit&#39;
+        ]
+        all_params.extend(
+            [
+                &#39;async_req&#39;,
+                &#39;_return_http_data_only&#39;,
+                &#39;_preload_content&#39;,
+                &#39;_request_timeout&#39;
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+            if key not in all_params:
+                raise ApiTypeError(
+                    &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                    &#34; to method get_usage_periods&#34; % key
+                )
+            local_var_params[key] = val
+        del local_var_params[&#39;kwargs&#39;]
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+        if &#39;limit&#39; in local_var_params and local_var_params[&#39;limit&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;limit&#39;, local_var_params[&#39;limit&#39;]))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+            [&#39;application/json&#39;])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = [&#39;Basic&#39;, &#39;Bearer&#39;]  # noqa: E501
+
+        return self.api_client.call_api(
+            &#39;/v1/usages/periods&#39;, &#39;GET&#39;,
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=&#39;UsageResponse&#39;,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get(&#39;async_req&#39;),
+            _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+            _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+            _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
             collection_formats=collection_formats)</code></pre>
 </details>
 <h3>Methods</h3>
@@ -781,6 +1001,178 @@ returns the request thread.</p></div>
         collection_formats=collection_formats)</code></pre>
 </details>
 </dd>
+<dt id="libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_periods"><code class="name flex">
+<span>def <span class="ident">get_usage_periods</span></span>(<span>self, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get periods detail info
+# noqa: E501</p>
+<p>This endpoint provides the periods details
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="python">&gt;&gt;&gt; thread = api.get_usage_periods(async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<p>:param async_req bool: execute request asynchronously
+:param int limit:
+:param _preload_content: if False, the urllib3.HTTPResponse object will
+be returned without reading/decoding response
+data. Default is True.
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:return: UsageResponse
+If the method is called asynchronously,
+returns the request thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_usage_periods(self, **kwargs):  # noqa: E501
+    &#34;&#34;&#34;Get periods detail info   # noqa: E501
+
+    This endpoint provides the periods details  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    &gt;&gt;&gt; thread = api.get_usage_periods(async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    :param async_req bool: execute request asynchronously
+    :param int limit:
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                             be returned without reading/decoding response
+                             data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :return: UsageResponse
+             If the method is called asynchronously,
+             returns the request thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;_return_http_data_only&#39;] = True
+    return self.get_usage_periods_with_http_info(**kwargs)  # noqa: E501</code></pre>
+</details>
+</dd>
+<dt id="libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_periods_with_http_info"><code class="name flex">
+<span>def <span class="ident">get_usage_periods_with_http_info</span></span>(<span>self, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get periods detail info
+# noqa: E501</p>
+<p>This endpoint provides the periods details
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="python">&gt;&gt;&gt; thread = api.get_usage_periods_with_http_info(async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<p>:param async_req bool: execute request asynchronously
+:param int limit:
+:param _return_http_data_only: response data without head status code
+and headers
+:param _preload_content: if False, the urllib3.HTTPResponse object will
+be returned without reading/decoding response
+data. Default is True.
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:return: tuple(UsageResponse, status_code(int), headers(HTTPHeaderDict))
+If the method is called asynchronously,
+returns the request thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_usage_periods_with_http_info(self, **kwargs):  # noqa: E501
+    &#34;&#34;&#34;Get periods detail info   # noqa: E501
+
+    This endpoint provides the periods details  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    &gt;&gt;&gt; thread = api.get_usage_periods_with_http_info(async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    :param async_req bool: execute request asynchronously
+    :param int limit:
+    :param _return_http_data_only: response data without head status code
+                                   and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                             be returned without reading/decoding response
+                             data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :return: tuple(UsageResponse, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously,
+             returns the request thread.
+    &#34;&#34;&#34;
+
+    local_var_params = locals()
+
+    all_params = [
+        &#39;limit&#39;
+    ]
+    all_params.extend(
+        [
+            &#39;async_req&#39;,
+            &#39;_return_http_data_only&#39;,
+            &#39;_preload_content&#39;,
+            &#39;_request_timeout&#39;
+        ]
+    )
+
+    for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+        if key not in all_params:
+            raise ApiTypeError(
+                &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                &#34; to method get_usage_periods&#34; % key
+            )
+        local_var_params[key] = val
+    del local_var_params[&#39;kwargs&#39;]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+    if &#39;limit&#39; in local_var_params and local_var_params[&#39;limit&#39;] is not None:  # noqa: E501
+        query_params.append((&#39;limit&#39;, local_var_params[&#39;limit&#39;]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    # HTTP header `Accept`
+    header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+        [&#39;application/json&#39;])  # noqa: E501
+
+    # Authentication setting
+    auth_settings = [&#39;Basic&#39;, &#39;Bearer&#39;]  # noqa: E501
+
+    return self.api_client.call_api(
+        &#39;/v1/usages/periods&#39;, &#39;GET&#39;,
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type=&#39;UsageResponse&#39;,  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get(&#39;async_req&#39;),
+        _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+        _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+        _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+        collection_formats=collection_formats)</code></pre>
+</details>
+</dd>
 <dt id="libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_with_http_info"><code class="name flex">
 <span>def <span class="ident">get_usage_with_http_info</span></span>(<span>self, **kwargs)</span>
 </code></dt>
@@ -927,6 +1319,8 @@ returns the request thread.</p></div>
 <li><code><a title="libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage" href="#libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage">get_usage</a></code></li>
 <li><code><a title="libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_details" href="#libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_details">get_usage_details</a></code></li>
 <li><code><a title="libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_details_with_http_info" href="#libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_details_with_http_info">get_usage_details_with_http_info</a></code></li>
+<li><code><a title="libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_periods" href="#libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_periods">get_usage_periods</a></code></li>
+<li><code><a title="libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_periods_with_http_info" href="#libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_periods_with_http_info">get_usage_periods_with_http_info</a></code></li>
 <li><code><a title="libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_with_http_info" href="#libiap.openapi.libconsole.api.usages_api.UsagesApi.get_usage_with_http_info">get_usage_with_http_info</a></code></li>
 </ul>
 </li>
