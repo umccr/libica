@@ -1,0 +1,24 @@
+branches:
+  only:
+    - master
+    - dev
+
+language: python
+
+services:
+  - docker
+
+python:
+  - "3.6"
+  - "3.7"
+  - "3.8"
+
+install:
+  - pip install '.[test,dev]' .
+
+before_install:
+  - docker-compose up -d
+  - docker ps -a
+
+script:
+  - pytest

@@ -65,6 +65,11 @@ More examples available at:
 
 - Setup virtual environment and activate it
 
+- Install dependencies
+```commandline
+make install
+```
+
 - To run unit tests suite
 ```commandline
 make unit

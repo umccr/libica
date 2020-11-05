@@ -22,6 +22,9 @@ down:
 test_iap_mock:
 	@curl -s -H "Authorization: Bearer Test" -X GET http://localhost/v1/workflows/runs/wfr.anything_work | jq
 
+install:
+	@pip install -e '.[test,dev]' .
+
 unit:
 	@py.test --no-cov tests/unit libiap/openapi
 
