@@ -450,7 +450,7 @@
           "201": {
             "description": "Success",
             "schema": {
-              "$ref": "#/definitions/TaskRunDirect"
+              "$ref": "#/definitions/TaskRun"
             }
           },
           "400": {
@@ -558,7 +558,7 @@
           "Task Runs"
         ],
         "summary": "Abort a task run",
-        "description": "Aborts a task run for a give task run ID. The task run is required to have a status of \"Pending\" or \"Running\".",
+        "description": "Aborts a task run for a given task run ID. The task run is required to have a status of \"Pending\" or \"Running\".",
         "operationId": "abortTaskRun",
         "produces": [
           "application/json"
@@ -577,6 +577,85 @@
             "description": "Success",
             "schema": {
               "$ref": "#/definitions/TaskRunSummary"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/tasks/runs/{runId}:heartbeat": {
+      "post": {
+        "tags": [
+          "Task Runs"
+        ],
+        "summary": "Heartbeat for a task run",
+        "description": "Heartbeat a task run for a given task run ID. This notifies TES that a task run is executing.",
+        "operationId": "heartbeatTaskRun",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "runId",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/HeartbeatTaskRunRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TaskRunHeartbeat"
             }
           },
           "400": {
@@ -1056,13 +1135,17 @@
           "description": "Global identifier for object",
           "type": "string"
         },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
         "name": {
           "maxLength": 255,
           "minLength": 0,
-          "type": "string"
-        },
-        "href": {
-          "description": "Href of the object",
           "type": "string"
         },
         "description": {
@@ -1287,6 +1370,9 @@
           "items": {
             "type": "string"
           }
+        },
+        "tier": {
+          "type": "string"
         }
       }
     },
@@ -1300,16 +1386,16 @@
         "cacheSizeGB": {
           "format": "int32",
           "default": 50,
-          "maximum": 5000,
+          "maximum": 10000,
           "minimum": 50,
           "type": "integer"
         },
         "blockSizeMB": {
-          "format": "int32",
+          "format": "double",
           "default": 32,
           "maximum": 1024,
-          "minimum": 1,
-          "type": "integer"
+          "minimum": 0,
+          "type": "number"
         },
         "prefetchBlocks": {
           "format": "int32",
@@ -1462,6 +1548,10 @@
           "description": "Href of the object",
           "type": "string"
         },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
         "version": {
           "maxLength": 255,
           "minLength": 0,
@@ -1515,13 +1605,17 @@
           "description": "Global identifier for object",
           "type": "string"
         },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
         "name": {
           "maxLength": 255,
           "minLength": 0,
-          "type": "string"
-        },
-        "href": {
-          "description": "Href of the object",
           "type": "string"
         },
         "description": {
@@ -1603,6 +1697,10 @@
           "description": "Href of the object",
           "type": "string"
         },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
         "version": {
           "maxLength": 255,
           "minLength": 0,
@@ -1653,13 +1751,17 @@
           "description": "Global identifier for object",
           "type": "string"
         },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
         "name": {
           "maxLength": 255,
           "minLength": 0,
-          "type": "string"
-        },
-        "href": {
-          "description": "Href of the object",
           "type": "string"
         },
         "description": {
@@ -1774,71 +1876,27 @@
         }
       }
     },
-    "TaskRunDirect": {
+    "TaskRunLogs": {
       "type": "object",
       "properties": {
-        "id": {
-          "description": "Global identifier for object",
-          "type": "string"
-        },
-        "name": {
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "href": {
-          "description": "Href of the object",
-          "type": "string"
-        },
-        "description": {
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "status": {
-          "default": "Pending",
-          "type": "string"
-        },
-        "statusDetails": {
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "execution": {
-          "$ref": "#/definitions/Execution"
-        },
-        "taskVersionSummary": {
-          "$ref": "#/definitions/TaskVersionSummary"
-        },
-        "acl": {
-          "description": "Access Control List",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "tenantId": {
-          "type": "string"
-        },
-        "subTenantId": {
-          "type": "string"
-        },
-        "createdBy": {
-          "description": "User who created the object",
-          "type": "string"
-        },
-        "timeCreated": {
+        "startTime": {
           "format": "date-time",
-          "description": "Date and Time (in UTC) when object was created in TES",
           "type": "string"
         },
-        "modifiedBy": {
-          "description": "User who updated the object",
-          "type": "string"
-        },
-        "timeModified": {
+        "endTime": {
           "format": "date-time",
-          "description": "Date and Time (in UTC) when object was modified in TES",
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        },
+        "errorDetails": {
+          "type": "string"
+        },
+        "stdout": {
+          "type": "string"
+        },
+        "stderr": {
           "type": "string"
         }
       }
@@ -1850,13 +1908,17 @@
           "description": "Global identifier for object",
           "type": "string"
         },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
         "name": {
           "maxLength": 255,
           "minLength": 0,
-          "type": "string"
-        },
-        "href": {
-          "description": "Href of the object",
           "type": "string"
         },
         "description": {
@@ -1878,6 +1940,12 @@
         },
         "taskVersionSummary": {
           "$ref": "#/definitions/TaskVersionSummary"
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskRunLogs"
+          }
         },
         "acl": {
           "description": "Access Control List",

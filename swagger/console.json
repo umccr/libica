@@ -77,6 +77,52 @@
         }
       }
     },
+    "/v1/projects": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "summary": "Get a list of available projects. Requires user authorization Bearer token.",
+        "description": "Get a list of available projects",
+        "operationId": "listProjects",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "pageToken",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Projects returned successfully",
+            "schema": {
+              "$ref": "#/definitions/ProjectPagedItems"
+            }
+          },
+          "400": {
+            "description": "The provided page token is invalid.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "The provided access token is unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/regions": {
       "get": {
         "tags": [
@@ -171,26 +217,14 @@
           },
           {
             "in": "query",
-            "name": "acl",
-            "description": "Defines the access control list to be applied to the JWT.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "mem",
-            "description": "Defines the membership list to be applied to the JWT.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
             "name": "cwid",
             "description": "Set the current workgroup on the token. Used for aligning resources to a workgroup.",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "cid",
+            "description": "Set the current context on the token. Used for aligning resources to a context.",
             "type": "string"
           },
           {
@@ -640,6 +674,75 @@
         }
       }
     },
+    "Project": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "urn": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "ProjectPagedItems": {
+      "description": "Paged list response",
+      "type": "object",
+      "properties": {
+        "items": {
+          "description": "Items in paged list",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Project"
+          }
+        },
+        "itemCount": {
+          "format": "int32",
+          "description": "Number of items included in the page",
+          "type": "integer"
+        },
+        "firstPageToken": {
+          "description": "PageToken for first paged list",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "PageToken for the next paged list",
+          "type": "string"
+        },
+        "prevPageToken": {
+          "description": "PageToken for the previous paged list",
+          "type": "string"
+        },
+        "lastPageToken": {
+          "description": "PageToken for the last paged list. Only included when totalItemCount is listed",
+          "type": "string"
+        },
+        "totalItemCount": {
+          "format": "int64",
+          "description": "Total number of items in all pages. Only included when requested",
+          "type": "integer"
+        },
+        "totalPageCount": {
+          "format": "int64",
+          "description": "Total number of pages. Only included when totalItemCount is listed",
+          "type": "integer"
+        }
+      }
+    },
     "Region": {
       "description": "Resource representing environment details",
       "type": "object",
@@ -723,6 +826,9 @@
           "items": {
             "type": "string"
           }
+        },
+        "domain": {
+          "$ref": "#/definitions/Domain"
         }
       }
     },
@@ -842,13 +948,11 @@
       "type": "apiKey",
       "name": "Authorization",
       "in": "header",
-      "description": "Authorization header using the Basic or Bearer scheme. Example: \"Bearer {token}\""
+      "description": "Authorization header using Bearer scheme with token. Example: \"Bearer {token}\""
     },
     "Basic": {
-      "type": "apiKey",
-      "name": "Authorization",
-      "in": "header",
-      "description": "Basic Authorization header using the Basic scheme. Example: \"Basic {base64encodedstring}\""
+      "type": "basic",
+      "description": "Basic Authorization"
     }
   },
   "security": [

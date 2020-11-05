@@ -381,6 +381,20 @@
         "deliveryTarget": {
           "$ref": "#/definitions/DeliveryTarget"
         },
+        "matchIdentities": {
+          "description": "ACL Identities for events the subscription matches",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "acl": {
+          "description": "The list of identities that have access to this subscription",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "tenantId": {
           "description": "Tenant id of the subscription owner",
           "type": "string"

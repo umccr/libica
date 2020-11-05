@@ -34,11 +34,22 @@
           },
           {
             "in": "query",
+            "name": "categories",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
             "name": "include",
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/GetWorkflowsIncludeFlags"
+              "enum": [
+                "totalItemCount"
+              ],
+              "type": "string"
             }
           },
           {
@@ -309,7 +320,17 @@
             "name": "status",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/WorkflowRunStatus"
+              "enum": [
+                "aborted",
+                "aborting",
+                "failed",
+                "new",
+                "running",
+                "submitted",
+                "succeeded",
+                "timedOut"
+              ],
+              "type": "string"
             }
           },
           {
@@ -329,7 +350,10 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/ListWorkflowRunsIncludeFlags"
+              "enum": [
+                "totalItemCount"
+              ],
+              "type": "string"
             }
           },
           {
@@ -413,7 +437,11 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/GetWorkflowRunIncludeFlags"
+              "enum": [
+                "definition",
+                "engineParameters"
+              ],
+              "type": "string"
             }
           }
         ],
@@ -481,6 +509,19 @@
             "description": "ID of the workflow run",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "description": "Comma-separated list of properties to include in the response",
+            "type": "array",
+            "items": {
+              "enum": [
+                "definition",
+                "engineParameters"
+              ],
+              "type": "string"
+            }
           },
           {
             "in": "body",
@@ -561,7 +602,10 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/GetWorkflowRunHistoryIncludeFlags"
+              "enum": [
+                "totalItemCount"
+              ],
+              "type": "string"
             }
           },
           {
@@ -703,7 +747,10 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/GetWorkflowSignalsIncludeFlags"
+              "enum": [
+                "totalItemCount"
+              ],
+              "type": "string"
             }
           },
           {
@@ -1096,7 +1143,10 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/ListWorkflowVersionsIncludeFlags"
+              "enum": [
+                "totalItemCount"
+              ],
+              "type": "string"
             }
           },
           {
@@ -1253,7 +1303,10 @@
             "description": "Comma-separated list of properties to include in the response",
             "type": "array",
             "items": {
-              "$ref": "#/definitions/ListAllWorkflowsVersionsIncludeFlags"
+              "enum": [
+                "totalItemCount"
+              ],
+              "type": "string"
             }
           },
           {
@@ -1342,6 +1395,19 @@
             "type": "string"
           },
           {
+            "in": "query",
+            "name": "include",
+            "description": "Comma-separated list of properties to include in the response",
+            "type": "array",
+            "items": {
+              "enum": [
+                "definition",
+                "engineParameters"
+              ],
+              "type": "string"
+            }
+          },
+          {
             "in": "body",
             "name": "body",
             "schema": {
@@ -1385,18 +1451,16 @@
     }
   },
   "definitions": {
-    "GetWorkflowsIncludeFlags": {
-      "enum": [
-        "totalItemCount"
-      ],
-      "type": "string"
-    },
     "WorkflowCompact": {
       "description": "Compact details of a workflow",
       "type": "object",
       "properties": {
         "id": {
           "description": "Unique resource ID",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
           "type": "string"
         },
         "href": {
@@ -1418,19 +1482,20 @@
         },
         "description": {
           "description": "Description of the workflow",
-          "maxLength": 128,
-          "minLength": 0,
-          "type": "string"
-        },
-        "category": {
-          "description": "Category of the workflow",
-          "maxLength": 128,
+          "maxLength": 256,
           "minLength": 0,
           "type": "string"
         },
         "toolClass": {
           "description": "Workflow type",
           "type": "string"
+        },
+        "categories": {
+          "description": "Categories of the workflow (Limit Max Size : 10)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "createdByClientId": {
           "description": "Client ID of the Origin Request",
@@ -1638,7 +1703,7 @@
           "type": "string"
         },
         "description": {
-          "maxLength": 4096,
+          "maxLength": 256,
           "minLength": 0,
           "type": "string"
         },
@@ -1651,15 +1716,17 @@
           "items": {
             "type": "string"
           }
+        },
+        "status": {
+          "description": "Published Status of the workflow version",
+          "enum": [
+            "draft",
+            "released",
+            "obsolete"
+          ],
+          "type": "string"
         }
       }
-    },
-    "ToolClass": {
-      "enum": [
-        "workflow",
-        "commandLineTool"
-      ],
-      "type": "string"
     },
     "CreateWorkflowRequest": {
       "description": "Create a workflow and optional version",
@@ -1672,7 +1739,7 @@
           "type": "string"
         },
         "description": {
-          "maxLength": 4096,
+          "maxLength": 256,
           "minLength": 0,
           "type": "string"
         },
@@ -1681,18 +1748,23 @@
           "minLength": 0,
           "type": "string"
         },
-        "category": {
-          "maxLength": 128,
-          "minLength": 0,
-          "type": "string"
-        },
         "workflowVersion": {
           "$ref": "#/definitions/CreateWorkflowVersionRequest"
         },
         "toolClass": {
-          "$ref": "#/definitions/ToolClass"
+          "enum": [
+            "workflow",
+            "commandLineTool"
+          ],
+          "type": "string"
         },
         "acl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
           "type": "array",
           "items": {
             "type": "string"
@@ -1706,6 +1778,10 @@
       "properties": {
         "id": {
           "description": "Unique resource ID",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
           "type": "string"
         },
         "href": {
@@ -1727,19 +1803,20 @@
         },
         "description": {
           "description": "Description of the workflow",
-          "maxLength": 128,
-          "minLength": 0,
-          "type": "string"
-        },
-        "category": {
-          "description": "Category of the workflow",
-          "maxLength": 128,
+          "maxLength": 256,
           "minLength": 0,
           "type": "string"
         },
         "toolClass": {
           "description": "Workflow type",
           "type": "string"
+        },
+        "categories": {
+          "description": "Categories of the workflow (Limit Max Size : 10)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "createdByClientId": {
           "description": "Client ID of the Origin Request",
@@ -1788,7 +1865,7 @@
           "type": "string"
         },
         "description": {
-          "maxLength": 4096,
+          "maxLength": 256,
           "minLength": 0,
           "type": "string"
         },
@@ -1797,12 +1874,13 @@
           "minLength": 0,
           "type": "string"
         },
-        "category": {
-          "maxLength": 128,
-          "minLength": 0,
-          "type": "string"
-        },
         "acl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
           "type": "array",
           "items": {
             "type": "string"
@@ -1810,31 +1888,16 @@
         }
       }
     },
-    "WorkflowRunStatus": {
-      "enum": [
-        "aborted",
-        "aborting",
-        "failed",
-        "new",
-        "running",
-        "starting",
-        "succeeded",
-        "timedOut"
-      ],
-      "type": "string"
-    },
-    "ListWorkflowRunsIncludeFlags": {
-      "enum": [
-        "totalItemCount"
-      ],
-      "type": "string"
-    },
     "WorkflowVersionCompact": {
       "description": "Compact details of a Workflow version definition",
       "type": "object",
       "properties": {
         "id": {
           "description": "Unique resource ID",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
           "type": "string"
         },
         "href": {
@@ -1856,7 +1919,7 @@
         },
         "description": {
           "description": "Description of the workflow version",
-          "maxLength": 128,
+          "maxLength": 256,
           "minLength": 0,
           "type": "string"
         },
@@ -1864,7 +1927,7 @@
           "$ref": "#/definitions/WorkflowLanguage"
         },
         "status": {
-          "description": "Status of the workflow version",
+          "description": "Published Status of the workflow version",
           "type": "string"
         },
         "createdByClientId": {
@@ -1914,20 +1977,24 @@
           "description": "Unique resource ID",
           "type": "string"
         },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
         "href": {
           "format": "uri",
           "description": "HREF to the resource",
           "type": "string"
         },
         "name": {
-          "description": "Name of the workflow",
+          "description": "Name of the workflow run",
           "maxLength": 255,
           "minLength": 0,
           "type": "string"
         },
         "timeStarted": {
           "format": "date-time",
-          "description": "The time (in UTC) the Workflow Run started",
+          "description": "The time (in UTC) the workflow run started",
           "type": "string"
         },
         "timeStopped": {
@@ -2036,12 +2103,6 @@
         }
       }
     },
-    "GetWorkflowRunIncludeFlags": {
-      "enum": [
-        "definition"
-      ],
-      "type": "string"
-    },
     "WorkflowRun": {
       "description": "Details of a workflow run",
       "type": "object",
@@ -2050,20 +2111,24 @@
           "description": "Unique resource ID",
           "type": "string"
         },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
         "href": {
           "format": "uri",
           "description": "HREF to the resource",
           "type": "string"
         },
         "name": {
-          "description": "Name of the workflow",
+          "description": "Name of the workflow run",
           "maxLength": 255,
           "minLength": 0,
           "type": "string"
         },
         "timeStarted": {
           "format": "date-time",
-          "description": "The time (in UTC) the Workflow Run started",
+          "description": "The time (in UTC) the workflow run started",
           "type": "string"
         },
         "timeStopped": {
@@ -2102,6 +2167,10 @@
         },
         "definition": {
           "description": "Definition of the workflow version",
+          "type": "string"
+        },
+        "engineParameters": {
+          "description": "Workflow Engine Parameters",
           "type": "string"
         },
         "timeCreated": {
@@ -2157,12 +2226,6 @@
           "type": "string"
         }
       }
-    },
-    "GetWorkflowRunHistoryIncludeFlags": {
-      "enum": [
-        "totalItemCount"
-      ],
-      "type": "string"
     },
     "WorkflowRunHistoryEvent": {
       "description": "Information about a specific event in the workflow run history",
@@ -2247,6 +2310,10 @@
           "description": "Unique resource ID",
           "type": "string"
         },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
         "href": {
           "format": "uri",
           "description": "HREF to the resource",
@@ -2281,6 +2348,8 @@
         },
         "description": {
           "description": "Description of the signal",
+          "maxLength": 256,
+          "minLength": 0,
           "type": "string"
         },
         "inputs": {
@@ -2344,18 +2413,16 @@
         }
       }
     },
-    "GetWorkflowSignalsIncludeFlags": {
-      "enum": [
-        "totalItemCount"
-      ],
-      "type": "string"
-    },
     "WorkflowSignalCompact": {
       "description": "Compact details of a signal",
       "type": "object",
       "properties": {
         "id": {
           "description": "Unique resource ID",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
           "type": "string"
         },
         "href": {
@@ -2392,6 +2459,8 @@
         },
         "description": {
           "description": "Description of the signal",
+          "maxLength": 256,
+          "minLength": 0,
           "type": "string"
         },
         "inputs": {
@@ -2531,6 +2600,10 @@
           "description": "Unique resource ID",
           "type": "string"
         },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
         "href": {
           "format": "uri",
           "description": "HREF to the resource",
@@ -2550,7 +2623,7 @@
         },
         "description": {
           "description": "Description of the workflow version",
-          "maxLength": 128,
+          "maxLength": 256,
           "minLength": 0,
           "type": "string"
         },
@@ -2558,7 +2631,7 @@
           "$ref": "#/definitions/WorkflowLanguage"
         },
         "status": {
-          "description": "Status of the workflow version",
+          "description": "Published Status of the workflow version",
           "type": "string"
         },
         "createdByClientId": {
@@ -2612,7 +2685,7 @@
           "type": "string"
         },
         "description": {
-          "maxLength": 4096,
+          "maxLength": 256,
           "minLength": 0,
           "type": "string"
         },
@@ -2625,14 +2698,17 @@
           "items": {
             "type": "string"
           }
+        },
+        "status": {
+          "description": "New Status for workflow version",
+          "enum": [
+            "draft",
+            "released",
+            "obsolete"
+          ],
+          "type": "string"
         }
       }
-    },
-    "ListWorkflowVersionsIncludeFlags": {
-      "enum": [
-        "totalItemCount"
-      ],
-      "type": "string"
     },
     "WorkflowVersionList": {
       "type": "object",
@@ -2677,20 +2753,14 @@
         }
       }
     },
-    "ListAllWorkflowsVersionsIncludeFlags": {
-      "enum": [
-        "totalItemCount"
-      ],
-      "type": "string"
-    },
     "LaunchWorkflowVersionRequest": {
-      "required": [
-        "name"
-      ],
       "type": "object",
       "properties": {
         "name": {
           "description": "Name of the workflow run",
+          "maxLength": 255,
+          "minLength": 0,
+          "pattern": "^(?![wW][fF][rR]\\..*)(^[0-9a-zA-Z-_\\.]*$)",
           "type": "string"
         },
         "input": {
