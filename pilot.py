@@ -37,6 +37,8 @@ import sys
 
 from libiap import libgds, libtes, libwes, libens, libconsole
 
+STOP_LIST_SIZE = 20
+
 
 def _getenv(var: str, bag):
     env_var = os.getenv(var.upper(), None)
@@ -54,6 +56,8 @@ def _gds():
     for volume in libgds.list_volumes(page_size=10):
         print(volume)
         volumes.append(volume['name'])
+        if len(volumes) > STOP_LIST_SIZE:
+            break
 
     iap_gds_volume = _getenv('iap_gds_volume', volumes)
 
@@ -63,6 +67,8 @@ def _gds():
     for file in libgds.list_files(volume_name=iap_gds_volume):
         print(file)
         files.append(file['id'])
+        if len(files) > STOP_LIST_SIZE:
+            break
 
     iap_gds_file = _getenv('iap_gds_file', files)
     print(libgds.get_file(file_id=iap_gds_file))
@@ -71,6 +77,8 @@ def _gds():
     for folder in libgds.list_folders(volume_name=iap_gds_volume):
         print(folder)
         folders.append(folder['id'])
+        if len(folders) > STOP_LIST_SIZE:
+            break
 
     iap_gds_folder = _getenv('iap_gds_folder', folders)
 
@@ -88,6 +96,8 @@ def _tes():
     for task in libtes.list_tasks():
         print(task)
         tasks.append(task['id'])
+        if len(tasks) > STOP_LIST_SIZE:
+            break
 
     iap_tes_task_id = _getenv('iap_tes_task_id', tasks)
     print(libtes.get_task(task_id=iap_tes_task_id))
@@ -96,6 +106,8 @@ def _tes():
     for task_run in libtes.list_task_runs():
         print(task_run)
         runs.append(task_run['id'])
+        if len(runs) > STOP_LIST_SIZE:
+            break
 
     iap_tes_run_id = _getenv('iap_tes_run_id', runs)
     print(libtes.get_task_run(run_id=iap_tes_run_id))
@@ -114,6 +126,8 @@ def _wes():
     for workflow in libwes.list_workflows():
         print(workflow)
         workflows.append(workflow['id'])
+        if len(workflows) > STOP_LIST_SIZE:
+            break
 
     iap_wes_workflow_id = _getenv('iap_wes_workflow_id', workflows)
     print(libwes.get_workflow(workflow_id=iap_wes_workflow_id))
@@ -122,6 +136,8 @@ def _wes():
     for workflow_run in libwes.list_workflow_runs():
         print(workflow_run)
         runs.append(workflow_run['id'])
+        if len(runs) > STOP_LIST_SIZE:
+            break
 
     iap_wes_run_id = _getenv('iap_wes_run_id', runs)
 
