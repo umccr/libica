@@ -23,7 +23,11 @@ def _headers(**kwargs):
     iap_auth_token = kwargs.get('iap_auth_token', None)
     if iap_auth_token is None:
         iap_auth_token = os.getenv('IAP_AUTH_TOKEN', None)
-    assert iap_auth_token is not None, "IAP_AUTH_TOKEN is not defined"
+    if iap_auth_token is None:
+        iap_auth_token = os.getenv('IAP_TOKEN', None)
+    if iap_auth_token is None:
+        iap_auth_token = os.getenv('IAP_ACCESS_TOKEN', None)
+    assert iap_auth_token is not None, "IAP_AUTH_TOKEN or IAP_TOKEN or IAP_ACCESS_TOKEN is not defined"
     headers = {
         "Content-Type": "application/json",
         "Authorization": "Bearer {0}".format(iap_auth_token)
