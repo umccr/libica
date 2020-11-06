@@ -39,14 +39,16 @@ class TestTaskRunSummaryPagedItems(unittest.TestCase):
                 items = [
                     libiap.openapi.libtes.models.task_run_summary.TaskRunSummary(
                         id = '0', 
-                        name = '0', 
                         href = '0', 
+                        urn = '0', 
+                        name = '0', 
                         description = '0', 
                         status = 'Pending', 
                         status_details = '0', 
                         task_version_summary = libiap.openapi.libtes.models.task_version_summary.TaskVersionSummary(
                             id = '0', 
                             href = '0', 
+                            urn = '0', 
                             version = '0', 
                             description = '0', 
                             acl = [

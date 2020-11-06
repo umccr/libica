@@ -44,7 +44,8 @@ class TestCreateWorkflowVersionRequest(unittest.TestCase):
                 definition = None, 
                 acl = [
                     '0'
-                    ]
+                    ], 
+                status = 'draft'
             )
         else :
             return CreateWorkflowVersionRequest(

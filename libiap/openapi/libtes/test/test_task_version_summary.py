@@ -38,6 +38,7 @@ class TestTaskVersionSummary(unittest.TestCase):
             return TaskVersionSummary(
                 id = '0', 
                 href = '0', 
+                urn = '0', 
                 version = '0', 
                 description = '0', 
                 acl = [

@@ -59,6 +59,12 @@ class TestSubscriptionList(unittest.TestCase):
                                 # input = libiap.openapi.libens.models.input.input(),
                             ),
                         ),
+                        match_identities = [
+                            '0'
+                            ], 
+                        acl = [
+                            '0'
+                            ], 
                         tenant_id = '0', 
                         created_by_user_id = '0', 
                         time_created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 

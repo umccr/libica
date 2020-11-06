@@ -39,7 +39,6 @@ class TestCreateWorkflowRequest(unittest.TestCase):
                 name = '0', 
                 description = '0', 
                 organization = '0', 
-                category = '0', 
                 workflow_version = libiap.openapi.libwes.models.create_workflow_version_request.CreateWorkflowVersionRequest(
                     version = '0', 
                     description = '0', 
@@ -49,9 +48,13 @@ class TestCreateWorkflowRequest(unittest.TestCase):
                     # definition = libiap.openapi.libwes.models.definition.definition(),
                     acl = [
                         '0'
-                        ], ), 
+                        ], 
+                    status = 'draft', ), 
                 tool_class = 'workflow', 
                 acl = [
+                    '0'
+                    ], 
+                categories = [
                     '0'
                     ]
             )

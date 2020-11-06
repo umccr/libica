@@ -46,7 +46,10 @@ class TestTokenDetailResponse(unittest.TestCase):
                 tid = '0', 
                 acls = [
                     '0'
-                    ]
+                    ], 
+                domain = libiap.openapi.libconsole.models.domain.Domain(
+                    id = '0', 
+                    name = '0', )
             )
         else :
             return TokenDetailResponse(

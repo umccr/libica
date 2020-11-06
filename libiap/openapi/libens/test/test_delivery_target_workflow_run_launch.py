@@ -39,7 +39,7 @@ class TestDeliveryTargetWorkflowRunLaunch(unittest.TestCase):
                 id = '0', 
                 version = '0', 
                 name = '0', 
-                # input = libiap.openapi.libens.models.input.input()
+                input = None
             )
         else :
             return DeliveryTargetWorkflowRunLaunch(

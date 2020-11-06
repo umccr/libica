@@ -49,13 +49,6 @@ class TestFilesApi(unittest.TestCase):
         """
         pass
 
-    def test_destroy_file_deprecated(self):
-        """Test case for destroy_file_deprecated
-
-        Permanently delete a file  # noqa: E501
-        """
-        pass
-
     def test_get_file(self):
         """Test case for get_file
 

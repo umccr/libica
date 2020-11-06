@@ -36,7 +36,9 @@ class TestCreateVolumeRequest(unittest.TestCase):
         # model = libiap.openapi.libgds.models.create_volume_request.CreateVolumeRequest()  # noqa: E501
         if include_optional :
             return CreateVolumeRequest(
-                name = '0'
+                name = '0', 
+                volume_configuration_name = '0', 
+                root_key_prefix = 'a'
             )
         else :
             return CreateVolumeRequest(

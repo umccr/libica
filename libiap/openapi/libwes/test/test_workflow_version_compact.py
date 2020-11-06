@@ -37,6 +37,7 @@ class TestWorkflowVersionCompact(unittest.TestCase):
         if include_optional :
             return WorkflowVersionCompact(
                 id = '0', 
+                urn = '0', 
                 href = '0', 
                 version = '0', 
                 category = '0', 
@@ -45,6 +46,7 @@ class TestWorkflowVersionCompact(unittest.TestCase):
                     name = '0', 
                     version = '0', ), 
                 status = '0', 
+                created_by_client_id = '0', 
                 time_created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 time_modified = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_by = '0', 

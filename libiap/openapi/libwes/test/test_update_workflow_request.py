@@ -39,8 +39,10 @@ class TestUpdateWorkflowRequest(unittest.TestCase):
                 name = '0', 
                 description = '0', 
                 organization = '0', 
-                category = '0', 
                 acl = [
+                    '0'
+                    ], 
+                categories = [
                     '0'
                     ]
             )

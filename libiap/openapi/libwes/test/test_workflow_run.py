@@ -37,6 +37,7 @@ class TestWorkflowRun(unittest.TestCase):
         if include_optional :
             return WorkflowRun(
                 id = '0', 
+                urn = '0', 
                 href = '0', 
                 name = '0', 
                 time_started = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
@@ -47,6 +48,7 @@ class TestWorkflowRun(unittest.TestCase):
                 error_cause = '0', 
                 workflow_version = libiap.openapi.libwes.models.workflow_version_compact.WorkflowVersionCompact(
                     id = '0', 
+                    urn = '0', 
                     href = '0', 
                     version = '0', 
                     category = '0', 
@@ -55,6 +57,7 @@ class TestWorkflowRun(unittest.TestCase):
                         name = '0', 
                         version = '0', ), 
                     status = '0', 
+                    created_by_client_id = '0', 
                     time_created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     time_modified = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     created_by = '0', 
@@ -63,9 +66,11 @@ class TestWorkflowRun(unittest.TestCase):
                     acl = [
                         '0'
                         ], ), 
+                created_by_client_id = '0', 
                 input = None, 
                 output = None, 
                 definition = '0', 
+                engine_parameters = '0', 
                 time_created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 time_modified = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 created_by = '0', 

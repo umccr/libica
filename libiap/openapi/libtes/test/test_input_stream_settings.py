@@ -38,7 +38,7 @@ class TestInputStreamSettings(unittest.TestCase):
             return InputStreamSettings(
                 access_pattern = 'sequential', 
                 cache_size_gb = 5E+1, 
-                block_size_mb = 1, 
+                block_size_mb = 0, 
                 prefetch_blocks = 0
             )
         else :

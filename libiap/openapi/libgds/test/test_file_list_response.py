@@ -55,10 +55,12 @@ class TestFileListResponse(unittest.TestCase):
                             ], 
                         urn = '0', 
                         size_in_bytes = 56, 
+                        # metadata = libiap.openapi.libgds.models.metadata.metadata(),
                         is_uploaded = True, 
                         archive_status = 'None', 
                         time_archived = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         storage_tier = 'None', 
+                        e_tag = '0', 
                         presigned_url = '0', )
                     ], 
                 item_count = 56, 

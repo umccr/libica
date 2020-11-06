@@ -39,8 +39,9 @@ class TestTaskSummaryPagedItems(unittest.TestCase):
                 items = [
                     libiap.openapi.libtes.models.task_summary.TaskSummary(
                         id = '0', 
-                        name = '0', 
                         href = '0', 
+                        urn = '0', 
+                        name = '0', 
                         description = '0', 
                         acl = [
                             '0'

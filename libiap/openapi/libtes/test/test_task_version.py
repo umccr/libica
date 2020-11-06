@@ -38,6 +38,7 @@ class TestTaskVersion(unittest.TestCase):
             return TaskVersion(
                 id = '0', 
                 href = '0', 
+                urn = '0', 
                 version = '0', 
                 description = '0', 
                 execution = libiap.openapi.libtes.models.execution.Execution(
@@ -84,11 +85,12 @@ class TestTaskVersion(unittest.TestCase):
                             memory_gb = 1.337, 
                             hardware = [
                                 '0'
-                                ], ), 
+                                ], 
+                            tier = '0', ), 
                         input_stream_settings = libiap.openapi.libtes.models.input_stream_settings.InputStreamSettings(
                             access_pattern = 'sequential', 
                             cache_size_gb = 5E+1, 
-                            block_size_mb = 1, 
+                            block_size_mb = 0, 
                             prefetch_blocks = 0, ), ), 
                     working_directory = '0', 
                     retry_limit = 56, 

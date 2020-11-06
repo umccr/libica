@@ -37,8 +37,9 @@ class TestTaskRun(unittest.TestCase):
         if include_optional :
             return TaskRun(
                 id = '0', 
-                name = '0', 
                 href = '0', 
+                urn = '0', 
+                name = '0', 
                 description = '0', 
                 status = 'Pending', 
                 status_details = '0', 
@@ -86,11 +87,12 @@ class TestTaskRun(unittest.TestCase):
                             memory_gb = 1.337, 
                             hardware = [
                                 '0'
-                                ], ), 
+                                ], 
+                            tier = '0', ), 
                         input_stream_settings = libiap.openapi.libtes.models.input_stream_settings.InputStreamSettings(
                             access_pattern = 'sequential', 
                             cache_size_gb = 5E+1, 
-                            block_size_mb = 1, 
+                            block_size_mb = 0, 
                             prefetch_blocks = 0, ), ), 
                     working_directory = '0', 
                     retry_limit = 56, 
@@ -98,6 +100,7 @@ class TestTaskRun(unittest.TestCase):
                 task_version_summary = libiap.openapi.libtes.models.task_version_summary.TaskVersionSummary(
                     id = '0', 
                     href = '0', 
+                    urn = '0', 
                     version = '0', 
                     description = '0', 
                     acl = [
@@ -109,6 +112,15 @@ class TestTaskRun(unittest.TestCase):
                     time_created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                     modified_by = '0', 
                     time_modified = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
+                logs = [
+                    libiap.openapi.libtes.models.task_run_logs.TaskRunLogs(
+                        start_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        end_time = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        error = '0', 
+                        error_details = '0', 
+                        stdout = '0', 
+                        stderr = '0', )
+                    ], 
                 acl = [
                     '0'
                     ], 

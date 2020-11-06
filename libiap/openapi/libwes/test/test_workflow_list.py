@@ -39,12 +39,16 @@ class TestWorkflowList(unittest.TestCase):
                 items = [
                     libiap.openapi.libwes.models.workflow_compact.WorkflowCompact(
                         id = '0', 
+                        urn = '0', 
                         href = '0', 
                         name = '0', 
                         organization = '0', 
                         description = '0', 
-                        category = '0', 
                         tool_class = '0', 
+                        categories = [
+                            '0'
+                            ], 
+                        created_by_client_id = '0', 
                         time_created = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         time_modified = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         created_by = '0', 

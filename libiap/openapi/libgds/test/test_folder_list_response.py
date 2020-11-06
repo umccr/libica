@@ -56,6 +56,7 @@ class TestFolderListResponse(unittest.TestCase):
                         created_by = '0', 
                         time_modified = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                         modified_by = '0', 
+                        # metadata = libiap.openapi.libgds.models.metadata.metadata(),
                         job_status = 'None', 
                         archive_job_storage_tier = 'None', )
                     ], 

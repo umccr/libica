@@ -42,7 +42,8 @@ class TestAwsS3TemporaryUploadCredentials(unittest.TestCase):
                 region = '0', 
                 bucket_name = '0', 
                 key_prefix = '0', 
-                expiration_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f')
+                expiration_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                service_url = '0'
             )
         else :
             return AwsS3TemporaryUploadCredentials(

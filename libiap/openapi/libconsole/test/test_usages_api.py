@@ -42,6 +42,13 @@ class TestUsagesApi(unittest.TestCase):
         """
         pass
 
+    def test_get_usage_periods(self):
+        """Test case for get_usage_periods
+
+        Get periods detail info   # noqa: E501
+        """
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

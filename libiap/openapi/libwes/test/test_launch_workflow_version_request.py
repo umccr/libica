@@ -36,12 +36,12 @@ class TestLaunchWorkflowVersionRequest(unittest.TestCase):
         # model = libiap.openapi.libwes.models.launch_workflow_version_request.LaunchWorkflowVersionRequest()  # noqa: E501
         if include_optional :
             return LaunchWorkflowVersionRequest(
-                name = '0', 
-                input = None
+                name = 'a', 
+                input = None, 
+                engine_parameters = None
             )
         else :
             return LaunchWorkflowVersionRequest(
-                name = '0',
         )
 
     def testLaunchWorkflowVersionRequest(self):

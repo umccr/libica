@@ -41,6 +41,9 @@ class TestVolumeResponse(unittest.TestCase):
                 tenant_id = '0', 
                 sub_tenant_id = '0', 
                 urn = '0', 
+                root_folder_id = '0', 
+                root_key_prefix = '0', 
+                volume_configuration_name = '0', 
                 inherited_acl = [
                     '0'
                     ], 
@@ -48,7 +51,8 @@ class TestVolumeResponse(unittest.TestCase):
                 created_by = '0', 
                 time_modified = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 modified_by = '0', 
-                job_status = 'None'
+                job_status = 'None', 
+                metadata = None
             )
         else :
             return VolumeResponse(

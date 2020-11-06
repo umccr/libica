@@ -40,6 +40,7 @@ class TestTaskVersionSummaryPagedItems(unittest.TestCase):
                     libiap.openapi.libtes.models.task_version_summary.TaskVersionSummary(
                         id = '0', 
                         href = '0', 
+                        urn = '0', 
                         version = '0', 
                         description = '0', 
                         acl = [

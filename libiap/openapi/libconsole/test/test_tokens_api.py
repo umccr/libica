@@ -31,7 +31,7 @@ class TestTokensApi(unittest.TestCase):
     def test_create_token(self):
         """Test case for create_token
 
-        Creates a JWT token to call stratus services.  # noqa: E501
+        Creates a JWT token to call IAP services.  # noqa: E501
         """
         pass
 

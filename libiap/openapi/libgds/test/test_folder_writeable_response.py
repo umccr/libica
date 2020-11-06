@@ -54,17 +54,9 @@ class TestFolderWriteableResponse(unittest.TestCase):
                 created_by = '0', 
                 time_modified = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
                 modified_by = '0', 
+                metadata = None, 
                 job_status = 'None', 
                 archive_job_storage_tier = 'None', 
-                temporary_upload_credentials = libiap.openapi.libgds.models.object_storage_credentials_response.ObjectStorageCredentialsResponse(
-                    access_key = '0', 
-                    secret_key = '0', 
-                    session_token = '0', 
-                    region = '0', 
-                    bucket_name = '0', 
-                    service_url = '0', 
-                    upload_location = '0', 
-                    expiration_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), 
                 object_store_access = libiap.openapi.libgds.models.object_store_access.ObjectStoreAccess(
                     session_id = '0', 
                     aws_s3_temporary_upload_credentials = libiap.openapi.libgds.models.aws_s3_temporary_upload_credentials.AwsS3TemporaryUploadCredentials(
@@ -74,7 +66,8 @@ class TestFolderWriteableResponse(unittest.TestCase):
                         region = '0', 
                         bucket_name = '0', 
                         key_prefix = '0', 
-                        expiration_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), ), )
+                        expiration_date = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'), 
+                        service_url = '0', ), )
             )
         else :
             return FolderWriteableResponse(

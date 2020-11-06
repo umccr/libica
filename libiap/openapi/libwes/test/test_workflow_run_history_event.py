@@ -36,6 +36,7 @@ class TestWorkflowRunHistoryEvent(unittest.TestCase):
         # model = libiap.openapi.libwes.models.workflow_run_history_event.WorkflowRunHistoryEvent()  # noqa: E501
         if include_optional :
             return WorkflowRunHistoryEvent(
+                name = '0', 
                 event_id = 56, 
                 previous_event_id = 56, 
                 event_type = '0', 

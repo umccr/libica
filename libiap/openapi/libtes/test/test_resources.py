@@ -42,7 +42,8 @@ class TestResources(unittest.TestCase):
                 memory_gb = 1.337, 
                 hardware = [
                     '0'
-                    ]
+                    ], 
+                tier = '0'
             )
         else :
             return Resources(

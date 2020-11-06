@@ -38,6 +38,7 @@ class TestWorkflowRunHistoryEventList(unittest.TestCase):
             return WorkflowRunHistoryEventList(
                 items = [
                     libiap.openapi.libwes.models.workflow_run_history_event.WorkflowRunHistoryEvent(
+                        name = '0', 
                         event_id = 56, 
                         previous_event_id = 56, 
                         event_type = '0', 

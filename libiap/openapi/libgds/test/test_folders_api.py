@@ -42,6 +42,13 @@ class TestFoldersApi(unittest.TestCase):
         """
         pass
 
+    def test_copy_folder(self):
+        """Test case for copy_folder
+
+        Copy a folder  # noqa: E501
+        """
+        pass
+
     def test_create_folder(self):
         """Test case for create_folder
 
@@ -60,6 +67,13 @@ class TestFoldersApi(unittest.TestCase):
         """Test case for get_folder
 
         Get information about a folder in GDS.  # noqa: E501
+        """
+        pass
+
+    def test_get_folder_job(self):
+        """Test case for get_folder_job
+
+        Get status of a folder job in GDS  # noqa: E501
         """
         pass
 
