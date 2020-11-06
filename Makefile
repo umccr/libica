@@ -26,7 +26,10 @@ install:
 	@pip install -e '.[test,dev]' .
 
 unit:
-	@py.test --no-cov tests/unit libiap/openapi
+	@py.test --no-cov tests/unit
+
+autounit:
+	@py.test --no-cov libiap/openapi
 
 it:
 	@py.test --no-cov tests/integration/
