@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Unique resource ID | [optional] 
+**urn** | **str** | URN of the resource | [optional] 
 **href** | **str** | HREF to the resource | [optional] 
 **send_heartbeat_href** | **str** | HREF to send a heartbeat to a workflow signal | [optional] 
 **send_success_response_href** | **str** | HREF to succeed a workflow signal | [optional] 

@@ -4,8 +4,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Global identifier for object | [optional] 
-**name** | **str** |  | [optional] 
 **href** | **str** | Href of the object | [optional] 
+**urn** | **str** | URN of the resource | [optional] 
+**name** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **task_versions** | [**list[TaskVersion]**](TaskVersion.md) |  | [optional] 
 **acl** | **list[str]** | Access Control List | [optional] 

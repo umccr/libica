@@ -34,8 +34,9 @@ class TaskSummary(object):
     """
     openapi_types = {
         'id': 'str',
-        'name': 'str',
         'href': 'str',
+        'urn': 'str',
+        'name': 'str',
         'description': 'str',
         'acl': 'list[str]',
         'tenant_id': 'str',
@@ -48,8 +49,9 @@ class TaskSummary(object):
 
     attribute_map = {
         'id': 'id',
-        'name': 'name',
         'href': 'href',
+        'urn': 'urn',
+        'name': 'name',
         'description': 'description',
         'acl': 'acl',
         'tenant_id': 'tenantId',
@@ -60,15 +62,16 @@ class TaskSummary(object):
         'time_modified': 'timeModified'
     }
 
-    def __init__(self, id=None, name=None, href=None, description=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, href=None, urn=None, name=None, description=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
         """TaskSummary - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._name = None
         self._href = None
+        self._urn = None
+        self._name = None
         self._description = None
         self._acl = None
         self._tenant_id = None
@@ -81,10 +84,12 @@ class TaskSummary(object):
 
         if id is not None:
             self.id = id
-        if name is not None:
-            self.name = name
         if href is not None:
             self.href = href
+        if urn is not None:
+            self.urn = urn
+        if name is not None:
+            self.name = name
         if description is not None:
             self.description = description
         if acl is not None:
@@ -126,6 +131,52 @@ class TaskSummary(object):
         self._id = id
 
     @property
+    def href(self):
+        """Gets the href of this TaskSummary.  # noqa: E501
+
+        Href of the object  # noqa: E501
+
+        :return: The href of this TaskSummary.  # noqa: E501
+        :rtype: str
+        """
+        return self._href
+
+    @href.setter
+    def href(self, href):
+        """Sets the href of this TaskSummary.
+
+        Href of the object  # noqa: E501
+
+        :param href: The href of this TaskSummary.  # noqa: E501
+        :type: str
+        """
+
+        self._href = href
+
+    @property
+    def urn(self):
+        """Gets the urn of this TaskSummary.  # noqa: E501
+
+        URN of the resource  # noqa: E501
+
+        :return: The urn of this TaskSummary.  # noqa: E501
+        :rtype: str
+        """
+        return self._urn
+
+    @urn.setter
+    def urn(self, urn):
+        """Sets the urn of this TaskSummary.
+
+        URN of the resource  # noqa: E501
+
+        :param urn: The urn of this TaskSummary.  # noqa: E501
+        :type: str
+        """
+
+        self._urn = urn
+
+    @property
     def name(self):
         """Gets the name of this TaskSummary.  # noqa: E501
 
@@ -151,29 +202,6 @@ class TaskSummary(object):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `0`")  # noqa: E501
 
         self._name = name
-
-    @property
-    def href(self):
-        """Gets the href of this TaskSummary.  # noqa: E501
-
-        Href of the object  # noqa: E501
-
-        :return: The href of this TaskSummary.  # noqa: E501
-        :rtype: str
-        """
-        return self._href
-
-    @href.setter
-    def href(self, href):
-        """Sets the href of this TaskSummary.
-
-        Href of the object  # noqa: E501
-
-        :param href: The href of this TaskSummary.  # noqa: E501
-        :type: str
-        """
-
-        self._href = href
 
     @property
     def description(self):

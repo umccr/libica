@@ -34,6 +34,7 @@ class WorkflowSignal(object):
     """
     openapi_types = {
         'id': 'str',
+        'urn': 'str',
         'href': 'str',
         'send_heartbeat_href': 'str',
         'send_success_response_href': 'str',
@@ -59,6 +60,7 @@ class WorkflowSignal(object):
 
     attribute_map = {
         'id': 'id',
+        'urn': 'urn',
         'href': 'href',
         'send_heartbeat_href': 'sendHeartbeatHref',
         'send_success_response_href': 'sendSuccessResponseHref',
@@ -82,13 +84,14 @@ class WorkflowSignal(object):
         'acl': 'acl'
     }
 
-    def __init__(self, id=None, href=None, send_heartbeat_href=None, send_success_response_href=None, send_failure_response_href=None, name=None, status=None, type=None, description=None, inputs=None, workflow_run=None, timeout_seconds=None, result=None, error=None, error_cause=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, href=None, send_heartbeat_href=None, send_success_response_href=None, send_failure_response_href=None, name=None, status=None, type=None, description=None, inputs=None, workflow_run=None, timeout_seconds=None, result=None, error=None, error_cause=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         """WorkflowSignal - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._urn = None
         self._href = None
         self._send_heartbeat_href = None
         self._send_success_response_href = None
@@ -114,6 +117,8 @@ class WorkflowSignal(object):
 
         if id is not None:
             self.id = id
+        if urn is not None:
+            self.urn = urn
         if href is not None:
             self.href = href
         if send_heartbeat_href is not None:
@@ -179,6 +184,29 @@ class WorkflowSignal(object):
         """
 
         self._id = id
+
+    @property
+    def urn(self):
+        """Gets the urn of this WorkflowSignal.  # noqa: E501
+
+        URN of the resource  # noqa: E501
+
+        :return: The urn of this WorkflowSignal.  # noqa: E501
+        :rtype: str
+        """
+        return self._urn
+
+    @urn.setter
+    def urn(self, urn):
+        """Sets the urn of this WorkflowSignal.
+
+        URN of the resource  # noqa: E501
+
+        :param urn: The urn of this WorkflowSignal.  # noqa: E501
+        :type: str
+        """
+
+        self._urn = urn
 
     @property
     def href(self):
@@ -361,6 +389,12 @@ class WorkflowSignal(object):
         :param description: The description of this WorkflowSignal.  # noqa: E501
         :type: str
         """
+        if (self.local_vars_configuration.client_side_validation and
+                description is not None and len(description) > 256):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `256`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                description is not None and len(description) < 0):
+            raise ValueError("Invalid value for `description`, length must be greater than or equal to `0`")  # noqa: E501
 
         self._description = description
 

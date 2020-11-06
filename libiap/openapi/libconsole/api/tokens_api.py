@@ -52,9 +52,8 @@ class TokensApi(object):
         :param str domain: Optionally pass the domain name you are logging into
         :param str data: Data is a custom meta data field that will be applied to the session field in the JWT payload.
         :param list[str] scopes: Scopes can be passed in during token generation to limit the token to particular scopes.
-        :param list[str] acl: Defines the access control list to be applied to the JWT.
-        :param list[str] mem: Defines the membership list to be applied to the JWT.
         :param str cwid: Set the current workgroup on the token. Used for aligning resources to a workgroup.
+        :param str cid: Set the current context on the token. Used for aligning resources to a context.
         :param bool return_session_token: By default, this endpoint returns a JWT token. You can specify returnSessionToken=true to get an Illumina psToken instead.
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
@@ -86,9 +85,8 @@ class TokensApi(object):
         :param str domain: Optionally pass the domain name you are logging into
         :param str data: Data is a custom meta data field that will be applied to the session field in the JWT payload.
         :param list[str] scopes: Scopes can be passed in during token generation to limit the token to particular scopes.
-        :param list[str] acl: Defines the access control list to be applied to the JWT.
-        :param list[str] mem: Defines the membership list to be applied to the JWT.
         :param str cwid: Set the current workgroup on the token. Used for aligning resources to a workgroup.
+        :param str cid: Set the current context on the token. Used for aligning resources to a context.
         :param bool return_session_token: By default, this endpoint returns a JWT token. You can specify returnSessionToken=true to get an Illumina psToken instead.
         :param _return_http_data_only: response data without head status code
                                        and headers
@@ -113,9 +111,8 @@ class TokensApi(object):
             'domain',
             'data',
             'scopes',
-            'acl',
-            'mem',
             'cwid',
+            'cid',
             'return_session_token'
         ]
         all_params.extend(
@@ -152,14 +149,10 @@ class TokensApi(object):
         if 'scopes' in local_var_params and local_var_params['scopes'] is not None:  # noqa: E501
             query_params.append(('scopes', local_var_params['scopes']))  # noqa: E501
             collection_formats['scopes'] = 'csv'  # noqa: E501
-        if 'acl' in local_var_params and local_var_params['acl'] is not None:  # noqa: E501
-            query_params.append(('acl', local_var_params['acl']))  # noqa: E501
-            collection_formats['acl'] = 'csv'  # noqa: E501
-        if 'mem' in local_var_params and local_var_params['mem'] is not None:  # noqa: E501
-            query_params.append(('mem', local_var_params['mem']))  # noqa: E501
-            collection_formats['mem'] = 'csv'  # noqa: E501
         if 'cwid' in local_var_params and local_var_params['cwid'] is not None:  # noqa: E501
             query_params.append(('cwid', local_var_params['cwid']))  # noqa: E501
+        if 'cid' in local_var_params and local_var_params['cid'] is not None:  # noqa: E501
+            query_params.append(('cid', local_var_params['cid']))  # noqa: E501
         if 'return_session_token' in local_var_params and local_var_params['return_session_token'] is not None:  # noqa: E501
             query_params.append(('returnSessionToken', local_var_params['return_session_token']))  # noqa: E501
 

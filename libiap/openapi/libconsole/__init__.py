@@ -19,6 +19,7 @@ __version__ = "1.0.0"
 # import apis into sdk package
 from libiap.openapi.libconsole.api.accounts_api import AccountsApi
 from libiap.openapi.libconsole.api.health_api import HealthApi
+from libiap.openapi.libconsole.api.projects_api import ProjectsApi
 from libiap.openapi.libconsole.api.regions_api import RegionsApi
 from libiap.openapi.libconsole.api.tokens_api import TokensApi
 from libiap.openapi.libconsole.api.usages_api import UsagesApi
@@ -40,6 +41,8 @@ from libiap.openapi.libconsole.models.error_response import ErrorResponse
 from libiap.openapi.libconsole.models.health_check_statuses import HealthCheckStatuses
 from libiap.openapi.libconsole.models.period_usage_summary import PeriodUsageSummary
 from libiap.openapi.libconsole.models.product_usage import ProductUsage
+from libiap.openapi.libconsole.models.project import Project
+from libiap.openapi.libconsole.models.project_paged_items import ProjectPagedItems
 from libiap.openapi.libconsole.models.region import Region
 from libiap.openapi.libconsole.models.service_health_response import ServiceHealthResponse
 from libiap.openapi.libconsole.models.system_health_response import SystemHealthResponse

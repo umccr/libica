@@ -33,23 +33,33 @@ class CreateVolumeRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'name': 'str'
+        'name': 'str',
+        'volume_configuration_name': 'str',
+        'root_key_prefix': 'str'
     }
 
     attribute_map = {
-        'name': 'name'
+        'name': 'name',
+        'volume_configuration_name': 'volumeConfigurationName',
+        'root_key_prefix': 'rootKeyPrefix'
     }
 
-    def __init__(self, name=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, volume_configuration_name=None, root_key_prefix=None, local_vars_configuration=None):  # noqa: E501
         """CreateVolumeRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
+        self._volume_configuration_name = None
+        self._root_key_prefix = None
         self.discriminator = None
 
         self.name = name
+        if volume_configuration_name is not None:
+            self.volume_configuration_name = volume_configuration_name
+        if root_key_prefix is not None:
+            self.root_key_prefix = root_key_prefix
 
     @property
     def name(self):
@@ -75,6 +85,55 @@ class CreateVolumeRequest(object):
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
+
+    @property
+    def volume_configuration_name(self):
+        """Gets the volume_configuration_name of this CreateVolumeRequest.  # noqa: E501
+
+        Unique name of the volume configuration to use  # noqa: E501
+
+        :return: The volume_configuration_name of this CreateVolumeRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._volume_configuration_name
+
+    @volume_configuration_name.setter
+    def volume_configuration_name(self, volume_configuration_name):
+        """Sets the volume_configuration_name of this CreateVolumeRequest.
+
+        Unique name of the volume configuration to use  # noqa: E501
+
+        :param volume_configuration_name: The volume_configuration_name of this CreateVolumeRequest.  # noqa: E501
+        :type: str
+        """
+
+        self._volume_configuration_name = volume_configuration_name
+
+    @property
+    def root_key_prefix(self):
+        """Gets the root_key_prefix of this CreateVolumeRequest.  # noqa: E501
+
+        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration's keyprefix and end with a /.  # noqa: E501
+
+        :return: The root_key_prefix of this CreateVolumeRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._root_key_prefix
+
+    @root_key_prefix.setter
+    def root_key_prefix(self, root_key_prefix):
+        """Sets the root_key_prefix of this CreateVolumeRequest.
+
+        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration's keyprefix and end with a /.  # noqa: E501
+
+        :param root_key_prefix: The root_key_prefix of this CreateVolumeRequest.  # noqa: E501
+        :type: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                root_key_prefix is not None and not re.search(r'^(\/|[^\/].*)$', root_key_prefix)):  # noqa: E501
+            raise ValueError(r"Invalid value for `root_key_prefix`, must be a follow pattern or equal to `/^(\/|[^\/].*)$/`")  # noqa: E501
+
+        self._root_key_prefix = root_key_prefix
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 Abort a task run
 
-Aborts a task run for a give task run ID. The task run is required to have a status of \"Pending\" or \"Running\".
+Aborts a task run for a given task run ID. The task run is required to have a status of \"Pending\" or \"Running\".
 
 ### Example
 
@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_task_run**
-> TaskRunDirect create_task_run(body=body)
+> TaskRun create_task_run(body=body)
 
 Create and launch a task run
 
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**TaskRunDirect**](TaskRunDirect.md)
+[**TaskRun**](TaskRun.md)
 
 ### Authorization
 

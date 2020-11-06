@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Global identifier for object | [optional] 
 **href** | **str** | Href of the object | [optional] 
+**urn** | **str** | URN of the resource | [optional] 
 **version** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **acl** | **list[str]** | Access Control List | [optional] 

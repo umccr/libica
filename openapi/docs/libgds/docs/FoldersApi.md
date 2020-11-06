@@ -6,9 +6,11 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**archive_folder**](FoldersApi.md#archive_folder) | **POST** /v1/folders/{folderId}:archive | Archive a folder
 [**complete_folder_session**](FoldersApi.md#complete_folder_session) | **POST** /v1/folders/{folderId}/sessions/{sessionId}:complete | Complete a folder upload in GDS
+[**copy_folder**](FoldersApi.md#copy_folder) | **POST** /v1/folders/{folderId}:copy | Copy a folder
 [**create_folder**](FoldersApi.md#create_folder) | **POST** /v1/folders | Create a folder in GDS and receive credentials for upload
 [**delete_folder**](FoldersApi.md#delete_folder) | **DELETE** /v1/folders/{folderId} | Deletes a folder by id
 [**get_folder**](FoldersApi.md#get_folder) | **GET** /v1/folders/{folderId} | Get information about a folder in GDS.
+[**get_folder_job**](FoldersApi.md#get_folder_job) | **GET** /v1/folders/{folderId}/jobs/{jobId} | Get status of a folder job in GDS
 [**get_folder_session**](FoldersApi.md#get_folder_session) | **GET** /v1/folders/{folderId}/sessions/{sessionId} | Get status of a folder upload in GDS
 [**list_folders**](FoldersApi.md#list_folders) | **GET** /v1/folders | Get a list of folders
 [**unarchive_folder**](FoldersApi.md#unarchive_folder) | **POST** /v1/folders/{folderId}:unarchive | Unarchive a folder
@@ -184,6 +186,94 @@ Name | Type | Description  | Notes
 **403** | Forbidden. |  -  |
 **404** | Not found. |  -  |
 **409** | Conflict |  -  |
+**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **copy_folder**
+> JobResponse copy_folder(folder_id, body, tenant_id=tenant_id)
+
+Copy a folder
+
+Copy a folder into a target parent folder
+
+### Example
+
+* Api Key Authentication (Bearer):
+```python
+from __future__ import print_function
+import time
+import libiap.openapi.libgds
+from libiap.openapi.libgds.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libiap.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Bearer
+configuration = libiap.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com",
+    api_key = {
+        'Authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    folder_id = 'folder_id_example' # str | Unique identifier for the folder to be copied.
+body = libiap.openapi.libgds.FolderCopyRequest() # FolderCopyRequest | 
+tenant_id = 'tenant_id_example' # str | Optional parameter to copy from a shared folder in another tenant (optional)
+
+    try:
+        # Copy a folder
+        api_response = api_instance.copy_folder(folder_id, body, tenant_id=tenant_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling FoldersApi->copy_folder: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folder_id** | **str**| Unique identifier for the folder to be copied. | 
+ **body** | [**FolderCopyRequest**](FolderCopyRequest.md)|  | 
+ **tenant_id** | **str**| Optional parameter to copy from a shared folder in another tenant | [optional] 
+
+### Return type
+
+[**JobResponse**](JobResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Accepted. |  -  |
+**400** | Bad request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**404** | Folder not found. |  -  |
+**409** | Conflict. |  -  |
+**500** | Server Error |  -  |
 **0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -432,6 +522,91 @@ Name | Type | Description  | Notes
 **401** | Unauthorized. |  -  |
 **403** | Forbidden. |  -  |
 **404** | Folder not found. |  -  |
+**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_folder_job**
+> JobResponse get_folder_job(folder_id, job_id)
+
+Get status of a folder job in GDS
+
+Get status of a folder job in GDS.
+
+### Example
+
+* Api Key Authentication (Bearer):
+```python
+from __future__ import print_function
+import time
+import libiap.openapi.libgds
+from libiap.openapi.libgds.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libiap.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Bearer
+configuration = libiap.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com",
+    api_key = {
+        'Authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    folder_id = 'folder_id_example' # str | Unique identifier for the folder related to the job.
+job_id = 'job_id_example' # str | The id of the job
+
+    try:
+        # Get status of a folder job in GDS
+        api_response = api_instance.get_folder_job(folder_id, job_id)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling FoldersApi->get_folder_job: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folder_id** | **str**| Unique identifier for the folder related to the job. | 
+ **job_id** | **str**| The id of the job | 
+
+### Return type
+
+[**JobResponse**](JobResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Returned job. |  -  |
+**400** | Bad request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**404** | Not found. |  -  |
+**409** | Conflict |  -  |
 **0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

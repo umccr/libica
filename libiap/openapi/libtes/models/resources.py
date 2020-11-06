@@ -37,7 +37,8 @@ class Resources(object):
         'size': 'str',
         'cpu_cores': 'float',
         'memory_gb': 'float',
-        'hardware': 'list[str]'
+        'hardware': 'list[str]',
+        'tier': 'str'
     }
 
     attribute_map = {
@@ -45,10 +46,11 @@ class Resources(object):
         'size': 'size',
         'cpu_cores': 'cpuCores',
         'memory_gb': 'memoryGb',
-        'hardware': 'hardware'
+        'hardware': 'hardware',
+        'tier': 'tier'
     }
 
-    def __init__(self, type=None, size=None, cpu_cores=None, memory_gb=None, hardware=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, size=None, cpu_cores=None, memory_gb=None, hardware=None, tier=None, local_vars_configuration=None):  # noqa: E501
         """Resources - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -59,6 +61,7 @@ class Resources(object):
         self._cpu_cores = None
         self._memory_gb = None
         self._hardware = None
+        self._tier = None
         self.discriminator = None
 
         if type is not None:
@@ -71,6 +74,8 @@ class Resources(object):
             self.memory_gb = memory_gb
         if hardware is not None:
             self.hardware = hardware
+        if tier is not None:
+            self.tier = tier
 
     @property
     def type(self):
@@ -176,6 +181,27 @@ class Resources(object):
         """
 
         self._hardware = hardware
+
+    @property
+    def tier(self):
+        """Gets the tier of this Resources.  # noqa: E501
+
+
+        :return: The tier of this Resources.  # noqa: E501
+        :rtype: str
+        """
+        return self._tier
+
+    @tier.setter
+    def tier(self, tier):
+        """Sets the tier of this Resources.
+
+
+        :param tier: The tier of this Resources.  # noqa: E501
+        :type: str
+        """
+
+        self._tier = tier
 
     def to_dict(self):
         """Returns the model properties as a dict"""

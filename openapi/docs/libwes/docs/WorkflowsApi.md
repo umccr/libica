@@ -175,7 +175,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_workflows**
-> WorkflowList list_workflows(tenant_id=tenant_id, name=name, include=include, page_size=page_size, page_token=page_token, sort=sort)
+> WorkflowList list_workflows(tenant_id=tenant_id, name=name, categories=categories, include=include, page_size=page_size, page_token=page_token, sort=sort)
 
 Get a list of workflows
 
@@ -217,14 +217,15 @@ with libiap.openapi.libwes.ApiClient(configuration) as api_client:
     api_instance = libiap.openapi.libwes.WorkflowsApi(api_client)
     tenant_id = 'tenant_id_example' # str | ID of the tenant (optional)
 name = 'name_example' # str |  (optional)
-include = [libiap.openapi.libwes.GetWorkflowsIncludeFlags()] # list[GetWorkflowsIncludeFlags] | Comma-separated list of properties to include in the response (optional)
+categories = ['categories_example'] # list[str] |  (optional)
+include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
 page_size = 10 # int | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (optional) (default to 10)
 page_token = 'page_token_example' # str | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (optional)
 sort = 'timeCreated asc' # str | Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending). (optional) (default to 'timeCreated asc')
 
     try:
         # Get a list of workflows
-        api_response = api_instance.list_workflows(tenant_id=tenant_id, name=name, include=include, page_size=page_size, page_token=page_token, sort=sort)
+        api_response = api_instance.list_workflows(tenant_id=tenant_id, name=name, categories=categories, include=include, page_size=page_size, page_token=page_token, sort=sort)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling WorkflowsApi->list_workflows: %s\n" % e)
@@ -236,7 +237,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **str**| ID of the tenant | [optional] 
  **name** | **str**|  | [optional] 
- **include** | [**list[GetWorkflowsIncludeFlags]**](GetWorkflowsIncludeFlags.md)| Comma-separated list of properties to include in the response | [optional] 
+ **categories** | [**list[str]**](str.md)|  | [optional] 
+ **include** | [**list[str]**](str.md)| Comma-separated list of properties to include in the response | [optional] 
  **page_size** | **int**| Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. | [optional] [default to 10]
  **page_token** | **str**| Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. | [optional] 
  **sort** | **str**| Specifies the order to include list items as \&quot;_{fieldName}_ [asc|desc]\&quot;. The second field is optional and specifies the sort direction (\&quot;asc\&quot; for ascending or \&quot;desc\&quot; for descending). | [optional] [default to &#39;timeCreated asc&#39;]

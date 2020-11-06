@@ -48,10 +48,12 @@ class FileResponse(object):
         'inherited_acl': 'list[str]',
         'urn': 'str',
         'size_in_bytes': 'int',
+        'metadata': 'object',
         'is_uploaded': 'bool',
         'archive_status': 'ArchiveStatuses',
         'time_archived': 'datetime',
         'storage_tier': 'StorageTier',
+        'e_tag': 'str',
         'presigned_url': 'str'
     }
 
@@ -71,14 +73,16 @@ class FileResponse(object):
         'inherited_acl': 'inheritedAcl',
         'urn': 'urn',
         'size_in_bytes': 'sizeInBytes',
+        'metadata': 'metadata',
         'is_uploaded': 'isUploaded',
         'archive_status': 'archiveStatus',
         'time_archived': 'timeArchived',
         'storage_tier': 'storageTier',
+        'e_tag': 'eTag',
         'presigned_url': 'presignedUrl'
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, presigned_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, presigned_url=None, local_vars_configuration=None):  # noqa: E501
         """FileResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -99,10 +103,12 @@ class FileResponse(object):
         self._inherited_acl = None
         self._urn = None
         self._size_in_bytes = None
+        self._metadata = None
         self._is_uploaded = None
         self._archive_status = None
         self._time_archived = None
         self._storage_tier = None
+        self._e_tag = None
         self._presigned_url = None
         self.discriminator = None
 
@@ -136,6 +142,8 @@ class FileResponse(object):
             self.urn = urn
         if size_in_bytes is not None:
             self.size_in_bytes = size_in_bytes
+        if metadata is not None:
+            self.metadata = metadata
         if is_uploaded is not None:
             self.is_uploaded = is_uploaded
         if archive_status is not None:
@@ -144,6 +152,8 @@ class FileResponse(object):
             self.time_archived = time_archived
         if storage_tier is not None:
             self.storage_tier = storage_tier
+        if e_tag is not None:
+            self.e_tag = e_tag
         if presigned_url is not None:
             self.presigned_url = presigned_url
 
@@ -493,6 +503,29 @@ class FileResponse(object):
         self._size_in_bytes = size_in_bytes
 
     @property
+    def metadata(self):
+        """Gets the metadata of this FileResponse.  # noqa: E501
+
+        Metadata about this File  # noqa: E501
+
+        :return: The metadata of this FileResponse.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this FileResponse.
+
+        Metadata about this File  # noqa: E501
+
+        :param metadata: The metadata of this FileResponse.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata = metadata
+
+    @property
     def is_uploaded(self):
         """Gets the is_uploaded of this FileResponse.  # noqa: E501
 
@@ -579,6 +612,29 @@ class FileResponse(object):
         """
 
         self._storage_tier = storage_tier
+
+    @property
+    def e_tag(self):
+        """Gets the e_tag of this FileResponse.  # noqa: E501
+
+        The File's ETag  # noqa: E501
+
+        :return: The e_tag of this FileResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._e_tag
+
+    @e_tag.setter
+    def e_tag(self, e_tag):
+        """Sets the e_tag of this FileResponse.
+
+        The File's ETag  # noqa: E501
+
+        :param e_tag: The e_tag of this FileResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._e_tag = e_tag
 
     @property
     def presigned_url(self):

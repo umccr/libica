@@ -4,13 +4,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Global identifier for object | [optional] 
-**name** | **str** |  | [optional] 
 **href** | **str** | Href of the object | [optional] 
+**urn** | **str** | URN of the resource | [optional] 
+**name** | **str** |  | [optional] 
 **description** | **str** |  | [optional] 
 **status** | **str** |  | [optional] [default to 'Pending']
 **status_details** | **str** |  | [optional] 
 **execution** | [**Execution**](Execution.md) |  | [optional] 
 **task_version_summary** | [**TaskVersionSummary**](TaskVersionSummary.md) |  | [optional] 
+**logs** | [**list[TaskRunLogs]**](TaskRunLogs.md) |  | [optional] 
 **acl** | **list[str]** | Access Control List | [optional] 
 **tenant_id** | **str** |  | [optional] 
 **sub_tenant_id** | **str** |  | [optional] 

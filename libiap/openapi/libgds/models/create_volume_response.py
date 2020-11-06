@@ -38,13 +38,17 @@ class CreateVolumeResponse(object):
         'tenant_id': 'str',
         'sub_tenant_id': 'str',
         'urn': 'str',
+        'root_folder_id': 'str',
+        'root_key_prefix': 'str',
+        'volume_configuration_name': 'str',
         'inherited_acl': 'list[str]',
         'time_created': 'datetime',
         'created_by': 'str',
         'time_modified': 'datetime',
         'modified_by': 'str',
         'job_status': 'JobStatus',
-        'temporary_upload_credentials': 'ObjectStorageCredentialsResponse',
+        'metadata': 'object',
+        'import_session_id': 'str',
         'object_store_access': 'ObjectStoreAccess'
     }
 
@@ -54,17 +58,21 @@ class CreateVolumeResponse(object):
         'tenant_id': 'tenantId',
         'sub_tenant_id': 'subTenantId',
         'urn': 'urn',
+        'root_folder_id': 'rootFolderId',
+        'root_key_prefix': 'rootKeyPrefix',
+        'volume_configuration_name': 'volumeConfigurationName',
         'inherited_acl': 'inheritedAcl',
         'time_created': 'timeCreated',
         'created_by': 'createdBy',
         'time_modified': 'timeModified',
         'modified_by': 'modifiedBy',
         'job_status': 'jobStatus',
-        'temporary_upload_credentials': 'temporaryUploadCredentials',
+        'metadata': 'metadata',
+        'import_session_id': 'importSessionId',
         'object_store_access': 'objectStoreAccess'
     }
 
-    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, temporary_upload_credentials=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, import_session_id=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         """CreateVolumeResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -75,13 +83,17 @@ class CreateVolumeResponse(object):
         self._tenant_id = None
         self._sub_tenant_id = None
         self._urn = None
+        self._root_folder_id = None
+        self._root_key_prefix = None
+        self._volume_configuration_name = None
         self._inherited_acl = None
         self._time_created = None
         self._created_by = None
         self._time_modified = None
         self._modified_by = None
         self._job_status = None
-        self._temporary_upload_credentials = None
+        self._metadata = None
+        self._import_session_id = None
         self._object_store_access = None
         self.discriminator = None
 
@@ -95,6 +107,12 @@ class CreateVolumeResponse(object):
             self.sub_tenant_id = sub_tenant_id
         if urn is not None:
             self.urn = urn
+        if root_folder_id is not None:
+            self.root_folder_id = root_folder_id
+        if root_key_prefix is not None:
+            self.root_key_prefix = root_key_prefix
+        if volume_configuration_name is not None:
+            self.volume_configuration_name = volume_configuration_name
         if inherited_acl is not None:
             self.inherited_acl = inherited_acl
         if time_created is not None:
@@ -107,8 +125,10 @@ class CreateVolumeResponse(object):
             self.modified_by = modified_by
         if job_status is not None:
             self.job_status = job_status
-        if temporary_upload_credentials is not None:
-            self.temporary_upload_credentials = temporary_upload_credentials
+        if metadata is not None:
+            self.metadata = metadata
+        if import_session_id is not None:
+            self.import_session_id = import_session_id
         if object_store_access is not None:
             self.object_store_access = object_store_access
 
@@ -226,6 +246,75 @@ class CreateVolumeResponse(object):
         """
 
         self._urn = urn
+
+    @property
+    def root_folder_id(self):
+        """Gets the root_folder_id of this CreateVolumeResponse.  # noqa: E501
+
+        The unique identifier for the root Folder of this Volume  # noqa: E501
+
+        :return: The root_folder_id of this CreateVolumeResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._root_folder_id
+
+    @root_folder_id.setter
+    def root_folder_id(self, root_folder_id):
+        """Sets the root_folder_id of this CreateVolumeResponse.
+
+        The unique identifier for the root Folder of this Volume  # noqa: E501
+
+        :param root_folder_id: The root_folder_id of this CreateVolumeResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._root_folder_id = root_folder_id
+
+    @property
+    def root_key_prefix(self):
+        """Gets the root_key_prefix of this CreateVolumeResponse.  # noqa: E501
+
+        The base bucket location for Volumes associated with custom VolumeConfigurations otherwise this field is not set.  # noqa: E501
+
+        :return: The root_key_prefix of this CreateVolumeResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._root_key_prefix
+
+    @root_key_prefix.setter
+    def root_key_prefix(self, root_key_prefix):
+        """Sets the root_key_prefix of this CreateVolumeResponse.
+
+        The base bucket location for Volumes associated with custom VolumeConfigurations otherwise this field is not set.  # noqa: E501
+
+        :param root_key_prefix: The root_key_prefix of this CreateVolumeResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._root_key_prefix = root_key_prefix
+
+    @property
+    def volume_configuration_name(self):
+        """Gets the volume_configuration_name of this CreateVolumeResponse.  # noqa: E501
+
+        Unique name of the Volume configuration for this Volume.  This field will only be set if a custom Volume configuration is associated.  # noqa: E501
+
+        :return: The volume_configuration_name of this CreateVolumeResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._volume_configuration_name
+
+    @volume_configuration_name.setter
+    def volume_configuration_name(self, volume_configuration_name):
+        """Sets the volume_configuration_name of this CreateVolumeResponse.
+
+        Unique name of the Volume configuration for this Volume.  This field will only be set if a custom Volume configuration is associated.  # noqa: E501
+
+        :param volume_configuration_name: The volume_configuration_name of this CreateVolumeResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._volume_configuration_name = volume_configuration_name
 
     @property
     def inherited_acl(self):
@@ -364,25 +453,50 @@ class CreateVolumeResponse(object):
         self._job_status = job_status
 
     @property
-    def temporary_upload_credentials(self):
-        """Gets the temporary_upload_credentials of this CreateVolumeResponse.  # noqa: E501
+    def metadata(self):
+        """Gets the metadata of this CreateVolumeResponse.  # noqa: E501
 
+        Metadata about this Volume  # noqa: E501
 
-        :return: The temporary_upload_credentials of this CreateVolumeResponse.  # noqa: E501
-        :rtype: ObjectStorageCredentialsResponse
+        :return: The metadata of this CreateVolumeResponse.  # noqa: E501
+        :rtype: object
         """
-        return self._temporary_upload_credentials
+        return self._metadata
 
-    @temporary_upload_credentials.setter
-    def temporary_upload_credentials(self, temporary_upload_credentials):
-        """Sets the temporary_upload_credentials of this CreateVolumeResponse.
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this CreateVolumeResponse.
 
+        Metadata about this Volume  # noqa: E501
 
-        :param temporary_upload_credentials: The temporary_upload_credentials of this CreateVolumeResponse.  # noqa: E501
-        :type: ObjectStorageCredentialsResponse
+        :param metadata: The metadata of this CreateVolumeResponse.  # noqa: E501
+        :type: object
         """
 
-        self._temporary_upload_credentials = temporary_upload_credentials
+        self._metadata = metadata
+
+    @property
+    def import_session_id(self):
+        """Gets the import_session_id of this CreateVolumeResponse.  # noqa: E501
+
+        Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations.  # noqa: E501
+
+        :return: The import_session_id of this CreateVolumeResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._import_session_id
+
+    @import_session_id.setter
+    def import_session_id(self, import_session_id):
+        """Sets the import_session_id of this CreateVolumeResponse.
+
+        Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations.  # noqa: E501
+
+        :param import_session_id: The import_session_id of this CreateVolumeResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._import_session_id = import_session_id
 
     @property
     def object_store_access(self):

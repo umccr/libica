@@ -402,6 +402,7 @@ class VolumesApi(object):
         :param str page_token: START_DESC END_DESC
         :param str include: START_DESC END_DESC
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str volume_configuration_name: Unique name of the volume configuration
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -430,6 +431,7 @@ class VolumesApi(object):
         :param str page_token: START_DESC END_DESC
         :param str include: START_DESC END_DESC
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str volume_configuration_name: Unique name of the volume configuration
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -450,7 +452,8 @@ class VolumesApi(object):
             'page_size',
             'page_token',
             'include',
-            'tenant_id'
+            'tenant_id',
+            'volume_configuration_name'
         ]
         all_params.extend(
             [
@@ -487,6 +490,8 @@ class VolumesApi(object):
             query_params.append(('include', local_var_params['include']))  # noqa: E501
         if 'tenant_id' in local_var_params and local_var_params['tenant_id'] is not None:  # noqa: E501
             query_params.append(('tenantId', local_var_params['tenant_id']))  # noqa: E501
+        if 'volume_configuration_name' in local_var_params and local_var_params['volume_configuration_name'] is not None:  # noqa: E501
+            query_params.append(('volumeConfigurationName', local_var_params['volume_configuration_name']))  # noqa: E501
 
         header_params = {}
 

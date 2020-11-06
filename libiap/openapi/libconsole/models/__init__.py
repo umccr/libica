@@ -21,6 +21,8 @@ from libiap.openapi.libconsole.models.error_response import ErrorResponse
 from libiap.openapi.libconsole.models.health_check_statuses import HealthCheckStatuses
 from libiap.openapi.libconsole.models.period_usage_summary import PeriodUsageSummary
 from libiap.openapi.libconsole.models.product_usage import ProductUsage
+from libiap.openapi.libconsole.models.project import Project
+from libiap.openapi.libconsole.models.project_paged_items import ProjectPagedItems
 from libiap.openapi.libconsole.models.region import Region
 from libiap.openapi.libconsole.models.service_health_response import ServiceHealthResponse
 from libiap.openapi.libconsole.models.system_health_response import SystemHealthResponse

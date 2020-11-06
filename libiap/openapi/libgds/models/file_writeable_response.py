@@ -48,11 +48,12 @@ class FileWriteableResponse(object):
         'inherited_acl': 'list[str]',
         'urn': 'str',
         'size_in_bytes': 'int',
+        'metadata': 'object',
         'is_uploaded': 'bool',
         'archive_status': 'ArchiveStatuses',
         'time_archived': 'datetime',
         'storage_tier': 'StorageTier',
-        'temporary_upload_credentials': 'ObjectStorageCredentialsResponse',
+        'e_tag': 'str',
         'object_store_access': 'ObjectStoreAccess'
     }
 
@@ -72,15 +73,16 @@ class FileWriteableResponse(object):
         'inherited_acl': 'inheritedAcl',
         'urn': 'urn',
         'size_in_bytes': 'sizeInBytes',
+        'metadata': 'metadata',
         'is_uploaded': 'isUploaded',
         'archive_status': 'archiveStatus',
         'time_archived': 'timeArchived',
         'storage_tier': 'storageTier',
-        'temporary_upload_credentials': 'temporaryUploadCredentials',
+        'e_tag': 'eTag',
         'object_store_access': 'objectStoreAccess'
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, temporary_upload_credentials=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         """FileWriteableResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -101,11 +103,12 @@ class FileWriteableResponse(object):
         self._inherited_acl = None
         self._urn = None
         self._size_in_bytes = None
+        self._metadata = None
         self._is_uploaded = None
         self._archive_status = None
         self._time_archived = None
         self._storage_tier = None
-        self._temporary_upload_credentials = None
+        self._e_tag = None
         self._object_store_access = None
         self.discriminator = None
 
@@ -139,6 +142,8 @@ class FileWriteableResponse(object):
             self.urn = urn
         if size_in_bytes is not None:
             self.size_in_bytes = size_in_bytes
+        if metadata is not None:
+            self.metadata = metadata
         if is_uploaded is not None:
             self.is_uploaded = is_uploaded
         if archive_status is not None:
@@ -147,8 +152,8 @@ class FileWriteableResponse(object):
             self.time_archived = time_archived
         if storage_tier is not None:
             self.storage_tier = storage_tier
-        if temporary_upload_credentials is not None:
-            self.temporary_upload_credentials = temporary_upload_credentials
+        if e_tag is not None:
+            self.e_tag = e_tag
         if object_store_access is not None:
             self.object_store_access = object_store_access
 
@@ -498,6 +503,29 @@ class FileWriteableResponse(object):
         self._size_in_bytes = size_in_bytes
 
     @property
+    def metadata(self):
+        """Gets the metadata of this FileWriteableResponse.  # noqa: E501
+
+        Metadata about this File  # noqa: E501
+
+        :return: The metadata of this FileWriteableResponse.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this FileWriteableResponse.
+
+        Metadata about this File  # noqa: E501
+
+        :param metadata: The metadata of this FileWriteableResponse.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata = metadata
+
+    @property
     def is_uploaded(self):
         """Gets the is_uploaded of this FileWriteableResponse.  # noqa: E501
 
@@ -586,25 +614,27 @@ class FileWriteableResponse(object):
         self._storage_tier = storage_tier
 
     @property
-    def temporary_upload_credentials(self):
-        """Gets the temporary_upload_credentials of this FileWriteableResponse.  # noqa: E501
+    def e_tag(self):
+        """Gets the e_tag of this FileWriteableResponse.  # noqa: E501
 
+        The File's ETag  # noqa: E501
 
-        :return: The temporary_upload_credentials of this FileWriteableResponse.  # noqa: E501
-        :rtype: ObjectStorageCredentialsResponse
+        :return: The e_tag of this FileWriteableResponse.  # noqa: E501
+        :rtype: str
         """
-        return self._temporary_upload_credentials
+        return self._e_tag
 
-    @temporary_upload_credentials.setter
-    def temporary_upload_credentials(self, temporary_upload_credentials):
-        """Sets the temporary_upload_credentials of this FileWriteableResponse.
+    @e_tag.setter
+    def e_tag(self, e_tag):
+        """Sets the e_tag of this FileWriteableResponse.
 
+        The File's ETag  # noqa: E501
 
-        :param temporary_upload_credentials: The temporary_upload_credentials of this FileWriteableResponse.  # noqa: E501
-        :type: ObjectStorageCredentialsResponse
+        :param e_tag: The e_tag of this FileWriteableResponse.  # noqa: E501
+        :type: str
         """
 
-        self._temporary_upload_credentials = temporary_upload_credentials
+        self._e_tag = e_tag
 
     @property
     def object_store_access(self):

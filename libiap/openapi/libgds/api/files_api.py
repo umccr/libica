@@ -400,120 +400,6 @@ class FilesApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def destroy_file_deprecated(self, file_id, **kwargs):  # noqa: E501
-        """Permanently delete a file  # noqa: E501
-
-        This endpoint will be deprecated with the EarlyAccess launch. Utilize DELETE: v1/files/{fileId} instead.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.destroy_file_deprecated(file_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str file_id: Unique identifier for the file to delete. (required)
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: None
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        return self.destroy_file_deprecated_with_http_info(file_id, **kwargs)  # noqa: E501
-
-    def destroy_file_deprecated_with_http_info(self, file_id, **kwargs):  # noqa: E501
-        """Permanently delete a file  # noqa: E501
-
-        This endpoint will be deprecated with the EarlyAccess launch. Utilize DELETE: v1/files/{fileId} instead.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.destroy_file_deprecated_with_http_info(file_id, async_req=True)
-        >>> result = thread.get()
-
-        :param async_req bool: execute request asynchronously
-        :param str file_id: Unique identifier for the file to delete. (required)
-        :param _return_http_data_only: response data without head status code
-                                       and headers
-        :param _preload_content: if False, the urllib3.HTTPResponse object will
-                                 be returned without reading/decoding response
-                                 data. Default is True.
-        :param _request_timeout: timeout setting for this request. If one
-                                 number provided, it will be total request
-                                 timeout. It can also be a pair (tuple) of
-                                 (connection, read) timeouts.
-        :return: None
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        local_var_params = locals()
-
-        all_params = [
-            'file_id'
-        ]
-        all_params.extend(
-            [
-                'async_req',
-                '_return_http_data_only',
-                '_preload_content',
-                '_request_timeout'
-            ]
-        )
-
-        for key, val in six.iteritems(local_var_params['kwargs']):
-            if key not in all_params:
-                raise ApiTypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method destroy_file_deprecated" % key
-                )
-            local_var_params[key] = val
-        del local_var_params['kwargs']
-        # verify the required parameter 'file_id' is set
-        if self.api_client.client_side_validation and ('file_id' not in local_var_params or  # noqa: E501
-                                                        local_var_params['file_id'] is None):  # noqa: E501
-            raise ApiValueError("Missing the required parameter `file_id` when calling `destroy_file_deprecated`")  # noqa: E501
-
-        collection_formats = {}
-
-        path_params = {}
-        if 'file_id' in local_var_params:
-            path_params['fileId'] = local_var_params['file_id']  # noqa: E501
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/plain', 'application/json', 'text/json'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = ['Bearer']  # noqa: E501
-
-        return self.api_client.call_api(
-            '/v1/files/{fileId}:destroy', 'DELETE',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type=None,  # noqa: E501
-            auth_settings=auth_settings,
-            async_req=local_var_params.get('async_req'),
-            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
-            _preload_content=local_var_params.get('_preload_content', True),
-            _request_timeout=local_var_params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
     def get_file(self, file_id, **kwargs):  # noqa: E501
         """Get details about a file, including a pre-signed URL for download  # noqa: E501
 
@@ -526,6 +412,8 @@ class FilesApi(object):
         :param async_req bool: execute request asynchronously
         :param str file_id: Unique identifier for the file to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -552,6 +440,8 @@ class FilesApi(object):
         :param async_req bool: execute request asynchronously
         :param str file_id: Unique identifier for the file to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -570,7 +460,9 @@ class FilesApi(object):
 
         all_params = [
             'file_id',
-            'tenant_id'
+            'tenant_id',
+            'metadata_include',
+            'metadata_exclude'
         ]
         all_params.extend(
             [
@@ -603,6 +495,10 @@ class FilesApi(object):
         query_params = []
         if 'tenant_id' in local_var_params and local_var_params['tenant_id'] is not None:  # noqa: E501
             query_params.append(('tenantId', local_var_params['tenant_id']))  # noqa: E501
+        if 'metadata_include' in local_var_params and local_var_params['metadata_include'] is not None:  # noqa: E501
+            query_params.append(('metadata.include', local_var_params['metadata_include']))  # noqa: E501
+        if 'metadata_exclude' in local_var_params and local_var_params['metadata_exclude'] is not None:  # noqa: E501
+            query_params.append(('metadata.exclude', local_var_params['metadata_exclude']))  # noqa: E501
 
         header_params = {}
 

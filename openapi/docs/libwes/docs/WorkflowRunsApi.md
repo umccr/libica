@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **abort_workflow_run**
-> WorkflowRun abort_workflow_run(run_id, body=body)
+> WorkflowRun abort_workflow_run(run_id, include=include, body=body)
 
 Abort a workflow run
 
@@ -52,11 +52,12 @@ with libiap.openapi.libwes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libiap.openapi.libwes.WorkflowRunsApi(api_client)
     run_id = 'run_id_example' # str | ID of the workflow run
+include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
 body = libiap.openapi.libwes.AbortWorkflowRunRequest() # AbortWorkflowRunRequest |  (optional)
 
     try:
         # Abort a workflow run
-        api_response = api_instance.abort_workflow_run(run_id, body=body)
+        api_response = api_instance.abort_workflow_run(run_id, include=include, body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling WorkflowRunsApi->abort_workflow_run: %s\n" % e)
@@ -67,6 +68,7 @@ body = libiap.openapi.libwes.AbortWorkflowRunRequest() # AbortWorkflowRunRequest
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **run_id** | **str**| ID of the workflow run | 
+ **include** | [**list[str]**](str.md)| Comma-separated list of properties to include in the response | [optional] 
  **body** | [**AbortWorkflowRunRequest**](AbortWorkflowRunRequest.md)|  | [optional] 
 
 ### Return type
@@ -136,7 +138,7 @@ with libiap.openapi.libwes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libiap.openapi.libwes.WorkflowRunsApi(api_client)
     run_id = 'run_id_example' # str | ID of the workflow run
-include = [libiap.openapi.libwes.GetWorkflowRunIncludeFlags()] # list[GetWorkflowRunIncludeFlags] | Comma-separated list of properties to include in the response (optional)
+include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
 
     try:
         # Get the details of a workflow run
@@ -151,7 +153,7 @@ include = [libiap.openapi.libwes.GetWorkflowRunIncludeFlags()] # list[GetWorkflo
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **run_id** | **str**| ID of the workflow run | 
- **include** | [**list[GetWorkflowRunIncludeFlags]**](GetWorkflowRunIncludeFlags.md)| Comma-separated list of properties to include in the response | [optional] 
+ **include** | [**list[str]**](str.md)| Comma-separated list of properties to include in the response | [optional] 
 
 ### Return type
 
@@ -221,7 +223,7 @@ with libiap.openapi.libwes.ApiClient(configuration) as api_client:
     api_instance = libiap.openapi.libwes.WorkflowRunsApi(api_client)
     run_id = 'run_id_example' # str | ID of the workflow run
 sort = 'eventId asc' # str |  (optional) (default to 'eventId asc')
-include = [libiap.openapi.libwes.GetWorkflowRunHistoryIncludeFlags()] # list[GetWorkflowRunHistoryIncludeFlags] | Comma-separated list of properties to include in the response (optional)
+include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
 page_size = 10 # int | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (optional) (default to 10)
 page_token = 'page_token_example' # str | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (optional)
 
@@ -239,7 +241,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **run_id** | **str**| ID of the workflow run | 
  **sort** | **str**|  | [optional] [default to &#39;eventId asc&#39;]
- **include** | [**list[GetWorkflowRunHistoryIncludeFlags]**](GetWorkflowRunHistoryIncludeFlags.md)| Comma-separated list of properties to include in the response | [optional] 
+ **include** | [**list[str]**](str.md)| Comma-separated list of properties to include in the response | [optional] 
  **page_size** | **int**| Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. | [optional] [default to 10]
  **page_token** | **str**| Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. | [optional] 
 
@@ -309,10 +311,10 @@ configuration = libiap.openapi.libwes.Configuration(
 with libiap.openapi.libwes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libiap.openapi.libwes.WorkflowRunsApi(api_client)
-    status = [libiap.openapi.libwes.WorkflowRunStatus()] # list[WorkflowRunStatus] |  (optional)
+    status = ['status_example'] # list[str] |  (optional)
 tenant_id = 'tenant_id_example' # str | ID of the tenant (optional)
 name = 'name_example' # str |  (optional)
-include = [libiap.openapi.libwes.ListWorkflowRunsIncludeFlags()] # list[ListWorkflowRunsIncludeFlags] | Comma-separated list of properties to include in the response (optional)
+include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
 page_size = 10 # int | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (optional) (default to 10)
 page_token = 'page_token_example' # str | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (optional)
 sort = 'timeCreated asc' # str | Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending). (optional) (default to 'timeCreated asc')
@@ -329,10 +331,10 @@ sort = 'timeCreated asc' # str | Specifies the order to include list items as \"
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | [**list[WorkflowRunStatus]**](WorkflowRunStatus.md)|  | [optional] 
+ **status** | [**list[str]**](str.md)|  | [optional] 
  **tenant_id** | **str**| ID of the tenant | [optional] 
  **name** | **str**|  | [optional] 
- **include** | [**list[ListWorkflowRunsIncludeFlags]**](ListWorkflowRunsIncludeFlags.md)| Comma-separated list of properties to include in the response | [optional] 
+ **include** | [**list[str]**](str.md)| Comma-separated list of properties to include in the response | [optional] 
  **page_size** | **int**| Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. | [optional] [default to 10]
  **page_token** | **str**| Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. | [optional] 
  **sort** | **str**| Specifies the order to include list items as \&quot;_{fieldName}_ [asc|desc]\&quot;. The second field is optional and specifies the sort direction (\&quot;asc\&quot; for ascending or \&quot;desc\&quot; for descending). | [optional] [default to &#39;timeCreated asc&#39;]

@@ -5,12 +5,13 @@ Details of a workflow
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Unique resource ID | [optional] 
+**urn** | **str** | URN of the resource | [optional] 
 **href** | **str** | HREF to the resource | [optional] 
 **name** | **str** | Name of the workflow | [optional] 
 **organization** | **str** | Organization associated with the workflow | [optional] 
 **description** | **str** | Description of the workflow | [optional] 
-**category** | **str** | Category of the workflow | [optional] 
 **tool_class** | **str** | Workflow type | [optional] 
+**categories** | **list[str]** | Categories of the workflow (Limit Max Size : 10) | [optional] 
 **created_by_client_id** | **str** | Client ID of the Origin Request | [optional] 
 **time_created** | **datetime** | Time (in UTC) the resource was created | [optional] 
 **time_modified** | **datetime** | Time (in UTC) the resource was modified | [optional] 

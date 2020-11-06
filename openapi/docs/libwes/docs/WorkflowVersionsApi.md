@@ -181,7 +181,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **launch_workflow_version**
-> WorkflowRun launch_workflow_version(workflow_id, version_name, body=body)
+> WorkflowRun launch_workflow_version(workflow_id, version_name, include=include, body=body)
 
 Launch a workflow version
 
@@ -223,11 +223,12 @@ with libiap.openapi.libwes.ApiClient(configuration) as api_client:
     api_instance = libiap.openapi.libwes.WorkflowVersionsApi(api_client)
     workflow_id = 'workflow_id_example' # str | ID of the workflow
 version_name = 'version_name_example' # str | Name of the workflow version
+include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
 body = libiap.openapi.libwes.LaunchWorkflowVersionRequest() # LaunchWorkflowVersionRequest |  (optional)
 
     try:
         # Launch a workflow version
-        api_response = api_instance.launch_workflow_version(workflow_id, version_name, body=body)
+        api_response = api_instance.launch_workflow_version(workflow_id, version_name, include=include, body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling WorkflowVersionsApi->launch_workflow_version: %s\n" % e)
@@ -239,6 +240,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workflow_id** | **str**| ID of the workflow | 
  **version_name** | **str**| Name of the workflow version | 
+ **include** | [**list[str]**](str.md)| Comma-separated list of properties to include in the response | [optional] 
  **body** | [**LaunchWorkflowVersionRequest**](LaunchWorkflowVersionRequest.md)|  | [optional] 
 
 ### Return type
@@ -307,7 +309,7 @@ with libiap.openapi.libwes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libiap.openapi.libwes.WorkflowVersionsApi(api_client)
     tenant_id = 'tenant_id_example' # str | ID of the tenant (optional)
-include = [libiap.openapi.libwes.ListAllWorkflowsVersionsIncludeFlags()] # list[ListAllWorkflowsVersionsIncludeFlags] | Comma-separated list of properties to include in the response (optional)
+include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
 page_size = 10 # int | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (optional) (default to 10)
 page_token = 'page_token_example' # str | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (optional)
 sort = 'timeCreated asc' # str | Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending). (optional) (default to 'timeCreated asc')
@@ -325,7 +327,7 @@ sort = 'timeCreated asc' # str | Specifies the order to include list items as \"
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **str**| ID of the tenant | [optional] 
- **include** | [**list[ListAllWorkflowsVersionsIncludeFlags]**](ListAllWorkflowsVersionsIncludeFlags.md)| Comma-separated list of properties to include in the response | [optional] 
+ **include** | [**list[str]**](str.md)| Comma-separated list of properties to include in the response | [optional] 
  **page_size** | **int**| Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. | [optional] [default to 10]
  **page_token** | **str**| Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. | [optional] 
  **sort** | **str**| Specifies the order to include list items as \&quot;_{fieldName}_ [asc|desc]\&quot;. The second field is optional and specifies the sort direction (\&quot;asc\&quot; for ascending or \&quot;desc\&quot; for descending). | [optional] [default to &#39;timeCreated asc&#39;]
@@ -396,7 +398,7 @@ with libiap.openapi.libwes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libiap.openapi.libwes.WorkflowVersionsApi(api_client)
     workflow_id = 'workflow_id_example' # str | ID of the workflow
-include = [libiap.openapi.libwes.ListWorkflowVersionsIncludeFlags()] # list[ListWorkflowVersionsIncludeFlags] | Comma-separated list of properties to include in the response (optional)
+include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
 page_size = 10 # int | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (optional) (default to 10)
 page_token = 'page_token_example' # str | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (optional)
 sort = 'timeCreated asc' # str | Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending). (optional) (default to 'timeCreated asc')
@@ -414,7 +416,7 @@ sort = 'timeCreated asc' # str | Specifies the order to include list items as \"
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **workflow_id** | **str**| ID of the workflow | 
- **include** | [**list[ListWorkflowVersionsIncludeFlags]**](ListWorkflowVersionsIncludeFlags.md)| Comma-separated list of properties to include in the response | [optional] 
+ **include** | [**list[str]**](str.md)| Comma-separated list of properties to include in the response | [optional] 
  **page_size** | **int**| Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. | [optional] [default to 10]
  **page_token** | **str**| Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. | [optional] 
  **sort** | **str**| Specifies the order to include list items as \&quot;_{fieldName}_ [asc|desc]\&quot;. The second field is optional and specifies the sort direction (\&quot;asc\&quot; for ascending or \&quot;desc\&quot; for descending). | [optional] [default to &#39;timeCreated asc&#39;]

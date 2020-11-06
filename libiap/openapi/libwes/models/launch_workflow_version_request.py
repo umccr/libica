@@ -55,7 +55,8 @@ class LaunchWorkflowVersionRequest(object):
         self._engine_parameters = None
         self.discriminator = None
 
-        self.name = name
+        if name is not None:
+            self.name = name
         if input is not None:
             self.input = input
         if engine_parameters is not None:
@@ -81,8 +82,15 @@ class LaunchWorkflowVersionRequest(object):
         :param name: The name of this LaunchWorkflowVersionRequest.  # noqa: E501
         :type: str
         """
-        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
-            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) > 255):
+            raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) < 0):
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `0`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and not re.search(r'^(?![wW][fF][rR]\..*)(^[0-9a-zA-Z-_\.]*$)', name)):  # noqa: E501
+            raise ValueError(r"Invalid value for `name`, must be a follow pattern or equal to `/^(?![wW][fF][rR]\..*)(^[0-9a-zA-Z-_\.]*$)/`")  # noqa: E501
 
         self._name = name
 

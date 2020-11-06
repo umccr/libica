@@ -39,7 +39,7 @@ class TaskRunsApi(object):
     def abort_task_run(self, run_id, **kwargs):  # noqa: E501
         """Abort a task run  # noqa: E501
 
-        Aborts a task run for a give task run ID. The task run is required to have a status of \"Pending\" or \"Running\".  # noqa: E501
+        Aborts a task run for a given task run ID. The task run is required to have a status of \"Pending\" or \"Running\".  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.abort_task_run(run_id, async_req=True)
@@ -64,7 +64,7 @@ class TaskRunsApi(object):
     def abort_task_run_with_http_info(self, run_id, **kwargs):  # noqa: E501
         """Abort a task run  # noqa: E501
 
-        Aborts a task run for a give task run ID. The task run is required to have a status of \"Pending\" or \"Running\".  # noqa: E501
+        Aborts a task run for a given task run ID. The task run is required to have a status of \"Pending\" or \"Running\".  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.abort_task_run_with_http_info(run_id, async_req=True)
@@ -168,7 +168,7 @@ class TaskRunsApi(object):
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: TaskRunDirect
+        :return: TaskRun
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -195,7 +195,7 @@ class TaskRunsApi(object):
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
                                  (connection, read) timeouts.
-        :return: tuple(TaskRunDirect, status_code(int), headers(HTTPHeaderDict))
+        :return: tuple(TaskRun, status_code(int), headers(HTTPHeaderDict))
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -256,7 +256,7 @@ class TaskRunsApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='TaskRunDirect',  # noqa: E501
+            response_type='TaskRun',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501

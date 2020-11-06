@@ -38,7 +38,8 @@ class TokenDetailResponse(object):
         'username': 'str',
         'current_workgroup': 'Workgroup',
         'tid': 'str',
-        'acls': 'list[str]'
+        'acls': 'list[str]',
+        'domain': 'Domain'
     }
 
     attribute_map = {
@@ -47,10 +48,11 @@ class TokenDetailResponse(object):
         'username': 'username',
         'current_workgroup': 'currentWorkgroup',
         'tid': 'tid',
-        'acls': 'acls'
+        'acls': 'acls',
+        'domain': 'domain'
     }
 
-    def __init__(self, uid=None, name=None, username=None, current_workgroup=None, tid=None, acls=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, uid=None, name=None, username=None, current_workgroup=None, tid=None, acls=None, domain=None, local_vars_configuration=None):  # noqa: E501
         """TokenDetailResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -62,6 +64,7 @@ class TokenDetailResponse(object):
         self._current_workgroup = None
         self._tid = None
         self._acls = None
+        self._domain = None
         self.discriminator = None
 
         if uid is not None:
@@ -76,6 +79,8 @@ class TokenDetailResponse(object):
             self.tid = tid
         if acls is not None:
             self.acls = acls
+        if domain is not None:
+            self.domain = domain
 
     @property
     def uid(self):
@@ -202,6 +207,27 @@ class TokenDetailResponse(object):
         """
 
         self._acls = acls
+
+    @property
+    def domain(self):
+        """Gets the domain of this TokenDetailResponse.  # noqa: E501
+
+
+        :return: The domain of this TokenDetailResponse.  # noqa: E501
+        :rtype: Domain
+        """
+        return self._domain
+
+    @domain.setter
+    def domain(self, domain):
+        """Sets the domain of this TokenDetailResponse.
+
+
+        :param domain: The domain of this TokenDetailResponse.  # noqa: E501
+        :type: Domain
+        """
+
+        self._domain = domain
 
     def to_dict(self):
         """Returns the model properties as a dict"""

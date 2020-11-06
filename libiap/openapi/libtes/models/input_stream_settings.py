@@ -35,7 +35,7 @@ class InputStreamSettings(object):
     openapi_types = {
         'access_pattern': 'str',
         'cache_size_gb': 'int',
-        'block_size_mb': 'int',
+        'block_size_mb': 'float',
         'prefetch_blocks': 'int'
     }
 
@@ -46,7 +46,7 @@ class InputStreamSettings(object):
         'prefetch_blocks': 'prefetchBlocks'
     }
 
-    def __init__(self, access_pattern='sequential', cache_size_gb=50, block_size_mb=32, prefetch_blocks=32, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, access_pattern='sequential', cache_size_gb=50, block_size_mb=32.0, prefetch_blocks=32, local_vars_configuration=None):  # noqa: E501
         """InputStreamSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -107,8 +107,8 @@ class InputStreamSettings(object):
         :type: int
         """
         if (self.local_vars_configuration.client_side_validation and
-                cache_size_gb is not None and cache_size_gb > 5000):  # noqa: E501
-            raise ValueError("Invalid value for `cache_size_gb`, must be a value less than or equal to `5000`")  # noqa: E501
+                cache_size_gb is not None and cache_size_gb > 10000):  # noqa: E501
+            raise ValueError("Invalid value for `cache_size_gb`, must be a value less than or equal to `10000`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 cache_size_gb is not None and cache_size_gb < 50):  # noqa: E501
             raise ValueError("Invalid value for `cache_size_gb`, must be a value greater than or equal to `50`")  # noqa: E501
@@ -121,7 +121,7 @@ class InputStreamSettings(object):
 
 
         :return: The block_size_mb of this InputStreamSettings.  # noqa: E501
-        :rtype: int
+        :rtype: float
         """
         return self._block_size_mb
 
@@ -131,14 +131,14 @@ class InputStreamSettings(object):
 
 
         :param block_size_mb: The block_size_mb of this InputStreamSettings.  # noqa: E501
-        :type: int
+        :type: float
         """
         if (self.local_vars_configuration.client_side_validation and
                 block_size_mb is not None and block_size_mb > 1024):  # noqa: E501
             raise ValueError("Invalid value for `block_size_mb`, must be a value less than or equal to `1024`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
-                block_size_mb is not None and block_size_mb < 1):  # noqa: E501
-            raise ValueError("Invalid value for `block_size_mb`, must be a value greater than or equal to `1`")  # noqa: E501
+                block_size_mb is not None and block_size_mb < 0):  # noqa: E501
+            raise ValueError("Invalid value for `block_size_mb`, must be a value greater than or equal to `0`")  # noqa: E501
 
         self._block_size_mb = block_size_mb
 

@@ -284,7 +284,7 @@ class WorkflowSignalsApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str tenant_id: ID of the tenant
-        :param list[GetWorkflowSignalsIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).
@@ -313,7 +313,7 @@ class WorkflowSignalsApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str tenant_id: ID of the tenant
-        :param list[GetWorkflowSignalsIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).

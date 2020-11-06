@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**archive_file**](FilesApi.md#archive_file) | **POST** /v1/files/{fileId}:archive | Archive a file
 [**create_file**](FilesApi.md#create_file) | **POST** /v1/files | Create a file entry in GDS and get temporary credentials for upload
 [**delete_file**](FilesApi.md#delete_file) | **DELETE** /v1/files/{fileId} | Permanently delete a file
-[**destroy_file_deprecated**](FilesApi.md#destroy_file_deprecated) | **DELETE** /v1/files/{fileId}:destroy | Permanently delete a file
 [**get_file**](FilesApi.md#get_file) | **GET** /v1/files/{fileId} | Get details about a file, including a pre-signed URL for download
 [**list_files**](FilesApi.md#list_files) | **GET** /v1/files | Get a list of files
 [**unarchive_file**](FilesApi.md#unarchive_file) | **POST** /v1/files/{fileId}:unarchive | Unarchive a file
@@ -263,89 +262,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **destroy_file_deprecated**
-> destroy_file_deprecated(file_id)
-
-Permanently delete a file
-
-This endpoint will be deprecated with the EarlyAccess launch. Utilize DELETE: v1/files/{fileId} instead.
-
-### Example
-
-* Api Key Authentication (Bearer):
-```python
-from __future__ import print_function
-import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
-from pprint import pprint
-# Defining the host is optional and defaults to https://aps2.platform.illumina.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
-    host = "https://aps2.platform.illumina.com"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
-)
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FilesApi(api_client)
-    file_id = 'file_id_example' # str | Unique identifier for the file to delete.
-
-    try:
-        # Permanently delete a file
-        api_instance.destroy_file_deprecated(file_id)
-    except ApiException as e:
-        print("Exception when calling FilesApi->destroy_file_deprecated: %s\n" % e)
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **file_id** | **str**| Unique identifier for the file to delete. | 
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[Bearer](../README.md#Bearer)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, text/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | No Content. |  -  |
-**400** | Bad request. |  -  |
-**401** | Unauthorized. |  -  |
-**403** | Forbidden. |  -  |
-**404** | File not found. |  -  |
-**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **get_file**
-> FileResponse get_file(file_id, tenant_id=tenant_id)
+> FileResponse get_file(file_id, tenant_id=tenant_id, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
 
 Get details about a file, including a pre-signed URL for download
 
@@ -387,10 +305,12 @@ with libiap.openapi.libgds.ApiClient(configuration) as api_client:
     api_instance = libiap.openapi.libgds.FilesApi(api_client)
     file_id = 'file_id_example' # str | Unique identifier for the file to retrieve.
 tenant_id = 'tenant_id_example' # str | Optional parameter to see shared data in another tenant (optional)
+metadata_include = 'metadata_include_example' # str | Optional parameter to specify comma separated patterns to include metadata by their field names. (optional)
+metadata_exclude = 'metadata_exclude_example' # str | Optional parameter to specify comma separated patterns to exclude metadata by their field names. (optional)
 
     try:
         # Get details about a file, including a pre-signed URL for download
-        api_response = api_instance.get_file(file_id, tenant_id=tenant_id)
+        api_response = api_instance.get_file(file_id, tenant_id=tenant_id, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FilesApi->get_file: %s\n" % e)
@@ -402,6 +322,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file_id** | **str**| Unique identifier for the file to retrieve. | 
  **tenant_id** | **str**| Optional parameter to see shared data in another tenant | [optional] 
+ **metadata_include** | **str**| Optional parameter to specify comma separated patterns to include metadata by their field names. | [optional] 
+ **metadata_exclude** | **str**| Optional parameter to specify comma separated patterns to exclude metadata by their field names. | [optional] 
 
 ### Return type
 

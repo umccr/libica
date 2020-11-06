@@ -5,9 +5,10 @@ Compact details of a workflow run
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Unique resource ID | [optional] 
+**urn** | **str** | URN of the resource | [optional] 
 **href** | **str** | HREF to the resource | [optional] 
-**name** | **str** | Name of the workflow | [optional] 
-**time_started** | **datetime** | The time (in UTC) the Workflow Run started | [optional] 
+**name** | **str** | Name of the workflow run | [optional] 
+**time_started** | **datetime** | The time (in UTC) the workflow run started | [optional] 
 **time_stopped** | **datetime** | The time (in UTC) the Workflow Run stopped | [optional] 
 **status** | **str** | Workflow run status | [optional] 
 **status_summary** | **str** | Workflow run status summary | [optional] 

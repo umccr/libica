@@ -276,7 +276,8 @@ class WorkflowsApi(object):
         :param async_req bool: execute request asynchronously
         :param str tenant_id: ID of the tenant
         :param str name:
-        :param list[GetWorkflowsIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] categories:
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).
@@ -306,7 +307,8 @@ class WorkflowsApi(object):
         :param async_req bool: execute request asynchronously
         :param str tenant_id: ID of the tenant
         :param str name:
-        :param list[GetWorkflowsIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] categories:
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).
@@ -329,6 +331,7 @@ class WorkflowsApi(object):
         all_params = [
             'tenant_id',
             'name',
+            'categories',
             'include',
             'page_size',
             'page_token',
@@ -361,6 +364,9 @@ class WorkflowsApi(object):
             query_params.append(('tenantId', local_var_params['tenant_id']))  # noqa: E501
         if 'name' in local_var_params and local_var_params['name'] is not None:  # noqa: E501
             query_params.append(('name', local_var_params['name']))  # noqa: E501
+        if 'categories' in local_var_params and local_var_params['categories'] is not None:  # noqa: E501
+            query_params.append(('categories', local_var_params['categories']))  # noqa: E501
+            collection_formats['categories'] = 'csv'  # noqa: E501
         if 'include' in local_var_params and local_var_params['include'] is not None:  # noqa: E501
             query_params.append(('include', local_var_params['include']))  # noqa: E501
             collection_formats['include'] = 'csv'  # noqa: E501

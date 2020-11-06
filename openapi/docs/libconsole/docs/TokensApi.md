@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create_token**
-> TokenResponse create_token(x_api_key=x_api_key, client_id=client_id, api_key=api_key, domain=domain, data=data, scopes=scopes, acl=acl, mem=mem, cwid=cwid, return_session_token=return_session_token)
+> TokenResponse create_token(x_api_key=x_api_key, client_id=client_id, api_key=api_key, domain=domain, data=data, scopes=scopes, cwid=cwid, cid=cid, return_session_token=return_session_token)
 
 Creates a JWT token to call IAP services.
 
@@ -19,7 +19,7 @@ This endpoint creates a JWT token to call IAP services. Authorization can be a B
 
 ### Example
 
-* Api Key Authentication (Basic):
+* Basic Authentication (Basic):
 ```python
 from __future__ import print_function
 import time
@@ -37,15 +37,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -67,14 +63,13 @@ api_key = 'api_key_example' # str | OBSOLETE: api key should now be passed as as
 domain = 'domain_example' # str | Optionally pass the domain name you are logging into (optional)
 data = 'data_example' # str | Data is a custom meta data field that will be applied to the session field in the JWT payload. (optional)
 scopes = ['scopes_example'] # list[str] | Scopes can be passed in during token generation to limit the token to particular scopes. (optional)
-acl = ['acl_example'] # list[str] | Defines the access control list to be applied to the JWT. (optional)
-mem = ['mem_example'] # list[str] | Defines the membership list to be applied to the JWT. (optional)
 cwid = 'cwid_example' # str | Set the current workgroup on the token. Used for aligning resources to a workgroup. (optional)
+cid = 'cid_example' # str | Set the current context on the token. Used for aligning resources to a context. (optional)
 return_session_token = True # bool | By default, this endpoint returns a JWT token. You can specify returnSessionToken=true to get an Illumina psToken instead. (optional)
 
     try:
         # Creates a JWT token to call IAP services.
-        api_response = api_instance.create_token(x_api_key=x_api_key, client_id=client_id, api_key=api_key, domain=domain, data=data, scopes=scopes, acl=acl, mem=mem, cwid=cwid, return_session_token=return_session_token)
+        api_response = api_instance.create_token(x_api_key=x_api_key, client_id=client_id, api_key=api_key, domain=domain, data=data, scopes=scopes, cwid=cwid, cid=cid, return_session_token=return_session_token)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling TokensApi->create_token: %s\n" % e)
@@ -98,15 +93,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -128,14 +119,13 @@ api_key = 'api_key_example' # str | OBSOLETE: api key should now be passed as as
 domain = 'domain_example' # str | Optionally pass the domain name you are logging into (optional)
 data = 'data_example' # str | Data is a custom meta data field that will be applied to the session field in the JWT payload. (optional)
 scopes = ['scopes_example'] # list[str] | Scopes can be passed in during token generation to limit the token to particular scopes. (optional)
-acl = ['acl_example'] # list[str] | Defines the access control list to be applied to the JWT. (optional)
-mem = ['mem_example'] # list[str] | Defines the membership list to be applied to the JWT. (optional)
 cwid = 'cwid_example' # str | Set the current workgroup on the token. Used for aligning resources to a workgroup. (optional)
+cid = 'cid_example' # str | Set the current context on the token. Used for aligning resources to a context. (optional)
 return_session_token = True # bool | By default, this endpoint returns a JWT token. You can specify returnSessionToken=true to get an Illumina psToken instead. (optional)
 
     try:
         # Creates a JWT token to call IAP services.
-        api_response = api_instance.create_token(x_api_key=x_api_key, client_id=client_id, api_key=api_key, domain=domain, data=data, scopes=scopes, acl=acl, mem=mem, cwid=cwid, return_session_token=return_session_token)
+        api_response = api_instance.create_token(x_api_key=x_api_key, client_id=client_id, api_key=api_key, domain=domain, data=data, scopes=scopes, cwid=cwid, cid=cid, return_session_token=return_session_token)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling TokensApi->create_token: %s\n" % e)
@@ -151,9 +141,8 @@ Name | Type | Description  | Notes
  **domain** | **str**| Optionally pass the domain name you are logging into | [optional] 
  **data** | **str**| Data is a custom meta data field that will be applied to the session field in the JWT payload. | [optional] 
  **scopes** | [**list[str]**](str.md)| Scopes can be passed in during token generation to limit the token to particular scopes. | [optional] 
- **acl** | [**list[str]**](str.md)| Defines the access control list to be applied to the JWT. | [optional] 
- **mem** | [**list[str]**](str.md)| Defines the membership list to be applied to the JWT. | [optional] 
  **cwid** | **str**| Set the current workgroup on the token. Used for aligning resources to a workgroup. | [optional] 
+ **cid** | **str**| Set the current context on the token. Used for aligning resources to a context. | [optional] 
  **return_session_token** | **bool**| By default, this endpoint returns a JWT token. You can specify returnSessionToken&#x3D;true to get an Illumina psToken instead. | [optional] 
 
 ### Return type
@@ -189,7 +178,7 @@ Get token details
 
 ### Example
 
-* Api Key Authentication (Basic):
+* Basic Authentication (Basic):
 ```python
 from __future__ import print_function
 import time
@@ -207,15 +196,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -258,15 +243,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -325,7 +306,7 @@ This endpoint extends the session for the psToken.
 
 ### Example
 
-* Api Key Authentication (Basic):
+* Basic Authentication (Basic):
 ```python
 from __future__ import print_function
 import time
@@ -343,15 +324,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -395,15 +372,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -467,7 +440,7 @@ This endpoint revokes the access token that is passed in.
 
 ### Example
 
-* Api Key Authentication (Basic):
+* Basic Authentication (Basic):
 ```python
 from __future__ import print_function
 import time
@@ -485,15 +458,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -536,15 +505,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(

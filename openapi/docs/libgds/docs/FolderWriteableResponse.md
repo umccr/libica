@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 **created_by** | **str** | The creator of this Folder | [optional] 
 **time_modified** | **datetime** | The date &amp; time this Folder was updated, in GDS | [optional] 
 **modified_by** | **str** | The updator of this Folder | [optional] 
+**metadata** | [**object**](.md) | Metadata about this folder | [optional] 
 **job_status** | [**JobStatus**](JobStatus.md) |  | [optional] 
 **archive_job_storage_tier** | [**StorageTier**](StorageTier.md) |  | [optional] 
-**temporary_upload_credentials** | [**ObjectStorageCredentialsResponse**](ObjectStorageCredentialsResponse.md) |  | [optional] 
 **object_store_access** | [**ObjectStoreAccess**](ObjectStoreAccess.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -47,6 +47,7 @@ class FolderResponse(object):
         'created_by': 'str',
         'time_modified': 'datetime',
         'modified_by': 'str',
+        'metadata': 'object',
         'job_status': 'JobStatus',
         'archive_job_storage_tier': 'StorageTier'
     }
@@ -66,11 +67,12 @@ class FolderResponse(object):
         'created_by': 'createdBy',
         'time_modified': 'timeModified',
         'modified_by': 'modifiedBy',
+        'metadata': 'metadata',
         'job_status': 'jobStatus',
         'archive_job_storage_tier': 'archiveJobStorageTier'
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, archive_job_storage_tier=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, job_status=None, archive_job_storage_tier=None, local_vars_configuration=None):  # noqa: E501
         """FolderResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -90,6 +92,7 @@ class FolderResponse(object):
         self._created_by = None
         self._time_modified = None
         self._modified_by = None
+        self._metadata = None
         self._job_status = None
         self._archive_job_storage_tier = None
         self.discriminator = None
@@ -122,6 +125,8 @@ class FolderResponse(object):
             self.time_modified = time_modified
         if modified_by is not None:
             self.modified_by = modified_by
+        if metadata is not None:
+            self.metadata = metadata
         if job_status is not None:
             self.job_status = job_status
         if archive_job_storage_tier is not None:
@@ -448,6 +453,29 @@ class FolderResponse(object):
         """
 
         self._modified_by = modified_by
+
+    @property
+    def metadata(self):
+        """Gets the metadata of this FolderResponse.  # noqa: E501
+
+        Metadata about this folder  # noqa: E501
+
+        :return: The metadata of this FolderResponse.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this FolderResponse.
+
+        Metadata about this folder  # noqa: E501
+
+        :param metadata: The metadata of this FolderResponse.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata = metadata
 
     @property
     def job_status(self):

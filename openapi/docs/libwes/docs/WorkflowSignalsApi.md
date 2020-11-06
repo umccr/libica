@@ -219,7 +219,7 @@ with libiap.openapi.libwes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libiap.openapi.libwes.WorkflowSignalsApi(api_client)
     tenant_id = 'tenant_id_example' # str | ID of the tenant (optional)
-include = [libiap.openapi.libwes.GetWorkflowSignalsIncludeFlags()] # list[GetWorkflowSignalsIncludeFlags] | Comma-separated list of properties to include in the response (optional)
+include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
 page_size = 10 # int | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (optional) (default to 10)
 page_token = 'page_token_example' # str | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (optional)
 sort = 'timeCreated asc' # str | Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending). (optional) (default to 'timeCreated asc')
@@ -237,7 +237,7 @@ sort = 'timeCreated asc' # str | Specifies the order to include list items as \"
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **tenant_id** | **str**| ID of the tenant | [optional] 
- **include** | [**list[GetWorkflowSignalsIncludeFlags]**](GetWorkflowSignalsIncludeFlags.md)| Comma-separated list of properties to include in the response | [optional] 
+ **include** | [**list[str]**](str.md)| Comma-separated list of properties to include in the response | [optional] 
  **page_size** | **int**| Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. | [optional] [default to 10]
  **page_token** | **str**| Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. | [optional] 
  **sort** | **str**| Specifies the order to include list items as \&quot;_{fieldName}_ [asc|desc]\&quot;. The second field is optional and specifies the sort direction (\&quot;asc\&quot; for ascending or \&quot;desc\&quot; for descending). | [optional] [default to &#39;timeCreated asc&#39;]

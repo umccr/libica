@@ -36,23 +36,23 @@ class CreateWorkflowRequest(object):
         'name': 'str',
         'description': 'str',
         'organization': 'str',
-        'category': 'str',
         'workflow_version': 'CreateWorkflowVersionRequest',
-        'tool_class': 'ToolClass',
-        'acl': 'list[str]'
+        'tool_class': 'str',
+        'acl': 'list[str]',
+        'categories': 'list[str]'
     }
 
     attribute_map = {
         'name': 'name',
         'description': 'description',
         'organization': 'organization',
-        'category': 'category',
         'workflow_version': 'workflowVersion',
         'tool_class': 'toolClass',
-        'acl': 'acl'
+        'acl': 'acl',
+        'categories': 'categories'
     }
 
-    def __init__(self, name=None, description=None, organization=None, category=None, workflow_version=None, tool_class=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, description=None, organization=None, workflow_version=None, tool_class=None, acl=None, categories=None, local_vars_configuration=None):  # noqa: E501
         """CreateWorkflowRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -61,10 +61,10 @@ class CreateWorkflowRequest(object):
         self._name = None
         self._description = None
         self._organization = None
-        self._category = None
         self._workflow_version = None
         self._tool_class = None
         self._acl = None
+        self._categories = None
         self.discriminator = None
 
         self.name = name
@@ -72,14 +72,14 @@ class CreateWorkflowRequest(object):
             self.description = description
         if organization is not None:
             self.organization = organization
-        if category is not None:
-            self.category = category
         if workflow_version is not None:
             self.workflow_version = workflow_version
         if tool_class is not None:
             self.tool_class = tool_class
         if acl is not None:
             self.acl = acl
+        if categories is not None:
+            self.categories = categories
 
     @property
     def name(self):
@@ -123,8 +123,8 @@ class CreateWorkflowRequest(object):
         :type: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                description is not None and len(description) > 4096):
-            raise ValueError("Invalid value for `description`, length must be less than or equal to `4096`")  # noqa: E501
+                description is not None and len(description) > 256):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `256`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 description is not None and len(description) < 0):
             raise ValueError("Invalid value for `description`, length must be greater than or equal to `0`")  # noqa: E501
@@ -159,33 +159,6 @@ class CreateWorkflowRequest(object):
         self._organization = organization
 
     @property
-    def category(self):
-        """Gets the category of this CreateWorkflowRequest.  # noqa: E501
-
-
-        :return: The category of this CreateWorkflowRequest.  # noqa: E501
-        :rtype: str
-        """
-        return self._category
-
-    @category.setter
-    def category(self, category):
-        """Sets the category of this CreateWorkflowRequest.
-
-
-        :param category: The category of this CreateWorkflowRequest.  # noqa: E501
-        :type: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                category is not None and len(category) > 128):
-            raise ValueError("Invalid value for `category`, length must be less than or equal to `128`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                category is not None and len(category) < 0):
-            raise ValueError("Invalid value for `category`, length must be greater than or equal to `0`")  # noqa: E501
-
-        self._category = category
-
-    @property
     def workflow_version(self):
         """Gets the workflow_version of this CreateWorkflowRequest.  # noqa: E501
 
@@ -212,7 +185,7 @@ class CreateWorkflowRequest(object):
 
 
         :return: The tool_class of this CreateWorkflowRequest.  # noqa: E501
-        :rtype: ToolClass
+        :rtype: str
         """
         return self._tool_class
 
@@ -222,8 +195,14 @@ class CreateWorkflowRequest(object):
 
 
         :param tool_class: The tool_class of this CreateWorkflowRequest.  # noqa: E501
-        :type: ToolClass
+        :type: str
         """
+        allowed_values = ["workflow", "commandLineTool"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and tool_class not in allowed_values:  # noqa: E501
+            raise ValueError(
+                "Invalid value for `tool_class` ({0}), must be one of {1}"  # noqa: E501
+                .format(tool_class, allowed_values)
+            )
 
         self._tool_class = tool_class
 
@@ -247,6 +226,27 @@ class CreateWorkflowRequest(object):
         """
 
         self._acl = acl
+
+    @property
+    def categories(self):
+        """Gets the categories of this CreateWorkflowRequest.  # noqa: E501
+
+
+        :return: The categories of this CreateWorkflowRequest.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._categories
+
+    @categories.setter
+    def categories(self, categories):
+        """Sets the categories of this CreateWorkflowRequest.
+
+
+        :param categories: The categories of this CreateWorkflowRequest.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._categories = categories
 
     def to_dict(self):
         """Returns the model properties as a dict"""

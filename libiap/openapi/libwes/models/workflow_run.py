@@ -34,6 +34,7 @@ class WorkflowRun(object):
     """
     openapi_types = {
         'id': 'str',
+        'urn': 'str',
         'href': 'str',
         'name': 'str',
         'time_started': 'datetime',
@@ -47,6 +48,7 @@ class WorkflowRun(object):
         'input': 'object',
         'output': 'object',
         'definition': 'str',
+        'engine_parameters': 'str',
         'time_created': 'datetime',
         'time_modified': 'datetime',
         'created_by': 'str',
@@ -57,6 +59,7 @@ class WorkflowRun(object):
 
     attribute_map = {
         'id': 'id',
+        'urn': 'urn',
         'href': 'href',
         'name': 'name',
         'time_started': 'timeStarted',
@@ -70,6 +73,7 @@ class WorkflowRun(object):
         'input': 'input',
         'output': 'output',
         'definition': 'definition',
+        'engine_parameters': 'engineParameters',
         'time_created': 'timeCreated',
         'time_modified': 'timeModified',
         'created_by': 'createdBy',
@@ -78,13 +82,14 @@ class WorkflowRun(object):
         'acl': 'acl'
     }
 
-    def __init__(self, id=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, input=None, output=None, definition=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, input=None, output=None, definition=None, engine_parameters=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         """WorkflowRun - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._urn = None
         self._href = None
         self._name = None
         self._time_started = None
@@ -98,6 +103,7 @@ class WorkflowRun(object):
         self._input = None
         self._output = None
         self._definition = None
+        self._engine_parameters = None
         self._time_created = None
         self._time_modified = None
         self._created_by = None
@@ -108,6 +114,8 @@ class WorkflowRun(object):
 
         if id is not None:
             self.id = id
+        if urn is not None:
+            self.urn = urn
         if href is not None:
             self.href = href
         if name is not None:
@@ -134,6 +142,8 @@ class WorkflowRun(object):
             self.output = output
         if definition is not None:
             self.definition = definition
+        if engine_parameters is not None:
+            self.engine_parameters = engine_parameters
         if time_created is not None:
             self.time_created = time_created
         if time_modified is not None:
@@ -171,6 +181,29 @@ class WorkflowRun(object):
         self._id = id
 
     @property
+    def urn(self):
+        """Gets the urn of this WorkflowRun.  # noqa: E501
+
+        URN of the resource  # noqa: E501
+
+        :return: The urn of this WorkflowRun.  # noqa: E501
+        :rtype: str
+        """
+        return self._urn
+
+    @urn.setter
+    def urn(self, urn):
+        """Sets the urn of this WorkflowRun.
+
+        URN of the resource  # noqa: E501
+
+        :param urn: The urn of this WorkflowRun.  # noqa: E501
+        :type: str
+        """
+
+        self._urn = urn
+
+    @property
     def href(self):
         """Gets the href of this WorkflowRun.  # noqa: E501
 
@@ -197,7 +230,7 @@ class WorkflowRun(object):
     def name(self):
         """Gets the name of this WorkflowRun.  # noqa: E501
 
-        Name of the workflow  # noqa: E501
+        Name of the workflow run  # noqa: E501
 
         :return: The name of this WorkflowRun.  # noqa: E501
         :rtype: str
@@ -208,7 +241,7 @@ class WorkflowRun(object):
     def name(self, name):
         """Sets the name of this WorkflowRun.
 
-        Name of the workflow  # noqa: E501
+        Name of the workflow run  # noqa: E501
 
         :param name: The name of this WorkflowRun.  # noqa: E501
         :type: str
@@ -226,7 +259,7 @@ class WorkflowRun(object):
     def time_started(self):
         """Gets the time_started of this WorkflowRun.  # noqa: E501
 
-        The time (in UTC) the Workflow Run started  # noqa: E501
+        The time (in UTC) the workflow run started  # noqa: E501
 
         :return: The time_started of this WorkflowRun.  # noqa: E501
         :rtype: datetime
@@ -237,7 +270,7 @@ class WorkflowRun(object):
     def time_started(self, time_started):
         """Sets the time_started of this WorkflowRun.
 
-        The time (in UTC) the Workflow Run started  # noqa: E501
+        The time (in UTC) the workflow run started  # noqa: E501
 
         :param time_started: The time_started of this WorkflowRun.  # noqa: E501
         :type: datetime
@@ -472,6 +505,29 @@ class WorkflowRun(object):
         """
 
         self._definition = definition
+
+    @property
+    def engine_parameters(self):
+        """Gets the engine_parameters of this WorkflowRun.  # noqa: E501
+
+        Workflow Engine Parameters  # noqa: E501
+
+        :return: The engine_parameters of this WorkflowRun.  # noqa: E501
+        :rtype: str
+        """
+        return self._engine_parameters
+
+    @engine_parameters.setter
+    def engine_parameters(self, engine_parameters):
+        """Sets the engine_parameters of this WorkflowRun.
+
+        Workflow Engine Parameters  # noqa: E501
+
+        :param engine_parameters: The engine_parameters of this WorkflowRun.  # noqa: E501
+        :type: str
+        """
+
+        self._engine_parameters = engine_parameters
 
     @property
     def time_created(self):

@@ -41,6 +41,8 @@ class Subscription(object):
         'name': 'str',
         'description': 'str',
         'delivery_target': 'DeliveryTarget',
+        'match_identities': 'list[str]',
+        'acl': 'list[str]',
         'tenant_id': 'str',
         'created_by_user_id': 'str',
         'time_created': 'datetime',
@@ -58,6 +60,8 @@ class Subscription(object):
         'name': 'name',
         'description': 'description',
         'delivery_target': 'deliveryTarget',
+        'match_identities': 'matchIdentities',
+        'acl': 'acl',
         'tenant_id': 'tenantId',
         'created_by_user_id': 'createdByUserId',
         'time_created': 'timeCreated',
@@ -66,7 +70,7 @@ class Subscription(object):
         'is_deleted': 'isDeleted'
     }
 
-    def __init__(self, id=None, urn=None, type=None, actions=None, filter_expression=None, name=None, description=None, delivery_target=None, tenant_id=None, created_by_user_id=None, time_created=None, deleted_by_user_id=None, time_deleted=None, is_deleted=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, type=None, actions=None, filter_expression=None, name=None, description=None, delivery_target=None, match_identities=None, acl=None, tenant_id=None, created_by_user_id=None, time_created=None, deleted_by_user_id=None, time_deleted=None, is_deleted=None, local_vars_configuration=None):  # noqa: E501
         """Subscription - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -80,6 +84,8 @@ class Subscription(object):
         self._name = None
         self._description = None
         self._delivery_target = None
+        self._match_identities = None
+        self._acl = None
         self._tenant_id = None
         self._created_by_user_id = None
         self._time_created = None
@@ -104,6 +110,10 @@ class Subscription(object):
             self.description = description
         if delivery_target is not None:
             self.delivery_target = delivery_target
+        if match_identities is not None:
+            self.match_identities = match_identities
+        if acl is not None:
+            self.acl = acl
         if tenant_id is not None:
             self.tenant_id = tenant_id
         if created_by_user_id is not None:
@@ -298,6 +308,52 @@ class Subscription(object):
         """
 
         self._delivery_target = delivery_target
+
+    @property
+    def match_identities(self):
+        """Gets the match_identities of this Subscription.  # noqa: E501
+
+        ACL Identities for events the subscription matches  # noqa: E501
+
+        :return: The match_identities of this Subscription.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._match_identities
+
+    @match_identities.setter
+    def match_identities(self, match_identities):
+        """Sets the match_identities of this Subscription.
+
+        ACL Identities for events the subscription matches  # noqa: E501
+
+        :param match_identities: The match_identities of this Subscription.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._match_identities = match_identities
+
+    @property
+    def acl(self):
+        """Gets the acl of this Subscription.  # noqa: E501
+
+        The list of identities that have access to this subscription  # noqa: E501
+
+        :return: The acl of this Subscription.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._acl
+
+    @acl.setter
+    def acl(self, acl):
+        """Sets the acl of this Subscription.
+
+        The list of identities that have access to this subscription  # noqa: E501
+
+        :param acl: The acl of this Subscription.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._acl = acl
 
     @property
     def tenant_id(self):

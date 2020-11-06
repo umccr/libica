@@ -37,7 +37,8 @@ class CreateWorkflowVersionRequest(object):
         'description': 'str',
         'language': 'WorkflowLanguage',
         'definition': 'object',
-        'acl': 'list[str]'
+        'acl': 'list[str]',
+        'status': 'str'
     }
 
     attribute_map = {
@@ -45,10 +46,11 @@ class CreateWorkflowVersionRequest(object):
         'description': 'description',
         'language': 'language',
         'definition': 'definition',
-        'acl': 'acl'
+        'acl': 'acl',
+        'status': 'status'
     }
 
-    def __init__(self, version=None, description=None, language=None, definition=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, version=None, description=None, language=None, definition=None, acl=None, status=None, local_vars_configuration=None):  # noqa: E501
         """CreateWorkflowVersionRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -59,6 +61,7 @@ class CreateWorkflowVersionRequest(object):
         self._language = None
         self._definition = None
         self._acl = None
+        self._status = None
         self.discriminator = None
 
         self.version = version
@@ -70,6 +73,8 @@ class CreateWorkflowVersionRequest(object):
             self.definition = definition
         if acl is not None:
             self.acl = acl
+        if status is not None:
+            self.status = status
 
     @property
     def version(self):
@@ -113,8 +118,8 @@ class CreateWorkflowVersionRequest(object):
         :type: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                description is not None and len(description) > 4096):
-            raise ValueError("Invalid value for `description`, length must be less than or equal to `4096`")  # noqa: E501
+                description is not None and len(description) > 256):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `256`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 description is not None and len(description) < 0):
             raise ValueError("Invalid value for `description`, length must be greater than or equal to `0`")  # noqa: E501
@@ -183,6 +188,35 @@ class CreateWorkflowVersionRequest(object):
         """
 
         self._acl = acl
+
+    @property
+    def status(self):
+        """Gets the status of this CreateWorkflowVersionRequest.  # noqa: E501
+
+        Published Status of the workflow version  # noqa: E501
+
+        :return: The status of this CreateWorkflowVersionRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """Sets the status of this CreateWorkflowVersionRequest.
+
+        Published Status of the workflow version  # noqa: E501
+
+        :param status: The status of this CreateWorkflowVersionRequest.  # noqa: E501
+        :type: str
+        """
+        allowed_values = ["draft", "released", "obsolete"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and status not in allowed_values:  # noqa: E501
+            raise ValueError(
+                "Invalid value for `status` ({0}), must be one of {1}"  # noqa: E501
+                .format(status, allowed_values)
+            )
+
+        self._status = status
 
     def to_dict(self):
         """Returns the model properties as a dict"""

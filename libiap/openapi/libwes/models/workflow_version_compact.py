@@ -34,6 +34,7 @@ class WorkflowVersionCompact(object):
     """
     openapi_types = {
         'id': 'str',
+        'urn': 'str',
         'href': 'str',
         'version': 'str',
         'category': 'str',
@@ -51,6 +52,7 @@ class WorkflowVersionCompact(object):
 
     attribute_map = {
         'id': 'id',
+        'urn': 'urn',
         'href': 'href',
         'version': 'version',
         'category': 'category',
@@ -66,13 +68,14 @@ class WorkflowVersionCompact(object):
         'acl': 'acl'
     }
 
-    def __init__(self, id=None, href=None, version=None, category=None, description=None, language=None, status=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, href=None, version=None, category=None, description=None, language=None, status=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         """WorkflowVersionCompact - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._urn = None
         self._href = None
         self._version = None
         self._category = None
@@ -90,6 +93,8 @@ class WorkflowVersionCompact(object):
 
         if id is not None:
             self.id = id
+        if urn is not None:
+            self.urn = urn
         if href is not None:
             self.href = href
         if version is not None:
@@ -139,6 +144,29 @@ class WorkflowVersionCompact(object):
         """
 
         self._id = id
+
+    @property
+    def urn(self):
+        """Gets the urn of this WorkflowVersionCompact.  # noqa: E501
+
+        URN of the resource  # noqa: E501
+
+        :return: The urn of this WorkflowVersionCompact.  # noqa: E501
+        :rtype: str
+        """
+        return self._urn
+
+    @urn.setter
+    def urn(self, urn):
+        """Sets the urn of this WorkflowVersionCompact.
+
+        URN of the resource  # noqa: E501
+
+        :param urn: The urn of this WorkflowVersionCompact.  # noqa: E501
+        :type: str
+        """
+
+        self._urn = urn
 
     @property
     def href(self):
@@ -242,8 +270,8 @@ class WorkflowVersionCompact(object):
         :type: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                description is not None and len(description) > 128):
-            raise ValueError("Invalid value for `description`, length must be less than or equal to `128`")  # noqa: E501
+                description is not None and len(description) > 256):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `256`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 description is not None and len(description) < 0):
             raise ValueError("Invalid value for `description`, length must be greater than or equal to `0`")  # noqa: E501
@@ -275,7 +303,7 @@ class WorkflowVersionCompact(object):
     def status(self):
         """Gets the status of this WorkflowVersionCompact.  # noqa: E501
 
-        Status of the workflow version  # noqa: E501
+        Published Status of the workflow version  # noqa: E501
 
         :return: The status of this WorkflowVersionCompact.  # noqa: E501
         :rtype: str
@@ -286,7 +314,7 @@ class WorkflowVersionCompact(object):
     def status(self, status):
         """Sets the status of this WorkflowVersionCompact.
 
-        Status of the workflow version  # noqa: E501
+        Published Status of the workflow version  # noqa: E501
 
         :param status: The status of this WorkflowVersionCompact.  # noqa: E501
         :type: str

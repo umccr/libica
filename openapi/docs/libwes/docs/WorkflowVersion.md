@@ -5,12 +5,13 @@ Details of a Workflow version definition
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Unique resource ID | [optional] 
+**urn** | **str** | URN of the resource | [optional] 
 **href** | **str** | HREF to the resource | [optional] 
 **version** | **str** | Name of the workflow version | [optional] 
 **category** | **str** | Category of the workflow version | [optional] 
 **description** | **str** | Description of the workflow version | [optional] 
 **language** | [**WorkflowLanguage**](WorkflowLanguage.md) |  | [optional] 
-**status** | **str** | Status of the workflow version | [optional] 
+**status** | **str** | Published Status of the workflow version | [optional] 
 **created_by_client_id** | **str** | Client ID of the Origin Request | [optional] 
 **definition** | **str** | Definition of the workflow version | [optional] 
 **time_created** | **datetime** | Time (in UTC) the resource was created | [optional] 

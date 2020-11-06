@@ -47,9 +47,9 @@ class FolderWriteableResponse(object):
         'created_by': 'str',
         'time_modified': 'datetime',
         'modified_by': 'str',
+        'metadata': 'object',
         'job_status': 'JobStatus',
         'archive_job_storage_tier': 'StorageTier',
-        'temporary_upload_credentials': 'ObjectStorageCredentialsResponse',
         'object_store_access': 'ObjectStoreAccess'
     }
 
@@ -68,13 +68,13 @@ class FolderWriteableResponse(object):
         'created_by': 'createdBy',
         'time_modified': 'timeModified',
         'modified_by': 'modifiedBy',
+        'metadata': 'metadata',
         'job_status': 'jobStatus',
         'archive_job_storage_tier': 'archiveJobStorageTier',
-        'temporary_upload_credentials': 'temporaryUploadCredentials',
         'object_store_access': 'objectStoreAccess'
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, archive_job_storage_tier=None, temporary_upload_credentials=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, job_status=None, archive_job_storage_tier=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         """FolderWriteableResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -94,9 +94,9 @@ class FolderWriteableResponse(object):
         self._created_by = None
         self._time_modified = None
         self._modified_by = None
+        self._metadata = None
         self._job_status = None
         self._archive_job_storage_tier = None
-        self._temporary_upload_credentials = None
         self._object_store_access = None
         self.discriminator = None
 
@@ -128,12 +128,12 @@ class FolderWriteableResponse(object):
             self.time_modified = time_modified
         if modified_by is not None:
             self.modified_by = modified_by
+        if metadata is not None:
+            self.metadata = metadata
         if job_status is not None:
             self.job_status = job_status
         if archive_job_storage_tier is not None:
             self.archive_job_storage_tier = archive_job_storage_tier
-        if temporary_upload_credentials is not None:
-            self.temporary_upload_credentials = temporary_upload_credentials
         if object_store_access is not None:
             self.object_store_access = object_store_access
 
@@ -460,6 +460,29 @@ class FolderWriteableResponse(object):
         self._modified_by = modified_by
 
     @property
+    def metadata(self):
+        """Gets the metadata of this FolderWriteableResponse.  # noqa: E501
+
+        Metadata about this folder  # noqa: E501
+
+        :return: The metadata of this FolderWriteableResponse.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this FolderWriteableResponse.
+
+        Metadata about this folder  # noqa: E501
+
+        :param metadata: The metadata of this FolderWriteableResponse.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata = metadata
+
+    @property
     def job_status(self):
         """Gets the job_status of this FolderWriteableResponse.  # noqa: E501
 
@@ -500,27 +523,6 @@ class FolderWriteableResponse(object):
         """
 
         self._archive_job_storage_tier = archive_job_storage_tier
-
-    @property
-    def temporary_upload_credentials(self):
-        """Gets the temporary_upload_credentials of this FolderWriteableResponse.  # noqa: E501
-
-
-        :return: The temporary_upload_credentials of this FolderWriteableResponse.  # noqa: E501
-        :rtype: ObjectStorageCredentialsResponse
-        """
-        return self._temporary_upload_credentials
-
-    @temporary_upload_credentials.setter
-    def temporary_upload_credentials(self, temporary_upload_credentials):
-        """Sets the temporary_upload_credentials of this FolderWriteableResponse.
-
-
-        :param temporary_upload_credentials: The temporary_upload_credentials of this FolderWriteableResponse.  # noqa: E501
-        :type: ObjectStorageCredentialsResponse
-        """
-
-        self._temporary_upload_credentials = temporary_upload_credentials
 
     @property
     def object_store_access(self):

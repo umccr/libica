@@ -35,6 +35,7 @@ class TaskVersionSummary(object):
     openapi_types = {
         'id': 'str',
         'href': 'str',
+        'urn': 'str',
         'version': 'str',
         'description': 'str',
         'acl': 'list[str]',
@@ -49,6 +50,7 @@ class TaskVersionSummary(object):
     attribute_map = {
         'id': 'id',
         'href': 'href',
+        'urn': 'urn',
         'version': 'version',
         'description': 'description',
         'acl': 'acl',
@@ -60,7 +62,7 @@ class TaskVersionSummary(object):
         'time_modified': 'timeModified'
     }
 
-    def __init__(self, id=None, href=None, version=None, description=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, href=None, urn=None, version=None, description=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
         """TaskVersionSummary - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -68,6 +70,7 @@ class TaskVersionSummary(object):
 
         self._id = None
         self._href = None
+        self._urn = None
         self._version = None
         self._description = None
         self._acl = None
@@ -83,6 +86,8 @@ class TaskVersionSummary(object):
             self.id = id
         if href is not None:
             self.href = href
+        if urn is not None:
+            self.urn = urn
         if version is not None:
             self.version = version
         if description is not None:
@@ -147,6 +152,29 @@ class TaskVersionSummary(object):
         """
 
         self._href = href
+
+    @property
+    def urn(self):
+        """Gets the urn of this TaskVersionSummary.  # noqa: E501
+
+        URN of the resource  # noqa: E501
+
+        :return: The urn of this TaskVersionSummary.  # noqa: E501
+        :rtype: str
+        """
+        return self._urn
+
+    @urn.setter
+    def urn(self, urn):
+        """Sets the urn of this TaskVersionSummary.
+
+        URN of the resource  # noqa: E501
+
+        :param urn: The urn of this TaskVersionSummary.  # noqa: E501
+        :type: str
+        """
+
+        self._urn = urn
 
     @property
     def version(self):

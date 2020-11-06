@@ -18,10 +18,12 @@ Name | Type | Description | Notes
 **inherited_acl** | **list[str]** | The inherited list of Id(s) that have access to this File | [optional] 
 **urn** | **str** | The Universal Resource Name, unique to this File | [optional] 
 **size_in_bytes** | **int** | The File&#39;s Size in bytes | [optional] 
+**metadata** | [**object**](.md) | Metadata about this File | [optional] 
 **is_uploaded** | **bool** | The current upload state of the File | [optional] 
 **archive_status** | [**ArchiveStatuses**](ArchiveStatuses.md) |  | [optional] 
 **time_archived** | **datetime** | The date &amp; time this File was archived | [optional] 
 **storage_tier** | [**StorageTier**](StorageTier.md) |  | [optional] 
+**e_tag** | **str** | The File&#39;s ETag | [optional] 
 **presigned_url** | **str** | The presigned Url allowing access to this File | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -257,7 +257,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_volumes**
-> VolumeListResponse list_volumes(page_size=page_size, page_token=page_token, include=include, tenant_id=tenant_id)
+> VolumeListResponse list_volumes(page_size=page_size, page_token=page_token, include=include, tenant_id=tenant_id, volume_configuration_name=volume_configuration_name)
 
 Get a list of volumes
 
@@ -301,10 +301,11 @@ with libiap.openapi.libgds.ApiClient(configuration) as api_client:
 page_token = 'page_token_example' # str | START_DESC END_DESC (optional)
 include = 'include_example' # str | START_DESC END_DESC (optional)
 tenant_id = 'tenant_id_example' # str | Optional parameter to see shared data in another tenant (optional)
+volume_configuration_name = 'volume_configuration_name_example' # str | Unique name of the volume configuration (optional)
 
     try:
         # Get a list of volumes
-        api_response = api_instance.list_volumes(page_size=page_size, page_token=page_token, include=include, tenant_id=tenant_id)
+        api_response = api_instance.list_volumes(page_size=page_size, page_token=page_token, include=include, tenant_id=tenant_id, volume_configuration_name=volume_configuration_name)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VolumesApi->list_volumes: %s\n" % e)
@@ -318,6 +319,7 @@ Name | Type | Description  | Notes
  **page_token** | **str**| START_DESC END_DESC | [optional] 
  **include** | **str**| START_DESC END_DESC | [optional] 
  **tenant_id** | **str**| Optional parameter to see shared data in another tenant | [optional] 
+ **volume_configuration_name** | **str**| Unique name of the volume configuration | [optional] 
 
 ### Return type
 

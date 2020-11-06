@@ -34,12 +34,13 @@ class Workflow(object):
     """
     openapi_types = {
         'id': 'str',
+        'urn': 'str',
         'href': 'str',
         'name': 'str',
         'organization': 'str',
         'description': 'str',
-        'category': 'str',
         'tool_class': 'str',
+        'categories': 'list[str]',
         'created_by_client_id': 'str',
         'time_created': 'datetime',
         'time_modified': 'datetime',
@@ -51,12 +52,13 @@ class Workflow(object):
 
     attribute_map = {
         'id': 'id',
+        'urn': 'urn',
         'href': 'href',
         'name': 'name',
         'organization': 'organization',
         'description': 'description',
-        'category': 'category',
         'tool_class': 'toolClass',
+        'categories': 'categories',
         'created_by_client_id': 'createdByClientId',
         'time_created': 'timeCreated',
         'time_modified': 'timeModified',
@@ -66,19 +68,20 @@ class Workflow(object):
         'acl': 'acl'
     }
 
-    def __init__(self, id=None, href=None, name=None, organization=None, description=None, category=None, tool_class=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, href=None, name=None, organization=None, description=None, tool_class=None, categories=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         """Workflow - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._urn = None
         self._href = None
         self._name = None
         self._organization = None
         self._description = None
-        self._category = None
         self._tool_class = None
+        self._categories = None
         self._created_by_client_id = None
         self._time_created = None
         self._time_modified = None
@@ -90,6 +93,8 @@ class Workflow(object):
 
         if id is not None:
             self.id = id
+        if urn is not None:
+            self.urn = urn
         if href is not None:
             self.href = href
         if name is not None:
@@ -98,10 +103,10 @@ class Workflow(object):
             self.organization = organization
         if description is not None:
             self.description = description
-        if category is not None:
-            self.category = category
         if tool_class is not None:
             self.tool_class = tool_class
+        if categories is not None:
+            self.categories = categories
         if created_by_client_id is not None:
             self.created_by_client_id = created_by_client_id
         if time_created is not None:
@@ -139,6 +144,29 @@ class Workflow(object):
         """
 
         self._id = id
+
+    @property
+    def urn(self):
+        """Gets the urn of this Workflow.  # noqa: E501
+
+        URN of the resource  # noqa: E501
+
+        :return: The urn of this Workflow.  # noqa: E501
+        :rtype: str
+        """
+        return self._urn
+
+    @urn.setter
+    def urn(self, urn):
+        """Sets the urn of this Workflow.
+
+        URN of the resource  # noqa: E501
+
+        :param urn: The urn of this Workflow.  # noqa: E501
+        :type: str
+        """
+
+        self._urn = urn
 
     @property
     def href(self):
@@ -242,42 +270,13 @@ class Workflow(object):
         :type: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                description is not None and len(description) > 128):
-            raise ValueError("Invalid value for `description`, length must be less than or equal to `128`")  # noqa: E501
+                description is not None and len(description) > 256):
+            raise ValueError("Invalid value for `description`, length must be less than or equal to `256`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 description is not None and len(description) < 0):
             raise ValueError("Invalid value for `description`, length must be greater than or equal to `0`")  # noqa: E501
 
         self._description = description
-
-    @property
-    def category(self):
-        """Gets the category of this Workflow.  # noqa: E501
-
-        Category of the workflow  # noqa: E501
-
-        :return: The category of this Workflow.  # noqa: E501
-        :rtype: str
-        """
-        return self._category
-
-    @category.setter
-    def category(self, category):
-        """Sets the category of this Workflow.
-
-        Category of the workflow  # noqa: E501
-
-        :param category: The category of this Workflow.  # noqa: E501
-        :type: str
-        """
-        if (self.local_vars_configuration.client_side_validation and
-                category is not None and len(category) > 128):
-            raise ValueError("Invalid value for `category`, length must be less than or equal to `128`")  # noqa: E501
-        if (self.local_vars_configuration.client_side_validation and
-                category is not None and len(category) < 0):
-            raise ValueError("Invalid value for `category`, length must be greater than or equal to `0`")  # noqa: E501
-
-        self._category = category
 
     @property
     def tool_class(self):
@@ -301,6 +300,29 @@ class Workflow(object):
         """
 
         self._tool_class = tool_class
+
+    @property
+    def categories(self):
+        """Gets the categories of this Workflow.  # noqa: E501
+
+        Categories of the workflow (Limit Max Size : 10)  # noqa: E501
+
+        :return: The categories of this Workflow.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._categories
+
+    @categories.setter
+    def categories(self, categories):
+        """Sets the categories of this Workflow.
+
+        Categories of the workflow (Limit Max Size : 10)  # noqa: E501
+
+        :param categories: The categories of this Workflow.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._categories = categories
 
     @property
     def created_by_client_id(self):

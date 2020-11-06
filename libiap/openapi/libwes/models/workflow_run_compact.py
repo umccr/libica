@@ -34,6 +34,7 @@ class WorkflowRunCompact(object):
     """
     openapi_types = {
         'id': 'str',
+        'urn': 'str',
         'href': 'str',
         'name': 'str',
         'time_started': 'datetime',
@@ -54,6 +55,7 @@ class WorkflowRunCompact(object):
 
     attribute_map = {
         'id': 'id',
+        'urn': 'urn',
         'href': 'href',
         'name': 'name',
         'time_started': 'timeStarted',
@@ -72,13 +74,14 @@ class WorkflowRunCompact(object):
         'acl': 'acl'
     }
 
-    def __init__(self, id=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         """WorkflowRunCompact - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
+        self._urn = None
         self._href = None
         self._name = None
         self._time_started = None
@@ -99,6 +102,8 @@ class WorkflowRunCompact(object):
 
         if id is not None:
             self.id = id
+        if urn is not None:
+            self.urn = urn
         if href is not None:
             self.href = href
         if name is not None:
@@ -156,6 +161,29 @@ class WorkflowRunCompact(object):
         self._id = id
 
     @property
+    def urn(self):
+        """Gets the urn of this WorkflowRunCompact.  # noqa: E501
+
+        URN of the resource  # noqa: E501
+
+        :return: The urn of this WorkflowRunCompact.  # noqa: E501
+        :rtype: str
+        """
+        return self._urn
+
+    @urn.setter
+    def urn(self, urn):
+        """Sets the urn of this WorkflowRunCompact.
+
+        URN of the resource  # noqa: E501
+
+        :param urn: The urn of this WorkflowRunCompact.  # noqa: E501
+        :type: str
+        """
+
+        self._urn = urn
+
+    @property
     def href(self):
         """Gets the href of this WorkflowRunCompact.  # noqa: E501
 
@@ -182,7 +210,7 @@ class WorkflowRunCompact(object):
     def name(self):
         """Gets the name of this WorkflowRunCompact.  # noqa: E501
 
-        Name of the workflow  # noqa: E501
+        Name of the workflow run  # noqa: E501
 
         :return: The name of this WorkflowRunCompact.  # noqa: E501
         :rtype: str
@@ -193,7 +221,7 @@ class WorkflowRunCompact(object):
     def name(self, name):
         """Sets the name of this WorkflowRunCompact.
 
-        Name of the workflow  # noqa: E501
+        Name of the workflow run  # noqa: E501
 
         :param name: The name of this WorkflowRunCompact.  # noqa: E501
         :type: str
@@ -211,7 +239,7 @@ class WorkflowRunCompact(object):
     def time_started(self):
         """Gets the time_started of this WorkflowRunCompact.  # noqa: E501
 
-        The time (in UTC) the Workflow Run started  # noqa: E501
+        The time (in UTC) the workflow run started  # noqa: E501
 
         :return: The time_started of this WorkflowRunCompact.  # noqa: E501
         :rtype: datetime
@@ -222,7 +250,7 @@ class WorkflowRunCompact(object):
     def time_started(self, time_started):
         """Sets the time_started of this WorkflowRunCompact.
 
-        The time (in UTC) the Workflow Run started  # noqa: E501
+        The time (in UTC) the workflow run started  # noqa: E501
 
         :param time_started: The time_started of this WorkflowRunCompact.  # noqa: E501
         :type: datetime

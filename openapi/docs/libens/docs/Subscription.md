@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **name** | **str** | Name of the subscription | [optional] 
 **description** | **str** | Optional description for the subscription | [optional] 
 **delivery_target** | [**DeliveryTarget**](DeliveryTarget.md) |  | [optional] 
+**match_identities** | **list[str]** | ACL Identities for events the subscription matches | [optional] 
+**acl** | **list[str]** | The list of identities that have access to this subscription | [optional] 
 **tenant_id** | **str** | Tenant id of the subscription owner | [optional] 
 **created_by_user_id** | **str** | User id for the creator of the subscription | [optional] 
 **time_created** | **datetime** | Timestamp when the subscription was created | [optional] 

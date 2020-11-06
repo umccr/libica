@@ -294,6 +294,7 @@ class WorkflowVersionsApi(object):
         :param async_req bool: execute request asynchronously
         :param str workflow_id: ID of the workflow (required)
         :param str version_name: Name of the workflow version (required)
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param LaunchWorkflowVersionRequest body:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
@@ -321,6 +322,7 @@ class WorkflowVersionsApi(object):
         :param async_req bool: execute request asynchronously
         :param str workflow_id: ID of the workflow (required)
         :param str version_name: Name of the workflow version (required)
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param LaunchWorkflowVersionRequest body:
         :param _return_http_data_only: response data without head status code
                                        and headers
@@ -341,6 +343,7 @@ class WorkflowVersionsApi(object):
         all_params = [
             'workflow_id',
             'version_name',
+            'include',
             'body'
         ]
         all_params.extend(
@@ -378,6 +381,9 @@ class WorkflowVersionsApi(object):
             path_params['versionName'] = local_var_params['version_name']  # noqa: E501
 
         query_params = []
+        if 'include' in local_var_params and local_var_params['include'] is not None:  # noqa: E501
+            query_params.append(('include', local_var_params['include']))  # noqa: E501
+            collection_formats['include'] = 'csv'  # noqa: E501
 
         header_params = {}
 
@@ -425,7 +431,7 @@ class WorkflowVersionsApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str tenant_id: ID of the tenant
-        :param list[ListAllWorkflowsVersionsIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).
@@ -454,7 +460,7 @@ class WorkflowVersionsApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str tenant_id: ID of the tenant
-        :param list[ListAllWorkflowsVersionsIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).
@@ -556,7 +562,7 @@ class WorkflowVersionsApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str workflow_id: ID of the workflow (required)
-        :param list[ListWorkflowVersionsIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).
@@ -585,7 +591,7 @@ class WorkflowVersionsApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str workflow_id: ID of the workflow (required)
-        :param list[ListWorkflowVersionsIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).

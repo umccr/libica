@@ -18,7 +18,7 @@ This endpoint provides the ability for the user to get the aggregated usage data
 
 ### Example
 
-* Api Key Authentication (Basic):
+* Basic Authentication (Basic):
 ```python
 from __future__ import print_function
 import time
@@ -36,15 +36,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -88,15 +84,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -161,7 +153,7 @@ This endpoint provides the billing details for specified period id. Summarize ea
 
 ### Example
 
-* Api Key Authentication (Basic):
+* Basic Authentication (Basic):
 ```python
 from __future__ import print_function
 import time
@@ -179,15 +171,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -231,15 +219,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -304,7 +288,7 @@ This endpoint provides the periods details
 
 ### Example
 
-* Api Key Authentication (Basic):
+* Basic Authentication (Basic):
 ```python
 from __future__ import print_function
 import time
@@ -322,15 +306,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(
@@ -374,15 +354,11 @@ configuration = libiap.openapi.libconsole.Configuration(
 # Examples for each auth method are provided below, use the example that
 # satisfies your auth use case.
 
-# Configure API key authorization: Basic
+# Configure HTTP basic authorization: Basic
 configuration = libiap.openapi.libconsole.Configuration(
-    host = "https://aps2.platform.illumina.com",
-    api_key = {
-        'Authorization': 'YOUR_API_KEY'
-    }
+    username = 'YOUR_USERNAME',
+    password = 'YOUR_PASSWORD'
 )
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Configure API key authorization: Bearer
 configuration = libiap.openapi.libconsole.Configuration(

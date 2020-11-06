@@ -39,7 +39,8 @@ class AwsS3TemporaryUploadCredentials(object):
         'region': 'str',
         'bucket_name': 'str',
         'key_prefix': 'str',
-        'expiration_date': 'datetime'
+        'expiration_date': 'datetime',
+        'service_url': 'str'
     }
 
     attribute_map = {
@@ -49,10 +50,11 @@ class AwsS3TemporaryUploadCredentials(object):
         'region': 'region',
         'bucket_name': 'bucketName',
         'key_prefix': 'keyPrefix',
-        'expiration_date': 'expirationDate'
+        'expiration_date': 'expirationDate',
+        'service_url': 'serviceUrl'
     }
 
-    def __init__(self, access_key_id=None, secret_access_key=None, session_token=None, region=None, bucket_name=None, key_prefix=None, expiration_date=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, access_key_id=None, secret_access_key=None, session_token=None, region=None, bucket_name=None, key_prefix=None, expiration_date=None, service_url=None, local_vars_configuration=None):  # noqa: E501
         """AwsS3TemporaryUploadCredentials - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -65,6 +67,7 @@ class AwsS3TemporaryUploadCredentials(object):
         self._bucket_name = None
         self._key_prefix = None
         self._expiration_date = None
+        self._service_url = None
         self.discriminator = None
 
         if access_key_id is not None:
@@ -81,6 +84,8 @@ class AwsS3TemporaryUploadCredentials(object):
             self.key_prefix = key_prefix
         if expiration_date is not None:
             self.expiration_date = expiration_date
+        if service_url is not None:
+            self.service_url = service_url
 
     @property
     def access_key_id(self):
@@ -242,6 +247,29 @@ class AwsS3TemporaryUploadCredentials(object):
         """
 
         self._expiration_date = expiration_date
+
+    @property
+    def service_url(self):
+        """Gets the service_url of this AwsS3TemporaryUploadCredentials.  # noqa: E501
+
+        Service endpoint for accessing S3.  This is optional for AWS S3, but mandatory for other services like Taiwan Computing Cloud.  # noqa: E501
+
+        :return: The service_url of this AwsS3TemporaryUploadCredentials.  # noqa: E501
+        :rtype: str
+        """
+        return self._service_url
+
+    @service_url.setter
+    def service_url(self, service_url):
+        """Sets the service_url of this AwsS3TemporaryUploadCredentials.
+
+        Service endpoint for accessing S3.  This is optional for AWS S3, but mandatory for other services like Taiwan Computing Cloud.  # noqa: E501
+
+        :param service_url: The service_url of this AwsS3TemporaryUploadCredentials.  # noqa: E501
+        :type: str
+        """
+
+        self._service_url = service_url
 
     def to_dict(self):
         """Returns the model properties as a dict"""

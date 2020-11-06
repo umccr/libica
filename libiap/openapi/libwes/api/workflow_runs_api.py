@@ -47,6 +47,7 @@ class WorkflowRunsApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str run_id: ID of the workflow run (required)
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param AbortWorkflowRunRequest body:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
@@ -73,6 +74,7 @@ class WorkflowRunsApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str run_id: ID of the workflow run (required)
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param AbortWorkflowRunRequest body:
         :param _return_http_data_only: response data without head status code
                                        and headers
@@ -92,6 +94,7 @@ class WorkflowRunsApi(object):
 
         all_params = [
             'run_id',
+            'include',
             'body'
         ]
         all_params.extend(
@@ -123,6 +126,9 @@ class WorkflowRunsApi(object):
             path_params['runId'] = local_var_params['run_id']  # noqa: E501
 
         query_params = []
+        if 'include' in local_var_params and local_var_params['include'] is not None:  # noqa: E501
+            query_params.append(('include', local_var_params['include']))  # noqa: E501
+            collection_formats['include'] = 'csv'  # noqa: E501
 
         header_params = {}
 
@@ -170,7 +176,7 @@ class WorkflowRunsApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str run_id: ID of the workflow run (required)
-        :param list[GetWorkflowRunIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -196,7 +202,7 @@ class WorkflowRunsApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str run_id: ID of the workflow run (required)
-        :param list[GetWorkflowRunIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -291,7 +297,7 @@ class WorkflowRunsApi(object):
         :param async_req bool: execute request asynchronously
         :param str run_id: ID of the workflow run (required)
         :param str sort:
-        :param list[GetWorkflowRunHistoryIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -320,7 +326,7 @@ class WorkflowRunsApi(object):
         :param async_req bool: execute request asynchronously
         :param str run_id: ID of the workflow run (required)
         :param str sort:
-        :param list[GetWorkflowRunHistoryIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param _return_http_data_only: response data without head status code
@@ -424,10 +430,10 @@ class WorkflowRunsApi(object):
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param list[WorkflowRunStatus] status:
+        :param list[str] status:
         :param str tenant_id: ID of the tenant
         :param str name:
-        :param list[ListWorkflowRunsIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).
@@ -455,10 +461,10 @@ class WorkflowRunsApi(object):
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param list[WorkflowRunStatus] status:
+        :param list[str] status:
         :param str tenant_id: ID of the tenant
         :param str name:
-        :param list[ListWorkflowRunsIncludeFlags] include: Comma-separated list of properties to include in the response
+        :param list[str] include: Comma-separated list of properties to include in the response
         :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.
         :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.
         :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).

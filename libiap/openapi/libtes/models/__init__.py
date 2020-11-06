@@ -30,7 +30,7 @@ from libiap.openapi.libtes.models.resources import Resources
 from libiap.openapi.libtes.models.system_files import SystemFiles
 from libiap.openapi.libtes.models.task import Task
 from libiap.openapi.libtes.models.task_run import TaskRun
-from libiap.openapi.libtes.models.task_run_direct import TaskRunDirect
+from libiap.openapi.libtes.models.task_run_logs import TaskRunLogs
 from libiap.openapi.libtes.models.task_run_summary import TaskRunSummary
 from libiap.openapi.libtes.models.task_run_summary_paged_items import TaskRunSummaryPagedItems
 from libiap.openapi.libtes.models.task_summary import TaskSummary

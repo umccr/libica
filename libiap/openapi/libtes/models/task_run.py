@@ -34,13 +34,15 @@ class TaskRun(object):
     """
     openapi_types = {
         'id': 'str',
-        'name': 'str',
         'href': 'str',
+        'urn': 'str',
+        'name': 'str',
         'description': 'str',
         'status': 'str',
         'status_details': 'str',
         'execution': 'Execution',
         'task_version_summary': 'TaskVersionSummary',
+        'logs': 'list[TaskRunLogs]',
         'acl': 'list[str]',
         'tenant_id': 'str',
         'sub_tenant_id': 'str',
@@ -52,13 +54,15 @@ class TaskRun(object):
 
     attribute_map = {
         'id': 'id',
-        'name': 'name',
         'href': 'href',
+        'urn': 'urn',
+        'name': 'name',
         'description': 'description',
         'status': 'status',
         'status_details': 'statusDetails',
         'execution': 'execution',
         'task_version_summary': 'taskVersionSummary',
+        'logs': 'logs',
         'acl': 'acl',
         'tenant_id': 'tenantId',
         'sub_tenant_id': 'subTenantId',
@@ -68,20 +72,22 @@ class TaskRun(object):
         'time_modified': 'timeModified'
     }
 
-    def __init__(self, id=None, name=None, href=None, description=None, status='Pending', status_details=None, execution=None, task_version_summary=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, href=None, urn=None, name=None, description=None, status='Pending', status_details=None, execution=None, task_version_summary=None, logs=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
         """TaskRun - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._id = None
-        self._name = None
         self._href = None
+        self._urn = None
+        self._name = None
         self._description = None
         self._status = None
         self._status_details = None
         self._execution = None
         self._task_version_summary = None
+        self._logs = None
         self._acl = None
         self._tenant_id = None
         self._sub_tenant_id = None
@@ -93,10 +99,12 @@ class TaskRun(object):
 
         if id is not None:
             self.id = id
-        if name is not None:
-            self.name = name
         if href is not None:
             self.href = href
+        if urn is not None:
+            self.urn = urn
+        if name is not None:
+            self.name = name
         if description is not None:
             self.description = description
         if status is not None:
@@ -107,6 +115,8 @@ class TaskRun(object):
             self.execution = execution
         if task_version_summary is not None:
             self.task_version_summary = task_version_summary
+        if logs is not None:
+            self.logs = logs
         if acl is not None:
             self.acl = acl
         if tenant_id is not None:
@@ -146,6 +156,52 @@ class TaskRun(object):
         self._id = id
 
     @property
+    def href(self):
+        """Gets the href of this TaskRun.  # noqa: E501
+
+        Href of the object  # noqa: E501
+
+        :return: The href of this TaskRun.  # noqa: E501
+        :rtype: str
+        """
+        return self._href
+
+    @href.setter
+    def href(self, href):
+        """Sets the href of this TaskRun.
+
+        Href of the object  # noqa: E501
+
+        :param href: The href of this TaskRun.  # noqa: E501
+        :type: str
+        """
+
+        self._href = href
+
+    @property
+    def urn(self):
+        """Gets the urn of this TaskRun.  # noqa: E501
+
+        URN of the resource  # noqa: E501
+
+        :return: The urn of this TaskRun.  # noqa: E501
+        :rtype: str
+        """
+        return self._urn
+
+    @urn.setter
+    def urn(self, urn):
+        """Sets the urn of this TaskRun.
+
+        URN of the resource  # noqa: E501
+
+        :param urn: The urn of this TaskRun.  # noqa: E501
+        :type: str
+        """
+
+        self._urn = urn
+
+    @property
     def name(self):
         """Gets the name of this TaskRun.  # noqa: E501
 
@@ -171,29 +227,6 @@ class TaskRun(object):
             raise ValueError("Invalid value for `name`, length must be greater than or equal to `0`")  # noqa: E501
 
         self._name = name
-
-    @property
-    def href(self):
-        """Gets the href of this TaskRun.  # noqa: E501
-
-        Href of the object  # noqa: E501
-
-        :return: The href of this TaskRun.  # noqa: E501
-        :rtype: str
-        """
-        return self._href
-
-    @href.setter
-    def href(self, href):
-        """Sets the href of this TaskRun.
-
-        Href of the object  # noqa: E501
-
-        :param href: The href of this TaskRun.  # noqa: E501
-        :type: str
-        """
-
-        self._href = href
 
     @property
     def description(self):
@@ -311,6 +344,27 @@ class TaskRun(object):
         """
 
         self._task_version_summary = task_version_summary
+
+    @property
+    def logs(self):
+        """Gets the logs of this TaskRun.  # noqa: E501
+
+
+        :return: The logs of this TaskRun.  # noqa: E501
+        :rtype: list[TaskRunLogs]
+        """
+        return self._logs
+
+    @logs.setter
+    def logs(self, logs):
+        """Sets the logs of this TaskRun.
+
+
+        :param logs: The logs of this TaskRun.  # noqa: E501
+        :type: list[TaskRunLogs]
+        """
+
+        self._logs = logs
 
     @property
     def acl(self):

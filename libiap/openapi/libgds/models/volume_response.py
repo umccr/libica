@@ -38,12 +38,16 @@ class VolumeResponse(object):
         'tenant_id': 'str',
         'sub_tenant_id': 'str',
         'urn': 'str',
+        'root_folder_id': 'str',
+        'root_key_prefix': 'str',
+        'volume_configuration_name': 'str',
         'inherited_acl': 'list[str]',
         'time_created': 'datetime',
         'created_by': 'str',
         'time_modified': 'datetime',
         'modified_by': 'str',
-        'job_status': 'JobStatus'
+        'job_status': 'JobStatus',
+        'metadata': 'object'
     }
 
     attribute_map = {
@@ -52,15 +56,19 @@ class VolumeResponse(object):
         'tenant_id': 'tenantId',
         'sub_tenant_id': 'subTenantId',
         'urn': 'urn',
+        'root_folder_id': 'rootFolderId',
+        'root_key_prefix': 'rootKeyPrefix',
+        'volume_configuration_name': 'volumeConfigurationName',
         'inherited_acl': 'inheritedAcl',
         'time_created': 'timeCreated',
         'created_by': 'createdBy',
         'time_modified': 'timeModified',
         'modified_by': 'modifiedBy',
-        'job_status': 'jobStatus'
+        'job_status': 'jobStatus',
+        'metadata': 'metadata'
     }
 
-    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, local_vars_configuration=None):  # noqa: E501
         """VolumeResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -71,12 +79,16 @@ class VolumeResponse(object):
         self._tenant_id = None
         self._sub_tenant_id = None
         self._urn = None
+        self._root_folder_id = None
+        self._root_key_prefix = None
+        self._volume_configuration_name = None
         self._inherited_acl = None
         self._time_created = None
         self._created_by = None
         self._time_modified = None
         self._modified_by = None
         self._job_status = None
+        self._metadata = None
         self.discriminator = None
 
         if id is not None:
@@ -89,6 +101,12 @@ class VolumeResponse(object):
             self.sub_tenant_id = sub_tenant_id
         if urn is not None:
             self.urn = urn
+        if root_folder_id is not None:
+            self.root_folder_id = root_folder_id
+        if root_key_prefix is not None:
+            self.root_key_prefix = root_key_prefix
+        if volume_configuration_name is not None:
+            self.volume_configuration_name = volume_configuration_name
         if inherited_acl is not None:
             self.inherited_acl = inherited_acl
         if time_created is not None:
@@ -101,6 +119,8 @@ class VolumeResponse(object):
             self.modified_by = modified_by
         if job_status is not None:
             self.job_status = job_status
+        if metadata is not None:
+            self.metadata = metadata
 
     @property
     def id(self):
@@ -216,6 +236,75 @@ class VolumeResponse(object):
         """
 
         self._urn = urn
+
+    @property
+    def root_folder_id(self):
+        """Gets the root_folder_id of this VolumeResponse.  # noqa: E501
+
+        The unique identifier for the root Folder of this Volume  # noqa: E501
+
+        :return: The root_folder_id of this VolumeResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._root_folder_id
+
+    @root_folder_id.setter
+    def root_folder_id(self, root_folder_id):
+        """Sets the root_folder_id of this VolumeResponse.
+
+        The unique identifier for the root Folder of this Volume  # noqa: E501
+
+        :param root_folder_id: The root_folder_id of this VolumeResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._root_folder_id = root_folder_id
+
+    @property
+    def root_key_prefix(self):
+        """Gets the root_key_prefix of this VolumeResponse.  # noqa: E501
+
+        The base bucket location for Volumes associated with custom VolumeConfigurations otherwise this field is not set.  # noqa: E501
+
+        :return: The root_key_prefix of this VolumeResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._root_key_prefix
+
+    @root_key_prefix.setter
+    def root_key_prefix(self, root_key_prefix):
+        """Sets the root_key_prefix of this VolumeResponse.
+
+        The base bucket location for Volumes associated with custom VolumeConfigurations otherwise this field is not set.  # noqa: E501
+
+        :param root_key_prefix: The root_key_prefix of this VolumeResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._root_key_prefix = root_key_prefix
+
+    @property
+    def volume_configuration_name(self):
+        """Gets the volume_configuration_name of this VolumeResponse.  # noqa: E501
+
+        Unique name of the Volume configuration for this Volume.  This field will only be set if a custom Volume configuration is associated.  # noqa: E501
+
+        :return: The volume_configuration_name of this VolumeResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._volume_configuration_name
+
+    @volume_configuration_name.setter
+    def volume_configuration_name(self, volume_configuration_name):
+        """Sets the volume_configuration_name of this VolumeResponse.
+
+        Unique name of the Volume configuration for this Volume.  This field will only be set if a custom Volume configuration is associated.  # noqa: E501
+
+        :param volume_configuration_name: The volume_configuration_name of this VolumeResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._volume_configuration_name = volume_configuration_name
 
     @property
     def inherited_acl(self):
@@ -352,6 +441,29 @@ class VolumeResponse(object):
         """
 
         self._job_status = job_status
+
+    @property
+    def metadata(self):
+        """Gets the metadata of this VolumeResponse.  # noqa: E501
+
+        Metadata about this Volume  # noqa: E501
+
+        :return: The metadata of this VolumeResponse.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this VolumeResponse.
+
+        Metadata about this Volume  # noqa: E501
+
+        :param metadata: The metadata of this VolumeResponse.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata = metadata
 
     def to_dict(self):
         """Returns the model properties as a dict"""
