@@ -61,6 +61,14 @@ More examples available at:
 - [PyDoc](https://umccr-illumina.github.io/libiap/libiap/)
 - [Wiki](https://github.com/umccr-illumina/libiap/wiki)
 
+## Alpha Modules Deprecation Note
+
+> 🙋‍♂️ For those who just get started using `libiap`, please use auto-generated OpenAPI modules under `libiap.openapi` package (e.g. `libiap.openapi.libwes`, ...) for better upstream support. 
+
+- Those _alpha_ modules directly under top level package (e.g. `libiap.libwes`, ...) may be deprecated in near future releases. 
+- These _alpha_ modules are there for some backward compatible and graceful migration support purpose only. 
+- Start from release `0.4.0`, you will get deprecation warning when you attempt to import or use these _alpha_ modules.
+
 ## Development
 
 - Setup virtual environment and activate it
@@ -73,6 +81,7 @@ make install
 - To run unit tests suite
 ```commandline
 make unit
+make autounit
 ```
 
 - To bring up _mock_ API _μ_-services
