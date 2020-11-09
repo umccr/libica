@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,7 +9,7 @@
       
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.2">
     
     
       
@@ -19,13 +17,17 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6e35a1a6.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.19190aaf.min.css">
       
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.24b84193.min.css">
+        
       
     
     
     
       
+        
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
@@ -40,7 +42,13 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
   
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -57,7 +65,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="../../.." title="libiap" class="md-header-nav__button md-logo" aria-label="libiap">
       
@@ -132,8 +142,6 @@
     
     <div class="md-container" data-md-component="container">
       
-        
-      
       
         
       
@@ -144,7 +152,9 @@
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="libiap" class="md-nav__button md-logo" aria-label="libiap">
       
@@ -176,7 +186,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libwes/" title="libwes" class="md-nav__link">
+    <a href="../../../libwes/" class="md-nav__link">
       libwes
     </a>
   </li>
@@ -188,7 +198,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libtes/" title="libtes" class="md-nav__link">
+    <a href="../../../libtes/" class="md-nav__link">
       libtes
     </a>
   </li>
@@ -200,7 +210,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libgds/" title="libgds" class="md-nav__link">
+    <a href="../../../libgds/" class="md-nav__link">
       libgds
     </a>
   </li>
@@ -212,7 +222,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libens/" title="libens" class="md-nav__link">
+    <a href="../../../libens/" class="md-nav__link">
       libens
     </a>
   </li>
@@ -224,7 +234,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../" title="libconsole" class="md-nav__link">
+    <a href="../../" class="md-nav__link">
       libconsole
     </a>
   </li>
@@ -260,9 +270,6 @@
                   <a href="https://github.com/umccr-illumina/libiap/edit/master/docs/libconsole/docs/UsagesApi.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
-                
-                
-                  
                 
                 
                 <h1 id="libiapopenapilibconsoleusagesapi">libiap.openapi.libconsole.UsagesApi<a class="headerlink" href="#libiapopenapilibconsoleusagesapi" title="Permanent link">&para;</a></h1>
@@ -301,7 +308,7 @@
 <p>This endpoint provides the ability for the user to get the aggregated usage data</p>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Api Key Authentication (Basic):</li>
+<li>Basic Authentication (Basic):</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -319,15 +326,11 @@
 <span class="c1"># Examples for each auth method are provided below, use the example that</span>
 <span class="c1"># satisfies your auth use case.</span>
 
-<span class="c1"># Configure API key authorization: Basic</span>
+<span class="c1"># Configure HTTP basic authorization: Basic</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
-    <span class="p">}</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;YOUR_USERNAME&#39;</span><span class="p">,</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;YOUR_PASSWORD&#39;</span>
 <span class="p">)</span>
-<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
-<span class="c1"># configuration.api_key_prefix[&#39;Authorization&#39;] = &#39;Bearer&#39;</span>
 
 <span class="c1"># Configure API key authorization: Bearer</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
@@ -352,7 +355,6 @@
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling UsagesApi-&gt;get_usage: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
-
 
 <ul>
 <li>Api Key Authentication (Bearer):</li>
@@ -373,15 +375,11 @@
 <span class="c1"># Examples for each auth method are provided below, use the example that</span>
 <span class="c1"># satisfies your auth use case.</span>
 
-<span class="c1"># Configure API key authorization: Basic</span>
+<span class="c1"># Configure HTTP basic authorization: Basic</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
-    <span class="p">}</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;YOUR_USERNAME&#39;</span><span class="p">,</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;YOUR_PASSWORD&#39;</span>
 <span class="p">)</span>
-<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
-<span class="c1"># configuration.api_key_prefix[&#39;Authorization&#39;] = &#39;Bearer&#39;</span>
 
 <span class="c1"># Configure API key authorization: Bearer</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
@@ -406,7 +404,6 @@
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling UsagesApi-&gt;get_usage: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
-
 
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <table>
@@ -482,7 +479,7 @@
 <p>This endpoint provides the billing details for specified period id. Summarize each compute usage and daily gds usage</p>
 <h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Api Key Authentication (Basic):</li>
+<li>Basic Authentication (Basic):</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -500,15 +497,11 @@
 <span class="c1"># Examples for each auth method are provided below, use the example that</span>
 <span class="c1"># satisfies your auth use case.</span>
 
-<span class="c1"># Configure API key authorization: Basic</span>
+<span class="c1"># Configure HTTP basic authorization: Basic</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
-    <span class="p">}</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;YOUR_USERNAME&#39;</span><span class="p">,</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;YOUR_PASSWORD&#39;</span>
 <span class="p">)</span>
-<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
-<span class="c1"># configuration.api_key_prefix[&#39;Authorization&#39;] = &#39;Bearer&#39;</span>
 
 <span class="c1"># Configure API key authorization: Bearer</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
@@ -533,7 +526,6 @@
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling UsagesApi-&gt;get_usage_details: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
-
 
 <ul>
 <li>Api Key Authentication (Bearer):</li>
@@ -554,15 +546,11 @@
 <span class="c1"># Examples for each auth method are provided below, use the example that</span>
 <span class="c1"># satisfies your auth use case.</span>
 
-<span class="c1"># Configure API key authorization: Basic</span>
+<span class="c1"># Configure HTTP basic authorization: Basic</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
-    <span class="p">}</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;YOUR_USERNAME&#39;</span><span class="p">,</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;YOUR_PASSWORD&#39;</span>
 <span class="p">)</span>
-<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
-<span class="c1"># configuration.api_key_prefix[&#39;Authorization&#39;] = &#39;Bearer&#39;</span>
 
 <span class="c1"># Configure API key authorization: Bearer</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
@@ -587,7 +575,6 @@
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling UsagesApi-&gt;get_usage_details: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
-
 
 <h3 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h3>
 <table>
@@ -663,7 +650,7 @@
 <p>This endpoint provides the periods details</p>
 <h3 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Api Key Authentication (Basic):</li>
+<li>Basic Authentication (Basic):</li>
 </ul>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
 <span class="kn">import</span> <span class="nn">time</span>
@@ -681,15 +668,11 @@
 <span class="c1"># Examples for each auth method are provided below, use the example that</span>
 <span class="c1"># satisfies your auth use case.</span>
 
-<span class="c1"># Configure API key authorization: Basic</span>
+<span class="c1"># Configure HTTP basic authorization: Basic</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
-    <span class="p">}</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;YOUR_USERNAME&#39;</span><span class="p">,</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;YOUR_PASSWORD&#39;</span>
 <span class="p">)</span>
-<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
-<span class="c1"># configuration.api_key_prefix[&#39;Authorization&#39;] = &#39;Bearer&#39;</span>
 
 <span class="c1"># Configure API key authorization: Bearer</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
@@ -714,7 +697,6 @@
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling UsagesApi-&gt;get_usage_periods: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
-
 
 <ul>
 <li>Api Key Authentication (Bearer):</li>
@@ -735,15 +717,11 @@
 <span class="c1"># Examples for each auth method are provided below, use the example that</span>
 <span class="c1"># satisfies your auth use case.</span>
 
-<span class="c1"># Configure API key authorization: Basic</span>
+<span class="c1"># Configure HTTP basic authorization: Basic</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
-    <span class="p">}</span>
+    <span class="n">username</span> <span class="o">=</span> <span class="s1">&#39;YOUR_USERNAME&#39;</span><span class="p">,</span>
+    <span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;YOUR_PASSWORD&#39;</span>
 <span class="p">)</span>
-<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
-<span class="c1"># configuration.api_key_prefix[&#39;Authorization&#39;] = &#39;Bearer&#39;</span>
 
 <span class="c1"># Configure API key authorization: Bearer</span>
 <span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libconsole</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
@@ -768,7 +746,6 @@
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling UsagesApi-&gt;get_usage_periods: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
-
 
 <h3 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">&para;</a></h3>
 <table>
@@ -889,15 +866,15 @@
       
     </div>
     
-      <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c1ccee15.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "../../..",
           features: [],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.c03f0417.min.js"
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

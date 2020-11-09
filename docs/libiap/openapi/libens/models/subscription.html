@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.8.1" />
+<meta name="generator" content="pdoc 0.9.1" />
 <title>libiap.openapi.libens.models.subscription API documentation</title>
 <meta name="description" content="Event Notification Service …" />
-<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
-<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
 <style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
 <body>
 <main>
@@ -72,6 +74,8 @@ class Subscription(object):
         &#39;name&#39;: &#39;str&#39;,
         &#39;description&#39;: &#39;str&#39;,
         &#39;delivery_target&#39;: &#39;DeliveryTarget&#39;,
+        &#39;match_identities&#39;: &#39;list[str]&#39;,
+        &#39;acl&#39;: &#39;list[str]&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
         &#39;created_by_user_id&#39;: &#39;str&#39;,
         &#39;time_created&#39;: &#39;datetime&#39;,
@@ -89,6 +93,8 @@ class Subscription(object):
         &#39;name&#39;: &#39;name&#39;,
         &#39;description&#39;: &#39;description&#39;,
         &#39;delivery_target&#39;: &#39;deliveryTarget&#39;,
+        &#39;match_identities&#39;: &#39;matchIdentities&#39;,
+        &#39;acl&#39;: &#39;acl&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
         &#39;created_by_user_id&#39;: &#39;createdByUserId&#39;,
         &#39;time_created&#39;: &#39;timeCreated&#39;,
@@ -97,7 +103,7 @@ class Subscription(object):
         &#39;is_deleted&#39;: &#39;isDeleted&#39;
     }
 
-    def __init__(self, id=None, urn=None, type=None, actions=None, filter_expression=None, name=None, description=None, delivery_target=None, tenant_id=None, created_by_user_id=None, time_created=None, deleted_by_user_id=None, time_deleted=None, is_deleted=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, type=None, actions=None, filter_expression=None, name=None, description=None, delivery_target=None, match_identities=None, acl=None, tenant_id=None, created_by_user_id=None, time_created=None, deleted_by_user_id=None, time_deleted=None, is_deleted=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;Subscription - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -111,6 +117,8 @@ class Subscription(object):
         self._name = None
         self._description = None
         self._delivery_target = None
+        self._match_identities = None
+        self._acl = None
         self._tenant_id = None
         self._created_by_user_id = None
         self._time_created = None
@@ -135,6 +143,10 @@ class Subscription(object):
             self.description = description
         if delivery_target is not None:
             self.delivery_target = delivery_target
+        if match_identities is not None:
+            self.match_identities = match_identities
+        if acl is not None:
+            self.acl = acl
         if tenant_id is not None:
             self.tenant_id = tenant_id
         if created_by_user_id is not None:
@@ -329,6 +341,52 @@ class Subscription(object):
         &#34;&#34;&#34;
 
         self._delivery_target = delivery_target
+
+    @property
+    def match_identities(self):
+        &#34;&#34;&#34;Gets the match_identities of this Subscription.  # noqa: E501
+
+        ACL Identities for events the subscription matches  # noqa: E501
+
+        :return: The match_identities of this Subscription.  # noqa: E501
+        :rtype: list[str]
+        &#34;&#34;&#34;
+        return self._match_identities
+
+    @match_identities.setter
+    def match_identities(self, match_identities):
+        &#34;&#34;&#34;Sets the match_identities of this Subscription.
+
+        ACL Identities for events the subscription matches  # noqa: E501
+
+        :param match_identities: The match_identities of this Subscription.  # noqa: E501
+        :type: list[str]
+        &#34;&#34;&#34;
+
+        self._match_identities = match_identities
+
+    @property
+    def acl(self):
+        &#34;&#34;&#34;Gets the acl of this Subscription.  # noqa: E501
+
+        The list of identities that have access to this subscription  # noqa: E501
+
+        :return: The acl of this Subscription.  # noqa: E501
+        :rtype: list[str]
+        &#34;&#34;&#34;
+        return self._acl
+
+    @acl.setter
+    def acl(self, acl):
+        &#34;&#34;&#34;Sets the acl of this Subscription.
+
+        The list of identities that have access to this subscription  # noqa: E501
+
+        :param acl: The acl of this Subscription.  # noqa: E501
+        :type: list[str]
+        &#34;&#34;&#34;
+
+        self._acl = acl
 
     @property
     def tenant_id(self):
@@ -526,7 +584,7 @@ class Subscription(object):
 <dl>
 <dt id="libiap.openapi.libens.models.subscription.Subscription"><code class="flex name class">
 <span>class <span class="ident">Subscription</span></span>
-<span>(</span><span>id=None, urn=None, type=None, actions=None, filter_expression=None, name=None, description=None, delivery_target=None, tenant_id=None, created_by_user_id=None, time_created=None, deleted_by_user_id=None, time_deleted=None, is_deleted=None, local_vars_configuration=None)</span>
+<span>(</span><span>id=None, urn=None, type=None, actions=None, filter_expression=None, name=None, description=None, delivery_target=None, match_identities=None, acl=None, tenant_id=None, created_by_user_id=None, time_created=None, deleted_by_user_id=None, time_deleted=None, is_deleted=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -560,6 +618,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;name&#39;: &#39;str&#39;,
         &#39;description&#39;: &#39;str&#39;,
         &#39;delivery_target&#39;: &#39;DeliveryTarget&#39;,
+        &#39;match_identities&#39;: &#39;list[str]&#39;,
+        &#39;acl&#39;: &#39;list[str]&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
         &#39;created_by_user_id&#39;: &#39;str&#39;,
         &#39;time_created&#39;: &#39;datetime&#39;,
@@ -577,6 +637,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;name&#39;: &#39;name&#39;,
         &#39;description&#39;: &#39;description&#39;,
         &#39;delivery_target&#39;: &#39;deliveryTarget&#39;,
+        &#39;match_identities&#39;: &#39;matchIdentities&#39;,
+        &#39;acl&#39;: &#39;acl&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
         &#39;created_by_user_id&#39;: &#39;createdByUserId&#39;,
         &#39;time_created&#39;: &#39;timeCreated&#39;,
@@ -585,7 +647,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;is_deleted&#39;: &#39;isDeleted&#39;
     }
 
-    def __init__(self, id=None, urn=None, type=None, actions=None, filter_expression=None, name=None, description=None, delivery_target=None, tenant_id=None, created_by_user_id=None, time_created=None, deleted_by_user_id=None, time_deleted=None, is_deleted=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, type=None, actions=None, filter_expression=None, name=None, description=None, delivery_target=None, match_identities=None, acl=None, tenant_id=None, created_by_user_id=None, time_created=None, deleted_by_user_id=None, time_deleted=None, is_deleted=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;Subscription - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -599,6 +661,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._name = None
         self._description = None
         self._delivery_target = None
+        self._match_identities = None
+        self._acl = None
         self._tenant_id = None
         self._created_by_user_id = None
         self._time_created = None
@@ -623,6 +687,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.description = description
         if delivery_target is not None:
             self.delivery_target = delivery_target
+        if match_identities is not None:
+            self.match_identities = match_identities
+        if acl is not None:
+            self.acl = acl
         if tenant_id is not None:
             self.tenant_id = tenant_id
         if created_by_user_id is not None:
@@ -817,6 +885,52 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._delivery_target = delivery_target
+
+    @property
+    def match_identities(self):
+        &#34;&#34;&#34;Gets the match_identities of this Subscription.  # noqa: E501
+
+        ACL Identities for events the subscription matches  # noqa: E501
+
+        :return: The match_identities of this Subscription.  # noqa: E501
+        :rtype: list[str]
+        &#34;&#34;&#34;
+        return self._match_identities
+
+    @match_identities.setter
+    def match_identities(self, match_identities):
+        &#34;&#34;&#34;Sets the match_identities of this Subscription.
+
+        ACL Identities for events the subscription matches  # noqa: E501
+
+        :param match_identities: The match_identities of this Subscription.  # noqa: E501
+        :type: list[str]
+        &#34;&#34;&#34;
+
+        self._match_identities = match_identities
+
+    @property
+    def acl(self):
+        &#34;&#34;&#34;Gets the acl of this Subscription.  # noqa: E501
+
+        The list of identities that have access to this subscription  # noqa: E501
+
+        :return: The acl of this Subscription.  # noqa: E501
+        :rtype: list[str]
+        &#34;&#34;&#34;
+        return self._acl
+
+    @acl.setter
+    def acl(self, acl):
+        &#34;&#34;&#34;Sets the acl of this Subscription.
+
+        The list of identities that have access to this subscription  # noqa: E501
+
+        :param acl: The acl of this Subscription.  # noqa: E501
+        :type: list[str]
+        &#34;&#34;&#34;
+
+        self._acl = acl
 
     @property
     def tenant_id(self):
@@ -1015,6 +1129,31 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 </dl>
 <h3>Instance variables</h3>
 <dl>
+<dt id="libiap.openapi.libens.models.subscription.Subscription.acl"><code class="name">var <span class="ident">acl</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the acl of this Subscription.
+# noqa: E501</p>
+<p>The list of identities that have access to this subscription
+# noqa: E501</p>
+<p>:return: The acl of this Subscription.
+# noqa: E501
+:rtype: list[str]</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def acl(self):
+    &#34;&#34;&#34;Gets the acl of this Subscription.  # noqa: E501
+
+    The list of identities that have access to this subscription  # noqa: E501
+
+    :return: The acl of this Subscription.  # noqa: E501
+    :rtype: list[str]
+    &#34;&#34;&#34;
+    return self._acl</code></pre>
+</details>
+</dd>
 <dt id="libiap.openapi.libens.models.subscription.Subscription.actions"><code class="name">var <span class="ident">actions</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the actions of this Subscription.
@@ -1210,6 +1349,31 @@ def is_deleted(self):
     :rtype: bool
     &#34;&#34;&#34;
     return self._is_deleted</code></pre>
+</details>
+</dd>
+<dt id="libiap.openapi.libens.models.subscription.Subscription.match_identities"><code class="name">var <span class="ident">match_identities</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the match_identities of this Subscription.
+# noqa: E501</p>
+<p>ACL Identities for events the subscription matches
+# noqa: E501</p>
+<p>:return: The match_identities of this Subscription.
+# noqa: E501
+:rtype: list[str]</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def match_identities(self):
+    &#34;&#34;&#34;Gets the match_identities of this Subscription.  # noqa: E501
+
+    ACL Identities for events the subscription matches  # noqa: E501
+
+    :return: The match_identities of this Subscription.  # noqa: E501
+    :rtype: list[str]
+    &#34;&#34;&#34;
+    return self._match_identities</code></pre>
 </details>
 </dd>
 <dt id="libiap.openapi.libens.models.subscription.Subscription.name"><code class="name">var <span class="ident">name</span></code></dt>
@@ -1434,6 +1598,7 @@ def urn(self):
 <li>
 <h4><code><a title="libiap.openapi.libens.models.subscription.Subscription" href="#libiap.openapi.libens.models.subscription.Subscription">Subscription</a></code></h4>
 <ul class="two-column">
+<li><code><a title="libiap.openapi.libens.models.subscription.Subscription.acl" href="#libiap.openapi.libens.models.subscription.Subscription.acl">acl</a></code></li>
 <li><code><a title="libiap.openapi.libens.models.subscription.Subscription.actions" href="#libiap.openapi.libens.models.subscription.Subscription.actions">actions</a></code></li>
 <li><code><a title="libiap.openapi.libens.models.subscription.Subscription.attribute_map" href="#libiap.openapi.libens.models.subscription.Subscription.attribute_map">attribute_map</a></code></li>
 <li><code><a title="libiap.openapi.libens.models.subscription.Subscription.created_by_user_id" href="#libiap.openapi.libens.models.subscription.Subscription.created_by_user_id">created_by_user_id</a></code></li>
@@ -1443,6 +1608,7 @@ def urn(self):
 <li><code><a title="libiap.openapi.libens.models.subscription.Subscription.filter_expression" href="#libiap.openapi.libens.models.subscription.Subscription.filter_expression">filter_expression</a></code></li>
 <li><code><a title="libiap.openapi.libens.models.subscription.Subscription.id" href="#libiap.openapi.libens.models.subscription.Subscription.id">id</a></code></li>
 <li><code><a title="libiap.openapi.libens.models.subscription.Subscription.is_deleted" href="#libiap.openapi.libens.models.subscription.Subscription.is_deleted">is_deleted</a></code></li>
+<li><code><a title="libiap.openapi.libens.models.subscription.Subscription.match_identities" href="#libiap.openapi.libens.models.subscription.Subscription.match_identities">match_identities</a></code></li>
 <li><code><a title="libiap.openapi.libens.models.subscription.Subscription.name" href="#libiap.openapi.libens.models.subscription.Subscription.name">name</a></code></li>
 <li><code><a title="libiap.openapi.libens.models.subscription.Subscription.openapi_types" href="#libiap.openapi.libens.models.subscription.Subscription.openapi_types">openapi_types</a></code></li>
 <li><code><a title="libiap.openapi.libens.models.subscription.Subscription.tenant_id" href="#libiap.openapi.libens.models.subscription.Subscription.tenant_id">tenant_id</a></code></li>
@@ -1460,9 +1626,7 @@ def urn(self):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad()</script>
 </body>
 </html>

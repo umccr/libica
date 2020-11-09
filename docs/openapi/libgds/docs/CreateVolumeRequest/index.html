@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,7 +9,7 @@
       
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.2">
     
     
       
@@ -19,13 +17,17 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6e35a1a6.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.19190aaf.min.css">
       
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.24b84193.min.css">
+        
       
     
     
     
       
+        
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
@@ -40,7 +42,13 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
   
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -57,7 +65,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="../../.." title="libiap" class="md-header-nav__button md-logo" aria-label="libiap">
       
@@ -132,8 +142,6 @@
     
     <div class="md-container" data-md-component="container">
       
-        
-      
       
         
       
@@ -144,7 +152,9 @@
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="libiap" class="md-nav__button md-logo" aria-label="libiap">
       
@@ -176,7 +186,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libwes/" title="libwes" class="md-nav__link">
+    <a href="../../../libwes/" class="md-nav__link">
       libwes
     </a>
   </li>
@@ -188,7 +198,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libtes/" title="libtes" class="md-nav__link">
+    <a href="../../../libtes/" class="md-nav__link">
       libtes
     </a>
   </li>
@@ -200,7 +210,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../" title="libgds" class="md-nav__link">
+    <a href="../../" class="md-nav__link">
       libgds
     </a>
   </li>
@@ -212,7 +222,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libens/" title="libens" class="md-nav__link">
+    <a href="../../../libens/" class="md-nav__link">
       libens
     </a>
   </li>
@@ -224,7 +234,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libconsole/" title="libconsole" class="md-nav__link">
+    <a href="../../../libconsole/" class="md-nav__link">
       libconsole
     </a>
   </li>
@@ -248,9 +258,7 @@
   
   
     <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
+      <span class="md-nav__icon md-icon"></span>
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
@@ -279,9 +287,6 @@
                   </a>
                 
                 
-                  
-                
-                
                 <h1 id="createvolumerequest">CreateVolumeRequest<a class="headerlink" href="#createvolumerequest" title="Permanent link">&para;</a></h1>
 <h2 id="properties">Properties<a class="headerlink" href="#properties" title="Permanent link">&para;</a></h2>
 <table>
@@ -299,6 +304,18 @@
 <td><strong>str</strong></td>
 <td>Name for the volume</td>
 <td></td>
+</tr>
+<tr>
+<td><strong>volume_configuration_name</strong></td>
+<td><strong>str</strong></td>
+<td>Unique name of the volume configuration to use</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>root_key_prefix</strong></td>
+<td><strong>str</strong></td>
+<td>The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration&#39;s keyprefix and end with a /.</td>
+<td>[optional]</td>
 </tr>
 </tbody>
 </table>
@@ -356,15 +373,15 @@
       
     </div>
     
-      <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c1ccee15.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "../../..",
           features: [],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.c03f0417.min.js"
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,7 +9,7 @@
       
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.2">
     
     
       
@@ -19,13 +17,17 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6e35a1a6.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.19190aaf.min.css">
       
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.24b84193.min.css">
+        
       
     
     
     
       
+        
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
@@ -40,7 +42,13 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
   
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -57,7 +65,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="../../.." title="libiap" class="md-header-nav__button md-logo" aria-label="libiap">
       
@@ -132,8 +142,6 @@
     
     <div class="md-container" data-md-component="container">
       
-        
-      
       
         
       
@@ -144,7 +152,9 @@
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="libiap" class="md-nav__button md-logo" aria-label="libiap">
       
@@ -176,7 +186,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../" title="libwes" class="md-nav__link">
+    <a href="../../" class="md-nav__link">
       libwes
     </a>
   </li>
@@ -188,7 +198,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libtes/" title="libtes" class="md-nav__link">
+    <a href="../../../libtes/" class="md-nav__link">
       libtes
     </a>
   </li>
@@ -200,7 +210,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libgds/" title="libgds" class="md-nav__link">
+    <a href="../../../libgds/" class="md-nav__link">
       libgds
     </a>
   </li>
@@ -212,7 +222,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libens/" title="libens" class="md-nav__link">
+    <a href="../../../libens/" class="md-nav__link">
       libens
     </a>
   </li>
@@ -224,7 +234,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libconsole/" title="libconsole" class="md-nav__link">
+    <a href="../../../libconsole/" class="md-nav__link">
       libconsole
     </a>
   </li>
@@ -260,9 +270,6 @@
                   <a href="https://github.com/umccr-illumina/libiap/edit/master/docs/libwes/docs/WorkflowSignalsApi.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
-                
-                
-                  
                 
                 
                 <h1 id="libiapopenapilibwesworkflowsignalsapi">libiap.openapi.libwes.WorkflowSignalsApi<a class="headerlink" href="#libiapopenapilibwesworkflowsignalsapi" title="Permanent link">&para;</a></h1>
@@ -348,7 +355,6 @@
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling WorkflowSignalsApi-&gt;fail_signal: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
-
 
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <table>
@@ -482,7 +488,6 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling WorkflowSignalsApi-&gt;get_signal: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
 
-
 <h3 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -595,7 +600,7 @@
     <span class="c1"># Create an instance of the API class</span>
     <span class="n">api_instance</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libwes</span><span class="o">.</span><span class="n">WorkflowSignalsApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
     <span class="n">tenant_id</span> <span class="o">=</span> <span class="s1">&#39;tenant_id_example&#39;</span> <span class="c1"># str | ID of the tenant (optional)</span>
-<span class="n">include</span> <span class="o">=</span> <span class="p">[</span><span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libwes</span><span class="o">.</span><span class="n">GetWorkflowSignalsIncludeFlags</span><span class="p">()]</span> <span class="c1"># list[GetWorkflowSignalsIncludeFlags] | Comma-separated list of properties to include in the response (optional)</span>
+<span class="n">include</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;include_example&#39;</span><span class="p">]</span> <span class="c1"># list[str] | Comma-separated list of properties to include in the response (optional)</span>
 <span class="n">page_size</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># int | Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified. (optional) (default to 10)</span>
 <span class="n">page_token</span> <span class="o">=</span> <span class="s1">&#39;page_token_example&#39;</span> <span class="c1"># str | Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified. (optional)</span>
 <span class="n">sort</span> <span class="o">=</span> <span class="s1">&#39;timeCreated asc&#39;</span> <span class="c1"># str | Specifies the order to include list items as \&quot;_{fieldName}_ [asc|desc]\&quot;. The second field is optional and specifies the sort direction (\&quot;asc\&quot; for ascending or \&quot;desc\&quot; for descending). (optional) (default to &#39;timeCreated asc&#39;)</span>
@@ -607,7 +612,6 @@
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling WorkflowSignalsApi-&gt;list_signals: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
-
 
 <h3 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">&para;</a></h3>
 <table>
@@ -628,7 +632,7 @@
 </tr>
 <tr>
 <td><strong>include</strong></td>
-<td><a href="../GetWorkflowSignalsIncludeFlags/"><strong>list[GetWorkflowSignalsIncludeFlags]</strong></a></td>
+<td><a href="str.md"><strong>list[str]</strong></a></td>
 <td>Comma-separated list of properties to include in the response</td>
 <td>[optional]</td>
 </tr>
@@ -749,7 +753,6 @@
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling WorkflowSignalsApi-&gt;succeed_signal: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
-
 
 <h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
 <table>
@@ -886,15 +889,15 @@
       
     </div>
     
-      <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c1ccee15.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "../../..",
           features: [],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.c03f0417.min.js"
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

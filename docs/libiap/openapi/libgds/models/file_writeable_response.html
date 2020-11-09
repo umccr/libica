@@ -3,15 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.8.1" />
+<meta name="generator" content="pdoc 0.9.1" />
 <title>libiap.openapi.libgds.models.file_writeable_response API documentation</title>
 <meta name="description" content="Genomic Data Store Service …" />
-<link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
-<link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" rel="stylesheet">
-<style>.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
 <style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
 </head>
 <body>
 <main>
@@ -79,11 +81,12 @@ class FileWriteableResponse(object):
         &#39;inherited_acl&#39;: &#39;list[str]&#39;,
         &#39;urn&#39;: &#39;str&#39;,
         &#39;size_in_bytes&#39;: &#39;int&#39;,
+        &#39;metadata&#39;: &#39;object&#39;,
         &#39;is_uploaded&#39;: &#39;bool&#39;,
         &#39;archive_status&#39;: &#39;ArchiveStatuses&#39;,
         &#39;time_archived&#39;: &#39;datetime&#39;,
         &#39;storage_tier&#39;: &#39;StorageTier&#39;,
-        &#39;temporary_upload_credentials&#39;: &#39;ObjectStorageCredentialsResponse&#39;,
+        &#39;e_tag&#39;: &#39;str&#39;,
         &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;
     }
 
@@ -103,15 +106,16 @@ class FileWriteableResponse(object):
         &#39;inherited_acl&#39;: &#39;inheritedAcl&#39;,
         &#39;urn&#39;: &#39;urn&#39;,
         &#39;size_in_bytes&#39;: &#39;sizeInBytes&#39;,
+        &#39;metadata&#39;: &#39;metadata&#39;,
         &#39;is_uploaded&#39;: &#39;isUploaded&#39;,
         &#39;archive_status&#39;: &#39;archiveStatus&#39;,
         &#39;time_archived&#39;: &#39;timeArchived&#39;,
         &#39;storage_tier&#39;: &#39;storageTier&#39;,
-        &#39;temporary_upload_credentials&#39;: &#39;temporaryUploadCredentials&#39;,
+        &#39;e_tag&#39;: &#39;eTag&#39;,
         &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, temporary_upload_credentials=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FileWriteableResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -132,11 +136,12 @@ class FileWriteableResponse(object):
         self._inherited_acl = None
         self._urn = None
         self._size_in_bytes = None
+        self._metadata = None
         self._is_uploaded = None
         self._archive_status = None
         self._time_archived = None
         self._storage_tier = None
-        self._temporary_upload_credentials = None
+        self._e_tag = None
         self._object_store_access = None
         self.discriminator = None
 
@@ -170,6 +175,8 @@ class FileWriteableResponse(object):
             self.urn = urn
         if size_in_bytes is not None:
             self.size_in_bytes = size_in_bytes
+        if metadata is not None:
+            self.metadata = metadata
         if is_uploaded is not None:
             self.is_uploaded = is_uploaded
         if archive_status is not None:
@@ -178,8 +185,8 @@ class FileWriteableResponse(object):
             self.time_archived = time_archived
         if storage_tier is not None:
             self.storage_tier = storage_tier
-        if temporary_upload_credentials is not None:
-            self.temporary_upload_credentials = temporary_upload_credentials
+        if e_tag is not None:
+            self.e_tag = e_tag
         if object_store_access is not None:
             self.object_store_access = object_store_access
 
@@ -529,6 +536,29 @@ class FileWriteableResponse(object):
         self._size_in_bytes = size_in_bytes
 
     @property
+    def metadata(self):
+        &#34;&#34;&#34;Gets the metadata of this FileWriteableResponse.  # noqa: E501
+
+        Metadata about this File  # noqa: E501
+
+        :return: The metadata of this FileWriteableResponse.  # noqa: E501
+        :rtype: object
+        &#34;&#34;&#34;
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        &#34;&#34;&#34;Sets the metadata of this FileWriteableResponse.
+
+        Metadata about this File  # noqa: E501
+
+        :param metadata: The metadata of this FileWriteableResponse.  # noqa: E501
+        :type: object
+        &#34;&#34;&#34;
+
+        self._metadata = metadata
+
+    @property
     def is_uploaded(self):
         &#34;&#34;&#34;Gets the is_uploaded of this FileWriteableResponse.  # noqa: E501
 
@@ -617,25 +647,27 @@ class FileWriteableResponse(object):
         self._storage_tier = storage_tier
 
     @property
-    def temporary_upload_credentials(self):
-        &#34;&#34;&#34;Gets the temporary_upload_credentials of this FileWriteableResponse.  # noqa: E501
+    def e_tag(self):
+        &#34;&#34;&#34;Gets the e_tag of this FileWriteableResponse.  # noqa: E501
 
+        The File&#39;s ETag  # noqa: E501
 
-        :return: The temporary_upload_credentials of this FileWriteableResponse.  # noqa: E501
-        :rtype: ObjectStorageCredentialsResponse
+        :return: The e_tag of this FileWriteableResponse.  # noqa: E501
+        :rtype: str
         &#34;&#34;&#34;
-        return self._temporary_upload_credentials
+        return self._e_tag
 
-    @temporary_upload_credentials.setter
-    def temporary_upload_credentials(self, temporary_upload_credentials):
-        &#34;&#34;&#34;Sets the temporary_upload_credentials of this FileWriteableResponse.
+    @e_tag.setter
+    def e_tag(self, e_tag):
+        &#34;&#34;&#34;Sets the e_tag of this FileWriteableResponse.
 
+        The File&#39;s ETag  # noqa: E501
 
-        :param temporary_upload_credentials: The temporary_upload_credentials of this FileWriteableResponse.  # noqa: E501
-        :type: ObjectStorageCredentialsResponse
+        :param e_tag: The e_tag of this FileWriteableResponse.  # noqa: E501
+        :type: str
         &#34;&#34;&#34;
 
-        self._temporary_upload_credentials = temporary_upload_credentials
+        self._e_tag = e_tag
 
     @property
     def object_store_access(self):
@@ -716,7 +748,7 @@ class FileWriteableResponse(object):
 <dl>
 <dt id="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse"><code class="flex name class">
 <span>class <span class="ident">FileWriteableResponse</span></span>
-<span>(</span><span>id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, temporary_upload_credentials=None, object_store_access=None, local_vars_configuration=None)</span>
+<span>(</span><span>id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, object_store_access=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -757,11 +789,12 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;inherited_acl&#39;: &#39;list[str]&#39;,
         &#39;urn&#39;: &#39;str&#39;,
         &#39;size_in_bytes&#39;: &#39;int&#39;,
+        &#39;metadata&#39;: &#39;object&#39;,
         &#39;is_uploaded&#39;: &#39;bool&#39;,
         &#39;archive_status&#39;: &#39;ArchiveStatuses&#39;,
         &#39;time_archived&#39;: &#39;datetime&#39;,
         &#39;storage_tier&#39;: &#39;StorageTier&#39;,
-        &#39;temporary_upload_credentials&#39;: &#39;ObjectStorageCredentialsResponse&#39;,
+        &#39;e_tag&#39;: &#39;str&#39;,
         &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;
     }
 
@@ -781,15 +814,16 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;inherited_acl&#39;: &#39;inheritedAcl&#39;,
         &#39;urn&#39;: &#39;urn&#39;,
         &#39;size_in_bytes&#39;: &#39;sizeInBytes&#39;,
+        &#39;metadata&#39;: &#39;metadata&#39;,
         &#39;is_uploaded&#39;: &#39;isUploaded&#39;,
         &#39;archive_status&#39;: &#39;archiveStatus&#39;,
         &#39;time_archived&#39;: &#39;timeArchived&#39;,
         &#39;storage_tier&#39;: &#39;storageTier&#39;,
-        &#39;temporary_upload_credentials&#39;: &#39;temporaryUploadCredentials&#39;,
+        &#39;e_tag&#39;: &#39;eTag&#39;,
         &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, temporary_upload_credentials=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FileWriteableResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -810,11 +844,12 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._inherited_acl = None
         self._urn = None
         self._size_in_bytes = None
+        self._metadata = None
         self._is_uploaded = None
         self._archive_status = None
         self._time_archived = None
         self._storage_tier = None
-        self._temporary_upload_credentials = None
+        self._e_tag = None
         self._object_store_access = None
         self.discriminator = None
 
@@ -848,6 +883,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.urn = urn
         if size_in_bytes is not None:
             self.size_in_bytes = size_in_bytes
+        if metadata is not None:
+            self.metadata = metadata
         if is_uploaded is not None:
             self.is_uploaded = is_uploaded
         if archive_status is not None:
@@ -856,8 +893,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.time_archived = time_archived
         if storage_tier is not None:
             self.storage_tier = storage_tier
-        if temporary_upload_credentials is not None:
-            self.temporary_upload_credentials = temporary_upload_credentials
+        if e_tag is not None:
+            self.e_tag = e_tag
         if object_store_access is not None:
             self.object_store_access = object_store_access
 
@@ -1207,6 +1244,29 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._size_in_bytes = size_in_bytes
 
     @property
+    def metadata(self):
+        &#34;&#34;&#34;Gets the metadata of this FileWriteableResponse.  # noqa: E501
+
+        Metadata about this File  # noqa: E501
+
+        :return: The metadata of this FileWriteableResponse.  # noqa: E501
+        :rtype: object
+        &#34;&#34;&#34;
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        &#34;&#34;&#34;Sets the metadata of this FileWriteableResponse.
+
+        Metadata about this File  # noqa: E501
+
+        :param metadata: The metadata of this FileWriteableResponse.  # noqa: E501
+        :type: object
+        &#34;&#34;&#34;
+
+        self._metadata = metadata
+
+    @property
     def is_uploaded(self):
         &#34;&#34;&#34;Gets the is_uploaded of this FileWriteableResponse.  # noqa: E501
 
@@ -1295,25 +1355,27 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._storage_tier = storage_tier
 
     @property
-    def temporary_upload_credentials(self):
-        &#34;&#34;&#34;Gets the temporary_upload_credentials of this FileWriteableResponse.  # noqa: E501
+    def e_tag(self):
+        &#34;&#34;&#34;Gets the e_tag of this FileWriteableResponse.  # noqa: E501
 
+        The File&#39;s ETag  # noqa: E501
 
-        :return: The temporary_upload_credentials of this FileWriteableResponse.  # noqa: E501
-        :rtype: ObjectStorageCredentialsResponse
+        :return: The e_tag of this FileWriteableResponse.  # noqa: E501
+        :rtype: str
         &#34;&#34;&#34;
-        return self._temporary_upload_credentials
+        return self._e_tag
 
-    @temporary_upload_credentials.setter
-    def temporary_upload_credentials(self, temporary_upload_credentials):
-        &#34;&#34;&#34;Sets the temporary_upload_credentials of this FileWriteableResponse.
+    @e_tag.setter
+    def e_tag(self, e_tag):
+        &#34;&#34;&#34;Sets the e_tag of this FileWriteableResponse.
 
+        The File&#39;s ETag  # noqa: E501
 
-        :param temporary_upload_credentials: The temporary_upload_credentials of this FileWriteableResponse.  # noqa: E501
-        :type: ObjectStorageCredentialsResponse
+        :param e_tag: The e_tag of this FileWriteableResponse.  # noqa: E501
+        :type: str
         &#34;&#34;&#34;
 
-        self._temporary_upload_credentials = temporary_upload_credentials
+        self._e_tag = e_tag
 
     @property
     def object_store_access(self):
@@ -1442,6 +1504,31 @@ def created_by(self):
     return self._created_by</code></pre>
 </details>
 </dd>
+<dt id="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.e_tag"><code class="name">var <span class="ident">e_tag</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the e_tag of this FileWriteableResponse.
+# noqa: E501</p>
+<p>The File's ETag
+# noqa: E501</p>
+<p>:return: The e_tag of this FileWriteableResponse.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def e_tag(self):
+    &#34;&#34;&#34;Gets the e_tag of this FileWriteableResponse.  # noqa: E501
+
+    The File&#39;s ETag  # noqa: E501
+
+    :return: The e_tag of this FileWriteableResponse.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._e_tag</code></pre>
+</details>
+</dd>
 <dt id="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.id"><code class="name">var <span class="ident">id</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the id of this FileWriteableResponse.
@@ -1515,6 +1602,31 @@ def is_uploaded(self):
     :rtype: bool
     &#34;&#34;&#34;
     return self._is_uploaded</code></pre>
+</details>
+</dd>
+<dt id="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.metadata"><code class="name">var <span class="ident">metadata</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the metadata of this FileWriteableResponse.
+# noqa: E501</p>
+<p>Metadata about this File
+# noqa: E501</p>
+<p>:return: The metadata of this FileWriteableResponse.
+# noqa: E501
+:rtype: object</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def metadata(self):
+    &#34;&#34;&#34;Gets the metadata of this FileWriteableResponse.  # noqa: E501
+
+    Metadata about this File  # noqa: E501
+
+    :return: The metadata of this FileWriteableResponse.  # noqa: E501
+    :rtype: object
+    &#34;&#34;&#34;
+    return self._metadata</code></pre>
 </details>
 </dd>
 <dt id="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.modified_by"><code class="name">var <span class="ident">modified_by</span></code></dt>
@@ -1684,28 +1796,6 @@ def sub_tenant_id(self):
     :rtype: str
     &#34;&#34;&#34;
     return self._sub_tenant_id</code></pre>
-</details>
-</dd>
-<dt id="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.temporary_upload_credentials"><code class="name">var <span class="ident">temporary_upload_credentials</span></code></dt>
-<dd>
-<div class="desc"><p>Gets the temporary_upload_credentials of this FileWriteableResponse.
-# noqa: E501</p>
-<p>:return: The temporary_upload_credentials of this FileWriteableResponse.
-# noqa: E501
-:rtype: ObjectStorageCredentialsResponse</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def temporary_upload_credentials(self):
-    &#34;&#34;&#34;Gets the temporary_upload_credentials of this FileWriteableResponse.  # noqa: E501
-
-
-    :return: The temporary_upload_credentials of this FileWriteableResponse.  # noqa: E501
-    :rtype: ObjectStorageCredentialsResponse
-    &#34;&#34;&#34;
-    return self._temporary_upload_credentials</code></pre>
 </details>
 </dd>
 <dt id="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.tenant_id"><code class="name">var <span class="ident">tenant_id</span></code></dt>
@@ -1979,13 +2069,15 @@ def volume_name(self):
 <ul>
 <li>
 <h4><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse">FileWriteableResponse</a></code></h4>
-<ul class="">
+<ul class="two-column">
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.archive_status" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.archive_status">archive_status</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.attribute_map" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.attribute_map">attribute_map</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.created_by" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.created_by">created_by</a></code></li>
+<li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.e_tag" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.e_tag">e_tag</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.id" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.id">id</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.inherited_acl" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.inherited_acl">inherited_acl</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.is_uploaded" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.is_uploaded">is_uploaded</a></code></li>
+<li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.metadata" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.metadata">metadata</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.modified_by" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.modified_by">modified_by</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.name" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.name">name</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.object_store_access" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.object_store_access">object_store_access</a></code></li>
@@ -1994,7 +2086,6 @@ def volume_name(self):
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.size_in_bytes" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.size_in_bytes">size_in_bytes</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.storage_tier" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.storage_tier">storage_tier</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.sub_tenant_id" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.sub_tenant_id">sub_tenant_id</a></code></li>
-<li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.temporary_upload_credentials" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.temporary_upload_credentials">temporary_upload_credentials</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.tenant_id" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.tenant_id">tenant_id</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.time_archived" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.time_archived">time_archived</a></code></li>
 <li><code><a title="libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.time_created" href="#libiap.openapi.libgds.models.file_writeable_response.FileWriteableResponse.time_created">time_created</a></code></li>
@@ -2013,9 +2104,7 @@ def volume_name(self):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.1</a>.</p>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad()</script>
 </body>
 </html>

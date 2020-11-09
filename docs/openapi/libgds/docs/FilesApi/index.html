@@ -1,6 +1,4 @@
 
-
-
 <!doctype html>
 <html lang="en" class="no-js">
   <head>
@@ -11,7 +9,7 @@
       
       
       <link rel="shortcut icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.3">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.2">
     
     
       
@@ -19,13 +17,17 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.6e35a1a6.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.19190aaf.min.css">
       
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.24b84193.min.css">
+        
       
     
     
     
       
+        
         <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
         <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
@@ -40,7 +42,13 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
   
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -57,7 +65,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="../../.." title="libiap" class="md-header-nav__button md-logo" aria-label="libiap">
       
@@ -132,8 +142,6 @@
     
     <div class="md-container" data-md-component="container">
       
-        
-      
       
         
       
@@ -144,7 +152,9 @@
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="libiap" class="md-nav__button md-logo" aria-label="libiap">
       
@@ -176,7 +186,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libwes/" title="libwes" class="md-nav__link">
+    <a href="../../../libwes/" class="md-nav__link">
       libwes
     </a>
   </li>
@@ -188,7 +198,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libtes/" title="libtes" class="md-nav__link">
+    <a href="../../../libtes/" class="md-nav__link">
       libtes
     </a>
   </li>
@@ -200,7 +210,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../" title="libgds" class="md-nav__link">
+    <a href="../../" class="md-nav__link">
       libgds
     </a>
   </li>
@@ -212,7 +222,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libens/" title="libens" class="md-nav__link">
+    <a href="../../../libens/" class="md-nav__link">
       libens
     </a>
   </li>
@@ -224,7 +234,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../libconsole/" title="libconsole" class="md-nav__link">
+    <a href="../../../libconsole/" class="md-nav__link">
       libconsole
     </a>
   </li>
@@ -262,9 +272,6 @@
                   </a>
                 
                 
-                  
-                
-                
                 <h1 id="libiapopenapilibgdsfilesapi">libiap.openapi.libgds.FilesApi<a class="headerlink" href="#libiapopenapilibgdsfilesapi" title="Permanent link">&para;</a></h1>
 <p>All URIs are relative to <em><a href="https://aps2.platform.illumina.com">https://aps2.platform.illumina.com</a></em></p>
 <table>
@@ -289,11 +296,6 @@
 <tr>
 <td><a href="./#delete_file"><strong>delete_file</strong></a></td>
 <td><strong>DELETE</strong> /v1/files/{fileId}</td>
-<td>Permanently delete a file</td>
-</tr>
-<tr>
-<td><a href="./#destroy_file_deprecated"><strong>destroy_file_deprecated</strong></a></td>
-<td><strong>DELETE</strong> /v1/files/{fileId}:destroy</td>
 <td>Permanently delete a file</td>
 </tr>
 <tr>
@@ -368,7 +370,6 @@
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling FilesApi-&gt;archive_file: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
-
 
 <h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
 <table>
@@ -498,7 +499,6 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling FilesApi-&gt;create_file: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
 
-
 <h3 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -625,7 +625,6 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling FilesApi-&gt;delete_file: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
 
-
 <h3 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
@@ -697,134 +696,13 @@
 </tbody>
 </table>
 <p><a href="#">[Back to top]</a> <a href="../../#documentation-for-api-endpoints">[Back to API list]</a> <a href="../../#documentation-for-models">[Back to Model list]</a> <a href="../../">[Back to README]</a></p>
-<h1 id="destroy_file_deprecated"><strong>destroy_file_deprecated</strong><a class="headerlink" href="#destroy_file_deprecated" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p>destroy_file_deprecated(file_id)</p>
-</blockquote>
-<p>Permanently delete a file</p>
-<p>This endpoint will be deprecated with the EarlyAccess launch. Utilize DELETE: v1/files/{fileId} instead.</p>
-<h3 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Api Key Authentication (Bearer):</li>
-</ul>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">libiap.openapi.libgds</span>
-<span class="kn">from</span> <span class="nn">libiap.openapi.libgds.rest</span> <span class="kn">import</span> <span class="n">ApiException</span>
-<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
-<span class="c1"># Defining the host is optional and defaults to https://aps2.platform.illumina.com</span>
-<span class="c1"># See configuration.py for a list of all supported configuration parameters.</span>
-<span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libgds</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span>
-<span class="p">)</span>
-
-<span class="c1"># The client must configure the authentication and authorization parameters</span>
-<span class="c1"># in accordance with the API server security policy.</span>
-<span class="c1"># Examples for each auth method are provided below, use the example that</span>
-<span class="c1"># satisfies your auth use case.</span>
-
-<span class="c1"># Configure API key authorization: Bearer</span>
-<span class="n">configuration</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libgds</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
-    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
-    <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
-    <span class="p">}</span>
-<span class="p">)</span>
-<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
-<span class="c1"># configuration.api_key_prefix[&#39;Authorization&#39;] = &#39;Bearer&#39;</span>
-
-<span class="c1"># Enter a context with an instance of the API client</span>
-<span class="k">with</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libgds</span><span class="o">.</span><span class="n">ApiClient</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">api_client</span><span class="p">:</span>
-    <span class="c1"># Create an instance of the API class</span>
-    <span class="n">api_instance</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libgds</span><span class="o">.</span><span class="n">FilesApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
-    <span class="n">file_id</span> <span class="o">=</span> <span class="s1">&#39;file_id_example&#39;</span> <span class="c1"># str | Unique identifier for the file to delete.</span>
-
-    <span class="k">try</span><span class="p">:</span>
-        <span class="c1"># Permanently delete a file</span>
-        <span class="n">api_instance</span><span class="o">.</span><span class="n">destroy_file_deprecated</span><span class="p">(</span><span class="n">file_id</span><span class="p">)</span>
-    <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling FilesApi-&gt;destroy_file_deprecated: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
-</code></pre></div>
-
-
-<h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Description</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>file_id</strong></td>
-<td><strong>str</strong></td>
-<td>Unique identifier for the file to delete.</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="return-type_3">Return type<a class="headerlink" href="#return-type_3" title="Permanent link">&para;</a></h3>
-<p>void (empty response body)</p>
-<h3 id="authorization_3">Authorization<a class="headerlink" href="#authorization_3" title="Permanent link">&para;</a></h3>
-<p><a href="../../#Bearer">Bearer</a></p>
-<h3 id="http-request-headers_3">HTTP request headers<a class="headerlink" href="#http-request-headers_3" title="Permanent link">&para;</a></h3>
-<ul>
-<li><strong>Content-Type</strong>: Not defined</li>
-<li><strong>Accept</strong>: text/plain, application/json, text/json</li>
-</ul>
-<h3 id="http-response-details_3">HTTP response details<a class="headerlink" href="#http-response-details_3" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Status code</th>
-<th>Description</th>
-<th>Response headers</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>204</strong></td>
-<td>No Content.</td>
-<td>-</td>
-</tr>
-<tr>
-<td><strong>400</strong></td>
-<td>Bad request.</td>
-<td>-</td>
-</tr>
-<tr>
-<td><strong>401</strong></td>
-<td>Unauthorized.</td>
-<td>-</td>
-</tr>
-<tr>
-<td><strong>403</strong></td>
-<td>Forbidden.</td>
-<td>-</td>
-</tr>
-<tr>
-<td><strong>404</strong></td>
-<td>File not found.</td>
-<td>-</td>
-</tr>
-<tr>
-<td><strong>0</strong></td>
-<td>Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-<p><a href="#">[Back to top]</a> <a href="../../#documentation-for-api-endpoints">[Back to API list]</a> <a href="../../#documentation-for-models">[Back to Model list]</a> <a href="../../">[Back to README]</a></p>
 <h1 id="get_file"><strong>get_file</strong><a class="headerlink" href="#get_file" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>FileResponse get_file(file_id, tenant_id=tenant_id)</p>
+<p>FileResponse get_file(file_id, tenant_id=tenant_id, metadata_include=metadata_include, metadata_exclude=metadata_exclude)</p>
 </blockquote>
 <p>Get details about a file, including a pre-signed URL for download</p>
 <p>Get information and details for the specified file ID, including metadata and a pre-signed URL for file download. The URL can be used as a curl command or directly with S3.</p>
-<h3 id="example_4">Example<a class="headerlink" href="#example_4" title="Permanent link">&para;</a></h3>
+<h3 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Api Key Authentication (Bearer):</li>
 </ul>
@@ -860,17 +738,18 @@
     <span class="n">api_instance</span> <span class="o">=</span> <span class="n">libiap</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libgds</span><span class="o">.</span><span class="n">FilesApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
     <span class="n">file_id</span> <span class="o">=</span> <span class="s1">&#39;file_id_example&#39;</span> <span class="c1"># str | Unique identifier for the file to retrieve.</span>
 <span class="n">tenant_id</span> <span class="o">=</span> <span class="s1">&#39;tenant_id_example&#39;</span> <span class="c1"># str | Optional parameter to see shared data in another tenant (optional)</span>
+<span class="n">metadata_include</span> <span class="o">=</span> <span class="s1">&#39;metadata_include_example&#39;</span> <span class="c1"># str | Optional parameter to specify comma separated patterns to include metadata by their field names. (optional)</span>
+<span class="n">metadata_exclude</span> <span class="o">=</span> <span class="s1">&#39;metadata_exclude_example&#39;</span> <span class="c1"># str | Optional parameter to specify comma separated patterns to exclude metadata by their field names. (optional)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Get details about a file, including a pre-signed URL for download</span>
-        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="n">tenant_id</span><span class="p">)</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">get_file</span><span class="p">(</span><span class="n">file_id</span><span class="p">,</span> <span class="n">tenant_id</span><span class="o">=</span><span class="n">tenant_id</span><span class="p">,</span> <span class="n">metadata_include</span><span class="o">=</span><span class="n">metadata_include</span><span class="p">,</span> <span class="n">metadata_exclude</span><span class="o">=</span><span class="n">metadata_exclude</span><span class="p">)</span>
         <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling FilesApi-&gt;get_file: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
 
-
-<h3 id="parameters_4">Parameters<a class="headerlink" href="#parameters_4" title="Permanent link">&para;</a></h3>
+<h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -893,18 +772,30 @@
 <td>Optional parameter to see shared data in another tenant</td>
 <td>[optional]</td>
 </tr>
+<tr>
+<td><strong>metadata_include</strong></td>
+<td><strong>str</strong></td>
+<td>Optional parameter to specify comma separated patterns to include metadata by their field names.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>metadata_exclude</strong></td>
+<td><strong>str</strong></td>
+<td>Optional parameter to specify comma separated patterns to exclude metadata by their field names.</td>
+<td>[optional]</td>
+</tr>
 </tbody>
 </table>
-<h3 id="return-type_4">Return type<a class="headerlink" href="#return-type_4" title="Permanent link">&para;</a></h3>
+<h3 id="return-type_3">Return type<a class="headerlink" href="#return-type_3" title="Permanent link">&para;</a></h3>
 <p><a href="../FileResponse/"><strong>FileResponse</strong></a></p>
-<h3 id="authorization_4">Authorization<a class="headerlink" href="#authorization_4" title="Permanent link">&para;</a></h3>
+<h3 id="authorization_3">Authorization<a class="headerlink" href="#authorization_3" title="Permanent link">&para;</a></h3>
 <p><a href="../../#Bearer">Bearer</a></p>
-<h3 id="http-request-headers_4">HTTP request headers<a class="headerlink" href="#http-request-headers_4" title="Permanent link">&para;</a></h3>
+<h3 id="http-request-headers_3">HTTP request headers<a class="headerlink" href="#http-request-headers_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: Not defined</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details_4">HTTP response details<a class="headerlink" href="#http-response-details_4" title="Permanent link">&para;</a></h3>
+<h3 id="http-response-details_3">HTTP response details<a class="headerlink" href="#http-response-details_3" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -953,7 +844,7 @@
 </blockquote>
 <p>Get a list of files</p>
 <p>Given a volumeId or volume name, get a list of files accessible by the JWT. The default sort returned is alphabetical, ascending. The default page size is 10 items</p>
-<h3 id="example_5">Example<a class="headerlink" href="#example_5" title="Permanent link">&para;</a></h3>
+<h3 id="example_4">Example<a class="headerlink" href="#example_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Api Key Authentication (Bearer):</li>
 </ul>
@@ -1006,8 +897,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling FilesApi-&gt;list_files: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
 
-
-<h3 id="parameters_5">Parameters<a class="headerlink" href="#parameters_5" title="Permanent link">&para;</a></h3>
+<h3 id="parameters_4">Parameters<a class="headerlink" href="#parameters_4" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1080,16 +970,16 @@
 </tr>
 </tbody>
 </table>
-<h3 id="return-type_5">Return type<a class="headerlink" href="#return-type_5" title="Permanent link">&para;</a></h3>
+<h3 id="return-type_4">Return type<a class="headerlink" href="#return-type_4" title="Permanent link">&para;</a></h3>
 <p><a href="../FileListResponse/"><strong>FileListResponse</strong></a></p>
-<h3 id="authorization_5">Authorization<a class="headerlink" href="#authorization_5" title="Permanent link">&para;</a></h3>
+<h3 id="authorization_4">Authorization<a class="headerlink" href="#authorization_4" title="Permanent link">&para;</a></h3>
 <p><a href="../../#Bearer">Bearer</a></p>
-<h3 id="http-request-headers_5">HTTP request headers<a class="headerlink" href="#http-request-headers_5" title="Permanent link">&para;</a></h3>
+<h3 id="http-request-headers_4">HTTP request headers<a class="headerlink" href="#http-request-headers_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: Not defined</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details_5">HTTP response details<a class="headerlink" href="#http-response-details_5" title="Permanent link">&para;</a></h3>
+<h3 id="http-response-details_4">HTTP response details<a class="headerlink" href="#http-response-details_4" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1133,7 +1023,7 @@
 </blockquote>
 <p>Unarchive a file</p>
 <p>Unarchive a file from a lower storage cost tier.</p>
-<h3 id="example_6">Example<a class="headerlink" href="#example_6" title="Permanent link">&para;</a></h3>
+<h3 id="example_5">Example<a class="headerlink" href="#example_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Api Key Authentication (Bearer):</li>
 </ul>
@@ -1178,8 +1068,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling FilesApi-&gt;unarchive_file: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
 
-
-<h3 id="parameters_6">Parameters<a class="headerlink" href="#parameters_6" title="Permanent link">&para;</a></h3>
+<h3 id="parameters_5">Parameters<a class="headerlink" href="#parameters_5" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1204,16 +1093,16 @@
 </tr>
 </tbody>
 </table>
-<h3 id="return-type_6">Return type<a class="headerlink" href="#return-type_6" title="Permanent link">&para;</a></h3>
+<h3 id="return-type_5">Return type<a class="headerlink" href="#return-type_5" title="Permanent link">&para;</a></h3>
 <p><a href="../FileResponse/"><strong>FileResponse</strong></a></p>
-<h3 id="authorization_6">Authorization<a class="headerlink" href="#authorization_6" title="Permanent link">&para;</a></h3>
+<h3 id="authorization_5">Authorization<a class="headerlink" href="#authorization_5" title="Permanent link">&para;</a></h3>
 <p><a href="../../#Bearer">Bearer</a></p>
-<h3 id="http-request-headers_6">HTTP request headers<a class="headerlink" href="#http-request-headers_6" title="Permanent link">&para;</a></h3>
+<h3 id="http-request-headers_5">HTTP request headers<a class="headerlink" href="#http-request-headers_5" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: application/json-patch+json, application/json, text/json, application/*+json</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details_6">HTTP response details<a class="headerlink" href="#http-response-details_6" title="Permanent link">&para;</a></h3>
+<h3 id="http-response-details_5">HTTP response details<a class="headerlink" href="#http-response-details_5" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1267,7 +1156,7 @@
 </blockquote>
 <p>Update a file entry in GDS and get temporary credentials for upload</p>
 <p>Update a file entry in GDS. Returns temporary credentials for file upload directly to S3 when the include=objectStoreAccess parameter is used. Note that the currently supported changes to the file resource are updating the file type and the underlying content.</p>
-<h3 id="example_7">Example<a class="headerlink" href="#example_7" title="Permanent link">&para;</a></h3>
+<h3 id="example_6">Example<a class="headerlink" href="#example_6" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Api Key Authentication (Bearer):</li>
 </ul>
@@ -1313,8 +1202,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling FilesApi-&gt;update_file: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
 
-
-<h3 id="parameters_7">Parameters<a class="headerlink" href="#parameters_7" title="Permanent link">&para;</a></h3>
+<h3 id="parameters_6">Parameters<a class="headerlink" href="#parameters_6" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1345,16 +1233,16 @@
 </tr>
 </tbody>
 </table>
-<h3 id="return-type_7">Return type<a class="headerlink" href="#return-type_7" title="Permanent link">&para;</a></h3>
+<h3 id="return-type_6">Return type<a class="headerlink" href="#return-type_6" title="Permanent link">&para;</a></h3>
 <p><a href="../FileWriteableResponse/"><strong>FileWriteableResponse</strong></a></p>
-<h3 id="authorization_7">Authorization<a class="headerlink" href="#authorization_7" title="Permanent link">&para;</a></h3>
+<h3 id="authorization_6">Authorization<a class="headerlink" href="#authorization_6" title="Permanent link">&para;</a></h3>
 <p><a href="../../#Bearer">Bearer</a></p>
-<h3 id="http-request-headers_7">HTTP request headers<a class="headerlink" href="#http-request-headers_7" title="Permanent link">&para;</a></h3>
+<h3 id="http-request-headers_6">HTTP request headers<a class="headerlink" href="#http-request-headers_6" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: application/json</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details_7">HTTP response details<a class="headerlink" href="#http-response-details_7" title="Permanent link">&para;</a></h3>
+<h3 id="http-response-details_6">HTTP response details<a class="headerlink" href="#http-response-details_6" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1450,15 +1338,15 @@
       
     </div>
     
-      <script src="../../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.a45f732b.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../../assets/javascripts/vendor.7e0ee788.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.c1ccee15.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
           base: "../../..",
           features: [],
           search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.c03f0417.min.js"
+            worker: "../../../assets/javascripts/worker/search.4ac00218.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>

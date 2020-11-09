@@ -22,9 +22,9 @@
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
             128 statements &nbsp;
-            <span class="run shortkey_r button_toggle_run">19 run</span>
-            <span class="mis show_mis shortkey_m button_toggle_mis">109 missing</span>
-            <span class="exc show_exc shortkey_x button_toggle_exc">0 excluded</span>
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">19 run</button>
+            <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">109 missing</button>
+            <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
         </h2>
     </div>
 </div>
@@ -337,7 +337,7 @@
     <p id="t284" class="pln"><span class="n"><a href="#t284">284</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t285" class="pln"><span class="n"><a href="#t285">285</a></span><span class="t"><span class="str">        :param async_req bool: execute request asynchronously</span>&nbsp;</span><span class="r"></span></p>
     <p id="t286" class="pln"><span class="n"><a href="#t286">286</a></span><span class="t"><span class="str">        :param str tenant_id: ID of the tenant</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t287" class="pln"><span class="n"><a href="#t287">287</a></span><span class="t"><span class="str">        :param list[GetWorkflowSignalsIncludeFlags] include: Comma-separated list of properties to include in the response</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t287" class="pln"><span class="n"><a href="#t287">287</a></span><span class="t"><span class="str">        :param list[str] include: Comma-separated list of properties to include in the response</span>&nbsp;</span><span class="r"></span></p>
     <p id="t288" class="pln"><span class="n"><a href="#t288">288</a></span><span class="t"><span class="str">        :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.</span>&nbsp;</span><span class="r"></span></p>
     <p id="t289" class="pln"><span class="n"><a href="#t289">289</a></span><span class="t"><span class="str">        :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.</span>&nbsp;</span><span class="r"></span></p>
     <p id="t290" class="pln"><span class="n"><a href="#t290">290</a></span><span class="t"><span class="str">        :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).</span>&nbsp;</span><span class="r"></span></p>
@@ -366,7 +366,7 @@
     <p id="t313" class="pln"><span class="n"><a href="#t313">313</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t314" class="pln"><span class="n"><a href="#t314">314</a></span><span class="t"><span class="str">        :param async_req bool: execute request asynchronously</span>&nbsp;</span><span class="r"></span></p>
     <p id="t315" class="pln"><span class="n"><a href="#t315">315</a></span><span class="t"><span class="str">        :param str tenant_id: ID of the tenant</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t316" class="pln"><span class="n"><a href="#t316">316</a></span><span class="t"><span class="str">        :param list[GetWorkflowSignalsIncludeFlags] include: Comma-separated list of properties to include in the response</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t316" class="pln"><span class="n"><a href="#t316">316</a></span><span class="t"><span class="str">        :param list[str] include: Comma-separated list of properties to include in the response</span>&nbsp;</span><span class="r"></span></p>
     <p id="t317" class="pln"><span class="n"><a href="#t317">317</a></span><span class="t"><span class="str">        :param int page_size: Number of items to include in a page. Value must be an integer between 1 and 1000. Only one of pageSize or pageToken can be specified.</span>&nbsp;</span><span class="r"></span></p>
     <p id="t318" class="pln"><span class="n"><a href="#t318">318</a></span><span class="t"><span class="str">        :param str page_token: Page offset descriptor. Valid page tokens are included in the response. Only one of pageSize or pageToken can be specified.</span>&nbsp;</span><span class="r"></span></p>
     <p id="t319" class="pln"><span class="n"><a href="#t319">319</a></span><span class="t"><span class="str">        :param str sort: Specifies the order to include list items as \"_{fieldName}_ [asc|desc]\". The second field is optional and specifies the sort direction (\"asc\" for ascending or \"desc\" for descending).</span>&nbsp;</span><span class="r"></span></p>
@@ -583,8 +583,8 @@
 <div id="footer">
     <div class="content">
         <p>
-            <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.1</a>,
-            created at 2020-06-12 11:09
+            <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.3</a>,
+            created at 2020-11-09 11:21 +1100
         </p>
     </div>
 </div>
