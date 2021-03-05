@@ -1,4 +1,4 @@
-# libiap.openapi.libens.SubscriptionsApi
+# libica.openapi.libens.SubscriptionsApi
 
 All URIs are relative to *https://aps2.platform.illumina.com*
 
@@ -23,12 +23,12 @@ Events can be delivered to AWS SQS, AWS SNS, or can be used to launch a WES work
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libens
-from libiap.openapi.libens.rest import ApiException
+import libica.openapi.libens
+from libica.openapi.libens.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libens.Configuration(
+configuration = libica.openapi.libens.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -38,7 +38,7 @@ configuration = libiap.openapi.libens.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libens.Configuration(
+configuration = libica.openapi.libens.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -48,10 +48,10 @@ configuration = libiap.openapi.libens.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libens.ApiClient(configuration) as api_client:
+with libica.openapi.libens.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libens.SubscriptionsApi(api_client)
-    body = libiap.openapi.libens.CreateSubscriptionRequest() # CreateSubscriptionRequest |  (optional)
+    api_instance = libica.openapi.libens.SubscriptionsApi(api_client)
+    body = libica.openapi.libens.CreateSubscriptionRequest() # CreateSubscriptionRequest |  (optional)
 
     try:
         # Creates a subscription to an event type and defines how those events get delivered.
@@ -105,12 +105,12 @@ Given a subscription id, disables that subscription with the current JWT tokenâ€
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libens
-from libiap.openapi.libens.rest import ApiException
+import libica.openapi.libens
+from libica.openapi.libens.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libens.Configuration(
+configuration = libica.openapi.libens.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -120,7 +120,7 @@ configuration = libiap.openapi.libens.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libens.Configuration(
+configuration = libica.openapi.libens.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -130,9 +130,9 @@ configuration = libiap.openapi.libens.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libens.ApiClient(configuration) as api_client:
+with libica.openapi.libens.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libens.SubscriptionsApi(api_client)
+    api_instance = libica.openapi.libens.SubscriptionsApi(api_client)
     subscription_id = 'subscription_id_example' # str | Id of the subscription to be disabled
 
     try:
@@ -188,12 +188,12 @@ Given a subscription id, returns information about that subscription accessible 
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libens
-from libiap.openapi.libens.rest import ApiException
+import libica.openapi.libens
+from libica.openapi.libens.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libens.Configuration(
+configuration = libica.openapi.libens.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -203,7 +203,7 @@ configuration = libiap.openapi.libens.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libens.Configuration(
+configuration = libica.openapi.libens.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -213,9 +213,9 @@ configuration = libiap.openapi.libens.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libens.ApiClient(configuration) as api_client:
+with libica.openapi.libens.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libens.SubscriptionsApi(api_client)
+    api_instance = libica.openapi.libens.SubscriptionsApi(api_client)
     subscription_id = 'subscription_id_example' # str | Id of the subscription to return
 
     try:
@@ -271,12 +271,12 @@ Get a list of subscriptions accessible by the current JWT tokenâ€™s tenant Id.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libens
-from libiap.openapi.libens.rest import ApiException
+import libica.openapi.libens
+from libica.openapi.libens.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libens.Configuration(
+configuration = libica.openapi.libens.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -286,7 +286,7 @@ configuration = libiap.openapi.libens.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libens.Configuration(
+configuration = libica.openapi.libens.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -296,9 +296,9 @@ configuration = libiap.openapi.libens.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libens.ApiClient(configuration) as api_client:
+with libica.openapi.libens.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libens.SubscriptionsApi(api_client)
+    api_instance = libica.openapi.libens.SubscriptionsApi(api_client)
     event_type = 'event_type_example' # str | Optional event type for filtering returned subscriptions (optional)
 page_size = 56 # int | Optional parameter to define the page size returned. Valid inputs range from 1-1000. (optional)
 page_token = 'page_token_example' # str | Utilized for navigation after initial listing. Valid values include those of  firstPageToken, nextPageToken, and previousPageToken in the list response.  When there are no more pages, the nextPageToken will be null. (optional)

@@ -1,13 +1,13 @@
 # Example Notebooks
 
-Jupyter Notebook examples on how to use `libiap` to access IAP web services programmatically.
+Jupyter Notebook examples on how to use `libica` to access ICA web services programmatically.
 
 ## Getting Started
 
 ```
 cd notebooks
-conda create -n iapnb python=3.8
-conda activate iapnb
+conda create -n icanb python=3.9
+conda activate icanb
 conda install -c conda-forge notebook
 jupyter notebook
 ```

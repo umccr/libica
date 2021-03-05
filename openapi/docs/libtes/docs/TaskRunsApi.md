@@ -1,4 +1,4 @@
-# libiap.openapi.libtes.TaskRunsApi
+# libica.openapi.libtes.TaskRunsApi
 
 All URIs are relative to *https://aps2.platform.illumina.com*
 
@@ -23,12 +23,12 @@ Aborts a task run for a given task run ID. The task run is required to have a st
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libtes
-from libiap.openapi.libtes.rest import ApiException
+import libica.openapi.libtes
+from libica.openapi.libtes.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libtes.Configuration(
+configuration = libica.openapi.libtes.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -38,7 +38,7 @@ configuration = libiap.openapi.libtes.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libtes.Configuration(
+configuration = libica.openapi.libtes.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -48,9 +48,9 @@ configuration = libiap.openapi.libtes.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libtes.ApiClient(configuration) as api_client:
+with libica.openapi.libtes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libtes.TaskRunsApi(api_client)
+    api_instance = libica.openapi.libtes.TaskRunsApi(api_client)
     run_id = 'run_id_example' # str | 
 
     try:
@@ -106,12 +106,12 @@ Creates and launches a task run. Returns the ID and status associated with the n
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libtes
-from libiap.openapi.libtes.rest import ApiException
+import libica.openapi.libtes
+from libica.openapi.libtes.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libtes.Configuration(
+configuration = libica.openapi.libtes.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -121,7 +121,7 @@ configuration = libiap.openapi.libtes.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libtes.Configuration(
+configuration = libica.openapi.libtes.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -131,10 +131,10 @@ configuration = libiap.openapi.libtes.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libtes.ApiClient(configuration) as api_client:
+with libica.openapi.libtes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libtes.TaskRunsApi(api_client)
-    body = libiap.openapi.libtes.CreateTaskRunRequest() # CreateTaskRunRequest |  (optional)
+    api_instance = libica.openapi.libtes.TaskRunsApi(api_client)
+    body = libica.openapi.libtes.CreateTaskRunRequest() # CreateTaskRunRequest |  (optional)
 
     try:
         # Create and launch a task run
@@ -188,12 +188,12 @@ Gets the status of a task run for a given task run ID.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libtes
-from libiap.openapi.libtes.rest import ApiException
+import libica.openapi.libtes
+from libica.openapi.libtes.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libtes.Configuration(
+configuration = libica.openapi.libtes.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -203,7 +203,7 @@ configuration = libiap.openapi.libtes.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libtes.Configuration(
+configuration = libica.openapi.libtes.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -213,9 +213,9 @@ configuration = libiap.openapi.libtes.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libtes.ApiClient(configuration) as api_client:
+with libica.openapi.libtes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libtes.TaskRunsApi(api_client)
+    api_instance = libica.openapi.libtes.TaskRunsApi(api_client)
     run_id = 'run_id_example' # str | 
 
     try:
@@ -271,12 +271,12 @@ Get a list of task runs accessible by the current tenant ID.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libtes
-from libiap.openapi.libtes.rest import ApiException
+import libica.openapi.libtes
+from libica.openapi.libtes.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libtes.Configuration(
+configuration = libica.openapi.libtes.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -286,7 +286,7 @@ configuration = libiap.openapi.libtes.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libtes.Configuration(
+configuration = libica.openapi.libtes.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -296,9 +296,9 @@ configuration = libiap.openapi.libtes.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libtes.ApiClient(configuration) as api_client:
+with libica.openapi.libtes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libtes.TaskRunsApi(api_client)
+    api_instance = libica.openapi.libtes.TaskRunsApi(api_client)
     sort = 'sort_example' # str | Sort: Optional parameter to set the sort of the returned list. Valid fields include: name, status, timeCreated, timeModified.  The sort can be specified as asc or desc. (Default: asc.) (optional)
 names = 'names_example' # str |  (optional)
 status = 'status_example' # str |  (optional)

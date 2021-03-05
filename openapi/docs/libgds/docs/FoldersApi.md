@@ -1,4 +1,4 @@
-# libiap.openapi.libgds.FoldersApi
+# libica.openapi.libgds.FoldersApi
 
 All URIs are relative to *https://aps2.platform.illumina.com*
 
@@ -30,12 +30,12 @@ Archives a folder to a lower storage cost tier.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -45,7 +45,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -55,11 +55,11 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder to be archived.
-body = libiap.openapi.libgds.FolderArchiveRequest() # FolderArchiveRequest | 
+body = libica.openapi.libgds.FolderArchiveRequest() # FolderArchiveRequest | 
 
     try:
         # Archive a folder
@@ -115,12 +115,12 @@ Complete a folder upload in GDS.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -130,7 +130,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -140,12 +140,12 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder related to the upload session.
 session_id = 'session_id_example' # str | The id of the upload session
-body = libiap.openapi.libgds.CompleteSessionRequest() # CompleteSessionRequest | The request body
+body = libica.openapi.libgds.CompleteSessionRequest() # CompleteSessionRequest | The request body
 
     try:
         # Complete a folder upload in GDS
@@ -203,12 +203,12 @@ Copy a folder into a target parent folder
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -218,7 +218,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -228,11 +228,11 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder to be copied.
-body = libiap.openapi.libgds.FolderCopyRequest() # FolderCopyRequest | 
+body = libica.openapi.libgds.FolderCopyRequest() # FolderCopyRequest | 
 tenant_id = 'tenant_id_example' # str | Optional parameter to copy from a shared folder in another tenant (optional)
 
     try:
@@ -291,12 +291,12 @@ Create a folder entry in GDS. Returns temporary credentials for folder upload di
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -306,7 +306,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -316,10 +316,10 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
-    body = libiap.openapi.libgds.CreateFolderRequest() # CreateFolderRequest | 
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
+    body = libica.openapi.libgds.CreateFolderRequest() # CreateFolderRequest | 
 include = 'include_example' # str | Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount (optional)
 
     try:
@@ -373,12 +373,12 @@ Deletes a folder by id
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -388,7 +388,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -398,9 +398,9 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder to be deleted.
 
     try:
@@ -455,12 +455,12 @@ Get information for the specified folder ID.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -470,7 +470,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -480,9 +480,9 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder to retrieve.
 tenant_id = 'tenant_id_example' # str | Optional parameter to see shared data in another tenant (optional)
 
@@ -539,12 +539,12 @@ Get status of a folder job in GDS.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -554,7 +554,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -564,9 +564,9 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder related to the job.
 job_id = 'job_id_example' # str | The id of the job
 
@@ -624,12 +624,12 @@ Get status of a folder upload in GDS.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -639,7 +639,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -649,9 +649,9 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder related to the upload session.
 session_id = 'session_id_example' # str | The id of the upload session
 
@@ -709,12 +709,12 @@ Given a volumeId or volume name, get a list of folders accessible by the JWT. Th
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -724,7 +724,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -734,9 +734,9 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
     volume_id = ['volume_id_example'] # list[str] | Optional field that specifies comma-separated volume IDs to include in the list (optional)
 volume_name = ['volume_name_example'] # list[str] | Optional field that specifies comma-separated volume names to include in the list (optional)
 path = ['path_example'] # list[str] | Optional field that specifies comma-separated paths to include in the list. Value can use wildcards (e.g. /a/b/c/*) or exact matches (e.g. /a/b/c/d/). (optional)
@@ -808,12 +808,12 @@ Unarchive a folder from a lower storage cost tier.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -823,7 +823,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -833,11 +833,11 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder to be unarchived.
-body = libiap.openapi.libgds.FolderUnarchiveRequest() # FolderUnarchiveRequest | 
+body = libica.openapi.libgds.FolderUnarchiveRequest() # FolderUnarchiveRequest | 
 
     try:
         # Unarchive a folder
@@ -894,12 +894,12 @@ Update an existing folder in GDS and return upload credentials for that folder. 
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -909,7 +909,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -919,12 +919,12 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FoldersApi(api_client)
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder to be updated.
 include = 'include_example' # str | Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount (optional)
-body = libiap.openapi.libgds.FolderUpdateRequest() # FolderUpdateRequest |  (optional)
+body = libica.openapi.libgds.FolderUpdateRequest() # FolderUpdateRequest |  (optional)
 
     try:
         # Update a folder content or acl

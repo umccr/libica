@@ -1,4 +1,4 @@
-# libiap.openapi.libconsole.TokensApi
+# libica.openapi.libconsole.TokensApi
 
 All URIs are relative to *https://aps2.platform.illumina.com*
 
@@ -23,12 +23,12 @@ This endpoint creates a JWT token to call IAP services. Authorization can be a B
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libconsole
-from libiap.openapi.libconsole.rest import ApiException
+import libica.openapi.libconsole
+from libica.openapi.libconsole.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -38,13 +38,13 @@ configuration = libiap.openapi.libconsole.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -54,9 +54,9 @@ configuration = libiap.openapi.libconsole.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
+with libica.openapi.libconsole.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libconsole.TokensApi(api_client)
+    api_instance = libica.openapi.libconsole.TokensApi(api_client)
     x_api_key = 'x_api_key_example' # str | Api Key can be passed in header to generate a JWT. (optional)
 client_id = 'client_id_example' # str | Optionally pass client Id from calling app to set as authorized party on JWT. (optional)
 api_key = 'api_key_example' # str | OBSOLETE: api key should now be passed as as an X-API-Key header. (optional)
@@ -79,12 +79,12 @@ return_session_token = True # bool | By default, this endpoint returns a JWT tok
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libconsole
-from libiap.openapi.libconsole.rest import ApiException
+import libica.openapi.libconsole
+from libica.openapi.libconsole.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -94,13 +94,13 @@ configuration = libiap.openapi.libconsole.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -110,9 +110,9 @@ configuration = libiap.openapi.libconsole.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
+with libica.openapi.libconsole.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libconsole.TokensApi(api_client)
+    api_instance = libica.openapi.libconsole.TokensApi(api_client)
     x_api_key = 'x_api_key_example' # str | Api Key can be passed in header to generate a JWT. (optional)
 client_id = 'client_id_example' # str | Optionally pass client Id from calling app to set as authorized party on JWT. (optional)
 api_key = 'api_key_example' # str | OBSOLETE: api key should now be passed as as an X-API-Key header. (optional)
@@ -182,12 +182,12 @@ Get token details
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libconsole
-from libiap.openapi.libconsole.rest import ApiException
+import libica.openapi.libconsole
+from libica.openapi.libconsole.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -197,13 +197,13 @@ configuration = libiap.openapi.libconsole.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -213,9 +213,9 @@ configuration = libiap.openapi.libconsole.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
+with libica.openapi.libconsole.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libconsole.TokensApi(api_client)
+    api_instance = libica.openapi.libconsole.TokensApi(api_client)
     
     try:
         # Get current tokens info require authorization Bearer token
@@ -229,12 +229,12 @@ with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libconsole
-from libiap.openapi.libconsole.rest import ApiException
+import libica.openapi.libconsole
+from libica.openapi.libconsole.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -244,13 +244,13 @@ configuration = libiap.openapi.libconsole.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -260,9 +260,9 @@ configuration = libiap.openapi.libconsole.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
+with libica.openapi.libconsole.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libconsole.TokensApi(api_client)
+    api_instance = libica.openapi.libconsole.TokensApi(api_client)
     
     try:
         # Get current tokens info require authorization Bearer token
@@ -310,12 +310,12 @@ This endpoint extends the session for the psToken.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libconsole
-from libiap.openapi.libconsole.rest import ApiException
+import libica.openapi.libconsole
+from libica.openapi.libconsole.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -325,13 +325,13 @@ configuration = libiap.openapi.libconsole.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -341,10 +341,10 @@ configuration = libiap.openapi.libconsole.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
+with libica.openapi.libconsole.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libconsole.TokensApi(api_client)
-    body = libiap.openapi.libconsole.AccessTokenRequest() # AccessTokenRequest | Access token request accepts a psToken in the access_token field in the body of the request. (optional)
+    api_instance = libica.openapi.libconsole.TokensApi(api_client)
+    body = libica.openapi.libconsole.AccessTokenRequest() # AccessTokenRequest | Access token request accepts a psToken in the access_token field in the body of the request. (optional)
 
     try:
         # Refresh session psToken.
@@ -358,12 +358,12 @@ with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libconsole
-from libiap.openapi.libconsole.rest import ApiException
+import libica.openapi.libconsole
+from libica.openapi.libconsole.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -373,13 +373,13 @@ configuration = libiap.openapi.libconsole.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -389,10 +389,10 @@ configuration = libiap.openapi.libconsole.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
+with libica.openapi.libconsole.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libconsole.TokensApi(api_client)
-    body = libiap.openapi.libconsole.AccessTokenRequest() # AccessTokenRequest | Access token request accepts a psToken in the access_token field in the body of the request. (optional)
+    api_instance = libica.openapi.libconsole.TokensApi(api_client)
+    body = libica.openapi.libconsole.AccessTokenRequest() # AccessTokenRequest | Access token request accepts a psToken in the access_token field in the body of the request. (optional)
 
     try:
         # Refresh session psToken.
@@ -444,12 +444,12 @@ This endpoint revokes the access token that is passed in.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libconsole
-from libiap.openapi.libconsole.rest import ApiException
+import libica.openapi.libconsole
+from libica.openapi.libconsole.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -459,13 +459,13 @@ configuration = libiap.openapi.libconsole.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -475,10 +475,10 @@ configuration = libiap.openapi.libconsole.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
+with libica.openapi.libconsole.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libconsole.TokensApi(api_client)
-    body = libiap.openapi.libconsole.AccessTokenRequest() # AccessTokenRequest | Access token request accepts either a psToken or a JWT in the access_token field in the body of the request. (optional)
+    api_instance = libica.openapi.libconsole.TokensApi(api_client)
+    body = libica.openapi.libconsole.AccessTokenRequest() # AccessTokenRequest | Access token request accepts either a psToken or a JWT in the access_token field in the body of the request. (optional)
 
     try:
         # Revokes an access token.
@@ -491,12 +491,12 @@ with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libconsole
-from libiap.openapi.libconsole.rest import ApiException
+import libica.openapi.libconsole
+from libica.openapi.libconsole.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -506,13 +506,13 @@ configuration = libiap.openapi.libconsole.Configuration(
 # satisfies your auth use case.
 
 # Configure HTTP basic authorization: Basic
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     username = 'YOUR_USERNAME',
     password = 'YOUR_PASSWORD'
 )
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libconsole.Configuration(
+configuration = libica.openapi.libconsole.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -522,10 +522,10 @@ configuration = libiap.openapi.libconsole.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libconsole.ApiClient(configuration) as api_client:
+with libica.openapi.libconsole.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libconsole.TokensApi(api_client)
-    body = libiap.openapi.libconsole.AccessTokenRequest() # AccessTokenRequest | Access token request accepts either a psToken or a JWT in the access_token field in the body of the request. (optional)
+    api_instance = libica.openapi.libconsole.TokensApi(api_client)
+    body = libica.openapi.libconsole.AccessTokenRequest() # AccessTokenRequest | Access token request accepts either a psToken or a JWT in the access_token field in the body of the request. (optional)
 
     try:
         # Revokes an access token.

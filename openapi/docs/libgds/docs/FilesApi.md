@@ -1,4 +1,4 @@
-# libiap.openapi.libgds.FilesApi
+# libica.openapi.libgds.FilesApi
 
 All URIs are relative to *https://aps2.platform.illumina.com*
 
@@ -26,12 +26,12 @@ Archives a file to a lower storage cost tier.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -41,7 +41,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -51,11 +51,11 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FilesApi(api_client)
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
     file_id = 'file_id_example' # str | Unique identifier for the file to be archived.
-body = libiap.openapi.libgds.FileArchiveRequest() # FileArchiveRequest | 
+body = libica.openapi.libgds.FileArchiveRequest() # FileArchiveRequest | 
 
     try:
         # Archive a file
@@ -110,12 +110,12 @@ Create a file entry in GDS. Returns temporary credentials for file upload direct
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -125,7 +125,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -135,10 +135,10 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FilesApi(api_client)
-    body = libiap.openapi.libgds.CreateFileRequest() # CreateFileRequest | 
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
+    body = libica.openapi.libgds.CreateFileRequest() # CreateFileRequest | 
 include = 'include_example' # str | Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount (optional)
 
     try:
@@ -194,12 +194,12 @@ Permanently delete a file entry and its underlying content
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -209,7 +209,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -219,9 +219,9 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FilesApi(api_client)
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
     file_id = 'file_id_example' # str | Unique identifier for the file to delete.
 
     try:
@@ -275,12 +275,12 @@ Get information and details for the specified file ID, including metadata and a 
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -290,7 +290,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -300,9 +300,9 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FilesApi(api_client)
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
     file_id = 'file_id_example' # str | Unique identifier for the file to retrieve.
 tenant_id = 'tenant_id_example' # str | Optional parameter to see shared data in another tenant (optional)
 metadata_include = 'metadata_include_example' # str | Optional parameter to specify comma separated patterns to include metadata by their field names. (optional)
@@ -363,12 +363,12 @@ Given a volumeId or volume name, get a list of files accessible by the JWT. The 
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -378,7 +378,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -388,9 +388,9 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FilesApi(api_client)
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
     volume_id = ['volume_id_example'] # list[str] | Optional field that specifies comma-separated volume IDs to include in the list (optional)
 volume_name = ['volume_name_example'] # list[str] | Optional field that specifies comma-separated volume names to include in the list (optional)
 path = ['path_example'] # list[str] | Optional field that specifies comma-separated paths to include in the list. Value can use wildcards (e.g. /a/b/c/*) or exact matches (e.g. /a/b/c/d/). (optional)
@@ -462,12 +462,12 @@ Unarchive a file from a lower storage cost tier.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -477,7 +477,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -487,11 +487,11 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FilesApi(api_client)
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
     file_id = 'file_id_example' # str | Unique identifier for the file to be unarchived.
-body = libiap.openapi.libgds.FileUnarchiveRequest() # FileUnarchiveRequest | 
+body = libica.openapi.libgds.FileUnarchiveRequest() # FileUnarchiveRequest | 
 
     try:
         # Unarchive a file
@@ -547,12 +547,12 @@ Update a file entry in GDS. Returns temporary credentials for file upload direct
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libgds
-from libiap.openapi.libgds.rest import ApiException
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -562,7 +562,7 @@ configuration = libiap.openapi.libgds.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libgds.Configuration(
+configuration = libica.openapi.libgds.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -572,12 +572,12 @@ configuration = libiap.openapi.libgds.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libgds.ApiClient(configuration) as api_client:
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libgds.FilesApi(api_client)
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
     file_id = 'file_id_example' # str | Unique identifier for the file to be updated.
 include = 'include_example' # str | Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount (optional)
-body = libiap.openapi.libgds.UpdateFileRequest() # UpdateFileRequest |  (optional)
+body = libica.openapi.libgds.UpdateFileRequest() # UpdateFileRequest |  (optional)
 
     try:
         # Update a file entry in GDS and get temporary credentials for upload

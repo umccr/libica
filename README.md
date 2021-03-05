@@ -1,36 +1,49 @@
-# libiap
+# libica
 
-Python SDK/Library for [IAP](https://iap-docs.readme.io/docs) -- https://umccr-illumina.github.io/libiap/
+Python SDK to programmatically call Illumina Connected Analytics (ICA) BioInformatics web services i.e. SDK for API https://ica-docs.readme.io/reference
+- Workflow Execution Service (WES)
+- Task Execution Service (TES)
+- Genomic Data Store (GDS)
+- Developer Console Service (DCS)
+- Event Notification Service (ENS)
 
-- Tested for Python 3.6, 3.7, 3.8
-- [Test Coverage](https://umccr-illumina.github.io/libiap/coverage/)
+**Overview:**
+
+- https://umccr-illumina.github.io/libica/
+- Tested for Python 3.6, 3.7, 3.8, 3.9
+- [Test Coverage](https://umccr-illumina.github.io/libica/coverage/)
 
 ## TL;DR
 
 - Install through ``pip`` like so:
 ```commandline
-pip install libiap
+pip install libica
 ```
 
-- Export IAP base URL and auth token:
+- Export ICA base URL and JWT Bearer token:
 ```
-export IAP_BASE_URL=<baseUrl>
-export IAP_AUTH_TOKEN=<tok>
+export ICA_BASE_URL=<baseUrl>
+export ICA_ACCESS_TOKEN=<tok>
+```
+
+- Generate Bearer JWT token using [ICA CLI](https://sapac.support.illumina.com/sequencing/sequencing_software/illumina-connected-analytics.html) like so:
+```commandline
+ica tokens create --help
 ```
 
 - Somewhere in your Python code:
 ```python
 import os
-from libiap.openapi import libwes
-from libiap.openapi.libwes import WorkflowList, WorkflowCompact
+from libica.openapi import libwes
+from libica.openapi.libwes import WorkflowList, WorkflowCompact
 
-iap_auth_token = os.getenv("IAP_AUTH_TOKEN")
-iap_base_url = os.getenv("IAP_BASE_URL")
+ica_base_url = os.getenv("ICA_BASE_URL")
+ica_access_token = os.getenv("ICA_ACCESS_TOKEN")
 
 configuration = libwes.Configuration(
-    host=iap_base_url,
+    host=ica_base_url,
     api_key={
-        'Authorization': iap_auth_token
+        'Authorization': ica_access_token
     },
     api_key_prefix={
         'Authorization': "Bearer"
@@ -57,17 +70,9 @@ with libwes.ApiClient(configuration) as api_client:
 ```
 
 More examples available at:
-- [libiap.openapi documentation](https://umccr-illumina.github.io/libiap/openapi/)
-- [PyDoc](https://umccr-illumina.github.io/libiap/libiap/)
-- [Wiki](https://github.com/umccr-illumina/libiap/wiki)
-
-## Alpha Modules Deprecation Note
-
-> 🙋‍♂️ For those who just get started using `libiap`, please use auto-generated OpenAPI modules under `libiap.openapi` package (e.g. `libiap.openapi.libwes`, ...) for better upstream support. 
-
-- Those _alpha_ modules directly under top level package (e.g. `libiap.libwes`, ...) may be deprecated in near future releases. 
-- These _alpha_ modules are there for some backward compatible and graceful migration support purpose only. 
-- Start from release `0.4.0`, you will get deprecation warning when you attempt to import or use these _alpha_ modules.
+- [libica.openapi documentation](https://umccr-illumina.github.io/libica/openapi/)
+- [PyDoc](https://umccr-illumina.github.io/libica/libica/)
+- [Wiki](https://github.com/umccr-illumina/libica/wiki)
 
 ## Development
 

@@ -35,12 +35,12 @@ genapi() {
   for i in "${services[@]}"; do
     openapi-generator generate -i swagger/"$i".json -g python -o . \
       --global-property=apiDocs=true,modelDocs=true,apiTests=true,modelTests=true \
-      --additional-properties="$PYTHON_GEN_PROP",packageName=libiap.openapi.lib"$i"
+      --additional-properties="$PYTHON_GEN_PROP",packageName=libica.openapi.lib"$i"
   done
 
   # gen ga4gh sdk
   #openapi-generator generate -i swagger/ga4gh.json -g python -o . \
-  #  --additional-properties="$PYTHON_GEN_PROP",packageName=libiap.openapi.libga4gh
+  #  --additional-properties="$PYTHON_GEN_PROP",packageName=libica.openapi.libga4gh
 }
 
 mvapidoc() {
@@ -55,17 +55,17 @@ _mvdoc() {
   libname="lib$1"
 
   mkdir -p "$docsrc/$libname/docs"
-  gendoc="libiap/openapi/$libname/docs"
+  gendoc="libica/openapi/$libname/docs"
   if [ -d "$gendoc" ]; then
     rsync -av --remove-source-files "$gendoc" "$docsrc/$libname"
     rmdir "$gendoc"
   fi
 
   readme="$docsrc/$libname/README.md"
-  genreadme=libiap/openapi/"$libname"_README.md
+  genreadme=libica/openapi/"$libname"_README.md
   if [ -f "$genreadme" ]; then
     mv -v "$genreadme" "$readme"
   fi
-  sed -i "" -e "s/libiap\/openapi\/$libname\///g" "$readme"
+  sed -i "" -e "s/libica\/openapi\/$libname\///g" "$readme"
   echo
 }

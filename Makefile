@@ -3,14 +3,14 @@ help:
 
 .PHONY: doc
 doc:
-	@pdoc --force --html libiap -o docs/
-	@py.test --cov-config=.coveragerc --cov-report html:docs/coverage --cov=libiap
+	@pdoc --force --html libica -o docs/
+	@py.test --cov-config=.coveragerc --cov-report html:docs/coverage --cov=libica
 	@(cd openapi && mkdocs build --clean -d ../docs/openapi)
 
 .PHONY: local
 local:
-	@pdoc --force --html libiap -o local/
-	@py.test --cov-config=.coveragerc --cov-report html:local/coverage --cov=libiap
+	@pdoc --force --html libica -o local/
+	@py.test --cov-config=.coveragerc --cov-report html:local/coverage --cov=libica
 	@(cd openapi && mkdocs build --clean -d ../local/openapi)
 
 up:
@@ -19,20 +19,17 @@ up:
 down:
 	@docker-compose down
 
-test_iap_mock:
+test_ica_mock:
 	@curl -s -H "Authorization: Bearer Test" -X GET http://localhost/v1/workflows/runs/wfr.anything_work | jq
 
 install:
-	@pip install -e '.[test,dev]' .
+	@pip install '.[test,dev]'
 
 unit:
-	@py.test --no-cov tests/unit
+	@py.test --no-cov tests/
 
 autounit:
-	@py.test --no-cov libiap/openapi
-
-it:
-	@py.test --no-cov tests/integration/
+	@py.test --no-cov libica/openapi
 
 test:
 	@py.test
@@ -45,11 +42,11 @@ dist:
 	@python setup.py sdist bdist_wheel
 
 # Usage: make testpypi version=0.2.0
-testpypi: dist/libiap-$(version).tar.gz
-	@twine upload --repository testpypi --sign dist/libiap-$(version)*
+testpypi: dist/libica-$(version).tar.gz
+	@twine upload --repository testpypi --sign dist/libica-$(version)*
 
-pypi: dist/libiap-$(version).tar.gz
-	@twine upload --sign dist/libiap-$(version)*
+pypi: dist/libica-$(version).tar.gz
+	@twine upload --sign dist/libica-$(version)*
 
 .PHONY: getapi genapi mvapidoc rmapi
 getapi:

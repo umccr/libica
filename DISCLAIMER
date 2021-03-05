@@ -1,16 +1,16 @@
-LIBIAP MAKES NO GUARANTEE OF VALIDITY WITH IAP WEB SERVICES
+LIBICA MAKES NO GUARANTEE OF VALIDITY WITH ILLUMINA CONNECTED ANALYTICS (ICA) WEB SERVICES
 
-0. "libiap" is community driven, independent Open Source project, MIT license
-   Python SDK/Library for IAP web services.
+0. "libica" is community driven, independent Open Source project, MIT license
+   Python SDK/Library for ICA web services.
 
-1. "libiap" makes no promises regarding the outcome of using its to produce
-   "correct behaviour" when interfacing IAP web services and endpoints.
+1. "libica" makes no promises regarding the outcome of using its to produce
+   "correct behaviour" when interfacing ICA web services and endpoints.
 
-2. As "libiap" project sought to maintain most upto date upstream API compatible with
-   IAP web services, however, project does not guarantee this is the case all the time.
+2. As "libica" project sought to maintain most upto date upstream API compatible with
+   ICA web services, however, project does not guarantee this is the case all the time.
 
-3. "libiap" makes no guarantee about any damages to your data due to any mis-use/mis-configure
+3. "libica" makes no guarantee about any damages to your data due to any mis-use/mis-configure
    or unintentional and/or un-discovered potential software bug. See "AS IS" clause, MIT license.
 
 4. Project also does not able to provide any support, if, discerning issue is
-   thought to be solely related to IAP web services.
+   thought to be solely related to ICA web services.

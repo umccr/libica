@@ -1,4 +1,4 @@
-site_name: libiap
+site_name: libica
 nav:
   - libwes: libwes/README.md
   - libtes: libtes/README.md
@@ -10,13 +10,13 @@ theme:
   name:
     material
 
-repo_name: umccr-illumina/libiap
-repo_url: https://github.com/umccr-illumina/libiap
+repo_name: umccr-illumina/libica
+repo_url: https://github.com/umccr-illumina/libica
 
 extra:
   social:
     - icon: fontawesome/brands/github-alt
-      link: https://github.com/umccr-illumina/libiap
+      link: https://github.com/umccr-illumina/libica
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/umccr
 

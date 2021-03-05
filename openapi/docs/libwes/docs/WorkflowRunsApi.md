@@ -1,4 +1,4 @@
-# libiap.openapi.libwes.WorkflowRunsApi
+# libica.openapi.libwes.WorkflowRunsApi
 
 All URIs are relative to *https://aps2.platform.illumina.com*
 
@@ -23,12 +23,12 @@ Aborts the workflow run with a given ID.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libwes
-from libiap.openapi.libwes.rest import ApiException
+import libica.openapi.libwes
+from libica.openapi.libwes.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libwes.Configuration(
+configuration = libica.openapi.libwes.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -38,7 +38,7 @@ configuration = libiap.openapi.libwes.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libwes.Configuration(
+configuration = libica.openapi.libwes.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -48,12 +48,12 @@ configuration = libiap.openapi.libwes.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libwes.ApiClient(configuration) as api_client:
+with libica.openapi.libwes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libwes.WorkflowRunsApi(api_client)
+    api_instance = libica.openapi.libwes.WorkflowRunsApi(api_client)
     run_id = 'run_id_example' # str | ID of the workflow run
 include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
-body = libiap.openapi.libwes.AbortWorkflowRunRequest() # AbortWorkflowRunRequest |  (optional)
+body = libica.openapi.libwes.AbortWorkflowRunRequest() # AbortWorkflowRunRequest |  (optional)
 
     try:
         # Abort a workflow run
@@ -109,12 +109,12 @@ Gets the details of a workflow run with a given ID.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libwes
-from libiap.openapi.libwes.rest import ApiException
+import libica.openapi.libwes
+from libica.openapi.libwes.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libwes.Configuration(
+configuration = libica.openapi.libwes.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -124,7 +124,7 @@ configuration = libiap.openapi.libwes.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libwes.Configuration(
+configuration = libica.openapi.libwes.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -134,9 +134,9 @@ configuration = libiap.openapi.libwes.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libwes.ApiClient(configuration) as api_client:
+with libica.openapi.libwes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libwes.WorkflowRunsApi(api_client)
+    api_instance = libica.openapi.libwes.WorkflowRunsApi(api_client)
     run_id = 'run_id_example' # str | ID of the workflow run
 include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
 
@@ -193,12 +193,12 @@ Gets a list of history events for a workflow run with a given ID.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libwes
-from libiap.openapi.libwes.rest import ApiException
+import libica.openapi.libwes
+from libica.openapi.libwes.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libwes.Configuration(
+configuration = libica.openapi.libwes.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -208,7 +208,7 @@ configuration = libiap.openapi.libwes.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libwes.Configuration(
+configuration = libica.openapi.libwes.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -218,9 +218,9 @@ configuration = libiap.openapi.libwes.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libwes.ApiClient(configuration) as api_client:
+with libica.openapi.libwes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libwes.WorkflowRunsApi(api_client)
+    api_instance = libica.openapi.libwes.WorkflowRunsApi(api_client)
     run_id = 'run_id_example' # str | ID of the workflow run
 sort = 'eventId asc' # str |  (optional) (default to 'eventId asc')
 include = ['include_example'] # list[str] | Comma-separated list of properties to include in the response (optional)
@@ -283,12 +283,12 @@ Gets a list of workflow runs.
 ```python
 from __future__ import print_function
 import time
-import libiap.openapi.libwes
-from libiap.openapi.libwes.rest import ApiException
+import libica.openapi.libwes
+from libica.openapi.libwes.rest import ApiException
 from pprint import pprint
 # Defining the host is optional and defaults to https://aps2.platform.illumina.com
 # See configuration.py for a list of all supported configuration parameters.
-configuration = libiap.openapi.libwes.Configuration(
+configuration = libica.openapi.libwes.Configuration(
     host = "https://aps2.platform.illumina.com"
 )
 
@@ -298,7 +298,7 @@ configuration = libiap.openapi.libwes.Configuration(
 # satisfies your auth use case.
 
 # Configure API key authorization: Bearer
-configuration = libiap.openapi.libwes.Configuration(
+configuration = libica.openapi.libwes.Configuration(
     host = "https://aps2.platform.illumina.com",
     api_key = {
         'Authorization': 'YOUR_API_KEY'
@@ -308,9 +308,9 @@ configuration = libiap.openapi.libwes.Configuration(
 # configuration.api_key_prefix['Authorization'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with libiap.openapi.libwes.ApiClient(configuration) as api_client:
+with libica.openapi.libwes.ApiClient(configuration) as api_client:
     # Create an instance of the API class
-    api_instance = libiap.openapi.libwes.WorkflowRunsApi(api_client)
+    api_instance = libica.openapi.libwes.WorkflowRunsApi(api_client)
     status = ['status_example'] # list[str] |  (optional)
 tenant_id = 'tenant_id_example' # str | ID of the tenant (optional)
 name = 'name_example' # str |  (optional)

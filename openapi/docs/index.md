@@ -1,11 +1,11 @@
-# Welcome to libiap.openapi documentation
+# Welcome to libica.openapi documentation
 
-Python SDK/Library for [IAP](https://iap-docs.readme.io/docs) -- https://umccr-illumina.github.io/libiap/
+Python SDK for Illumina Connected Analytics (ICA) -- https://umccr-illumina.github.io/libica/
 
-- Tested for Python 3.6, 3.7, 3.8
-- [Test Coverage](https://umccr-illumina.github.io/libiap/coverage/)
-- [PyDoc](https://umccr-illumina.github.io/libiap/libiap/)
-- [Wiki](https://github.com/umccr-illumina/libiap/wiki)
+- Tested for Python 3.6, 3.7, 3.8, 3.9
+- [Test Coverage](https://umccr-illumina.github.io/libica/coverage/)
+- [PyDoc](https://umccr-illumina.github.io/libica/libica/)
+- [Wiki](https://github.com/umccr-illumina/libica/wiki)
 
 #### SDK
 
