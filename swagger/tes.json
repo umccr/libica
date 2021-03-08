@@ -618,6 +618,85 @@
         }
       }
     },
+    "/v1/tasks/runs/{runId}:heartbeat": {
+      "post": {
+        "tags": [
+          "Task Runs"
+        ],
+        "summary": "Heartbeat for a task run",
+        "description": "Heartbeat a task run for a given task run ID. This notifies TES that a task run is executing.",
+        "operationId": "heartbeatTaskRun",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "runId",
+            "description": "",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/HeartbeatTaskRunRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/TaskRunHeartbeat"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/tasks/{taskId}/versions": {
       "get": {
         "tags": [
@@ -1897,6 +1976,120 @@
         "timeModified": {
           "format": "date-time",
           "description": "Date and Time (in UTC) when object was modified in TES",
+          "type": "string"
+        }
+      }
+    },
+    "ContainerStateWaiting": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ContainerStateRunning": {
+      "type": "object",
+      "properties": {
+        "startedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "ContainerStateTerminated": {
+      "type": "object",
+      "properties": {
+        "exitCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "signal": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "startedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "finishedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "containerID": {
+          "type": "string"
+        }
+      }
+    },
+    "ContainerState": {
+      "type": "object",
+      "properties": {
+        "waiting": {
+          "$ref": "#/definitions/ContainerStateWaiting"
+        },
+        "running": {
+          "$ref": "#/definitions/ContainerStateRunning"
+        },
+        "terminated": {
+          "$ref": "#/definitions/ContainerStateTerminated"
+        }
+      }
+    },
+    "ContainerStatus": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/ContainerState"
+        }
+      }
+    },
+    "HeartbeatTaskRunRequest": {
+      "type": "object",
+      "properties": {
+        "lastHeartbeat": {
+          "description": "LastHeartbeat",
+          "type": "boolean"
+        },
+        "podName": {
+          "type": "string"
+        },
+        "podUID": {
+          "type": "string"
+        },
+        "podHardwareDetails": {
+          "type": "string"
+        },
+        "jobRetryCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "nonce": {
+          "type": "string"
+        },
+        "containerStatus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ContainerStatus"
+          }
+        }
+      }
+    },
+    "TaskRunHeartbeat": {
+      "type": "object",
+      "properties": {
+        "jwt": {
           "type": "string"
         }
       }

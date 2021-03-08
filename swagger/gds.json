@@ -1445,9 +1445,324 @@
         }
       }
     },
-    "/v1/volumeconfigurations": { },
-    "/v1/volumeconfigurations/{volumeConfigurationName}": { },
-    "/v1/volumeconfigurations/{volumeConfigurationName}:validate": { },
+    "/v1/volumeconfigurations": {
+      "get": {
+        "tags": [
+          "VolumeConfigurations"
+        ],
+        "summary": "Get a list of volumes",
+        "operationId": "listVolumeConfigurations",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "onlineStatus",
+            "description": "Optional field that specifies the Online Status for Volume configurations included in the list.\r\nIf provided, the value must be Initializing, Ok, or Error.",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "description": "START_DESC END_DESC",
+            "type": "integer",
+            "format": "int32",
+            "maximum": 1000,
+            "minimum": 0
+          },
+          {
+            "in": "query",
+            "name": "pageToken",
+            "description": "START_DESC END_DESC",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "description": "START_DESC END_DESC",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/VolumeConfigurationListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "VolumeConfigurations"
+        ],
+        "summary": "Create a volume configuration in GDS.",
+        "description": "Create a volume configuration in GDS. This contains the object store details that will be used to create volumes.",
+        "operationId": "createVolumeConfiguration",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateVolumeConfigurationRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created new Volume Configuration.",
+            "schema": {
+              "$ref": "#/definitions/VolumeConfigurationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "A conflict was found. Make sure the new Volume configuration name doesn't already exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/volumeconfigurations/{volumeConfigurationName}": {
+      "get": {
+        "tags": [
+          "VolumeConfigurations"
+        ],
+        "summary": "Get information for the specified volume configuration name or Id",
+        "operationId": "getVolumeConfiguration",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "volumeConfigurationName",
+            "description": "Unique name of the volume configuration to retrieve information for.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/VolumeConfigurationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Volume configuration not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "VolumeConfigurations"
+        ],
+        "summary": "Deletes a volume configuration by Id or name",
+        "operationId": "deleteVolumeConfiguration",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "volumeConfigurationName",
+            "description": "Unique name of the Volume Configuration to be deleted.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted.",
+            "schema": {
+              "$ref": "#/definitions/VolumeResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Volume not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/volumeconfigurations/{volumeConfigurationName}:validate": {
+      "post": {
+        "tags": [
+          "VolumeConfigurations"
+        ],
+        "summary": "Validate a volume configuration",
+        "description": "Validate an existing volume configuration.",
+        "operationId": "validateVolumeConfiguration",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "volumeConfigurationName",
+            "description": "Unique name of the volume configuration to be validated.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted.",
+            "schema": {
+              "$ref": "#/definitions/VolumeConfigurationResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Volume configuration not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/volumes": {
       "get": {
         "tags": [
@@ -1677,6 +1992,12 @@
             "description": "Unique identifier for the Volume to be deleted.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "purgeObjectStoreData",
+            "description": "Optional and for BYOB only. If true, the volume's data in object storage will be erased.\r\n            This field is ignored for non-BYOB volumes where the object store data is always removed upon deleting the volume.",
+            "type": "boolean"
           }
         ],
         "responses": {
@@ -1706,6 +2027,12 @@
           },
           "404": {
             "description": "Volume not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -1757,6 +2084,10 @@
         },
         "volumeName": {
           "description": "The name of the volume where the file resides",
+          "type": "string"
+        },
+        "volumeConfigurationName": {
+          "description": "The name of the volume configuration (BYOB only)",
           "type": "string"
         },
         "type": {
@@ -1935,6 +2266,10 @@
         },
         "volumeName": {
           "description": "The name of the volume where the file resides",
+          "type": "string"
+        },
+        "volumeConfigurationName": {
+          "description": "The name of the volume configuration (BYOB only)",
           "type": "string"
         },
         "type": {
@@ -2387,6 +2722,11 @@
         "targetParentFolderId": {
           "description": "The parent folder into which the source folder will be copied.",
           "type": "string"
+        },
+        "destinationFolderName": {
+          "description": "A new name for the destination folder. Required if target parent folder is the same as the destination folder.\r\nWhen optional and not provided, the source folder name is used as the destination folder name.",
+          "pattern": "^[^/]+$",
+          "type": "string"
         }
       }
     },
@@ -2412,6 +2752,10 @@
         "targetFolderUrn": {
           "description": "The Urn of the target folder for the copy operation",
           "type": "string"
+        },
+        "destinationFolderName": {
+          "description": "The folder name for the copied folder",
+          "type": "string"
         }
       }
     },
@@ -2429,7 +2773,8 @@
       "enum": [
         "Pending",
         "InProgress",
-        "Completed"
+        "Completed",
+        "Failed"
       ],
       "type": "string"
     },
@@ -2563,7 +2908,7 @@
         }
       }
     },
-    "VolumeSettingStatus": {
+    "VolumeConfigurationOnlineStatus": {
       "description": "The valid Online Status values for Volume configurations in GDS",
       "enum": [
         "Initializing",
@@ -2585,7 +2930,7 @@
           "type": "string"
         },
         "keyPrefix": {
-          "description": "Key prefix within the bucket for GDS to operate within. Volumes may only be created within this prefix and the given credentials need only authorize\r\naccess here. If not set, default is to allow operation on the full bucket. No leading slash.",
+          "description": "Key prefix within the bucket for GDS to operate within. Volumes may only be created within this prefix and the given credentials need only authorize\r\naccess here. If not set, default is to allow operation on the full bucket. No leading slash, and must end with a trailing slash.",
           "pattern": "^[^/].*$",
           "type": "string",
           "example": "gds-volumes/"
@@ -2595,14 +2940,14 @@
     "ObjectStoreSettings": {
       "required": [
         "awsS3",
-        "platformCredentialsName"
+        "secretName"
       ],
       "type": "object",
       "properties": {
         "awsS3": {
           "$ref": "#/definitions/AWSS3ObjectStoreSetting"
         },
-        "platformCredentialsName": {
+        "secretName": {
           "description": "Platform credentials Name",
           "type": "string"
         }
@@ -2616,19 +2961,19 @@
           "type": "string"
         },
         "tenantId": {
-          "description": "The unique identifier for this Volume's Tenant",
+          "description": "The unique identifier for this Volume Configuration's Tenant",
           "type": "string"
         },
         "subTenantId": {
-          "description": "The unique identifier for this Volume's Sub Tenant",
+          "description": "The unique identifier for this Volume Configurations's Sub Tenant",
           "type": "string"
         },
         "urn": {
-          "description": "The Universal Resource Name, unique to this Volume",
+          "description": "The Universal Resource Name, unique to this Volume Configuration",
           "type": "string"
         },
         "onlineStatus": {
-          "$ref": "#/definitions/VolumeSettingStatus"
+          "$ref": "#/definitions/VolumeConfigurationOnlineStatus"
         },
         "errorCode": {
           "description": "Error code returned from the object store",
@@ -2718,22 +3063,6 @@
       "properties": {
         "name": {
           "description": "Name for the volume configuration",
-          "type": "string"
-        },
-        "objectStoreSettings": {
-          "$ref": "#/definitions/ObjectStoreSettings"
-        }
-      }
-    },
-    "UpdateVolumeConfigurationRequest": {
-      "required": [
-        "name",
-        "objectStoreSettings"
-      ],
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "Name of the volume",
           "type": "string"
         },
         "objectStoreSettings": {
@@ -2868,8 +3197,8 @@
           "type": "string"
         },
         "rootKeyPrefix": {
-          "description": "The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.\r\nIf provided, it must start with the VolumeConfiguration's keyprefix and end with a /.",
-          "pattern": "^(/|[^/].*)$",
+          "description": "The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.\r\nIf provided, it must start with the VolumeConfiguration's keyprefix and end with a /.\r\nTo create a volume representing the root of a bucket, use the value '/'.",
+          "pattern": "^(/)$|^([^/].*[/])$",
           "type": "string"
         }
       }

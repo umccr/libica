@@ -2006,6 +2006,9 @@
           "description": "Workflow run status",
           "type": "string"
         },
+        "idempotencyKey": {
+          "type": "string"
+        },
         "statusSummary": {
           "description": "Workflow run status summary",
           "type": "string"
@@ -2023,6 +2026,10 @@
         },
         "createdByClientId": {
           "description": "Client ID of the Origin Request",
+          "type": "string"
+        },
+        "engineParameters": {
+          "description": "Workflow Engine Parameters",
           "type": "string"
         },
         "timeCreated": {
@@ -2138,6 +2145,9 @@
         },
         "status": {
           "description": "Workflow run status",
+          "type": "string"
+        },
+        "idempotencyKey": {
           "type": "string"
         },
         "statusSummary": {

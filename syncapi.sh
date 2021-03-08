@@ -8,7 +8,7 @@ declare -a services=(wes gds tes ens console)
 declare docsrc="openapi/docs"
 
 _deps() {
-  cmds="openapi-generator wget rsync sed"
+  cmds="openapi-generator wget rsync sed curl swagger-cli"
   for i in $cmds; do
     if command -v "$i" >/dev/null; then
       continue
@@ -68,4 +68,16 @@ _mvdoc() {
   fi
   sed -i "" -e "s/libica\/openapi\/$libname\///g" "$readme"
   echo
+}
+
+chkepver() {
+  # check endpoint version
+  curl -s -X GET $BASE_URL/v1/health | jq
+}
+
+validateapi() {
+  # validate swagger openapi definitions
+  for i in "${services[@]}"; do
+    swagger-cli validate swagger/"$i".json
+  done
 }

@@ -31,7 +31,7 @@ unit:
 autounit:
 	@py.test --no-cov libica/openapi
 
-test:
+test: check
 	@py.test
 
 pilot:
@@ -57,3 +57,13 @@ genapi:
 
 mvapidoc:
 	@. syncapi.sh; mvapidoc
+
+check: chkepver validate
+
+# check endpoint version
+chkepver:
+	@. syncapi.sh; chkepver
+
+# validate swagger openapi definitions
+validate:
+	@. syncapi.sh; validateapi
