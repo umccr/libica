@@ -24,6 +24,7 @@ test_ica_mock:
 
 install:
 	@pip install '.[test,dev]'
+	@yarn install
 
 unit:
 	@py.test --no-cov tests/
@@ -33,9 +34,6 @@ autounit:
 
 test: check
 	@py.test
-
-pilot:
-	@python3 pilot.py
 
 .PHONY: dist
 dist:

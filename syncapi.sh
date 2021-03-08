@@ -8,7 +8,7 @@ declare -a services=(wes gds tes ens console)
 declare docsrc="openapi/docs"
 
 _deps() {
-  cmds="openapi-generator wget rsync sed curl swagger-cli"
+  cmds="wget rsync sed curl npx"
   for i in $cmds; do
     if command -v "$i" >/dev/null; then
       continue
@@ -33,13 +33,13 @@ getapi() {
 
 genapi() {
   for i in "${services[@]}"; do
-    openapi-generator generate -i swagger/"$i".json -g python -o . \
+    npx openapi-generator-cli generate -i swagger/"$i".json -g python -o . \
       --global-property=apiDocs=true,modelDocs=true,apiTests=true,modelTests=true \
       --additional-properties="$PYTHON_GEN_PROP",packageName=libica.openapi.lib"$i"
   done
 
   # gen ga4gh sdk
-  #openapi-generator generate -i swagger/ga4gh.json -g python -o . \
+  #npx openapi-generator-cli generate -i swagger/ga4gh.json -g python -o . \
   #  --additional-properties="$PYTHON_GEN_PROP",packageName=libica.openapi.libga4gh
 }
 
@@ -78,6 +78,6 @@ chkepver() {
 validateapi() {
   # validate swagger openapi definitions
   for i in "${services[@]}"; do
-    swagger-cli validate swagger/"$i".json
+    npx swagger-cli validate swagger/"$i".json
   done
 }

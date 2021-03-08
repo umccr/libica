@@ -10,7 +10,7 @@ services:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
 
   wes:
-    image: stoplight/prism:3
+    image: stoplight/prism:4
     command: mock -d -h 0.0.0.0 "/swagger/wes.json"
     restart: always
     ports:
@@ -19,7 +19,7 @@ services:
       - ./swagger:/swagger
 
   tes:
-    image: stoplight/prism:3
+    image: stoplight/prism:4
     command: mock -d -h 0.0.0.0 "/swagger/tes.json"
     restart: always
     ports:
@@ -28,7 +28,7 @@ services:
       - ./swagger:/swagger
 
   gds:
-    image: stoplight/prism:3
+    image: stoplight/prism:4
     command: mock -d -h 0.0.0.0 "/swagger/gds.json"
     restart: always
     ports:
@@ -37,7 +37,7 @@ services:
       - ./swagger:/swagger
 
   ens:
-    image: stoplight/prism:3
+    image: stoplight/prism:4
     command: mock -d -h 0.0.0.0 "/swagger/ens.json"
     restart: always
     ports:
@@ -46,7 +46,7 @@ services:
       - ./swagger:/swagger
 
   console:
-    image: stoplight/prism:3
+    image: stoplight/prism:4
     command: mock -d -h 0.0.0.0 "/swagger/console.json"
     restart: always
     ports:
