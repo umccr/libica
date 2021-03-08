@@ -113,7 +113,7 @@ class CreateVolumeRequest(object):
     def root_key_prefix(self):
         """Gets the root_key_prefix of this CreateVolumeRequest.  # noqa: E501
 
-        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration's keyprefix and end with a /.  # noqa: E501
+        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration's keyprefix and end with a /.  To create a volume representing the root of a bucket, use the value '/'.  # noqa: E501
 
         :return: The root_key_prefix of this CreateVolumeRequest.  # noqa: E501
         :rtype: str
@@ -124,14 +124,14 @@ class CreateVolumeRequest(object):
     def root_key_prefix(self, root_key_prefix):
         """Sets the root_key_prefix of this CreateVolumeRequest.
 
-        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration's keyprefix and end with a /.  # noqa: E501
+        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration's keyprefix and end with a /.  To create a volume representing the root of a bucket, use the value '/'.  # noqa: E501
 
         :param root_key_prefix: The root_key_prefix of this CreateVolumeRequest.  # noqa: E501
         :type: str
         """
         if (self.local_vars_configuration.client_side_validation and
-                root_key_prefix is not None and not re.search(r'^(\/|[^\/].*)$', root_key_prefix)):  # noqa: E501
-            raise ValueError(r"Invalid value for `root_key_prefix`, must be a follow pattern or equal to `/^(\/|[^\/].*)$/`")  # noqa: E501
+                root_key_prefix is not None and not re.search(r'^(\/)$|^([^\/].*[\/])$', root_key_prefix)):  # noqa: E501
+            raise ValueError(r"Invalid value for `root_key_prefix`, must be a follow pattern or equal to `/^(\/)$|^([^\/].*[\/])$/`")  # noqa: E501
 
         self._root_key_prefix = root_key_prefix
 

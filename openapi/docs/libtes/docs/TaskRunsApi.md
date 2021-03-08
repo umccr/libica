@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**abort_task_run**](TaskRunsApi.md#abort_task_run) | **PUT** /v1/tasks/runs/{runId}:abort | Abort a task run
 [**create_task_run**](TaskRunsApi.md#create_task_run) | **POST** /v1/tasks/runs | Create and launch a task run
 [**get_task_run**](TaskRunsApi.md#get_task_run) | **GET** /v1/tasks/runs/{runId} | Get the status of a task run
+[**heartbeat_task_run**](TaskRunsApi.md#heartbeat_task_run) | **POST** /v1/tasks/runs/{runId}:heartbeat | Heartbeat for a task run
 [**list_task_runs**](TaskRunsApi.md#list_task_runs) | **GET** /v1/tasks/runs | Get a list of task runs
 
 
@@ -243,6 +244,91 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+**500** | Server Error |  -  |
+**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **heartbeat_task_run**
+> TaskRunHeartbeat heartbeat_task_run(run_id, body=body)
+
+Heartbeat for a task run
+
+Heartbeat a task run for a given task run ID. This notifies TES that a task run is executing.
+
+### Example
+
+* Api Key Authentication (Bearer):
+```python
+from __future__ import print_function
+import time
+import libica.openapi.libtes
+from libica.openapi.libtes.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.libtes.Configuration(
+    host = "https://aps2.platform.illumina.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Bearer
+configuration = libica.openapi.libtes.Configuration(
+    host = "https://aps2.platform.illumina.com",
+    api_key = {
+        'Authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.libtes.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.libtes.TaskRunsApi(api_client)
+    run_id = 'run_id_example' # str | 
+body = libica.openapi.libtes.HeartbeatTaskRunRequest() # HeartbeatTaskRunRequest |  (optional)
+
+    try:
+        # Heartbeat for a task run
+        api_response = api_instance.heartbeat_task_run(run_id, body=body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling TaskRunsApi->heartbeat_task_run: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **run_id** | **str**|  | 
+ **body** | [**HeartbeatTaskRunRequest**](HeartbeatTaskRunRequest.md)|  | [optional] 
+
+### Return type
+
+[**TaskRunHeartbeat**](TaskRunHeartbeat.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
  - **Accept**: application/json
 
 ### HTTP response details

@@ -4,10 +4,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Name for the volume configuration | [optional] 
-**tenant_id** | **str** | The unique identifier for this Volume&#39;s Tenant | [optional] 
-**sub_tenant_id** | **str** | The unique identifier for this Volume&#39;s Sub Tenant | [optional] 
-**urn** | **str** | The Universal Resource Name, unique to this Volume | [optional] 
-**online_status** | [**VolumeSettingStatus**](VolumeSettingStatus.md) |  | [optional] 
+**tenant_id** | **str** | The unique identifier for this Volume Configuration&#39;s Tenant | [optional] 
+**sub_tenant_id** | **str** | The unique identifier for this Volume Configurations&#39;s Sub Tenant | [optional] 
+**urn** | **str** | The Universal Resource Name, unique to this Volume Configuration | [optional] 
+**online_status** | [**VolumeConfigurationOnlineStatus**](VolumeConfigurationOnlineStatus.md) |  | [optional] 
 **error_code** | **str** | Error code returned from the object store | [optional] 
 **error_message** | **str** | Error message returned from the object store | [optional] 
 **time_of_last_error** | **datetime** | Timestamp of the last observed error. | [optional] 

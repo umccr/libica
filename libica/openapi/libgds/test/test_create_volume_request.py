@@ -38,7 +38,7 @@ class TestCreateVolumeRequest(unittest.TestCase):
             return CreateVolumeRequest(
                 name = '0', 
                 volume_configuration_name = '0', 
-                root_key_prefix = 'a'
+                # root_key_prefix = 'a'
             )
         else :
             return CreateVolumeRequest(

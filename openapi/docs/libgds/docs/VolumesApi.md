@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_volume**
-> VolumeResponse delete_volume(volume_id)
+> VolumeResponse delete_volume(volume_id, purge_object_store_data=purge_object_store_data)
 
 Deletes a volume by Id
 
@@ -134,10 +134,11 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libica.openapi.libgds.VolumesApi(api_client)
     volume_id = 'volume_id_example' # str | Unique identifier for the Volume to be deleted.
+purge_object_store_data = True # bool | Optional and for BYOB only. If true, the volume's data in object storage will be erased.              This field is ignored for non-BYOB volumes where the object store data is always removed upon deleting the volume. (optional)
 
     try:
         # Deletes a volume by Id
-        api_response = api_instance.delete_volume(volume_id)
+        api_response = api_instance.delete_volume(volume_id, purge_object_store_data=purge_object_store_data)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VolumesApi->delete_volume: %s\n" % e)
@@ -148,6 +149,7 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **volume_id** | **str**| Unique identifier for the Volume to be deleted. | 
+ **purge_object_store_data** | **bool**| Optional and for BYOB only. If true, the volume&#39;s data in object storage will be erased.              This field is ignored for non-BYOB volumes where the object store data is always removed upon deleting the volume. | [optional] 
 
 ### Return type
 
@@ -170,6 +172,7 @@ Name | Type | Description  | Notes
 **401** | Unauthorized. |  -  |
 **403** | Forbidden. |  -  |
 **404** | Volume not found. |  -  |
+**409** | Conflict |  -  |
 **0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -40,11 +40,13 @@ class WorkflowRunCompact(object):
         'time_started': 'datetime',
         'time_stopped': 'datetime',
         'status': 'str',
+        'idempotency_key': 'str',
         'status_summary': 'str',
         'error': 'str',
         'error_cause': 'str',
         'workflow_version': 'WorkflowVersionCompact',
         'created_by_client_id': 'str',
+        'engine_parameters': 'str',
         'time_created': 'datetime',
         'time_modified': 'datetime',
         'created_by': 'str',
@@ -61,11 +63,13 @@ class WorkflowRunCompact(object):
         'time_started': 'timeStarted',
         'time_stopped': 'timeStopped',
         'status': 'status',
+        'idempotency_key': 'idempotencyKey',
         'status_summary': 'statusSummary',
         'error': 'error',
         'error_cause': 'errorCause',
         'workflow_version': 'workflowVersion',
         'created_by_client_id': 'createdByClientId',
+        'engine_parameters': 'engineParameters',
         'time_created': 'timeCreated',
         'time_modified': 'timeModified',
         'created_by': 'createdBy',
@@ -74,7 +78,7 @@ class WorkflowRunCompact(object):
         'acl': 'acl'
     }
 
-    def __init__(self, id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, idempotency_key=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, engine_parameters=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         """WorkflowRunCompact - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -87,11 +91,13 @@ class WorkflowRunCompact(object):
         self._time_started = None
         self._time_stopped = None
         self._status = None
+        self._idempotency_key = None
         self._status_summary = None
         self._error = None
         self._error_cause = None
         self._workflow_version = None
         self._created_by_client_id = None
+        self._engine_parameters = None
         self._time_created = None
         self._time_modified = None
         self._created_by = None
@@ -114,6 +120,8 @@ class WorkflowRunCompact(object):
             self.time_stopped = time_stopped
         if status is not None:
             self.status = status
+        if idempotency_key is not None:
+            self.idempotency_key = idempotency_key
         if status_summary is not None:
             self.status_summary = status_summary
         if error is not None:
@@ -124,6 +132,8 @@ class WorkflowRunCompact(object):
             self.workflow_version = workflow_version
         if created_by_client_id is not None:
             self.created_by_client_id = created_by_client_id
+        if engine_parameters is not None:
+            self.engine_parameters = engine_parameters
         if time_created is not None:
             self.time_created = time_created
         if time_modified is not None:
@@ -305,6 +315,27 @@ class WorkflowRunCompact(object):
         self._status = status
 
     @property
+    def idempotency_key(self):
+        """Gets the idempotency_key of this WorkflowRunCompact.  # noqa: E501
+
+
+        :return: The idempotency_key of this WorkflowRunCompact.  # noqa: E501
+        :rtype: str
+        """
+        return self._idempotency_key
+
+    @idempotency_key.setter
+    def idempotency_key(self, idempotency_key):
+        """Sets the idempotency_key of this WorkflowRunCompact.
+
+
+        :param idempotency_key: The idempotency_key of this WorkflowRunCompact.  # noqa: E501
+        :type: str
+        """
+
+        self._idempotency_key = idempotency_key
+
+    @property
     def status_summary(self):
         """Gets the status_summary of this WorkflowRunCompact.  # noqa: E501
 
@@ -416,6 +447,29 @@ class WorkflowRunCompact(object):
         """
 
         self._created_by_client_id = created_by_client_id
+
+    @property
+    def engine_parameters(self):
+        """Gets the engine_parameters of this WorkflowRunCompact.  # noqa: E501
+
+        Workflow Engine Parameters  # noqa: E501
+
+        :return: The engine_parameters of this WorkflowRunCompact.  # noqa: E501
+        :rtype: str
+        """
+        return self._engine_parameters
+
+    @engine_parameters.setter
+    def engine_parameters(self, engine_parameters):
+        """Sets the engine_parameters of this WorkflowRunCompact.
+
+        Workflow Engine Parameters  # noqa: E501
+
+        :param engine_parameters: The engine_parameters of this WorkflowRunCompact.  # noqa: E501
+        :type: str
+        """
+
+        self._engine_parameters = engine_parameters
 
     @property
     def time_created(self):

@@ -87,8 +87,10 @@ class TestVolumeConfigurationListResponse(unittest.TestCase):
                             aws_s3 = libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting(
                                 bucket_name = &#39;012&#39;, 
                                 key_prefix = &#39;gds-volumes/&#39;, ), 
-                            platform_credentials_name = &#39;0&#39;, ), )
-                    ], 
+                            # platform_credentials_name = &#39;0&#39;,
+                            secret_name=&#39;test&#39;,
+                        ), )
+                    ],
                 item_count = 56, 
                 first_page_token = &#39;0&#39;, 
                 next_page_token = &#39;0&#39;, 
@@ -168,8 +170,10 @@ not have a method with the specified name.</p></div>
                             aws_s3 = libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting(
                                 bucket_name = &#39;012&#39;, 
                                 key_prefix = &#39;gds-volumes/&#39;, ), 
-                            platform_credentials_name = &#39;0&#39;, ), )
-                    ], 
+                            # platform_credentials_name = &#39;0&#39;,
+                            secret_name=&#39;test&#39;,
+                        ), )
+                    ],
                 item_count = 56, 
                 first_page_token = &#39;0&#39;, 
                 next_page_token = &#39;0&#39;, 
@@ -231,8 +235,10 @@ optional params are included</p></div>
                         aws_s3 = libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting(
                             bucket_name = &#39;012&#39;, 
                             key_prefix = &#39;gds-volumes/&#39;, ), 
-                        platform_credentials_name = &#39;0&#39;, ), )
-                ], 
+                        # platform_credentials_name = &#39;0&#39;,
+                        secret_name=&#39;test&#39;,
+                    ), )
+                ],
             item_count = 56, 
             first_page_token = &#39;0&#39;, 
             next_page_token = &#39;0&#39;, 

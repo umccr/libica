@@ -14,6 +14,11 @@
 from __future__ import absolute_import
 
 # import models into model package
+from libica.openapi.libtes.models.container_state import ContainerState
+from libica.openapi.libtes.models.container_state_running import ContainerStateRunning
+from libica.openapi.libtes.models.container_state_terminated import ContainerStateTerminated
+from libica.openapi.libtes.models.container_state_waiting import ContainerStateWaiting
+from libica.openapi.libtes.models.container_status import ContainerStatus
 from libica.openapi.libtes.models.create_task_request import CreateTaskRequest
 from libica.openapi.libtes.models.create_task_run_request import CreateTaskRunRequest
 from libica.openapi.libtes.models.create_task_version_request import CreateTaskVersionRequest
@@ -21,6 +26,7 @@ from libica.openapi.libtes.models.credentials import Credentials
 from libica.openapi.libtes.models.environment import Environment
 from libica.openapi.libtes.models.error_response import ErrorResponse
 from libica.openapi.libtes.models.execution import Execution
+from libica.openapi.libtes.models.heartbeat_task_run_request import HeartbeatTaskRunRequest
 from libica.openapi.libtes.models.image import Image
 from libica.openapi.libtes.models.input_mount_mapping_with_creds import InputMountMappingWithCreds
 from libica.openapi.libtes.models.input_stream_settings import InputStreamSettings
@@ -30,6 +36,7 @@ from libica.openapi.libtes.models.resources import Resources
 from libica.openapi.libtes.models.system_files import SystemFiles
 from libica.openapi.libtes.models.task import Task
 from libica.openapi.libtes.models.task_run import TaskRun
+from libica.openapi.libtes.models.task_run_heartbeat import TaskRunHeartbeat
 from libica.openapi.libtes.models.task_run_logs import TaskRunLogs
 from libica.openapi.libtes.models.task_run_summary import TaskRunSummary
 from libica.openapi.libtes.models.task_run_summary_paged_items import TaskRunSummaryPagedItems

@@ -326,6 +326,11 @@
 <td>Get the status of a task run</td>
 </tr>
 <tr>
+<td><a href="./#heartbeat_task_run"><strong>heartbeat_task_run</strong></a></td>
+<td><strong>POST</strong> /v1/tasks/runs/{runId}:heartbeat</td>
+<td>Heartbeat for a task run</td>
+</tr>
+<tr>
 <td><a href="./#list_task_runs"><strong>list_task_runs</strong></a></td>
 <td><strong>GET</strong> /v1/tasks/runs</td>
 <td>Get a list of task runs</td>
@@ -705,13 +710,146 @@
 </tbody>
 </table>
 <p><a href="#">[Back to top]</a> <a href="../../#documentation-for-api-endpoints">[Back to API list]</a> <a href="../../#documentation-for-models">[Back to Model list]</a> <a href="../../">[Back to README]</a></p>
+<h1 id="heartbeat_task_run"><strong>heartbeat_task_run</strong><a class="headerlink" href="#heartbeat_task_run" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>TaskRunHeartbeat heartbeat_task_run(run_id, body=body)</p>
+</blockquote>
+<p>Heartbeat for a task run</p>
+<p>Heartbeat a task run for a given task run ID. This notifies TES that a task run is executing.</p>
+<h3 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Api Key Authentication (Bearer):</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">print_function</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">libica.openapi.libtes</span>
+<span class="kn">from</span> <span class="nn">libica.openapi.libtes.rest</span> <span class="kn">import</span> <span class="n">ApiException</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="c1"># Defining the host is optional and defaults to https://aps2.platform.illumina.com</span>
+<span class="c1"># See configuration.py for a list of all supported configuration parameters.</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libtes</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># The client must configure the authentication and authorization parameters</span>
+<span class="c1"># in accordance with the API server security policy.</span>
+<span class="c1"># Examples for each auth method are provided below, use the example that</span>
+<span class="c1"># satisfies your auth use case.</span>
+
+<span class="c1"># Configure API key authorization: Bearer</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libtes</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;https://aps2.platform.illumina.com&quot;</span><span class="p">,</span>
+    <span class="n">api_key</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;Authorization&#39;</span><span class="p">:</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
+<span class="c1"># configuration.api_key_prefix[&#39;Authorization&#39;] = &#39;Bearer&#39;</span>
+
+<span class="c1"># Enter a context with an instance of the API client</span>
+<span class="k">with</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libtes</span><span class="o">.</span><span class="n">ApiClient</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">api_client</span><span class="p">:</span>
+    <span class="c1"># Create an instance of the API class</span>
+    <span class="n">api_instance</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libtes</span><span class="o">.</span><span class="n">TaskRunsApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
+    <span class="n">run_id</span> <span class="o">=</span> <span class="s1">&#39;run_id_example&#39;</span> <span class="c1"># str | </span>
+<span class="n">body</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libtes</span><span class="o">.</span><span class="n">HeartbeatTaskRunRequest</span><span class="p">()</span> <span class="c1"># HeartbeatTaskRunRequest |  (optional)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Heartbeat for a task run</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">heartbeat_task_run</span><span class="p">(</span><span class="n">run_id</span><span class="p">,</span> <span class="n">body</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling TaskRunsApi-&gt;heartbeat_task_run: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>run_id</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>body</strong></td>
+<td><a href="../HeartbeatTaskRunRequest/"><strong>HeartbeatTaskRunRequest</strong></a></td>
+<td></td>
+<td>[optional]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-type_3">Return type<a class="headerlink" href="#return-type_3" title="Permanent link">&para;</a></h3>
+<p><a href="../TaskRunHeartbeat/"><strong>TaskRunHeartbeat</strong></a></p>
+<h3 id="authorization_3">Authorization<a class="headerlink" href="#authorization_3" title="Permanent link">&para;</a></h3>
+<p><a href="../../#Bearer">Bearer</a></p>
+<h3 id="http-request-headers_3">HTTP request headers<a class="headerlink" href="#http-request-headers_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Content-Type</strong>: application/json-patch+json, application/json, text/json, application/*+json</li>
+<li><strong>Accept</strong>: application/json</li>
+</ul>
+<h3 id="http-response-details_3">HTTP response details<a class="headerlink" href="#http-response-details_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+<th>Response headers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>200</strong></td>
+<td>Success</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>400</strong></td>
+<td>Bad Request</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>401</strong></td>
+<td>Unauthorized</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>403</strong></td>
+<td>Forbidden</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>404</strong></td>
+<td>Not Found</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>500</strong></td>
+<td>Server Error</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td>Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#">[Back to top]</a> <a href="../../#documentation-for-api-endpoints">[Back to API list]</a> <a href="../../#documentation-for-models">[Back to Model list]</a> <a href="../../">[Back to README]</a></p>
 <h1 id="list_task_runs"><strong>list_task_runs</strong><a class="headerlink" href="#list_task_runs" title="Permanent link">&para;</a></h1>
 <blockquote>
 <p>TaskRunSummaryPagedItems list_task_runs(sort=sort, names=names, status=status, versions=versions, acls=acls, page_size=page_size, page_token=page_token)</p>
 </blockquote>
 <p>Get a list of task runs</p>
 <p>Get a list of task runs accessible by the current tenant ID.</p>
-<h3 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h3>
+<h3 id="example_4">Example<a class="headerlink" href="#example_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Api Key Authentication (Bearer):</li>
 </ul>
@@ -761,7 +899,7 @@
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling TaskRunsApi-&gt;list_task_runs: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
 </code></pre></div>
 
-<h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
+<h3 id="parameters_4">Parameters<a class="headerlink" href="#parameters_4" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -816,16 +954,16 @@
 </tr>
 </tbody>
 </table>
-<h3 id="return-type_3">Return type<a class="headerlink" href="#return-type_3" title="Permanent link">&para;</a></h3>
+<h3 id="return-type_4">Return type<a class="headerlink" href="#return-type_4" title="Permanent link">&para;</a></h3>
 <p><a href="../TaskRunSummaryPagedItems/"><strong>TaskRunSummaryPagedItems</strong></a></p>
-<h3 id="authorization_3">Authorization<a class="headerlink" href="#authorization_3" title="Permanent link">&para;</a></h3>
+<h3 id="authorization_4">Authorization<a class="headerlink" href="#authorization_4" title="Permanent link">&para;</a></h3>
 <p><a href="../../#Bearer">Bearer</a></p>
-<h3 id="http-request-headers_3">HTTP request headers<a class="headerlink" href="#http-request-headers_3" title="Permanent link">&para;</a></h3>
+<h3 id="http-request-headers_4">HTTP request headers<a class="headerlink" href="#http-request-headers_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Content-Type</strong>: Not defined</li>
 <li><strong>Accept</strong>: application/json</li>
 </ul>
-<h3 id="http-response-details_3">HTTP response details<a class="headerlink" href="#http-response-details_3" title="Permanent link">&para;</a></h3>
+<h3 id="http-response-details_4">HTTP response details<a class="headerlink" href="#http-response-details_4" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>

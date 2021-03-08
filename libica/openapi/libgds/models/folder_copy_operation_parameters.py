@@ -34,15 +34,17 @@ class FolderCopyOperationParameters(object):
     """
     openapi_types = {
         'source_folder_urn': 'str',
-        'target_folder_urn': 'str'
+        'target_folder_urn': 'str',
+        'destination_folder_name': 'str'
     }
 
     attribute_map = {
         'source_folder_urn': 'sourceFolderUrn',
-        'target_folder_urn': 'targetFolderUrn'
+        'target_folder_urn': 'targetFolderUrn',
+        'destination_folder_name': 'destinationFolderName'
     }
 
-    def __init__(self, source_folder_urn=None, target_folder_urn=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, source_folder_urn=None, target_folder_urn=None, destination_folder_name=None, local_vars_configuration=None):  # noqa: E501
         """FolderCopyOperationParameters - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -50,12 +52,15 @@ class FolderCopyOperationParameters(object):
 
         self._source_folder_urn = None
         self._target_folder_urn = None
+        self._destination_folder_name = None
         self.discriminator = None
 
         if source_folder_urn is not None:
             self.source_folder_urn = source_folder_urn
         if target_folder_urn is not None:
             self.target_folder_urn = target_folder_urn
+        if destination_folder_name is not None:
+            self.destination_folder_name = destination_folder_name
 
     @property
     def source_folder_urn(self):
@@ -102,6 +107,29 @@ class FolderCopyOperationParameters(object):
         """
 
         self._target_folder_urn = target_folder_urn
+
+    @property
+    def destination_folder_name(self):
+        """Gets the destination_folder_name of this FolderCopyOperationParameters.  # noqa: E501
+
+        The folder name for the copied folder  # noqa: E501
+
+        :return: The destination_folder_name of this FolderCopyOperationParameters.  # noqa: E501
+        :rtype: str
+        """
+        return self._destination_folder_name
+
+    @destination_folder_name.setter
+    def destination_folder_name(self, destination_folder_name):
+        """Sets the destination_folder_name of this FolderCopyOperationParameters.
+
+        The folder name for the copied folder  # noqa: E501
+
+        :param destination_folder_name: The destination_folder_name of this FolderCopyOperationParameters.  # noqa: E501
+        :type: str
+        """
+
+        self._destination_folder_name = destination_folder_name
 
     def to_dict(self):
         """Returns the model properties as a dict"""

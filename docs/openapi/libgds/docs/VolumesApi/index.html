@@ -462,7 +462,7 @@
 <p><a href="#">[Back to top]</a> <a href="../../#documentation-for-api-endpoints">[Back to API list]</a> <a href="../../#documentation-for-models">[Back to Model list]</a> <a href="../../">[Back to README]</a></p>
 <h1 id="delete_volume"><strong>delete_volume</strong><a class="headerlink" href="#delete_volume" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p>VolumeResponse delete_volume(volume_id)</p>
+<p>VolumeResponse delete_volume(volume_id, purge_object_store_data=purge_object_store_data)</p>
 </blockquote>
 <p>Deletes a volume by Id</p>
 <h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
@@ -500,10 +500,11 @@
     <span class="c1"># Create an instance of the API class</span>
     <span class="n">api_instance</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">libgds</span><span class="o">.</span><span class="n">VolumesApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
     <span class="n">volume_id</span> <span class="o">=</span> <span class="s1">&#39;volume_id_example&#39;</span> <span class="c1"># str | Unique identifier for the Volume to be deleted.</span>
+<span class="n">purge_object_store_data</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># bool | Optional and for BYOB only. If true, the volume&#39;s data in object storage will be erased.              This field is ignored for non-BYOB volumes where the object store data is always removed upon deleting the volume. (optional)</span>
 
     <span class="k">try</span><span class="p">:</span>
         <span class="c1"># Deletes a volume by Id</span>
-        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">delete_volume</span><span class="p">(</span><span class="n">volume_id</span><span class="p">)</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">delete_volume</span><span class="p">(</span><span class="n">volume_id</span><span class="p">,</span> <span class="n">purge_object_store_data</span><span class="o">=</span><span class="n">purge_object_store_data</span><span class="p">)</span>
         <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
     <span class="k">except</span> <span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling VolumesApi-&gt;delete_volume: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
@@ -525,6 +526,12 @@
 <td><strong>str</strong></td>
 <td>Unique identifier for the Volume to be deleted.</td>
 <td></td>
+</tr>
+<tr>
+<td><strong>purge_object_store_data</strong></td>
+<td><strong>bool</strong></td>
+<td>Optional and for BYOB only. If true, the volume&#39;s data in object storage will be erased.              This field is ignored for non-BYOB volumes where the object store data is always removed upon deleting the volume.</td>
+<td>[optional]</td>
 </tr>
 </tbody>
 </table>
@@ -570,6 +577,11 @@
 <tr>
 <td><strong>404</strong></td>
 <td>Volume not found.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>409</strong></td>
+<td>Conflict</td>
 <td>-</td>
 </tr>
 <tr>

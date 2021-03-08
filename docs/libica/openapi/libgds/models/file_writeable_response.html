@@ -70,6 +70,7 @@ class FileWriteableResponse(object):
         &#39;name&#39;: &#39;str&#39;,
         &#39;volume_id&#39;: &#39;str&#39;,
         &#39;volume_name&#39;: &#39;str&#39;,
+        &#39;volume_configuration_name&#39;: &#39;str&#39;,
         &#39;type&#39;: &#39;str&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
         &#39;sub_tenant_id&#39;: &#39;str&#39;,
@@ -95,6 +96,7 @@ class FileWriteableResponse(object):
         &#39;name&#39;: &#39;name&#39;,
         &#39;volume_id&#39;: &#39;volumeId&#39;,
         &#39;volume_name&#39;: &#39;volumeName&#39;,
+        &#39;volume_configuration_name&#39;: &#39;volumeConfigurationName&#39;,
         &#39;type&#39;: &#39;type&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
         &#39;sub_tenant_id&#39;: &#39;subTenantId&#39;,
@@ -115,7 +117,7 @@ class FileWriteableResponse(object):
         &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FileWriteableResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -125,6 +127,7 @@ class FileWriteableResponse(object):
         self._name = None
         self._volume_id = None
         self._volume_name = None
+        self._volume_configuration_name = None
         self._type = None
         self._tenant_id = None
         self._sub_tenant_id = None
@@ -153,6 +156,8 @@ class FileWriteableResponse(object):
             self.volume_id = volume_id
         if volume_name is not None:
             self.volume_name = volume_name
+        if volume_configuration_name is not None:
+            self.volume_configuration_name = volume_configuration_name
         if type is not None:
             self.type = type
         if tenant_id is not None:
@@ -281,6 +286,29 @@ class FileWriteableResponse(object):
         &#34;&#34;&#34;
 
         self._volume_name = volume_name
+
+    @property
+    def volume_configuration_name(self):
+        &#34;&#34;&#34;Gets the volume_configuration_name of this FileWriteableResponse.  # noqa: E501
+
+        The name of the volume configuration (BYOB only)  # noqa: E501
+
+        :return: The volume_configuration_name of this FileWriteableResponse.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._volume_configuration_name
+
+    @volume_configuration_name.setter
+    def volume_configuration_name(self, volume_configuration_name):
+        &#34;&#34;&#34;Sets the volume_configuration_name of this FileWriteableResponse.
+
+        The name of the volume configuration (BYOB only)  # noqa: E501
+
+        :param volume_configuration_name: The volume_configuration_name of this FileWriteableResponse.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._volume_configuration_name = volume_configuration_name
 
     @property
     def type(self):
@@ -748,7 +776,7 @@ class FileWriteableResponse(object):
 <dl>
 <dt id="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse"><code class="flex name class">
 <span>class <span class="ident">FileWriteableResponse</span></span>
-<span>(</span><span>id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, object_store_access=None, local_vars_configuration=None)</span>
+<span>(</span><span>id=None, name=None, volume_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, object_store_access=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -778,6 +806,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;name&#39;: &#39;str&#39;,
         &#39;volume_id&#39;: &#39;str&#39;,
         &#39;volume_name&#39;: &#39;str&#39;,
+        &#39;volume_configuration_name&#39;: &#39;str&#39;,
         &#39;type&#39;: &#39;str&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
         &#39;sub_tenant_id&#39;: &#39;str&#39;,
@@ -803,6 +832,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;name&#39;: &#39;name&#39;,
         &#39;volume_id&#39;: &#39;volumeId&#39;,
         &#39;volume_name&#39;: &#39;volumeName&#39;,
+        &#39;volume_configuration_name&#39;: &#39;volumeConfigurationName&#39;,
         &#39;type&#39;: &#39;type&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
         &#39;sub_tenant_id&#39;: &#39;subTenantId&#39;,
@@ -823,7 +853,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FileWriteableResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -833,6 +863,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._name = None
         self._volume_id = None
         self._volume_name = None
+        self._volume_configuration_name = None
         self._type = None
         self._tenant_id = None
         self._sub_tenant_id = None
@@ -861,6 +892,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.volume_id = volume_id
         if volume_name is not None:
             self.volume_name = volume_name
+        if volume_configuration_name is not None:
+            self.volume_configuration_name = volume_configuration_name
         if type is not None:
             self.type = type
         if tenant_id is not None:
@@ -989,6 +1022,29 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._volume_name = volume_name
+
+    @property
+    def volume_configuration_name(self):
+        &#34;&#34;&#34;Gets the volume_configuration_name of this FileWriteableResponse.  # noqa: E501
+
+        The name of the volume configuration (BYOB only)  # noqa: E501
+
+        :return: The volume_configuration_name of this FileWriteableResponse.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._volume_configuration_name
+
+    @volume_configuration_name.setter
+    def volume_configuration_name(self, volume_configuration_name):
+        &#34;&#34;&#34;Sets the volume_configuration_name of this FileWriteableResponse.
+
+        The name of the volume configuration (BYOB only)  # noqa: E501
+
+        :param volume_configuration_name: The volume_configuration_name of this FileWriteableResponse.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._volume_configuration_name = volume_configuration_name
 
     @property
     def type(self):
@@ -1948,6 +2004,31 @@ def urn(self):
     return self._urn</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.volume_configuration_name"><code class="name">var <span class="ident">volume_configuration_name</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the volume_configuration_name of this FileWriteableResponse.
+# noqa: E501</p>
+<p>The name of the volume configuration (BYOB only)
+# noqa: E501</p>
+<p>:return: The volume_configuration_name of this FileWriteableResponse.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def volume_configuration_name(self):
+    &#34;&#34;&#34;Gets the volume_configuration_name of this FileWriteableResponse.  # noqa: E501
+
+    The name of the volume configuration (BYOB only)  # noqa: E501
+
+    :return: The volume_configuration_name of this FileWriteableResponse.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._volume_configuration_name</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.volume_id"><code class="name">var <span class="ident">volume_id</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the volume_id of this FileWriteableResponse.
@@ -2069,7 +2150,7 @@ def volume_name(self):
 <ul>
 <li>
 <h4><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse">FileWriteableResponse</a></code></h4>
-<ul class="two-column">
+<ul class="">
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.archive_status" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.archive_status">archive_status</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.attribute_map" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.attribute_map">attribute_map</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.created_by" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.created_by">created_by</a></code></li>
@@ -2094,6 +2175,7 @@ def volume_name(self):
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.to_str" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.to_str">to_str</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.type" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.type">type</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.urn" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.urn">urn</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.volume_configuration_name" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.volume_configuration_name">volume_configuration_name</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.volume_id" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.volume_id">volume_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.volume_name" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.volume_name">volume_name</a></code></li>
 </ul>

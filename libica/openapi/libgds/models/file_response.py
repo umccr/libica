@@ -37,6 +37,7 @@ class FileResponse(object):
         'name': 'str',
         'volume_id': 'str',
         'volume_name': 'str',
+        'volume_configuration_name': 'str',
         'type': 'str',
         'tenant_id': 'str',
         'sub_tenant_id': 'str',
@@ -62,6 +63,7 @@ class FileResponse(object):
         'name': 'name',
         'volume_id': 'volumeId',
         'volume_name': 'volumeName',
+        'volume_configuration_name': 'volumeConfigurationName',
         'type': 'type',
         'tenant_id': 'tenantId',
         'sub_tenant_id': 'subTenantId',
@@ -82,7 +84,7 @@ class FileResponse(object):
         'presigned_url': 'presignedUrl'
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, presigned_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, presigned_url=None, local_vars_configuration=None):  # noqa: E501
         """FileResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -92,6 +94,7 @@ class FileResponse(object):
         self._name = None
         self._volume_id = None
         self._volume_name = None
+        self._volume_configuration_name = None
         self._type = None
         self._tenant_id = None
         self._sub_tenant_id = None
@@ -120,6 +123,8 @@ class FileResponse(object):
             self.volume_id = volume_id
         if volume_name is not None:
             self.volume_name = volume_name
+        if volume_configuration_name is not None:
+            self.volume_configuration_name = volume_configuration_name
         if type is not None:
             self.type = type
         if tenant_id is not None:
@@ -248,6 +253,29 @@ class FileResponse(object):
         """
 
         self._volume_name = volume_name
+
+    @property
+    def volume_configuration_name(self):
+        """Gets the volume_configuration_name of this FileResponse.  # noqa: E501
+
+        The name of the volume configuration (BYOB only)  # noqa: E501
+
+        :return: The volume_configuration_name of this FileResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._volume_configuration_name
+
+    @volume_configuration_name.setter
+    def volume_configuration_name(self, volume_configuration_name):
+        """Sets the volume_configuration_name of this FileResponse.
+
+        The name of the volume configuration (BYOB only)  # noqa: E501
+
+        :param volume_configuration_name: The volume_configuration_name of this FileResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._volume_configuration_name = volume_configuration_name
 
     @property
     def type(self):

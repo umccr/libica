@@ -37,7 +37,7 @@ class VolumeConfigurationResponse(object):
         'tenant_id': 'str',
         'sub_tenant_id': 'str',
         'urn': 'str',
-        'online_status': 'VolumeSettingStatus',
+        'online_status': 'VolumeConfigurationOnlineStatus',
         'error_code': 'str',
         'error_message': 'str',
         'time_of_last_error': 'datetime',
@@ -139,7 +139,7 @@ class VolumeConfigurationResponse(object):
     def tenant_id(self):
         """Gets the tenant_id of this VolumeConfigurationResponse.  # noqa: E501
 
-        The unique identifier for this Volume's Tenant  # noqa: E501
+        The unique identifier for this Volume Configuration's Tenant  # noqa: E501
 
         :return: The tenant_id of this VolumeConfigurationResponse.  # noqa: E501
         :rtype: str
@@ -150,7 +150,7 @@ class VolumeConfigurationResponse(object):
     def tenant_id(self, tenant_id):
         """Sets the tenant_id of this VolumeConfigurationResponse.
 
-        The unique identifier for this Volume's Tenant  # noqa: E501
+        The unique identifier for this Volume Configuration's Tenant  # noqa: E501
 
         :param tenant_id: The tenant_id of this VolumeConfigurationResponse.  # noqa: E501
         :type: str
@@ -162,7 +162,7 @@ class VolumeConfigurationResponse(object):
     def sub_tenant_id(self):
         """Gets the sub_tenant_id of this VolumeConfigurationResponse.  # noqa: E501
 
-        The unique identifier for this Volume's Sub Tenant  # noqa: E501
+        The unique identifier for this Volume Configurations's Sub Tenant  # noqa: E501
 
         :return: The sub_tenant_id of this VolumeConfigurationResponse.  # noqa: E501
         :rtype: str
@@ -173,7 +173,7 @@ class VolumeConfigurationResponse(object):
     def sub_tenant_id(self, sub_tenant_id):
         """Sets the sub_tenant_id of this VolumeConfigurationResponse.
 
-        The unique identifier for this Volume's Sub Tenant  # noqa: E501
+        The unique identifier for this Volume Configurations's Sub Tenant  # noqa: E501
 
         :param sub_tenant_id: The sub_tenant_id of this VolumeConfigurationResponse.  # noqa: E501
         :type: str
@@ -185,7 +185,7 @@ class VolumeConfigurationResponse(object):
     def urn(self):
         """Gets the urn of this VolumeConfigurationResponse.  # noqa: E501
 
-        The Universal Resource Name, unique to this Volume  # noqa: E501
+        The Universal Resource Name, unique to this Volume Configuration  # noqa: E501
 
         :return: The urn of this VolumeConfigurationResponse.  # noqa: E501
         :rtype: str
@@ -196,7 +196,7 @@ class VolumeConfigurationResponse(object):
     def urn(self, urn):
         """Sets the urn of this VolumeConfigurationResponse.
 
-        The Universal Resource Name, unique to this Volume  # noqa: E501
+        The Universal Resource Name, unique to this Volume Configuration  # noqa: E501
 
         :param urn: The urn of this VolumeConfigurationResponse.  # noqa: E501
         :type: str
@@ -210,7 +210,7 @@ class VolumeConfigurationResponse(object):
 
 
         :return: The online_status of this VolumeConfigurationResponse.  # noqa: E501
-        :rtype: VolumeSettingStatus
+        :rtype: VolumeConfigurationOnlineStatus
         """
         return self._online_status
 
@@ -220,7 +220,7 @@ class VolumeConfigurationResponse(object):
 
 
         :param online_status: The online_status of this VolumeConfigurationResponse.  # noqa: E501
-        :type: VolumeSettingStatus
+        :type: VolumeConfigurationOnlineStatus
         """
 
         self._online_status = online_status

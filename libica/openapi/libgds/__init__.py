@@ -19,6 +19,7 @@ __version__ = "1.0.0"
 # import apis into sdk package
 from libica.openapi.libgds.api.files_api import FilesApi
 from libica.openapi.libgds.api.folders_api import FoldersApi
+from libica.openapi.libgds.api.volume_configurations_api import VolumeConfigurationsApi
 from libica.openapi.libgds.api.volumes_api import VolumesApi
 
 # import ApiClient
@@ -66,10 +67,9 @@ from libica.openapi.libgds.models.session_response import SessionResponse
 from libica.openapi.libgds.models.session_status import SessionStatus
 from libica.openapi.libgds.models.storage_tier import StorageTier
 from libica.openapi.libgds.models.update_file_request import UpdateFileRequest
-from libica.openapi.libgds.models.update_volume_configuration_request import UpdateVolumeConfigurationRequest
 from libica.openapi.libgds.models.volume_configuration_list_response import VolumeConfigurationListResponse
+from libica.openapi.libgds.models.volume_configuration_online_status import VolumeConfigurationOnlineStatus
 from libica.openapi.libgds.models.volume_configuration_response import VolumeConfigurationResponse
 from libica.openapi.libgds.models.volume_list_response import VolumeListResponse
 from libica.openapi.libgds.models.volume_response import VolumeResponse
-from libica.openapi.libgds.models.volume_setting_status import VolumeSettingStatus
 

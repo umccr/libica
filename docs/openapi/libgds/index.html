@@ -456,7 +456,7 @@
 <ul>
 <li>API version: v1</li>
 <li>Package version: 1.0.0</li>
-<li>Build date: 2021-03-05T11:20:41.689169+11:00[Australia/Melbourne]</li>
+<li>Build date: 2021-03-08T16:00:23.936248+11:00[Australia/Melbourne]</li>
 <li>Build package: org.openapitools.codegen.languages.PythonClientCodegen</li>
 </ul>
 <h2 id="requirements">Requirements.<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
@@ -638,6 +638,36 @@ you can run the following:</p>
 <td>Update a folder content or acl</td>
 </tr>
 <tr>
+<td><em>VolumeConfigurationsApi</em></td>
+<td><a href="docs/VolumeConfigurationsApi/#create_volume_configuration"><strong>create_volume_configuration</strong></a></td>
+<td><strong>POST</strong> /v1/volumeconfigurations</td>
+<td>Create a volume configuration in GDS.</td>
+</tr>
+<tr>
+<td><em>VolumeConfigurationsApi</em></td>
+<td><a href="docs/VolumeConfigurationsApi/#delete_volume_configuration"><strong>delete_volume_configuration</strong></a></td>
+<td><strong>DELETE</strong> /v1/volumeconfigurations/{volumeConfigurationName}</td>
+<td>Deletes a volume configuration by Id or name</td>
+</tr>
+<tr>
+<td><em>VolumeConfigurationsApi</em></td>
+<td><a href="docs/VolumeConfigurationsApi/#get_volume_configuration"><strong>get_volume_configuration</strong></a></td>
+<td><strong>GET</strong> /v1/volumeconfigurations/{volumeConfigurationName}</td>
+<td>Get information for the specified volume configuration name or Id</td>
+</tr>
+<tr>
+<td><em>VolumeConfigurationsApi</em></td>
+<td><a href="docs/VolumeConfigurationsApi/#list_volume_configurations"><strong>list_volume_configurations</strong></a></td>
+<td><strong>GET</strong> /v1/volumeconfigurations</td>
+<td>Get a list of volumes</td>
+</tr>
+<tr>
+<td><em>VolumeConfigurationsApi</em></td>
+<td><a href="docs/VolumeConfigurationsApi/#validate_volume_configuration"><strong>validate_volume_configuration</strong></a></td>
+<td><strong>POST</strong> /v1/volumeconfigurations/{volumeConfigurationName}:validate</td>
+<td>Validate a volume configuration</td>
+</tr>
+<tr>
 <td><em>VolumesApi</em></td>
 <td><a href="docs/VolumesApi/#create_volume"><strong>create_volume</strong></a></td>
 <td><strong>POST</strong> /v1/volumes</td>
@@ -701,12 +731,11 @@ you can run the following:</p>
 <li><a href="docs/SessionStatus/">SessionStatus</a></li>
 <li><a href="docs/StorageTier/">StorageTier</a></li>
 <li><a href="docs/UpdateFileRequest/">UpdateFileRequest</a></li>
-<li><a href="docs/UpdateVolumeConfigurationRequest/">UpdateVolumeConfigurationRequest</a></li>
 <li><a href="docs/VolumeConfigurationListResponse/">VolumeConfigurationListResponse</a></li>
+<li><a href="docs/VolumeConfigurationOnlineStatus/">VolumeConfigurationOnlineStatus</a></li>
 <li><a href="docs/VolumeConfigurationResponse/">VolumeConfigurationResponse</a></li>
 <li><a href="docs/VolumeListResponse/">VolumeListResponse</a></li>
 <li><a href="docs/VolumeResponse/">VolumeResponse</a></li>
-<li><a href="docs/VolumeSettingStatus/">VolumeSettingStatus</a></li>
 </ul>
 <h2 id="documentation-for-authorization">Documentation For Authorization<a class="headerlink" href="#documentation-for-authorization" title="Permanent link">&para;</a></h2>
 <h2 id="bearer">Bearer<a class="headerlink" href="#bearer" title="Permanent link">&para;</a></h2>

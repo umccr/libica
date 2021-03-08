@@ -146,7 +146,7 @@ class CreateVolumeRequest(object):
     def root_key_prefix(self):
         &#34;&#34;&#34;Gets the root_key_prefix of this CreateVolumeRequest.  # noqa: E501
 
-        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration&#39;s keyprefix and end with a /.  # noqa: E501
+        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration&#39;s keyprefix and end with a /.  To create a volume representing the root of a bucket, use the value &#39;/&#39;.  # noqa: E501
 
         :return: The root_key_prefix of this CreateVolumeRequest.  # noqa: E501
         :rtype: str
@@ -157,14 +157,14 @@ class CreateVolumeRequest(object):
     def root_key_prefix(self, root_key_prefix):
         &#34;&#34;&#34;Sets the root_key_prefix of this CreateVolumeRequest.
 
-        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration&#39;s keyprefix and end with a /.  # noqa: E501
+        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration&#39;s keyprefix and end with a /.  To create a volume representing the root of a bucket, use the value &#39;/&#39;.  # noqa: E501
 
         :param root_key_prefix: The root_key_prefix of this CreateVolumeRequest.  # noqa: E501
         :type: str
         &#34;&#34;&#34;
         if (self.local_vars_configuration.client_side_validation and
-                root_key_prefix is not None and not re.search(r&#39;^(\/|[^\/].*)$&#39;, root_key_prefix)):  # noqa: E501
-            raise ValueError(r&#34;Invalid value for `root_key_prefix`, must be a follow pattern or equal to `/^(\/|[^\/].*)$/`&#34;)  # noqa: E501
+                root_key_prefix is not None and not re.search(r&#39;^(\/)$|^([^\/].*[\/])$&#39;, root_key_prefix)):  # noqa: E501
+            raise ValueError(r&#34;Invalid value for `root_key_prefix`, must be a follow pattern or equal to `/^(\/)$|^([^\/].*[\/])$/`&#34;)  # noqa: E501
 
         self._root_key_prefix = root_key_prefix
 
@@ -332,7 +332,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     def root_key_prefix(self):
         &#34;&#34;&#34;Gets the root_key_prefix of this CreateVolumeRequest.  # noqa: E501
 
-        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration&#39;s keyprefix and end with a /.  # noqa: E501
+        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration&#39;s keyprefix and end with a /.  To create a volume representing the root of a bucket, use the value &#39;/&#39;.  # noqa: E501
 
         :return: The root_key_prefix of this CreateVolumeRequest.  # noqa: E501
         :rtype: str
@@ -343,14 +343,14 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     def root_key_prefix(self, root_key_prefix):
         &#34;&#34;&#34;Sets the root_key_prefix of this CreateVolumeRequest.
 
-        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration&#39;s keyprefix and end with a /.  # noqa: E501
+        The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration&#39;s keyprefix and end with a /.  To create a volume representing the root of a bucket, use the value &#39;/&#39;.  # noqa: E501
 
         :param root_key_prefix: The root_key_prefix of this CreateVolumeRequest.  # noqa: E501
         :type: str
         &#34;&#34;&#34;
         if (self.local_vars_configuration.client_side_validation and
-                root_key_prefix is not None and not re.search(r&#39;^(\/|[^\/].*)$&#39;, root_key_prefix)):  # noqa: E501
-            raise ValueError(r&#34;Invalid value for `root_key_prefix`, must be a follow pattern or equal to `/^(\/|[^\/].*)$/`&#34;)  # noqa: E501
+                root_key_prefix is not None and not re.search(r&#39;^(\/)$|^([^\/].*[\/])$&#39;, root_key_prefix)):  # noqa: E501
+            raise ValueError(r&#34;Invalid value for `root_key_prefix`, must be a follow pattern or equal to `/^(\/)$|^([^\/].*[\/])$/`&#34;)  # noqa: E501
 
         self._root_key_prefix = root_key_prefix
 
@@ -444,6 +444,7 @@ def name(self):
 # noqa: E501</p>
 <p>The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.
 If provided, it must start with the VolumeConfiguration's keyprefix and end with a /.
+To create a volume representing the root of a bucket, use the value '/'.
 # noqa: E501</p>
 <p>:return: The root_key_prefix of this CreateVolumeRequest.
 # noqa: E501
@@ -456,7 +457,7 @@ If provided, it must start with the VolumeConfiguration's keyprefix and end with
 def root_key_prefix(self):
     &#34;&#34;&#34;Gets the root_key_prefix of this CreateVolumeRequest.  # noqa: E501
 
-    The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration&#39;s keyprefix and end with a /.  # noqa: E501
+    The base bucket location for volumes associated with custom VolumeConfigurations. If not provided, the given volume Name is used.  If provided, it must start with the VolumeConfiguration&#39;s keyprefix and end with a /.  To create a volume representing the root of a bucket, use the value &#39;/&#39;.  # noqa: E501
 
     :return: The root_key_prefix of this CreateVolumeRequest.  # noqa: E501
     :rtype: str

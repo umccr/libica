@@ -40,6 +40,7 @@ class WorkflowRun(object):
         'time_started': 'datetime',
         'time_stopped': 'datetime',
         'status': 'str',
+        'idempotency_key': 'str',
         'status_summary': 'str',
         'error': 'str',
         'error_cause': 'str',
@@ -65,6 +66,7 @@ class WorkflowRun(object):
         'time_started': 'timeStarted',
         'time_stopped': 'timeStopped',
         'status': 'status',
+        'idempotency_key': 'idempotencyKey',
         'status_summary': 'statusSummary',
         'error': 'error',
         'error_cause': 'errorCause',
@@ -82,7 +84,7 @@ class WorkflowRun(object):
         'acl': 'acl'
     }
 
-    def __init__(self, id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, input=None, output=None, definition=None, engine_parameters=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, idempotency_key=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, input=None, output=None, definition=None, engine_parameters=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         """WorkflowRun - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -95,6 +97,7 @@ class WorkflowRun(object):
         self._time_started = None
         self._time_stopped = None
         self._status = None
+        self._idempotency_key = None
         self._status_summary = None
         self._error = None
         self._error_cause = None
@@ -126,6 +129,8 @@ class WorkflowRun(object):
             self.time_stopped = time_stopped
         if status is not None:
             self.status = status
+        if idempotency_key is not None:
+            self.idempotency_key = idempotency_key
         if status_summary is not None:
             self.status_summary = status_summary
         if error is not None:
@@ -323,6 +328,27 @@ class WorkflowRun(object):
         """
 
         self._status = status
+
+    @property
+    def idempotency_key(self):
+        """Gets the idempotency_key of this WorkflowRun.  # noqa: E501
+
+
+        :return: The idempotency_key of this WorkflowRun.  # noqa: E501
+        :rtype: str
+        """
+        return self._idempotency_key
+
+    @idempotency_key.setter
+    def idempotency_key(self, idempotency_key):
+        """Sets the idempotency_key of this WorkflowRun.
+
+
+        :param idempotency_key: The idempotency_key of this WorkflowRun.  # noqa: E501
+        :type: str
+        """
+
+        self._idempotency_key = idempotency_key
 
     @property
     def status_summary(self):

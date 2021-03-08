@@ -145,7 +145,7 @@
     <p id="t91" class="run"><span class="n"><a href="#t91">91</a></span><span class="t">    <span class="key">def</span> <span class="nam">key_prefix</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t92" class="pln"><span class="n"><a href="#t92">92</a></span><span class="t">        <span class="str">"""Gets the key_prefix of this AWSS3ObjectStoreSetting.  # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
     <p id="t93" class="pln"><span class="n"><a href="#t93">93</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t94" class="pln"><span class="n"><a href="#t94">94</a></span><span class="t"><span class="str">        Key prefix within the bucket for GDS to operate within. Volumes may only be created within this prefix and the given credentials need only authorize  access here. If not set, default is to allow operation on the full bucket. No leading slash.  # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t94" class="pln"><span class="n"><a href="#t94">94</a></span><span class="t"><span class="str">        Key prefix within the bucket for GDS to operate within. Volumes may only be created within this prefix and the given credentials need only authorize  access here. If not set, default is to allow operation on the full bucket. No leading slash, and must end with a trailing slash.  # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
     <p id="t95" class="pln"><span class="n"><a href="#t95">95</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t96" class="pln"><span class="n"><a href="#t96">96</a></span><span class="t"><span class="str">        :return: The key_prefix of this AWSS3ObjectStoreSetting.  # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
     <p id="t97" class="pln"><span class="n"><a href="#t97">97</a></span><span class="t"><span class="str">        :rtype: str</span>&nbsp;</span><span class="r"></span></p>
@@ -156,7 +156,7 @@
     <p id="t102" class="run"><span class="n"><a href="#t102">102</a></span><span class="t">    <span class="key">def</span> <span class="nam">key_prefix</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">key_prefix</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p id="t103" class="pln"><span class="n"><a href="#t103">103</a></span><span class="t">        <span class="str">"""Sets the key_prefix of this AWSS3ObjectStoreSetting.</span>&nbsp;</span><span class="r"></span></p>
     <p id="t104" class="pln"><span class="n"><a href="#t104">104</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
-    <p id="t105" class="pln"><span class="n"><a href="#t105">105</a></span><span class="t"><span class="str">        Key prefix within the bucket for GDS to operate within. Volumes may only be created within this prefix and the given credentials need only authorize  access here. If not set, default is to allow operation on the full bucket. No leading slash.  # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t105" class="pln"><span class="n"><a href="#t105">105</a></span><span class="t"><span class="str">        Key prefix within the bucket for GDS to operate within. Volumes may only be created within this prefix and the given credentials need only authorize  access here. If not set, default is to allow operation on the full bucket. No leading slash, and must end with a trailing slash.  # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
     <p id="t106" class="pln"><span class="n"><a href="#t106">106</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
     <p id="t107" class="pln"><span class="n"><a href="#t107">107</a></span><span class="t"><span class="str">        :param key_prefix: The key_prefix of this AWSS3ObjectStoreSetting.  # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
     <p id="t108" class="pln"><span class="n"><a href="#t108">108</a></span><span class="t"><span class="str">        :type: str</span>&nbsp;</span><span class="r"></span></p>
@@ -217,7 +217,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.5</a>,
-            created at 2021-03-05 17:42 +1100
+            created at 2021-03-08 16:01 +1100
         </p>
     </div>
 </div>

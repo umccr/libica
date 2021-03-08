@@ -64,8 +64,9 @@ class JobProgressStatus(object):
     PENDING = &#34;Pending&#34;
     INPROGRESS = &#34;InProgress&#34;
     COMPLETED = &#34;Completed&#34;
+    FAILED = &#34;Failed&#34;
 
-    allowable_values = [PENDING, INPROGRESS, COMPLETED]  # noqa: E501
+    allowable_values = [PENDING, INPROGRESS, COMPLETED, FAILED]  # noqa: E501
 
     &#34;&#34;&#34;
     Attributes:
@@ -169,8 +170,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     PENDING = &#34;Pending&#34;
     INPROGRESS = &#34;InProgress&#34;
     COMPLETED = &#34;Completed&#34;
+    FAILED = &#34;Failed&#34;
 
-    allowable_values = [PENDING, INPROGRESS, COMPLETED]  # noqa: E501
+    allowable_values = [PENDING, INPROGRESS, COMPLETED, FAILED]  # noqa: E501
 
     &#34;&#34;&#34;
     Attributes:
@@ -241,6 +243,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 <h3>Class variables</h3>
 <dl>
 <dt id="libica.openapi.libgds.models.job_progress_status.JobProgressStatus.COMPLETED"><code class="name">var <span class="ident">COMPLETED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="libica.openapi.libgds.models.job_progress_status.JobProgressStatus.FAILED"><code class="name">var <span class="ident">FAILED</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -345,6 +351,7 @@ and the value is json key in definition.</dd>
 <h4><code><a title="libica.openapi.libgds.models.job_progress_status.JobProgressStatus" href="#libica.openapi.libgds.models.job_progress_status.JobProgressStatus">JobProgressStatus</a></code></h4>
 <ul class="two-column">
 <li><code><a title="libica.openapi.libgds.models.job_progress_status.JobProgressStatus.COMPLETED" href="#libica.openapi.libgds.models.job_progress_status.JobProgressStatus.COMPLETED">COMPLETED</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.job_progress_status.JobProgressStatus.FAILED" href="#libica.openapi.libgds.models.job_progress_status.JobProgressStatus.FAILED">FAILED</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_progress_status.JobProgressStatus.INPROGRESS" href="#libica.openapi.libgds.models.job_progress_status.JobProgressStatus.INPROGRESS">INPROGRESS</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_progress_status.JobProgressStatus.PENDING" href="#libica.openapi.libgds.models.job_progress_status.JobProgressStatus.PENDING">PENDING</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_progress_status.JobProgressStatus.allowable_values" href="#libica.openapi.libgds.models.job_progress_status.JobProgressStatus.allowable_values">allowable_values</a></code></li>

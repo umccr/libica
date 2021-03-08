@@ -34,26 +34,26 @@ class ObjectStoreSettings(object):
     """
     openapi_types = {
         'aws_s3': 'AWSS3ObjectStoreSetting',
-        'platform_credentials_name': 'str'
+        'secret_name': 'str'
     }
 
     attribute_map = {
         'aws_s3': 'awsS3',
-        'platform_credentials_name': 'platformCredentialsName'
+        'secret_name': 'secretName'
     }
 
-    def __init__(self, aws_s3=None, platform_credentials_name=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, aws_s3=None, secret_name=None, local_vars_configuration=None):  # noqa: E501
         """ObjectStoreSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._aws_s3 = None
-        self._platform_credentials_name = None
+        self._secret_name = None
         self.discriminator = None
 
         self.aws_s3 = aws_s3
-        self.platform_credentials_name = platform_credentials_name
+        self.secret_name = secret_name
 
     @property
     def aws_s3(self):
@@ -79,29 +79,29 @@ class ObjectStoreSettings(object):
         self._aws_s3 = aws_s3
 
     @property
-    def platform_credentials_name(self):
-        """Gets the platform_credentials_name of this ObjectStoreSettings.  # noqa: E501
+    def secret_name(self):
+        """Gets the secret_name of this ObjectStoreSettings.  # noqa: E501
 
         Platform credentials Name  # noqa: E501
 
-        :return: The platform_credentials_name of this ObjectStoreSettings.  # noqa: E501
+        :return: The secret_name of this ObjectStoreSettings.  # noqa: E501
         :rtype: str
         """
-        return self._platform_credentials_name
+        return self._secret_name
 
-    @platform_credentials_name.setter
-    def platform_credentials_name(self, platform_credentials_name):
-        """Sets the platform_credentials_name of this ObjectStoreSettings.
+    @secret_name.setter
+    def secret_name(self, secret_name):
+        """Sets the secret_name of this ObjectStoreSettings.
 
         Platform credentials Name  # noqa: E501
 
-        :param platform_credentials_name: The platform_credentials_name of this ObjectStoreSettings.  # noqa: E501
+        :param secret_name: The secret_name of this ObjectStoreSettings.  # noqa: E501
         :type: str
         """
-        if self.local_vars_configuration.client_side_validation and platform_credentials_name is None:  # noqa: E501
-            raise ValueError("Invalid value for `platform_credentials_name`, must not be `None`")  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and secret_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `secret_name`, must not be `None`")  # noqa: E501
 
-        self._platform_credentials_name = platform_credentials_name
+        self._secret_name = secret_name
 
     def to_dict(self):
         """Returns the model properties as a dict"""

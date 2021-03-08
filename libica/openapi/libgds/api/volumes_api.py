@@ -169,6 +169,7 @@ class VolumesApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str volume_id: Unique identifier for the Volume to be deleted. (required)
+        :param bool purge_object_store_data: Optional and for BYOB only. If true, the volume's data in object storage will be erased.              This field is ignored for non-BYOB volumes where the object store data is always removed upon deleting the volume.
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -193,6 +194,7 @@ class VolumesApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str volume_id: Unique identifier for the Volume to be deleted. (required)
+        :param bool purge_object_store_data: Optional and for BYOB only. If true, the volume's data in object storage will be erased.              This field is ignored for non-BYOB volumes where the object store data is always removed upon deleting the volume.
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -210,7 +212,8 @@ class VolumesApi(object):
         local_var_params = locals()
 
         all_params = [
-            'volume_id'
+            'volume_id',
+            'purge_object_store_data'
         ]
         all_params.extend(
             [
@@ -241,6 +244,8 @@ class VolumesApi(object):
             path_params['volumeId'] = local_var_params['volume_id']  # noqa: E501
 
         query_params = []
+        if 'purge_object_store_data' in local_var_params and local_var_params['purge_object_store_data'] is not None:  # noqa: E501
+            query_params.append(('purgeObjectStoreData', local_var_params['purge_object_store_data']))  # noqa: E501
 
         header_params = {}
 

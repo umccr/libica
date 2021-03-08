@@ -91,7 +91,7 @@ class AWSS3ObjectStoreSetting(object):
     def key_prefix(self):
         """Gets the key_prefix of this AWSS3ObjectStoreSetting.  # noqa: E501
 
-        Key prefix within the bucket for GDS to operate within. Volumes may only be created within this prefix and the given credentials need only authorize  access here. If not set, default is to allow operation on the full bucket. No leading slash.  # noqa: E501
+        Key prefix within the bucket for GDS to operate within. Volumes may only be created within this prefix and the given credentials need only authorize  access here. If not set, default is to allow operation on the full bucket. No leading slash, and must end with a trailing slash.  # noqa: E501
 
         :return: The key_prefix of this AWSS3ObjectStoreSetting.  # noqa: E501
         :rtype: str
@@ -102,7 +102,7 @@ class AWSS3ObjectStoreSetting(object):
     def key_prefix(self, key_prefix):
         """Sets the key_prefix of this AWSS3ObjectStoreSetting.
 
-        Key prefix within the bucket for GDS to operate within. Volumes may only be created within this prefix and the given credentials need only authorize  access here. If not set, default is to allow operation on the full bucket. No leading slash.  # noqa: E501
+        Key prefix within the bucket for GDS to operate within. Volumes may only be created within this prefix and the given credentials need only authorize  access here. If not set, default is to allow operation on the full bucket. No leading slash, and must end with a trailing slash.  # noqa: E501
 
         :param key_prefix: The key_prefix of this AWSS3ObjectStoreSetting.  # noqa: E501
         :type: str

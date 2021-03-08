@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **name** | **str** | The name of this File | [optional] 
 **volume_id** | **str** | The unique identifier of the volume where the file resides | [optional] 
 **volume_name** | **str** | The name of the volume where the file resides | [optional] 
+**volume_configuration_name** | **str** | The name of the volume configuration (BYOB only) | [optional] 
 **type** | **str** | The type of the File | [optional] 
 **tenant_id** | **str** | The unique identifier for this File&#39;s Tenant | [optional] 
 **sub_tenant_id** | **str** | The unique identifier for this File&#39;s Sub Tenant | [optional] 

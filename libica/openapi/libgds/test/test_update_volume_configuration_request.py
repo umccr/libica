@@ -41,7 +41,9 @@ class TestUpdateVolumeConfigurationRequest(unittest.TestCase):
                     aws_s3 = libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting(
                         bucket_name = '012', 
                         key_prefix = 'gds-volumes/', ), 
-                    platform_credentials_name = '0', )
+                    # platform_credentials_name = '0',
+                    secret_name='test',
+                )
             )
         else :
             return UpdateVolumeConfigurationRequest(
@@ -50,7 +52,9 @@ class TestUpdateVolumeConfigurationRequest(unittest.TestCase):
                     aws_s3 = libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting(
                         bucket_name = '012', 
                         key_prefix = 'gds-volumes/', ), 
-                    platform_credentials_name = '0', ),
+                    # platform_credentials_name = '0',
+                    secret_name='test',
+                ),
         )
 
     def testUpdateVolumeConfigurationRequest(self):

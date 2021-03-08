@@ -73,11 +73,13 @@ class WorkflowRunCompact(object):
         &#39;time_started&#39;: &#39;datetime&#39;,
         &#39;time_stopped&#39;: &#39;datetime&#39;,
         &#39;status&#39;: &#39;str&#39;,
+        &#39;idempotency_key&#39;: &#39;str&#39;,
         &#39;status_summary&#39;: &#39;str&#39;,
         &#39;error&#39;: &#39;str&#39;,
         &#39;error_cause&#39;: &#39;str&#39;,
         &#39;workflow_version&#39;: &#39;WorkflowVersionCompact&#39;,
         &#39;created_by_client_id&#39;: &#39;str&#39;,
+        &#39;engine_parameters&#39;: &#39;str&#39;,
         &#39;time_created&#39;: &#39;datetime&#39;,
         &#39;time_modified&#39;: &#39;datetime&#39;,
         &#39;created_by&#39;: &#39;str&#39;,
@@ -94,11 +96,13 @@ class WorkflowRunCompact(object):
         &#39;time_started&#39;: &#39;timeStarted&#39;,
         &#39;time_stopped&#39;: &#39;timeStopped&#39;,
         &#39;status&#39;: &#39;status&#39;,
+        &#39;idempotency_key&#39;: &#39;idempotencyKey&#39;,
         &#39;status_summary&#39;: &#39;statusSummary&#39;,
         &#39;error&#39;: &#39;error&#39;,
         &#39;error_cause&#39;: &#39;errorCause&#39;,
         &#39;workflow_version&#39;: &#39;workflowVersion&#39;,
         &#39;created_by_client_id&#39;: &#39;createdByClientId&#39;,
+        &#39;engine_parameters&#39;: &#39;engineParameters&#39;,
         &#39;time_created&#39;: &#39;timeCreated&#39;,
         &#39;time_modified&#39;: &#39;timeModified&#39;,
         &#39;created_by&#39;: &#39;createdBy&#39;,
@@ -107,7 +111,7 @@ class WorkflowRunCompact(object):
         &#39;acl&#39;: &#39;acl&#39;
     }
 
-    def __init__(self, id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, idempotency_key=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, engine_parameters=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;WorkflowRunCompact - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -120,11 +124,13 @@ class WorkflowRunCompact(object):
         self._time_started = None
         self._time_stopped = None
         self._status = None
+        self._idempotency_key = None
         self._status_summary = None
         self._error = None
         self._error_cause = None
         self._workflow_version = None
         self._created_by_client_id = None
+        self._engine_parameters = None
         self._time_created = None
         self._time_modified = None
         self._created_by = None
@@ -147,6 +153,8 @@ class WorkflowRunCompact(object):
             self.time_stopped = time_stopped
         if status is not None:
             self.status = status
+        if idempotency_key is not None:
+            self.idempotency_key = idempotency_key
         if status_summary is not None:
             self.status_summary = status_summary
         if error is not None:
@@ -157,6 +165,8 @@ class WorkflowRunCompact(object):
             self.workflow_version = workflow_version
         if created_by_client_id is not None:
             self.created_by_client_id = created_by_client_id
+        if engine_parameters is not None:
+            self.engine_parameters = engine_parameters
         if time_created is not None:
             self.time_created = time_created
         if time_modified is not None:
@@ -338,6 +348,27 @@ class WorkflowRunCompact(object):
         self._status = status
 
     @property
+    def idempotency_key(self):
+        &#34;&#34;&#34;Gets the idempotency_key of this WorkflowRunCompact.  # noqa: E501
+
+
+        :return: The idempotency_key of this WorkflowRunCompact.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._idempotency_key
+
+    @idempotency_key.setter
+    def idempotency_key(self, idempotency_key):
+        &#34;&#34;&#34;Sets the idempotency_key of this WorkflowRunCompact.
+
+
+        :param idempotency_key: The idempotency_key of this WorkflowRunCompact.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._idempotency_key = idempotency_key
+
+    @property
     def status_summary(self):
         &#34;&#34;&#34;Gets the status_summary of this WorkflowRunCompact.  # noqa: E501
 
@@ -449,6 +480,29 @@ class WorkflowRunCompact(object):
         &#34;&#34;&#34;
 
         self._created_by_client_id = created_by_client_id
+
+    @property
+    def engine_parameters(self):
+        &#34;&#34;&#34;Gets the engine_parameters of this WorkflowRunCompact.  # noqa: E501
+
+        Workflow Engine Parameters  # noqa: E501
+
+        :return: The engine_parameters of this WorkflowRunCompact.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._engine_parameters
+
+    @engine_parameters.setter
+    def engine_parameters(self, engine_parameters):
+        &#34;&#34;&#34;Sets the engine_parameters of this WorkflowRunCompact.
+
+        Workflow Engine Parameters  # noqa: E501
+
+        :param engine_parameters: The engine_parameters of this WorkflowRunCompact.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._engine_parameters = engine_parameters
 
     @property
     def time_created(self):
@@ -652,7 +706,7 @@ class WorkflowRunCompact(object):
 <dl>
 <dt id="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact"><code class="flex name class">
 <span>class <span class="ident">WorkflowRunCompact</span></span>
-<span>(</span><span>id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None)</span>
+<span>(</span><span>id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, idempotency_key=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, engine_parameters=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -685,11 +739,13 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;time_started&#39;: &#39;datetime&#39;,
         &#39;time_stopped&#39;: &#39;datetime&#39;,
         &#39;status&#39;: &#39;str&#39;,
+        &#39;idempotency_key&#39;: &#39;str&#39;,
         &#39;status_summary&#39;: &#39;str&#39;,
         &#39;error&#39;: &#39;str&#39;,
         &#39;error_cause&#39;: &#39;str&#39;,
         &#39;workflow_version&#39;: &#39;WorkflowVersionCompact&#39;,
         &#39;created_by_client_id&#39;: &#39;str&#39;,
+        &#39;engine_parameters&#39;: &#39;str&#39;,
         &#39;time_created&#39;: &#39;datetime&#39;,
         &#39;time_modified&#39;: &#39;datetime&#39;,
         &#39;created_by&#39;: &#39;str&#39;,
@@ -706,11 +762,13 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;time_started&#39;: &#39;timeStarted&#39;,
         &#39;time_stopped&#39;: &#39;timeStopped&#39;,
         &#39;status&#39;: &#39;status&#39;,
+        &#39;idempotency_key&#39;: &#39;idempotencyKey&#39;,
         &#39;status_summary&#39;: &#39;statusSummary&#39;,
         &#39;error&#39;: &#39;error&#39;,
         &#39;error_cause&#39;: &#39;errorCause&#39;,
         &#39;workflow_version&#39;: &#39;workflowVersion&#39;,
         &#39;created_by_client_id&#39;: &#39;createdByClientId&#39;,
+        &#39;engine_parameters&#39;: &#39;engineParameters&#39;,
         &#39;time_created&#39;: &#39;timeCreated&#39;,
         &#39;time_modified&#39;: &#39;timeModified&#39;,
         &#39;created_by&#39;: &#39;createdBy&#39;,
@@ -719,7 +777,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;acl&#39;: &#39;acl&#39;
     }
 
-    def __init__(self, id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, urn=None, href=None, name=None, time_started=None, time_stopped=None, status=None, idempotency_key=None, status_summary=None, error=None, error_cause=None, workflow_version=None, created_by_client_id=None, engine_parameters=None, time_created=None, time_modified=None, created_by=None, modified_by=None, tenant_id=None, acl=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;WorkflowRunCompact - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -732,11 +790,13 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._time_started = None
         self._time_stopped = None
         self._status = None
+        self._idempotency_key = None
         self._status_summary = None
         self._error = None
         self._error_cause = None
         self._workflow_version = None
         self._created_by_client_id = None
+        self._engine_parameters = None
         self._time_created = None
         self._time_modified = None
         self._created_by = None
@@ -759,6 +819,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.time_stopped = time_stopped
         if status is not None:
             self.status = status
+        if idempotency_key is not None:
+            self.idempotency_key = idempotency_key
         if status_summary is not None:
             self.status_summary = status_summary
         if error is not None:
@@ -769,6 +831,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.workflow_version = workflow_version
         if created_by_client_id is not None:
             self.created_by_client_id = created_by_client_id
+        if engine_parameters is not None:
+            self.engine_parameters = engine_parameters
         if time_created is not None:
             self.time_created = time_created
         if time_modified is not None:
@@ -950,6 +1014,27 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._status = status
 
     @property
+    def idempotency_key(self):
+        &#34;&#34;&#34;Gets the idempotency_key of this WorkflowRunCompact.  # noqa: E501
+
+
+        :return: The idempotency_key of this WorkflowRunCompact.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._idempotency_key
+
+    @idempotency_key.setter
+    def idempotency_key(self, idempotency_key):
+        &#34;&#34;&#34;Sets the idempotency_key of this WorkflowRunCompact.
+
+
+        :param idempotency_key: The idempotency_key of this WorkflowRunCompact.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._idempotency_key = idempotency_key
+
+    @property
     def status_summary(self):
         &#34;&#34;&#34;Gets the status_summary of this WorkflowRunCompact.  # noqa: E501
 
@@ -1061,6 +1146,29 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._created_by_client_id = created_by_client_id
+
+    @property
+    def engine_parameters(self):
+        &#34;&#34;&#34;Gets the engine_parameters of this WorkflowRunCompact.  # noqa: E501
+
+        Workflow Engine Parameters  # noqa: E501
+
+        :return: The engine_parameters of this WorkflowRunCompact.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._engine_parameters
+
+    @engine_parameters.setter
+    def engine_parameters(self, engine_parameters):
+        &#34;&#34;&#34;Sets the engine_parameters of this WorkflowRunCompact.
+
+        Workflow Engine Parameters  # noqa: E501
+
+        :param engine_parameters: The engine_parameters of this WorkflowRunCompact.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._engine_parameters = engine_parameters
 
     @property
     def time_created(self):
@@ -1340,6 +1448,31 @@ def created_by_client_id(self):
     return self._created_by_client_id</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.engine_parameters"><code class="name">var <span class="ident">engine_parameters</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the engine_parameters of this WorkflowRunCompact.
+# noqa: E501</p>
+<p>Workflow Engine Parameters
+# noqa: E501</p>
+<p>:return: The engine_parameters of this WorkflowRunCompact.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def engine_parameters(self):
+    &#34;&#34;&#34;Gets the engine_parameters of this WorkflowRunCompact.  # noqa: E501
+
+    Workflow Engine Parameters  # noqa: E501
+
+    :return: The engine_parameters of this WorkflowRunCompact.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._engine_parameters</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.error"><code class="name">var <span class="ident">error</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the error of this WorkflowRunCompact.
@@ -1438,6 +1571,28 @@ def id(self):
     :rtype: str
     &#34;&#34;&#34;
     return self._id</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.idempotency_key"><code class="name">var <span class="ident">idempotency_key</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the idempotency_key of this WorkflowRunCompact.
+# noqa: E501</p>
+<p>:return: The idempotency_key of this WorkflowRunCompact.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def idempotency_key(self):
+    &#34;&#34;&#34;Gets the idempotency_key of this WorkflowRunCompact.  # noqa: E501
+
+
+    :return: The idempotency_key of this WorkflowRunCompact.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._idempotency_key</code></pre>
 </details>
 </dd>
 <dt id="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.modified_by"><code class="name">var <span class="ident">modified_by</span></code></dt>
@@ -1788,10 +1943,12 @@ def workflow_version(self):
 <li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.attribute_map" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.attribute_map">attribute_map</a></code></li>
 <li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.created_by" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.created_by">created_by</a></code></li>
 <li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.created_by_client_id" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.created_by_client_id">created_by_client_id</a></code></li>
+<li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.engine_parameters" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.engine_parameters">engine_parameters</a></code></li>
 <li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.error" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.error">error</a></code></li>
 <li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.error_cause" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.error_cause">error_cause</a></code></li>
 <li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.href" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.href">href</a></code></li>
 <li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.id" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.id">id</a></code></li>
+<li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.idempotency_key" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.idempotency_key">idempotency_key</a></code></li>
 <li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.modified_by" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.modified_by">modified_by</a></code></li>
 <li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.name" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.name">name</a></code></li>
 <li><code><a title="libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.openapi_types" href="#libica.openapi.libwes.models.workflow_run_compact.WorkflowRunCompact.openapi_types">openapi_types</a></code></li>

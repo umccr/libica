@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **time_started** | **datetime** | The time (in UTC) the workflow run started | [optional] 
 **time_stopped** | **datetime** | The time (in UTC) the Workflow Run stopped | [optional] 
 **status** | **str** | Workflow run status | [optional] 
+**idempotency_key** | **str** |  | [optional] 
 **status_summary** | **str** | Workflow run status summary | [optional] 
 **error** | **str** | Error for a failed workflow run | [optional] 
 **error_cause** | **str** | Error cause for a failed workflow run | [optional] 
