@@ -25,3 +25,11 @@
 * Added support for token alias
 * Added deprecation warning for alpha modules
 * See [milestone 0.4.0 for all related PRs](https://github.com/umccr-illumina/libica/milestone/1?closed=1)
+
+0.5.0
+-----
+* Release date: 2021-03-08
+* Major package rename refactor from IAP to ICA  
+* [Updated to upstream ICA OpenAPI Swagger definitions PR#33](https://github.com/umccr-illumina/libica/pull/33)
+* Removed deprecated alpha modules
+* See [milestone 0.5.0 for all related PRs](https://github.com/umccr-illumina/libica/milestone/2?closed=1)
