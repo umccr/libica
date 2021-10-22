@@ -1778,6 +1778,21 @@
           "minLength": 0,
           "type": "string"
         },
+        "typeOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "sizeOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "tierOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
         "taskVersionSummary": {
           "$ref": "#/definitions/TaskVersionSummary"
         },
@@ -1932,6 +1947,21 @@
         },
         "statusDetails": {
           "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "typeOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "sizeOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "tierOfResource": {
+          "maxLength": 255,
           "minLength": 0,
           "type": "string"
         },
