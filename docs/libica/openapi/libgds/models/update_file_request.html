@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.2" />
+<meta name="generator" content="pdoc 0.10.0" />
 <title>libica.openapi.libgds.models.update_file_request API documentation</title>
 <meta name="description" content="Genomic Data Store Service …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -66,24 +66,44 @@ class UpdateFileRequest(object):
                             and the value is json key in definition.
     &#34;&#34;&#34;
     openapi_types = {
-        &#39;type&#39;: &#39;str&#39;
+        &#39;type&#39;: &#39;str&#39;,
+        &#39;format&#39;: &#39;str&#39;,
+        &#39;format_edam&#39;: &#39;str&#39;,
+        &#39;life_cycle&#39;: &#39;FileLifeCycleSettings&#39;,
+        &#39;metadata&#39;: &#39;object&#39;
     }
 
     attribute_map = {
-        &#39;type&#39;: &#39;type&#39;
+        &#39;type&#39;: &#39;type&#39;,
+        &#39;format&#39;: &#39;format&#39;,
+        &#39;format_edam&#39;: &#39;formatEdam&#39;,
+        &#39;life_cycle&#39;: &#39;lifeCycle&#39;,
+        &#39;metadata&#39;: &#39;metadata&#39;
     }
 
-    def __init__(self, type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, format=None, format_edam=None, life_cycle=None, metadata=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;UpdateFileRequest - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._type = None
+        self._format = None
+        self._format_edam = None
+        self._life_cycle = None
+        self._metadata = None
         self.discriminator = None
 
         if type is not None:
             self.type = type
+        if format is not None:
+            self.format = format
+        if format_edam is not None:
+            self.format_edam = format_edam
+        if life_cycle is not None:
+            self.life_cycle = life_cycle
+        if metadata is not None:
+            self.metadata = metadata
 
     @property
     def type(self):
@@ -107,6 +127,96 @@ class UpdateFileRequest(object):
         &#34;&#34;&#34;
 
         self._type = type
+
+    @property
+    def format(self):
+        &#34;&#34;&#34;Gets the format of this UpdateFileRequest.  # noqa: E501
+
+        The File&#39;s Format  # noqa: E501
+
+        :return: The format of this UpdateFileRequest.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._format
+
+    @format.setter
+    def format(self, format):
+        &#34;&#34;&#34;Sets the format of this UpdateFileRequest.
+
+        The File&#39;s Format  # noqa: E501
+
+        :param format: The format of this UpdateFileRequest.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._format = format
+
+    @property
+    def format_edam(self):
+        &#34;&#34;&#34;Gets the format_edam of this UpdateFileRequest.  # noqa: E501
+
+        The File&#39;s Edam Format  # noqa: E501
+
+        :return: The format_edam of this UpdateFileRequest.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._format_edam
+
+    @format_edam.setter
+    def format_edam(self, format_edam):
+        &#34;&#34;&#34;Sets the format_edam of this UpdateFileRequest.
+
+        The File&#39;s Edam Format  # noqa: E501
+
+        :param format_edam: The format_edam of this UpdateFileRequest.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._format_edam = format_edam
+
+    @property
+    def life_cycle(self):
+        &#34;&#34;&#34;Gets the life_cycle of this UpdateFileRequest.  # noqa: E501
+
+
+        :return: The life_cycle of this UpdateFileRequest.  # noqa: E501
+        :rtype: FileLifeCycleSettings
+        &#34;&#34;&#34;
+        return self._life_cycle
+
+    @life_cycle.setter
+    def life_cycle(self, life_cycle):
+        &#34;&#34;&#34;Sets the life_cycle of this UpdateFileRequest.
+
+
+        :param life_cycle: The life_cycle of this UpdateFileRequest.  # noqa: E501
+        :type: FileLifeCycleSettings
+        &#34;&#34;&#34;
+
+        self._life_cycle = life_cycle
+
+    @property
+    def metadata(self):
+        &#34;&#34;&#34;Gets the metadata of this UpdateFileRequest.  # noqa: E501
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :return: The metadata of this UpdateFileRequest.  # noqa: E501
+        :rtype: object
+        &#34;&#34;&#34;
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        &#34;&#34;&#34;Sets the metadata of this UpdateFileRequest.
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :param metadata: The metadata of this UpdateFileRequest.  # noqa: E501
+        :type: object
+        &#34;&#34;&#34;
+
+        self._metadata = metadata
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -166,7 +276,7 @@ class UpdateFileRequest(object):
 <dl>
 <dt id="libica.openapi.libgds.models.update_file_request.UpdateFileRequest"><code class="flex name class">
 <span>class <span class="ident">UpdateFileRequest</span></span>
-<span>(</span><span>type=None, local_vars_configuration=None)</span>
+<span>(</span><span>type=None, format=None, format_edam=None, life_cycle=None, metadata=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -192,24 +302,44 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                             and the value is json key in definition.
     &#34;&#34;&#34;
     openapi_types = {
-        &#39;type&#39;: &#39;str&#39;
+        &#39;type&#39;: &#39;str&#39;,
+        &#39;format&#39;: &#39;str&#39;,
+        &#39;format_edam&#39;: &#39;str&#39;,
+        &#39;life_cycle&#39;: &#39;FileLifeCycleSettings&#39;,
+        &#39;metadata&#39;: &#39;object&#39;
     }
 
     attribute_map = {
-        &#39;type&#39;: &#39;type&#39;
+        &#39;type&#39;: &#39;type&#39;,
+        &#39;format&#39;: &#39;format&#39;,
+        &#39;format_edam&#39;: &#39;formatEdam&#39;,
+        &#39;life_cycle&#39;: &#39;lifeCycle&#39;,
+        &#39;metadata&#39;: &#39;metadata&#39;
     }
 
-    def __init__(self, type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, format=None, format_edam=None, life_cycle=None, metadata=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;UpdateFileRequest - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._type = None
+        self._format = None
+        self._format_edam = None
+        self._life_cycle = None
+        self._metadata = None
         self.discriminator = None
 
         if type is not None:
             self.type = type
+        if format is not None:
+            self.format = format
+        if format_edam is not None:
+            self.format_edam = format_edam
+        if life_cycle is not None:
+            self.life_cycle = life_cycle
+        if metadata is not None:
+            self.metadata = metadata
 
     @property
     def type(self):
@@ -233,6 +363,96 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._type = type
+
+    @property
+    def format(self):
+        &#34;&#34;&#34;Gets the format of this UpdateFileRequest.  # noqa: E501
+
+        The File&#39;s Format  # noqa: E501
+
+        :return: The format of this UpdateFileRequest.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._format
+
+    @format.setter
+    def format(self, format):
+        &#34;&#34;&#34;Sets the format of this UpdateFileRequest.
+
+        The File&#39;s Format  # noqa: E501
+
+        :param format: The format of this UpdateFileRequest.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._format = format
+
+    @property
+    def format_edam(self):
+        &#34;&#34;&#34;Gets the format_edam of this UpdateFileRequest.  # noqa: E501
+
+        The File&#39;s Edam Format  # noqa: E501
+
+        :return: The format_edam of this UpdateFileRequest.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._format_edam
+
+    @format_edam.setter
+    def format_edam(self, format_edam):
+        &#34;&#34;&#34;Sets the format_edam of this UpdateFileRequest.
+
+        The File&#39;s Edam Format  # noqa: E501
+
+        :param format_edam: The format_edam of this UpdateFileRequest.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._format_edam = format_edam
+
+    @property
+    def life_cycle(self):
+        &#34;&#34;&#34;Gets the life_cycle of this UpdateFileRequest.  # noqa: E501
+
+
+        :return: The life_cycle of this UpdateFileRequest.  # noqa: E501
+        :rtype: FileLifeCycleSettings
+        &#34;&#34;&#34;
+        return self._life_cycle
+
+    @life_cycle.setter
+    def life_cycle(self, life_cycle):
+        &#34;&#34;&#34;Sets the life_cycle of this UpdateFileRequest.
+
+
+        :param life_cycle: The life_cycle of this UpdateFileRequest.  # noqa: E501
+        :type: FileLifeCycleSettings
+        &#34;&#34;&#34;
+
+        self._life_cycle = life_cycle
+
+    @property
+    def metadata(self):
+        &#34;&#34;&#34;Gets the metadata of this UpdateFileRequest.  # noqa: E501
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :return: The metadata of this UpdateFileRequest.  # noqa: E501
+        :rtype: object
+        &#34;&#34;&#34;
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        &#34;&#34;&#34;Sets the metadata of this UpdateFileRequest.
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :param metadata: The metadata of this UpdateFileRequest.  # noqa: E501
+        :type: object
+        &#34;&#34;&#34;
+
+        self._metadata = metadata
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -293,6 +513,103 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 </dl>
 <h3>Instance variables</h3>
 <dl>
+<dt id="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.format"><code class="name">var <span class="ident">format</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the format of this UpdateFileRequest.
+# noqa: E501</p>
+<p>The File's Format
+# noqa: E501</p>
+<p>:return: The format of this UpdateFileRequest.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def format(self):
+    &#34;&#34;&#34;Gets the format of this UpdateFileRequest.  # noqa: E501
+
+    The File&#39;s Format  # noqa: E501
+
+    :return: The format of this UpdateFileRequest.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._format</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.format_edam"><code class="name">var <span class="ident">format_edam</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the format_edam of this UpdateFileRequest.
+# noqa: E501</p>
+<p>The File's Edam Format
+# noqa: E501</p>
+<p>:return: The format_edam of this UpdateFileRequest.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def format_edam(self):
+    &#34;&#34;&#34;Gets the format_edam of this UpdateFileRequest.  # noqa: E501
+
+    The File&#39;s Edam Format  # noqa: E501
+
+    :return: The format_edam of this UpdateFileRequest.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._format_edam</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.life_cycle"><code class="name">var <span class="ident">life_cycle</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the life_cycle of this UpdateFileRequest.
+# noqa: E501</p>
+<p>:return: The life_cycle of this UpdateFileRequest.
+# noqa: E501
+:rtype: FileLifeCycleSettings</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def life_cycle(self):
+    &#34;&#34;&#34;Gets the life_cycle of this UpdateFileRequest.  # noqa: E501
+
+
+    :return: The life_cycle of this UpdateFileRequest.  # noqa: E501
+    :rtype: FileLifeCycleSettings
+    &#34;&#34;&#34;
+    return self._life_cycle</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.metadata"><code class="name">var <span class="ident">metadata</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the metadata of this UpdateFileRequest.
+# noqa: E501</p>
+<p>Metadata about this file and its contents
+# noqa: E501</p>
+<p>:return: The metadata of this UpdateFileRequest.
+# noqa: E501
+:rtype: object</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def metadata(self):
+    &#34;&#34;&#34;Gets the metadata of this UpdateFileRequest.  # noqa: E501
+
+    Metadata about this file and its contents  # noqa: E501
+
+    :return: The metadata of this UpdateFileRequest.  # noqa: E501
+    :rtype: object
+    &#34;&#34;&#34;
+    return self._metadata</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.type"><code class="name">var <span class="ident">type</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the type of this UpdateFileRequest.
@@ -389,8 +706,12 @@ def type(self):
 <ul>
 <li>
 <h4><code><a title="libica.openapi.libgds.models.update_file_request.UpdateFileRequest" href="#libica.openapi.libgds.models.update_file_request.UpdateFileRequest">UpdateFileRequest</a></code></h4>
-<ul class="">
+<ul class="two-column">
 <li><code><a title="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.attribute_map" href="#libica.openapi.libgds.models.update_file_request.UpdateFileRequest.attribute_map">attribute_map</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.format" href="#libica.openapi.libgds.models.update_file_request.UpdateFileRequest.format">format</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.format_edam" href="#libica.openapi.libgds.models.update_file_request.UpdateFileRequest.format_edam">format_edam</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.life_cycle" href="#libica.openapi.libgds.models.update_file_request.UpdateFileRequest.life_cycle">life_cycle</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.metadata" href="#libica.openapi.libgds.models.update_file_request.UpdateFileRequest.metadata">metadata</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.openapi_types" href="#libica.openapi.libgds.models.update_file_request.UpdateFileRequest.openapi_types">openapi_types</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.to_dict" href="#libica.openapi.libgds.models.update_file_request.UpdateFileRequest.to_dict">to_dict</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.update_file_request.UpdateFileRequest.to_str" href="#libica.openapi.libgds.models.update_file_request.UpdateFileRequest.to_str">to_str</a></code></li>
@@ -403,7 +724,7 @@ def type(self):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
 </html>

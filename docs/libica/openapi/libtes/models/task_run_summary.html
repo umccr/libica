@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.2" />
+<meta name="generator" content="pdoc 0.10.0" />
 <title>libica.openapi.libtes.models.task_run_summary API documentation</title>
 <meta name="description" content="Task Execution Service …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -73,6 +73,9 @@ class TaskRunSummary(object):
         &#39;description&#39;: &#39;str&#39;,
         &#39;status&#39;: &#39;str&#39;,
         &#39;status_details&#39;: &#39;str&#39;,
+        &#39;type_of_resource&#39;: &#39;str&#39;,
+        &#39;size_of_resource&#39;: &#39;str&#39;,
+        &#39;tier_of_resource&#39;: &#39;str&#39;,
         &#39;task_version_summary&#39;: &#39;TaskVersionSummary&#39;,
         &#39;acl&#39;: &#39;list[str]&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
@@ -91,6 +94,9 @@ class TaskRunSummary(object):
         &#39;description&#39;: &#39;description&#39;,
         &#39;status&#39;: &#39;status&#39;,
         &#39;status_details&#39;: &#39;statusDetails&#39;,
+        &#39;type_of_resource&#39;: &#39;typeOfResource&#39;,
+        &#39;size_of_resource&#39;: &#39;sizeOfResource&#39;,
+        &#39;tier_of_resource&#39;: &#39;tierOfResource&#39;,
         &#39;task_version_summary&#39;: &#39;taskVersionSummary&#39;,
         &#39;acl&#39;: &#39;acl&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
@@ -101,7 +107,7 @@ class TaskRunSummary(object):
         &#39;time_modified&#39;: &#39;timeModified&#39;
     }
 
-    def __init__(self, id=None, href=None, urn=None, name=None, description=None, status=&#39;Pending&#39;, status_details=None, task_version_summary=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, href=None, urn=None, name=None, description=None, status=&#39;Pending&#39;, status_details=None, type_of_resource=None, size_of_resource=None, tier_of_resource=None, task_version_summary=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;TaskRunSummary - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -114,6 +120,9 @@ class TaskRunSummary(object):
         self._description = None
         self._status = None
         self._status_details = None
+        self._type_of_resource = None
+        self._size_of_resource = None
+        self._tier_of_resource = None
         self._task_version_summary = None
         self._acl = None
         self._tenant_id = None
@@ -138,6 +147,12 @@ class TaskRunSummary(object):
             self.status = status
         if status_details is not None:
             self.status_details = status_details
+        if type_of_resource is not None:
+            self.type_of_resource = type_of_resource
+        if size_of_resource is not None:
+            self.size_of_resource = size_of_resource
+        if tier_of_resource is not None:
+            self.tier_of_resource = tier_of_resource
         if task_version_summary is not None:
             self.task_version_summary = task_version_summary
         if acl is not None:
@@ -325,6 +340,87 @@ class TaskRunSummary(object):
             raise ValueError(&#34;Invalid value for `status_details`, length must be greater than or equal to `0`&#34;)  # noqa: E501
 
         self._status_details = status_details
+
+    @property
+    def type_of_resource(self):
+        &#34;&#34;&#34;Gets the type_of_resource of this TaskRunSummary.  # noqa: E501
+
+
+        :return: The type_of_resource of this TaskRunSummary.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._type_of_resource
+
+    @type_of_resource.setter
+    def type_of_resource(self, type_of_resource):
+        &#34;&#34;&#34;Sets the type_of_resource of this TaskRunSummary.
+
+
+        :param type_of_resource: The type_of_resource of this TaskRunSummary.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+        if (self.local_vars_configuration.client_side_validation and
+                type_of_resource is not None and len(type_of_resource) &gt; 255):
+            raise ValueError(&#34;Invalid value for `type_of_resource`, length must be less than or equal to `255`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                type_of_resource is not None and len(type_of_resource) &lt; 0):
+            raise ValueError(&#34;Invalid value for `type_of_resource`, length must be greater than or equal to `0`&#34;)  # noqa: E501
+
+        self._type_of_resource = type_of_resource
+
+    @property
+    def size_of_resource(self):
+        &#34;&#34;&#34;Gets the size_of_resource of this TaskRunSummary.  # noqa: E501
+
+
+        :return: The size_of_resource of this TaskRunSummary.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._size_of_resource
+
+    @size_of_resource.setter
+    def size_of_resource(self, size_of_resource):
+        &#34;&#34;&#34;Sets the size_of_resource of this TaskRunSummary.
+
+
+        :param size_of_resource: The size_of_resource of this TaskRunSummary.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+        if (self.local_vars_configuration.client_side_validation and
+                size_of_resource is not None and len(size_of_resource) &gt; 255):
+            raise ValueError(&#34;Invalid value for `size_of_resource`, length must be less than or equal to `255`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                size_of_resource is not None and len(size_of_resource) &lt; 0):
+            raise ValueError(&#34;Invalid value for `size_of_resource`, length must be greater than or equal to `0`&#34;)  # noqa: E501
+
+        self._size_of_resource = size_of_resource
+
+    @property
+    def tier_of_resource(self):
+        &#34;&#34;&#34;Gets the tier_of_resource of this TaskRunSummary.  # noqa: E501
+
+
+        :return: The tier_of_resource of this TaskRunSummary.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._tier_of_resource
+
+    @tier_of_resource.setter
+    def tier_of_resource(self, tier_of_resource):
+        &#34;&#34;&#34;Sets the tier_of_resource of this TaskRunSummary.
+
+
+        :param tier_of_resource: The tier_of_resource of this TaskRunSummary.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+        if (self.local_vars_configuration.client_side_validation and
+                tier_of_resource is not None and len(tier_of_resource) &gt; 255):
+            raise ValueError(&#34;Invalid value for `tier_of_resource`, length must be less than or equal to `255`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                tier_of_resource is not None and len(tier_of_resource) &lt; 0):
+            raise ValueError(&#34;Invalid value for `tier_of_resource`, length must be greater than or equal to `0`&#34;)  # noqa: E501
+
+        self._tier_of_resource = tier_of_resource
 
     @property
     def task_version_summary(self):
@@ -562,7 +658,7 @@ class TaskRunSummary(object):
 <dl>
 <dt id="libica.openapi.libtes.models.task_run_summary.TaskRunSummary"><code class="flex name class">
 <span>class <span class="ident">TaskRunSummary</span></span>
-<span>(</span><span>id=None, href=None, urn=None, name=None, description=None, status='Pending', status_details=None, task_version_summary=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None)</span>
+<span>(</span><span>id=None, href=None, urn=None, name=None, description=None, status='Pending', status_details=None, type_of_resource=None, size_of_resource=None, tier_of_resource=None, task_version_summary=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -595,6 +691,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;description&#39;: &#39;str&#39;,
         &#39;status&#39;: &#39;str&#39;,
         &#39;status_details&#39;: &#39;str&#39;,
+        &#39;type_of_resource&#39;: &#39;str&#39;,
+        &#39;size_of_resource&#39;: &#39;str&#39;,
+        &#39;tier_of_resource&#39;: &#39;str&#39;,
         &#39;task_version_summary&#39;: &#39;TaskVersionSummary&#39;,
         &#39;acl&#39;: &#39;list[str]&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
@@ -613,6 +712,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;description&#39;: &#39;description&#39;,
         &#39;status&#39;: &#39;status&#39;,
         &#39;status_details&#39;: &#39;statusDetails&#39;,
+        &#39;type_of_resource&#39;: &#39;typeOfResource&#39;,
+        &#39;size_of_resource&#39;: &#39;sizeOfResource&#39;,
+        &#39;tier_of_resource&#39;: &#39;tierOfResource&#39;,
         &#39;task_version_summary&#39;: &#39;taskVersionSummary&#39;,
         &#39;acl&#39;: &#39;acl&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
@@ -623,7 +725,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;time_modified&#39;: &#39;timeModified&#39;
     }
 
-    def __init__(self, id=None, href=None, urn=None, name=None, description=None, status=&#39;Pending&#39;, status_details=None, task_version_summary=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, href=None, urn=None, name=None, description=None, status=&#39;Pending&#39;, status_details=None, type_of_resource=None, size_of_resource=None, tier_of_resource=None, task_version_summary=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;TaskRunSummary - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -636,6 +738,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._description = None
         self._status = None
         self._status_details = None
+        self._type_of_resource = None
+        self._size_of_resource = None
+        self._tier_of_resource = None
         self._task_version_summary = None
         self._acl = None
         self._tenant_id = None
@@ -660,6 +765,12 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.status = status
         if status_details is not None:
             self.status_details = status_details
+        if type_of_resource is not None:
+            self.type_of_resource = type_of_resource
+        if size_of_resource is not None:
+            self.size_of_resource = size_of_resource
+        if tier_of_resource is not None:
+            self.tier_of_resource = tier_of_resource
         if task_version_summary is not None:
             self.task_version_summary = task_version_summary
         if acl is not None:
@@ -847,6 +958,87 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             raise ValueError(&#34;Invalid value for `status_details`, length must be greater than or equal to `0`&#34;)  # noqa: E501
 
         self._status_details = status_details
+
+    @property
+    def type_of_resource(self):
+        &#34;&#34;&#34;Gets the type_of_resource of this TaskRunSummary.  # noqa: E501
+
+
+        :return: The type_of_resource of this TaskRunSummary.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._type_of_resource
+
+    @type_of_resource.setter
+    def type_of_resource(self, type_of_resource):
+        &#34;&#34;&#34;Sets the type_of_resource of this TaskRunSummary.
+
+
+        :param type_of_resource: The type_of_resource of this TaskRunSummary.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+        if (self.local_vars_configuration.client_side_validation and
+                type_of_resource is not None and len(type_of_resource) &gt; 255):
+            raise ValueError(&#34;Invalid value for `type_of_resource`, length must be less than or equal to `255`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                type_of_resource is not None and len(type_of_resource) &lt; 0):
+            raise ValueError(&#34;Invalid value for `type_of_resource`, length must be greater than or equal to `0`&#34;)  # noqa: E501
+
+        self._type_of_resource = type_of_resource
+
+    @property
+    def size_of_resource(self):
+        &#34;&#34;&#34;Gets the size_of_resource of this TaskRunSummary.  # noqa: E501
+
+
+        :return: The size_of_resource of this TaskRunSummary.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._size_of_resource
+
+    @size_of_resource.setter
+    def size_of_resource(self, size_of_resource):
+        &#34;&#34;&#34;Sets the size_of_resource of this TaskRunSummary.
+
+
+        :param size_of_resource: The size_of_resource of this TaskRunSummary.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+        if (self.local_vars_configuration.client_side_validation and
+                size_of_resource is not None and len(size_of_resource) &gt; 255):
+            raise ValueError(&#34;Invalid value for `size_of_resource`, length must be less than or equal to `255`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                size_of_resource is not None and len(size_of_resource) &lt; 0):
+            raise ValueError(&#34;Invalid value for `size_of_resource`, length must be greater than or equal to `0`&#34;)  # noqa: E501
+
+        self._size_of_resource = size_of_resource
+
+    @property
+    def tier_of_resource(self):
+        &#34;&#34;&#34;Gets the tier_of_resource of this TaskRunSummary.  # noqa: E501
+
+
+        :return: The tier_of_resource of this TaskRunSummary.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._tier_of_resource
+
+    @tier_of_resource.setter
+    def tier_of_resource(self, tier_of_resource):
+        &#34;&#34;&#34;Sets the tier_of_resource of this TaskRunSummary.
+
+
+        :param tier_of_resource: The tier_of_resource of this TaskRunSummary.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+        if (self.local_vars_configuration.client_side_validation and
+                tier_of_resource is not None and len(tier_of_resource) &gt; 255):
+            raise ValueError(&#34;Invalid value for `tier_of_resource`, length must be less than or equal to `255`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                tier_of_resource is not None and len(tier_of_resource) &lt; 0):
+            raise ValueError(&#34;Invalid value for `tier_of_resource`, length must be greater than or equal to `0`&#34;)  # noqa: E501
+
+        self._tier_of_resource = tier_of_resource
 
     @property
     def task_version_summary(self):
@@ -1254,6 +1446,28 @@ def name(self):
     return self._name</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.size_of_resource"><code class="name">var <span class="ident">size_of_resource</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the size_of_resource of this TaskRunSummary.
+# noqa: E501</p>
+<p>:return: The size_of_resource of this TaskRunSummary.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def size_of_resource(self):
+    &#34;&#34;&#34;Gets the size_of_resource of this TaskRunSummary.  # noqa: E501
+
+
+    :return: The size_of_resource of this TaskRunSummary.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._size_of_resource</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.status"><code class="name">var <span class="ident">status</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the status of this TaskRunSummary.
@@ -1364,6 +1578,28 @@ def tenant_id(self):
     return self._tenant_id</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.tier_of_resource"><code class="name">var <span class="ident">tier_of_resource</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the tier_of_resource of this TaskRunSummary.
+# noqa: E501</p>
+<p>:return: The tier_of_resource of this TaskRunSummary.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def tier_of_resource(self):
+    &#34;&#34;&#34;Gets the tier_of_resource of this TaskRunSummary.  # noqa: E501
+
+
+    :return: The tier_of_resource of this TaskRunSummary.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._tier_of_resource</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.time_created"><code class="name">var <span class="ident">time_created</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the time_created of this TaskRunSummary.
@@ -1412,6 +1648,28 @@ def time_modified(self):
     :rtype: datetime
     &#34;&#34;&#34;
     return self._time_modified</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.type_of_resource"><code class="name">var <span class="ident">type_of_resource</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the type_of_resource of this TaskRunSummary.
+# noqa: E501</p>
+<p>:return: The type_of_resource of this TaskRunSummary.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def type_of_resource(self):
+    &#34;&#34;&#34;Gets the type_of_resource of this TaskRunSummary.  # noqa: E501
+
+
+    :return: The type_of_resource of this TaskRunSummary.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._type_of_resource</code></pre>
 </details>
 </dd>
 <dt id="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.urn"><code class="name">var <span class="ident">urn</span></code></dt>
@@ -1520,15 +1778,18 @@ def urn(self):
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.modified_by" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.modified_by">modified_by</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.name" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.name">name</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.openapi_types" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.openapi_types">openapi_types</a></code></li>
+<li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.size_of_resource" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.size_of_resource">size_of_resource</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.status" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.status">status</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.status_details" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.status_details">status_details</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.sub_tenant_id" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.sub_tenant_id">sub_tenant_id</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.task_version_summary" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.task_version_summary">task_version_summary</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.tenant_id" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.tenant_id">tenant_id</a></code></li>
+<li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.tier_of_resource" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.tier_of_resource">tier_of_resource</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.time_created" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.time_created">time_created</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.time_modified" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.time_modified">time_modified</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.to_dict" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.to_dict">to_dict</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.to_str" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.to_str">to_str</a></code></li>
+<li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.type_of_resource" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.type_of_resource">type_of_resource</a></code></li>
 <li><code><a title="libica.openapi.libtes.models.task_run_summary.TaskRunSummary.urn" href="#libica.openapi.libtes.models.task_run_summary.TaskRunSummary.urn">urn</a></code></li>
 </ul>
 </li>
@@ -1538,7 +1799,7 @@ def urn(self):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
 </html>

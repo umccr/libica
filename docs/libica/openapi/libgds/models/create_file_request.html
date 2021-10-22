@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.2" />
+<meta name="generator" content="pdoc 0.10.0" />
 <title>libica.openapi.libgds.models.create_file_request API documentation</title>
 <meta name="description" content="Genomic Data Store Service …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -70,7 +70,10 @@ class CreateFileRequest(object):
         &#39;volume_id&#39;: &#39;str&#39;,
         &#39;folder_path&#39;: &#39;str&#39;,
         &#39;type&#39;: &#39;str&#39;,
-        &#39;volume_name&#39;: &#39;str&#39;
+        &#39;volume_name&#39;: &#39;str&#39;,
+        &#39;format&#39;: &#39;str&#39;,
+        &#39;format_edam&#39;: &#39;str&#39;,
+        &#39;metadata&#39;: &#39;object&#39;
     }
 
     attribute_map = {
@@ -78,10 +81,13 @@ class CreateFileRequest(object):
         &#39;volume_id&#39;: &#39;volumeId&#39;,
         &#39;folder_path&#39;: &#39;folderPath&#39;,
         &#39;type&#39;: &#39;type&#39;,
-        &#39;volume_name&#39;: &#39;volumeName&#39;
+        &#39;volume_name&#39;: &#39;volumeName&#39;,
+        &#39;format&#39;: &#39;format&#39;,
+        &#39;format_edam&#39;: &#39;formatEdam&#39;,
+        &#39;metadata&#39;: &#39;metadata&#39;
     }
 
-    def __init__(self, name=None, volume_id=None, folder_path=None, type=None, volume_name=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, volume_id=None, folder_path=None, type=None, volume_name=None, format=None, format_edam=None, metadata=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;CreateFileRequest - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -92,6 +98,9 @@ class CreateFileRequest(object):
         self._folder_path = None
         self._type = None
         self._volume_name = None
+        self._format = None
+        self._format_edam = None
+        self._metadata = None
         self.discriminator = None
 
         self.name = name
@@ -103,6 +112,12 @@ class CreateFileRequest(object):
             self.type = type
         if volume_name is not None:
             self.volume_name = volume_name
+        if format is not None:
+            self.format = format
+        if format_edam is not None:
+            self.format_edam = format_edam
+        if metadata is not None:
+            self.metadata = metadata
 
     @property
     def name(self):
@@ -223,6 +238,75 @@ class CreateFileRequest(object):
         &#34;&#34;&#34;
 
         self._volume_name = volume_name
+
+    @property
+    def format(self):
+        &#34;&#34;&#34;Gets the format of this CreateFileRequest.  # noqa: E501
+
+        The File&#39;s Format  # noqa: E501
+
+        :return: The format of this CreateFileRequest.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._format
+
+    @format.setter
+    def format(self, format):
+        &#34;&#34;&#34;Sets the format of this CreateFileRequest.
+
+        The File&#39;s Format  # noqa: E501
+
+        :param format: The format of this CreateFileRequest.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._format = format
+
+    @property
+    def format_edam(self):
+        &#34;&#34;&#34;Gets the format_edam of this CreateFileRequest.  # noqa: E501
+
+        The File&#39;s Edam Format  # noqa: E501
+
+        :return: The format_edam of this CreateFileRequest.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._format_edam
+
+    @format_edam.setter
+    def format_edam(self, format_edam):
+        &#34;&#34;&#34;Sets the format_edam of this CreateFileRequest.
+
+        The File&#39;s Edam Format  # noqa: E501
+
+        :param format_edam: The format_edam of this CreateFileRequest.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._format_edam = format_edam
+
+    @property
+    def metadata(self):
+        &#34;&#34;&#34;Gets the metadata of this CreateFileRequest.  # noqa: E501
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :return: The metadata of this CreateFileRequest.  # noqa: E501
+        :rtype: object
+        &#34;&#34;&#34;
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        &#34;&#34;&#34;Sets the metadata of this CreateFileRequest.
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :param metadata: The metadata of this CreateFileRequest.  # noqa: E501
+        :type: object
+        &#34;&#34;&#34;
+
+        self._metadata = metadata
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -282,7 +366,7 @@ class CreateFileRequest(object):
 <dl>
 <dt id="libica.openapi.libgds.models.create_file_request.CreateFileRequest"><code class="flex name class">
 <span>class <span class="ident">CreateFileRequest</span></span>
-<span>(</span><span>name=None, volume_id=None, folder_path=None, type=None, volume_name=None, local_vars_configuration=None)</span>
+<span>(</span><span>name=None, volume_id=None, folder_path=None, type=None, volume_name=None, format=None, format_edam=None, metadata=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -312,7 +396,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;volume_id&#39;: &#39;str&#39;,
         &#39;folder_path&#39;: &#39;str&#39;,
         &#39;type&#39;: &#39;str&#39;,
-        &#39;volume_name&#39;: &#39;str&#39;
+        &#39;volume_name&#39;: &#39;str&#39;,
+        &#39;format&#39;: &#39;str&#39;,
+        &#39;format_edam&#39;: &#39;str&#39;,
+        &#39;metadata&#39;: &#39;object&#39;
     }
 
     attribute_map = {
@@ -320,10 +407,13 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;volume_id&#39;: &#39;volumeId&#39;,
         &#39;folder_path&#39;: &#39;folderPath&#39;,
         &#39;type&#39;: &#39;type&#39;,
-        &#39;volume_name&#39;: &#39;volumeName&#39;
+        &#39;volume_name&#39;: &#39;volumeName&#39;,
+        &#39;format&#39;: &#39;format&#39;,
+        &#39;format_edam&#39;: &#39;formatEdam&#39;,
+        &#39;metadata&#39;: &#39;metadata&#39;
     }
 
-    def __init__(self, name=None, volume_id=None, folder_path=None, type=None, volume_name=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, volume_id=None, folder_path=None, type=None, volume_name=None, format=None, format_edam=None, metadata=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;CreateFileRequest - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -334,6 +424,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._folder_path = None
         self._type = None
         self._volume_name = None
+        self._format = None
+        self._format_edam = None
+        self._metadata = None
         self.discriminator = None
 
         self.name = name
@@ -345,6 +438,12 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.type = type
         if volume_name is not None:
             self.volume_name = volume_name
+        if format is not None:
+            self.format = format
+        if format_edam is not None:
+            self.format_edam = format_edam
+        if metadata is not None:
+            self.metadata = metadata
 
     @property
     def name(self):
@@ -465,6 +564,75 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._volume_name = volume_name
+
+    @property
+    def format(self):
+        &#34;&#34;&#34;Gets the format of this CreateFileRequest.  # noqa: E501
+
+        The File&#39;s Format  # noqa: E501
+
+        :return: The format of this CreateFileRequest.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._format
+
+    @format.setter
+    def format(self, format):
+        &#34;&#34;&#34;Sets the format of this CreateFileRequest.
+
+        The File&#39;s Format  # noqa: E501
+
+        :param format: The format of this CreateFileRequest.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._format = format
+
+    @property
+    def format_edam(self):
+        &#34;&#34;&#34;Gets the format_edam of this CreateFileRequest.  # noqa: E501
+
+        The File&#39;s Edam Format  # noqa: E501
+
+        :return: The format_edam of this CreateFileRequest.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._format_edam
+
+    @format_edam.setter
+    def format_edam(self, format_edam):
+        &#34;&#34;&#34;Sets the format_edam of this CreateFileRequest.
+
+        The File&#39;s Edam Format  # noqa: E501
+
+        :param format_edam: The format_edam of this CreateFileRequest.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._format_edam = format_edam
+
+    @property
+    def metadata(self):
+        &#34;&#34;&#34;Gets the metadata of this CreateFileRequest.  # noqa: E501
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :return: The metadata of this CreateFileRequest.  # noqa: E501
+        :rtype: object
+        &#34;&#34;&#34;
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        &#34;&#34;&#34;Sets the metadata of this CreateFileRequest.
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :param metadata: The metadata of this CreateFileRequest.  # noqa: E501
+        :type: object
+        &#34;&#34;&#34;
+
+        self._metadata = metadata
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -548,6 +716,81 @@ def folder_path(self):
     :rtype: str
     &#34;&#34;&#34;
     return self._folder_path</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.create_file_request.CreateFileRequest.format"><code class="name">var <span class="ident">format</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the format of this CreateFileRequest.
+# noqa: E501</p>
+<p>The File's Format
+# noqa: E501</p>
+<p>:return: The format of this CreateFileRequest.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def format(self):
+    &#34;&#34;&#34;Gets the format of this CreateFileRequest.  # noqa: E501
+
+    The File&#39;s Format  # noqa: E501
+
+    :return: The format of this CreateFileRequest.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._format</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.create_file_request.CreateFileRequest.format_edam"><code class="name">var <span class="ident">format_edam</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the format_edam of this CreateFileRequest.
+# noqa: E501</p>
+<p>The File's Edam Format
+# noqa: E501</p>
+<p>:return: The format_edam of this CreateFileRequest.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def format_edam(self):
+    &#34;&#34;&#34;Gets the format_edam of this CreateFileRequest.  # noqa: E501
+
+    The File&#39;s Edam Format  # noqa: E501
+
+    :return: The format_edam of this CreateFileRequest.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._format_edam</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.create_file_request.CreateFileRequest.metadata"><code class="name">var <span class="ident">metadata</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the metadata of this CreateFileRequest.
+# noqa: E501</p>
+<p>Metadata about this file and its contents
+# noqa: E501</p>
+<p>:return: The metadata of this CreateFileRequest.
+# noqa: E501
+:rtype: object</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def metadata(self):
+    &#34;&#34;&#34;Gets the metadata of this CreateFileRequest.  # noqa: E501
+
+    Metadata about this file and its contents  # noqa: E501
+
+    :return: The metadata of this CreateFileRequest.  # noqa: E501
+    :rtype: object
+    &#34;&#34;&#34;
+    return self._metadata</code></pre>
 </details>
 </dd>
 <dt id="libica.openapi.libgds.models.create_file_request.CreateFileRequest.name"><code class="name">var <span class="ident">name</span></code></dt>
@@ -724,6 +967,9 @@ def volume_name(self):
 <ul class="two-column">
 <li><code><a title="libica.openapi.libgds.models.create_file_request.CreateFileRequest.attribute_map" href="#libica.openapi.libgds.models.create_file_request.CreateFileRequest.attribute_map">attribute_map</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_file_request.CreateFileRequest.folder_path" href="#libica.openapi.libgds.models.create_file_request.CreateFileRequest.folder_path">folder_path</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.create_file_request.CreateFileRequest.format" href="#libica.openapi.libgds.models.create_file_request.CreateFileRequest.format">format</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.create_file_request.CreateFileRequest.format_edam" href="#libica.openapi.libgds.models.create_file_request.CreateFileRequest.format_edam">format_edam</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.create_file_request.CreateFileRequest.metadata" href="#libica.openapi.libgds.models.create_file_request.CreateFileRequest.metadata">metadata</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_file_request.CreateFileRequest.name" href="#libica.openapi.libgds.models.create_file_request.CreateFileRequest.name">name</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_file_request.CreateFileRequest.openapi_types" href="#libica.openapi.libgds.models.create_file_request.CreateFileRequest.openapi_types">openapi_types</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_file_request.CreateFileRequest.to_dict" href="#libica.openapi.libgds.models.create_file_request.CreateFileRequest.to_dict">to_dict</a></code></li>
@@ -739,7 +985,7 @@ def volume_name(self):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.2" />
+<meta name="generator" content="pdoc 0.10.0" />
 <title>libica.openapi.libgds.api.folders_api API documentation</title>
 <meta name="description" content="Genomic Data Store Service …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -475,7 +475,7 @@ class FoldersApi(object):
 
         :param async_req bool: execute request asynchronously
         :param CreateFolderRequest body: (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -501,7 +501,7 @@ class FoldersApi(object):
 
         :param async_req bool: execute request asynchronously
         :param CreateFolderRequest body: (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -711,6 +711,9 @@ class FoldersApi(object):
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -737,6 +740,9 @@ class FoldersApi(object):
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -755,7 +761,10 @@ class FoldersApi(object):
 
         all_params = [
             &#39;folder_id&#39;,
-            &#39;tenant_id&#39;
+            &#39;tenant_id&#39;,
+            &#39;include_volume_metadata&#39;,
+            &#39;metadata_include&#39;,
+            &#39;metadata_exclude&#39;
         ]
         all_params.extend(
             [
@@ -788,6 +797,12 @@ class FoldersApi(object):
         query_params = []
         if &#39;tenant_id&#39; in local_var_params and local_var_params[&#39;tenant_id&#39;] is not None:  # noqa: E501
             query_params.append((&#39;tenantId&#39;, local_var_params[&#39;tenant_id&#39;]))  # noqa: E501
+        if &#39;include_volume_metadata&#39; in local_var_params and local_var_params[&#39;include_volume_metadata&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;includeVolumeMetadata&#39;, local_var_params[&#39;include_volume_metadata&#39;]))  # noqa: E501
+        if &#39;metadata_include&#39; in local_var_params and local_var_params[&#39;metadata_include&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
+        if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
 
         header_params = {}
 
@@ -1082,8 +1097,10 @@ class FoldersApi(object):
         :param bool recursive: Optional field to specify if folders should be returned recursively in and under the specified paths, or only directly in the specified paths
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -1116,8 +1133,10 @@ class FoldersApi(object):
         :param bool recursive: Optional field to specify if folders should be returned recursively in and under the specified paths, or only directly in the specified paths
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1144,7 +1163,9 @@ class FoldersApi(object):
             &#39;page_size&#39;,
             &#39;page_token&#39;,
             &#39;include&#39;,
-            &#39;tenant_id&#39;
+            &#39;tenant_id&#39;,
+            &#39;metadata_include&#39;,
+            &#39;metadata_exclude&#39;
         ]
         all_params.extend(
             [
@@ -1197,6 +1218,10 @@ class FoldersApi(object):
             query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
         if &#39;tenant_id&#39; in local_var_params and local_var_params[&#39;tenant_id&#39;] is not None:  # noqa: E501
             query_params.append((&#39;tenantId&#39;, local_var_params[&#39;tenant_id&#39;]))  # noqa: E501
+        if &#39;metadata_include&#39; in local_var_params and local_var_params[&#39;metadata_include&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
+        if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
 
         header_params = {}
 
@@ -1365,7 +1390,7 @@ class FoldersApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to be updated. (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param FolderUpdateRequest body:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
@@ -1392,7 +1417,7 @@ class FoldersApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to be updated. (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param FolderUpdateRequest body:
         :param _return_http_data_only: response data without head status code
                                        and headers
@@ -1922,7 +1947,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
         :param async_req bool: execute request asynchronously
         :param CreateFolderRequest body: (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -1948,7 +1973,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
         :param async_req bool: execute request asynchronously
         :param CreateFolderRequest body: (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2158,6 +2183,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -2184,6 +2212,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2202,7 +2233,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
         all_params = [
             &#39;folder_id&#39;,
-            &#39;tenant_id&#39;
+            &#39;tenant_id&#39;,
+            &#39;include_volume_metadata&#39;,
+            &#39;metadata_include&#39;,
+            &#39;metadata_exclude&#39;
         ]
         all_params.extend(
             [
@@ -2235,6 +2269,12 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         query_params = []
         if &#39;tenant_id&#39; in local_var_params and local_var_params[&#39;tenant_id&#39;] is not None:  # noqa: E501
             query_params.append((&#39;tenantId&#39;, local_var_params[&#39;tenant_id&#39;]))  # noqa: E501
+        if &#39;include_volume_metadata&#39; in local_var_params and local_var_params[&#39;include_volume_metadata&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;includeVolumeMetadata&#39;, local_var_params[&#39;include_volume_metadata&#39;]))  # noqa: E501
+        if &#39;metadata_include&#39; in local_var_params and local_var_params[&#39;metadata_include&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
+        if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
 
         header_params = {}
 
@@ -2529,8 +2569,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param bool recursive: Optional field to specify if folders should be returned recursively in and under the specified paths, or only directly in the specified paths
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -2563,8 +2605,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param bool recursive: Optional field to specify if folders should be returned recursively in and under the specified paths, or only directly in the specified paths
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2591,7 +2635,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             &#39;page_size&#39;,
             &#39;page_token&#39;,
             &#39;include&#39;,
-            &#39;tenant_id&#39;
+            &#39;tenant_id&#39;,
+            &#39;metadata_include&#39;,
+            &#39;metadata_exclude&#39;
         ]
         all_params.extend(
             [
@@ -2644,6 +2690,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
         if &#39;tenant_id&#39; in local_var_params and local_var_params[&#39;tenant_id&#39;] is not None:  # noqa: E501
             query_params.append((&#39;tenantId&#39;, local_var_params[&#39;tenant_id&#39;]))  # noqa: E501
+        if &#39;metadata_include&#39; in local_var_params and local_var_params[&#39;metadata_include&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
+        if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
 
         header_params = {}
 
@@ -2812,7 +2862,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to be updated. (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param FolderUpdateRequest body:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
@@ -2839,7 +2889,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to be updated. (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param FolderUpdateRequest body:
         :param _return_http_data_only: response data without head status code
                                        and headers
@@ -3537,7 +3587,8 @@ asynchronous HTTP request, please pass async_req=True</p>
 </code></pre>
 <p>:param async_req bool: execute request asynchronously
 :param CreateFolderRequest body: (required)
-:param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+:param str include: Optionally include additional fields in the response.
+Possible values: ObjectStoreAccess
 :param _preload_content: if False, the urllib3.HTTPResponse object will
 be returned without reading/decoding response
 data. Default is True.
@@ -3563,7 +3614,7 @@ returns the request thread.</p></div>
 
     :param async_req bool: execute request asynchronously
     :param CreateFolderRequest body: (required)
-    :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+    :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                              be returned without reading/decoding response
                              data. Default is True.
@@ -3594,7 +3645,8 @@ asynchronous HTTP request, please pass async_req=True</p>
 </code></pre>
 <p>:param async_req bool: execute request asynchronously
 :param CreateFolderRequest body: (required)
-:param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+:param str include: Optionally include additional fields in the response.
+Possible values: ObjectStoreAccess
 :param _return_http_data_only: response data without head status code
 and headers
 :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -3622,7 +3674,7 @@ returns the request thread.</p></div>
 
     :param async_req bool: execute request asynchronously
     :param CreateFolderRequest body: (required)
-    :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+    :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
     :param _return_http_data_only: response data without head status code
                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -3895,6 +3947,9 @@ asynchronous HTTP request, please pass async_req=True</p>
 <p>:param async_req bool: execute request asynchronously
 :param str folder_id: Unique identifier for the folder to retrieve. (required)
 :param str tenant_id: Optional parameter to see shared data in another tenant
+:param bool include_volume_metadata: Optional parameter to return volume's metadata
+:param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+:param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
 :param _preload_content: if False, the urllib3.HTTPResponse object will
 be returned without reading/decoding response
 data. Default is True.
@@ -3921,6 +3976,9 @@ returns the request thread.</p></div>
     :param async_req bool: execute request asynchronously
     :param str folder_id: Unique identifier for the folder to retrieve. (required)
     :param str tenant_id: Optional parameter to see shared data in another tenant
+    :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+    :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+    :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                              be returned without reading/decoding response
                              data. Default is True.
@@ -4326,6 +4384,9 @@ asynchronous HTTP request, please pass async_req=True</p>
 <p>:param async_req bool: execute request asynchronously
 :param str folder_id: Unique identifier for the folder to retrieve. (required)
 :param str tenant_id: Optional parameter to see shared data in another tenant
+:param bool include_volume_metadata: Optional parameter to return volume's metadata
+:param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+:param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
 :param _return_http_data_only: response data without head status code
 and headers
 :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -4354,6 +4415,9 @@ returns the request thread.</p></div>
     :param async_req bool: execute request asynchronously
     :param str folder_id: Unique identifier for the folder to retrieve. (required)
     :param str tenant_id: Optional parameter to see shared data in another tenant
+    :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+    :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+    :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
     :param _return_http_data_only: response data without head status code
                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -4372,7 +4436,10 @@ returns the request thread.</p></div>
 
     all_params = [
         &#39;folder_id&#39;,
-        &#39;tenant_id&#39;
+        &#39;tenant_id&#39;,
+        &#39;include_volume_metadata&#39;,
+        &#39;metadata_include&#39;,
+        &#39;metadata_exclude&#39;
     ]
     all_params.extend(
         [
@@ -4405,6 +4472,12 @@ returns the request thread.</p></div>
     query_params = []
     if &#39;tenant_id&#39; in local_var_params and local_var_params[&#39;tenant_id&#39;] is not None:  # noqa: E501
         query_params.append((&#39;tenantId&#39;, local_var_params[&#39;tenant_id&#39;]))  # noqa: E501
+    if &#39;include_volume_metadata&#39; in local_var_params and local_var_params[&#39;include_volume_metadata&#39;] is not None:  # noqa: E501
+        query_params.append((&#39;includeVolumeMetadata&#39;, local_var_params[&#39;include_volume_metadata&#39;]))  # noqa: E501
+    if &#39;metadata_include&#39; in local_var_params and local_var_params[&#39;metadata_include&#39;] is not None:  # noqa: E501
+        query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
+    if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
+        query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
 
     header_params = {}
 
@@ -4458,8 +4531,11 @@ asynchronous HTTP request, please pass async_req=True</p>
 :param bool recursive: Optional field to specify if folders should be returned recursively in and under the specified paths, or only directly in the specified paths
 :param int page_size: START_DESC END_DESC
 :param str page_token: START_DESC END_DESC
-:param str include: START_DESC END_DESC
+:param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.
+Possible values: TotalItemCount, InheritedAcl
 :param str tenant_id: Optional parameter to see shared data in another tenant
+:param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+:param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
 :param _preload_content: if False, the urllib3.HTTPResponse object will
 be returned without reading/decoding response
 data. Default is True.
@@ -4492,8 +4568,10 @@ returns the request thread.</p></div>
     :param bool recursive: Optional field to specify if folders should be returned recursively in and under the specified paths, or only directly in the specified paths
     :param int page_size: START_DESC END_DESC
     :param str page_token: START_DESC END_DESC
-    :param str include: START_DESC END_DESC
+    :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
     :param str tenant_id: Optional parameter to see shared data in another tenant
+    :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+    :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                              be returned without reading/decoding response
                              data. Default is True.
@@ -4531,8 +4609,11 @@ asynchronous HTTP request, please pass async_req=True</p>
 :param bool recursive: Optional field to specify if folders should be returned recursively in and under the specified paths, or only directly in the specified paths
 :param int page_size: START_DESC END_DESC
 :param str page_token: START_DESC END_DESC
-:param str include: START_DESC END_DESC
+:param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.
+Possible values: TotalItemCount, InheritedAcl
 :param str tenant_id: Optional parameter to see shared data in another tenant
+:param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+:param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
 :param _return_http_data_only: response data without head status code
 and headers
 :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -4567,8 +4648,10 @@ returns the request thread.</p></div>
     :param bool recursive: Optional field to specify if folders should be returned recursively in and under the specified paths, or only directly in the specified paths
     :param int page_size: START_DESC END_DESC
     :param str page_token: START_DESC END_DESC
-    :param str include: START_DESC END_DESC
+    :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
     :param str tenant_id: Optional parameter to see shared data in another tenant
+    :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+    :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
     :param _return_http_data_only: response data without head status code
                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -4595,7 +4678,9 @@ returns the request thread.</p></div>
         &#39;page_size&#39;,
         &#39;page_token&#39;,
         &#39;include&#39;,
-        &#39;tenant_id&#39;
+        &#39;tenant_id&#39;,
+        &#39;metadata_include&#39;,
+        &#39;metadata_exclude&#39;
     ]
     all_params.extend(
         [
@@ -4648,6 +4733,10 @@ returns the request thread.</p></div>
         query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
     if &#39;tenant_id&#39; in local_var_params and local_var_params[&#39;tenant_id&#39;] is not None:  # noqa: E501
         query_params.append((&#39;tenantId&#39;, local_var_params[&#39;tenant_id&#39;]))  # noqa: E501
+    if &#39;metadata_include&#39; in local_var_params and local_var_params[&#39;metadata_include&#39;] is not None:  # noqa: E501
+        query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
+    if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
+        query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
 
     header_params = {}
 
@@ -4886,7 +4975,8 @@ asynchronous HTTP request, please pass async_req=True</p>
 </code></pre>
 <p>:param async_req bool: execute request asynchronously
 :param str folder_id: Unique identifier for the folder to be updated. (required)
-:param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+:param str include: Optionally include additional fields in the response.
+Possible values: ObjectStoreAccess
 :param FolderUpdateRequest body:
 :param _preload_content: if False, the urllib3.HTTPResponse object will
 be returned without reading/decoding response
@@ -4913,7 +5003,7 @@ returns the request thread.</p></div>
 
     :param async_req bool: execute request asynchronously
     :param str folder_id: Unique identifier for the folder to be updated. (required)
-    :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+    :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
     :param FolderUpdateRequest body:
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                              be returned without reading/decoding response
@@ -4946,7 +5036,8 @@ asynchronous HTTP request, please pass async_req=True</p>
 </code></pre>
 <p>:param async_req bool: execute request asynchronously
 :param str folder_id: Unique identifier for the folder to be updated. (required)
-:param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+:param str include: Optionally include additional fields in the response.
+Possible values: ObjectStoreAccess
 :param FolderUpdateRequest body:
 :param _return_http_data_only: response data without head status code
 and headers
@@ -4975,7 +5066,7 @@ returns the request thread.</p></div>
 
     :param async_req bool: execute request asynchronously
     :param str folder_id: Unique identifier for the folder to be updated. (required)
-    :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+    :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
     :param FolderUpdateRequest body:
     :param _return_http_data_only: response data without head status code
                                    and headers
@@ -5117,7 +5208,7 @@ returns the request thread.</p></div>
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
 </html>

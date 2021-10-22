@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.2" />
+<meta name="generator" content="pdoc 0.10.0" />
 <title>libica.openapi.libgds.api.volume_configurations_api API documentation</title>
 <meta name="description" content="Genomic Data Store Service …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -423,7 +423,7 @@ class VolumeConfigurationsApi(object):
         :param str online_status: Optional field that specifies the Online Status for Volume configurations included in the list.  If provided, the value must be Initializing, Ok, or Error.
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -450,7 +450,7 @@ class VolumeConfigurationsApi(object):
         :param str online_status: Optional field that specifies the Online Status for Volume configurations included in the list.  If provided, the value must be Initializing, Ok, or Error.
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1040,7 +1040,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param str online_status: Optional field that specifies the Online Status for Volume configurations included in the list.  If provided, the value must be Initializing, Ok, or Error.
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -1067,7 +1067,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param str online_status: Optional field that specifies the Online Status for Volume configurations included in the list.  If provided, the value must be Initializing, Ok, or Error.
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1807,7 +1807,8 @@ asynchronous HTTP request, please pass async_req=True</p>
 If provided, the value must be Initializing, Ok, or Error.
 :param int page_size: START_DESC END_DESC
 :param str page_token: START_DESC END_DESC
-:param str include: START_DESC END_DESC
+:param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.
+Possible values: TotalItemCount, InheritedAcl
 :param _preload_content: if False, the urllib3.HTTPResponse object will
 be returned without reading/decoding response
 data. Default is True.
@@ -1834,7 +1835,7 @@ returns the request thread.</p></div>
     :param str online_status: Optional field that specifies the Online Status for Volume configurations included in the list.  If provided, the value must be Initializing, Ok, or Error.
     :param int page_size: START_DESC END_DESC
     :param str page_token: START_DESC END_DESC
-    :param str include: START_DESC END_DESC
+    :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                              be returned without reading/decoding response
                              data. Default is True.
@@ -1866,7 +1867,8 @@ asynchronous HTTP request, please pass async_req=True</p>
 If provided, the value must be Initializing, Ok, or Error.
 :param int page_size: START_DESC END_DESC
 :param str page_token: START_DESC END_DESC
-:param str include: START_DESC END_DESC
+:param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.
+Possible values: TotalItemCount, InheritedAcl
 :param _return_http_data_only: response data without head status code
 and headers
 :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1895,7 +1897,7 @@ returns the request thread.</p></div>
     :param str online_status: Optional field that specifies the Online Status for Volume configurations included in the list.  If provided, the value must be Initializing, Ok, or Error.
     :param int page_size: START_DESC END_DESC
     :param str page_token: START_DESC END_DESC
-    :param str include: START_DESC END_DESC
+    :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
     :param _return_http_data_only: response data without head status code
                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2199,7 +2201,7 @@ returns the request thread.</p></div>
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
 </html>

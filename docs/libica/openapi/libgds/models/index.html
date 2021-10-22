@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.2" />
+<meta name="generator" content="pdoc 0.10.0" />
 <title>libica.openapi.libgds.models API documentation</title>
 <meta name="description" content="Genomic Data Store Service …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -49,29 +49,43 @@ from __future__ import absolute_import
 # import models into model package
 from libica.openapi.libgds.models.awss3_object_store_setting import AWSS3ObjectStoreSetting
 from libica.openapi.libgds.models.archive_statuses import ArchiveStatuses
+from libica.openapi.libgds.models.aws_s3_presigned_url_for_upload import AwsS3PresignedUrlForUpload
 from libica.openapi.libgds.models.aws_s3_temporary_upload_credentials import AwsS3TemporaryUploadCredentials
+from libica.openapi.libgds.models.bulk_file_update_item import BulkFileUpdateItem
+from libica.openapi.libgds.models.bulk_file_update_request import BulkFileUpdateRequest
+from libica.openapi.libgds.models.bulk_file_update_response import BulkFileUpdateResponse
+from libica.openapi.libgds.models.bulk_folder_update_item import BulkFolderUpdateItem
+from libica.openapi.libgds.models.bulk_folder_update_request import BulkFolderUpdateRequest
+from libica.openapi.libgds.models.bulk_update_failed_item import BulkUpdateFailedItem
 from libica.openapi.libgds.models.complete_session_request import CompleteSessionRequest
 from libica.openapi.libgds.models.create_file_request import CreateFileRequest
 from libica.openapi.libgds.models.create_folder_request import CreateFolderRequest
+from libica.openapi.libgds.models.create_session_request import CreateSessionRequest
+from libica.openapi.libgds.models.create_session_response import CreateSessionResponse
 from libica.openapi.libgds.models.create_volume_configuration_request import CreateVolumeConfigurationRequest
 from libica.openapi.libgds.models.create_volume_request import CreateVolumeRequest
 from libica.openapi.libgds.models.create_volume_response import CreateVolumeResponse
 from libica.openapi.libgds.models.error_response import ErrorResponse
 from libica.openapi.libgds.models.file_archive_request import FileArchiveRequest
 from libica.openapi.libgds.models.file_archive_storage_tier import FileArchiveStorageTier
+from libica.openapi.libgds.models.file_life_cycle_settings import FileLifeCycleSettings
 from libica.openapi.libgds.models.file_list_response import FileListResponse
 from libica.openapi.libgds.models.file_response import FileResponse
+from libica.openapi.libgds.models.file_status import FileStatus
 from libica.openapi.libgds.models.file_unarchive_request import FileUnarchiveRequest
+from libica.openapi.libgds.models.file_upload_complete_request import FileUploadCompleteRequest
 from libica.openapi.libgds.models.file_writeable_response import FileWriteableResponse
 from libica.openapi.libgds.models.folder_archive_request import FolderArchiveRequest
 from libica.openapi.libgds.models.folder_archive_storage_tier import FolderArchiveStorageTier
 from libica.openapi.libgds.models.folder_copy_operation_parameters import FolderCopyOperationParameters
 from libica.openapi.libgds.models.folder_copy_request import FolderCopyRequest
+from libica.openapi.libgds.models.folder_delete_operation_parameters import FolderDeleteOperationParameters
 from libica.openapi.libgds.models.folder_list_response import FolderListResponse
 from libica.openapi.libgds.models.folder_response import FolderResponse
 from libica.openapi.libgds.models.folder_unarchive_request import FolderUnarchiveRequest
 from libica.openapi.libgds.models.folder_update_request import FolderUpdateRequest
 from libica.openapi.libgds.models.folder_writeable_response import FolderWriteableResponse
+from libica.openapi.libgds.models.grace_period_end_action import GracePeriodEndAction
 from libica.openapi.libgds.models.job_operation_parameters import JobOperationParameters
 from libica.openapi.libgds.models.job_operation_type import JobOperationType
 from libica.openapi.libgds.models.job_progress_status import JobProgressStatus
@@ -79,13 +93,17 @@ from libica.openapi.libgds.models.job_response import JobResponse
 from libica.openapi.libgds.models.job_status import JobStatus
 from libica.openapi.libgds.models.object_store_access import ObjectStoreAccess
 from libica.openapi.libgds.models.object_store_settings import ObjectStoreSettings
+from libica.openapi.libgds.models.part_etag import PartEtag
+from libica.openapi.libgds.models.part_info import PartInfo
 from libica.openapi.libgds.models.session_response import SessionResponse
 from libica.openapi.libgds.models.session_status import SessionStatus
 from libica.openapi.libgds.models.storage_tier import StorageTier
 from libica.openapi.libgds.models.update_file_request import UpdateFileRequest
+from libica.openapi.libgds.models.update_volume_request import UpdateVolumeRequest
 from libica.openapi.libgds.models.volume_configuration_list_response import VolumeConfigurationListResponse
 from libica.openapi.libgds.models.volume_configuration_online_status import VolumeConfigurationOnlineStatus
 from libica.openapi.libgds.models.volume_configuration_response import VolumeConfigurationResponse
+from libica.openapi.libgds.models.volume_life_cycle_settings import VolumeLifeCycleSettings
 from libica.openapi.libgds.models.volume_list_response import VolumeListResponse
 from libica.openapi.libgds.models.volume_response import VolumeResponse</code></pre>
 </details>
@@ -97,11 +115,39 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.aws_s3_presigned_url_for_upload" href="aws_s3_presigned_url_for_upload.html">libica.openapi.libgds.models.aws_s3_presigned_url_for_upload</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
 <dt><code class="name"><a title="libica.openapi.libgds.models.aws_s3_temporary_upload_credentials" href="aws_s3_temporary_upload_credentials.html">libica.openapi.libgds.models.aws_s3_temporary_upload_credentials</a></code></dt>
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
 <dt><code class="name"><a title="libica.openapi.libgds.models.awss3_object_store_setting" href="awss3_object_store_setting.html">libica.openapi.libgds.models.awss3_object_store_setting</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.bulk_file_update_item" href="bulk_file_update_item.html">libica.openapi.libgds.models.bulk_file_update_item</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.bulk_file_update_request" href="bulk_file_update_request.html">libica.openapi.libgds.models.bulk_file_update_request</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.bulk_file_update_response" href="bulk_file_update_response.html">libica.openapi.libgds.models.bulk_file_update_response</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.bulk_folder_update_item" href="bulk_folder_update_item.html">libica.openapi.libgds.models.bulk_folder_update_item</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.bulk_folder_update_request" href="bulk_folder_update_request.html">libica.openapi.libgds.models.bulk_folder_update_request</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.bulk_update_failed_item" href="bulk_update_failed_item.html">libica.openapi.libgds.models.bulk_update_failed_item</a></code></dt>
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
@@ -114,6 +160,14 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
 <dt><code class="name"><a title="libica.openapi.libgds.models.create_folder_request" href="create_folder_request.html">libica.openapi.libgds.models.create_folder_request</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.create_session_request" href="create_session_request.html">libica.openapi.libgds.models.create_session_request</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.create_session_response" href="create_session_response.html">libica.openapi.libgds.models.create_session_response</a></code></dt>
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
@@ -141,6 +195,10 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.file_life_cycle_settings" href="file_life_cycle_settings.html">libica.openapi.libgds.models.file_life_cycle_settings</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
 <dt><code class="name"><a title="libica.openapi.libgds.models.file_list_response" href="file_list_response.html">libica.openapi.libgds.models.file_list_response</a></code></dt>
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
@@ -149,7 +207,15 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.file_status" href="file_status.html">libica.openapi.libgds.models.file_status</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
 <dt><code class="name"><a title="libica.openapi.libgds.models.file_unarchive_request" href="file_unarchive_request.html">libica.openapi.libgds.models.file_unarchive_request</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.file_upload_complete_request" href="file_upload_complete_request.html">libica.openapi.libgds.models.file_upload_complete_request</a></code></dt>
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
@@ -173,6 +239,10 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.folder_delete_operation_parameters" href="folder_delete_operation_parameters.html">libica.openapi.libgds.models.folder_delete_operation_parameters</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
 <dt><code class="name"><a title="libica.openapi.libgds.models.folder_list_response" href="folder_list_response.html">libica.openapi.libgds.models.folder_list_response</a></code></dt>
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
@@ -190,6 +260,10 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
 <dt><code class="name"><a title="libica.openapi.libgds.models.folder_writeable_response" href="folder_writeable_response.html">libica.openapi.libgds.models.folder_writeable_response</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.grace_period_end_action" href="grace_period_end_action.html">libica.openapi.libgds.models.grace_period_end_action</a></code></dt>
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
@@ -225,6 +299,14 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.part_etag" href="part_etag.html">libica.openapi.libgds.models.part_etag</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.part_info" href="part_info.html">libica.openapi.libgds.models.part_info</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
 <dt><code class="name"><a title="libica.openapi.libgds.models.session_response" href="session_response.html">libica.openapi.libgds.models.session_response</a></code></dt>
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
@@ -245,6 +327,10 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.update_volume_request" href="update_volume_request.html">libica.openapi.libgds.models.update_volume_request</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
 <dt><code class="name"><a title="libica.openapi.libgds.models.volume_configuration_list_response" href="volume_configuration_list_response.html">libica.openapi.libgds.models.volume_configuration_list_response</a></code></dt>
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
@@ -254,6 +340,10 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
 <dt><code class="name"><a title="libica.openapi.libgds.models.volume_configuration_response" href="volume_configuration_response.html">libica.openapi.libgds.models.volume_configuration_response</a></code></dt>
+<dd>
+<div class="desc"><p>Genomic Data Store Service …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.openapi.libgds.models.volume_life_cycle_settings" href="volume_life_cycle_settings.html">libica.openapi.libgds.models.volume_life_cycle_settings</a></code></dt>
 <dd>
 <div class="desc"><p>Genomic Data Store Service …</p></div>
 </dd>
@@ -292,30 +382,44 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 <li><h3><a href="#header-submodules">Sub-modules</a></h3>
 <ul>
 <li><code><a title="libica.openapi.libgds.models.archive_statuses" href="archive_statuses.html">libica.openapi.libgds.models.archive_statuses</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.aws_s3_presigned_url_for_upload" href="aws_s3_presigned_url_for_upload.html">libica.openapi.libgds.models.aws_s3_presigned_url_for_upload</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.aws_s3_temporary_upload_credentials" href="aws_s3_temporary_upload_credentials.html">libica.openapi.libgds.models.aws_s3_temporary_upload_credentials</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.awss3_object_store_setting" href="awss3_object_store_setting.html">libica.openapi.libgds.models.awss3_object_store_setting</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.bulk_file_update_item" href="bulk_file_update_item.html">libica.openapi.libgds.models.bulk_file_update_item</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.bulk_file_update_request" href="bulk_file_update_request.html">libica.openapi.libgds.models.bulk_file_update_request</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.bulk_file_update_response" href="bulk_file_update_response.html">libica.openapi.libgds.models.bulk_file_update_response</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.bulk_folder_update_item" href="bulk_folder_update_item.html">libica.openapi.libgds.models.bulk_folder_update_item</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.bulk_folder_update_request" href="bulk_folder_update_request.html">libica.openapi.libgds.models.bulk_folder_update_request</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.bulk_update_failed_item" href="bulk_update_failed_item.html">libica.openapi.libgds.models.bulk_update_failed_item</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.complete_session_request" href="complete_session_request.html">libica.openapi.libgds.models.complete_session_request</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_file_request" href="create_file_request.html">libica.openapi.libgds.models.create_file_request</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_folder_request" href="create_folder_request.html">libica.openapi.libgds.models.create_folder_request</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.create_session_request" href="create_session_request.html">libica.openapi.libgds.models.create_session_request</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.create_session_response" href="create_session_response.html">libica.openapi.libgds.models.create_session_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_volume_configuration_request" href="create_volume_configuration_request.html">libica.openapi.libgds.models.create_volume_configuration_request</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_volume_request" href="create_volume_request.html">libica.openapi.libgds.models.create_volume_request</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_volume_response" href="create_volume_response.html">libica.openapi.libgds.models.create_volume_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.error_response" href="error_response.html">libica.openapi.libgds.models.error_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_archive_request" href="file_archive_request.html">libica.openapi.libgds.models.file_archive_request</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_archive_storage_tier" href="file_archive_storage_tier.html">libica.openapi.libgds.models.file_archive_storage_tier</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.file_life_cycle_settings" href="file_life_cycle_settings.html">libica.openapi.libgds.models.file_life_cycle_settings</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_list_response" href="file_list_response.html">libica.openapi.libgds.models.file_list_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_response" href="file_response.html">libica.openapi.libgds.models.file_response</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.file_status" href="file_status.html">libica.openapi.libgds.models.file_status</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_unarchive_request" href="file_unarchive_request.html">libica.openapi.libgds.models.file_unarchive_request</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.file_upload_complete_request" href="file_upload_complete_request.html">libica.openapi.libgds.models.file_upload_complete_request</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response" href="file_writeable_response.html">libica.openapi.libgds.models.file_writeable_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_archive_request" href="folder_archive_request.html">libica.openapi.libgds.models.folder_archive_request</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_archive_storage_tier" href="folder_archive_storage_tier.html">libica.openapi.libgds.models.folder_archive_storage_tier</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_copy_operation_parameters" href="folder_copy_operation_parameters.html">libica.openapi.libgds.models.folder_copy_operation_parameters</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_copy_request" href="folder_copy_request.html">libica.openapi.libgds.models.folder_copy_request</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.folder_delete_operation_parameters" href="folder_delete_operation_parameters.html">libica.openapi.libgds.models.folder_delete_operation_parameters</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_list_response" href="folder_list_response.html">libica.openapi.libgds.models.folder_list_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response" href="folder_response.html">libica.openapi.libgds.models.folder_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_unarchive_request" href="folder_unarchive_request.html">libica.openapi.libgds.models.folder_unarchive_request</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_update_request" href="folder_update_request.html">libica.openapi.libgds.models.folder_update_request</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_writeable_response" href="folder_writeable_response.html">libica.openapi.libgds.models.folder_writeable_response</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.grace_period_end_action" href="grace_period_end_action.html">libica.openapi.libgds.models.grace_period_end_action</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_operation_parameters" href="job_operation_parameters.html">libica.openapi.libgds.models.job_operation_parameters</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_operation_type" href="job_operation_type.html">libica.openapi.libgds.models.job_operation_type</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_progress_status" href="job_progress_status.html">libica.openapi.libgds.models.job_progress_status</a></code></li>
@@ -324,14 +428,18 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 <li><code><a title="libica.openapi.libgds.models.object_storage_credentials_response" href="object_storage_credentials_response.html">libica.openapi.libgds.models.object_storage_credentials_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.object_store_access" href="object_store_access.html">libica.openapi.libgds.models.object_store_access</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.object_store_settings" href="object_store_settings.html">libica.openapi.libgds.models.object_store_settings</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.part_etag" href="part_etag.html">libica.openapi.libgds.models.part_etag</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.part_info" href="part_info.html">libica.openapi.libgds.models.part_info</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.session_response" href="session_response.html">libica.openapi.libgds.models.session_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.session_status" href="session_status.html">libica.openapi.libgds.models.session_status</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.storage_tier" href="storage_tier.html">libica.openapi.libgds.models.storage_tier</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.update_file_request" href="update_file_request.html">libica.openapi.libgds.models.update_file_request</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.update_volume_configuration_request" href="update_volume_configuration_request.html">libica.openapi.libgds.models.update_volume_configuration_request</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.update_volume_request" href="update_volume_request.html">libica.openapi.libgds.models.update_volume_request</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.volume_configuration_list_response" href="volume_configuration_list_response.html">libica.openapi.libgds.models.volume_configuration_list_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.volume_configuration_online_status" href="volume_configuration_online_status.html">libica.openapi.libgds.models.volume_configuration_online_status</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.volume_configuration_response" href="volume_configuration_response.html">libica.openapi.libgds.models.volume_configuration_response</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.volume_life_cycle_settings" href="volume_life_cycle_settings.html">libica.openapi.libgds.models.volume_life_cycle_settings</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.volume_list_response" href="volume_list_response.html">libica.openapi.libgds.models.volume_list_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.volume_response" href="volume_response.html">libica.openapi.libgds.models.volume_response</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.volume_setting_status" href="volume_setting_status.html">libica.openapi.libgds.models.volume_setting_status</a></code></li>
@@ -341,7 +449,7 @@ from libica.openapi.libgds.models.volume_response import VolumeResponse</code></
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
 </html>

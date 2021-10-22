@@ -9,8 +9,8 @@
       
       
       
-      <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.4">
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.4">
     
     
       
@@ -18,10 +18,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.77f3fd56.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.db9e7362.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.3f5d1f46.min.css">
         
       
     
@@ -38,6 +38,8 @@
     
     
       
+
+
     
     
   </head>
@@ -49,8 +51,9 @@
     
     
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
-      
   
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -71,7 +74,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="libica" class="md-header__button md-logo" aria-label="libica">
+    <a href=".." title="libica" class="md-header__button md-logo" aria-label="libica" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -96,9 +99,8 @@
         </div>
       </div>
     </div>
-    <div class="md-header__options">
-      
-    </div>
+    
+    
     
       <label class="md-header__button md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
@@ -108,14 +110,18 @@
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
@@ -136,7 +142,7 @@
 <a href="https://github.com/umccr-illumina/libica/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     umccr-illumina/libica
@@ -145,11 +151,14 @@
       </div>
     
   </nav>
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
+        
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -163,11 +172,9 @@
                     
 
 
-
-
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="libica" class="md-nav__button md-logo" aria-label="libica">
+    <a href=".." title="libica" class="md-nav__button md-logo" aria-label="libica" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -181,7 +188,7 @@
 <a href="https://github.com/umccr-illumina/libica/" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
   </div>
   <div class="md-source__repository">
     umccr-illumina/libica
@@ -234,6 +241,7 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
+      
         
       
       
@@ -248,6 +256,7 @@
       
         
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
   
   
     
@@ -368,6 +377,7 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
+  
     
   
   
@@ -456,7 +466,7 @@
 <ul>
 <li>API version: v1</li>
 <li>Package version: 1.0.0</li>
-<li>Build date: 2021-03-08T16:00:23.936248+11:00[Australia/Melbourne]</li>
+<li>Build date: 2021-10-22T14:39:19.996256+11:00[Australia/Melbourne]</li>
 <li>Build package: org.openapitools.codegen.languages.PythonClientCodegen</li>
 </ul>
 <h2 id="requirements">Requirements.<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
@@ -534,6 +544,12 @@ you can run the following:</p>
 <td><a href="docs/FilesApi/#archive_file"><strong>archive_file</strong></a></td>
 <td><strong>POST</strong> /v1/files/{fileId}:archive</td>
 <td>Archive a file</td>
+</tr>
+<tr>
+<td><em>FilesApi</em></td>
+<td><a href="docs/FilesApi/#complete_file_upload"><strong>complete_file_upload</strong></a></td>
+<td><strong>POST</strong> /v1/files/{fileId}:completeUpload</td>
+<td>Complete a file Upload</td>
 </tr>
 <tr>
 <td><em>FilesApi</em></td>
@@ -697,29 +713,43 @@ you can run the following:</p>
 <ul>
 <li><a href="docs/AWSS3ObjectStoreSetting/">AWSS3ObjectStoreSetting</a></li>
 <li><a href="docs/ArchiveStatuses/">ArchiveStatuses</a></li>
+<li><a href="docs/AwsS3PresignedUrlForUpload/">AwsS3PresignedUrlForUpload</a></li>
 <li><a href="docs/AwsS3TemporaryUploadCredentials/">AwsS3TemporaryUploadCredentials</a></li>
+<li><a href="docs/BulkFileUpdateItem/">BulkFileUpdateItem</a></li>
+<li><a href="docs/BulkFileUpdateRequest/">BulkFileUpdateRequest</a></li>
+<li><a href="docs/BulkFileUpdateResponse/">BulkFileUpdateResponse</a></li>
+<li><a href="docs/BulkFolderUpdateItem/">BulkFolderUpdateItem</a></li>
+<li><a href="docs/BulkFolderUpdateRequest/">BulkFolderUpdateRequest</a></li>
+<li><a href="docs/BulkUpdateFailedItem/">BulkUpdateFailedItem</a></li>
 <li><a href="docs/CompleteSessionRequest/">CompleteSessionRequest</a></li>
 <li><a href="docs/CreateFileRequest/">CreateFileRequest</a></li>
 <li><a href="docs/CreateFolderRequest/">CreateFolderRequest</a></li>
+<li><a href="docs/CreateSessionRequest/">CreateSessionRequest</a></li>
+<li><a href="docs/CreateSessionResponse/">CreateSessionResponse</a></li>
 <li><a href="docs/CreateVolumeConfigurationRequest/">CreateVolumeConfigurationRequest</a></li>
 <li><a href="docs/CreateVolumeRequest/">CreateVolumeRequest</a></li>
 <li><a href="docs/CreateVolumeResponse/">CreateVolumeResponse</a></li>
 <li><a href="docs/ErrorResponse/">ErrorResponse</a></li>
 <li><a href="docs/FileArchiveRequest/">FileArchiveRequest</a></li>
 <li><a href="docs/FileArchiveStorageTier/">FileArchiveStorageTier</a></li>
+<li><a href="docs/FileLifeCycleSettings/">FileLifeCycleSettings</a></li>
 <li><a href="docs/FileListResponse/">FileListResponse</a></li>
 <li><a href="docs/FileResponse/">FileResponse</a></li>
+<li><a href="docs/FileStatus/">FileStatus</a></li>
 <li><a href="docs/FileUnarchiveRequest/">FileUnarchiveRequest</a></li>
+<li><a href="docs/FileUploadCompleteRequest/">FileUploadCompleteRequest</a></li>
 <li><a href="docs/FileWriteableResponse/">FileWriteableResponse</a></li>
 <li><a href="docs/FolderArchiveRequest/">FolderArchiveRequest</a></li>
 <li><a href="docs/FolderArchiveStorageTier/">FolderArchiveStorageTier</a></li>
 <li><a href="docs/FolderCopyOperationParameters/">FolderCopyOperationParameters</a></li>
 <li><a href="docs/FolderCopyRequest/">FolderCopyRequest</a></li>
+<li><a href="docs/FolderDeleteOperationParameters/">FolderDeleteOperationParameters</a></li>
 <li><a href="docs/FolderListResponse/">FolderListResponse</a></li>
 <li><a href="docs/FolderResponse/">FolderResponse</a></li>
 <li><a href="docs/FolderUnarchiveRequest/">FolderUnarchiveRequest</a></li>
 <li><a href="docs/FolderUpdateRequest/">FolderUpdateRequest</a></li>
 <li><a href="docs/FolderWriteableResponse/">FolderWriteableResponse</a></li>
+<li><a href="docs/GracePeriodEndAction/">GracePeriodEndAction</a></li>
 <li><a href="docs/JobOperationParameters/">JobOperationParameters</a></li>
 <li><a href="docs/JobOperationType/">JobOperationType</a></li>
 <li><a href="docs/JobProgressStatus/">JobProgressStatus</a></li>
@@ -727,13 +757,17 @@ you can run the following:</p>
 <li><a href="docs/JobStatus/">JobStatus</a></li>
 <li><a href="docs/ObjectStoreAccess/">ObjectStoreAccess</a></li>
 <li><a href="docs/ObjectStoreSettings/">ObjectStoreSettings</a></li>
+<li><a href="docs/PartEtag/">PartEtag</a></li>
+<li><a href="docs/PartInfo/">PartInfo</a></li>
 <li><a href="docs/SessionResponse/">SessionResponse</a></li>
 <li><a href="docs/SessionStatus/">SessionStatus</a></li>
 <li><a href="docs/StorageTier/">StorageTier</a></li>
 <li><a href="docs/UpdateFileRequest/">UpdateFileRequest</a></li>
+<li><a href="docs/UpdateVolumeRequest/">UpdateVolumeRequest</a></li>
 <li><a href="docs/VolumeConfigurationListResponse/">VolumeConfigurationListResponse</a></li>
 <li><a href="docs/VolumeConfigurationOnlineStatus/">VolumeConfigurationOnlineStatus</a></li>
 <li><a href="docs/VolumeConfigurationResponse/">VolumeConfigurationResponse</a></li>
+<li><a href="docs/VolumeLifeCycleSettings/">VolumeLifeCycleSettings</a></li>
 <li><a href="docs/VolumeListResponse/">VolumeListResponse</a></li>
 <li><a href="docs/VolumeResponse/">VolumeResponse</a></li>
 </ul>
@@ -755,6 +789,7 @@ you can run the following:</p>
             </article>
           </div>
         </div>
+        
       </main>
       
         
@@ -762,7 +797,8 @@ you can run the following:</p>
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../libtes/" class="md-footer__link md-footer__link--prev" rel="prev">
+        
+        <a href="../libtes/" class="md-footer__link md-footer__link--prev" aria-label="Previous: libtes" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -777,7 +813,8 @@ you can run the following:</p>
         </a>
       
       
-        <a href="../libens/" class="md-footer__link md-footer__link--next" rel="next">
+        
+        <a href="../libens/" class="md-footer__link md-footer__link--next" aria-label="Next: libens" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
@@ -797,10 +834,13 @@ you can run the following:</p>
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
         
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
+        
+          Made with
+          <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+            Material for MkDocs
+          </a>
+        
+        
       </div>
       
   <div class="md-footer-social">
@@ -833,10 +873,10 @@ you can run the following:</p>
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.8397ff9e.min.js", "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.9b151c6a.min.js"></script>
+      <script src="../assets/javascripts/bundle.1e84347e.min.js"></script>
       
     
   </body>

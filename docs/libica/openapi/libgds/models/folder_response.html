@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.2" />
+<meta name="generator" content="pdoc 0.10.0" />
 <title>libica.openapi.libgds.models.folder_response API documentation</title>
 <meta name="description" content="Genomic Data Store Service …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -69,6 +69,7 @@ class FolderResponse(object):
         &#39;id&#39;: &#39;str&#39;,
         &#39;name&#39;: &#39;str&#39;,
         &#39;volume_id&#39;: &#39;str&#39;,
+        &#39;parent_folder_id&#39;: &#39;str&#39;,
         &#39;volume_name&#39;: &#39;str&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
         &#39;sub_tenant_id&#39;: &#39;str&#39;,
@@ -81,7 +82,9 @@ class FolderResponse(object):
         &#39;time_modified&#39;: &#39;datetime&#39;,
         &#39;modified_by&#39;: &#39;str&#39;,
         &#39;metadata&#39;: &#39;object&#39;,
+        &#39;volume_metadata&#39;: &#39;object&#39;,
         &#39;job_status&#39;: &#39;JobStatus&#39;,
+        &#39;job_id&#39;: &#39;str&#39;,
         &#39;archive_job_storage_tier&#39;: &#39;StorageTier&#39;
     }
 
@@ -89,6 +92,7 @@ class FolderResponse(object):
         &#39;id&#39;: &#39;id&#39;,
         &#39;name&#39;: &#39;name&#39;,
         &#39;volume_id&#39;: &#39;volumeId&#39;,
+        &#39;parent_folder_id&#39;: &#39;parentFolderId&#39;,
         &#39;volume_name&#39;: &#39;volumeName&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
         &#39;sub_tenant_id&#39;: &#39;subTenantId&#39;,
@@ -101,11 +105,13 @@ class FolderResponse(object):
         &#39;time_modified&#39;: &#39;timeModified&#39;,
         &#39;modified_by&#39;: &#39;modifiedBy&#39;,
         &#39;metadata&#39;: &#39;metadata&#39;,
+        &#39;volume_metadata&#39;: &#39;volumeMetadata&#39;,
         &#39;job_status&#39;: &#39;jobStatus&#39;,
+        &#39;job_id&#39;: &#39;jobId&#39;,
         &#39;archive_job_storage_tier&#39;: &#39;archiveJobStorageTier&#39;
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, job_status=None, archive_job_storage_tier=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, volume_metadata=None, job_status=None, job_id=None, archive_job_storage_tier=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FolderResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -114,6 +120,7 @@ class FolderResponse(object):
         self._id = None
         self._name = None
         self._volume_id = None
+        self._parent_folder_id = None
         self._volume_name = None
         self._tenant_id = None
         self._sub_tenant_id = None
@@ -126,7 +133,9 @@ class FolderResponse(object):
         self._time_modified = None
         self._modified_by = None
         self._metadata = None
+        self._volume_metadata = None
         self._job_status = None
+        self._job_id = None
         self._archive_job_storage_tier = None
         self.discriminator = None
 
@@ -136,6 +145,8 @@ class FolderResponse(object):
             self.name = name
         if volume_id is not None:
             self.volume_id = volume_id
+        if parent_folder_id is not None:
+            self.parent_folder_id = parent_folder_id
         if volume_name is not None:
             self.volume_name = volume_name
         if tenant_id is not None:
@@ -160,8 +171,12 @@ class FolderResponse(object):
             self.modified_by = modified_by
         if metadata is not None:
             self.metadata = metadata
+        if volume_metadata is not None:
+            self.volume_metadata = volume_metadata
         if job_status is not None:
             self.job_status = job_status
+        if job_id is not None:
+            self.job_id = job_id
         if archive_job_storage_tier is not None:
             self.archive_job_storage_tier = archive_job_storage_tier
 
@@ -233,6 +248,29 @@ class FolderResponse(object):
         &#34;&#34;&#34;
 
         self._volume_id = volume_id
+
+    @property
+    def parent_folder_id(self):
+        &#34;&#34;&#34;Gets the parent_folder_id of this FolderResponse.  # noqa: E501
+
+        The unique identifier for this folder&#39;s parent folder  # noqa: E501
+
+        :return: The parent_folder_id of this FolderResponse.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._parent_folder_id
+
+    @parent_folder_id.setter
+    def parent_folder_id(self, parent_folder_id):
+        &#34;&#34;&#34;Sets the parent_folder_id of this FolderResponse.
+
+        The unique identifier for this folder&#39;s parent folder  # noqa: E501
+
+        :param parent_folder_id: The parent_folder_id of this FolderResponse.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._parent_folder_id = parent_folder_id
 
     @property
     def volume_name(self):
@@ -511,6 +549,29 @@ class FolderResponse(object):
         self._metadata = metadata
 
     @property
+    def volume_metadata(self):
+        &#34;&#34;&#34;Gets the volume_metadata of this FolderResponse.  # noqa: E501
+
+        Metadata about this folder&#39;s volume  # noqa: E501
+
+        :return: The volume_metadata of this FolderResponse.  # noqa: E501
+        :rtype: object
+        &#34;&#34;&#34;
+        return self._volume_metadata
+
+    @volume_metadata.setter
+    def volume_metadata(self, volume_metadata):
+        &#34;&#34;&#34;Sets the volume_metadata of this FolderResponse.
+
+        Metadata about this folder&#39;s volume  # noqa: E501
+
+        :param volume_metadata: The volume_metadata of this FolderResponse.  # noqa: E501
+        :type: object
+        &#34;&#34;&#34;
+
+        self._volume_metadata = volume_metadata
+
+    @property
     def job_status(self):
         &#34;&#34;&#34;Gets the job_status of this FolderResponse.  # noqa: E501
 
@@ -530,6 +591,29 @@ class FolderResponse(object):
         &#34;&#34;&#34;
 
         self._job_status = job_status
+
+    @property
+    def job_id(self):
+        &#34;&#34;&#34;Gets the job_id of this FolderResponse.  # noqa: E501
+
+        The job identifier for the current folder operation. Currently only being used for the delete folder operation.  # noqa: E501
+
+        :return: The job_id of this FolderResponse.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._job_id
+
+    @job_id.setter
+    def job_id(self, job_id):
+        &#34;&#34;&#34;Sets the job_id of this FolderResponse.
+
+        The job identifier for the current folder operation. Currently only being used for the delete folder operation.  # noqa: E501
+
+        :param job_id: The job_id of this FolderResponse.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._job_id = job_id
 
     @property
     def archive_job_storage_tier(self):
@@ -610,7 +694,7 @@ class FolderResponse(object):
 <dl>
 <dt id="libica.openapi.libgds.models.folder_response.FolderResponse"><code class="flex name class">
 <span>class <span class="ident">FolderResponse</span></span>
-<span>(</span><span>id=None, name=None, volume_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, job_status=None, archive_job_storage_tier=None, local_vars_configuration=None)</span>
+<span>(</span><span>id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, volume_metadata=None, job_status=None, job_id=None, archive_job_storage_tier=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -639,6 +723,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;id&#39;: &#39;str&#39;,
         &#39;name&#39;: &#39;str&#39;,
         &#39;volume_id&#39;: &#39;str&#39;,
+        &#39;parent_folder_id&#39;: &#39;str&#39;,
         &#39;volume_name&#39;: &#39;str&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
         &#39;sub_tenant_id&#39;: &#39;str&#39;,
@@ -651,7 +736,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;time_modified&#39;: &#39;datetime&#39;,
         &#39;modified_by&#39;: &#39;str&#39;,
         &#39;metadata&#39;: &#39;object&#39;,
+        &#39;volume_metadata&#39;: &#39;object&#39;,
         &#39;job_status&#39;: &#39;JobStatus&#39;,
+        &#39;job_id&#39;: &#39;str&#39;,
         &#39;archive_job_storage_tier&#39;: &#39;StorageTier&#39;
     }
 
@@ -659,6 +746,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;id&#39;: &#39;id&#39;,
         &#39;name&#39;: &#39;name&#39;,
         &#39;volume_id&#39;: &#39;volumeId&#39;,
+        &#39;parent_folder_id&#39;: &#39;parentFolderId&#39;,
         &#39;volume_name&#39;: &#39;volumeName&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
         &#39;sub_tenant_id&#39;: &#39;subTenantId&#39;,
@@ -671,11 +759,13 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;time_modified&#39;: &#39;timeModified&#39;,
         &#39;modified_by&#39;: &#39;modifiedBy&#39;,
         &#39;metadata&#39;: &#39;metadata&#39;,
+        &#39;volume_metadata&#39;: &#39;volumeMetadata&#39;,
         &#39;job_status&#39;: &#39;jobStatus&#39;,
+        &#39;job_id&#39;: &#39;jobId&#39;,
         &#39;archive_job_storage_tier&#39;: &#39;archiveJobStorageTier&#39;
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, job_status=None, archive_job_storage_tier=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, volume_metadata=None, job_status=None, job_id=None, archive_job_storage_tier=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FolderResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -684,6 +774,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._id = None
         self._name = None
         self._volume_id = None
+        self._parent_folder_id = None
         self._volume_name = None
         self._tenant_id = None
         self._sub_tenant_id = None
@@ -696,7 +787,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._time_modified = None
         self._modified_by = None
         self._metadata = None
+        self._volume_metadata = None
         self._job_status = None
+        self._job_id = None
         self._archive_job_storage_tier = None
         self.discriminator = None
 
@@ -706,6 +799,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.name = name
         if volume_id is not None:
             self.volume_id = volume_id
+        if parent_folder_id is not None:
+            self.parent_folder_id = parent_folder_id
         if volume_name is not None:
             self.volume_name = volume_name
         if tenant_id is not None:
@@ -730,8 +825,12 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.modified_by = modified_by
         if metadata is not None:
             self.metadata = metadata
+        if volume_metadata is not None:
+            self.volume_metadata = volume_metadata
         if job_status is not None:
             self.job_status = job_status
+        if job_id is not None:
+            self.job_id = job_id
         if archive_job_storage_tier is not None:
             self.archive_job_storage_tier = archive_job_storage_tier
 
@@ -803,6 +902,29 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._volume_id = volume_id
+
+    @property
+    def parent_folder_id(self):
+        &#34;&#34;&#34;Gets the parent_folder_id of this FolderResponse.  # noqa: E501
+
+        The unique identifier for this folder&#39;s parent folder  # noqa: E501
+
+        :return: The parent_folder_id of this FolderResponse.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._parent_folder_id
+
+    @parent_folder_id.setter
+    def parent_folder_id(self, parent_folder_id):
+        &#34;&#34;&#34;Sets the parent_folder_id of this FolderResponse.
+
+        The unique identifier for this folder&#39;s parent folder  # noqa: E501
+
+        :param parent_folder_id: The parent_folder_id of this FolderResponse.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._parent_folder_id = parent_folder_id
 
     @property
     def volume_name(self):
@@ -1081,6 +1203,29 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._metadata = metadata
 
     @property
+    def volume_metadata(self):
+        &#34;&#34;&#34;Gets the volume_metadata of this FolderResponse.  # noqa: E501
+
+        Metadata about this folder&#39;s volume  # noqa: E501
+
+        :return: The volume_metadata of this FolderResponse.  # noqa: E501
+        :rtype: object
+        &#34;&#34;&#34;
+        return self._volume_metadata
+
+    @volume_metadata.setter
+    def volume_metadata(self, volume_metadata):
+        &#34;&#34;&#34;Sets the volume_metadata of this FolderResponse.
+
+        Metadata about this folder&#39;s volume  # noqa: E501
+
+        :param volume_metadata: The volume_metadata of this FolderResponse.  # noqa: E501
+        :type: object
+        &#34;&#34;&#34;
+
+        self._volume_metadata = volume_metadata
+
+    @property
     def job_status(self):
         &#34;&#34;&#34;Gets the job_status of this FolderResponse.  # noqa: E501
 
@@ -1100,6 +1245,29 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._job_status = job_status
+
+    @property
+    def job_id(self):
+        &#34;&#34;&#34;Gets the job_id of this FolderResponse.  # noqa: E501
+
+        The job identifier for the current folder operation. Currently only being used for the delete folder operation.  # noqa: E501
+
+        :return: The job_id of this FolderResponse.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._job_id
+
+    @job_id.setter
+    def job_id(self, job_id):
+        &#34;&#34;&#34;Sets the job_id of this FolderResponse.
+
+        The job identifier for the current folder operation. Currently only being used for the delete folder operation.  # noqa: E501
+
+        :param job_id: The job_id of this FolderResponse.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._job_id = job_id
 
     @property
     def archive_job_storage_tier(self):
@@ -1303,6 +1471,31 @@ def inherited_acl(self):
     return self._inherited_acl</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libgds.models.folder_response.FolderResponse.job_id"><code class="name">var <span class="ident">job_id</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the job_id of this FolderResponse.
+# noqa: E501</p>
+<p>The job identifier for the current folder operation. Currently only being used for the delete folder operation.
+# noqa: E501</p>
+<p>:return: The job_id of this FolderResponse.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def job_id(self):
+    &#34;&#34;&#34;Gets the job_id of this FolderResponse.  # noqa: E501
+
+    The job identifier for the current folder operation. Currently only being used for the delete folder operation.  # noqa: E501
+
+    :return: The job_id of this FolderResponse.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._job_id</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libgds.models.folder_response.FolderResponse.job_status"><code class="name">var <span class="ident">job_status</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the job_status of this FolderResponse.
@@ -1398,6 +1591,31 @@ def name(self):
     :rtype: str
     &#34;&#34;&#34;
     return self._name</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.folder_response.FolderResponse.parent_folder_id"><code class="name">var <span class="ident">parent_folder_id</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the parent_folder_id of this FolderResponse.
+# noqa: E501</p>
+<p>The unique identifier for this folder's parent folder
+# noqa: E501</p>
+<p>:return: The parent_folder_id of this FolderResponse.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def parent_folder_id(self):
+    &#34;&#34;&#34;Gets the parent_folder_id of this FolderResponse.  # noqa: E501
+
+    The unique identifier for this folder&#39;s parent folder  # noqa: E501
+
+    :return: The parent_folder_id of this FolderResponse.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._parent_folder_id</code></pre>
 </details>
 </dd>
 <dt id="libica.openapi.libgds.models.folder_response.FolderResponse.path"><code class="name">var <span class="ident">path</span></code></dt>
@@ -1575,6 +1793,31 @@ def volume_id(self):
     return self._volume_id</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libgds.models.folder_response.FolderResponse.volume_metadata"><code class="name">var <span class="ident">volume_metadata</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the volume_metadata of this FolderResponse.
+# noqa: E501</p>
+<p>Metadata about this folder's volume
+# noqa: E501</p>
+<p>:return: The volume_metadata of this FolderResponse.
+# noqa: E501
+:rtype: object</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def volume_metadata(self):
+    &#34;&#34;&#34;Gets the volume_metadata of this FolderResponse.  # noqa: E501
+
+    Metadata about this folder&#39;s volume  # noqa: E501
+
+    :return: The volume_metadata of this FolderResponse.  # noqa: E501
+    :rtype: object
+    &#34;&#34;&#34;
+    return self._volume_metadata</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libgds.models.folder_response.FolderResponse.volume_name"><code class="name">var <span class="ident">volume_name</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the volume_name of this FolderResponse.
@@ -1678,11 +1921,13 @@ def volume_name(self):
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.created_by" href="#libica.openapi.libgds.models.folder_response.FolderResponse.created_by">created_by</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.id" href="#libica.openapi.libgds.models.folder_response.FolderResponse.id">id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.inherited_acl" href="#libica.openapi.libgds.models.folder_response.FolderResponse.inherited_acl">inherited_acl</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.job_id" href="#libica.openapi.libgds.models.folder_response.FolderResponse.job_id">job_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.job_status" href="#libica.openapi.libgds.models.folder_response.FolderResponse.job_status">job_status</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.metadata" href="#libica.openapi.libgds.models.folder_response.FolderResponse.metadata">metadata</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.modified_by" href="#libica.openapi.libgds.models.folder_response.FolderResponse.modified_by">modified_by</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.name" href="#libica.openapi.libgds.models.folder_response.FolderResponse.name">name</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.openapi_types" href="#libica.openapi.libgds.models.folder_response.FolderResponse.openapi_types">openapi_types</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.parent_folder_id" href="#libica.openapi.libgds.models.folder_response.FolderResponse.parent_folder_id">parent_folder_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.path" href="#libica.openapi.libgds.models.folder_response.FolderResponse.path">path</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.sub_tenant_id" href="#libica.openapi.libgds.models.folder_response.FolderResponse.sub_tenant_id">sub_tenant_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.tenant_id" href="#libica.openapi.libgds.models.folder_response.FolderResponse.tenant_id">tenant_id</a></code></li>
@@ -1692,6 +1937,7 @@ def volume_name(self):
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.to_str" href="#libica.openapi.libgds.models.folder_response.FolderResponse.to_str">to_str</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.urn" href="#libica.openapi.libgds.models.folder_response.FolderResponse.urn">urn</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.volume_id" href="#libica.openapi.libgds.models.folder_response.FolderResponse.volume_id">volume_id</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.volume_metadata" href="#libica.openapi.libgds.models.folder_response.FolderResponse.volume_metadata">volume_metadata</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_response.FolderResponse.volume_name" href="#libica.openapi.libgds.models.folder_response.FolderResponse.volume_name">volume_name</a></code></li>
 </ul>
 </li>
@@ -1701,7 +1947,7 @@ def volume_name(self):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
 </html>

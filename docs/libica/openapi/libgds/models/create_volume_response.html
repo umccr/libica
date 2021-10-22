@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.2" />
+<meta name="generator" content="pdoc 0.10.0" />
 <title>libica.openapi.libgds.models.create_volume_response API documentation</title>
 <meta name="description" content="Genomic Data Store Service …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -81,6 +81,7 @@ class CreateVolumeResponse(object):
         &#39;modified_by&#39;: &#39;str&#39;,
         &#39;job_status&#39;: &#39;JobStatus&#39;,
         &#39;metadata&#39;: &#39;object&#39;,
+        &#39;life_cycle&#39;: &#39;VolumeLifeCycleSettings&#39;,
         &#39;import_session_id&#39;: &#39;str&#39;,
         &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;
     }
@@ -101,11 +102,12 @@ class CreateVolumeResponse(object):
         &#39;modified_by&#39;: &#39;modifiedBy&#39;,
         &#39;job_status&#39;: &#39;jobStatus&#39;,
         &#39;metadata&#39;: &#39;metadata&#39;,
+        &#39;life_cycle&#39;: &#39;lifeCycle&#39;,
         &#39;import_session_id&#39;: &#39;importSessionId&#39;,
         &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, import_session_id=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, import_session_id=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;CreateVolumeResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -126,6 +128,7 @@ class CreateVolumeResponse(object):
         self._modified_by = None
         self._job_status = None
         self._metadata = None
+        self._life_cycle = None
         self._import_session_id = None
         self._object_store_access = None
         self.discriminator = None
@@ -160,6 +163,8 @@ class CreateVolumeResponse(object):
             self.job_status = job_status
         if metadata is not None:
             self.metadata = metadata
+        if life_cycle is not None:
+            self.life_cycle = life_cycle
         if import_session_id is not None:
             self.import_session_id = import_session_id
         if object_store_access is not None:
@@ -507,6 +512,27 @@ class CreateVolumeResponse(object):
         &#34;&#34;&#34;
 
         self._metadata = metadata
+
+    @property
+    def life_cycle(self):
+        &#34;&#34;&#34;Gets the life_cycle of this CreateVolumeResponse.  # noqa: E501
+
+
+        :return: The life_cycle of this CreateVolumeResponse.  # noqa: E501
+        :rtype: VolumeLifeCycleSettings
+        &#34;&#34;&#34;
+        return self._life_cycle
+
+    @life_cycle.setter
+    def life_cycle(self, life_cycle):
+        &#34;&#34;&#34;Sets the life_cycle of this CreateVolumeResponse.
+
+
+        :param life_cycle: The life_cycle of this CreateVolumeResponse.  # noqa: E501
+        :type: VolumeLifeCycleSettings
+        &#34;&#34;&#34;
+
+        self._life_cycle = life_cycle
 
     @property
     def import_session_id(self):
@@ -610,7 +636,7 @@ class CreateVolumeResponse(object):
 <dl>
 <dt id="libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse"><code class="flex name class">
 <span>class <span class="ident">CreateVolumeResponse</span></span>
-<span>(</span><span>id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, import_session_id=None, object_store_access=None, local_vars_configuration=None)</span>
+<span>(</span><span>id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, import_session_id=None, object_store_access=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -651,6 +677,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;modified_by&#39;: &#39;str&#39;,
         &#39;job_status&#39;: &#39;JobStatus&#39;,
         &#39;metadata&#39;: &#39;object&#39;,
+        &#39;life_cycle&#39;: &#39;VolumeLifeCycleSettings&#39;,
         &#39;import_session_id&#39;: &#39;str&#39;,
         &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;
     }
@@ -671,11 +698,12 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;modified_by&#39;: &#39;modifiedBy&#39;,
         &#39;job_status&#39;: &#39;jobStatus&#39;,
         &#39;metadata&#39;: &#39;metadata&#39;,
+        &#39;life_cycle&#39;: &#39;lifeCycle&#39;,
         &#39;import_session_id&#39;: &#39;importSessionId&#39;,
         &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, import_session_id=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, import_session_id=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;CreateVolumeResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -696,6 +724,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._modified_by = None
         self._job_status = None
         self._metadata = None
+        self._life_cycle = None
         self._import_session_id = None
         self._object_store_access = None
         self.discriminator = None
@@ -730,6 +759,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.job_status = job_status
         if metadata is not None:
             self.metadata = metadata
+        if life_cycle is not None:
+            self.life_cycle = life_cycle
         if import_session_id is not None:
             self.import_session_id = import_session_id
         if object_store_access is not None:
@@ -1077,6 +1108,27 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._metadata = metadata
+
+    @property
+    def life_cycle(self):
+        &#34;&#34;&#34;Gets the life_cycle of this CreateVolumeResponse.  # noqa: E501
+
+
+        :return: The life_cycle of this CreateVolumeResponse.  # noqa: E501
+        :rtype: VolumeLifeCycleSettings
+        &#34;&#34;&#34;
+        return self._life_cycle
+
+    @life_cycle.setter
+    def life_cycle(self, life_cycle):
+        &#34;&#34;&#34;Sets the life_cycle of this CreateVolumeResponse.
+
+
+        :param life_cycle: The life_cycle of this CreateVolumeResponse.  # noqa: E501
+        :type: VolumeLifeCycleSettings
+        &#34;&#34;&#34;
+
+        self._life_cycle = life_cycle
 
     @property
     def import_session_id(self):
@@ -1302,6 +1354,28 @@ def job_status(self):
     :rtype: JobStatus
     &#34;&#34;&#34;
     return self._job_status</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.life_cycle"><code class="name">var <span class="ident">life_cycle</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the life_cycle of this CreateVolumeResponse.
+# noqa: E501</p>
+<p>:return: The life_cycle of this CreateVolumeResponse.
+# noqa: E501
+:rtype: VolumeLifeCycleSettings</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def life_cycle(self):
+    &#34;&#34;&#34;Gets the life_cycle of this CreateVolumeResponse.  # noqa: E501
+
+
+    :return: The life_cycle of this CreateVolumeResponse.  # noqa: E501
+    :rtype: VolumeLifeCycleSettings
+    &#34;&#34;&#34;
+    return self._life_cycle</code></pre>
 </details>
 </dd>
 <dt id="libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.metadata"><code class="name">var <span class="ident">metadata</span></code></dt>
@@ -1680,6 +1754,7 @@ def volume_configuration_name(self):
 <li><code><a title="libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.import_session_id" href="#libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.import_session_id">import_session_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.inherited_acl" href="#libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.inherited_acl">inherited_acl</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.job_status" href="#libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.job_status">job_status</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.life_cycle" href="#libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.life_cycle">life_cycle</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.metadata" href="#libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.metadata">metadata</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.modified_by" href="#libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.modified_by">modified_by</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.name" href="#libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse.name">name</a></code></li>
@@ -1703,7 +1778,7 @@ def volume_configuration_name(self):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
 </html>

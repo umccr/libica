@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.9.2" />
+<meta name="generator" content="pdoc 0.10.0" />
 <title>libica.openapi.libgds.models.awss3_object_store_setting API documentation</title>
 <meta name="description" content="Genomic Data Store Service …" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
@@ -67,15 +67,19 @@ class AWSS3ObjectStoreSetting(object):
     &#34;&#34;&#34;
     openapi_types = {
         &#39;bucket_name&#39;: &#39;str&#39;,
-        &#39;key_prefix&#39;: &#39;str&#39;
+        &#39;key_prefix&#39;: &#39;str&#39;,
+        &#39;server_side_encryption_algorithm&#39;: &#39;str&#39;,
+        &#39;server_side_encryption_key&#39;: &#39;str&#39;
     }
 
     attribute_map = {
         &#39;bucket_name&#39;: &#39;bucketName&#39;,
-        &#39;key_prefix&#39;: &#39;keyPrefix&#39;
+        &#39;key_prefix&#39;: &#39;keyPrefix&#39;,
+        &#39;server_side_encryption_algorithm&#39;: &#39;serverSideEncryptionAlgorithm&#39;,
+        &#39;server_side_encryption_key&#39;: &#39;serverSideEncryptionKey&#39;
     }
 
-    def __init__(self, bucket_name=None, key_prefix=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, bucket_name=None, key_prefix=None, server_side_encryption_algorithm=None, server_side_encryption_key=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;AWSS3ObjectStoreSetting - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -83,11 +87,17 @@ class AWSS3ObjectStoreSetting(object):
 
         self._bucket_name = None
         self._key_prefix = None
+        self._server_side_encryption_algorithm = None
+        self._server_side_encryption_key = None
         self.discriminator = None
 
         self.bucket_name = bucket_name
         if key_prefix is not None:
             self.key_prefix = key_prefix
+        if server_side_encryption_algorithm is not None:
+            self.server_side_encryption_algorithm = server_side_encryption_algorithm
+        if server_side_encryption_key is not None:
+            self.server_side_encryption_key = server_side_encryption_key
 
     @property
     def bucket_name(self):
@@ -145,6 +155,52 @@ class AWSS3ObjectStoreSetting(object):
             raise ValueError(r&#34;Invalid value for `key_prefix`, must be a follow pattern or equal to `/^[^\/].*$/`&#34;)  # noqa: E501
 
         self._key_prefix = key_prefix
+
+    @property
+    def server_side_encryption_algorithm(self):
+        &#34;&#34;&#34;Gets the server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.  # noqa: E501
+
+        Used to specify the type of server-side encryption (SSE) to be used on the object provider.  This value is used to determine the Amazon S3 header \&#34;x-amz-server-side-encryption\&#34; value.  For example, specify \&#34;AES256\&#34; for SSE-S3, or \&#34;AWS:KMS\&#34; for SSE-KMS.  By default if none is specified, \&#34;AES256\&#34; will be used.  # noqa: E501
+
+        :return: The server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._server_side_encryption_algorithm
+
+    @server_side_encryption_algorithm.setter
+    def server_side_encryption_algorithm(self, server_side_encryption_algorithm):
+        &#34;&#34;&#34;Sets the server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.
+
+        Used to specify the type of server-side encryption (SSE) to be used on the object provider.  This value is used to determine the Amazon S3 header \&#34;x-amz-server-side-encryption\&#34; value.  For example, specify \&#34;AES256\&#34; for SSE-S3, or \&#34;AWS:KMS\&#34; for SSE-KMS.  By default if none is specified, \&#34;AES256\&#34; will be used.  # noqa: E501
+
+        :param server_side_encryption_algorithm: The server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._server_side_encryption_algorithm = server_side_encryption_algorithm
+
+    @property
+    def server_side_encryption_key(self):
+        &#34;&#34;&#34;Gets the server_side_encryption_key of this AWSS3ObjectStoreSetting.  # noqa: E501
+
+        Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm  This value can be the AWS KMS arn key, to be used for the Amazon S3 header \&#34;x-amz-server-side-encryption-aws-kms-key-id\&#34; value  Value will be ignored if encryption is \&#34;AES256\&#34;  # noqa: E501
+
+        :return: The server_side_encryption_key of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._server_side_encryption_key
+
+    @server_side_encryption_key.setter
+    def server_side_encryption_key(self, server_side_encryption_key):
+        &#34;&#34;&#34;Sets the server_side_encryption_key of this AWSS3ObjectStoreSetting.
+
+        Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm  This value can be the AWS KMS arn key, to be used for the Amazon S3 header \&#34;x-amz-server-side-encryption-aws-kms-key-id\&#34; value  Value will be ignored if encryption is \&#34;AES256\&#34;  # noqa: E501
+
+        :param server_side_encryption_key: The server_side_encryption_key of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._server_side_encryption_key = server_side_encryption_key
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -204,7 +260,7 @@ class AWSS3ObjectStoreSetting(object):
 <dl>
 <dt id="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting"><code class="flex name class">
 <span>class <span class="ident">AWSS3ObjectStoreSetting</span></span>
-<span>(</span><span>bucket_name=None, key_prefix=None, local_vars_configuration=None)</span>
+<span>(</span><span>bucket_name=None, key_prefix=None, server_side_encryption_algorithm=None, server_side_encryption_key=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -231,15 +287,19 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     &#34;&#34;&#34;
     openapi_types = {
         &#39;bucket_name&#39;: &#39;str&#39;,
-        &#39;key_prefix&#39;: &#39;str&#39;
+        &#39;key_prefix&#39;: &#39;str&#39;,
+        &#39;server_side_encryption_algorithm&#39;: &#39;str&#39;,
+        &#39;server_side_encryption_key&#39;: &#39;str&#39;
     }
 
     attribute_map = {
         &#39;bucket_name&#39;: &#39;bucketName&#39;,
-        &#39;key_prefix&#39;: &#39;keyPrefix&#39;
+        &#39;key_prefix&#39;: &#39;keyPrefix&#39;,
+        &#39;server_side_encryption_algorithm&#39;: &#39;serverSideEncryptionAlgorithm&#39;,
+        &#39;server_side_encryption_key&#39;: &#39;serverSideEncryptionKey&#39;
     }
 
-    def __init__(self, bucket_name=None, key_prefix=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, bucket_name=None, key_prefix=None, server_side_encryption_algorithm=None, server_side_encryption_key=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;AWSS3ObjectStoreSetting - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -247,11 +307,17 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
         self._bucket_name = None
         self._key_prefix = None
+        self._server_side_encryption_algorithm = None
+        self._server_side_encryption_key = None
         self.discriminator = None
 
         self.bucket_name = bucket_name
         if key_prefix is not None:
             self.key_prefix = key_prefix
+        if server_side_encryption_algorithm is not None:
+            self.server_side_encryption_algorithm = server_side_encryption_algorithm
+        if server_side_encryption_key is not None:
+            self.server_side_encryption_key = server_side_encryption_key
 
     @property
     def bucket_name(self):
@@ -309,6 +375,52 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             raise ValueError(r&#34;Invalid value for `key_prefix`, must be a follow pattern or equal to `/^[^\/].*$/`&#34;)  # noqa: E501
 
         self._key_prefix = key_prefix
+
+    @property
+    def server_side_encryption_algorithm(self):
+        &#34;&#34;&#34;Gets the server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.  # noqa: E501
+
+        Used to specify the type of server-side encryption (SSE) to be used on the object provider.  This value is used to determine the Amazon S3 header \&#34;x-amz-server-side-encryption\&#34; value.  For example, specify \&#34;AES256\&#34; for SSE-S3, or \&#34;AWS:KMS\&#34; for SSE-KMS.  By default if none is specified, \&#34;AES256\&#34; will be used.  # noqa: E501
+
+        :return: The server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._server_side_encryption_algorithm
+
+    @server_side_encryption_algorithm.setter
+    def server_side_encryption_algorithm(self, server_side_encryption_algorithm):
+        &#34;&#34;&#34;Sets the server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.
+
+        Used to specify the type of server-side encryption (SSE) to be used on the object provider.  This value is used to determine the Amazon S3 header \&#34;x-amz-server-side-encryption\&#34; value.  For example, specify \&#34;AES256\&#34; for SSE-S3, or \&#34;AWS:KMS\&#34; for SSE-KMS.  By default if none is specified, \&#34;AES256\&#34; will be used.  # noqa: E501
+
+        :param server_side_encryption_algorithm: The server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._server_side_encryption_algorithm = server_side_encryption_algorithm
+
+    @property
+    def server_side_encryption_key(self):
+        &#34;&#34;&#34;Gets the server_side_encryption_key of this AWSS3ObjectStoreSetting.  # noqa: E501
+
+        Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm  This value can be the AWS KMS arn key, to be used for the Amazon S3 header \&#34;x-amz-server-side-encryption-aws-kms-key-id\&#34; value  Value will be ignored if encryption is \&#34;AES256\&#34;  # noqa: E501
+
+        :return: The server_side_encryption_key of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._server_side_encryption_key
+
+    @server_side_encryption_key.setter
+    def server_side_encryption_key(self, server_side_encryption_key):
+        &#34;&#34;&#34;Sets the server_side_encryption_key of this AWSS3ObjectStoreSetting.
+
+        Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm  This value can be the AWS KMS arn key, to be used for the Amazon S3 header \&#34;x-amz-server-side-encryption-aws-kms-key-id\&#34; value  Value will be ignored if encryption is \&#34;AES256\&#34;  # noqa: E501
+
+        :param server_side_encryption_key: The server_side_encryption_key of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._server_side_encryption_key = server_side_encryption_key
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -420,6 +532,61 @@ def key_prefix(self):
     return self._key_prefix</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.server_side_encryption_algorithm"><code class="name">var <span class="ident">server_side_encryption_algorithm</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.
+# noqa: E501</p>
+<p>Used to specify the type of server-side encryption (SSE) to be used on the object provider.
+This value is used to determine the Amazon S3 header "x-amz-server-side-encryption" value.
+For example, specify "AES256" for SSE-S3, or "AWS:KMS" for SSE-KMS.
+By default if none is specified, "AES256" will be used.
+# noqa: E501</p>
+<p>:return: The server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def server_side_encryption_algorithm(self):
+    &#34;&#34;&#34;Gets the server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.  # noqa: E501
+
+    Used to specify the type of server-side encryption (SSE) to be used on the object provider.  This value is used to determine the Amazon S3 header \&#34;x-amz-server-side-encryption\&#34; value.  For example, specify \&#34;AES256\&#34; for SSE-S3, or \&#34;AWS:KMS\&#34; for SSE-KMS.  By default if none is specified, \&#34;AES256\&#34; will be used.  # noqa: E501
+
+    :return: The server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._server_side_encryption_algorithm</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.server_side_encryption_key"><code class="name">var <span class="ident">server_side_encryption_key</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the server_side_encryption_key of this AWSS3ObjectStoreSetting.
+# noqa: E501</p>
+<p>Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm
+This value can be the AWS KMS arn key, to be used for the Amazon S3 header "x-amz-server-side-encryption-aws-kms-key-id" value
+Value will be ignored if encryption is "AES256"
+# noqa: E501</p>
+<p>:return: The server_side_encryption_key of this AWSS3ObjectStoreSetting.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def server_side_encryption_key(self):
+    &#34;&#34;&#34;Gets the server_side_encryption_key of this AWSS3ObjectStoreSetting.  # noqa: E501
+
+    Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm  This value can be the AWS KMS arn key, to be used for the Amazon S3 header \&#34;x-amz-server-side-encryption-aws-kms-key-id\&#34; value  Value will be ignored if encryption is \&#34;AES256\&#34;  # noqa: E501
+
+    :return: The server_side_encryption_key of this AWSS3ObjectStoreSetting.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._server_side_encryption_key</code></pre>
+</details>
+</dd>
 </dl>
 <h3>Methods</h3>
 <dl>
@@ -491,11 +658,13 @@ def key_prefix(self):
 <ul>
 <li>
 <h4><code><a title="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting" href="#libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting">AWSS3ObjectStoreSetting</a></code></h4>
-<ul class="two-column">
+<ul class="">
 <li><code><a title="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.attribute_map" href="#libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.attribute_map">attribute_map</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.bucket_name" href="#libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.bucket_name">bucket_name</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.key_prefix" href="#libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.key_prefix">key_prefix</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.openapi_types" href="#libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.openapi_types">openapi_types</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.server_side_encryption_algorithm" href="#libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.server_side_encryption_algorithm">server_side_encryption_algorithm</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.server_side_encryption_key" href="#libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.server_side_encryption_key">server_side_encryption_key</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.to_dict" href="#libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.to_dict">to_dict</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.to_str" href="#libica.openapi.libgds.models.awss3_object_store_setting.AWSS3ObjectStoreSetting.to_str">to_str</a></code></li>
 </ul>
@@ -506,7 +675,7 @@ def key_prefix(self):
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
 </footer>
 </body>
 </html>
