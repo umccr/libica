@@ -108,8 +108,8 @@ make test
     3. [prism-cli](https://github.com/stoplightio/prism) -- setup mock integration test
 - These CLI tools are Node.js app, hence, required build tools `node`, `npm`, `npx` and `yarn` as follows.
 ```commandline
-node --version
- v12.18.2
+node -v
+ v14.17.3
 npm -i -g yarn
 yarn install
 npx openapi-generator-cli help
