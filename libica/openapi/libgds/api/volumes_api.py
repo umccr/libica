@@ -47,7 +47,7 @@ class VolumesApi(object):
 
         :param async_req bool: execute request asynchronously
         :param CreateVolumeRequest body: (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -73,7 +73,7 @@ class VolumesApi(object):
 
         :param async_req bool: execute request asynchronously
         :param CreateVolumeRequest body: (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -287,6 +287,8 @@ class VolumesApi(object):
         :param async_req bool: execute request asynchronously
         :param str volume_id: Unique identifier for the volume to retrieve information for. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -312,6 +314,8 @@ class VolumesApi(object):
         :param async_req bool: execute request asynchronously
         :param str volume_id: Unique identifier for the volume to retrieve information for. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -330,7 +334,9 @@ class VolumesApi(object):
 
         all_params = [
             'volume_id',
-            'tenant_id'
+            'tenant_id',
+            'metadata_include',
+            'metadata_exclude'
         ]
         all_params.extend(
             [
@@ -363,6 +369,10 @@ class VolumesApi(object):
         query_params = []
         if 'tenant_id' in local_var_params and local_var_params['tenant_id'] is not None:  # noqa: E501
             query_params.append(('tenantId', local_var_params['tenant_id']))  # noqa: E501
+        if 'metadata_include' in local_var_params and local_var_params['metadata_include'] is not None:  # noqa: E501
+            query_params.append(('metadata.include', local_var_params['metadata_include']))  # noqa: E501
+        if 'metadata_exclude' in local_var_params and local_var_params['metadata_exclude'] is not None:  # noqa: E501
+            query_params.append(('metadata.exclude', local_var_params['metadata_exclude']))  # noqa: E501
 
         header_params = {}
 
@@ -405,7 +415,7 @@ class VolumesApi(object):
         :param async_req bool: execute request asynchronously
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
         :param str tenant_id: Optional parameter to see shared data in another tenant
         :param str volume_configuration_name: Unique name of the volume configuration
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -434,7 +444,7 @@ class VolumesApi(object):
         :param async_req bool: execute request asynchronously
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl
         :param str tenant_id: Optional parameter to see shared data in another tenant
         :param str volume_configuration_name: Unique name of the volume configuration
         :param _return_http_data_only: response data without head status code

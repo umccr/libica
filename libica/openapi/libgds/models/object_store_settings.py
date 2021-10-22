@@ -34,15 +34,17 @@ class ObjectStoreSettings(object):
     """
     openapi_types = {
         'aws_s3': 'AWSS3ObjectStoreSetting',
-        'secret_name': 'str'
+        'secret_name': 'str',
+        'secret_id': 'str'
     }
 
     attribute_map = {
         'aws_s3': 'awsS3',
-        'secret_name': 'secretName'
+        'secret_name': 'secretName',
+        'secret_id': 'secretId'
     }
 
-    def __init__(self, aws_s3=None, secret_name=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, aws_s3=None, secret_name=None, secret_id=None, local_vars_configuration=None):  # noqa: E501
         """ObjectStoreSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -50,10 +52,14 @@ class ObjectStoreSettings(object):
 
         self._aws_s3 = None
         self._secret_name = None
+        self._secret_id = None
         self.discriminator = None
 
         self.aws_s3 = aws_s3
-        self.secret_name = secret_name
+        if secret_name is not None:
+            self.secret_name = secret_name
+        if secret_id is not None:
+            self.secret_id = secret_id
 
     @property
     def aws_s3(self):
@@ -82,7 +88,7 @@ class ObjectStoreSettings(object):
     def secret_name(self):
         """Gets the secret_name of this ObjectStoreSettings.  # noqa: E501
 
-        Platform credentials Name  # noqa: E501
+        Platform credentials Name  Must provide either SecretId or SecretName  # noqa: E501
 
         :return: The secret_name of this ObjectStoreSettings.  # noqa: E501
         :rtype: str
@@ -93,15 +99,36 @@ class ObjectStoreSettings(object):
     def secret_name(self, secret_name):
         """Sets the secret_name of this ObjectStoreSettings.
 
-        Platform credentials Name  # noqa: E501
+        Platform credentials Name  Must provide either SecretId or SecretName  # noqa: E501
 
         :param secret_name: The secret_name of this ObjectStoreSettings.  # noqa: E501
         :type: str
         """
-        if self.local_vars_configuration.client_side_validation and secret_name is None:  # noqa: E501
-            raise ValueError("Invalid value for `secret_name`, must not be `None`")  # noqa: E501
 
         self._secret_name = secret_name
+
+    @property
+    def secret_id(self):
+        """Gets the secret_id of this ObjectStoreSettings.  # noqa: E501
+
+        Platform credentials Id  Must provide either SecretId or SecretName  # noqa: E501
+
+        :return: The secret_id of this ObjectStoreSettings.  # noqa: E501
+        :rtype: str
+        """
+        return self._secret_id
+
+    @secret_id.setter
+    def secret_id(self, secret_id):
+        """Sets the secret_id of this ObjectStoreSettings.
+
+        Platform credentials Id  Must provide either SecretId or SecretName  # noqa: E501
+
+        :param secret_id: The secret_id of this ObjectStoreSettings.  # noqa: E501
+        :type: str
+        """
+
+        self._secret_id = secret_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""

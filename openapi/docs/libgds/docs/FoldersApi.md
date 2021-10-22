@@ -320,7 +320,7 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libica.openapi.libgds.FoldersApi(api_client)
     body = libica.openapi.libgds.CreateFolderRequest() # CreateFolderRequest | 
-include = 'include_example' # str | Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount (optional)
+include = 'include_example' # str | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (optional)
 
     try:
         # Create a folder in GDS and receive credentials for upload
@@ -335,7 +335,7 @@ include = 'include_example' # str | Comma-separated list of properties to includ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CreateFolderRequest**](CreateFolderRequest.md)|  | 
- **include** | **str**| Comma-separated list of properties to include in the response ([include&#x3D;[totalItemCount]).Example: include&#x3D;totalItemCount | [optional] 
+ **include** | **str**| Optionally include additional fields in the response.              Possible values: ObjectStoreAccess | [optional] 
 
 ### Return type
 
@@ -443,7 +443,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_folder**
-> FolderResponse get_folder(folder_id, tenant_id=tenant_id)
+> FolderResponse get_folder(folder_id, tenant_id=tenant_id, include_volume_metadata=include_volume_metadata, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
 
 Get information about a folder in GDS.
 
@@ -485,10 +485,13 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder to retrieve.
 tenant_id = 'tenant_id_example' # str | Optional parameter to see shared data in another tenant (optional)
+include_volume_metadata = True # bool | Optional parameter to return volume's metadata (optional)
+metadata_include = 'metadata_include_example' # str | Optional parameter to specify comma separated patterns to include metadata by their field names. (optional)
+metadata_exclude = 'metadata_exclude_example' # str | Optional parameter to specify comma separated patterns to exclude metadata by their field names. (optional)
 
     try:
         # Get information about a folder in GDS.
-        api_response = api_instance.get_folder(folder_id, tenant_id=tenant_id)
+        api_response = api_instance.get_folder(folder_id, tenant_id=tenant_id, include_volume_metadata=include_volume_metadata, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FoldersApi->get_folder: %s\n" % e)
@@ -500,6 +503,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **folder_id** | **str**| Unique identifier for the folder to retrieve. | 
  **tenant_id** | **str**| Optional parameter to see shared data in another tenant | [optional] 
+ **include_volume_metadata** | **bool**| Optional parameter to return volume&#39;s metadata | [optional] 
+ **metadata_include** | **str**| Optional parameter to specify comma separated patterns to include metadata by their field names. | [optional] 
+ **metadata_exclude** | **str**| Optional parameter to specify comma separated patterns to exclude metadata by their field names. | [optional] 
 
 ### Return type
 
@@ -697,7 +703,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_folders**
-> FolderListResponse list_folders(volume_id=volume_id, volume_name=volume_name, path=path, job_statuses=job_statuses, acls=acls, recursive=recursive, page_size=page_size, page_token=page_token, include=include, tenant_id=tenant_id)
+> FolderListResponse list_folders(volume_id=volume_id, volume_name=volume_name, path=path, job_statuses=job_statuses, acls=acls, recursive=recursive, page_size=page_size, page_token=page_token, include=include, tenant_id=tenant_id, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
 
 Get a list of folders
 
@@ -745,12 +751,14 @@ acls = ['acls_example'] # list[str] | Optional field that specifies comma-separa
 recursive = True # bool | Optional field to specify if folders should be returned recursively in and under the specified paths, or only directly in the specified paths (optional)
 page_size = 56 # int | START_DESC END_DESC (optional)
 page_token = 'page_token_example' # str | START_DESC END_DESC (optional)
-include = 'include_example' # str | START_DESC END_DESC (optional)
+include = 'include_example' # str | Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl (optional)
 tenant_id = 'tenant_id_example' # str | Optional parameter to see shared data in another tenant (optional)
+metadata_include = 'metadata_include_example' # str | Optional parameter to specify comma separated patterns to include metadata by their field names. (optional)
+metadata_exclude = 'metadata_exclude_example' # str | Optional parameter to specify comma separated patterns to exclude metadata by their field names. (optional)
 
     try:
         # Get a list of folders
-        api_response = api_instance.list_folders(volume_id=volume_id, volume_name=volume_name, path=path, job_statuses=job_statuses, acls=acls, recursive=recursive, page_size=page_size, page_token=page_token, include=include, tenant_id=tenant_id)
+        api_response = api_instance.list_folders(volume_id=volume_id, volume_name=volume_name, path=path, job_statuses=job_statuses, acls=acls, recursive=recursive, page_size=page_size, page_token=page_token, include=include, tenant_id=tenant_id, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FoldersApi->list_folders: %s\n" % e)
@@ -768,8 +776,10 @@ Name | Type | Description  | Notes
  **recursive** | **bool**| Optional field to specify if folders should be returned recursively in and under the specified paths, or only directly in the specified paths | [optional] 
  **page_size** | **int**| START_DESC END_DESC | [optional] 
  **page_token** | **str**| START_DESC END_DESC | [optional] 
- **include** | **str**| START_DESC END_DESC | [optional] 
+ **include** | **str**| Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl | [optional] 
  **tenant_id** | **str**| Optional parameter to see shared data in another tenant | [optional] 
+ **metadata_include** | **str**| Optional parameter to specify comma separated patterns to include metadata by their field names. | [optional] 
+ **metadata_exclude** | **str**| Optional parameter to specify comma separated patterns to exclude metadata by their field names. | [optional] 
 
 ### Return type
 
@@ -923,7 +933,7 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder to be updated.
-include = 'include_example' # str | Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount (optional)
+include = 'include_example' # str | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (optional)
 body = libica.openapi.libgds.FolderUpdateRequest() # FolderUpdateRequest |  (optional)
 
     try:
@@ -939,7 +949,7 @@ body = libica.openapi.libgds.FolderUpdateRequest() # FolderUpdateRequest |  (opt
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **folder_id** | **str**| Unique identifier for the folder to be updated. | 
- **include** | **str**| Comma-separated list of properties to include in the response ([include&#x3D;[totalItemCount]).Example: include&#x3D;totalItemCount | [optional] 
+ **include** | **str**| Optionally include additional fields in the response.              Possible values: ObjectStoreAccess | [optional] 
  **body** | [**FolderUpdateRequest**](FolderUpdateRequest.md)|  | [optional] 
 
 ### Return type

@@ -34,15 +34,17 @@ class ObjectStoreAccess(object):
     """
     openapi_types = {
         'session_id': 'str',
-        'aws_s3_temporary_upload_credentials': 'AwsS3TemporaryUploadCredentials'
+        'aws_s3_temporary_upload_credentials': 'AwsS3TemporaryUploadCredentials',
+        'aws_s3_presigned_url_for_upload': 'AwsS3PresignedUrlForUpload'
     }
 
     attribute_map = {
         'session_id': 'sessionId',
-        'aws_s3_temporary_upload_credentials': 'awsS3TemporaryUploadCredentials'
+        'aws_s3_temporary_upload_credentials': 'awsS3TemporaryUploadCredentials',
+        'aws_s3_presigned_url_for_upload': 'awsS3PresignedUrlForUpload'
     }
 
-    def __init__(self, session_id=None, aws_s3_temporary_upload_credentials=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, session_id=None, aws_s3_temporary_upload_credentials=None, aws_s3_presigned_url_for_upload=None, local_vars_configuration=None):  # noqa: E501
         """ObjectStoreAccess - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -50,12 +52,15 @@ class ObjectStoreAccess(object):
 
         self._session_id = None
         self._aws_s3_temporary_upload_credentials = None
+        self._aws_s3_presigned_url_for_upload = None
         self.discriminator = None
 
         if session_id is not None:
             self.session_id = session_id
         if aws_s3_temporary_upload_credentials is not None:
             self.aws_s3_temporary_upload_credentials = aws_s3_temporary_upload_credentials
+        if aws_s3_presigned_url_for_upload is not None:
+            self.aws_s3_presigned_url_for_upload = aws_s3_presigned_url_for_upload
 
     @property
     def session_id(self):
@@ -98,6 +103,27 @@ class ObjectStoreAccess(object):
         """
 
         self._aws_s3_temporary_upload_credentials = aws_s3_temporary_upload_credentials
+
+    @property
+    def aws_s3_presigned_url_for_upload(self):
+        """Gets the aws_s3_presigned_url_for_upload of this ObjectStoreAccess.  # noqa: E501
+
+
+        :return: The aws_s3_presigned_url_for_upload of this ObjectStoreAccess.  # noqa: E501
+        :rtype: AwsS3PresignedUrlForUpload
+        """
+        return self._aws_s3_presigned_url_for_upload
+
+    @aws_s3_presigned_url_for_upload.setter
+    def aws_s3_presigned_url_for_upload(self, aws_s3_presigned_url_for_upload):
+        """Sets the aws_s3_presigned_url_for_upload of this ObjectStoreAccess.
+
+
+        :param aws_s3_presigned_url_for_upload: The aws_s3_presigned_url_for_upload of this ObjectStoreAccess.  # noqa: E501
+        :type: AwsS3PresignedUrlForUpload
+        """
+
+        self._aws_s3_presigned_url_for_upload = aws_s3_presigned_url_for_upload
 
     def to_dict(self):
         """Returns the model properties as a dict"""

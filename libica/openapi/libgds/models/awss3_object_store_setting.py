@@ -34,15 +34,19 @@ class AWSS3ObjectStoreSetting(object):
     """
     openapi_types = {
         'bucket_name': 'str',
-        'key_prefix': 'str'
+        'key_prefix': 'str',
+        'server_side_encryption_algorithm': 'str',
+        'server_side_encryption_key': 'str'
     }
 
     attribute_map = {
         'bucket_name': 'bucketName',
-        'key_prefix': 'keyPrefix'
+        'key_prefix': 'keyPrefix',
+        'server_side_encryption_algorithm': 'serverSideEncryptionAlgorithm',
+        'server_side_encryption_key': 'serverSideEncryptionKey'
     }
 
-    def __init__(self, bucket_name=None, key_prefix=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, bucket_name=None, key_prefix=None, server_side_encryption_algorithm=None, server_side_encryption_key=None, local_vars_configuration=None):  # noqa: E501
         """AWSS3ObjectStoreSetting - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -50,11 +54,17 @@ class AWSS3ObjectStoreSetting(object):
 
         self._bucket_name = None
         self._key_prefix = None
+        self._server_side_encryption_algorithm = None
+        self._server_side_encryption_key = None
         self.discriminator = None
 
         self.bucket_name = bucket_name
         if key_prefix is not None:
             self.key_prefix = key_prefix
+        if server_side_encryption_algorithm is not None:
+            self.server_side_encryption_algorithm = server_side_encryption_algorithm
+        if server_side_encryption_key is not None:
+            self.server_side_encryption_key = server_side_encryption_key
 
     @property
     def bucket_name(self):
@@ -112,6 +122,52 @@ class AWSS3ObjectStoreSetting(object):
             raise ValueError(r"Invalid value for `key_prefix`, must be a follow pattern or equal to `/^[^\/].*$/`")  # noqa: E501
 
         self._key_prefix = key_prefix
+
+    @property
+    def server_side_encryption_algorithm(self):
+        """Gets the server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.  # noqa: E501
+
+        Used to specify the type of server-side encryption (SSE) to be used on the object provider.  This value is used to determine the Amazon S3 header \"x-amz-server-side-encryption\" value.  For example, specify \"AES256\" for SSE-S3, or \"AWS:KMS\" for SSE-KMS.  By default if none is specified, \"AES256\" will be used.  # noqa: E501
+
+        :return: The server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :rtype: str
+        """
+        return self._server_side_encryption_algorithm
+
+    @server_side_encryption_algorithm.setter
+    def server_side_encryption_algorithm(self, server_side_encryption_algorithm):
+        """Sets the server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.
+
+        Used to specify the type of server-side encryption (SSE) to be used on the object provider.  This value is used to determine the Amazon S3 header \"x-amz-server-side-encryption\" value.  For example, specify \"AES256\" for SSE-S3, or \"AWS:KMS\" for SSE-KMS.  By default if none is specified, \"AES256\" will be used.  # noqa: E501
+
+        :param server_side_encryption_algorithm: The server_side_encryption_algorithm of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :type: str
+        """
+
+        self._server_side_encryption_algorithm = server_side_encryption_algorithm
+
+    @property
+    def server_side_encryption_key(self):
+        """Gets the server_side_encryption_key of this AWSS3ObjectStoreSetting.  # noqa: E501
+
+        Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm  This value can be the AWS KMS arn key, to be used for the Amazon S3 header \"x-amz-server-side-encryption-aws-kms-key-id\" value  Value will be ignored if encryption is \"AES256\"  # noqa: E501
+
+        :return: The server_side_encryption_key of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :rtype: str
+        """
+        return self._server_side_encryption_key
+
+    @server_side_encryption_key.setter
+    def server_side_encryption_key(self, server_side_encryption_key):
+        """Sets the server_side_encryption_key of this AWSS3ObjectStoreSetting.
+
+        Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm  This value can be the AWS KMS arn key, to be used for the Amazon S3 header \"x-amz-server-side-encryption-aws-kms-key-id\" value  Value will be ignored if encryption is \"AES256\"  # noqa: E501
+
+        :param server_side_encryption_key: The server_side_encryption_key of this AWSS3ObjectStoreSetting.  # noqa: E501
+        :type: str
+        """
+
+        self._server_side_encryption_key = server_side_encryption_key
 
     def to_dict(self):
         """Returns the model properties as a dict"""

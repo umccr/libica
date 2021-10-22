@@ -33,24 +33,44 @@ class UpdateFileRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'type': 'str'
+        'type': 'str',
+        'format': 'str',
+        'format_edam': 'str',
+        'life_cycle': 'FileLifeCycleSettings',
+        'metadata': 'object'
     }
 
     attribute_map = {
-        'type': 'type'
+        'type': 'type',
+        'format': 'format',
+        'format_edam': 'formatEdam',
+        'life_cycle': 'lifeCycle',
+        'metadata': 'metadata'
     }
 
-    def __init__(self, type=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, type=None, format=None, format_edam=None, life_cycle=None, metadata=None, local_vars_configuration=None):  # noqa: E501
         """UpdateFileRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._type = None
+        self._format = None
+        self._format_edam = None
+        self._life_cycle = None
+        self._metadata = None
         self.discriminator = None
 
         if type is not None:
             self.type = type
+        if format is not None:
+            self.format = format
+        if format_edam is not None:
+            self.format_edam = format_edam
+        if life_cycle is not None:
+            self.life_cycle = life_cycle
+        if metadata is not None:
+            self.metadata = metadata
 
     @property
     def type(self):
@@ -74,6 +94,96 @@ class UpdateFileRequest(object):
         """
 
         self._type = type
+
+    @property
+    def format(self):
+        """Gets the format of this UpdateFileRequest.  # noqa: E501
+
+        The File's Format  # noqa: E501
+
+        :return: The format of this UpdateFileRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._format
+
+    @format.setter
+    def format(self, format):
+        """Sets the format of this UpdateFileRequest.
+
+        The File's Format  # noqa: E501
+
+        :param format: The format of this UpdateFileRequest.  # noqa: E501
+        :type: str
+        """
+
+        self._format = format
+
+    @property
+    def format_edam(self):
+        """Gets the format_edam of this UpdateFileRequest.  # noqa: E501
+
+        The File's Edam Format  # noqa: E501
+
+        :return: The format_edam of this UpdateFileRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._format_edam
+
+    @format_edam.setter
+    def format_edam(self, format_edam):
+        """Sets the format_edam of this UpdateFileRequest.
+
+        The File's Edam Format  # noqa: E501
+
+        :param format_edam: The format_edam of this UpdateFileRequest.  # noqa: E501
+        :type: str
+        """
+
+        self._format_edam = format_edam
+
+    @property
+    def life_cycle(self):
+        """Gets the life_cycle of this UpdateFileRequest.  # noqa: E501
+
+
+        :return: The life_cycle of this UpdateFileRequest.  # noqa: E501
+        :rtype: FileLifeCycleSettings
+        """
+        return self._life_cycle
+
+    @life_cycle.setter
+    def life_cycle(self, life_cycle):
+        """Sets the life_cycle of this UpdateFileRequest.
+
+
+        :param life_cycle: The life_cycle of this UpdateFileRequest.  # noqa: E501
+        :type: FileLifeCycleSettings
+        """
+
+        self._life_cycle = life_cycle
+
+    @property
+    def metadata(self):
+        """Gets the metadata of this UpdateFileRequest.  # noqa: E501
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :return: The metadata of this UpdateFileRequest.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this UpdateFileRequest.
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :param metadata: The metadata of this UpdateFileRequest.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata = metadata
 
     def to_dict(self):
         """Returns the model properties as a dict"""

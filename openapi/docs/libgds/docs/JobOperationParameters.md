@@ -5,6 +5,7 @@ Container for XXXOperationParameters objects, which have additional details rela
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **folder_copy** | [**FolderCopyOperationParameters**](FolderCopyOperationParameters.md) |  | [optional] 
+**folder_delete** | [**FolderDeleteOperationParameters**](FolderDeleteOperationParameters.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -33,9 +33,11 @@ class FileResponse(object):
                             and the value is json key in definition.
     """
     openapi_types = {
+        'volume_metadata': 'object',
         'id': 'str',
         'name': 'str',
         'volume_id': 'str',
+        'parent_folder_id': 'str',
         'volume_name': 'str',
         'volume_configuration_name': 'str',
         'type': 'str',
@@ -55,13 +57,19 @@ class FileResponse(object):
         'time_archived': 'datetime',
         'storage_tier': 'StorageTier',
         'e_tag': 'str',
+        'format': 'str',
+        'format_edam': 'str',
+        'status': 'FileStatus',
+        'life_cycle': 'FileLifeCycleSettings',
         'presigned_url': 'str'
     }
 
     attribute_map = {
+        'volume_metadata': 'volumeMetadata',
         'id': 'id',
         'name': 'name',
         'volume_id': 'volumeId',
+        'parent_folder_id': 'parentFolderId',
         'volume_name': 'volumeName',
         'volume_configuration_name': 'volumeConfigurationName',
         'type': 'type',
@@ -81,18 +89,24 @@ class FileResponse(object):
         'time_archived': 'timeArchived',
         'storage_tier': 'storageTier',
         'e_tag': 'eTag',
+        'format': 'format',
+        'format_edam': 'formatEdam',
+        'status': 'status',
+        'life_cycle': 'lifeCycle',
         'presigned_url': 'presignedUrl'
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, presigned_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, volume_metadata=None, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, presigned_url=None, local_vars_configuration=None):  # noqa: E501
         """FileResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
+        self._volume_metadata = None
         self._id = None
         self._name = None
         self._volume_id = None
+        self._parent_folder_id = None
         self._volume_name = None
         self._volume_configuration_name = None
         self._type = None
@@ -112,15 +126,23 @@ class FileResponse(object):
         self._time_archived = None
         self._storage_tier = None
         self._e_tag = None
+        self._format = None
+        self._format_edam = None
+        self._status = None
+        self._life_cycle = None
         self._presigned_url = None
         self.discriminator = None
 
+        if volume_metadata is not None:
+            self.volume_metadata = volume_metadata
         if id is not None:
             self.id = id
         if name is not None:
             self.name = name
         if volume_id is not None:
             self.volume_id = volume_id
+        if parent_folder_id is not None:
+            self.parent_folder_id = parent_folder_id
         if volume_name is not None:
             self.volume_name = volume_name
         if volume_configuration_name is not None:
@@ -159,8 +181,39 @@ class FileResponse(object):
             self.storage_tier = storage_tier
         if e_tag is not None:
             self.e_tag = e_tag
+        if format is not None:
+            self.format = format
+        if format_edam is not None:
+            self.format_edam = format_edam
+        if status is not None:
+            self.status = status
+        if life_cycle is not None:
+            self.life_cycle = life_cycle
         if presigned_url is not None:
             self.presigned_url = presigned_url
+
+    @property
+    def volume_metadata(self):
+        """Gets the volume_metadata of this FileResponse.  # noqa: E501
+
+        Metadata about this file's volume  # noqa: E501
+
+        :return: The volume_metadata of this FileResponse.  # noqa: E501
+        :rtype: object
+        """
+        return self._volume_metadata
+
+    @volume_metadata.setter
+    def volume_metadata(self, volume_metadata):
+        """Sets the volume_metadata of this FileResponse.
+
+        Metadata about this file's volume  # noqa: E501
+
+        :param volume_metadata: The volume_metadata of this FileResponse.  # noqa: E501
+        :type: object
+        """
+
+        self._volume_metadata = volume_metadata
 
     @property
     def id(self):
@@ -230,6 +283,29 @@ class FileResponse(object):
         """
 
         self._volume_id = volume_id
+
+    @property
+    def parent_folder_id(self):
+        """Gets the parent_folder_id of this FileResponse.  # noqa: E501
+
+        The unique identifier of the folder where the file resides  # noqa: E501
+
+        :return: The parent_folder_id of this FileResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._parent_folder_id
+
+    @parent_folder_id.setter
+    def parent_folder_id(self, parent_folder_id):
+        """Sets the parent_folder_id of this FileResponse.
+
+        The unique identifier of the folder where the file resides  # noqa: E501
+
+        :param parent_folder_id: The parent_folder_id of this FileResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._parent_folder_id = parent_folder_id
 
     @property
     def volume_name(self):
@@ -663,6 +739,92 @@ class FileResponse(object):
         """
 
         self._e_tag = e_tag
+
+    @property
+    def format(self):
+        """Gets the format of this FileResponse.  # noqa: E501
+
+        The File's Format  # noqa: E501
+
+        :return: The format of this FileResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._format
+
+    @format.setter
+    def format(self, format):
+        """Sets the format of this FileResponse.
+
+        The File's Format  # noqa: E501
+
+        :param format: The format of this FileResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._format = format
+
+    @property
+    def format_edam(self):
+        """Gets the format_edam of this FileResponse.  # noqa: E501
+
+
+        :return: The format_edam of this FileResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._format_edam
+
+    @format_edam.setter
+    def format_edam(self, format_edam):
+        """Sets the format_edam of this FileResponse.
+
+
+        :param format_edam: The format_edam of this FileResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._format_edam = format_edam
+
+    @property
+    def status(self):
+        """Gets the status of this FileResponse.  # noqa: E501
+
+
+        :return: The status of this FileResponse.  # noqa: E501
+        :rtype: FileStatus
+        """
+        return self._status
+
+    @status.setter
+    def status(self, status):
+        """Sets the status of this FileResponse.
+
+
+        :param status: The status of this FileResponse.  # noqa: E501
+        :type: FileStatus
+        """
+
+        self._status = status
+
+    @property
+    def life_cycle(self):
+        """Gets the life_cycle of this FileResponse.  # noqa: E501
+
+
+        :return: The life_cycle of this FileResponse.  # noqa: E501
+        :rtype: FileLifeCycleSettings
+        """
+        return self._life_cycle
+
+    @life_cycle.setter
+    def life_cycle(self, life_cycle):
+        """Sets the life_cycle of this FileResponse.
+
+
+        :param life_cycle: The life_cycle of this FileResponse.  # noqa: E501
+        :type: FileLifeCycleSettings
+        """
+
+        self._life_cycle = life_cycle
 
     @property
     def presigned_url(self):

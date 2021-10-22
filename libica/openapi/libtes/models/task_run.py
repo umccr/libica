@@ -40,6 +40,9 @@ class TaskRun(object):
         'description': 'str',
         'status': 'str',
         'status_details': 'str',
+        'type_of_resource': 'str',
+        'size_of_resource': 'str',
+        'tier_of_resource': 'str',
         'execution': 'Execution',
         'task_version_summary': 'TaskVersionSummary',
         'logs': 'list[TaskRunLogs]',
@@ -60,6 +63,9 @@ class TaskRun(object):
         'description': 'description',
         'status': 'status',
         'status_details': 'statusDetails',
+        'type_of_resource': 'typeOfResource',
+        'size_of_resource': 'sizeOfResource',
+        'tier_of_resource': 'tierOfResource',
         'execution': 'execution',
         'task_version_summary': 'taskVersionSummary',
         'logs': 'logs',
@@ -72,7 +78,7 @@ class TaskRun(object):
         'time_modified': 'timeModified'
     }
 
-    def __init__(self, id=None, href=None, urn=None, name=None, description=None, status='Pending', status_details=None, execution=None, task_version_summary=None, logs=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, href=None, urn=None, name=None, description=None, status='Pending', status_details=None, type_of_resource=None, size_of_resource=None, tier_of_resource=None, execution=None, task_version_summary=None, logs=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
         """TaskRun - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -85,6 +91,9 @@ class TaskRun(object):
         self._description = None
         self._status = None
         self._status_details = None
+        self._type_of_resource = None
+        self._size_of_resource = None
+        self._tier_of_resource = None
         self._execution = None
         self._task_version_summary = None
         self._logs = None
@@ -111,6 +120,12 @@ class TaskRun(object):
             self.status = status
         if status_details is not None:
             self.status_details = status_details
+        if type_of_resource is not None:
+            self.type_of_resource = type_of_resource
+        if size_of_resource is not None:
+            self.size_of_resource = size_of_resource
+        if tier_of_resource is not None:
+            self.tier_of_resource = tier_of_resource
         if execution is not None:
             self.execution = execution
         if task_version_summary is not None:
@@ -302,6 +317,87 @@ class TaskRun(object):
             raise ValueError("Invalid value for `status_details`, length must be greater than or equal to `0`")  # noqa: E501
 
         self._status_details = status_details
+
+    @property
+    def type_of_resource(self):
+        """Gets the type_of_resource of this TaskRun.  # noqa: E501
+
+
+        :return: The type_of_resource of this TaskRun.  # noqa: E501
+        :rtype: str
+        """
+        return self._type_of_resource
+
+    @type_of_resource.setter
+    def type_of_resource(self, type_of_resource):
+        """Sets the type_of_resource of this TaskRun.
+
+
+        :param type_of_resource: The type_of_resource of this TaskRun.  # noqa: E501
+        :type: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                type_of_resource is not None and len(type_of_resource) > 255):
+            raise ValueError("Invalid value for `type_of_resource`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                type_of_resource is not None and len(type_of_resource) < 0):
+            raise ValueError("Invalid value for `type_of_resource`, length must be greater than or equal to `0`")  # noqa: E501
+
+        self._type_of_resource = type_of_resource
+
+    @property
+    def size_of_resource(self):
+        """Gets the size_of_resource of this TaskRun.  # noqa: E501
+
+
+        :return: The size_of_resource of this TaskRun.  # noqa: E501
+        :rtype: str
+        """
+        return self._size_of_resource
+
+    @size_of_resource.setter
+    def size_of_resource(self, size_of_resource):
+        """Sets the size_of_resource of this TaskRun.
+
+
+        :param size_of_resource: The size_of_resource of this TaskRun.  # noqa: E501
+        :type: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                size_of_resource is not None and len(size_of_resource) > 255):
+            raise ValueError("Invalid value for `size_of_resource`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                size_of_resource is not None and len(size_of_resource) < 0):
+            raise ValueError("Invalid value for `size_of_resource`, length must be greater than or equal to `0`")  # noqa: E501
+
+        self._size_of_resource = size_of_resource
+
+    @property
+    def tier_of_resource(self):
+        """Gets the tier_of_resource of this TaskRun.  # noqa: E501
+
+
+        :return: The tier_of_resource of this TaskRun.  # noqa: E501
+        :rtype: str
+        """
+        return self._tier_of_resource
+
+    @tier_of_resource.setter
+    def tier_of_resource(self, tier_of_resource):
+        """Sets the tier_of_resource of this TaskRun.
+
+
+        :param tier_of_resource: The tier_of_resource of this TaskRun.  # noqa: E501
+        :type: str
+        """
+        if (self.local_vars_configuration.client_side_validation and
+                tier_of_resource is not None and len(tier_of_resource) > 255):
+            raise ValueError("Invalid value for `tier_of_resource`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                tier_of_resource is not None and len(tier_of_resource) < 0):
+            raise ValueError("Invalid value for `tier_of_resource`, length must be greater than or equal to `0`")  # noqa: E501
+
+        self._tier_of_resource = tier_of_resource
 
     @property
     def execution(self):

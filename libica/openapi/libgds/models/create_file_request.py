@@ -37,7 +37,10 @@ class CreateFileRequest(object):
         'volume_id': 'str',
         'folder_path': 'str',
         'type': 'str',
-        'volume_name': 'str'
+        'volume_name': 'str',
+        'format': 'str',
+        'format_edam': 'str',
+        'metadata': 'object'
     }
 
     attribute_map = {
@@ -45,10 +48,13 @@ class CreateFileRequest(object):
         'volume_id': 'volumeId',
         'folder_path': 'folderPath',
         'type': 'type',
-        'volume_name': 'volumeName'
+        'volume_name': 'volumeName',
+        'format': 'format',
+        'format_edam': 'formatEdam',
+        'metadata': 'metadata'
     }
 
-    def __init__(self, name=None, volume_id=None, folder_path=None, type=None, volume_name=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, volume_id=None, folder_path=None, type=None, volume_name=None, format=None, format_edam=None, metadata=None, local_vars_configuration=None):  # noqa: E501
         """CreateFileRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -59,6 +65,9 @@ class CreateFileRequest(object):
         self._folder_path = None
         self._type = None
         self._volume_name = None
+        self._format = None
+        self._format_edam = None
+        self._metadata = None
         self.discriminator = None
 
         self.name = name
@@ -70,6 +79,12 @@ class CreateFileRequest(object):
             self.type = type
         if volume_name is not None:
             self.volume_name = volume_name
+        if format is not None:
+            self.format = format
+        if format_edam is not None:
+            self.format_edam = format_edam
+        if metadata is not None:
+            self.metadata = metadata
 
     @property
     def name(self):
@@ -190,6 +205,75 @@ class CreateFileRequest(object):
         """
 
         self._volume_name = volume_name
+
+    @property
+    def format(self):
+        """Gets the format of this CreateFileRequest.  # noqa: E501
+
+        The File's Format  # noqa: E501
+
+        :return: The format of this CreateFileRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._format
+
+    @format.setter
+    def format(self, format):
+        """Sets the format of this CreateFileRequest.
+
+        The File's Format  # noqa: E501
+
+        :param format: The format of this CreateFileRequest.  # noqa: E501
+        :type: str
+        """
+
+        self._format = format
+
+    @property
+    def format_edam(self):
+        """Gets the format_edam of this CreateFileRequest.  # noqa: E501
+
+        The File's Edam Format  # noqa: E501
+
+        :return: The format_edam of this CreateFileRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._format_edam
+
+    @format_edam.setter
+    def format_edam(self, format_edam):
+        """Sets the format_edam of this CreateFileRequest.
+
+        The File's Edam Format  # noqa: E501
+
+        :param format_edam: The format_edam of this CreateFileRequest.  # noqa: E501
+        :type: str
+        """
+
+        self._format_edam = format_edam
+
+    @property
+    def metadata(self):
+        """Gets the metadata of this CreateFileRequest.  # noqa: E501
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :return: The metadata of this CreateFileRequest.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this CreateFileRequest.
+
+        Metadata about this file and its contents  # noqa: E501
+
+        :param metadata: The metadata of this CreateFileRequest.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata = metadata
 
     def to_dict(self):
         """Returns the model properties as a dict"""

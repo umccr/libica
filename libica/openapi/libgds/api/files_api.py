@@ -163,10 +163,137 @@ class FilesApi(object):
             _request_timeout=local_var_params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def complete_file_upload(self, file_id, body, **kwargs):  # noqa: E501
+        """Complete a file Upload  # noqa: E501
+
+        Complete a file upload operation. If the file was uploaded using multipart uploads, combine all the multiple parts uploaded into one complete file.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.complete_file_upload(file_id, body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str file_id: Unique identifier for the file upload to be completed. (required)
+        :param FileUploadCompleteRequest body: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: FileResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        return self.complete_file_upload_with_http_info(file_id, body, **kwargs)  # noqa: E501
+
+    def complete_file_upload_with_http_info(self, file_id, body, **kwargs):  # noqa: E501
+        """Complete a file Upload  # noqa: E501
+
+        Complete a file upload operation. If the file was uploaded using multipart uploads, combine all the multiple parts uploaded into one complete file.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.complete_file_upload_with_http_info(file_id, body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str file_id: Unique identifier for the file upload to be completed. (required)
+        :param FileUploadCompleteRequest body: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(FileResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        local_var_params = locals()
+
+        all_params = [
+            'file_id',
+            'body'
+        ]
+        all_params.extend(
+            [
+                'async_req',
+                '_return_http_data_only',
+                '_preload_content',
+                '_request_timeout'
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params['kwargs']):
+            if key not in all_params:
+                raise ApiTypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method complete_file_upload" % key
+                )
+            local_var_params[key] = val
+        del local_var_params['kwargs']
+        # verify the required parameter 'file_id' is set
+        if self.api_client.client_side_validation and ('file_id' not in local_var_params or  # noqa: E501
+                                                        local_var_params['file_id'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `file_id` when calling `complete_file_upload`")  # noqa: E501
+        # verify the required parameter 'body' is set
+        if self.api_client.client_side_validation and ('body' not in local_var_params or  # noqa: E501
+                                                        local_var_params['body'] is None):  # noqa: E501
+            raise ApiValueError("Missing the required parameter `body` when calling `complete_file_upload`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'file_id' in local_var_params:
+            path_params['fileId'] = local_var_params['file_id']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in local_var_params:
+            body_params = local_var_params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json-patch+json', 'application/json', 'text/json', 'application/*+json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = ['Bearer']  # noqa: E501
+
+        return self.api_client.call_api(
+            '/v1/files/{fileId}:completeUpload', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='FileResponse',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get('async_req'),
+            _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501
+            _preload_content=local_var_params.get('_preload_content', True),
+            _request_timeout=local_var_params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def create_file(self, body, **kwargs):  # noqa: E501
         """Create a file entry in GDS and get temporary credentials for upload  # noqa: E501
 
-        Create a file entry in GDS. Returns temporary credentials for file upload directly to S3 when the include=objectStoreAccess parameter is used. Volume ID or volume name is required for file creation. If a folder path is provided and does not exist, GDS creates the folder path in the appropriate account automatically.  # noqa: E501
+        Create a file entry in GDS. Returns temporary credentials and presigned url(s) for file upload directly to S3 when the include=objectStoreAccess parameter is used. Volume ID or volume name is required for file creation. If a folder path is provided and does not exist, GDS creates the folder path in the appropriate account automatically.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.create_file(body, async_req=True)
@@ -174,7 +301,8 @@ class FilesApi(object):
 
         :param async_req bool: execute request asynchronously
         :param CreateFileRequest body: (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param int upload_part_count: Optional number of parts for the presigned url for uploads (1 - 10000)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -192,7 +320,7 @@ class FilesApi(object):
     def create_file_with_http_info(self, body, **kwargs):  # noqa: E501
         """Create a file entry in GDS and get temporary credentials for upload  # noqa: E501
 
-        Create a file entry in GDS. Returns temporary credentials for file upload directly to S3 when the include=objectStoreAccess parameter is used. Volume ID or volume name is required for file creation. If a folder path is provided and does not exist, GDS creates the folder path in the appropriate account automatically.  # noqa: E501
+        Create a file entry in GDS. Returns temporary credentials and presigned url(s) for file upload directly to S3 when the include=objectStoreAccess parameter is used. Volume ID or volume name is required for file creation. If a folder path is provided and does not exist, GDS creates the folder path in the appropriate account automatically.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.create_file_with_http_info(body, async_req=True)
@@ -200,7 +328,8 @@ class FilesApi(object):
 
         :param async_req bool: execute request asynchronously
         :param CreateFileRequest body: (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param int upload_part_count: Optional number of parts for the presigned url for uploads (1 - 10000)
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -219,7 +348,8 @@ class FilesApi(object):
 
         all_params = [
             'body',
-            'include'
+            'include',
+            'upload_part_count'
         ]
         all_params.extend(
             [
@@ -243,6 +373,10 @@ class FilesApi(object):
                                                         local_var_params['body'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `body` when calling `create_file`")  # noqa: E501
 
+        if self.api_client.client_side_validation and 'upload_part_count' in local_var_params and local_var_params['upload_part_count'] > 10000:  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `upload_part_count` when calling `create_file`, must be a value less than or equal to `10000`")  # noqa: E501
+        if self.api_client.client_side_validation and 'upload_part_count' in local_var_params and local_var_params['upload_part_count'] < 1:  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `upload_part_count` when calling `create_file`, must be a value greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -250,6 +384,8 @@ class FilesApi(object):
         query_params = []
         if 'include' in local_var_params and local_var_params['include'] is not None:  # noqa: E501
             query_params.append(('include', local_var_params['include']))  # noqa: E501
+        if 'upload_part_count' in local_var_params and local_var_params['upload_part_count'] is not None:  # noqa: E501
+            query_params.append(('uploadPartCount', local_var_params['upload_part_count']))  # noqa: E501
 
         header_params = {}
 
@@ -412,6 +548,8 @@ class FilesApi(object):
         :param async_req bool: execute request asynchronously
         :param str file_id: Unique identifier for the file to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str presigned_url_mode: Optional parameter to specify presigned url's content-disposition. If not specified, the browser will determine the default behavior.              Possible values: Attachment, Inline, Browser
+        :param bool include_volume_metadata: Optional parameter to return volume's metadata
         :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
         :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -440,6 +578,8 @@ class FilesApi(object):
         :param async_req bool: execute request asynchronously
         :param str file_id: Unique identifier for the file to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str presigned_url_mode: Optional parameter to specify presigned url's content-disposition. If not specified, the browser will determine the default behavior.              Possible values: Attachment, Inline, Browser
+        :param bool include_volume_metadata: Optional parameter to return volume's metadata
         :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
         :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _return_http_data_only: response data without head status code
@@ -461,6 +601,8 @@ class FilesApi(object):
         all_params = [
             'file_id',
             'tenant_id',
+            'presigned_url_mode',
+            'include_volume_metadata',
             'metadata_include',
             'metadata_exclude'
         ]
@@ -495,6 +637,10 @@ class FilesApi(object):
         query_params = []
         if 'tenant_id' in local_var_params and local_var_params['tenant_id'] is not None:  # noqa: E501
             query_params.append(('tenantId', local_var_params['tenant_id']))  # noqa: E501
+        if 'presigned_url_mode' in local_var_params and local_var_params['presigned_url_mode'] is not None:  # noqa: E501
+            query_params.append(('presignedUrlMode', local_var_params['presigned_url_mode']))  # noqa: E501
+        if 'include_volume_metadata' in local_var_params and local_var_params['include_volume_metadata'] is not None:  # noqa: E501
+            query_params.append(('includeVolumeMetadata', local_var_params['include_volume_metadata']))  # noqa: E501
         if 'metadata_include' in local_var_params and local_var_params['metadata_include'] is not None:  # noqa: E501
             query_params.append(('metadata.include', local_var_params['metadata_include']))  # noqa: E501
         if 'metadata_exclude' in local_var_params and local_var_params['metadata_exclude'] is not None:  # noqa: E501
@@ -545,10 +691,13 @@ class FilesApi(object):
         :param bool is_uploaded: Optional field to filter by Uploaded files
         :param str archive_status: Optional field that specifies comma-separated Archive Statuses to include in the list
         :param bool recursive: Optional field to specify if files should be returned recursively in and under the specified paths, or only directly in the specified paths
+        :param str presigned_url_mode: Optional parameter to specify presigned url's content-disposition. If not specified, the browser will determine the default behavior.  Possible values: Attachment, Inline, Browser
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, PresignedUrl, InheritedAcl
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -579,10 +728,13 @@ class FilesApi(object):
         :param bool is_uploaded: Optional field to filter by Uploaded files
         :param str archive_status: Optional field that specifies comma-separated Archive Statuses to include in the list
         :param bool recursive: Optional field to specify if files should be returned recursively in and under the specified paths, or only directly in the specified paths
+        :param str presigned_url_mode: Optional parameter to specify presigned url's content-disposition. If not specified, the browser will determine the default behavior.  Possible values: Attachment, Inline, Browser
+        :param str include: Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, PresignedUrl, InheritedAcl
         :param int page_size: START_DESC END_DESC
         :param str page_token: START_DESC END_DESC
-        :param str include: START_DESC END_DESC
         :param str tenant_id: Optional parameter to see shared data in another tenant
+        :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
+        :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -606,10 +758,13 @@ class FilesApi(object):
             'is_uploaded',
             'archive_status',
             'recursive',
+            'presigned_url_mode',
+            'include',
             'page_size',
             'page_token',
-            'include',
-            'tenant_id'
+            'tenant_id',
+            'metadata_include',
+            'metadata_exclude'
         ]
         all_params.extend(
             [
@@ -653,14 +808,20 @@ class FilesApi(object):
             query_params.append(('archiveStatus', local_var_params['archive_status']))  # noqa: E501
         if 'recursive' in local_var_params and local_var_params['recursive'] is not None:  # noqa: E501
             query_params.append(('recursive', local_var_params['recursive']))  # noqa: E501
+        if 'presigned_url_mode' in local_var_params and local_var_params['presigned_url_mode'] is not None:  # noqa: E501
+            query_params.append(('presignedUrlMode', local_var_params['presigned_url_mode']))  # noqa: E501
+        if 'include' in local_var_params and local_var_params['include'] is not None:  # noqa: E501
+            query_params.append(('include', local_var_params['include']))  # noqa: E501
         if 'page_size' in local_var_params and local_var_params['page_size'] is not None:  # noqa: E501
             query_params.append(('pageSize', local_var_params['page_size']))  # noqa: E501
         if 'page_token' in local_var_params and local_var_params['page_token'] is not None:  # noqa: E501
             query_params.append(('pageToken', local_var_params['page_token']))  # noqa: E501
-        if 'include' in local_var_params and local_var_params['include'] is not None:  # noqa: E501
-            query_params.append(('include', local_var_params['include']))  # noqa: E501
         if 'tenant_id' in local_var_params and local_var_params['tenant_id'] is not None:  # noqa: E501
             query_params.append(('tenantId', local_var_params['tenant_id']))  # noqa: E501
+        if 'metadata_include' in local_var_params and local_var_params['metadata_include'] is not None:  # noqa: E501
+            query_params.append(('metadata.include', local_var_params['metadata_include']))  # noqa: E501
+        if 'metadata_exclude' in local_var_params and local_var_params['metadata_exclude'] is not None:  # noqa: E501
+            query_params.append(('metadata.exclude', local_var_params['metadata_exclude']))  # noqa: E501
 
         header_params = {}
 
@@ -821,7 +982,7 @@ class FilesApi(object):
     def update_file(self, file_id, **kwargs):  # noqa: E501
         """Update a file entry in GDS and get temporary credentials for upload  # noqa: E501
 
-        Update a file entry in GDS. Returns temporary credentials for file upload directly to S3 when the include=objectStoreAccess parameter is used. Note that the currently supported changes to the file resource are updating the file type and the underlying content.  # noqa: E501
+        Update a file entry in GDS. Returns temporary credentials and presigned url(s) for file upload directly to S3 when the include=objectStoreAccess parameter is used. Note that the currently supported changes to the file resource are updating the file type and the underlying content.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.update_file(file_id, async_req=True)
@@ -829,7 +990,8 @@ class FilesApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str file_id: Unique identifier for the file to be updated. (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param int upload_part_count: Optional number of parts for the presigned url for uploads (1 - 10000)
         :param UpdateFileRequest body:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
@@ -848,7 +1010,7 @@ class FilesApi(object):
     def update_file_with_http_info(self, file_id, **kwargs):  # noqa: E501
         """Update a file entry in GDS and get temporary credentials for upload  # noqa: E501
 
-        Update a file entry in GDS. Returns temporary credentials for file upload directly to S3 when the include=objectStoreAccess parameter is used. Note that the currently supported changes to the file resource are updating the file type and the underlying content.  # noqa: E501
+        Update a file entry in GDS. Returns temporary credentials and presigned url(s) for file upload directly to S3 when the include=objectStoreAccess parameter is used. Note that the currently supported changes to the file resource are updating the file type and the underlying content.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
         >>> thread = api.update_file_with_http_info(file_id, async_req=True)
@@ -856,7 +1018,8 @@ class FilesApi(object):
 
         :param async_req bool: execute request asynchronously
         :param str file_id: Unique identifier for the file to be updated. (required)
-        :param str include: Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param int upload_part_count: Optional number of parts for the presigned url for uploads (1 - 10000)
         :param UpdateFileRequest body:
         :param _return_http_data_only: response data without head status code
                                        and headers
@@ -877,6 +1040,7 @@ class FilesApi(object):
         all_params = [
             'file_id',
             'include',
+            'upload_part_count',
             'body'
         ]
         all_params.extend(
@@ -901,6 +1065,10 @@ class FilesApi(object):
                                                         local_var_params['file_id'] is None):  # noqa: E501
             raise ApiValueError("Missing the required parameter `file_id` when calling `update_file`")  # noqa: E501
 
+        if self.api_client.client_side_validation and 'upload_part_count' in local_var_params and local_var_params['upload_part_count'] > 10000:  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `upload_part_count` when calling `update_file`, must be a value less than or equal to `10000`")  # noqa: E501
+        if self.api_client.client_side_validation and 'upload_part_count' in local_var_params and local_var_params['upload_part_count'] < 1:  # noqa: E501
+            raise ApiValueError("Invalid value for parameter `upload_part_count` when calling `update_file`, must be a value greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -910,6 +1078,8 @@ class FilesApi(object):
         query_params = []
         if 'include' in local_var_params and local_var_params['include'] is not None:  # noqa: E501
             query_params.append(('include', local_var_params['include']))  # noqa: E501
+        if 'upload_part_count' in local_var_params and local_var_params['upload_part_count'] is not None:  # noqa: E501
+            query_params.append(('uploadPartCount', local_var_params['upload_part_count']))  # noqa: E501
 
         header_params = {}
 

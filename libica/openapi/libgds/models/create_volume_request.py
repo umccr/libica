@@ -35,16 +35,20 @@ class CreateVolumeRequest(object):
     openapi_types = {
         'name': 'str',
         'volume_configuration_name': 'str',
-        'root_key_prefix': 'str'
+        'root_key_prefix': 'str',
+        'metadata': 'object',
+        'life_cycle': 'VolumeLifeCycleSettings'
     }
 
     attribute_map = {
         'name': 'name',
         'volume_configuration_name': 'volumeConfigurationName',
-        'root_key_prefix': 'rootKeyPrefix'
+        'root_key_prefix': 'rootKeyPrefix',
+        'metadata': 'metadata',
+        'life_cycle': 'lifeCycle'
     }
 
-    def __init__(self, name=None, volume_configuration_name=None, root_key_prefix=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, volume_configuration_name=None, root_key_prefix=None, metadata=None, life_cycle=None, local_vars_configuration=None):  # noqa: E501
         """CreateVolumeRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -53,6 +57,8 @@ class CreateVolumeRequest(object):
         self._name = None
         self._volume_configuration_name = None
         self._root_key_prefix = None
+        self._metadata = None
+        self._life_cycle = None
         self.discriminator = None
 
         self.name = name
@@ -60,6 +66,10 @@ class CreateVolumeRequest(object):
             self.volume_configuration_name = volume_configuration_name
         if root_key_prefix is not None:
             self.root_key_prefix = root_key_prefix
+        if metadata is not None:
+            self.metadata = metadata
+        if life_cycle is not None:
+            self.life_cycle = life_cycle
 
     @property
     def name(self):
@@ -134,6 +144,50 @@ class CreateVolumeRequest(object):
             raise ValueError(r"Invalid value for `root_key_prefix`, must be a follow pattern or equal to `/^(\/)$|^([^\/].*[\/])$/`")  # noqa: E501
 
         self._root_key_prefix = root_key_prefix
+
+    @property
+    def metadata(self):
+        """Gets the metadata of this CreateVolumeRequest.  # noqa: E501
+
+        Metadata about this volume and its contents  # noqa: E501
+
+        :return: The metadata of this CreateVolumeRequest.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this CreateVolumeRequest.
+
+        Metadata about this volume and its contents  # noqa: E501
+
+        :param metadata: The metadata of this CreateVolumeRequest.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata = metadata
+
+    @property
+    def life_cycle(self):
+        """Gets the life_cycle of this CreateVolumeRequest.  # noqa: E501
+
+
+        :return: The life_cycle of this CreateVolumeRequest.  # noqa: E501
+        :rtype: VolumeLifeCycleSettings
+        """
+        return self._life_cycle
+
+    @life_cycle.setter
+    def life_cycle(self, life_cycle):
+        """Sets the life_cycle of this CreateVolumeRequest.
+
+
+        :param life_cycle: The life_cycle of this CreateVolumeRequest.  # noqa: E501
+        :type: VolumeLifeCycleSettings
+        """
+
+        self._life_cycle = life_cycle
 
     def to_dict(self):
         """Returns the model properties as a dict"""

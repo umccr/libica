@@ -36,6 +36,7 @@ class FolderResponse(object):
         'id': 'str',
         'name': 'str',
         'volume_id': 'str',
+        'parent_folder_id': 'str',
         'volume_name': 'str',
         'tenant_id': 'str',
         'sub_tenant_id': 'str',
@@ -48,7 +49,9 @@ class FolderResponse(object):
         'time_modified': 'datetime',
         'modified_by': 'str',
         'metadata': 'object',
+        'volume_metadata': 'object',
         'job_status': 'JobStatus',
+        'job_id': 'str',
         'archive_job_storage_tier': 'StorageTier'
     }
 
@@ -56,6 +59,7 @@ class FolderResponse(object):
         'id': 'id',
         'name': 'name',
         'volume_id': 'volumeId',
+        'parent_folder_id': 'parentFolderId',
         'volume_name': 'volumeName',
         'tenant_id': 'tenantId',
         'sub_tenant_id': 'subTenantId',
@@ -68,11 +72,13 @@ class FolderResponse(object):
         'time_modified': 'timeModified',
         'modified_by': 'modifiedBy',
         'metadata': 'metadata',
+        'volume_metadata': 'volumeMetadata',
         'job_status': 'jobStatus',
+        'job_id': 'jobId',
         'archive_job_storage_tier': 'archiveJobStorageTier'
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, job_status=None, archive_job_storage_tier=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, volume_metadata=None, job_status=None, job_id=None, archive_job_storage_tier=None, local_vars_configuration=None):  # noqa: E501
         """FolderResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -81,6 +87,7 @@ class FolderResponse(object):
         self._id = None
         self._name = None
         self._volume_id = None
+        self._parent_folder_id = None
         self._volume_name = None
         self._tenant_id = None
         self._sub_tenant_id = None
@@ -93,7 +100,9 @@ class FolderResponse(object):
         self._time_modified = None
         self._modified_by = None
         self._metadata = None
+        self._volume_metadata = None
         self._job_status = None
+        self._job_id = None
         self._archive_job_storage_tier = None
         self.discriminator = None
 
@@ -103,6 +112,8 @@ class FolderResponse(object):
             self.name = name
         if volume_id is not None:
             self.volume_id = volume_id
+        if parent_folder_id is not None:
+            self.parent_folder_id = parent_folder_id
         if volume_name is not None:
             self.volume_name = volume_name
         if tenant_id is not None:
@@ -127,8 +138,12 @@ class FolderResponse(object):
             self.modified_by = modified_by
         if metadata is not None:
             self.metadata = metadata
+        if volume_metadata is not None:
+            self.volume_metadata = volume_metadata
         if job_status is not None:
             self.job_status = job_status
+        if job_id is not None:
+            self.job_id = job_id
         if archive_job_storage_tier is not None:
             self.archive_job_storage_tier = archive_job_storage_tier
 
@@ -200,6 +215,29 @@ class FolderResponse(object):
         """
 
         self._volume_id = volume_id
+
+    @property
+    def parent_folder_id(self):
+        """Gets the parent_folder_id of this FolderResponse.  # noqa: E501
+
+        The unique identifier for this folder's parent folder  # noqa: E501
+
+        :return: The parent_folder_id of this FolderResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._parent_folder_id
+
+    @parent_folder_id.setter
+    def parent_folder_id(self, parent_folder_id):
+        """Sets the parent_folder_id of this FolderResponse.
+
+        The unique identifier for this folder's parent folder  # noqa: E501
+
+        :param parent_folder_id: The parent_folder_id of this FolderResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._parent_folder_id = parent_folder_id
 
     @property
     def volume_name(self):
@@ -478,6 +516,29 @@ class FolderResponse(object):
         self._metadata = metadata
 
     @property
+    def volume_metadata(self):
+        """Gets the volume_metadata of this FolderResponse.  # noqa: E501
+
+        Metadata about this folder's volume  # noqa: E501
+
+        :return: The volume_metadata of this FolderResponse.  # noqa: E501
+        :rtype: object
+        """
+        return self._volume_metadata
+
+    @volume_metadata.setter
+    def volume_metadata(self, volume_metadata):
+        """Sets the volume_metadata of this FolderResponse.
+
+        Metadata about this folder's volume  # noqa: E501
+
+        :param volume_metadata: The volume_metadata of this FolderResponse.  # noqa: E501
+        :type: object
+        """
+
+        self._volume_metadata = volume_metadata
+
+    @property
     def job_status(self):
         """Gets the job_status of this FolderResponse.  # noqa: E501
 
@@ -497,6 +558,29 @@ class FolderResponse(object):
         """
 
         self._job_status = job_status
+
+    @property
+    def job_id(self):
+        """Gets the job_id of this FolderResponse.  # noqa: E501
+
+        The job identifier for the current folder operation. Currently only being used for the delete folder operation.  # noqa: E501
+
+        :return: The job_id of this FolderResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._job_id
+
+    @job_id.setter
+    def job_id(self, job_id):
+        """Sets the job_id of this FolderResponse.
+
+        The job identifier for the current folder operation. Currently only being used for the delete folder operation.  # noqa: E501
+
+        :param job_id: The job_id of this FolderResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._job_id = job_id
 
     @property
     def archive_job_storage_tier(self):

@@ -47,7 +47,8 @@ class VolumeResponse(object):
         'time_modified': 'datetime',
         'modified_by': 'str',
         'job_status': 'JobStatus',
-        'metadata': 'object'
+        'metadata': 'object',
+        'life_cycle': 'VolumeLifeCycleSettings'
     }
 
     attribute_map = {
@@ -65,10 +66,11 @@ class VolumeResponse(object):
         'time_modified': 'timeModified',
         'modified_by': 'modifiedBy',
         'job_status': 'jobStatus',
-        'metadata': 'metadata'
+        'metadata': 'metadata',
+        'life_cycle': 'lifeCycle'
     }
 
-    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, local_vars_configuration=None):  # noqa: E501
         """VolumeResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -89,6 +91,7 @@ class VolumeResponse(object):
         self._modified_by = None
         self._job_status = None
         self._metadata = None
+        self._life_cycle = None
         self.discriminator = None
 
         if id is not None:
@@ -121,6 +124,8 @@ class VolumeResponse(object):
             self.job_status = job_status
         if metadata is not None:
             self.metadata = metadata
+        if life_cycle is not None:
+            self.life_cycle = life_cycle
 
     @property
     def id(self):
@@ -464,6 +469,27 @@ class VolumeResponse(object):
         """
 
         self._metadata = metadata
+
+    @property
+    def life_cycle(self):
+        """Gets the life_cycle of this VolumeResponse.  # noqa: E501
+
+
+        :return: The life_cycle of this VolumeResponse.  # noqa: E501
+        :rtype: VolumeLifeCycleSettings
+        """
+        return self._life_cycle
+
+    @life_cycle.setter
+    def life_cycle(self, life_cycle):
+        """Sets the life_cycle of this VolumeResponse.
+
+
+        :param life_cycle: The life_cycle of this VolumeResponse.  # noqa: E501
+        :type: VolumeLifeCycleSettings
+        """
+
+        self._life_cycle = life_cycle
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -295,7 +295,7 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     online_status = 'online_status_example' # str | Optional field that specifies the Online Status for Volume configurations included in the list.  If provided, the value must be Initializing, Ok, or Error. (optional)
 page_size = 56 # int | START_DESC END_DESC (optional)
 page_token = 'page_token_example' # str | START_DESC END_DESC (optional)
-include = 'include_example' # str | START_DESC END_DESC (optional)
+include = 'include_example' # str | Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl (optional)
 
     try:
         # Get a list of volumes
@@ -312,7 +312,7 @@ Name | Type | Description  | Notes
  **online_status** | **str**| Optional field that specifies the Online Status for Volume configurations included in the list.  If provided, the value must be Initializing, Ok, or Error. | [optional] 
  **page_size** | **int**| START_DESC END_DESC | [optional] 
  **page_token** | **str**| START_DESC END_DESC | [optional] 
- **include** | **str**| START_DESC END_DESC | [optional] 
+ **include** | **str**| Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl | [optional] 
 
 ### Return type
 

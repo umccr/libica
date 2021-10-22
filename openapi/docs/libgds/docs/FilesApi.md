@@ -5,6 +5,7 @@ All URIs are relative to *https://aps2.platform.illumina.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**archive_file**](FilesApi.md#archive_file) | **POST** /v1/files/{fileId}:archive | Archive a file
+[**complete_file_upload**](FilesApi.md#complete_file_upload) | **POST** /v1/files/{fileId}:completeUpload | Complete a file Upload
 [**create_file**](FilesApi.md#create_file) | **POST** /v1/files | Create a file entry in GDS and get temporary credentials for upload
 [**delete_file**](FilesApi.md#delete_file) | **DELETE** /v1/files/{fileId} | Permanently delete a file
 [**get_file**](FilesApi.md#get_file) | **GET** /v1/files/{fileId} | Get details about a file, including a pre-signed URL for download
@@ -97,12 +98,96 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **complete_file_upload**
+> FileResponse complete_file_upload(file_id, body)
+
+Complete a file Upload
+
+Complete a file upload operation. If the file was uploaded using multipart uploads, combine all the multiple parts uploaded into one complete file.
+
+### Example
+
+* Api Key Authentication (Bearer):
+```python
+from __future__ import print_function
+import time
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Bearer
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com",
+    api_key = {
+        'Authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
+    file_id = 'file_id_example' # str | Unique identifier for the file upload to be completed.
+body = libica.openapi.libgds.FileUploadCompleteRequest() # FileUploadCompleteRequest | 
+
+    try:
+        # Complete a file Upload
+        api_response = api_instance.complete_file_upload(file_id, body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling FilesApi->complete_file_upload: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file_id** | **str**| Unique identifier for the file upload to be completed. | 
+ **body** | [**FileUploadCompleteRequest**](FileUploadCompleteRequest.md)|  | 
+
+### Return type
+
+[**FileResponse**](FileResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**404** | File not found. |  -  |
+**409** | Conflict. |  -  |
+**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_file**
-> FileWriteableResponse create_file(body, include=include)
+> FileWriteableResponse create_file(body, include=include, upload_part_count=upload_part_count)
 
 Create a file entry in GDS and get temporary credentials for upload
 
-Create a file entry in GDS. Returns temporary credentials for file upload directly to S3 when the include=objectStoreAccess parameter is used. Volume ID or volume name is required for file creation. If a folder path is provided and does not exist, GDS creates the folder path in the appropriate account automatically.
+Create a file entry in GDS. Returns temporary credentials and presigned url(s) for file upload directly to S3 when the include=objectStoreAccess parameter is used. Volume ID or volume name is required for file creation. If a folder path is provided and does not exist, GDS creates the folder path in the appropriate account automatically.
 
 ### Example
 
@@ -139,11 +224,12 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libica.openapi.libgds.FilesApi(api_client)
     body = libica.openapi.libgds.CreateFileRequest() # CreateFileRequest | 
-include = 'include_example' # str | Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount (optional)
+include = 'include_example' # str | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (optional)
+upload_part_count = 56 # int | Optional number of parts for the presigned url for uploads (1 - 10000) (optional)
 
     try:
         # Create a file entry in GDS and get temporary credentials for upload
-        api_response = api_instance.create_file(body, include=include)
+        api_response = api_instance.create_file(body, include=include, upload_part_count=upload_part_count)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FilesApi->create_file: %s\n" % e)
@@ -154,7 +240,8 @@ include = 'include_example' # str | Comma-separated list of properties to includ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CreateFileRequest**](CreateFileRequest.md)|  | 
- **include** | **str**| Comma-separated list of properties to include in the response ([include&#x3D;[totalItemCount]).Example: include&#x3D;totalItemCount | [optional] 
+ **include** | **str**| Optionally include additional fields in the response.              Possible values: ObjectStoreAccess | [optional] 
+ **upload_part_count** | **int**| Optional number of parts for the presigned url for uploads (1 - 10000) | [optional] 
 
 ### Return type
 
@@ -263,7 +350,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_file**
-> FileResponse get_file(file_id, tenant_id=tenant_id, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
+> FileResponse get_file(file_id, tenant_id=tenant_id, presigned_url_mode=presigned_url_mode, include_volume_metadata=include_volume_metadata, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
 
 Get details about a file, including a pre-signed URL for download
 
@@ -305,12 +392,14 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     api_instance = libica.openapi.libgds.FilesApi(api_client)
     file_id = 'file_id_example' # str | Unique identifier for the file to retrieve.
 tenant_id = 'tenant_id_example' # str | Optional parameter to see shared data in another tenant (optional)
+presigned_url_mode = 'presigned_url_mode_example' # str | Optional parameter to specify presigned url's content-disposition. If not specified, the browser will determine the default behavior.              Possible values: Attachment, Inline, Browser (optional)
+include_volume_metadata = True # bool | Optional parameter to return volume's metadata (optional)
 metadata_include = 'metadata_include_example' # str | Optional parameter to specify comma separated patterns to include metadata by their field names. (optional)
 metadata_exclude = 'metadata_exclude_example' # str | Optional parameter to specify comma separated patterns to exclude metadata by their field names. (optional)
 
     try:
         # Get details about a file, including a pre-signed URL for download
-        api_response = api_instance.get_file(file_id, tenant_id=tenant_id, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
+        api_response = api_instance.get_file(file_id, tenant_id=tenant_id, presigned_url_mode=presigned_url_mode, include_volume_metadata=include_volume_metadata, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FilesApi->get_file: %s\n" % e)
@@ -322,6 +411,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file_id** | **str**| Unique identifier for the file to retrieve. | 
  **tenant_id** | **str**| Optional parameter to see shared data in another tenant | [optional] 
+ **presigned_url_mode** | **str**| Optional parameter to specify presigned url&#39;s content-disposition. If not specified, the browser will determine the default behavior.              Possible values: Attachment, Inline, Browser | [optional] 
+ **include_volume_metadata** | **bool**| Optional parameter to return volume&#39;s metadata | [optional] 
  **metadata_include** | **str**| Optional parameter to specify comma separated patterns to include metadata by their field names. | [optional] 
  **metadata_exclude** | **str**| Optional parameter to specify comma separated patterns to exclude metadata by their field names. | [optional] 
 
@@ -351,7 +442,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_files**
-> FileListResponse list_files(volume_id=volume_id, volume_name=volume_name, path=path, is_uploaded=is_uploaded, archive_status=archive_status, recursive=recursive, page_size=page_size, page_token=page_token, include=include, tenant_id=tenant_id)
+> FileListResponse list_files(volume_id=volume_id, volume_name=volume_name, path=path, is_uploaded=is_uploaded, archive_status=archive_status, recursive=recursive, presigned_url_mode=presigned_url_mode, include=include, page_size=page_size, page_token=page_token, tenant_id=tenant_id, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
 
 Get a list of files
 
@@ -397,14 +488,17 @@ path = ['path_example'] # list[str] | Optional field that specifies comma-separa
 is_uploaded = True # bool | Optional field to filter by Uploaded files (optional)
 archive_status = 'archive_status_example' # str | Optional field that specifies comma-separated Archive Statuses to include in the list (optional)
 recursive = True # bool | Optional field to specify if files should be returned recursively in and under the specified paths, or only directly in the specified paths (optional)
+presigned_url_mode = 'presigned_url_mode_example' # str | Optional parameter to specify presigned url's content-disposition. If not specified, the browser will determine the default behavior.  Possible values: Attachment, Inline, Browser (optional)
+include = 'include_example' # str | Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, PresignedUrl, InheritedAcl (optional)
 page_size = 56 # int | START_DESC END_DESC (optional)
 page_token = 'page_token_example' # str | START_DESC END_DESC (optional)
-include = 'include_example' # str | START_DESC END_DESC (optional)
 tenant_id = 'tenant_id_example' # str | Optional parameter to see shared data in another tenant (optional)
+metadata_include = 'metadata_include_example' # str | Optional parameter to specify comma separated patterns to include metadata by their field names. (optional)
+metadata_exclude = 'metadata_exclude_example' # str | Optional parameter to specify comma separated patterns to exclude metadata by their field names. (optional)
 
     try:
         # Get a list of files
-        api_response = api_instance.list_files(volume_id=volume_id, volume_name=volume_name, path=path, is_uploaded=is_uploaded, archive_status=archive_status, recursive=recursive, page_size=page_size, page_token=page_token, include=include, tenant_id=tenant_id)
+        api_response = api_instance.list_files(volume_id=volume_id, volume_name=volume_name, path=path, is_uploaded=is_uploaded, archive_status=archive_status, recursive=recursive, presigned_url_mode=presigned_url_mode, include=include, page_size=page_size, page_token=page_token, tenant_id=tenant_id, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FilesApi->list_files: %s\n" % e)
@@ -420,10 +514,13 @@ Name | Type | Description  | Notes
  **is_uploaded** | **bool**| Optional field to filter by Uploaded files | [optional] 
  **archive_status** | **str**| Optional field that specifies comma-separated Archive Statuses to include in the list | [optional] 
  **recursive** | **bool**| Optional field to specify if files should be returned recursively in and under the specified paths, or only directly in the specified paths | [optional] 
+ **presigned_url_mode** | **str**| Optional parameter to specify presigned url&#39;s content-disposition. If not specified, the browser will determine the default behavior.  Possible values: Attachment, Inline, Browser | [optional] 
+ **include** | **str**| Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, PresignedUrl, InheritedAcl | [optional] 
  **page_size** | **int**| START_DESC END_DESC | [optional] 
  **page_token** | **str**| START_DESC END_DESC | [optional] 
- **include** | **str**| START_DESC END_DESC | [optional] 
  **tenant_id** | **str**| Optional parameter to see shared data in another tenant | [optional] 
+ **metadata_include** | **str**| Optional parameter to specify comma separated patterns to include metadata by their field names. | [optional] 
+ **metadata_exclude** | **str**| Optional parameter to specify comma separated patterns to exclude metadata by their field names. | [optional] 
 
 ### Return type
 
@@ -535,11 +632,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_file**
-> FileWriteableResponse update_file(file_id, include=include, body=body)
+> FileWriteableResponse update_file(file_id, include=include, upload_part_count=upload_part_count, body=body)
 
 Update a file entry in GDS and get temporary credentials for upload
 
-Update a file entry in GDS. Returns temporary credentials for file upload directly to S3 when the include=objectStoreAccess parameter is used. Note that the currently supported changes to the file resource are updating the file type and the underlying content.
+Update a file entry in GDS. Returns temporary credentials and presigned url(s) for file upload directly to S3 when the include=objectStoreAccess parameter is used. Note that the currently supported changes to the file resource are updating the file type and the underlying content.
 
 ### Example
 
@@ -576,12 +673,13 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libica.openapi.libgds.FilesApi(api_client)
     file_id = 'file_id_example' # str | Unique identifier for the file to be updated.
-include = 'include_example' # str | Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount (optional)
+include = 'include_example' # str | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (optional)
+upload_part_count = 56 # int | Optional number of parts for the presigned url for uploads (1 - 10000) (optional)
 body = libica.openapi.libgds.UpdateFileRequest() # UpdateFileRequest |  (optional)
 
     try:
         # Update a file entry in GDS and get temporary credentials for upload
-        api_response = api_instance.update_file(file_id, include=include, body=body)
+        api_response = api_instance.update_file(file_id, include=include, upload_part_count=upload_part_count, body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FilesApi->update_file: %s\n" % e)
@@ -592,7 +690,8 @@ body = libica.openapi.libgds.UpdateFileRequest() # UpdateFileRequest |  (optiona
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **file_id** | **str**| Unique identifier for the file to be updated. | 
- **include** | **str**| Comma-separated list of properties to include in the response ([include&#x3D;[totalItemCount]).Example: include&#x3D;totalItemCount | [optional] 
+ **include** | **str**| Optionally include additional fields in the response.              Possible values: ObjectStoreAccess | [optional] 
+ **upload_part_count** | **int**| Optional number of parts for the presigned url for uploads (1 - 10000) | [optional] 
  **body** | [**UpdateFileRequest**](UpdateFileRequest.md)|  | [optional] 
 
 ### Return type

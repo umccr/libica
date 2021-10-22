@@ -33,24 +33,29 @@ class JobOperationParameters(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'folder_copy': 'FolderCopyOperationParameters'
+        'folder_copy': 'FolderCopyOperationParameters',
+        'folder_delete': 'FolderDeleteOperationParameters'
     }
 
     attribute_map = {
-        'folder_copy': 'folderCopy'
+        'folder_copy': 'folderCopy',
+        'folder_delete': 'folderDelete'
     }
 
-    def __init__(self, folder_copy=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, folder_copy=None, folder_delete=None, local_vars_configuration=None):  # noqa: E501
         """JobOperationParameters - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._folder_copy = None
+        self._folder_delete = None
         self.discriminator = None
 
         if folder_copy is not None:
             self.folder_copy = folder_copy
+        if folder_delete is not None:
+            self.folder_delete = folder_delete
 
     @property
     def folder_copy(self):
@@ -72,6 +77,27 @@ class JobOperationParameters(object):
         """
 
         self._folder_copy = folder_copy
+
+    @property
+    def folder_delete(self):
+        """Gets the folder_delete of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The folder_delete of this JobOperationParameters.  # noqa: E501
+        :rtype: FolderDeleteOperationParameters
+        """
+        return self._folder_delete
+
+    @folder_delete.setter
+    def folder_delete(self, folder_delete):
+        """Sets the folder_delete of this JobOperationParameters.
+
+
+        :param folder_delete: The folder_delete of this JobOperationParameters.  # noqa: E501
+        :type: FolderDeleteOperationParameters
+        """
+
+        self._folder_delete = folder_delete
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -37,6 +37,7 @@ class CreateFolderRequest(object):
         'folder_path': 'str',
         'volume_id': 'str',
         'volume_name': 'str',
+        'metadata': 'object',
         'acl': 'list[str]'
     }
 
@@ -45,10 +46,11 @@ class CreateFolderRequest(object):
         'folder_path': 'folderPath',
         'volume_id': 'volumeId',
         'volume_name': 'volumeName',
+        'metadata': 'metadata',
         'acl': 'acl'
     }
 
-    def __init__(self, name=None, folder_path=None, volume_id=None, volume_name=None, acl=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, folder_path=None, volume_id=None, volume_name=None, metadata=None, acl=None, local_vars_configuration=None):  # noqa: E501
         """CreateFolderRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -58,6 +60,7 @@ class CreateFolderRequest(object):
         self._folder_path = None
         self._volume_id = None
         self._volume_name = None
+        self._metadata = None
         self._acl = None
         self.discriminator = None
 
@@ -68,6 +71,8 @@ class CreateFolderRequest(object):
             self.volume_id = volume_id
         if volume_name is not None:
             self.volume_name = volume_name
+        if metadata is not None:
+            self.metadata = metadata
         if acl is not None:
             self.acl = acl
 
@@ -167,6 +172,29 @@ class CreateFolderRequest(object):
         """
 
         self._volume_name = volume_name
+
+    @property
+    def metadata(self):
+        """Gets the metadata of this CreateFolderRequest.  # noqa: E501
+
+        Metadata about this folder and its contents  # noqa: E501
+
+        :return: The metadata of this CreateFolderRequest.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this CreateFolderRequest.
+
+        Metadata about this folder and its contents  # noqa: E501
+
+        :param metadata: The metadata of this CreateFolderRequest.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata = metadata
 
     @property
     def acl(self):

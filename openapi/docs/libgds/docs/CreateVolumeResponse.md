@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **modified_by** | **str** | The updator of this Volume | [optional] 
 **job_status** | [**JobStatus**](JobStatus.md) |  | [optional] 
 **metadata** | [**object**](.md) | Metadata about this Volume | [optional] 
+**life_cycle** | [**VolumeLifeCycleSettings**](VolumeLifeCycleSettings.md) |  | [optional] 
 **import_session_id** | **str** | Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations. | [optional] 
 **object_store_access** | [**ObjectStoreAccess**](ObjectStoreAccess.md) |  | [optional] 
 

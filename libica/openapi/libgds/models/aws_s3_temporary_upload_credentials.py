@@ -40,7 +40,9 @@ class AwsS3TemporaryUploadCredentials(object):
         'bucket_name': 'str',
         'key_prefix': 'str',
         'expiration_date': 'datetime',
-        'service_url': 'str'
+        'service_url': 'str',
+        'server_side_encryption_algorithm': 'str',
+        'server_side_encryption_key': 'str'
     }
 
     attribute_map = {
@@ -51,10 +53,12 @@ class AwsS3TemporaryUploadCredentials(object):
         'bucket_name': 'bucketName',
         'key_prefix': 'keyPrefix',
         'expiration_date': 'expirationDate',
-        'service_url': 'serviceUrl'
+        'service_url': 'serviceUrl',
+        'server_side_encryption_algorithm': 'serverSideEncryptionAlgorithm',
+        'server_side_encryption_key': 'serverSideEncryptionKey'
     }
 
-    def __init__(self, access_key_id=None, secret_access_key=None, session_token=None, region=None, bucket_name=None, key_prefix=None, expiration_date=None, service_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, access_key_id=None, secret_access_key=None, session_token=None, region=None, bucket_name=None, key_prefix=None, expiration_date=None, service_url=None, server_side_encryption_algorithm=None, server_side_encryption_key=None, local_vars_configuration=None):  # noqa: E501
         """AwsS3TemporaryUploadCredentials - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -68,6 +72,8 @@ class AwsS3TemporaryUploadCredentials(object):
         self._key_prefix = None
         self._expiration_date = None
         self._service_url = None
+        self._server_side_encryption_algorithm = None
+        self._server_side_encryption_key = None
         self.discriminator = None
 
         if access_key_id is not None:
@@ -86,6 +92,10 @@ class AwsS3TemporaryUploadCredentials(object):
             self.expiration_date = expiration_date
         if service_url is not None:
             self.service_url = service_url
+        if server_side_encryption_algorithm is not None:
+            self.server_side_encryption_algorithm = server_side_encryption_algorithm
+        if server_side_encryption_key is not None:
+            self.server_side_encryption_key = server_side_encryption_key
 
     @property
     def access_key_id(self):
@@ -270,6 +280,52 @@ class AwsS3TemporaryUploadCredentials(object):
         """
 
         self._service_url = service_url
+
+    @property
+    def server_side_encryption_algorithm(self):
+        """Gets the server_side_encryption_algorithm of this AwsS3TemporaryUploadCredentials.  # noqa: E501
+
+        Used to specify the type of server-side encryption (SSE) to be used on the object provider.  This value is used to determine the Amazon S3 header \"x-amz-server-side-encryption\" value.  For example, specify \"AES256\" for SSE-S3, or \"AWS:KMS\" for SSE-KMS.  By default if none is specified, \"AES256\" will be used.  # noqa: E501
+
+        :return: The server_side_encryption_algorithm of this AwsS3TemporaryUploadCredentials.  # noqa: E501
+        :rtype: str
+        """
+        return self._server_side_encryption_algorithm
+
+    @server_side_encryption_algorithm.setter
+    def server_side_encryption_algorithm(self, server_side_encryption_algorithm):
+        """Sets the server_side_encryption_algorithm of this AwsS3TemporaryUploadCredentials.
+
+        Used to specify the type of server-side encryption (SSE) to be used on the object provider.  This value is used to determine the Amazon S3 header \"x-amz-server-side-encryption\" value.  For example, specify \"AES256\" for SSE-S3, or \"AWS:KMS\" for SSE-KMS.  By default if none is specified, \"AES256\" will be used.  # noqa: E501
+
+        :param server_side_encryption_algorithm: The server_side_encryption_algorithm of this AwsS3TemporaryUploadCredentials.  # noqa: E501
+        :type: str
+        """
+
+        self._server_side_encryption_algorithm = server_side_encryption_algorithm
+
+    @property
+    def server_side_encryption_key(self):
+        """Gets the server_side_encryption_key of this AwsS3TemporaryUploadCredentials.  # noqa: E501
+
+        Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm  This value can be the AWS KMS arn key, to be used for the Amazon S3 header \"x-amz-server-side-encryption-aws-kms-key-id\" value  Value will be ignored if encryption is \"AES256\"  # noqa: E501
+
+        :return: The server_side_encryption_key of this AwsS3TemporaryUploadCredentials.  # noqa: E501
+        :rtype: str
+        """
+        return self._server_side_encryption_key
+
+    @server_side_encryption_key.setter
+    def server_side_encryption_key(self, server_side_encryption_key):
+        """Sets the server_side_encryption_key of this AwsS3TemporaryUploadCredentials.
+
+        Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm  This value can be the AWS KMS arn key, to be used for the Amazon S3 header \"x-amz-server-side-encryption-aws-kms-key-id\" value  Value will be ignored if encryption is \"AES256\"  # noqa: E501
+
+        :param server_side_encryption_key: The server_side_encryption_key of this AwsS3TemporaryUploadCredentials.  # noqa: E501
+        :type: str
+        """
+
+        self._server_side_encryption_key = server_side_encryption_key
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -52,7 +52,7 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libica.openapi.libgds.VolumesApi(api_client)
     body = libica.openapi.libgds.CreateVolumeRequest() # CreateVolumeRequest | 
-include = 'include_example' # str | Comma-separated list of properties to include in the response ([include=[totalItemCount]).Example: include=totalItemCount (optional)
+include = 'include_example' # str | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (optional)
 
     try:
         # Create a volume in GDS and receive temporary credentials for upload
@@ -67,7 +67,7 @@ include = 'include_example' # str | Comma-separated list of properties to includ
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CreateVolumeRequest**](CreateVolumeRequest.md)|  | 
- **include** | **str**| Comma-separated list of properties to include in the response ([include&#x3D;[totalItemCount]).Example: include&#x3D;totalItemCount | [optional] 
+ **include** | **str**| Optionally include additional fields in the response.              Possible values: ObjectStoreAccess | [optional] 
 
 ### Return type
 
@@ -178,7 +178,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_volume**
-> VolumeResponse get_volume(volume_id, tenant_id=tenant_id)
+> VolumeResponse get_volume(volume_id, tenant_id=tenant_id, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
 
 Get information for the specified volume ID or volume name
 
@@ -218,10 +218,12 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     api_instance = libica.openapi.libgds.VolumesApi(api_client)
     volume_id = 'volume_id_example' # str | Unique identifier for the volume to retrieve information for.
 tenant_id = 'tenant_id_example' # str | Optional parameter to see shared data in another tenant (optional)
+metadata_include = 'metadata_include_example' # str | Optional parameter to specify comma separated patterns to include metadata by their field names. (optional)
+metadata_exclude = 'metadata_exclude_example' # str | Optional parameter to specify comma separated patterns to exclude metadata by their field names. (optional)
 
     try:
         # Get information for the specified volume ID or volume name
-        api_response = api_instance.get_volume(volume_id, tenant_id=tenant_id)
+        api_response = api_instance.get_volume(volume_id, tenant_id=tenant_id, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling VolumesApi->get_volume: %s\n" % e)
@@ -233,6 +235,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **volume_id** | **str**| Unique identifier for the volume to retrieve information for. | 
  **tenant_id** | **str**| Optional parameter to see shared data in another tenant | [optional] 
+ **metadata_include** | **str**| Optional parameter to specify comma separated patterns to include metadata by their field names. | [optional] 
+ **metadata_exclude** | **str**| Optional parameter to specify comma separated patterns to exclude metadata by their field names. | [optional] 
 
 ### Return type
 
@@ -302,7 +306,7 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     api_instance = libica.openapi.libgds.VolumesApi(api_client)
     page_size = 56 # int | START_DESC END_DESC (optional)
 page_token = 'page_token_example' # str | START_DESC END_DESC (optional)
-include = 'include_example' # str | START_DESC END_DESC (optional)
+include = 'include_example' # str | Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl (optional)
 tenant_id = 'tenant_id_example' # str | Optional parameter to see shared data in another tenant (optional)
 volume_configuration_name = 'volume_configuration_name_example' # str | Unique name of the volume configuration (optional)
 
@@ -320,7 +324,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **page_size** | **int**| START_DESC END_DESC | [optional] 
  **page_token** | **str**| START_DESC END_DESC | [optional] 
- **include** | **str**| START_DESC END_DESC | [optional] 
+ **include** | **str**| Optionally include additional fields in the response. Multiple fields can be included by comma-separation.  Possible values: TotalItemCount, InheritedAcl | [optional] 
  **tenant_id** | **str**| Optional parameter to see shared data in another tenant | [optional] 
  **volume_configuration_name** | **str**| Unique name of the volume configuration | [optional] 
 

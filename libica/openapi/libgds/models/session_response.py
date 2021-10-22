@@ -39,7 +39,8 @@ class SessionResponse(object):
         'time_created': 'datetime',
         'time_credentials_expire': 'datetime',
         'time_closed': 'datetime',
-        'time_completed': 'datetime'
+        'time_completed': 'datetime',
+        'metadata': 'object'
     }
 
     attribute_map = {
@@ -49,10 +50,11 @@ class SessionResponse(object):
         'time_created': 'timeCreated',
         'time_credentials_expire': 'timeCredentialsExpire',
         'time_closed': 'timeClosed',
-        'time_completed': 'timeCompleted'
+        'time_completed': 'timeCompleted',
+        'metadata': 'metadata'
     }
 
-    def __init__(self, id=None, folder_urn=None, status=None, time_created=None, time_credentials_expire=None, time_closed=None, time_completed=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, folder_urn=None, status=None, time_created=None, time_credentials_expire=None, time_closed=None, time_completed=None, metadata=None, local_vars_configuration=None):  # noqa: E501
         """SessionResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -65,6 +67,7 @@ class SessionResponse(object):
         self._time_credentials_expire = None
         self._time_closed = None
         self._time_completed = None
+        self._metadata = None
         self.discriminator = None
 
         if id is not None:
@@ -81,6 +84,8 @@ class SessionResponse(object):
             self.time_closed = time_closed
         if time_completed is not None:
             self.time_completed = time_completed
+        if metadata is not None:
+            self.metadata = metadata
 
     @property
     def id(self):
@@ -240,6 +245,27 @@ class SessionResponse(object):
         """
 
         self._time_completed = time_completed
+
+    @property
+    def metadata(self):
+        """Gets the metadata of this SessionResponse.  # noqa: E501
+
+
+        :return: The metadata of this SessionResponse.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata
+
+    @metadata.setter
+    def metadata(self, metadata):
+        """Sets the metadata of this SessionResponse.
+
+
+        :param metadata: The metadata of this SessionResponse.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata = metadata
 
     def to_dict(self):
         """Returns the model properties as a dict"""

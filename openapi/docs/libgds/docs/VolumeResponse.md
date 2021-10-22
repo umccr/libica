@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **modified_by** | **str** | The updator of this Volume | [optional] 
 **job_status** | [**JobStatus**](JobStatus.md) |  | [optional] 
 **metadata** | [**object**](.md) | Metadata about this Volume | [optional] 
+**life_cycle** | [**VolumeLifeCycleSettings**](VolumeLifeCycleSettings.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
