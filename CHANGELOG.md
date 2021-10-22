@@ -33,3 +33,11 @@
 * [Updated to upstream ICA OpenAPI Swagger definitions PR#33](https://github.com/umccr-illumina/libica/pull/33)
 * Removed deprecated alpha modules
 * See [milestone 0.5.0 for all related PRs](https://github.com/umccr-illumina/libica/milestone/2?closed=1)
+
+1.0.0
+-----
+* Release date: 2021-10-22
+* We run `libica` over a year, hence, it matures into major version 1.0
+* This is also to keep track with ICA v1  
+* [Updated to upstream ICA OpenAPI Swagger definitions PR#45](https://github.com/umccr-illumina/libica/pull/45)
+* See [milestone 1.0.0 for all related PRs](https://github.com/umccr-illumina/libica/milestone/3?closed=1)
