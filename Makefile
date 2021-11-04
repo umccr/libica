@@ -14,10 +14,13 @@ local:
 	@(cd openapi && mkdocs build --clean -d ../local/openapi)
 
 up:
-	@docker-compose up -d
+	@docker compose up -d
 
 down:
-	@docker-compose down
+	@docker compose down
+
+ps:
+	@docker compose ps
 
 test_ica_mock:
 	@curl -s -H "Authorization: Bearer Test" -X GET http://localhost/v1/workflows/runs/wfr.anything_work | jq

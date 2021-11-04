@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "@apidevtools/swagger-cli": "^4.0.4",
-    "@openapitools/openapi-generator-cli": "^2.4.12",
+    "@openapitools/openapi-generator-cli": "^2.4.13",
     "@stoplight/prism-cli": "^4.5.0"
   },
   "resolutions": {
@@ -9,6 +9,7 @@
     "minimist": "^1.2.3",
     "marked": "^3.0.7",
     "lodash": "^4.17.21",
-    "sanitize-html": "^2.3.2"
+    "sanitize-html": "^2.3.2",
+    "validator": "^13.7.0"
   }
 }
