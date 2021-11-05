@@ -27,5 +27,5 @@ dist/
 htmlcov/
 .coverage
 .coverage.*
-
+.tox/
 node_modules/

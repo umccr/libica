@@ -38,8 +38,18 @@ autounit:
 test: check
 	@py.test
 
+tox:
+	@tox -vv
+
+nose:
+	@nose2 -vv
+
+clean:
+	@rm -rf build/
+	@rm -rf libica.egg-info/
+
 .PHONY: dist
-dist:
+dist: clean
 	@python setup.py sdist bdist_wheel
 
 # Usage: make testpypi version=0.2.0
