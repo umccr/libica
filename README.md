@@ -13,7 +13,7 @@ Python SDK to programmatically call Illumina Connected Analytics (ICA) BioInform
 - Tested for Python 3.6, 3.7, 3.8, 3.9
 - [Test Coverage](https://umccr-illumina.github.io/libica/coverage/)
 
-## TL;DR
+## Using OpenAPI Package
 
 - Install through ``pip`` like so:
 ```commandline
@@ -73,6 +73,42 @@ More examples available at:
 - [libica.openapi documentation](https://umccr-illumina.github.io/libica/openapi/)
 - [PyDoc](https://umccr-illumina.github.io/libica/libica/)
 - [Wiki](https://github.com/umccr-illumina/libica/wiki)
+
+## Using App Package
+
+> NOTE: `libica.app` package contains reusable modules that are based on use cases around UMCCR Data Portal backend, CWL Workflows and its orchestration implementations. Hence, it may be a specific implementation, however, it can still be reusable for your cases. Please have a look [into package](libica/app) and quick starter examples are as follows.
+
+Example: Configuration Object Builder
+
+```python
+from libica.app import configuration
+from libica.openapi import libgds
+
+gds_config = configuration(
+  lib=libgds,  # pass in library of interest e.g. libwes, libtes, etc 
+  secret_name=["FROM_AWS_SECRET_MANAGER_THAT_STORE_ICA_ACCESS_TOKEN"],
+  base_url="https://use1.platform.illumina.com",  # overwrite if not https://aps2.platform.illumina.com
+  debug=False,  # True if you like to debug API calls, False by default anyway, just for demo
+)
+
+with libgds.ApiClient(gds_config) as api_client:
+    ...
+```
+
+Example: Listing Files from GDS
+
+```python
+from typing import List
+
+from libica.app import gds
+from libica.openapi import libgds
+
+vol, path = gds.parse_path("gds://development/some/folder/path/")
+files: List[libgds.FileResponse] = gds.get_file_list(volume_name=vol, path=path)
+
+for file in files:
+  print(f"{file.name}, {file.volume_name}, {file.path}, {file.presigned_url}")
+```
 
 ## Development
 

@@ -41,3 +41,9 @@
 * This is also to keep track with ICA v1  
 * [Updated to upstream ICA OpenAPI Swagger definitions PR#45](https://github.com/umccr-illumina/libica/pull/45)
 * See [milestone 1.0.0 for all related PRs](https://github.com/umccr-illumina/libica/milestone/3?closed=1)
+
+1.1.0
+-----
+* Release date: 2021-11-05
+* Added App Package for reusable implementations
+* See [milestone 1.1.0 for all related PRs](https://github.com/umccr-illumina/libica/milestone/5?closed=1)
