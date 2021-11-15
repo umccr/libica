@@ -141,7 +141,6 @@ make test
 - There are few key CLI tools for this autogen workflow to work.
     1. [openapi-generator-cli](https://github.com/OpenAPITools/openapi-generator-cli) -- used to generate code and doc
     2. [swagger-cli](https://github.com/APIDevTools/swagger-cli) -- validate definitions
-    3. [prism-cli](https://github.com/stoplightio/prism) -- setup mock integration test
 - These CLI tools are Node.js app, hence, required build tools `node`, `npm`, `npx` and `yarn` as follows.
 ```commandline
 node -v
@@ -150,7 +149,6 @@ npm -i -g yarn
 yarn install
 npx openapi-generator-cli help
 npx swagger-cli --help
-npx prism --help
 ```
 - However, `prism` mock server is set up through docker compose as follows.
 ```
