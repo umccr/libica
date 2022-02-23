@@ -1,0 +1,1451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>libica.openapi.v2.api.bundle_sample_api API documentation</title>
+<meta name="description" content="ICA Rest API …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>libica.openapi.v2.api.bundle_sample_api</code></h1>
+</header>
+<section id="section-intro">
+<p>ICA Rest API</p>
+<p>This API can be used to interact with Illumina Connected Analytics.<br> <p> Authentication to the
+API can be done in multiple ways:<br> <ul><li>For the entire API, except for the POST /tokens endpoint: API-key + JWT</li> <li>Only for the POST /tokens endpoint: API-key + Basic Authentication</li></ul> </p> <p> <b>API-key</b><br> API keys are managed within the Illumina portal where you can manage your profile after you have logged on. The API-key has to be provided in the X-API-Key header parameter when executing API calls to ICA. In the background, a JWT will be requested at the IDP of Illumina to create a session. A good practice is to not use the API-key for every API call, but to first generate a JWT and to use that for authentication in subsequent calls.<br> </p> <p> <b>JWT</b><br> To avoid using an API-key for each call, we recommend to request a JWT via the POST /tokens endpoint
+using this API-key. The JWT will expire after a pre-configured period specified by a tenant administrator through the IAM console in the Illumina portal. The JWT is the preferred way for authentication.<br>A not yet expired, still valid JWT could be refreshed using the POST /tokens:refresh endpoint.<br> </p> <p> <b>Basic Authentication</b><br> Basic authentication is only supported by the POST /tokens endpoint for generating a JWT. Use "Basic base64encoded(emailaddress:password)" in the "Authorization" header parameter for this authentication method. In case having access to multiple tenants using the same email-address, also provide the "tenant" request parameter to indicate what tenant you would like to request a JWT for. </p>
+# noqa: E501</p>
+<p>The version of the OpenAPI document: 3
+Generated by: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a></p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+    ICA Rest API
+
+    This API can be used to interact with Illumina Connected Analytics.&lt;br&gt; &lt;p&gt; Authentication to the  API can be done in multiple ways:&lt;br&gt; &lt;ul&gt;&lt;li&gt;For the entire API, except for the POST /tokens endpoint: API-key + JWT&lt;/li&gt; &lt;li&gt;Only for the POST /tokens endpoint: API-key + Basic Authentication&lt;/li&gt;&lt;/ul&gt; &lt;/p&gt; &lt;p&gt; &lt;b&gt;API-key&lt;/b&gt;&lt;br&gt; API keys are managed within the Illumina portal where you can manage your profile after you have logged on. The API-key has to be provided in the X-API-Key header parameter when executing API calls to ICA. In the background, a JWT will be requested at the IDP of Illumina to create a session. A good practice is to not use the API-key for every API call, but to first generate a JWT and to use that for authentication in subsequent calls.&lt;br&gt; &lt;/p&gt; &lt;p&gt; &lt;b&gt;JWT&lt;/b&gt;&lt;br&gt; To avoid using an API-key for each call, we recommend to request a JWT via the POST /tokens endpoint  using this API-key. The JWT will expire after a pre-configured period specified by a tenant administrator through the IAM console in the Illumina portal. The JWT is the preferred way for authentication.&lt;br&gt;A not yet expired, still valid JWT could be refreshed using the POST /tokens:refresh endpoint.&lt;br&gt; &lt;/p&gt; &lt;p&gt; &lt;b&gt;Basic Authentication&lt;/b&gt;&lt;br&gt; Basic authentication is only supported by the POST /tokens endpoint for generating a JWT. Use \&#34;Basic base64encoded(emailaddress:password)\&#34; in the \&#34;Authorization\&#34; header parameter for this authentication method. In case having access to multiple tenants using the same email-address, also provide the \&#34;tenant\&#34; request parameter to indicate what tenant you would like to request a JWT for. &lt;/p&gt;   # noqa: E501
+
+    The version of the OpenAPI document: 3
+    Generated by: https://openapi-generator.tech
+&#34;&#34;&#34;
+
+
+import re  # noqa: F401
+import sys  # noqa: F401
+
+from libica.openapi.v2.api_client import ApiClient, Endpoint as _Endpoint
+from libica.openapi.v2.model_utils import (  # noqa: F401
+    check_allowed_values,
+    check_validations,
+    date,
+    datetime,
+    file_type,
+    none_type,
+    validate_and_convert_types
+)
+from libica.openapi.v2.model.bundle_sample_paged_list import BundleSamplePagedList
+from libica.openapi.v2.model.problem import Problem
+
+
+class BundleSampleApi(object):
+    &#34;&#34;&#34;NOTE: This class is auto generated by OpenAPI Generator
+    Ref: https://openapi-generator.tech
+
+    Do not edit the class manually.
+    &#34;&#34;&#34;
+
+    def __init__(self, api_client=None):
+        if api_client is None:
+            api_client = ApiClient()
+        self.api_client = api_client
+        self.get_bundle_samples_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (BundleSamplePagedList,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/bundles/{bundleId}/samples&#39;,
+                &#39;operation_id&#39;: &#39;get_bundle_samples&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;bundle_id&#39;,
+                    &#39;search&#39;,
+                    &#39;user_tags&#39;,
+                    &#39;technical_tags&#39;,
+                    &#39;page_offset&#39;,
+                    &#39;page_token&#39;,
+                    &#39;page_size&#39;,
+                    &#39;sort&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;bundle_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;bundle_id&#39;:
+                        (str,),
+                    &#39;search&#39;:
+                        (str,),
+                    &#39;user_tags&#39;:
+                        (str,),
+                    &#39;technical_tags&#39;:
+                        (str,),
+                    &#39;page_offset&#39;:
+                        (str,),
+                    &#39;page_token&#39;:
+                        (str,),
+                    &#39;page_size&#39;:
+                        (str,),
+                    &#39;sort&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;bundleId&#39;,
+                    &#39;search&#39;: &#39;search&#39;,
+                    &#39;user_tags&#39;: &#39;userTags&#39;,
+                    &#39;technical_tags&#39;: &#39;technicalTags&#39;,
+                    &#39;page_offset&#39;: &#39;pageOffset&#39;,
+                    &#39;page_token&#39;: &#39;pageToken&#39;,
+                    &#39;page_size&#39;: &#39;pageSize&#39;,
+                    &#39;sort&#39;: &#39;sort&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;path&#39;,
+                    &#39;search&#39;: &#39;query&#39;,
+                    &#39;user_tags&#39;: &#39;query&#39;,
+                    &#39;technical_tags&#39;: &#39;query&#39;,
+                    &#39;page_offset&#39;: &#39;query&#39;,
+                    &#39;page_token&#39;: &#39;query&#39;,
+                    &#39;page_size&#39;: &#39;query&#39;,
+                    &#39;sort&#39;: &#39;query&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.link_sample_to_bundle_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: None,
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/bundles/{bundleId}/samples/{sampleId}&#39;,
+                &#39;operation_id&#39;: &#39;link_sample_to_bundle&#39;,
+                &#39;http_method&#39;: &#39;POST&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;bundle_id&#39;,
+                    &#39;sample_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;bundle_id&#39;,
+                    &#39;sample_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;bundle_id&#39;:
+                        (str,),
+                    &#39;sample_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;bundleId&#39;,
+                    &#39;sample_id&#39;: &#39;sampleId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;path&#39;,
+                    &#39;sample_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.unlink_sample_from_bundle_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: None,
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/bundles/{bundleId}/samples/{sampleId}&#39;,
+                &#39;operation_id&#39;: &#39;unlink_sample_from_bundle&#39;,
+                &#39;http_method&#39;: &#39;DELETE&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;bundle_id&#39;,
+                    &#39;sample_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;bundle_id&#39;,
+                    &#39;sample_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;bundle_id&#39;:
+                        (str,),
+                    &#39;sample_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;bundleId&#39;,
+                    &#39;sample_id&#39;: &#39;sampleId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;path&#39;,
+                    &#39;sample_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+
+    def get_bundle_samples(
+        self,
+        bundle_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve a list of bundle samples.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_bundle_samples(bundle_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            bundle_id (str): The ID of the bundle to get bundle samples from
+
+        Keyword Args:
+            search (str): To search through multiple fields of data.. [optional]
+            user_tags (str): The user tags to filter on.. [optional]
+            technical_tags (str): The technical tags to filter on.. [optional]
+            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter.. [optional]
+            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination.. [optional]
+            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
+            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34; The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            BundleSamplePagedList
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;bundle_id&#39;] = \
+            bundle_id
+        return self.get_bundle_samples_endpoint.call_with_http_info(**kwargs)
+
+    def link_sample_to_bundle(
+        self,
+        bundle_id,
+        sample_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Link a sample to a bundle.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.link_sample_to_bundle(bundle_id, sample_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            bundle_id (str):
+            sample_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;bundle_id&#39;] = \
+            bundle_id
+        kwargs[&#39;sample_id&#39;] = \
+            sample_id
+        return self.link_sample_to_bundle_endpoint.call_with_http_info(**kwargs)
+
+    def unlink_sample_from_bundle(
+        self,
+        bundle_id,
+        sample_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Unlink a sample from a bundle.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.unlink_sample_from_bundle(bundle_id, sample_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            bundle_id (str):
+            sample_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;bundle_id&#39;] = \
+            bundle_id
+        kwargs[&#39;sample_id&#39;] = \
+            sample_id
+        return self.unlink_sample_from_bundle_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="libica.openapi.v2.api.bundle_sample_api.BundleSampleApi"><code class="flex name class">
+<span>class <span class="ident">BundleSampleApi</span></span>
+<span>(</span><span>api_client=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator
+Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a></p>
+<p>Do not edit the class manually.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class BundleSampleApi(object):
+    &#34;&#34;&#34;NOTE: This class is auto generated by OpenAPI Generator
+    Ref: https://openapi-generator.tech
+
+    Do not edit the class manually.
+    &#34;&#34;&#34;
+
+    def __init__(self, api_client=None):
+        if api_client is None:
+            api_client = ApiClient()
+        self.api_client = api_client
+        self.get_bundle_samples_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (BundleSamplePagedList,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/bundles/{bundleId}/samples&#39;,
+                &#39;operation_id&#39;: &#39;get_bundle_samples&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;bundle_id&#39;,
+                    &#39;search&#39;,
+                    &#39;user_tags&#39;,
+                    &#39;technical_tags&#39;,
+                    &#39;page_offset&#39;,
+                    &#39;page_token&#39;,
+                    &#39;page_size&#39;,
+                    &#39;sort&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;bundle_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;bundle_id&#39;:
+                        (str,),
+                    &#39;search&#39;:
+                        (str,),
+                    &#39;user_tags&#39;:
+                        (str,),
+                    &#39;technical_tags&#39;:
+                        (str,),
+                    &#39;page_offset&#39;:
+                        (str,),
+                    &#39;page_token&#39;:
+                        (str,),
+                    &#39;page_size&#39;:
+                        (str,),
+                    &#39;sort&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;bundleId&#39;,
+                    &#39;search&#39;: &#39;search&#39;,
+                    &#39;user_tags&#39;: &#39;userTags&#39;,
+                    &#39;technical_tags&#39;: &#39;technicalTags&#39;,
+                    &#39;page_offset&#39;: &#39;pageOffset&#39;,
+                    &#39;page_token&#39;: &#39;pageToken&#39;,
+                    &#39;page_size&#39;: &#39;pageSize&#39;,
+                    &#39;sort&#39;: &#39;sort&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;path&#39;,
+                    &#39;search&#39;: &#39;query&#39;,
+                    &#39;user_tags&#39;: &#39;query&#39;,
+                    &#39;technical_tags&#39;: &#39;query&#39;,
+                    &#39;page_offset&#39;: &#39;query&#39;,
+                    &#39;page_token&#39;: &#39;query&#39;,
+                    &#39;page_size&#39;: &#39;query&#39;,
+                    &#39;sort&#39;: &#39;query&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.link_sample_to_bundle_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: None,
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/bundles/{bundleId}/samples/{sampleId}&#39;,
+                &#39;operation_id&#39;: &#39;link_sample_to_bundle&#39;,
+                &#39;http_method&#39;: &#39;POST&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;bundle_id&#39;,
+                    &#39;sample_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;bundle_id&#39;,
+                    &#39;sample_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;bundle_id&#39;:
+                        (str,),
+                    &#39;sample_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;bundleId&#39;,
+                    &#39;sample_id&#39;: &#39;sampleId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;path&#39;,
+                    &#39;sample_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.unlink_sample_from_bundle_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: None,
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/bundles/{bundleId}/samples/{sampleId}&#39;,
+                &#39;operation_id&#39;: &#39;unlink_sample_from_bundle&#39;,
+                &#39;http_method&#39;: &#39;DELETE&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;bundle_id&#39;,
+                    &#39;sample_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;bundle_id&#39;,
+                    &#39;sample_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;bundle_id&#39;:
+                        (str,),
+                    &#39;sample_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;bundleId&#39;,
+                    &#39;sample_id&#39;: &#39;sampleId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;bundle_id&#39;: &#39;path&#39;,
+                    &#39;sample_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+
+    def get_bundle_samples(
+        self,
+        bundle_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve a list of bundle samples.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_bundle_samples(bundle_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            bundle_id (str): The ID of the bundle to get bundle samples from
+
+        Keyword Args:
+            search (str): To search through multiple fields of data.. [optional]
+            user_tags (str): The user tags to filter on.. [optional]
+            technical_tags (str): The technical tags to filter on.. [optional]
+            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter.. [optional]
+            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination.. [optional]
+            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
+            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34; The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            BundleSamplePagedList
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;bundle_id&#39;] = \
+            bundle_id
+        return self.get_bundle_samples_endpoint.call_with_http_info(**kwargs)
+
+    def link_sample_to_bundle(
+        self,
+        bundle_id,
+        sample_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Link a sample to a bundle.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.link_sample_to_bundle(bundle_id, sample_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            bundle_id (str):
+            sample_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;bundle_id&#39;] = \
+            bundle_id
+        kwargs[&#39;sample_id&#39;] = \
+            sample_id
+        return self.link_sample_to_bundle_endpoint.call_with_http_info(**kwargs)
+
+    def unlink_sample_from_bundle(
+        self,
+        bundle_id,
+        sample_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Unlink a sample from a bundle.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.unlink_sample_from_bundle(bundle_id, sample_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            bundle_id (str):
+            sample_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;bundle_id&#39;] = \
+            bundle_id
+        kwargs[&#39;sample_id&#39;] = \
+            sample_id
+        return self.unlink_sample_from_bundle_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="libica.openapi.v2.api.bundle_sample_api.BundleSampleApi.get_bundle_samples"><code class="name flex">
+<span>def <span class="ident">get_bundle_samples</span></span>(<span>self, bundle_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve a list of bundle samples.
+# noqa: E501</p>
+<p>This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_bundle_samples(bundle_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>bundle_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the bundle to get bundle samples from</dd>
+</dl>
+<p>Keyword Args:
+search (str): To search through multiple fields of data.. [optional]
+user_tags (str): The user tags to filter on.. [optional]
+technical_tags (str): The technical tags to filter on.. [optional]
+page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter.. [optional]
+page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination.. [optional]
+page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
+sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc" The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
+_return_http_data_only (bool): response data without head status
+code and headers. Default is True.
+_preload_content (bool): if False, the urllib3.HTTPResponse object
+will be returned without reading/decoding response data.
+Default is True.
+_request_timeout (int/float/tuple): timeout setting for this request. If
+one number provided, it will be total request timeout. It can also
+be a pair (tuple) of (connection, read) timeouts.
+Default is None.
+_check_input_type (bool): specifies if type checking
+should be done one the data sent to the server.
+Default is True.
+_check_return_type (bool): specifies if type checking
+should be done one the data received from the server.
+Default is True.
+_spec_property_naming (bool): True if the variable names in the input data
+are serialized names, as specified in the OpenAPI document.
+False if the variable names in the input data
+are pythonic names, e.g. snake case (default)
+_content_type (str/None): force body content-type.
+Default is None and content-type will be predicted by allowed
+content-types and body.
+_host_index (int/None): specifies the index of the server
+that we want to use.
+Default is read from the configuration.
+async_req (bool): execute request asynchronously</p>
+<h2 id="returns">Returns</h2>
+<p>BundleSamplePagedList
+If the method is called asynchronously, returns the request
+thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_bundle_samples(
+    self,
+    bundle_id,
+    **kwargs
+):
+    &#34;&#34;&#34;Retrieve a list of bundle samples.  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    &gt;&gt;&gt; thread = api.get_bundle_samples(bundle_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    Args:
+        bundle_id (str): The ID of the bundle to get bundle samples from
+
+    Keyword Args:
+        search (str): To search through multiple fields of data.. [optional]
+        user_tags (str): The user tags to filter on.. [optional]
+        technical_tags (str): The technical tags to filter on.. [optional]
+        page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter.. [optional]
+        page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination.. [optional]
+        page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
+        sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34; The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
+        _return_http_data_only (bool): response data without head status
+            code and headers. Default is True.
+        _preload_content (bool): if False, the urllib3.HTTPResponse object
+            will be returned without reading/decoding response data.
+            Default is True.
+        _request_timeout (int/float/tuple): timeout setting for this request. If
+            one number provided, it will be total request timeout. It can also
+            be a pair (tuple) of (connection, read) timeouts.
+            Default is None.
+        _check_input_type (bool): specifies if type checking
+            should be done one the data sent to the server.
+            Default is True.
+        _check_return_type (bool): specifies if type checking
+            should be done one the data received from the server.
+            Default is True.
+        _spec_property_naming (bool): True if the variable names in the input data
+            are serialized names, as specified in the OpenAPI document.
+            False if the variable names in the input data
+            are pythonic names, e.g. snake case (default)
+        _content_type (str/None): force body content-type.
+            Default is None and content-type will be predicted by allowed
+            content-types and body.
+        _host_index (int/None): specifies the index of the server
+            that we want to use.
+            Default is read from the configuration.
+        async_req (bool): execute request asynchronously
+
+    Returns:
+        BundleSamplePagedList
+            If the method is called asynchronously, returns the request
+            thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;async_req&#39;] = kwargs.get(
+        &#39;async_req&#39;, False
+    )
+    kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+        &#39;_return_http_data_only&#39;, True
+    )
+    kwargs[&#39;_preload_content&#39;] = kwargs.get(
+        &#39;_preload_content&#39;, True
+    )
+    kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+        &#39;_request_timeout&#39;, None
+    )
+    kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+        &#39;_check_input_type&#39;, True
+    )
+    kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+        &#39;_check_return_type&#39;, True
+    )
+    kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+        &#39;_spec_property_naming&#39;, False
+    )
+    kwargs[&#39;_content_type&#39;] = kwargs.get(
+        &#39;_content_type&#39;)
+    kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+    kwargs[&#39;bundle_id&#39;] = \
+        bundle_id
+    return self.get_bundle_samples_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.v2.api.bundle_sample_api.BundleSampleApi.link_sample_to_bundle"><code class="name flex">
+<span>def <span class="ident">link_sample_to_bundle</span></span>(<span>self, bundle_id, sample_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Link a sample to a bundle.
+# noqa: E501</p>
+<p>This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.link_sample_to_bundle(bundle_id, sample_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<h2 id="args">Args</h2>
+<p>bundle_id (str):
+sample_id (str):
+Keyword Args:
+_return_http_data_only (bool): response data without head status
+code and headers. Default is True.
+_preload_content (bool): if False, the urllib3.HTTPResponse object
+will be returned without reading/decoding response data.
+Default is True.
+_request_timeout (int/float/tuple): timeout setting for this request. If
+one number provided, it will be total request timeout. It can also
+be a pair (tuple) of (connection, read) timeouts.
+Default is None.
+_check_input_type (bool): specifies if type checking
+should be done one the data sent to the server.
+Default is True.
+_check_return_type (bool): specifies if type checking
+should be done one the data received from the server.
+Default is True.
+_spec_property_naming (bool): True if the variable names in the input data
+are serialized names, as specified in the OpenAPI document.
+False if the variable names in the input data
+are pythonic names, e.g. snake case (default)
+_content_type (str/None): force body content-type.
+Default is None and content-type will be predicted by allowed
+content-types and body.
+_host_index (int/None): specifies the index of the server
+that we want to use.
+Default is read from the configuration.
+async_req (bool): execute request asynchronously</p>
+<h2 id="returns">Returns</h2>
+<p>None
+If the method is called asynchronously, returns the request
+thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def link_sample_to_bundle(
+    self,
+    bundle_id,
+    sample_id,
+    **kwargs
+):
+    &#34;&#34;&#34;Link a sample to a bundle.  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    &gt;&gt;&gt; thread = api.link_sample_to_bundle(bundle_id, sample_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    Args:
+        bundle_id (str):
+        sample_id (str):
+
+    Keyword Args:
+        _return_http_data_only (bool): response data without head status
+            code and headers. Default is True.
+        _preload_content (bool): if False, the urllib3.HTTPResponse object
+            will be returned without reading/decoding response data.
+            Default is True.
+        _request_timeout (int/float/tuple): timeout setting for this request. If
+            one number provided, it will be total request timeout. It can also
+            be a pair (tuple) of (connection, read) timeouts.
+            Default is None.
+        _check_input_type (bool): specifies if type checking
+            should be done one the data sent to the server.
+            Default is True.
+        _check_return_type (bool): specifies if type checking
+            should be done one the data received from the server.
+            Default is True.
+        _spec_property_naming (bool): True if the variable names in the input data
+            are serialized names, as specified in the OpenAPI document.
+            False if the variable names in the input data
+            are pythonic names, e.g. snake case (default)
+        _content_type (str/None): force body content-type.
+            Default is None and content-type will be predicted by allowed
+            content-types and body.
+        _host_index (int/None): specifies the index of the server
+            that we want to use.
+            Default is read from the configuration.
+        async_req (bool): execute request asynchronously
+
+    Returns:
+        None
+            If the method is called asynchronously, returns the request
+            thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;async_req&#39;] = kwargs.get(
+        &#39;async_req&#39;, False
+    )
+    kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+        &#39;_return_http_data_only&#39;, True
+    )
+    kwargs[&#39;_preload_content&#39;] = kwargs.get(
+        &#39;_preload_content&#39;, True
+    )
+    kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+        &#39;_request_timeout&#39;, None
+    )
+    kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+        &#39;_check_input_type&#39;, True
+    )
+    kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+        &#39;_check_return_type&#39;, True
+    )
+    kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+        &#39;_spec_property_naming&#39;, False
+    )
+    kwargs[&#39;_content_type&#39;] = kwargs.get(
+        &#39;_content_type&#39;)
+    kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+    kwargs[&#39;bundle_id&#39;] = \
+        bundle_id
+    kwargs[&#39;sample_id&#39;] = \
+        sample_id
+    return self.link_sample_to_bundle_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.v2.api.bundle_sample_api.BundleSampleApi.unlink_sample_from_bundle"><code class="name flex">
+<span>def <span class="ident">unlink_sample_from_bundle</span></span>(<span>self, bundle_id, sample_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Unlink a sample from a bundle.
+# noqa: E501</p>
+<p>This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.unlink_sample_from_bundle(bundle_id, sample_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<h2 id="args">Args</h2>
+<p>bundle_id (str):
+sample_id (str):
+Keyword Args:
+_return_http_data_only (bool): response data without head status
+code and headers. Default is True.
+_preload_content (bool): if False, the urllib3.HTTPResponse object
+will be returned without reading/decoding response data.
+Default is True.
+_request_timeout (int/float/tuple): timeout setting for this request. If
+one number provided, it will be total request timeout. It can also
+be a pair (tuple) of (connection, read) timeouts.
+Default is None.
+_check_input_type (bool): specifies if type checking
+should be done one the data sent to the server.
+Default is True.
+_check_return_type (bool): specifies if type checking
+should be done one the data received from the server.
+Default is True.
+_spec_property_naming (bool): True if the variable names in the input data
+are serialized names, as specified in the OpenAPI document.
+False if the variable names in the input data
+are pythonic names, e.g. snake case (default)
+_content_type (str/None): force body content-type.
+Default is None and content-type will be predicted by allowed
+content-types and body.
+_host_index (int/None): specifies the index of the server
+that we want to use.
+Default is read from the configuration.
+async_req (bool): execute request asynchronously</p>
+<h2 id="returns">Returns</h2>
+<p>None
+If the method is called asynchronously, returns the request
+thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def unlink_sample_from_bundle(
+    self,
+    bundle_id,
+    sample_id,
+    **kwargs
+):
+    &#34;&#34;&#34;Unlink a sample from a bundle.  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    &gt;&gt;&gt; thread = api.unlink_sample_from_bundle(bundle_id, sample_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    Args:
+        bundle_id (str):
+        sample_id (str):
+
+    Keyword Args:
+        _return_http_data_only (bool): response data without head status
+            code and headers. Default is True.
+        _preload_content (bool): if False, the urllib3.HTTPResponse object
+            will be returned without reading/decoding response data.
+            Default is True.
+        _request_timeout (int/float/tuple): timeout setting for this request. If
+            one number provided, it will be total request timeout. It can also
+            be a pair (tuple) of (connection, read) timeouts.
+            Default is None.
+        _check_input_type (bool): specifies if type checking
+            should be done one the data sent to the server.
+            Default is True.
+        _check_return_type (bool): specifies if type checking
+            should be done one the data received from the server.
+            Default is True.
+        _spec_property_naming (bool): True if the variable names in the input data
+            are serialized names, as specified in the OpenAPI document.
+            False if the variable names in the input data
+            are pythonic names, e.g. snake case (default)
+        _content_type (str/None): force body content-type.
+            Default is None and content-type will be predicted by allowed
+            content-types and body.
+        _host_index (int/None): specifies the index of the server
+            that we want to use.
+            Default is read from the configuration.
+        async_req (bool): execute request asynchronously
+
+    Returns:
+        None
+            If the method is called asynchronously, returns the request
+            thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;async_req&#39;] = kwargs.get(
+        &#39;async_req&#39;, False
+    )
+    kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+        &#39;_return_http_data_only&#39;, True
+    )
+    kwargs[&#39;_preload_content&#39;] = kwargs.get(
+        &#39;_preload_content&#39;, True
+    )
+    kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+        &#39;_request_timeout&#39;, None
+    )
+    kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+        &#39;_check_input_type&#39;, True
+    )
+    kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+        &#39;_check_return_type&#39;, True
+    )
+    kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+        &#39;_spec_property_naming&#39;, False
+    )
+    kwargs[&#39;_content_type&#39;] = kwargs.get(
+        &#39;_content_type&#39;)
+    kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+    kwargs[&#39;bundle_id&#39;] = \
+        bundle_id
+    kwargs[&#39;sample_id&#39;] = \
+        sample_id
+    return self.unlink_sample_from_bundle_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="libica.openapi.v2.api" href="index.html">libica.openapi.v2.api</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="libica.openapi.v2.api.bundle_sample_api.BundleSampleApi" href="#libica.openapi.v2.api.bundle_sample_api.BundleSampleApi">BundleSampleApi</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v2.api.bundle_sample_api.BundleSampleApi.get_bundle_samples" href="#libica.openapi.v2.api.bundle_sample_api.BundleSampleApi.get_bundle_samples">get_bundle_samples</a></code></li>
+<li><code><a title="libica.openapi.v2.api.bundle_sample_api.BundleSampleApi.link_sample_to_bundle" href="#libica.openapi.v2.api.bundle_sample_api.BundleSampleApi.link_sample_to_bundle">link_sample_to_bundle</a></code></li>
+<li><code><a title="libica.openapi.v2.api.bundle_sample_api.BundleSampleApi.unlink_sample_from_bundle" href="#libica.openapi.v2.api.bundle_sample_api.BundleSampleApi.unlink_sample_from_bundle">unlink_sample_from_bundle</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
