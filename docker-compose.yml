@@ -53,3 +53,12 @@ services:
       - 4014:4010
     volumes:
       - ./swagger:/swagger
+
+  v2:
+    image: stoplight/prism:4
+    command: mock -d -h 0.0.0.0 "/swagger/openapi_public.yaml"
+    restart: always
+    ports:
+      - 4015:4010
+    volumes:
+      - ./swagger:/swagger

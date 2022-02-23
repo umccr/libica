@@ -25,6 +25,9 @@ ps:
 test_ica_mock:
 	@curl -s -H "Authorization: Bearer Test" -X GET http://localhost/v1/workflows/runs/wfr.anything_work | jq
 
+test_icav2_mock:
+	@curl -s -H "Authorization: Bearer Test" -X GET http://localhost/api/projects/1 | jq
+
 install:
 	@pip install '.[test,dev]'
 	@yarn install
@@ -35,7 +38,7 @@ unit:
 autounit:
 	@py.test --no-cov libica/openapi
 
-test: check
+test:
 	@py.test
 
 tox:
@@ -78,3 +81,29 @@ chkepver:
 # validate swagger openapi definitions
 validate:
 	@. syncapi.sh; validateapi
+
+########
+# ICA v2
+
+.PHONY: getapi2 genapi2 mvapidoc2 rmapi2 sweepapi2
+getapi2:
+	@. syncapi2.sh; getapi
+
+sweepapi2:
+	@python sweep.py
+
+genapi2:
+	@. syncapi2.sh; genapi; mvapidoc
+
+mvapidoc2:
+	@. syncapi2.sh; mvapidoc
+
+check2: chkepver2 validate2
+
+# check endpoint version
+chkepver2:
+	@. syncapi2.sh; chkepver
+
+# validate swagger openapi definitions
+validate2:
+	@. syncapi2.sh; validateapi

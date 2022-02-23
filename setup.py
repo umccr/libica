@@ -25,6 +25,7 @@ setup(
             "pdoc3",
             "mkdocs",
             "mkdocs-material",
+            "openapi-spec-validator",
         ],
         "test": [
             "pytest",
@@ -42,5 +43,6 @@ setup(
         "urllib3",
         "certifi",
         "libumccr",
+        "PyYAML",
     ],
 )

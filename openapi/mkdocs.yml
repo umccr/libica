@@ -5,10 +5,20 @@ nav:
   - libgds: libgds/README.md
   - libens: libens/README.md
   - libconsole: libconsole/README.md
+  - v2: v2/README.md
 
 theme:
   name:
     material
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
 repo_name: umccr-illumina/libica
 repo_url: https://github.com/umccr-illumina/libica

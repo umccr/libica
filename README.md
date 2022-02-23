@@ -3,25 +3,87 @@
 [![Pull Request Build Status](https://github.com/umccr-illumina/libica/workflows/Pull%20Request%20Build/badge.svg)](https://github.com/umccr-illumina/libica/actions) [![PyPI - Downloads](https://img.shields.io/pypi/dm/libica?style=flat)](https://pypistats.org/packages/libica) [![PyPI](https://img.shields.io/pypi/v/libica?style=flat)](https://pypi.org/project/libica) 
 [![PyPI - License](https://img.shields.io/pypi/l/libica?style=flat)](https://opensource.org/licenses/MIT)
 
-Python SDK to programmatically call Illumina Connected Analytics (ICA) BioInformatics web services i.e. SDK for API https://ica-docs.readme.io/reference
-- Workflow Execution Service (WES)
-- Task Execution Service (TES)
-- Genomic Data Store (GDS)
-- Developer Console Service (DCS)
-- Event Notification Service (ENS)
+Python SDK to programmatically call Illumina Connected Analytics (ICA). Supported the following APIs:
 
-**Overview:**
-
-- https://umccr-illumina.github.io/libica/
-- Tested for Python 3.6, 3.7, 3.8, 3.9
-- [Test Coverage](https://umccr-illumina.github.io/libica/coverage/)
-
-## Using OpenAPI Package
-
+- API v1: https://ica-docs.readme.io/reference
+- API v2: https://illumina.gitbook.io/ica/reference/r-api
 - Install through ``pip`` like so:
 ```commandline
 pip install libica
 ```
+
+**Overview:**
+
+- Tested for Python 3.6, 3.7, 3.8, 3.9
+- https://umccr-illumina.github.io/libica/
+- [Test Coverage](https://umccr-illumina.github.io/libica/coverage/)
+- [PyDoc](https://umccr-illumina.github.io/libica/libica/)
+- [Wiki](https://github.com/umccr-illumina/libica/wiki)
+
+## Getting started with SDK for ICA v2
+
+See [pilot.py](pilot.py)
+
+```python
+# List all data in a project
+import os
+from contextlib import closing
+
+from libica.openapi.v2 import Configuration, ApiClient, ApiException
+from libica.openapi.v2.api.project_data_api import ProjectDataApi
+from libica.openapi.v2.model.project_data import ProjectData
+from libica.openapi.v2.model.project_data_paged_list import ProjectDataPagedList
+
+if __name__ == '__main__':
+
+    project_id = os.environ['ICA_PROJECT']
+    file_path = [""]  # empty will list everything under project
+
+    icav2_access_token = os.environ['ICAV2_ACCESS_TOKEN']
+    ica_url = "https://ica.illumina.com/ica/rest"
+
+    configuration = Configuration(
+        host=ica_url,
+        access_token=icav2_access_token,
+    )
+    # configuration.debug = True  # uncomment to debug API call logging
+
+    api_client = ApiClient(
+        configuration=configuration,
+        header_name="Content-Type",
+        header_value="application/vnd.illumina.v3+json",
+    )
+
+    with closing(api_client) as ctx_api_client:
+        project_data_api: ProjectDataApi = ProjectDataApi(api_client=ctx_api_client)
+
+        try:
+            page_token = ""
+            while True:
+                project_data_paged_list: ProjectDataPagedList = project_data_api.get_project_data_list(
+                    project_id=project_id,
+                    file_path=file_path,
+                    page_size=str(1000),
+                    page_token=page_token,
+                )
+
+                for item in project_data_paged_list.items:
+                    project_data: ProjectData = item
+                    print((
+                        project_data.data.id,  # fil.<ID> (or) fol.<ID>
+                        project_data.data.details.path,
+                        project_data.data.details.data_type,
+                    ))
+
+                page_token = project_data_paged_list.next_page_token
+                if not project_data_paged_list.next_page_token:
+                    break
+
+        except ApiException as e:
+            print(e)
+```
+
+## Getting started with SDK for ICA v1
 
 - Export ICA base URL and JWT Bearer token:
 ```
@@ -72,14 +134,55 @@ with libwes.ApiClient(configuration) as api_client:
         print(e)
 ```
 
-More examples available at:
-- [libica.openapi documentation](https://umccr-illumina.github.io/libica/openapi/)
-- [PyDoc](https://umccr-illumina.github.io/libica/libica/)
-- [Wiki](https://github.com/umccr-illumina/libica/wiki)
-
 ## Using App Package
 
 > NOTE: `libica.app` package contains reusable modules that are based on use cases around UMCCR Data Portal backend, CWL Workflows and its orchestration implementations. Hence, it may be a specific implementation, however, it can still be reusable for your cases. Please have a look [into package](libica/app) and quick starter examples are as follows.
+
+### App for ICA v2
+
+See [pilotapp.py](pilotapp.py)
+
+Example: `DataOps` app to list project files, download a file, etc...
+
+```python
+from contextlib import closing
+
+from libica.app import AppHelper
+from libica.app.dataops import ProjectDataOps
+from libica.openapi.v2 import ApiClient
+from libica.openapi.v2.model.project_data import ProjectData
+
+app_helper = AppHelper(debug=False)
+project_id = app_helper.get_icav2_cli_session_project_id()
+
+cli_session_api_client: ApiClient = app_helper \
+    .build_icav2_configuration_with_cli_session() \
+    .get_icav2_api_client()
+
+dataops = ProjectDataOps(project_id=project_id, api_client=cli_session_api_client)
+
+for item in dataops.list_files():
+    project_data: ProjectData = item
+    print((
+        project_data.data.id,  # fil.<ID> (or) fol.<ID>
+        project_data.data.details.path,
+        project_data.data.details.data_type,
+        project_data.data.details.name,
+        project_data.data.details.status,
+        project_data.data.details.file_size_in_bytes,
+        project_data.data.details.time_created,
+    ))
+
+file_path = "/test_folder/SampleSheet.csv"
+print(f"Downloading {file_path} from project_id {project_id}")
+ntf = dataops.download_file(file_path=file_path)
+with closing(ntf) as cf:
+    with open(cf.name, 'r') as f:
+        for line in f.readlines():
+            print(line)
+```
+
+### App for ICA v1
 
 Example: Configuration Object Builder
 
@@ -117,7 +220,7 @@ for file in files:
 
 - Setup virtual environment and activate it
 
-- Install dependencies
+- Install dev dependencies
 ```commandline
 make install
 ```
@@ -147,7 +250,7 @@ make test
 - These CLI tools are Node.js app, hence, required build tools `node`, `npm`, `npx` and `yarn` as follows.
 ```commandline
 node -v
- v14.17.3
+ v14.19.0
 npm -i -g yarn
 yarn install
 npx openapi-generator-cli help
@@ -161,7 +264,16 @@ docker-compose logs
 docker-compose ps
 docker ps
 ```
-- All the autogen config and arrangement refer to [`syncapi.sh`](syncapi.sh) which is called through [`Makefile`](Makefile) targets.
+- All the autogen config and arrangement refer to [`syncapi.sh`](syncapi.sh) and [`syncapi2.sh`](syncapi2.sh) which is called through [`Makefile`](Makefile) targets.
+
+#### Generator Version
+
+- See generator [version compatibility](https://github.com/OpenAPITools/openapi-generator#11---compatibility)
+- Select generator version as follows:
+
+```
+npx openapi-generator-cli version-manager list
+```
 
 ## License
 
