@@ -1,12 +1,11 @@
 from setuptools import setup, find_packages
-from libica import __version__
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
     name="libica",
-    version=__version__,
+    version="2.0.0",
     url="https://github.com/umccr-illumina/libica",
     license="MIT",
     author="UMCCR and Contributors",
@@ -15,6 +14,14 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(exclude=("tests**", "**test**", "docs")),
+    project_urls={
+        "Bug Tracker": "https://github.com/umccr-illumina/libica/issues",
+    },
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
     python_requires=">=3.6",
     extras_require={
         "dev": [
@@ -22,6 +29,7 @@ setup(
             "twine",
             "setuptools",
             "wheel",
+            "build",
             "pdoc3",
             "mkdocs",
             "mkdocs-material",

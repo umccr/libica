@@ -53,14 +53,14 @@ clean:
 
 .PHONY: dist
 dist: clean
-	@python setup.py sdist bdist_wheel
+	@python3 -m build
 
 # Usage: make testpypi version=0.2.0
 testpypi: dist/libica-$(version).tar.gz
-	@twine upload --repository testpypi --sign dist/libica-$(version)*
+	@python3 -m twine upload --repository testpypi --sign dist/libica-$(version)*
 
 pypi: dist/libica-$(version).tar.gz
-	@twine upload --sign dist/libica-$(version)*
+	@python3 -m twine upload --sign dist/libica-$(version)*
 
 .PHONY: getapi genapi mvapidoc rmapi
 getapi:
