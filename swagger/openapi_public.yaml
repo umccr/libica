@@ -244,10 +244,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
+          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
-          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -555,10 +555,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully linked to the bundle.
-          content:
-            application/vnd.illumina.v3+json:
-              schema:
-                $ref: '#/components/schemas/ProjectPipeline'
     delete:
       tags:
       - Bundle Pipeline
@@ -1363,6 +1359,95 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/DataFormatPagedList'
+  /api/entitledbundles:
+    get:
+      tags:
+      - Entitled Bundle
+      summary: Retrieve a list of entitled bundles.
+      operationId: getEntitledBundles
+      parameters:
+      - name: search
+        in: query
+        description: Search
+        schema:
+          type: string
+      - name: userTags
+        in: query
+        description: User tags to filter on
+        schema:
+          type: string
+      - name: technicalTags
+        in: query
+        description: Technical tags to filter on
+        schema:
+          type: string
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter.
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "Which field to order the results by. The default order is ascending,\
+          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
+          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
+          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- name\n\
+          - shortDescription"
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of entitled bundles is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/BundlePagedList'
+  /api/entitledbundles/{entitledBundleId}:
+    get:
+      tags:
+      - Entitled Bundle
+      summary: Retrieve an entitled bundle.
+      operationId: getEntitledBundle
+      parameters:
+      - name: entitledBundleId
+        in: path
+        description: The ID of the entitled bundle to retrieve
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The entitled bundle is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/Bundle'
   /api/activationCodes:findBestMatchingForCwl:
     post:
       tags:
@@ -2184,7 +2269,7 @@ paths:
       tags:
       - Project Analysis
       summary: Retrieve the raw output of an analysis.
-      operationId: h_getExecutionOutputObject
+      operationId: getRawAnalysisOutput
       parameters:
       - name: projectId
         in: path
@@ -2279,6 +2364,27 @@ paths:
       summary: Create and start an analysis for a CWL pipeline.
       operationId: createCwlAnalysis
       parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to <a href=\"\
+          https://tools.ietf.org/id/draft-idempotency-header-01.html\">the IETF spec</a>\
+          \ and is allowed to be max 255 characters long. If the header is supplied,\
+          \ the response of the request will be saved for 7 days for the specific\
+          \ API endpoint, header value and user reference. When the same user makes\
+          \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
+          \ header value, following use cases can occur:<br /><ul><li>the request\
+          \ body is the same as the previous request and an answer is stored => the\
+          \ stored response is returned without executing the request again.</li><li>the\
+          \ request body is the same as the previous request and no answer is stored\
+          \ because the previous request has not finished => 409 error response.</li><li>the\
+          \ request body is not the same as the previous request => 422 error response.</li></ul>This\
+          \ means that each time when executing an API request using the Idempotency-Key\
+          \ header, the request has to contain a new value that hasn't been used in\
+          \ the past 7 days for that specific API and by the specific user."
+        schema:
+          maxLength: 255
+          type: string
       - name: projectId
         in: path
         required: true
@@ -2289,7 +2395,6 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/CreateCwlAnalysis'
-        required: true
       responses:
         default:
           description: A problem occurred.
@@ -2310,6 +2415,27 @@ paths:
       summary: Create and start an analysis for a Nextflow pipeline.
       operationId: createNextflowAnalysis
       parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to <a href=\"\
+          https://tools.ietf.org/id/draft-idempotency-header-01.html\">the IETF spec</a>\
+          \ and is allowed to be max 255 characters long. If the header is supplied,\
+          \ the response of the request will be saved for 7 days for the specific\
+          \ API endpoint, header value and user reference. When the same user makes\
+          \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
+          \ header value, following use cases can occur:<br /><ul><li>the request\
+          \ body is the same as the previous request and an answer is stored => the\
+          \ stored response is returned without executing the request again.</li><li>the\
+          \ request body is the same as the previous request and no answer is stored\
+          \ because the previous request has not finished => 409 error response.</li><li>the\
+          \ request body is not the same as the previous request => 422 error response.</li></ul>This\
+          \ means that each time when executing an API request using the Idempotency-Key\
+          \ header, the request has to contain a new value that hasn't been used in\
+          \ the past 7 days for that specific API and by the specific user."
+        schema:
+          maxLength: 255
+          type: string
       - name: projectId
         in: path
         required: true
@@ -2320,7 +2446,6 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/CreateNextflowAnalysis'
-        required: true
       responses:
         default:
           description: A problem occurred.
@@ -2367,6 +2492,11 @@ paths:
           type: boolean
           nullable: true
           default: false
+      - name: region
+        in: query
+        description: The ID of the region to filter on.
+        schema:
+          type: string
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
@@ -2525,6 +2655,122 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/Project'
+  /api/projects/{projectId}/bundles:
+    get:
+      tags:
+      - Project
+      summary: Retrieve project bundles.
+      operationId: getProjectBundles
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project bundles are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectBundleList'
+  /api/projects/{projectId}/bundles/{bundleId}:
+    get:
+      tags:
+      - Project
+      summary: Retrieve a project bundle.
+      operationId: getProjectBundle
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project bundle is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectBundle'
+    post:
+      tags:
+      - Project
+      summary: Link a bundle to a project.
+      operationId: linkProjectBundle
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The bundle is successfully linked to the project.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectBundle'
+    delete:
+      tags:
+      - Project
+      summary: Unlink a bundle from a project.
+      operationId: unlinkProjectBundle
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The bundle is successfully unlinked from the project.
   /api/projects/{projectId}/base:connectionDetails:
     post:
       tags:
@@ -2948,10 +3194,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
+          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
-          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -3268,10 +3514,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
+          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
-          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -3628,8 +3874,6 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectData'
-        "202":
-          description: The update of the project data is accepted and applied asynchronously.
     post:
       tags:
       - Project Data
@@ -3726,6 +3970,100 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectList'
+  /api/projects/{projectId}/data/{dataId}/secondaryData:
+    get:
+      tags:
+      - Project Data
+      summary: Retrieve a list of secondary data for data.
+      operationId: getSecondaryData
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: dataId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of secondary data is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/DataList'
+  /api/projects/{projectId}/data/{dataId}/secondaryData/{secondaryDataId}:
+    post:
+      tags:
+      - Project Data
+      summary: Add secondary data to data.
+      operationId: addSecondaryData
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: dataId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: secondaryDataId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The secondary data is successfully added.
+    delete:
+      tags:
+      - Project Data
+      summary: Remove secondary data from data.
+      operationId: removeSecondaryData
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: dataId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: secondaryDataId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The secondary data is successfully removed.
   /api/projects/{projectId}/data/{dataId}:createInlineViewUrl:
     post:
       tags:
@@ -3765,9 +4103,7 @@ paths:
       - Project Data
       summary: Retrieve a download URL for this data.
       description: "Can be used to download a file directly from the region where\
-        \ it is located, no connector is needed. Only small files can be downloaded,\
-        \ otherwise a response with status 400 will be returned if the file is too\
-        \ big."
+        \ it is located, no connector is needed."
       operationId: createDownloadUrlForData
       parameters:
       - name: projectId
@@ -4635,6 +4971,8 @@ paths:
       tags:
       - Project Pipeline
       summary: Retrieve a list of project pipelines.
+      description: Retrieve a list of project pipelines. This includes pipelines from
+        linked bundles.
       operationId: getProjectPipelines
       parameters:
       - name: projectId
@@ -4657,6 +4995,48 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProjectPipelineList'
   /api/projects/{projectId}/pipelines/{pipelineId}:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Retrieve a project pipeline.
+      description: Retrieve a project pipeline. This can be a pipeline from a linked
+        bundle.
+      operationId: getProjectPipeline
+      parameters:
+      - name: projectId
+        in: path
+        description: The ID of the project
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project pipeline is successfully retrieved.
+          headers:
+            ETag:
+              description: The current version of the resource. Can be passed to the
+                corresponding PUT endpoint to enable conflict exposure (409 response).
+              style: simple
+              schema:
+                type: string
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectPipeline'
     post:
       tags:
       - Project Pipeline
@@ -4684,10 +5064,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully linked to the project.
-          content:
-            application/vnd.illumina.v3+json:
-              schema:
-                $ref: '#/components/schemas/ProjectPipeline'
     delete:
       tags:
       - Project Pipeline
@@ -4715,6 +5091,78 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully unlinked from the project.
+  /api/projects/{projectId}/pipelines/{pipelineId}/inputParameters:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Retrieve input parameters for a project pipeline.
+      description: Retrieve input parameters for a project pipeline. This can be a
+        pipeline from a linked bundle.
+      operationId: getProjectPipelineInputParameters
+      parameters:
+      - name: projectId
+        in: path
+        description: The ID of the project
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve input parameters for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The input parameters are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/InputParameterList'
+  /api/projects/{projectId}/pipelines/{pipelineId}/referenceSets:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Retrieve the reference sets of a project pipeline.
+      description: Retrieve the reference sets of a project pipeline. This can be
+        a pipeline from a linked bundle.
+      operationId: getProjectPipelineReferenceSets
+      parameters:
+      - name: projectId
+        in: path
+        description: The ID of the project
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: pipelineId
+        in: path
+        description: The ID of the pipeline to retrieve reference sets for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of reference sets is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ReferenceSetList'
   /api/projects/{projectId}/pipelines/{pipelineId}:release:
     post:
       tags:
@@ -5205,10 +5653,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
+          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
-          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -6019,7 +6467,9 @@ paths:
     post:
       tags:
       - Storage Configuration
-      summary: Share a storage configuration.
+      summary: Share your own storage configuration with tenant.
+      description: Here you share your own storage configuration with all the other
+        users in your tenant.
       operationId: shareStorageConfiguration
       parameters:
       - name: storageConfigurationId
@@ -6123,7 +6573,9 @@ paths:
     post:
       tags:
       - Storage Credentials
-      summary: Share a storage credential.
+      summary: Share your own storage credentials with tenant.
+      description: Here you share your own storage credentials with all the other
+        users in your tenant.
       operationId: shareStorageCredential
       parameters:
       - name: storageCredentialId
@@ -6146,6 +6598,8 @@ paths:
       tags:
       - Storage Credentials
       summary: Update a storage credential's secrets.
+      description: When your storage credentials change or get updated due to security
+        reasons you need to update them here.
       operationId: updateStorageCredentialSecrets
       parameters:
       - name: storageCredentialId
@@ -6171,11 +6625,12 @@ paths:
     post:
       tags:
       - Token
-      summary: Generate a JWT using an API-key or Basic Authentication.
-      description: "When using Basic Authentication, and you are member of several\
-        \ tenants, also provide the tenant request parameter to indicate for which\
-        \ tenant you want to authenticate. Note that Basic Authentication will not\
-        \ work for SSO (Single Sign On) enabled authentication."
+      summary: "Generate a JWT using an API-key, Basic Authentication or a psToken."
+      description: "Generate a JWT using an API-key, Basic Authentication or a psToken.\
+        \ When using Basic Authentication, and you are member of several tenants,\
+        \ also provide the tenant request parameter to indicate for which tenant you\
+        \ want to authenticate. Note that Basic Authentication will not work for SSO\
+        \ (Single Sign On) enabled authentication."
       operationId: createJwtToken
       parameters:
       - name: tenant
@@ -6200,6 +6655,7 @@ paths:
       security:
       - ApiKeyAuth: []
       - BasicAuth: []
+      - PsTokenAuth: []
   /api/tokens:refresh:
     post:
       tags:
@@ -6498,9 +6954,9 @@ components:
           additionalProperties:
             type: string
             description: Problem parameters for e.g. request body attribute validation.
-              Not in scope of RFC 7807.
+              This attribute is not in scope of RFC 7807.
           description: Problem parameters for e.g. request body attribute validation.
-            Not in scope of RFC 7807.
+            This attribute is not in scope of RFC 7807.
         timestamp:
           type: string
           format: date-time
@@ -6924,6 +7380,9 @@ components:
         owningProjectId:
           type: string
           format: uuid
+        owningProjectName:
+          type: string
+          nullable: true
         name:
           type: string
           description: The name of the file/folder as it was uploaded.
@@ -7117,7 +7576,7 @@ components:
         code:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*+$"
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
           type: string
           description: The code of the pipeline
         description:
@@ -7147,29 +7606,6 @@ components:
           items:
             type: string
             description: Technical tags
-    BundleList:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Bundle'
-    ProjectPipeline:
-      required:
-      - bundleLinks
-      - pipeline
-      - projectId
-      type: object
-      properties:
-        pipeline:
-          $ref: '#/components/schemas/Pipeline'
-        projectId:
-          type: string
-          format: uuid
-        bundleLinks:
-          $ref: '#/components/schemas/BundleList'
     BundleSample:
       required:
       - bundleId
@@ -7647,6 +8083,31 @@ components:
           - WINDOWS
           - LINUX
           - OSX
+    Application:
+      required:
+      - id
+      - name
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: The unique name identifying the application
+        type:
+          type: string
+          description: The type of the application
+          enum:
+          - MAIN
+          - WEBSOLUTION
+          - EXTERNAL
+        displayName:
+          type: string
+          description: The display name of the application
+          nullable: true
+      nullable: true
     Project:
       required:
       - active
@@ -7718,6 +8179,8 @@ components:
           $ref: '#/components/schemas/StorageConfiguration'
         metadataModel:
           $ref: '#/components/schemas/MetadataModel'
+        application:
+          $ref: '#/components/schemas/Application'
     ProjectTag:
       required:
       - technicalTags
@@ -8210,6 +8673,26 @@ components:
           items:
             type: string
             nullable: true
+        mounts:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisInputDataMount'
+    AnalysisInputDataMount:
+      required:
+      - dataId
+      - mountPath
+      type: object
+      properties:
+        dataId:
+          type: string
+        mountPath:
+          type: string
+          description: "The mount path is the location where the input file will be\
+            \ located on the machine that is running the pipeline. The use of a relative\
+            \ path is encouraged, but an absolute path is also allowed. The path should\
+            \ end with the file name, which may differ from the original input data."
+      nullable: true
     AnalysisParameter:
       type: object
       properties:
@@ -8260,6 +8743,11 @@ components:
           items:
             type: string
             nullable: true
+        mounts:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisInputDataMount'
     CwlAnalysisStructuredInput:
       required:
       - inputs
@@ -8931,11 +9419,15 @@ components:
     AnalysisStep:
       required:
       - id
+      - logs
+      - name
       - status
       - technical
       type: object
       properties:
         id:
+          type: string
+        name:
           type: string
         status:
           type: string
@@ -8965,6 +9457,8 @@ components:
         technical:
           type: boolean
           description: Indicates which kind of step was executed
+        logs:
+          $ref: '#/components/schemas/AnalysisStepLogs'
     AnalysisStepList:
       required:
       - items
@@ -8974,6 +9468,30 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AnalysisStep'
+    AnalysisStepLogs:
+      type: object
+      properties:
+        stdOutData:
+          $ref: '#/components/schemas/Data'
+        stdOutStream:
+          type: string
+          description: A WebSocket URL for reading the standard output log stream.
+            Might be closed by ICA as soon as the analysis step execution has finished.
+          nullable: true
+        stdErrData:
+          $ref: '#/components/schemas/Data'
+        stdErrStream:
+          type: string
+          description: A WebSocket URL for reading the standard error log stream.
+            Might be closed by ICA as soon as the analysis step execution has finished.
+          nullable: true
+      description: "Contains references to the standard output (stdout) and standard\
+        \ error (stderr) log streams of an analysis step. In this object both log\
+        \ streams could be provided in 2 different formats: as a WebSocket stream\
+        \ URL or as an ICA Data reference. The status of the analysis step determines\
+        \ which format is provided: a WebSocket URL during step execution, a Data\
+        \ reference after step execution. Note however that an analysis step might\
+        \ not expose log streams at all, which would result in this object being empty. "
     AnalysisData:
       required:
       - dataId
@@ -9089,7 +9607,7 @@ components:
         userReference:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*+$"
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
           type: string
           description: The user-reference of the analysis. This should be something
             meaningful for the user.
@@ -9108,6 +9626,10 @@ components:
           description: The id of the storage to use for the analysis.
           format: uuid
           nullable: true
+        outputParentFolderId:
+          type: string
+          description: The id of the folder in which the output folder should be created.
+          nullable: true
         analysisInput:
           $ref: '#/components/schemas/CwlAnalysisInput'
     CreateNextflowAnalysis:
@@ -9122,7 +9644,7 @@ components:
         userReference:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*+$"
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
           type: string
           description: The user-reference of the analysis. This should be something
             meaningful for the user.
@@ -9140,6 +9662,10 @@ components:
           type: string
           description: The id of the storage to use for the analysis.
           format: uuid
+          nullable: true
+        outputParentFolderId:
+          type: string
+          description: The id of the folder in which the output folder should be created.
           nullable: true
         analysisInput:
           $ref: '#/components/schemas/NextflowAnalysisInput'
@@ -9236,6 +9762,26 @@ components:
           description: Required when specifying a storageConfigurationId. The subfolder
             determines the object prefix of your self managed storage.
           nullable: true
+    ProjectBundle:
+      required:
+      - bundle
+      - projectId
+      type: object
+      properties:
+        bundle:
+          $ref: '#/components/schemas/Bundle'
+        projectId:
+          type: string
+          format: uuid
+    ProjectBundleList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectBundle'
     BaseConnection:
       required:
       - accessToken
@@ -9455,10 +10001,10 @@ components:
           type: string
           description: Encoding
           nullable: true
+          default: UTF8
           enum:
           - UTF8
           - ISO88591
-          default: UTF8
         forceLoad:
           type: boolean
           description: "When false (default): the data will not be loaded if it was\
@@ -9528,11 +10074,11 @@ components:
           type: string
           description: specifies how to write data in the table.
           nullable: true
+          default: APPENDTOTABLE
           enum:
           - WRITEIFEMPTY
           - APPENDTOTABLE
           - OVERWRITETABLE
-          default: APPENDTOTABLE
     CreateCustomEvent:
       required:
       - code
@@ -9714,11 +10260,12 @@ components:
             \ Alternatively, the folderPath attribute could be used as well for this."
           nullable: true
         folderPath:
+          pattern: .*/$
           type: string
           description: "The absolute path of the folder you want to create this new\
-            \ data in. Alternatively, the folderId attribute could be used as well\
-            \ for this. In case the folder path does not yet exist, it will be automatically\
-            \ created."
+            \ data in which must end with '/'. Alternatively, the folderId attribute\
+            \ could be used as well for this. In case the folder path does not yet\
+            \ exist, it will be automatically created."
           nullable: true
         formatCode:
           type: string
@@ -10407,6 +10954,29 @@ components:
         downloadAllowed:
           type: boolean
           description: Indicates if downloading data is allowed or not.
+    BundleList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Bundle'
+    ProjectPipeline:
+      required:
+      - bundleLinks
+      - pipeline
+      - projectId
+      type: object
+      properties:
+        pipeline:
+          $ref: '#/components/schemas/Pipeline'
+        projectId:
+          type: string
+          format: uuid
+        bundleLinks:
+          $ref: '#/components/schemas/BundleList'
     ProjectPipelineList:
       required:
       - items
@@ -10428,7 +10998,7 @@ components:
         code:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*+$"
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
           type: string
           description: The code of the pipeline
         description:
@@ -10478,8 +11048,6 @@ components:
     InputPart:
       type: object
       properties:
-        contentTypeFromMessage:
-          type: boolean
         mediaType:
           type: object
           properties:
@@ -10497,6 +11065,8 @@ components:
               type: boolean
         bodyAsString:
           type: string
+        contentTypeFromMessage:
+          type: boolean
         headers:
           type: object
           additionalProperties:
@@ -10516,12 +11086,12 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/InputPart'
-        preamble:
-          type: string
         parts:
           type: array
           items:
             $ref: '#/components/schemas/InputPart'
+        preamble:
+          type: string
     CreateCwlPipeline:
       required:
       - analysisStorageId
@@ -10534,7 +11104,7 @@ components:
         code:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*+$"
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
           type: string
           description: The code of the CWL pipeline
         description:
@@ -11253,6 +11823,10 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    PsTokenAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: psToken
     ApiKeyAuth:
       type: apiKey
       name: X-API-Key
