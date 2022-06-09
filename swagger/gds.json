@@ -319,6 +319,70 @@
           }
         }
       },
+      "patch": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Updates list of files with metadata",
+        "description": "Updates list of files with metadata",
+        "operationId": "bulkFileUpdate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BulkFileUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/BulkFileUpdateResponse"
+            }
+          },
+          "202": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/BulkFileUpdateResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
       "get": {
         "tags": [
           "Files"
@@ -429,6 +493,68 @@
             "description": "Success.",
             "schema": {
               "$ref": "#/definitions/FileListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/files/list": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Get a list of volume files",
+        "description": "Gets file list by volume ID and an array of file IDs. The default sort returned is alphabetical, ascending",
+        "operationId": "listVolumeFiles",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/VolumeFileListRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/VolumeFileListResponse"
             }
           },
           "400": {
@@ -883,6 +1009,70 @@
           },
           "409": {
             "description": "A conflict was found. Make sure the new Folder doesn't already exist.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Updates list of folders with metadata",
+        "description": "Updates list of folders with metadata",
+        "operationId": "bulkFolderUpdate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BulkFolderUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/BulkFolderUpdateResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted.",
+            "schema": {
+              "$ref": "#/definitions/BulkFolderUpdateResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -1528,7 +1718,82 @@
         }
       }
     },
-    "/v1/folders/{folderId}/sessions": { },
+    "/v1/folders/{folderId}/sessions": {
+      "post": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Create a session",
+        "description": "Create a session and credentials used for accessing the object store directly",
+        "operationId": "createFolderSession",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "folderId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateSessionRequest"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/CreateSessionResponse"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/folders/{folderId}/jobs/{jobId}": {
       "get": {
         "tags": [
@@ -2143,6 +2408,84 @@
           }
         }
       },
+      "patch": {
+        "tags": [
+          "Volumes"
+        ],
+        "summary": "Update a volume content",
+        "description": "Update an existing volume in GDS and return upload credentials for that volume. ",
+        "operationId": "updateVolume",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "volumeId",
+            "description": "Unique identifier for the volume to be updated.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "description": "Optionally include additional fields in the response.\r\n            Possible values: ObjectStoreAccess",
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/UpdateVolumeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/VolumeResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Volume not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      },
       "delete": {
         "tags": [
           "Volumes"
@@ -2331,6 +2674,18 @@
         }
       }
     },
+    "BulkFailedItem": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of resource that failed",
+          "type": "string"
+        },
+        "errorResponse": {
+          "$ref": "#/definitions/ErrorResponse"
+        }
+      }
+    },
     "BulkFileUpdateItem": {
       "type": "object",
       "properties": {
@@ -2362,6 +2717,10 @@
           "items": {
             "$ref": "#/definitions/BulkFileUpdateItem"
           }
+        },
+        "timeOutInSeconds": {
+          "format": "int32",
+          "type": "integer"
         }
       }
     },
@@ -2407,6 +2766,32 @@
           "items": {
             "$ref": "#/definitions/BulkFolderUpdateItem"
           }
+        },
+        "timeOutInSeconds": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "BulkFolderUpdateResponse": {
+      "type": "object",
+      "properties": {
+        "itemsFailed": {
+          "description": "Items failed to be updated with error details",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BulkUpdateFailedItem"
+          }
+        },
+        "itemsUpdatedCount": {
+          "format": "int32",
+          "description": "Total items successfully updated",
+          "type": "integer"
+        },
+        "itemsFailedCount": {
+          "format": "int32",
+          "description": "Total items failed to be updated",
+          "type": "integer"
         }
       }
     },
@@ -3485,9 +3870,6 @@
       }
     },
     "ObjectStoreSettings": {
-      "required": [
-        "awsS3"
-      ],
       "type": "object",
       "properties": {
         "awsS3": {
@@ -3583,7 +3965,8 @@
       "enum": [
         "Open",
         "Closed",
-        "Completed"
+        "Completed",
+        "CompletedWithError"
       ],
       "type": "string"
     },
@@ -3738,6 +4121,60 @@
         },
         "objectStoreSettings": {
           "$ref": "#/definitions/ObjectStoreSettings"
+        }
+      }
+    },
+    "VolumeFileListRequest": {
+      "description": "Request for listing files within a volume",
+      "type": "object",
+      "properties": {
+        "volumeId": {
+          "description": "Volume identifier",
+          "type": "string"
+        },
+        "fileIds": {
+          "description": "File identifiers to list",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "includePresignedUrl": {
+          "description": "Optional parameter that returns presigned URL for each file when set to true",
+          "type": "boolean"
+        },
+        "presignedUrlMode": {
+          "description": "Optional parameter to specify presigned url's content-disposition. If not specified, the browser will determine the default behavior.\r\nPossible values: Attachment, Inline, Browser",
+          "type": "string"
+        }
+      }
+    },
+    "VolumeFileListResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "description": "Retrieved files",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/FileResponse"
+          }
+        },
+        "itemSuccessCount": {
+          "format": "int32",
+          "description": "Number of items that succeeded",
+          "type": "integer"
+        },
+        "itemFailedCount": {
+          "format": "int32",
+          "description": "Number of items that failed",
+          "type": "integer"
+        },
+        "itemsFailed": {
+          "description": "Item failures with error details",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BulkFailedItem"
+          }
         }
       }
     },
