@@ -5,11 +5,13 @@ All URIs are relative to *https://aps2.platform.illumina.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**archive_file**](FilesApi.md#archive_file) | **POST** /v1/files/{fileId}:archive | Archive a file
+[**bulk_file_update**](FilesApi.md#bulk_file_update) | **PATCH** /v1/files | Updates list of files with metadata
 [**complete_file_upload**](FilesApi.md#complete_file_upload) | **POST** /v1/files/{fileId}:completeUpload | Complete a file Upload
 [**create_file**](FilesApi.md#create_file) | **POST** /v1/files | Create a file entry in GDS and get temporary credentials for upload
 [**delete_file**](FilesApi.md#delete_file) | **DELETE** /v1/files/{fileId} | Permanently delete a file
 [**get_file**](FilesApi.md#get_file) | **GET** /v1/files/{fileId} | Get details about a file, including a pre-signed URL for download
 [**list_files**](FilesApi.md#list_files) | **GET** /v1/files | Get a list of files
+[**list_volume_files**](FilesApi.md#list_volume_files) | **POST** /v1/files/list | Get a list of volume files
 [**unarchive_file**](FilesApi.md#unarchive_file) | **POST** /v1/files/{fileId}:unarchive | Unarchive a file
 [**update_file**](FilesApi.md#update_file) | **PATCH** /v1/files/{fileId} | Update a file entry in GDS and get temporary credentials for upload
 
@@ -94,6 +96,88 @@ Name | Type | Description  | Notes
 **403** | Forbidden. |  -  |
 **404** | File not found. |  -  |
 **409** | Conflict. |  -  |
+**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **bulk_file_update**
+> BulkFileUpdateResponse bulk_file_update(body=body)
+
+Updates list of files with metadata
+
+Updates list of files with metadata
+
+### Example
+
+* Api Key Authentication (Bearer):
+```python
+from __future__ import print_function
+import time
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Bearer
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com",
+    api_key = {
+        'Authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
+    body = libica.openapi.libgds.BulkFileUpdateRequest() # BulkFileUpdateRequest |  (optional)
+
+    try:
+        # Updates list of files with metadata
+        api_response = api_instance.bulk_file_update(body=body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling FilesApi->bulk_file_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**BulkFileUpdateRequest**](BulkFileUpdateRequest.md)|  | [optional] 
+
+### Return type
+
+[**BulkFileUpdateResponse**](BulkFileUpdateResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success. |  -  |
+**202** | Success |  -  |
+**400** | Bad request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
 **0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -533,6 +617,87 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success. |  -  |
+**400** | Bad request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_volume_files**
+> VolumeFileListResponse list_volume_files(body)
+
+Get a list of volume files
+
+Gets file list by volume ID and an array of file IDs. The default sort returned is alphabetical, ascending
+
+### Example
+
+* Api Key Authentication (Bearer):
+```python
+from __future__ import print_function
+import time
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Bearer
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com",
+    api_key = {
+        'Authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
+    body = libica.openapi.libgds.VolumeFileListRequest() # VolumeFileListRequest | 
+
+    try:
+        # Get a list of volume files
+        api_response = api_instance.list_volume_files(body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling FilesApi->list_volume_files: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**VolumeFileListRequest**](VolumeFileListRequest.md)|  | 
+
+### Return type
+
+[**VolumeFileListResponse**](VolumeFileListResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
  - **Accept**: application/json
 
 ### HTTP response details

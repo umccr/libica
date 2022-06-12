@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_volume**](VolumesApi.md#delete_volume) | **DELETE** /v1/volumes/{volumeId} | Deletes a volume by Id
 [**get_volume**](VolumesApi.md#get_volume) | **GET** /v1/volumes/{volumeId} | Get information for the specified volume ID or volume name
 [**list_volumes**](VolumesApi.md#list_volumes) | **GET** /v1/volumes | Get a list of volumes
+[**update_volume**](VolumesApi.md#update_volume) | **PATCH** /v1/volumes/{volumeId} | Update a volume content
 
 
 # **create_volume**
@@ -348,6 +349,92 @@ Name | Type | Description  | Notes
 **400** | Bad request. |  -  |
 **401** | Unauthorized. |  -  |
 **403** | Forbidden. |  -  |
+**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_volume**
+> VolumeResponse update_volume(volume_id, include=include, body=body)
+
+Update a volume content
+
+Update an existing volume in GDS and return upload credentials for that volume. 
+
+### Example
+
+* Api Key Authentication (Bearer):
+```python
+from __future__ import print_function
+import time
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Bearer
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com",
+    api_key = {
+        'Authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.libgds.VolumesApi(api_client)
+    volume_id = 'volume_id_example' # str | Unique identifier for the volume to be updated.
+include = 'include_example' # str | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (optional)
+body = libica.openapi.libgds.UpdateVolumeRequest() # UpdateVolumeRequest |  (optional)
+
+    try:
+        # Update a volume content
+        api_response = api_instance.update_volume(volume_id, include=include, body=body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling VolumesApi->update_volume: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **volume_id** | **str**| Unique identifier for the volume to be updated. | 
+ **include** | **str**| Optionally include additional fields in the response.              Possible values: ObjectStoreAccess | [optional] 
+ **body** | [**UpdateVolumeRequest**](UpdateVolumeRequest.md)|  | [optional] 
+
+### Return type
+
+[**VolumeResponse**](VolumeResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success. |  -  |
+**400** | Bad request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**404** | Volume not found. |  -  |
 **0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

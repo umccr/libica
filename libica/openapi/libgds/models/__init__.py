@@ -18,11 +18,13 @@ from libica.openapi.libgds.models.awss3_object_store_setting import AWSS3ObjectS
 from libica.openapi.libgds.models.archive_statuses import ArchiveStatuses
 from libica.openapi.libgds.models.aws_s3_presigned_url_for_upload import AwsS3PresignedUrlForUpload
 from libica.openapi.libgds.models.aws_s3_temporary_upload_credentials import AwsS3TemporaryUploadCredentials
+from libica.openapi.libgds.models.bulk_failed_item import BulkFailedItem
 from libica.openapi.libgds.models.bulk_file_update_item import BulkFileUpdateItem
 from libica.openapi.libgds.models.bulk_file_update_request import BulkFileUpdateRequest
 from libica.openapi.libgds.models.bulk_file_update_response import BulkFileUpdateResponse
 from libica.openapi.libgds.models.bulk_folder_update_item import BulkFolderUpdateItem
 from libica.openapi.libgds.models.bulk_folder_update_request import BulkFolderUpdateRequest
+from libica.openapi.libgds.models.bulk_folder_update_response import BulkFolderUpdateResponse
 from libica.openapi.libgds.models.bulk_update_failed_item import BulkUpdateFailedItem
 from libica.openapi.libgds.models.complete_session_request import CompleteSessionRequest
 from libica.openapi.libgds.models.create_file_request import CreateFileRequest
@@ -70,6 +72,8 @@ from libica.openapi.libgds.models.update_volume_request import UpdateVolumeReque
 from libica.openapi.libgds.models.volume_configuration_list_response import VolumeConfigurationListResponse
 from libica.openapi.libgds.models.volume_configuration_online_status import VolumeConfigurationOnlineStatus
 from libica.openapi.libgds.models.volume_configuration_response import VolumeConfigurationResponse
+from libica.openapi.libgds.models.volume_file_list_request import VolumeFileListRequest
+from libica.openapi.libgds.models.volume_file_list_response import VolumeFileListResponse
 from libica.openapi.libgds.models.volume_life_cycle_settings import VolumeLifeCycleSettings
 from libica.openapi.libgds.models.volume_list_response import VolumeListResponse
 from libica.openapi.libgds.models.volume_response import VolumeResponse

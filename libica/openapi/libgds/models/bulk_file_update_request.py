@@ -33,24 +33,29 @@ class BulkFileUpdateRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'items': 'list[BulkFileUpdateItem]'
+        'items': 'list[BulkFileUpdateItem]',
+        'time_out_in_seconds': 'int'
     }
 
     attribute_map = {
-        'items': 'items'
+        'items': 'items',
+        'time_out_in_seconds': 'timeOutInSeconds'
     }
 
-    def __init__(self, items=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, items=None, time_out_in_seconds=None, local_vars_configuration=None):  # noqa: E501
         """BulkFileUpdateRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._items = None
+        self._time_out_in_seconds = None
         self.discriminator = None
 
         if items is not None:
             self.items = items
+        if time_out_in_seconds is not None:
+            self.time_out_in_seconds = time_out_in_seconds
 
     @property
     def items(self):
@@ -72,6 +77,27 @@ class BulkFileUpdateRequest(object):
         """
 
         self._items = items
+
+    @property
+    def time_out_in_seconds(self):
+        """Gets the time_out_in_seconds of this BulkFileUpdateRequest.  # noqa: E501
+
+
+        :return: The time_out_in_seconds of this BulkFileUpdateRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._time_out_in_seconds
+
+    @time_out_in_seconds.setter
+    def time_out_in_seconds(self, time_out_in_seconds):
+        """Sets the time_out_in_seconds of this BulkFileUpdateRequest.
+
+
+        :param time_out_in_seconds: The time_out_in_seconds of this BulkFileUpdateRequest.  # noqa: E501
+        :type: int
+        """
+
+        self._time_out_in_seconds = time_out_in_seconds
 
     def to_dict(self):
         """Returns the model properties as a dict"""

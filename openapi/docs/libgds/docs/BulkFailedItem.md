@@ -1,10 +1,10 @@
-# BulkFolderUpdateRequest
+# BulkFailedItem
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**list[BulkFolderUpdateItem]**](BulkFolderUpdateItem.md) |  | [optional] 
-**time_out_in_seconds** | **int** |  | [optional] 
+**id** | **str** | Id of resource that failed | [optional] 
+**error_response** | [**ErrorResponse**](ErrorResponse.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

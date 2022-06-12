@@ -55,7 +55,8 @@ class ObjectStoreSettings(object):
         self._secret_id = None
         self.discriminator = None
 
-        self.aws_s3 = aws_s3
+        if aws_s3 is not None:
+            self.aws_s3 = aws_s3
         if secret_name is not None:
             self.secret_name = secret_name
         if secret_id is not None:
@@ -79,8 +80,6 @@ class ObjectStoreSettings(object):
         :param aws_s3: The aws_s3 of this ObjectStoreSettings.  # noqa: E501
         :type: AWSS3ObjectStoreSetting
         """
-        if self.local_vars_configuration.client_side_validation and aws_s3 is None:  # noqa: E501
-            raise ValueError("Invalid value for `aws_s3`, must not be `None`")  # noqa: E501
 
         self._aws_s3 = aws_s3
 
