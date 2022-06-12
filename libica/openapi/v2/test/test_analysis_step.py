@@ -12,6 +12,8 @@ import sys
 import unittest
 
 import libica.openapi.v2
+from libica.openapi.v2.model.analysis_step_logs import AnalysisStepLogs
+globals()['AnalysisStepLogs'] = AnalysisStepLogs
 from libica.openapi.v2.model.analysis_step import AnalysisStep
 
 

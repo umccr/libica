@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **storage_bundle** | [**StorageBundle**](StorageBundle.md) |  | [optional] 
 **self_managed_storage_configuration** | [**StorageConfiguration**](StorageConfiguration.md) |  | [optional] 
 **metadata_model** | [**MetadataModel**](MetadataModel.md) |  | [optional] 
+**application** | [**Application**](Application.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

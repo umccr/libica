@@ -94,7 +94,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **link_pipeline_to_bundle**
-> ProjectPipeline link_pipeline_to_bundle(bundle_id, pipeline_id)
+> link_pipeline_to_bundle(bundle_id, pipeline_id)
 
 Link a pipeline to a bundle.
 
@@ -107,7 +107,6 @@ Link a pipeline to a bundle.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import bundle_pipeline_api
-from libica.openapi.v2.model.project_pipeline import ProjectPipeline
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -142,8 +141,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Link a pipeline to a bundle.
-        api_response = api_instance.link_pipeline_to_bundle(bundle_id, pipeline_id)
-        pprint(api_response)
+        api_instance.link_pipeline_to_bundle(bundle_id, pipeline_id)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling BundlePipelineApi->link_pipeline_to_bundle: %s\n" % e)
 ```
@@ -158,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProjectPipeline**](ProjectPipeline.md)
+void (empty response body)
 
 ### Authorization
 
@@ -167,7 +165,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json
 
 
 ### HTTP response details

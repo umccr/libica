@@ -37,6 +37,27 @@ class TestProjectPipelineApi(unittest.TestCase):
         """
         pass
 
+    def test_get_project_pipeline(self):
+        """Test case for get_project_pipeline
+
+        Retrieve a project pipeline.  # noqa: E501
+        """
+        pass
+
+    def test_get_project_pipeline_input_parameters(self):
+        """Test case for get_project_pipeline_input_parameters
+
+        Retrieve input parameters for a project pipeline.  # noqa: E501
+        """
+        pass
+
+    def test_get_project_pipeline_reference_sets(self):
+        """Test case for get_project_pipeline_reference_sets
+
+        Retrieve the reference sets of a project pipeline.  # noqa: E501
+        """
+        pass
+
     def test_get_project_pipelines(self):
         """Test case for get_project_pipelines
 

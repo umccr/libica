@@ -4,6 +4,7 @@ All URIs are relative to */ica/rest*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_secondary_data**](ProjectDataApi.md#add_secondary_data) | **POST** /api/projects/{projectId}/data/{dataId}/secondaryData/{secondaryDataId} | Add secondary data to data.
 [**archive_data**](ProjectDataApi.md#archive_data) | **POST** /api/projects/{projectId}/data/{dataId}:archive | Schedule this data for archival.
 [**complete_folder_upload_session**](ProjectDataApi.md#complete_folder_upload_session) | **POST** /api/projects/{projectId}/data/{dataId}/folderUploadSessions/{folderUploadSessionId}:complete | Complete a trackable folder upload session.
 [**create_data_in_project**](ProjectDataApi.md#create_data_in_project) | **POST** /api/projects/{projectId}/data | Create data in this project.
@@ -20,12 +21,100 @@ Method | HTTP request | Description
 [**get_project_data_children**](ProjectDataApi.md#get_project_data_children) | **GET** /api/projects/{projectId}/data/{dataId}/children | Retrieve the children of this data.
 [**get_project_data_list**](ProjectDataApi.md#get_project_data_list) | **GET** /api/projects/{projectId}/data | Retrieve the list of project data.
 [**get_projects_linked_to_data**](ProjectDataApi.md#get_projects_linked_to_data) | **GET** /api/projects/{projectId}/data/{dataId}/linkedProjects | Retrieve a list of projects to which this data is linked.
+[**get_secondary_data**](ProjectDataApi.md#get_secondary_data) | **GET** /api/projects/{projectId}/data/{dataId}/secondaryData | Retrieve a list of secondary data for data.
 [**link_data_to_project**](ProjectDataApi.md#link_data_to_project) | **POST** /api/projects/{projectId}/data/{dataId} | Link data to this project.
+[**remove_secondary_data**](ProjectDataApi.md#remove_secondary_data) | **DELETE** /api/projects/{projectId}/data/{dataId}/secondaryData/{secondaryDataId} | Remove secondary data from data.
 [**schedule_download_for_data**](ProjectDataApi.md#schedule_download_for_data) | **POST** /api/projects/{projectId}/data/{dataId}:scheduleDownload | Schedule a download.
 [**unarchive_data**](ProjectDataApi.md#unarchive_data) | **POST** /api/projects/{projectId}/data/{dataId}:unarchive | Schedule this data for unarchival.
 [**unlink_data_from_project**](ProjectDataApi.md#unlink_data_from_project) | **POST** /api/projects/{projectId}/data/{dataId}:unlink | Unlink data from this project.
 [**update_project_data**](ProjectDataApi.md#update_project_data) | **PUT** /api/projects/{projectId}/data/{dataId} | Update this project data.
 
+
+# **add_secondary_data**
+> add_secondary_data(project_id, data_id, secondary_data_id)
+
+Add secondary data to data.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_data_api
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_data_api.ProjectDataApi(api_client)
+    project_id = "projectId_example" # str | 
+    data_id = "dataId_example" # str | 
+    secondary_data_id = "secondaryDataId_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Add secondary data to data.
+        api_instance.add_secondary_data(project_id, data_id, secondary_data_id)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->add_secondary_data: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **data_id** | **str**|  |
+ **secondary_data_id** | **str**|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The secondary data is successfully added. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **archive_data**
 > archive_data(project_id, data_id)
@@ -265,7 +354,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     create_data = CreateData(
         name="name_example",
         folder_id="folder_id_example",
-        folder_path="folder_path_example",
+        folder_path="jUR,rZ#UM/?R,Fp^l6$ARj",
         format_code="format_code_example",
         data_type="FILE",
     ) # CreateData | The data to create. (optional)
@@ -324,7 +413,7 @@ Name | Type | Description  | Notes
 
 Retrieve a download URL for this data.
 
-Can be used to download a file directly from the region where it is located, no connector is needed. Only small files can be downloaded, otherwise a response with status 400 will be returned if the file is too big.
+Can be used to download a file directly from the region where it is located, no connector is needed.
 
 ### Example
 
@@ -1695,6 +1784,92 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_secondary_data**
+> DataList get_secondary_data(project_id, data_id)
+
+Retrieve a list of secondary data for data.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_data_api
+from libica.openapi.v2.model.data_list import DataList
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_data_api.ProjectDataApi(api_client)
+    project_id = "projectId_example" # str | 
+    data_id = "dataId_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Retrieve a list of secondary data for data.
+        api_response = api_instance.get_secondary_data(project_id, data_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->get_secondary_data: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **data_id** | **str**|  |
+
+### Return type
+
+[**DataList**](DataList.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of secondary data is successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **link_data_to_project**
 > ProjectData link_data_to_project(project_id, data_id)
 
@@ -1777,6 +1952,92 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | The data is successfully linked to the project. |  * ETag - The current version of the resource. Can be passed to the corresponding PUT endpoint to enable conflict exposure (409 response). <br>  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **remove_secondary_data**
+> remove_secondary_data(project_id, data_id, secondary_data_id)
+
+Remove secondary data from data.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_data_api
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_data_api.ProjectDataApi(api_client)
+    project_id = "projectId_example" # str | 
+    data_id = "dataId_example" # str | 
+    secondary_data_id = "secondaryDataId_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Remove secondary data from data.
+        api_instance.remove_secondary_data(project_id, data_id, secondary_data_id)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->remove_secondary_data: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **data_id** | **str**|  |
+ **secondary_data_id** | **str**|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The secondary data is successfully removed. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2101,6 +2362,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 tenant_id="tenant_id_example",
                 tenant_name="tenant_name_example",
                 owning_project_id="owning_project_id_example",
+                owning_project_name="owning_project_name_example",
                 name="name_example",
                 path="path_example",
                 file_size_in_bytes=1,
@@ -2213,7 +2475,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The project data is successfully updated. |  * ETag - The current version of the resource. Can be passed to the corresponding PUT endpoint to enable conflict exposure (409 response). <br>  |
-**202** | The update of the project data is accepted and applied asynchronously. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

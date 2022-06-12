@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **name** | **str** | The name of the file/folder as how it will be created. | 
 **data_type** | **str** |  | 
 **folder_id** | **str, none_type** | The id of the folder you want to create this new data in. Alternatively, the folderPath attribute could be used as well for this. | [optional] 
-**folder_path** | **str, none_type** | The absolute path of the folder you want to create this new data in. Alternatively, the folderId attribute could be used as well for this. In case the folder path does not yet exist, it will be automatically created. | [optional] 
+**folder_path** | **str, none_type** | The absolute path of the folder you want to create this new data in which must end with &#39;/&#39;. Alternatively, the folderId attribute could be used as well for this. In case the folder path does not yet exist, it will be automatically created. | [optional] 
 **format_code** | **str, none_type** | The code of the format you would like to assign at creation time. This is only allowed for file data. If not specified, auto format assignment will be done. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

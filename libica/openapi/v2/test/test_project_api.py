@@ -37,10 +37,38 @@ class TestProjectApi(unittest.TestCase):
         """
         pass
 
+    def test_get_project_bundle(self):
+        """Test case for get_project_bundle
+
+        Retrieve a project bundle.  # noqa: E501
+        """
+        pass
+
+    def test_get_project_bundles(self):
+        """Test case for get_project_bundles
+
+        Retrieve project bundles.  # noqa: E501
+        """
+        pass
+
     def test_get_projects(self):
         """Test case for get_projects
 
         Retrieve a list of projects.  # noqa: E501
+        """
+        pass
+
+    def test_link_project_bundle(self):
+        """Test case for link_project_bundle
+
+        Link a bundle to a project.  # noqa: E501
+        """
+        pass
+
+    def test_unlink_project_bundle(self):
+        """Test case for unlink_project_bundle
+
+        Unlink a bundle from a project.  # noqa: E501
         """
         pass
 

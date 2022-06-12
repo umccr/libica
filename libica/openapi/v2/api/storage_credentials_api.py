@@ -528,8 +528,9 @@ class StorageCredentialsApi(object):
         storage_credential_id,
         **kwargs
     ):
-        """Share a storage credential.  # noqa: E501
+        """Share your own storage credentials with tenant.  # noqa: E501
 
+        Here you share your own storage credentials with all the other users in your tenant.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -607,6 +608,7 @@ class StorageCredentialsApi(object):
     ):
         """Update a storage credential's secrets.  # noqa: E501
 
+        When your storage credentials change or get updated due to security reasons you need to update them here.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

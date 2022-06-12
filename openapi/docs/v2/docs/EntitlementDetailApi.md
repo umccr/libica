@@ -158,6 +158,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     data_ids=[
                         "data_ids_example",
                     ],
+                    mounts=[
+                        AnalysisInputDataMount(
+                            data_id="data_id_example",
+                            mount_path="mount_path_example",
+                        ),
+                    ],
                 ),
             ],
             parameters=[
@@ -362,6 +368,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     parameter_code="parameter_code_example",
                     data_ids=[
                         "data_ids_example",
+                    ],
+                    mounts=[
+                        AnalysisInputDataMount(
+                            data_id="data_id_example",
+                            mount_path="mount_path_example",
+                        ),
                     ],
                 ),
             ],

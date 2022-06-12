@@ -30,11 +30,13 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.application import Application
     from libica.openapi.v2.model.metadata_model import MetadataModel
     from libica.openapi.v2.model.project_tag import ProjectTag
     from libica.openapi.v2.model.region import Region
     from libica.openapi.v2.model.storage_bundle import StorageBundle
     from libica.openapi.v2.model.storage_configuration import StorageConfiguration
+    globals()['Application'] = Application
     globals()['MetadataModel'] = MetadataModel
     globals()['ProjectTag'] = ProjectTag
     globals()['Region'] = Region
@@ -124,6 +126,7 @@ class Project(ModelNormal):
             'storage_bundle': (StorageBundle,),  # noqa: E501
             'self_managed_storage_configuration': (StorageConfiguration,),  # noqa: E501
             'metadata_model': (MetadataModel,),  # noqa: E501
+            'application': (Application,),  # noqa: E501
         }
 
     @cached_property
@@ -149,6 +152,7 @@ class Project(ModelNormal):
         'storage_bundle': 'storageBundle',  # noqa: E501
         'self_managed_storage_configuration': 'selfManagedStorageConfiguration',  # noqa: E501
         'metadata_model': 'metadataModel',  # noqa: E501
+        'application': 'application',  # noqa: E501
     }
 
     read_only_vars = {
@@ -211,6 +215,7 @@ class Project(ModelNormal):
             storage_bundle (StorageBundle): [optional]  # noqa: E501
             self_managed_storage_configuration (StorageConfiguration): [optional]  # noqa: E501
             metadata_model (MetadataModel): [optional]  # noqa: E501
+            application (Application): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -321,6 +326,7 @@ class Project(ModelNormal):
             storage_bundle (StorageBundle): [optional]  # noqa: E501
             self_managed_storage_configuration (StorageConfiguration): [optional]  # noqa: E501
             metadata_model (MetadataModel): [optional]  # noqa: E501
+            application (Application): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

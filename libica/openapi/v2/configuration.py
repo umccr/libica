@@ -429,6 +429,14 @@ conf = libica.openapi.v2.Configuration(
                 'key': 'Authorization',
                 'value': 'Bearer ' + self.access_token
             }
+        if self.access_token is not None:
+            auth['PsTokenAuth'] = {
+                'type': 'bearer',
+                'in': 'header',
+                'format': 'psToken',
+                'key': 'Authorization',
+                'value': 'Bearer ' + self.access_token
+            }
         return auth
 
     def to_debug_report(self):

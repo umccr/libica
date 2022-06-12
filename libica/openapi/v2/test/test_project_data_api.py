@@ -23,6 +23,13 @@ class TestProjectDataApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_add_secondary_data(self):
+        """Test case for add_secondary_data
+
+        Add secondary data to data.  # noqa: E501
+        """
+        pass
+
     def test_archive_data(self):
         """Test case for archive_data
 
@@ -135,10 +142,24 @@ class TestProjectDataApi(unittest.TestCase):
         """
         pass
 
+    def test_get_secondary_data(self):
+        """Test case for get_secondary_data
+
+        Retrieve a list of secondary data for data.  # noqa: E501
+        """
+        pass
+
     def test_link_data_to_project(self):
         """Test case for link_data_to_project
 
         Link data to this project.  # noqa: E501
+        """
+        pass
+
+    def test_remove_secondary_data(self):
+        """Test case for remove_secondary_data
+
+        Remove secondary data from data.  # noqa: E501
         """
         pass
 

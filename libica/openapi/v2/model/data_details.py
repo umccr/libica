@@ -112,6 +112,7 @@ class DataDetails(ModelNormal):
             'tags': (DataTag,),  # noqa: E501
             'data_type': (str,),  # noqa: E501
             'tenant_name': (str, none_type,),  # noqa: E501
+            'owning_project_name': (str, none_type,),  # noqa: E501
             'path': (str, none_type,),  # noqa: E501
             'file_size_in_bytes': (int, none_type,),  # noqa: E501
             'format': (DataFormat,),  # noqa: E501
@@ -137,6 +138,7 @@ class DataDetails(ModelNormal):
         'tags': 'tags',  # noqa: E501
         'data_type': 'dataType',  # noqa: E501
         'tenant_name': 'tenantName',  # noqa: E501
+        'owning_project_name': 'owningProjectName',  # noqa: E501
         'path': 'path',  # noqa: E501
         'file_size_in_bytes': 'fileSizeInBytes',  # noqa: E501
         'format': 'format',  # noqa: E501
@@ -199,6 +201,7 @@ class DataDetails(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
             file_size_in_bytes (int, none_type): The size of the file in bytes. Folders do not have a size.. [optional]  # noqa: E501
             format (DataFormat): [optional]  # noqa: E501
@@ -307,6 +310,7 @@ class DataDetails(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
             file_size_in_bytes (int, none_type): The size of the file in bytes. Folders do not have a size.. [optional]  # noqa: E501
             format (DataFormat): [optional]  # noqa: E501

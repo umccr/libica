@@ -600,8 +600,9 @@ class StorageConfigurationApi(object):
         storage_configuration_id,
         **kwargs
     ):
-        """Share a storage configuration.  # noqa: E501
+        """Share your own storage configuration with tenant.  # noqa: E501
 
+        Here you share your own storage configuration with all the other users in your tenant.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

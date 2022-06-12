@@ -86,8 +86,8 @@ class TestProjectAnalysisApi(unittest.TestCase):
         """
         pass
 
-    def test_h_get_execution_output_object(self):
-        """Test case for h_get_execution_output_object
+    def test_get_raw_analysis_output(self):
+        """Test case for get_raw_analysis_output
 
         Retrieve the raw output of an analysis.  # noqa: E501
         """

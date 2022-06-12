@@ -4,21 +4,22 @@ All URIs are relative to */ica/rest*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_jwt_token**](TokenApi.md#create_jwt_token) | **POST** /api/tokens | Generate a JWT using an API-key or Basic Authentication.
+[**create_jwt_token**](TokenApi.md#create_jwt_token) | **POST** /api/tokens | Generate a JWT using an API-key, Basic Authentication or a psToken.
 [**refresh_jwt_token**](TokenApi.md#refresh_jwt_token) | **POST** /api/tokens:refresh | Refresh a JWT using a not yet expired, still valid JWT.
 
 
 # **create_jwt_token**
 > Token create_jwt_token()
 
-Generate a JWT using an API-key or Basic Authentication.
+Generate a JWT using an API-key, Basic Authentication or a psToken.
 
-When using Basic Authentication, and you are member of several tenants, also provide the tenant request parameter to indicate for which tenant you want to authenticate. Note that Basic Authentication will not work for SSO (Single Sign On) enabled authentication.
+Generate a JWT using an API-key, Basic Authentication or a psToken. When using Basic Authentication, and you are member of several tenants, also provide the tenant request parameter to indicate for which tenant you want to authenticate. Note that Basic Authentication will not work for SSO (Single Sign On) enabled authentication.
 
 ### Example
 
 * Api Key Authentication (ApiKeyAuth):
 * Basic Authentication (BasicAuth):
+* Bearer (psToken) Authentication (PsTokenAuth):
 
 ```python
 import time
@@ -50,6 +51,11 @@ configuration = libica.openapi.v2.Configuration(
     password = 'YOUR_PASSWORD'
 )
 
+# Configure Bearer authorization (psToken): PsTokenAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
 # Enter a context with an instance of the API client
 with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -59,7 +65,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Generate a JWT using an API-key or Basic Authentication.
+        # Generate a JWT using an API-key, Basic Authentication or a psToken.
         api_response = api_instance.create_jwt_token(tenant=tenant)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
@@ -79,7 +85,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth)
+[ApiKeyAuth](../README.md#ApiKeyAuth), [BasicAuth](../README.md#BasicAuth), [PsTokenAuth](../README.md#PsTokenAuth)
 
 ### HTTP request headers
 

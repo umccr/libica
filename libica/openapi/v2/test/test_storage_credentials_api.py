@@ -47,7 +47,7 @@ class TestStorageCredentialsApi(unittest.TestCase):
     def test_share_storage_credential(self):
         """Test case for share_storage_credential
 
-        Share a storage credential.  # noqa: E501
+        Share your own storage credentials with tenant.  # noqa: E501
         """
         pass
 

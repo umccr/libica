@@ -17,6 +17,7 @@ from libica.openapi.v2.model.analysis import Analysis
 from libica.openapi.v2.model.analysis_data import AnalysisData
 from libica.openapi.v2.model.analysis_data_input import AnalysisDataInput
 from libica.openapi.v2.model.analysis_input import AnalysisInput
+from libica.openapi.v2.model.analysis_input_data_mount import AnalysisInputDataMount
 from libica.openapi.v2.model.analysis_input_list import AnalysisInputList
 from libica.openapi.v2.model.analysis_output import AnalysisOutput
 from libica.openapi.v2.model.analysis_output_list import AnalysisOutputList
@@ -26,9 +27,11 @@ from libica.openapi.v2.model.analysis_raw_output import AnalysisRawOutput
 from libica.openapi.v2.model.analysis_reference_data_parameter import AnalysisReferenceDataParameter
 from libica.openapi.v2.model.analysis_step import AnalysisStep
 from libica.openapi.v2.model.analysis_step_list import AnalysisStepList
+from libica.openapi.v2.model.analysis_step_logs import AnalysisStepLogs
 from libica.openapi.v2.model.analysis_storage import AnalysisStorage
 from libica.openapi.v2.model.analysis_storage_list import AnalysisStorageList
 from libica.openapi.v2.model.analysis_tag import AnalysisTag
+from libica.openapi.v2.model.application import Application
 from libica.openapi.v2.model.aws_credentials import AwsCredentials
 from libica.openapi.v2.model.aws_temp_credentials import AwsTempCredentials
 from libica.openapi.v2.model.base_connection import BaseConnection
@@ -126,6 +129,8 @@ from libica.openapi.v2.model.problem import Problem
 from libica.openapi.v2.model.project import Project
 from libica.openapi.v2.model.project_base_table import ProjectBaseTable
 from libica.openapi.v2.model.project_base_table_list import ProjectBaseTableList
+from libica.openapi.v2.model.project_bundle import ProjectBundle
+from libica.openapi.v2.model.project_bundle_list import ProjectBundleList
 from libica.openapi.v2.model.project_data import ProjectData
 from libica.openapi.v2.model.project_data_paged_list import ProjectDataPagedList
 from libica.openapi.v2.model.project_list import ProjectList

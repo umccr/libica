@@ -9,6 +9,7 @@ libica/openapi/v2/api/bundle_sample_api.py
 libica/openapi/v2/api/bundle_tool_api.py
 libica/openapi/v2/api/connector_api.py
 libica/openapi/v2/api/data_format_api.py
+libica/openapi/v2/api/entitled_bundle_api.py
 libica/openapi/v2/api/entitlement_detail_api.py
 libica/openapi/v2/api/event_code_api.py
 libica/openapi/v2/api/event_log_api.py
@@ -47,6 +48,7 @@ libica/openapi/v2/docs/Analysis.md
 libica/openapi/v2/docs/AnalysisData.md
 libica/openapi/v2/docs/AnalysisDataInput.md
 libica/openapi/v2/docs/AnalysisInput.md
+libica/openapi/v2/docs/AnalysisInputDataMount.md
 libica/openapi/v2/docs/AnalysisInputList.md
 libica/openapi/v2/docs/AnalysisOutput.md
 libica/openapi/v2/docs/AnalysisOutputList.md
@@ -56,10 +58,12 @@ libica/openapi/v2/docs/AnalysisRawOutput.md
 libica/openapi/v2/docs/AnalysisReferenceDataParameter.md
 libica/openapi/v2/docs/AnalysisStep.md
 libica/openapi/v2/docs/AnalysisStepList.md
+libica/openapi/v2/docs/AnalysisStepLogs.md
 libica/openapi/v2/docs/AnalysisStorage.md
 libica/openapi/v2/docs/AnalysisStorageApi.md
 libica/openapi/v2/docs/AnalysisStorageList.md
 libica/openapi/v2/docs/AnalysisTag.md
+libica/openapi/v2/docs/Application.md
 libica/openapi/v2/docs/AwsCredentials.md
 libica/openapi/v2/docs/AwsTempCredentials.md
 libica/openapi/v2/docs/BaseConnection.md
@@ -123,6 +127,7 @@ libica/openapi/v2/docs/DataTransfers.md
 libica/openapi/v2/docs/Download.md
 libica/openapi/v2/docs/DownloadRule.md
 libica/openapi/v2/docs/DownloadRuleList.md
+libica/openapi/v2/docs/EntitledBundleApi.md
 libica/openapi/v2/docs/EntitlementDetailApi.md
 libica/openapi/v2/docs/EventCode.md
 libica/openapi/v2/docs/EventCodeApi.md
@@ -175,6 +180,8 @@ libica/openapi/v2/docs/ProjectBaseJobApi.md
 libica/openapi/v2/docs/ProjectBaseTable.md
 libica/openapi/v2/docs/ProjectBaseTableApi.md
 libica/openapi/v2/docs/ProjectBaseTableList.md
+libica/openapi/v2/docs/ProjectBundle.md
+libica/openapi/v2/docs/ProjectBundleList.md
 libica/openapi/v2/docs/ProjectCustomEventsApi.md
 libica/openapi/v2/docs/ProjectCustomNotificationSubscriptionsApi.md
 libica/openapi/v2/docs/ProjectData.md
@@ -250,6 +257,7 @@ libica/openapi/v2/model/analysis.py
 libica/openapi/v2/model/analysis_data.py
 libica/openapi/v2/model/analysis_data_input.py
 libica/openapi/v2/model/analysis_input.py
+libica/openapi/v2/model/analysis_input_data_mount.py
 libica/openapi/v2/model/analysis_input_list.py
 libica/openapi/v2/model/analysis_output.py
 libica/openapi/v2/model/analysis_output_list.py
@@ -259,9 +267,11 @@ libica/openapi/v2/model/analysis_raw_output.py
 libica/openapi/v2/model/analysis_reference_data_parameter.py
 libica/openapi/v2/model/analysis_step.py
 libica/openapi/v2/model/analysis_step_list.py
+libica/openapi/v2/model/analysis_step_logs.py
 libica/openapi/v2/model/analysis_storage.py
 libica/openapi/v2/model/analysis_storage_list.py
 libica/openapi/v2/model/analysis_tag.py
+libica/openapi/v2/model/application.py
 libica/openapi/v2/model/aws_credentials.py
 libica/openapi/v2/model/aws_details.py
 libica/openapi/v2/model/aws_temp_credentials.py
@@ -360,6 +370,8 @@ libica/openapi/v2/model/problem.py
 libica/openapi/v2/model/project.py
 libica/openapi/v2/model/project_base_table.py
 libica/openapi/v2/model/project_base_table_list.py
+libica/openapi/v2/model/project_bundle.py
+libica/openapi/v2/model/project_bundle_list.py
 libica/openapi/v2/model/project_data.py
 libica/openapi/v2/model/project_data_paged_list.py
 libica/openapi/v2/model/project_list.py
@@ -421,6 +433,7 @@ libica/openapi/v2/test/test_analysis.py
 libica/openapi/v2/test/test_analysis_data.py
 libica/openapi/v2/test/test_analysis_data_input.py
 libica/openapi/v2/test/test_analysis_input.py
+libica/openapi/v2/test/test_analysis_input_data_mount.py
 libica/openapi/v2/test/test_analysis_input_list.py
 libica/openapi/v2/test/test_analysis_output.py
 libica/openapi/v2/test/test_analysis_output_list.py
@@ -430,10 +443,12 @@ libica/openapi/v2/test/test_analysis_raw_output.py
 libica/openapi/v2/test/test_analysis_reference_data_parameter.py
 libica/openapi/v2/test/test_analysis_step.py
 libica/openapi/v2/test/test_analysis_step_list.py
+libica/openapi/v2/test/test_analysis_step_logs.py
 libica/openapi/v2/test/test_analysis_storage.py
 libica/openapi/v2/test/test_analysis_storage_api.py
 libica/openapi/v2/test/test_analysis_storage_list.py
 libica/openapi/v2/test/test_analysis_tag.py
+libica/openapi/v2/test/test_application.py
 libica/openapi/v2/test/test_aws_credentials.py
 libica/openapi/v2/test/test_aws_details.py
 libica/openapi/v2/test/test_aws_temp_credentials.py
@@ -498,6 +513,7 @@ libica/openapi/v2/test/test_data_transfers.py
 libica/openapi/v2/test/test_download.py
 libica/openapi/v2/test/test_download_rule.py
 libica/openapi/v2/test/test_download_rule_list.py
+libica/openapi/v2/test/test_entitled_bundle_api.py
 libica/openapi/v2/test/test_entitlement_detail_api.py
 libica/openapi/v2/test/test_event_code.py
 libica/openapi/v2/test/test_event_code_api.py
@@ -550,6 +566,8 @@ libica/openapi/v2/test/test_project_base_job_api.py
 libica/openapi/v2/test/test_project_base_table.py
 libica/openapi/v2/test/test_project_base_table_api.py
 libica/openapi/v2/test/test_project_base_table_list.py
+libica/openapi/v2/test/test_project_bundle.py
+libica/openapi/v2/test/test_project_bundle_list.py
 libica/openapi/v2/test/test_project_custom_events_api.py
 libica/openapi/v2/test/test_project_custom_notification_subscriptions_api.py
 libica/openapi/v2/test/test_project_data.py

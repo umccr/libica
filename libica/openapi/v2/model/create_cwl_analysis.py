@@ -68,7 +68,7 @@ class CreateCwlAnalysis(ModelNormal):
             'max_length': 255,
             'min_length': 1,
             'regex': {
-                'pattern': r'^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*+$',  # noqa: E501
+                'pattern': r'^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$',  # noqa: E501
             },
         },
     }
@@ -102,6 +102,7 @@ class CreateCwlAnalysis(ModelNormal):
             'activation_code_detail_id': (str,),  # noqa: E501
             'analysis_input': (CwlAnalysisInput,),  # noqa: E501
             'analysis_storage_id': (str, none_type,),  # noqa: E501
+            'output_parent_folder_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -116,6 +117,7 @@ class CreateCwlAnalysis(ModelNormal):
         'activation_code_detail_id': 'activationCodeDetailId',  # noqa: E501
         'analysis_input': 'analysisInput',  # noqa: E501
         'analysis_storage_id': 'analysisStorageId',  # noqa: E501
+        'output_parent_folder_id': 'outputParentFolderId',  # noqa: E501
     }
 
     read_only_vars = {
@@ -167,6 +169,7 @@ class CreateCwlAnalysis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
+            output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -261,6 +264,7 @@ class CreateCwlAnalysis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
+            output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -12,11 +12,13 @@ import sys
 import unittest
 
 import libica.openapi.v2
+from libica.openapi.v2.model.application import Application
 from libica.openapi.v2.model.metadata_model import MetadataModel
 from libica.openapi.v2.model.project_tag import ProjectTag
 from libica.openapi.v2.model.region import Region
 from libica.openapi.v2.model.storage_bundle import StorageBundle
 from libica.openapi.v2.model.storage_configuration import StorageConfiguration
+globals()['Application'] = Application
 globals()['MetadataModel'] = MetadataModel
 globals()['ProjectTag'] = ProjectTag
 globals()['Region'] = Region

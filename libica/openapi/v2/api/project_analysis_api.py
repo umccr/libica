@@ -117,35 +117,43 @@ class ProjectAnalysisApi(object):
             params_map={
                 'all': [
                     'project_id',
+                    'idempotency_key',
                     'create_cwl_analysis',
                 ],
                 'required': [
                     'project_id',
-                    'create_cwl_analysis',
                 ],
                 'nullable': [
                 ],
                 'enum': [
                 ],
                 'validation': [
+                    'idempotency_key',
                 ]
             },
             root_map={
                 'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
                 },
                 'allowed_values': {
                 },
                 'openapi_types': {
                     'project_id':
                         (str,),
+                    'idempotency_key':
+                        (str,),
                     'create_cwl_analysis':
                         (CreateCwlAnalysis,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
                 },
                 'location_map': {
                     'project_id': 'path',
+                    'idempotency_key': 'header',
                     'create_cwl_analysis': 'body',
                 },
                 'collection_format_map': {
@@ -177,35 +185,43 @@ class ProjectAnalysisApi(object):
             params_map={
                 'all': [
                     'project_id',
+                    'idempotency_key',
                     'create_nextflow_analysis',
                 ],
                 'required': [
                     'project_id',
-                    'create_nextflow_analysis',
                 ],
                 'nullable': [
                 ],
                 'enum': [
                 ],
                 'validation': [
+                    'idempotency_key',
                 ]
             },
             root_map={
                 'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
                 },
                 'allowed_values': {
                 },
                 'openapi_types': {
                     'project_id':
                         (str,),
+                    'idempotency_key':
+                        (str,),
                     'create_nextflow_analysis':
                         (CreateNextflowAnalysis,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
                 },
                 'location_map': {
                     'project_id': 'path',
+                    'idempotency_key': 'header',
                     'create_nextflow_analysis': 'body',
                 },
                 'collection_format_map': {
@@ -620,7 +636,7 @@ class ProjectAnalysisApi(object):
             },
             api_client=api_client
         )
-        self.h_get_execution_output_object_endpoint = _Endpoint(
+        self.get_raw_analysis_output_endpoint = _Endpoint(
             settings={
                 'response_type': (AnalysisRawOutput,),
                 'auth': [
@@ -628,7 +644,7 @@ class ProjectAnalysisApi(object):
                     'JwtAuth'
                 ],
                 'endpoint_path': '/api/projects/{projectId}/analyses/{analysisId}/rawOutput',
-                'operation_id': 'h_get_execution_output_object',
+                'operation_id': 'get_raw_analysis_output',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -835,7 +851,6 @@ class ProjectAnalysisApi(object):
     def create_cwl_analysis(
         self,
         project_id,
-        create_cwl_analysis,
         **kwargs
     ):
         """Create and start an analysis for a CWL pipeline.  # noqa: E501
@@ -843,14 +858,15 @@ class ProjectAnalysisApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_cwl_analysis(project_id, create_cwl_analysis, async_req=True)
+        >>> thread = api.create_cwl_analysis(project_id, async_req=True)
         >>> result = thread.get()
 
         Args:
             project_id (str):
-            create_cwl_analysis (CreateCwlAnalysis):
 
         Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to <a href=\"https://tools.ietf.org/id/draft-idempotency-header-01.html\">the IETF spec</a> and is allowed to be max 255 characters long. If the header is supplied, the response of the request will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response.</li><li>the request body is not the same as the previous request => 422 error response.</li></ul>This means that each time when executing an API request using the Idempotency-Key header, the request has to contain a new value that hasn't been used in the past 7 days for that specific API and by the specific user.. [optional]
+            create_cwl_analysis (CreateCwlAnalysis): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -909,14 +925,11 @@ class ProjectAnalysisApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['project_id'] = \
             project_id
-        kwargs['create_cwl_analysis'] = \
-            create_cwl_analysis
         return self.create_cwl_analysis_endpoint.call_with_http_info(**kwargs)
 
     def create_nextflow_analysis(
         self,
         project_id,
-        create_nextflow_analysis,
         **kwargs
     ):
         """Create and start an analysis for a Nextflow pipeline.  # noqa: E501
@@ -924,14 +937,15 @@ class ProjectAnalysisApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_nextflow_analysis(project_id, create_nextflow_analysis, async_req=True)
+        >>> thread = api.create_nextflow_analysis(project_id, async_req=True)
         >>> result = thread.get()
 
         Args:
             project_id (str):
-            create_nextflow_analysis (CreateNextflowAnalysis):
 
         Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to <a href=\"https://tools.ietf.org/id/draft-idempotency-header-01.html\">the IETF spec</a> and is allowed to be max 255 characters long. If the header is supplied, the response of the request will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response.</li><li>the request body is not the same as the previous request => 422 error response.</li></ul>This means that each time when executing an API request using the Idempotency-Key header, the request has to contain a new value that hasn't been used in the past 7 days for that specific API and by the specific user.. [optional]
+            create_nextflow_analysis (CreateNextflowAnalysis): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -990,8 +1004,6 @@ class ProjectAnalysisApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['project_id'] = \
             project_id
-        kwargs['create_nextflow_analysis'] = \
-            create_nextflow_analysis
         return self.create_nextflow_analysis_endpoint.call_with_http_info(**kwargs)
 
     def get_analyses(
@@ -1486,7 +1498,7 @@ class ProjectAnalysisApi(object):
             analysis_id
         return self.get_analysis_steps_endpoint.call_with_http_info(**kwargs)
 
-    def h_get_execution_output_object(
+    def get_raw_analysis_output(
         self,
         project_id,
         analysis_id,
@@ -1497,7 +1509,7 @@ class ProjectAnalysisApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.h_get_execution_output_object(project_id, analysis_id, async_req=True)
+        >>> thread = api.get_raw_analysis_output(project_id, analysis_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1565,7 +1577,7 @@ class ProjectAnalysisApi(object):
             project_id
         kwargs['analysis_id'] = \
             analysis_id
-        return self.h_get_execution_output_object_endpoint.call_with_http_info(**kwargs)
+        return self.get_raw_analysis_output_endpoint.call_with_http_info(**kwargs)
 
     def update_analysis(
         self,

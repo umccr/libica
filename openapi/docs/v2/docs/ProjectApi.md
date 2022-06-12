@@ -6,7 +6,11 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_project**](ProjectApi.md#create_project) | **POST** /api/projects | Create a new project.
 [**get_project**](ProjectApi.md#get_project) | **GET** /api/projects/{projectId} | Retrieve a project.
+[**get_project_bundle**](ProjectApi.md#get_project_bundle) | **GET** /api/projects/{projectId}/bundles/{bundleId} | Retrieve a project bundle.
+[**get_project_bundles**](ProjectApi.md#get_project_bundles) | **GET** /api/projects/{projectId}/bundles | Retrieve project bundles.
 [**get_projects**](ProjectApi.md#get_projects) | **GET** /api/projects | Retrieve a list of projects.
+[**link_project_bundle**](ProjectApi.md#link_project_bundle) | **POST** /api/projects/{projectId}/bundles/{bundleId} | Link a bundle to a project.
+[**unlink_project_bundle**](ProjectApi.md#unlink_project_bundle) | **DELETE** /api/projects/{projectId}/bundles/{bundleId} | Unlink a bundle from a project.
 [**update_project**](ProjectApi.md#update_project) | **PUT** /api/projects/{projectId} | Update a project.
 
 
@@ -200,6 +204,176 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_project_bundle**
+> ProjectBundle get_project_bundle(project_id, bundle_id)
+
+Retrieve a project bundle.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_api
+from libica.openapi.v2.model.project_bundle import ProjectBundle
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_api.ProjectApi(api_client)
+    project_id = "projectId_example" # str | 
+    bundle_id = "bundleId_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Retrieve a project bundle.
+        api_response = api_instance.get_project_bundle(project_id, bundle_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectApi->get_project_bundle: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **bundle_id** | **str**|  |
+
+### Return type
+
+[**ProjectBundle**](ProjectBundle.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The project bundle is successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_project_bundles**
+> ProjectBundleList get_project_bundles(project_id)
+
+Retrieve project bundles.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_api
+from libica.openapi.v2.model.project_bundle_list import ProjectBundleList
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_api.ProjectApi(api_client)
+    project_id = "projectId_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Retrieve project bundles.
+        api_response = api_instance.get_project_bundles(project_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectApi->get_project_bundles: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+
+### Return type
+
+[**ProjectBundleList**](ProjectBundleList.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The project bundles are successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_projects**
 > ProjectPagedList get_projects()
 
@@ -251,6 +425,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         "technicalTags_example",
     ] # [str] | Technical tags to filter on (optional)
     include_hidden_projects = False # bool, none_type | Include hidden projects. (optional) if omitted the server will use the default value of False
+    region = "region_example" # str | The ID of the region to filter on. (optional)
     page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. (optional)
     page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. (optional)
     page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
@@ -260,7 +435,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Retrieve a list of projects.
-        api_response = api_instance.get_projects(search=search, user_tags=user_tags, technical_tags=technical_tags, include_hidden_projects=include_hidden_projects, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
+        api_response = api_instance.get_projects(search=search, user_tags=user_tags, technical_tags=technical_tags, include_hidden_projects=include_hidden_projects, region=region, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectApi->get_projects: %s\n" % e)
@@ -275,6 +450,7 @@ Name | Type | Description  | Notes
  **user_tags** | **[str]**| User tags to filter on | [optional]
  **technical_tags** | **[str]**| Technical tags to filter on | [optional]
  **include_hidden_projects** | **bool, none_type**| Include hidden projects. | [optional] if omitted the server will use the default value of False
+ **region** | **str**| The ID of the region to filter on. | [optional]
  **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. | [optional]
  **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. | [optional]
  **page_size** | **str**| The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. | [optional]
@@ -299,6 +475,176 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The list of projects is successfully retrieved |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **link_project_bundle**
+> ProjectBundle link_project_bundle(project_id, bundle_id)
+
+Link a bundle to a project.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_api
+from libica.openapi.v2.model.project_bundle import ProjectBundle
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_api.ProjectApi(api_client)
+    project_id = "projectId_example" # str | 
+    bundle_id = "bundleId_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Link a bundle to a project.
+        api_response = api_instance.link_project_bundle(project_id, bundle_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectApi->link_project_bundle: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **bundle_id** | **str**|  |
+
+### Return type
+
+[**ProjectBundle**](ProjectBundle.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The bundle is successfully linked to the project. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **unlink_project_bundle**
+> unlink_project_bundle(project_id, bundle_id)
+
+Unlink a bundle from a project.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_api
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_api.ProjectApi(api_client)
+    project_id = "projectId_example" # str | 
+    bundle_id = "bundleId_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Unlink a bundle from a project.
+        api_instance.unlink_project_bundle(project_id, bundle_id)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectApi->unlink_project_bundle: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **bundle_id** | **str**|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The bundle is successfully unlinked from the project. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -469,6 +815,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             description="description_example",
             state="DRAFT",
             parent_model_id="parent_model_id_example",
+        ),
+        application=Application(
+            id="id_example",
+            name="name_example",
+            type="MAIN",
+            display_name="display_name_example",
         ),
     ) # Project |  (optional)
 

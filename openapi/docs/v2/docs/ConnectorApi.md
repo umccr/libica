@@ -1568,6 +1568,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 state="DRAFT",
                 parent_model_id="parent_model_id_example",
             ),
+            application=Application(
+                id="id_example",
+                name="name_example",
+                type="MAIN",
+                display_name="display_name_example",
+            ),
         ),
     ) # UploadRule |  (optional)
 

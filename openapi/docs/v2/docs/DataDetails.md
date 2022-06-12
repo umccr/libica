@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **tags** | [**DataTag**](DataTag.md) |  | 
 **data_type** | **str** |  | 
 **tenant_name** | **str, none_type** |  | [optional] 
+**owning_project_name** | **str, none_type** |  | [optional] 
 **path** | **str, none_type** | The user friendly path of the parent of this data. | [optional] 
 **file_size_in_bytes** | **int, none_type** | The size of the file in bytes. Folders do not have a size. | [optional] 
 **format** | [**DataFormat**](DataFormat.md) |  | [optional] 

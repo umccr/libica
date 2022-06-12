@@ -13,11 +13,13 @@ import unittest
 
 import libica.openapi.v2
 from libica.openapi.v2.model.analysis_data_input import AnalysisDataInput
+from libica.openapi.v2.model.analysis_input_data_mount import AnalysisInputDataMount
 from libica.openapi.v2.model.analysis_parameter import AnalysisParameter
 from libica.openapi.v2.model.analysis_reference_data_parameter import AnalysisReferenceDataParameter
 from libica.openapi.v2.model.cwl_analysis_json_input import CwlAnalysisJsonInput
 from libica.openapi.v2.model.cwl_analysis_structured_input import CwlAnalysisStructuredInput
 globals()['AnalysisDataInput'] = AnalysisDataInput
+globals()['AnalysisInputDataMount'] = AnalysisInputDataMount
 globals()['AnalysisParameter'] = AnalysisParameter
 globals()['AnalysisReferenceDataParameter'] = AnalysisReferenceDataParameter
 globals()['CwlAnalysisJsonInput'] = CwlAnalysisJsonInput

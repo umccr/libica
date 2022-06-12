@@ -73,7 +73,7 @@ class Pipeline(ModelNormal):
             'max_length': 255,
             'min_length': 1,
             'regex': {
-                'pattern': r'^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*+$',  # noqa: E501
+                'pattern': r'^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$',  # noqa: E501
             },
         },
         ('description',): {

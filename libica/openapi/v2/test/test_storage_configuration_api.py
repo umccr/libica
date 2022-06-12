@@ -54,7 +54,7 @@ class TestStorageConfigurationApi(unittest.TestCase):
     def test_share_storage_configuration(self):
         """Test case for share_storage_configuration
 
-        Share a storage configuration.  # noqa: E501
+        Share your own storage configuration with tenant.  # noqa: E501
         """
         pass
 

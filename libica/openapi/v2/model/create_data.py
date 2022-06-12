@@ -62,6 +62,11 @@ class CreateData(ModelNormal):
     }
 
     validations = {
+        ('folder_path',): {
+            'regex': {
+                'pattern': r'.*\/$',  # noqa: E501
+            },
+        },
     }
 
     @cached_property
@@ -151,7 +156,7 @@ class CreateData(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             folder_id (str, none_type): The id of the folder you want to create this new data in. Alternatively, the folderPath attribute could be used as well for this.. [optional]  # noqa: E501
-            folder_path (str, none_type): The absolute path of the folder you want to create this new data in. Alternatively, the folderId attribute could be used as well for this. In case the folder path does not yet exist, it will be automatically created.. [optional]  # noqa: E501
+            folder_path (str, none_type): The absolute path of the folder you want to create this new data in which must end with '/'. Alternatively, the folderId attribute could be used as well for this. In case the folder path does not yet exist, it will be automatically created.. [optional]  # noqa: E501
             format_code (str, none_type): The code of the format you would like to assign at creation time. This is only allowed for file data. If not specified, auto format assignment will be done.. [optional]  # noqa: E501
         """
 
@@ -241,7 +246,7 @@ class CreateData(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             folder_id (str, none_type): The id of the folder you want to create this new data in. Alternatively, the folderPath attribute could be used as well for this.. [optional]  # noqa: E501
-            folder_path (str, none_type): The absolute path of the folder you want to create this new data in. Alternatively, the folderId attribute could be used as well for this. In case the folder path does not yet exist, it will be automatically created.. [optional]  # noqa: E501
+            folder_path (str, none_type): The absolute path of the folder you want to create this new data in which must end with '/'. Alternatively, the folderId attribute could be used as well for this. In case the folder path does not yet exist, it will be automatically created.. [optional]  # noqa: E501
             format_code (str, none_type): The code of the format you would like to assign at creation time. This is only allowed for file data. If not specified, auto format assignment will be done.. [optional]  # noqa: E501
         """
 

@@ -89,8 +89,8 @@ class MultipartFormDataInput(ModelNormal):
         return {
             'form_data': ({str: (InputPart,)},),  # noqa: E501
             'form_data_map': ({str: ([InputPart],)},),  # noqa: E501
-            'preamble': (str,),  # noqa: E501
             'parts': ([InputPart],),  # noqa: E501
+            'preamble': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -101,8 +101,8 @@ class MultipartFormDataInput(ModelNormal):
     attribute_map = {
         'form_data': 'formData',  # noqa: E501
         'form_data_map': 'formDataMap',  # noqa: E501
-        'preamble': 'preamble',  # noqa: E501
         'parts': 'parts',  # noqa: E501
+        'preamble': 'preamble',  # noqa: E501
     }
 
     read_only_vars = {
@@ -148,8 +148,8 @@ class MultipartFormDataInput(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             form_data ({str: (InputPart,)}): [optional]  # noqa: E501
             form_data_map ({str: ([InputPart],)}): [optional]  # noqa: E501
-            preamble (str): [optional]  # noqa: E501
             parts ([InputPart]): [optional]  # noqa: E501
+            preamble (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -233,8 +233,8 @@ class MultipartFormDataInput(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             form_data ({str: (InputPart,)}): [optional]  # noqa: E501
             form_data_map ({str: ([InputPart],)}): [optional]  # noqa: E501
-            preamble (str): [optional]  # noqa: E501
             parts ([InputPart]): [optional]  # noqa: E501
+            preamble (str): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

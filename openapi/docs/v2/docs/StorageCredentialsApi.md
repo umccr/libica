@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**create_storage_credential**](StorageCredentialsApi.md#create_storage_credential) | **POST** /api/storageCredentials | Create a new storage credential
 [**get_storage_credential**](StorageCredentialsApi.md#get_storage_credential) | **GET** /api/storageCredentials/{storageCredentialId} | Retrieve a storage credential.
 [**get_storage_credentials**](StorageCredentialsApi.md#get_storage_credentials) | **GET** /api/storageCredentials | Retrieve a list of storage credentials.
-[**share_storage_credential**](StorageCredentialsApi.md#share_storage_credential) | **POST** /api/storageCredentials/{storageCredentialId}:share | Share a storage credential.
+[**share_storage_credential**](StorageCredentialsApi.md#share_storage_credential) | **POST** /api/storageCredentials/{storageCredentialId}:share | Share your own storage credentials with tenant.
 [**update_storage_credential_secrets**](StorageCredentialsApi.md#update_storage_credential_secrets) | **POST** /api/storageCredentials/{storageCredentialId}:updateSecrets | Update a storage credential&#39;s secrets.
 
 
@@ -271,7 +271,9 @@ This endpoint does not need any parameter.
 # **share_storage_credential**
 > share_storage_credential(storage_credential_id)
 
-Share a storage credential.
+Share your own storage credentials with tenant.
+
+Here you share your own storage credentials with all the other users in your tenant.
 
 ### Example
 
@@ -314,7 +316,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Share a storage credential.
+        # Share your own storage credentials with tenant.
         api_instance.share_storage_credential(storage_credential_id)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling StorageCredentialsApi->share_storage_credential: %s\n" % e)
@@ -354,6 +356,8 @@ void (empty response body)
 > update_storage_credential_secrets(storage_credential_id)
 
 Update a storage credential's secrets.
+
+When your storage credentials change or get updated due to security reasons you need to update them here.
 
 ### Example
 

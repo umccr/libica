@@ -8,7 +8,7 @@ Method | HTTP request | Description
 [**get_storage_configuration**](StorageConfigurationApi.md#get_storage_configuration) | **GET** /api/storageConfigurations/{storageConfigurationId} | Retrieve a storage configuration.
 [**get_storage_configuration_details**](StorageConfigurationApi.md#get_storage_configuration_details) | **GET** /api/storageConfigurations/{storageConfigurationId}/details | Retrieve a storage configuration detail.
 [**get_storage_configurations**](StorageConfigurationApi.md#get_storage_configurations) | **GET** /api/storageConfigurations | Retrieve a list of storage configurations.
-[**share_storage_configuration**](StorageConfigurationApi.md#share_storage_configuration) | **POST** /api/storageConfigurations/{storageConfigurationId}:share | Share a storage configuration.
+[**share_storage_configuration**](StorageConfigurationApi.md#share_storage_configuration) | **POST** /api/storageConfigurations/{storageConfigurationId}:share | Share your own storage configuration with tenant.
 
 
 # **create_storage_configuration**
@@ -360,7 +360,9 @@ This endpoint does not need any parameter.
 # **share_storage_configuration**
 > share_storage_configuration(storage_configuration_id)
 
-Share a storage configuration.
+Share your own storage configuration with tenant.
+
+Here you share your own storage configuration with all the other users in your tenant.
 
 ### Example
 
@@ -403,7 +405,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Share a storage configuration.
+        # Share your own storage configuration with tenant.
         api_instance.share_storage_configuration(storage_configuration_id)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling StorageConfigurationApi->share_storage_configuration: %s\n" % e)

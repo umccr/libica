@@ -26,7 +26,7 @@ class TestTokenApi(unittest.TestCase):
     def test_create_jwt_token(self):
         """Test case for create_jwt_token
 
-        Generate a JWT using an API-key or Basic Authentication.  # noqa: E501
+        Generate a JWT using an API-key, Basic Authentication or a psToken.  # noqa: E501
         """
         pass
 

@@ -23,7 +23,6 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
 )
 from libica.openapi.v2.model.bundle_pipeline_list import BundlePipelineList
 from libica.openapi.v2.model.problem import Problem
-from libica.openapi.v2.model.project_pipeline import ProjectPipeline
 
 
 class BundlePipelineApi(object):
@@ -92,7 +91,7 @@ class BundlePipelineApi(object):
         )
         self.link_pipeline_to_bundle_endpoint = _Endpoint(
             settings={
-                'response_type': (ProjectPipeline,),
+                'response_type': None,
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -142,8 +141,7 @@ class BundlePipelineApi(object):
             },
             headers_map={
                 'accept': [
-                    'application/problem+json',
-                    'application/vnd.illumina.v3+json'
+                    'application/problem+json'
                 ],
                 'content_type': [],
             },
@@ -332,7 +330,7 @@ class BundlePipelineApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            ProjectPipeline
+            None
                 If the method is called asynchronously, returns the request
                 thread.
         """
