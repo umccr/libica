@@ -3,23 +3,23 @@
 [![Pull Request Build Status](https://github.com/umccr-illumina/libica/workflows/Pull%20Request%20Build/badge.svg)](https://github.com/umccr-illumina/libica/actions) [![PyPI - Downloads](https://img.shields.io/pypi/dm/libica?style=flat)](https://pypistats.org/packages/libica) [![PyPI](https://img.shields.io/pypi/v/libica?style=flat)](https://pypi.org/project/libica) 
 [![PyPI - License](https://img.shields.io/pypi/l/libica?style=flat)](https://opensource.org/licenses/MIT)
 
-Python SDK to programmatically call Illumina Connected Analytics (ICA) Genomic (multi-omics) data platform and BioInformatics web services. Supported the following APIs:
+Python SDK to programmatically call Illumina Connected Analytics (ICA) Genomic (multi-omics) data platform and BioInformatics web services. This SDK supports both ICA v1 and v2 APIs:
 
-- API v1: https://ica-docs.readme.io/reference
-- API v2: https://illumina.gitbook.io/ica/reference
+- ICAv1 API: https://illumina.gitbook.io/ica-v1/reference/r-api
+- ICAv2 API: https://help.ica.illumina.com/reference/r-api
 - Install through ``pip`` like so:
 ```commandline
 pip install libica
 ```
 
-**Overview:**
+## Overview
 
-- Tested for Python 3.6, 3.7, 3.8, 3.9
-- https://umccr-illumina.github.io/libica/
-- [Changelog](https://github.com/umccr-illumina/libica/blob/main/CHANGELOG.md)
+- Tested for Python 3.6, 3.7, 3.8, 3.9, 3.10
+- See [ChangeLog](https://github.com/umccr-illumina/libica/blob/main/CHANGELOG.md) and [Milestones](https://github.com/umccr-illumina/libica/milestones?state=closed)
 - [Test Coverage](https://umccr-illumina.github.io/libica/coverage/)
-- [PyDoc](https://umccr-illumina.github.io/libica/libica/)
 - [Wiki](https://github.com/umccr-illumina/libica/wiki)
+- SDK Guide: [PyDoc](https://umccr-illumina.github.io/libica/libica/)
+- User Guide: https://umccr-illumina.github.io/libica/
 
 ## Getting started with SDK for ICA v2
 
@@ -166,11 +166,14 @@ cli_session_api_client: ApiClient = app_helper \
 
 # --- Construct ProjectDataOps from dataops module
 
-dataops = ProjectDataOps(project_id=project_id, api_client=cli_session_api_client)
+project_dataops = ProjectDataOps(project_id=project_id, api_client=cli_session_api_client)
 
-# --- List all files under given Project
+# --- List all files under given project's folder
 
-for item in dataops.list_files():
+# If you do not cd into the folder, it will list all files under the project
+project_dataops.cd("/test_folder/")
+
+for item in project_dataops.list_files():
     project_data: ProjectData = item
     print((
         project_data.data.id,  # fil.<ID> (or) fol.<ID>
@@ -186,14 +189,15 @@ for item in dataops.list_files():
 
 file_path = "/test_folder/SampleSheet.csv"
 print(f"Downloading {file_path} from project_id {project_id}")
-ntf = dataops.download_file(file_path=file_path)
+project_dataops.cd(file_path=file_path)
+ntf = project_dataops.download_file()
 with closing(ntf) as cf:
     with open(cf.name, 'r') as f:
         for line in f.readlines():
             print(line)
 ```
 
-For more `dataops` functions (such as Presigned URLs, etc.), see PyDoc: 
+For more, see PyDoc: 
 - https://umccr-illumina.github.io/libica/libica/app/dataops.html
 
 ### App for ICA v1

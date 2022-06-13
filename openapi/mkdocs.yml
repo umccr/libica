@@ -6,6 +6,7 @@ nav:
   - libens: libens/README.md
   - libconsole: libconsole/README.md
   - v2: v2/README.md
+  - app: app/README.md
 
 theme:
   name:

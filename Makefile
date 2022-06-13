@@ -62,6 +62,9 @@ testpypi: dist/libica-$(version).tar.gz
 pypi: dist/libica-$(version).tar.gz
 	@python3 -m twine upload --sign dist/libica-$(version)*
 
+########
+# ICA v1
+
 .PHONY: getapi genapi mvapidoc rmapi
 getapi:
 	@. syncapi.sh; getapi
