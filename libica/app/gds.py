@@ -8,6 +8,7 @@ Consider not to re-do libgds SDK generality.
 import gzip
 import logging
 from tempfile import NamedTemporaryFile
+from typing import List
 from urllib.parse import urlparse
 
 import requests
@@ -20,27 +21,6 @@ logger = logging.getLogger(__name__)
 
 def get_gds_uri(gds_volume_name, gds_path):
     return f"gds://{gds_volume_name}{gds_path}"  # note gds path start with /
-
-
-def get_gds_file_to_bytes(gds_volume_name: str, gds_path: str) -> bytes:
-    """
-    get_object_to_bytes API, with on-the-fly gzip detection and decompression
-
-    :param gds_volume_name:
-    :param gds_path:
-    :return bytes: bytes from the decompressed GDS File body
-    """
-    try:
-        ntf = download_gds_file(gds_volume_name, gds_path)
-        if gds_path.endswith(".gz"):
-            obj_bytes = gzip.decompress(ntf.read())
-        else:
-            obj_bytes = ntf.read()
-        ntf.close()
-        return obj_bytes
-    except Exception as e:
-        message = f"Failed on reading the specified GDS File ({get_gds_uri(gds_volume_name, gds_path)})"
-        raise FileNotFoundError(f"{message} Exception: {e}")
 
 
 def parse_path(gds_path):
@@ -80,11 +60,32 @@ def check_path(volume_name: str, path: str) -> list:
     return files
 
 
+def get_gds_file_to_bytes(gds_volume_name: str, gds_path: str) -> bytes:
+    """
+    get_object_to_bytes API, with on-the-fly gzip detection and decompression
+
+    :param gds_volume_name:
+    :param gds_path:
+    :return bytes: bytes from the decompressed GDS File body
+    """
+    try:
+        ntf = download_gds_file(gds_volume_name, gds_path)
+        if gds_path.endswith(".gz"):
+            obj_bytes = gzip.decompress(ntf.read())
+        else:
+            obj_bytes = ntf.read()
+        ntf.close()
+        return obj_bytes
+    except Exception as e:
+        message = f"Failed on reading the specified GDS File ({get_gds_uri(gds_volume_name, gds_path)})"
+        raise FileNotFoundError(f"{message} Exception: {e}")
+
+
 def get_file_list(volume_name: str, path: str = "/*") -> list:
     return get_files_list(volume_name=volume_name, paths=[path])
 
 
-def get_files_list(volume_name: str, paths: list = ["/*"]) -> list:
+def get_files_list(volume_name: str, paths=None) -> list:
     """Use cases
     Get file listing for given volume_name and paths.
     If path are not specified, it will return listing of all files under given volume_name.
@@ -97,6 +98,9 @@ def get_files_list(volume_name: str, paths: list = ["/*"]) -> list:
     :return: List of libgds.FileResponse objects
     :rtype: list[FileResponse]
     """
+
+    if paths is None:
+        paths = ["/*"]
 
     items = []
 
@@ -184,3 +188,42 @@ def presign_gds_file(file_id: str, volume_name: str, path_: str) -> (bool, str):
             message = f"Failed to sign the specified GDS file (gds://{volume_name}{path_}). Exception - {e}"
             logger.error(message)
             return False, message
+
+
+def get_files_from_gds_by_suffix(location: str, file_suffix: str) -> List[str]:
+    """
+    Use case:
+        For given gds://vol/path/to/folder find file end with extension defined in file_suffix e.g. '.bam'
+        Collect all found and return a list ['gds://location/1.bam', ...]
+    """
+    volume_name, path_ = parse_path(location)
+
+    file_list = []
+
+    with libgds.ApiClient(configuration(libgds)) as api_client:
+        files_api = libgds.FilesApi(api_client)
+        try:
+            page_token = None
+            while True:
+                file_list_response: libgds.FileListResponse = files_api.list_files(
+                    volume_name=[volume_name],
+                    path=[f"{path_}/*"],
+                    page_size=1000,
+                    page_token=page_token,
+                )
+
+                for item in file_list_response.items:
+                    file_: libgds.FileResponse = item
+
+                    if file_.name.endswith(file_suffix):
+                        file_list.append(f"gds://{file_.volume_name}{file_.path}")
+
+                page_token = file_list_response.next_page_token
+                if not file_list_response.next_page_token:
+                    break
+            # while end
+
+        except libgds.ApiException as e:
+            logger.error(f"Exception when calling list_files: \n{e}")
+
+    return file_list

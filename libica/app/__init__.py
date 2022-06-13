@@ -215,3 +215,14 @@ class AppHelper:
             header_name="Content-Type",
             header_value="application/vnd.illumina.v3+json",
         )
+
+
+class AppOps:
+
+    def __init__(self, api_client=None):
+        if api_client:
+            self.api_client = api_client
+        else:
+            # otherwise, we build api_client with standard lookup from well-known locations
+            from libica.openapi.v2 import ApiClient
+            self.api_client: ApiClient = AppHelper().build_icav2_configuration().get_icav2_api_client()
