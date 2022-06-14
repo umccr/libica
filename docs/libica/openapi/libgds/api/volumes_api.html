@@ -568,6 +568,134 @@ class VolumesApi(object):
             _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
             _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
             _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+            collection_formats=collection_formats)
+
+    def update_volume(self, volume_id, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Update a volume content  # noqa: E501
+
+        Update an existing volume in GDS and return upload credentials for that volume.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.update_volume(volume_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str volume_id: Unique identifier for the volume to be updated. (required)
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param UpdateVolumeRequest body:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: VolumeResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;_return_http_data_only&#39;] = True
+        return self.update_volume_with_http_info(volume_id, **kwargs)  # noqa: E501
+
+    def update_volume_with_http_info(self, volume_id, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Update a volume content  # noqa: E501
+
+        Update an existing volume in GDS and return upload credentials for that volume.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.update_volume_with_http_info(volume_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str volume_id: Unique identifier for the volume to be updated. (required)
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param UpdateVolumeRequest body:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(VolumeResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+
+        local_var_params = locals()
+
+        all_params = [
+            &#39;volume_id&#39;,
+            &#39;include&#39;,
+            &#39;body&#39;
+        ]
+        all_params.extend(
+            [
+                &#39;async_req&#39;,
+                &#39;_return_http_data_only&#39;,
+                &#39;_preload_content&#39;,
+                &#39;_request_timeout&#39;
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+            if key not in all_params:
+                raise ApiTypeError(
+                    &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                    &#34; to method update_volume&#34; % key
+                )
+            local_var_params[key] = val
+        del local_var_params[&#39;kwargs&#39;]
+        # verify the required parameter &#39;volume_id&#39; is set
+        if self.api_client.client_side_validation and (&#39;volume_id&#39; not in local_var_params or  # noqa: E501
+                                                        local_var_params[&#39;volume_id&#39;] is None):  # noqa: E501
+            raise ApiValueError(&#34;Missing the required parameter `volume_id` when calling `update_volume`&#34;)  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if &#39;volume_id&#39; in local_var_params:
+            path_params[&#39;volumeId&#39;] = local_var_params[&#39;volume_id&#39;]  # noqa: E501
+
+        query_params = []
+        if &#39;include&#39; in local_var_params and local_var_params[&#39;include&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if &#39;body&#39; in local_var_params:
+            body_params = local_var_params[&#39;body&#39;]
+        # HTTP header `Accept`
+        header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+            [&#39;application/json&#39;])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+            [&#39;application/json-patch+json&#39;, &#39;application/json&#39;, &#39;text/json&#39;, &#39;application/*+json&#39;])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+        return self.api_client.call_api(
+            &#39;/v1/volumes/{volumeId}&#39;, &#39;PATCH&#39;,
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=&#39;VolumeResponse&#39;,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get(&#39;async_req&#39;),
+            _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+            _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+            _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
             collection_formats=collection_formats)</code></pre>
 </details>
 </section>
@@ -1098,6 +1226,134 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             post_params=form_params,
             files=local_var_files,
             response_type=&#39;VolumeListResponse&#39;,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get(&#39;async_req&#39;),
+            _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+            _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+            _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+            collection_formats=collection_formats)
+
+    def update_volume(self, volume_id, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Update a volume content  # noqa: E501
+
+        Update an existing volume in GDS and return upload credentials for that volume.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.update_volume(volume_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str volume_id: Unique identifier for the volume to be updated. (required)
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param UpdateVolumeRequest body:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: VolumeResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;_return_http_data_only&#39;] = True
+        return self.update_volume_with_http_info(volume_id, **kwargs)  # noqa: E501
+
+    def update_volume_with_http_info(self, volume_id, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Update a volume content  # noqa: E501
+
+        Update an existing volume in GDS and return upload credentials for that volume.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.update_volume_with_http_info(volume_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str volume_id: Unique identifier for the volume to be updated. (required)
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param UpdateVolumeRequest body:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(VolumeResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+
+        local_var_params = locals()
+
+        all_params = [
+            &#39;volume_id&#39;,
+            &#39;include&#39;,
+            &#39;body&#39;
+        ]
+        all_params.extend(
+            [
+                &#39;async_req&#39;,
+                &#39;_return_http_data_only&#39;,
+                &#39;_preload_content&#39;,
+                &#39;_request_timeout&#39;
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+            if key not in all_params:
+                raise ApiTypeError(
+                    &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                    &#34; to method update_volume&#34; % key
+                )
+            local_var_params[key] = val
+        del local_var_params[&#39;kwargs&#39;]
+        # verify the required parameter &#39;volume_id&#39; is set
+        if self.api_client.client_side_validation and (&#39;volume_id&#39; not in local_var_params or  # noqa: E501
+                                                        local_var_params[&#39;volume_id&#39;] is None):  # noqa: E501
+            raise ApiValueError(&#34;Missing the required parameter `volume_id` when calling `update_volume`&#34;)  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if &#39;volume_id&#39; in local_var_params:
+            path_params[&#39;volumeId&#39;] = local_var_params[&#39;volume_id&#39;]  # noqa: E501
+
+        query_params = []
+        if &#39;include&#39; in local_var_params and local_var_params[&#39;include&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if &#39;body&#39; in local_var_params:
+            body_params = local_var_params[&#39;body&#39;]
+        # HTTP header `Accept`
+        header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+            [&#39;application/json&#39;])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+            [&#39;application/json-patch+json&#39;, &#39;application/json&#39;, &#39;text/json&#39;, &#39;application/*+json&#39;])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+        return self.api_client.call_api(
+            &#39;/v1/volumes/{volumeId}&#39;, &#39;PATCH&#39;,
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=&#39;VolumeResponse&#39;,  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get(&#39;async_req&#39;),
             _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
@@ -1872,6 +2128,202 @@ returns the request thread.</p></div>
         collection_formats=collection_formats)</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libgds.api.volumes_api.VolumesApi.update_volume"><code class="name flex">
+<span>def <span class="ident">update_volume</span></span>(<span>self, volume_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update a volume content
+# noqa: E501</p>
+<p>Update an existing volume in GDS and return upload credentials for that volume.
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.update_volume(volume_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<p>:param async_req bool: execute request asynchronously
+:param str volume_id: Unique identifier for the volume to be updated. (required)
+:param str include: Optionally include additional fields in the response.
+Possible values: ObjectStoreAccess
+:param UpdateVolumeRequest body:
+:param _preload_content: if False, the urllib3.HTTPResponse object will
+be returned without reading/decoding response
+data. Default is True.
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:return: VolumeResponse
+If the method is called asynchronously,
+returns the request thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_volume(self, volume_id, **kwargs):  # noqa: E501
+    &#34;&#34;&#34;Update a volume content  # noqa: E501
+
+    Update an existing volume in GDS and return upload credentials for that volume.   # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    &gt;&gt;&gt; thread = api.update_volume(volume_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    :param async_req bool: execute request asynchronously
+    :param str volume_id: Unique identifier for the volume to be updated. (required)
+    :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+    :param UpdateVolumeRequest body:
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                             be returned without reading/decoding response
+                             data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :return: VolumeResponse
+             If the method is called asynchronously,
+             returns the request thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;_return_http_data_only&#39;] = True
+    return self.update_volume_with_http_info(volume_id, **kwargs)  # noqa: E501</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.api.volumes_api.VolumesApi.update_volume_with_http_info"><code class="name flex">
+<span>def <span class="ident">update_volume_with_http_info</span></span>(<span>self, volume_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Update a volume content
+# noqa: E501</p>
+<p>Update an existing volume in GDS and return upload credentials for that volume.
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.update_volume_with_http_info(volume_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<p>:param async_req bool: execute request asynchronously
+:param str volume_id: Unique identifier for the volume to be updated. (required)
+:param str include: Optionally include additional fields in the response.
+Possible values: ObjectStoreAccess
+:param UpdateVolumeRequest body:
+:param _return_http_data_only: response data without head status code
+and headers
+:param _preload_content: if False, the urllib3.HTTPResponse object will
+be returned without reading/decoding response
+data. Default is True.
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:return: tuple(VolumeResponse, status_code(int), headers(HTTPHeaderDict))
+If the method is called asynchronously,
+returns the request thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_volume_with_http_info(self, volume_id, **kwargs):  # noqa: E501
+    &#34;&#34;&#34;Update a volume content  # noqa: E501
+
+    Update an existing volume in GDS and return upload credentials for that volume.   # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    &gt;&gt;&gt; thread = api.update_volume_with_http_info(volume_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    :param async_req bool: execute request asynchronously
+    :param str volume_id: Unique identifier for the volume to be updated. (required)
+    :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+    :param UpdateVolumeRequest body:
+    :param _return_http_data_only: response data without head status code
+                                   and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                             be returned without reading/decoding response
+                             data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :return: tuple(VolumeResponse, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously,
+             returns the request thread.
+    &#34;&#34;&#34;
+
+    local_var_params = locals()
+
+    all_params = [
+        &#39;volume_id&#39;,
+        &#39;include&#39;,
+        &#39;body&#39;
+    ]
+    all_params.extend(
+        [
+            &#39;async_req&#39;,
+            &#39;_return_http_data_only&#39;,
+            &#39;_preload_content&#39;,
+            &#39;_request_timeout&#39;
+        ]
+    )
+
+    for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+        if key not in all_params:
+            raise ApiTypeError(
+                &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                &#34; to method update_volume&#34; % key
+            )
+        local_var_params[key] = val
+    del local_var_params[&#39;kwargs&#39;]
+    # verify the required parameter &#39;volume_id&#39; is set
+    if self.api_client.client_side_validation and (&#39;volume_id&#39; not in local_var_params or  # noqa: E501
+                                                    local_var_params[&#39;volume_id&#39;] is None):  # noqa: E501
+        raise ApiValueError(&#34;Missing the required parameter `volume_id` when calling `update_volume`&#34;)  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {}
+    if &#39;volume_id&#39; in local_var_params:
+        path_params[&#39;volumeId&#39;] = local_var_params[&#39;volume_id&#39;]  # noqa: E501
+
+    query_params = []
+    if &#39;include&#39; in local_var_params and local_var_params[&#39;include&#39;] is not None:  # noqa: E501
+        query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    if &#39;body&#39; in local_var_params:
+        body_params = local_var_params[&#39;body&#39;]
+    # HTTP header `Accept`
+    header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+        [&#39;application/json&#39;])  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+        [&#39;application/json-patch+json&#39;, &#39;application/json&#39;, &#39;text/json&#39;, &#39;application/*+json&#39;])  # noqa: E501
+
+    # Authentication setting
+    auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+    return self.api_client.call_api(
+        &#39;/v1/volumes/{volumeId}&#39;, &#39;PATCH&#39;,
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type=&#39;VolumeResponse&#39;,  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get(&#39;async_req&#39;),
+        _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+        _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+        _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+        collection_formats=collection_formats)</code></pre>
+</details>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -1901,6 +2353,8 @@ returns the request thread.</p></div>
 <li><code><a title="libica.openapi.libgds.api.volumes_api.VolumesApi.get_volume_with_http_info" href="#libica.openapi.libgds.api.volumes_api.VolumesApi.get_volume_with_http_info">get_volume_with_http_info</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.volumes_api.VolumesApi.list_volumes" href="#libica.openapi.libgds.api.volumes_api.VolumesApi.list_volumes">list_volumes</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.volumes_api.VolumesApi.list_volumes_with_http_info" href="#libica.openapi.libgds.api.volumes_api.VolumesApi.list_volumes_with_http_info">list_volumes_with_http_info</a></code></li>
+<li><code><a title="libica.openapi.libgds.api.volumes_api.VolumesApi.update_volume" href="#libica.openapi.libgds.api.volumes_api.VolumesApi.update_volume">update_volume</a></code></li>
+<li><code><a title="libica.openapi.libgds.api.volumes_api.VolumesApi.update_volume_with_http_info" href="#libica.openapi.libgds.api.volumes_api.VolumesApi.update_volume_with_http_info">update_volume_with_http_info</a></code></li>
 </ul>
 </li>
 </ul>

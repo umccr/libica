@@ -56,10 +56,12 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from libica.openapi.v2.model.input_parameter_list import InputParameterList
 from libica.openapi.v2.model.links import Links
 from libica.openapi.v2.model.problem import Problem
 from libica.openapi.v2.model.project_pipeline import ProjectPipeline
 from libica.openapi.v2.model.project_pipeline_list import ProjectPipelineList
+from libica.openapi.v2.model.reference_set_list import ReferenceSetList
 
 
 class ProjectPipelineApi(object):
@@ -129,7 +131,7 @@ class ProjectPipelineApi(object):
                         &#39;max_length&#39;: 255,
                         &#39;min_length&#39;: 1,
                         &#39;regex&#39;: {
-                            &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*+$&#39;,  # noqa: E501
+                            &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$&#39;,  # noqa: E501
                         },
                     },
                     (&#39;description&#39;,): {
@@ -270,7 +272,7 @@ class ProjectPipelineApi(object):
                         &#39;max_length&#39;: 255,
                         &#39;min_length&#39;: 1,
                         &#39;regex&#39;: {
-                            &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*+$&#39;,  # noqa: E501
+                            &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$&#39;,  # noqa: E501
                         },
                     },
                     (&#39;description&#39;,): {
@@ -355,6 +357,183 @@ class ProjectPipelineApi(object):
             },
             api_client=api_client
         )
+        self.get_project_pipeline_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (ProjectPipeline,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/pipelines/{pipelineId}&#39;,
+                &#39;operation_id&#39;: &#39;get_project_pipeline&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;pipeline_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;pipeline_id&#39;: &#39;pipelineId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;pipeline_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.get_project_pipeline_input_parameters_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (InputParameterList,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/pipelines/{pipelineId}/inputParameters&#39;,
+                &#39;operation_id&#39;: &#39;get_project_pipeline_input_parameters&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;pipeline_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;pipeline_id&#39;: &#39;pipelineId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;pipeline_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.get_project_pipeline_reference_sets_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (ReferenceSetList,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/pipelines/{pipelineId}/referenceSets&#39;,
+                &#39;operation_id&#39;: &#39;get_project_pipeline_reference_sets&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;pipeline_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;pipeline_id&#39;: &#39;pipelineId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;pipeline_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
         self.get_project_pipelines_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: (ProjectPipelineList,),
@@ -410,7 +589,7 @@ class ProjectPipelineApi(object):
         )
         self.link_pipeline_to_project_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (ProjectPipeline,),
+                &#39;response_type&#39;: None,
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -460,8 +639,7 @@ class ProjectPipelineApi(object):
             },
             headers_map={
                 &#39;accept&#39;: [
-                    &#39;application/problem+json&#39;,
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/problem+json&#39;
                 ],
                 &#39;content_type&#39;: [],
             },
@@ -790,6 +968,252 @@ class ProjectPipelineApi(object):
             analysis_storage_id
         return self.create_nextflow_pipeline_endpoint.call_with_http_info(**kwargs)
 
+    def get_project_pipeline(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve a project pipeline.  # noqa: E501
+
+        Retrieve a project pipeline. This can be a pipeline from a linked bundle.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_project_pipeline(project_id, pipeline_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str): The ID of the project
+            pipeline_id (str): The ID of the project pipeline to retrieve
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ProjectPipeline
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        kwargs[&#39;pipeline_id&#39;] = \
+            pipeline_id
+        return self.get_project_pipeline_endpoint.call_with_http_info(**kwargs)
+
+    def get_project_pipeline_input_parameters(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve input parameters for a project pipeline.  # noqa: E501
+
+        Retrieve input parameters for a project pipeline. This can be a pipeline from a linked bundle.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_project_pipeline_input_parameters(project_id, pipeline_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str): The ID of the project
+            pipeline_id (str): The ID of the project pipeline to retrieve input parameters for
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            InputParameterList
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        kwargs[&#39;pipeline_id&#39;] = \
+            pipeline_id
+        return self.get_project_pipeline_input_parameters_endpoint.call_with_http_info(**kwargs)
+
+    def get_project_pipeline_reference_sets(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve the reference sets of a project pipeline.  # noqa: E501
+
+        Retrieve the reference sets of a project pipeline. This can be a pipeline from a linked bundle.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_project_pipeline_reference_sets(project_id, pipeline_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str): The ID of the project
+            pipeline_id (str): The ID of the pipeline to retrieve reference sets for
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ReferenceSetList
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        kwargs[&#39;pipeline_id&#39;] = \
+            pipeline_id
+        return self.get_project_pipeline_reference_sets_endpoint.call_with_http_info(**kwargs)
+
     def get_project_pipelines(
         self,
         project_id,
@@ -797,6 +1221,7 @@ class ProjectPipelineApi(object):
     ):
         &#34;&#34;&#34;Retrieve a list of project pipelines.  # noqa: E501
 
+        Retrieve a list of project pipelines. This includes pipelines from linked bundles.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -914,7 +1339,7 @@ class ProjectPipelineApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            ProjectPipeline
+            None
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -1199,7 +1624,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                         &#39;max_length&#39;: 255,
                         &#39;min_length&#39;: 1,
                         &#39;regex&#39;: {
-                            &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*+$&#39;,  # noqa: E501
+                            &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$&#39;,  # noqa: E501
                         },
                     },
                     (&#39;description&#39;,): {
@@ -1340,7 +1765,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                         &#39;max_length&#39;: 255,
                         &#39;min_length&#39;: 1,
                         &#39;regex&#39;: {
-                            &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*+$&#39;,  # noqa: E501
+                            &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$&#39;,  # noqa: E501
                         },
                     },
                     (&#39;description&#39;,): {
@@ -1425,6 +1850,183 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             },
             api_client=api_client
         )
+        self.get_project_pipeline_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (ProjectPipeline,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/pipelines/{pipelineId}&#39;,
+                &#39;operation_id&#39;: &#39;get_project_pipeline&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;pipeline_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;pipeline_id&#39;: &#39;pipelineId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;pipeline_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.get_project_pipeline_input_parameters_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (InputParameterList,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/pipelines/{pipelineId}/inputParameters&#39;,
+                &#39;operation_id&#39;: &#39;get_project_pipeline_input_parameters&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;pipeline_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;pipeline_id&#39;: &#39;pipelineId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;pipeline_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.get_project_pipeline_reference_sets_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (ReferenceSetList,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/pipelines/{pipelineId}/referenceSets&#39;,
+                &#39;operation_id&#39;: &#39;get_project_pipeline_reference_sets&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;pipeline_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;pipeline_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;pipeline_id&#39;: &#39;pipelineId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;pipeline_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
         self.get_project_pipelines_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: (ProjectPipelineList,),
@@ -1480,7 +2082,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         )
         self.link_pipeline_to_project_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (ProjectPipeline,),
+                &#39;response_type&#39;: None,
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -1530,8 +2132,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             },
             headers_map={
                 &#39;accept&#39;: [
-                    &#39;application/problem+json&#39;,
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/problem+json&#39;
                 ],
                 &#39;content_type&#39;: [],
             },
@@ -1860,6 +2461,252 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             analysis_storage_id
         return self.create_nextflow_pipeline_endpoint.call_with_http_info(**kwargs)
 
+    def get_project_pipeline(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve a project pipeline.  # noqa: E501
+
+        Retrieve a project pipeline. This can be a pipeline from a linked bundle.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_project_pipeline(project_id, pipeline_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str): The ID of the project
+            pipeline_id (str): The ID of the project pipeline to retrieve
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ProjectPipeline
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        kwargs[&#39;pipeline_id&#39;] = \
+            pipeline_id
+        return self.get_project_pipeline_endpoint.call_with_http_info(**kwargs)
+
+    def get_project_pipeline_input_parameters(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve input parameters for a project pipeline.  # noqa: E501
+
+        Retrieve input parameters for a project pipeline. This can be a pipeline from a linked bundle.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_project_pipeline_input_parameters(project_id, pipeline_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str): The ID of the project
+            pipeline_id (str): The ID of the project pipeline to retrieve input parameters for
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            InputParameterList
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        kwargs[&#39;pipeline_id&#39;] = \
+            pipeline_id
+        return self.get_project_pipeline_input_parameters_endpoint.call_with_http_info(**kwargs)
+
+    def get_project_pipeline_reference_sets(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve the reference sets of a project pipeline.  # noqa: E501
+
+        Retrieve the reference sets of a project pipeline. This can be a pipeline from a linked bundle.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_project_pipeline_reference_sets(project_id, pipeline_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str): The ID of the project
+            pipeline_id (str): The ID of the pipeline to retrieve reference sets for
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ReferenceSetList
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        kwargs[&#39;pipeline_id&#39;] = \
+            pipeline_id
+        return self.get_project_pipeline_reference_sets_endpoint.call_with_http_info(**kwargs)
+
     def get_project_pipelines(
         self,
         project_id,
@@ -1867,6 +2714,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     ):
         &#34;&#34;&#34;Retrieve a list of project pipelines.  # noqa: E501
 
+        Retrieve a list of project pipelines. This includes pipelines from linked bundles.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1984,7 +2832,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             async_req (bool): execute request asynchronously
 
         Returns:
-            ProjectPipeline
+            None
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -2522,13 +3370,429 @@ thread.</p></div>
     return self.create_nextflow_pipeline_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipeline"><code class="name flex">
+<span>def <span class="ident">get_project_pipeline</span></span>(<span>self, project_id, pipeline_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve a project pipeline.
+# noqa: E501</p>
+<p>Retrieve a project pipeline. This can be a pipeline from a linked bundle.
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_project_pipeline(project_id, pipeline_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>project_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the project</dd>
+<dt><strong><code>pipeline_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the project pipeline to retrieve</dd>
+</dl>
+<p>Keyword Args:
+_return_http_data_only (bool): response data without head status
+code and headers. Default is True.
+_preload_content (bool): if False, the urllib3.HTTPResponse object
+will be returned without reading/decoding response data.
+Default is True.
+_request_timeout (int/float/tuple): timeout setting for this request. If
+one number provided, it will be total request timeout. It can also
+be a pair (tuple) of (connection, read) timeouts.
+Default is None.
+_check_input_type (bool): specifies if type checking
+should be done one the data sent to the server.
+Default is True.
+_check_return_type (bool): specifies if type checking
+should be done one the data received from the server.
+Default is True.
+_spec_property_naming (bool): True if the variable names in the input data
+are serialized names, as specified in the OpenAPI document.
+False if the variable names in the input data
+are pythonic names, e.g. snake case (default)
+_content_type (str/None): force body content-type.
+Default is None and content-type will be predicted by allowed
+content-types and body.
+_host_index (int/None): specifies the index of the server
+that we want to use.
+Default is read from the configuration.
+async_req (bool): execute request asynchronously</p>
+<h2 id="returns">Returns</h2>
+<p>ProjectPipeline
+If the method is called asynchronously, returns the request
+thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_project_pipeline(
+    self,
+    project_id,
+    pipeline_id,
+    **kwargs
+):
+    &#34;&#34;&#34;Retrieve a project pipeline.  # noqa: E501
+
+    Retrieve a project pipeline. This can be a pipeline from a linked bundle.  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    &gt;&gt;&gt; thread = api.get_project_pipeline(project_id, pipeline_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    Args:
+        project_id (str): The ID of the project
+        pipeline_id (str): The ID of the project pipeline to retrieve
+
+    Keyword Args:
+        _return_http_data_only (bool): response data without head status
+            code and headers. Default is True.
+        _preload_content (bool): if False, the urllib3.HTTPResponse object
+            will be returned without reading/decoding response data.
+            Default is True.
+        _request_timeout (int/float/tuple): timeout setting for this request. If
+            one number provided, it will be total request timeout. It can also
+            be a pair (tuple) of (connection, read) timeouts.
+            Default is None.
+        _check_input_type (bool): specifies if type checking
+            should be done one the data sent to the server.
+            Default is True.
+        _check_return_type (bool): specifies if type checking
+            should be done one the data received from the server.
+            Default is True.
+        _spec_property_naming (bool): True if the variable names in the input data
+            are serialized names, as specified in the OpenAPI document.
+            False if the variable names in the input data
+            are pythonic names, e.g. snake case (default)
+        _content_type (str/None): force body content-type.
+            Default is None and content-type will be predicted by allowed
+            content-types and body.
+        _host_index (int/None): specifies the index of the server
+            that we want to use.
+            Default is read from the configuration.
+        async_req (bool): execute request asynchronously
+
+    Returns:
+        ProjectPipeline
+            If the method is called asynchronously, returns the request
+            thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;async_req&#39;] = kwargs.get(
+        &#39;async_req&#39;, False
+    )
+    kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+        &#39;_return_http_data_only&#39;, True
+    )
+    kwargs[&#39;_preload_content&#39;] = kwargs.get(
+        &#39;_preload_content&#39;, True
+    )
+    kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+        &#39;_request_timeout&#39;, None
+    )
+    kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+        &#39;_check_input_type&#39;, True
+    )
+    kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+        &#39;_check_return_type&#39;, True
+    )
+    kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+        &#39;_spec_property_naming&#39;, False
+    )
+    kwargs[&#39;_content_type&#39;] = kwargs.get(
+        &#39;_content_type&#39;)
+    kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+    kwargs[&#39;project_id&#39;] = \
+        project_id
+    kwargs[&#39;pipeline_id&#39;] = \
+        pipeline_id
+    return self.get_project_pipeline_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipeline_input_parameters"><code class="name flex">
+<span>def <span class="ident">get_project_pipeline_input_parameters</span></span>(<span>self, project_id, pipeline_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve input parameters for a project pipeline.
+# noqa: E501</p>
+<p>Retrieve input parameters for a project pipeline. This can be a pipeline from a linked bundle.
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_project_pipeline_input_parameters(project_id, pipeline_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>project_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the project</dd>
+<dt><strong><code>pipeline_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the project pipeline to retrieve input parameters for</dd>
+</dl>
+<p>Keyword Args:
+_return_http_data_only (bool): response data without head status
+code and headers. Default is True.
+_preload_content (bool): if False, the urllib3.HTTPResponse object
+will be returned without reading/decoding response data.
+Default is True.
+_request_timeout (int/float/tuple): timeout setting for this request. If
+one number provided, it will be total request timeout. It can also
+be a pair (tuple) of (connection, read) timeouts.
+Default is None.
+_check_input_type (bool): specifies if type checking
+should be done one the data sent to the server.
+Default is True.
+_check_return_type (bool): specifies if type checking
+should be done one the data received from the server.
+Default is True.
+_spec_property_naming (bool): True if the variable names in the input data
+are serialized names, as specified in the OpenAPI document.
+False if the variable names in the input data
+are pythonic names, e.g. snake case (default)
+_content_type (str/None): force body content-type.
+Default is None and content-type will be predicted by allowed
+content-types and body.
+_host_index (int/None): specifies the index of the server
+that we want to use.
+Default is read from the configuration.
+async_req (bool): execute request asynchronously</p>
+<h2 id="returns">Returns</h2>
+<p>InputParameterList
+If the method is called asynchronously, returns the request
+thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_project_pipeline_input_parameters(
+    self,
+    project_id,
+    pipeline_id,
+    **kwargs
+):
+    &#34;&#34;&#34;Retrieve input parameters for a project pipeline.  # noqa: E501
+
+    Retrieve input parameters for a project pipeline. This can be a pipeline from a linked bundle.  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    &gt;&gt;&gt; thread = api.get_project_pipeline_input_parameters(project_id, pipeline_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    Args:
+        project_id (str): The ID of the project
+        pipeline_id (str): The ID of the project pipeline to retrieve input parameters for
+
+    Keyword Args:
+        _return_http_data_only (bool): response data without head status
+            code and headers. Default is True.
+        _preload_content (bool): if False, the urllib3.HTTPResponse object
+            will be returned without reading/decoding response data.
+            Default is True.
+        _request_timeout (int/float/tuple): timeout setting for this request. If
+            one number provided, it will be total request timeout. It can also
+            be a pair (tuple) of (connection, read) timeouts.
+            Default is None.
+        _check_input_type (bool): specifies if type checking
+            should be done one the data sent to the server.
+            Default is True.
+        _check_return_type (bool): specifies if type checking
+            should be done one the data received from the server.
+            Default is True.
+        _spec_property_naming (bool): True if the variable names in the input data
+            are serialized names, as specified in the OpenAPI document.
+            False if the variable names in the input data
+            are pythonic names, e.g. snake case (default)
+        _content_type (str/None): force body content-type.
+            Default is None and content-type will be predicted by allowed
+            content-types and body.
+        _host_index (int/None): specifies the index of the server
+            that we want to use.
+            Default is read from the configuration.
+        async_req (bool): execute request asynchronously
+
+    Returns:
+        InputParameterList
+            If the method is called asynchronously, returns the request
+            thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;async_req&#39;] = kwargs.get(
+        &#39;async_req&#39;, False
+    )
+    kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+        &#39;_return_http_data_only&#39;, True
+    )
+    kwargs[&#39;_preload_content&#39;] = kwargs.get(
+        &#39;_preload_content&#39;, True
+    )
+    kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+        &#39;_request_timeout&#39;, None
+    )
+    kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+        &#39;_check_input_type&#39;, True
+    )
+    kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+        &#39;_check_return_type&#39;, True
+    )
+    kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+        &#39;_spec_property_naming&#39;, False
+    )
+    kwargs[&#39;_content_type&#39;] = kwargs.get(
+        &#39;_content_type&#39;)
+    kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+    kwargs[&#39;project_id&#39;] = \
+        project_id
+    kwargs[&#39;pipeline_id&#39;] = \
+        pipeline_id
+    return self.get_project_pipeline_input_parameters_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipeline_reference_sets"><code class="name flex">
+<span>def <span class="ident">get_project_pipeline_reference_sets</span></span>(<span>self, project_id, pipeline_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve the reference sets of a project pipeline.
+# noqa: E501</p>
+<p>Retrieve the reference sets of a project pipeline. This can be a pipeline from a linked bundle.
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_project_pipeline_reference_sets(project_id, pipeline_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>project_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the project</dd>
+<dt><strong><code>pipeline_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the pipeline to retrieve reference sets for</dd>
+</dl>
+<p>Keyword Args:
+_return_http_data_only (bool): response data without head status
+code and headers. Default is True.
+_preload_content (bool): if False, the urllib3.HTTPResponse object
+will be returned without reading/decoding response data.
+Default is True.
+_request_timeout (int/float/tuple): timeout setting for this request. If
+one number provided, it will be total request timeout. It can also
+be a pair (tuple) of (connection, read) timeouts.
+Default is None.
+_check_input_type (bool): specifies if type checking
+should be done one the data sent to the server.
+Default is True.
+_check_return_type (bool): specifies if type checking
+should be done one the data received from the server.
+Default is True.
+_spec_property_naming (bool): True if the variable names in the input data
+are serialized names, as specified in the OpenAPI document.
+False if the variable names in the input data
+are pythonic names, e.g. snake case (default)
+_content_type (str/None): force body content-type.
+Default is None and content-type will be predicted by allowed
+content-types and body.
+_host_index (int/None): specifies the index of the server
+that we want to use.
+Default is read from the configuration.
+async_req (bool): execute request asynchronously</p>
+<h2 id="returns">Returns</h2>
+<p>ReferenceSetList
+If the method is called asynchronously, returns the request
+thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_project_pipeline_reference_sets(
+    self,
+    project_id,
+    pipeline_id,
+    **kwargs
+):
+    &#34;&#34;&#34;Retrieve the reference sets of a project pipeline.  # noqa: E501
+
+    Retrieve the reference sets of a project pipeline. This can be a pipeline from a linked bundle.  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    &gt;&gt;&gt; thread = api.get_project_pipeline_reference_sets(project_id, pipeline_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    Args:
+        project_id (str): The ID of the project
+        pipeline_id (str): The ID of the pipeline to retrieve reference sets for
+
+    Keyword Args:
+        _return_http_data_only (bool): response data without head status
+            code and headers. Default is True.
+        _preload_content (bool): if False, the urllib3.HTTPResponse object
+            will be returned without reading/decoding response data.
+            Default is True.
+        _request_timeout (int/float/tuple): timeout setting for this request. If
+            one number provided, it will be total request timeout. It can also
+            be a pair (tuple) of (connection, read) timeouts.
+            Default is None.
+        _check_input_type (bool): specifies if type checking
+            should be done one the data sent to the server.
+            Default is True.
+        _check_return_type (bool): specifies if type checking
+            should be done one the data received from the server.
+            Default is True.
+        _spec_property_naming (bool): True if the variable names in the input data
+            are serialized names, as specified in the OpenAPI document.
+            False if the variable names in the input data
+            are pythonic names, e.g. snake case (default)
+        _content_type (str/None): force body content-type.
+            Default is None and content-type will be predicted by allowed
+            content-types and body.
+        _host_index (int/None): specifies the index of the server
+            that we want to use.
+            Default is read from the configuration.
+        async_req (bool): execute request asynchronously
+
+    Returns:
+        ReferenceSetList
+            If the method is called asynchronously, returns the request
+            thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;async_req&#39;] = kwargs.get(
+        &#39;async_req&#39;, False
+    )
+    kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+        &#39;_return_http_data_only&#39;, True
+    )
+    kwargs[&#39;_preload_content&#39;] = kwargs.get(
+        &#39;_preload_content&#39;, True
+    )
+    kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+        &#39;_request_timeout&#39;, None
+    )
+    kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+        &#39;_check_input_type&#39;, True
+    )
+    kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+        &#39;_check_return_type&#39;, True
+    )
+    kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+        &#39;_spec_property_naming&#39;, False
+    )
+    kwargs[&#39;_content_type&#39;] = kwargs.get(
+        &#39;_content_type&#39;)
+    kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+    kwargs[&#39;project_id&#39;] = \
+        project_id
+    kwargs[&#39;pipeline_id&#39;] = \
+        pipeline_id
+    return self.get_project_pipeline_reference_sets_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipelines"><code class="name flex">
 <span>def <span class="ident">get_project_pipelines</span></span>(<span>self, project_id, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Retrieve a list of project pipelines.
 # noqa: E501</p>
-<p>This method makes a synchronous HTTP request by default. To make an
+<p>Retrieve a list of project pipelines. This includes pipelines from linked bundles.
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_project_pipelines(project_id, async_req=True)
 &gt;&gt;&gt; result = thread.get()
@@ -2580,6 +3844,7 @@ thread.</p></div>
 ):
     &#34;&#34;&#34;Retrieve a list of project pipelines.  # noqa: E501
 
+    Retrieve a list of project pipelines. This includes pipelines from linked bundles.  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
@@ -2697,7 +3962,7 @@ that we want to use.
 Default is read from the configuration.
 async_req (bool): execute request asynchronously</p>
 <h2 id="returns">Returns</h2>
-<p>ProjectPipeline
+<p>None
 If the method is called asynchronously, returns the request
 thread.</p></div>
 <details class="source">
@@ -2751,7 +4016,7 @@ thread.</p></div>
         async_req (bool): execute request asynchronously
 
     Returns:
-        ProjectPipeline
+        None
             If the method is called asynchronously, returns the request
             thread.
     &#34;&#34;&#34;
@@ -3079,6 +4344,9 @@ thread.</p></div>
 <ul class="">
 <li><code><a title="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.create_cwl_pipeline" href="#libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.create_cwl_pipeline">create_cwl_pipeline</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.create_nextflow_pipeline" href="#libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.create_nextflow_pipeline">create_nextflow_pipeline</a></code></li>
+<li><code><a title="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipeline" href="#libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipeline">get_project_pipeline</a></code></li>
+<li><code><a title="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipeline_input_parameters" href="#libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipeline_input_parameters">get_project_pipeline_input_parameters</a></code></li>
+<li><code><a title="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipeline_reference_sets" href="#libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipeline_reference_sets">get_project_pipeline_reference_sets</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipelines" href="#libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.get_project_pipelines">get_project_pipelines</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.link_pipeline_to_project" href="#libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.link_pipeline_to_project">link_pipeline_to_project</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.release_pipeline" href="#libica.openapi.v2.api.project_pipeline_api.ProjectPipelineApi.release_pipeline">release_pipeline</a></code></li>

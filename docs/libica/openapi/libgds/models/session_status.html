@@ -64,8 +64,9 @@ class SessionStatus(object):
     OPEN = &#34;Open&#34;
     CLOSED = &#34;Closed&#34;
     COMPLETED = &#34;Completed&#34;
+    COMPLETEDWITHERROR = &#34;CompletedWithError&#34;
 
-    allowable_values = [OPEN, CLOSED, COMPLETED]  # noqa: E501
+    allowable_values = [OPEN, CLOSED, COMPLETED, COMPLETEDWITHERROR]  # noqa: E501
 
     &#34;&#34;&#34;
     Attributes:
@@ -169,8 +170,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     OPEN = &#34;Open&#34;
     CLOSED = &#34;Closed&#34;
     COMPLETED = &#34;Completed&#34;
+    COMPLETEDWITHERROR = &#34;CompletedWithError&#34;
 
-    allowable_values = [OPEN, CLOSED, COMPLETED]  # noqa: E501
+    allowable_values = [OPEN, CLOSED, COMPLETED, COMPLETEDWITHERROR]  # noqa: E501
 
     &#34;&#34;&#34;
     Attributes:
@@ -245,6 +247,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 <div class="desc"></div>
 </dd>
 <dt id="libica.openapi.libgds.models.session_status.SessionStatus.COMPLETED"><code class="name">var <span class="ident">COMPLETED</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="libica.openapi.libgds.models.session_status.SessionStatus.COMPLETEDWITHERROR"><code class="name">var <span class="ident">COMPLETEDWITHERROR</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -346,6 +352,7 @@ and the value is json key in definition.</dd>
 <ul class="two-column">
 <li><code><a title="libica.openapi.libgds.models.session_status.SessionStatus.CLOSED" href="#libica.openapi.libgds.models.session_status.SessionStatus.CLOSED">CLOSED</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.session_status.SessionStatus.COMPLETED" href="#libica.openapi.libgds.models.session_status.SessionStatus.COMPLETED">COMPLETED</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.session_status.SessionStatus.COMPLETEDWITHERROR" href="#libica.openapi.libgds.models.session_status.SessionStatus.COMPLETEDWITHERROR">COMPLETEDWITHERROR</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.session_status.SessionStatus.OPEN" href="#libica.openapi.libgds.models.session_status.SessionStatus.OPEN">OPEN</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.session_status.SessionStatus.allowable_values" href="#libica.openapi.libgds.models.session_status.SessionStatus.allowable_values">allowable_values</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.session_status.SessionStatus.attribute_map" href="#libica.openapi.libgds.models.session_status.SessionStatus.attribute_map">attribute_map</a></code></li>

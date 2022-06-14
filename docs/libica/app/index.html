@@ -246,7 +246,18 @@ class AppHelper:
             configuration=self.configuration,
             header_name=&#34;Content-Type&#34;,
             header_value=&#34;application/vnd.illumina.v3+json&#34;,
-        )</code></pre>
+        )
+
+
+class AppOps:
+
+    def __init__(self, api_client=None):
+        if api_client:
+            self.api_client = api_client
+        else:
+            # otherwise, we build api_client with standard lookup from well-known locations
+            from libica.openapi.v2 import ApiClient
+            self.api_client: ApiClient = AppHelper().build_icav2_configuration().get_icav2_api_client()</code></pre>
 </details>
 </section>
 <section>
@@ -259,6 +270,10 @@ class AppHelper:
 <dt><code class="name"><a title="libica.app.gds" href="gds.html">libica.app.gds</a></code></dt>
 <dd>
 <div class="desc"><p>gds module …</p></div>
+</dd>
+<dt><code class="name"><a title="libica.app.projectops" href="projectops.html">libica.app.projectops</a></code></dt>
+<dd>
+<div class="desc"></div>
 </dd>
 <dt><code class="name"><a title="libica.app.wes" href="wes.html">libica.app.wes</a></code></dt>
 <dd>
@@ -624,6 +639,31 @@ class AppHelper:
 </dd>
 </dl>
 </dd>
+<dt id="libica.app.AppOps"><code class="flex name class">
+<span>class <span class="ident">AppOps</span></span>
+<span>(</span><span>api_client=None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class AppOps:
+
+    def __init__(self, api_client=None):
+        if api_client:
+            self.api_client = api_client
+        else:
+            # otherwise, we build api_client with standard lookup from well-known locations
+            from libica.openapi.v2 import ApiClient
+            self.api_client: ApiClient = AppHelper().build_icav2_configuration().get_icav2_api_client()</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li><a title="libica.app.projectops.ProjectOps" href="projectops.html#libica.app.projectops.ProjectOps">ProjectOps</a></li>
+</ul>
+</dd>
 <dt id="libica.app.ENSEventType"><code class="flex name class">
 <span>class <span class="ident">ENSEventType</span></span>
 <span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
@@ -827,6 +867,7 @@ def from_value(cls, value):
 <ul>
 <li><code><a title="libica.app.dataops" href="dataops.html">libica.app.dataops</a></code></li>
 <li><code><a title="libica.app.gds" href="gds.html">libica.app.gds</a></code></li>
+<li><code><a title="libica.app.projectops" href="projectops.html">libica.app.projectops</a></code></li>
 <li><code><a title="libica.app.wes" href="wes.html">libica.app.wes</a></code></li>
 </ul>
 </li>
@@ -849,6 +890,9 @@ def from_value(cls, value):
 <li><code><a title="libica.app.AppHelper.get_icav2_cli_session_file" href="#libica.app.AppHelper.get_icav2_cli_session_file">get_icav2_cli_session_file</a></code></li>
 <li><code><a title="libica.app.AppHelper.get_icav2_cli_session_project_id" href="#libica.app.AppHelper.get_icav2_cli_session_project_id">get_icav2_cli_session_project_id</a></code></li>
 </ul>
+</li>
+<li>
+<h4><code><a title="libica.app.AppOps" href="#libica.app.AppOps">AppOps</a></code></h4>
 </li>
 <li>
 <h4><code><a title="libica.app.ENSEventType" href="#libica.app.ENSEventType">ENSEventType</a></code></h4>

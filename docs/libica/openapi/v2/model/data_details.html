@@ -147,6 +147,7 @@ class DataDetails(ModelNormal):
             &#39;tags&#39;: (DataTag,),  # noqa: E501
             &#39;data_type&#39;: (str,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
+            &#39;owning_project_name&#39;: (str, none_type,),  # noqa: E501
             &#39;path&#39;: (str, none_type,),  # noqa: E501
             &#39;file_size_in_bytes&#39;: (int, none_type,),  # noqa: E501
             &#39;format&#39;: (DataFormat,),  # noqa: E501
@@ -172,6 +173,7 @@ class DataDetails(ModelNormal):
         &#39;tags&#39;: &#39;tags&#39;,  # noqa: E501
         &#39;data_type&#39;: &#39;dataType&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
+        &#39;owning_project_name&#39;: &#39;owningProjectName&#39;,  # noqa: E501
         &#39;path&#39;: &#39;path&#39;,  # noqa: E501
         &#39;file_size_in_bytes&#39;: &#39;fileSizeInBytes&#39;,  # noqa: E501
         &#39;format&#39;: &#39;format&#39;,  # noqa: E501
@@ -234,6 +236,7 @@ class DataDetails(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
             file_size_in_bytes (int, none_type): The size of the file in bytes. Folders do not have a size.. [optional]  # noqa: E501
             format (DataFormat): [optional]  # noqa: E501
@@ -342,6 +345,7 @@ class DataDetails(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
             file_size_in_bytes (int, none_type): The size of the file in bytes. Folders do not have a size.. [optional]  # noqa: E501
             format (DataFormat): [optional]  # noqa: E501
@@ -503,6 +507,8 @@ through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
 tenant_name (str, none_type): [optional]
 # noqa: E501
+owning_project_name (str, none_type): [optional]
+# noqa: E501
 path (str, none_type): The user friendly path of the parent of this data.. [optional]
 # noqa: E501
 file_size_in_bytes (int, none_type): The size of the file in bytes. Folders do not have a size.. [optional]
@@ -597,6 +603,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
             &#39;tags&#39;: (DataTag,),  # noqa: E501
             &#39;data_type&#39;: (str,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
+            &#39;owning_project_name&#39;: (str, none_type,),  # noqa: E501
             &#39;path&#39;: (str, none_type,),  # noqa: E501
             &#39;file_size_in_bytes&#39;: (int, none_type,),  # noqa: E501
             &#39;format&#39;: (DataFormat,),  # noqa: E501
@@ -622,6 +629,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
         &#39;tags&#39;: &#39;tags&#39;,  # noqa: E501
         &#39;data_type&#39;: &#39;dataType&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
+        &#39;owning_project_name&#39;: &#39;owningProjectName&#39;,  # noqa: E501
         &#39;path&#39;: &#39;path&#39;,  # noqa: E501
         &#39;file_size_in_bytes&#39;: &#39;fileSizeInBytes&#39;,  # noqa: E501
         &#39;format&#39;: &#39;format&#39;,  # noqa: E501
@@ -684,6 +692,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
             file_size_in_bytes (int, none_type): The size of the file in bytes. Folders do not have a size.. [optional]  # noqa: E501
             format (DataFormat): [optional]  # noqa: E501
@@ -792,6 +801,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
             file_size_in_bytes (int, none_type): The size of the file in bytes. Folders do not have a size.. [optional]  # noqa: E501
             format (DataFormat): [optional]  # noqa: E501

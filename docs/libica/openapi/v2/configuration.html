@@ -464,6 +464,14 @@ conf = libica.openapi.v2.Configuration(
                 &#39;key&#39;: &#39;Authorization&#39;,
                 &#39;value&#39;: &#39;Bearer &#39; + self.access_token
             }
+        if self.access_token is not None:
+            auth[&#39;PsTokenAuth&#39;] = {
+                &#39;type&#39;: &#39;bearer&#39;,
+                &#39;in&#39;: &#39;header&#39;,
+                &#39;format&#39;: &#39;psToken&#39;,
+                &#39;key&#39;: &#39;Authorization&#39;,
+                &#39;value&#39;: &#39;Bearer &#39; + self.access_token
+            }
         return auth
 
     def to_debug_report(self):
@@ -1049,6 +1057,14 @@ conf = libica.openapi.v2.Configuration(
                 &#39;key&#39;: &#39;Authorization&#39;,
                 &#39;value&#39;: &#39;Bearer &#39; + self.access_token
             }
+        if self.access_token is not None:
+            auth[&#39;PsTokenAuth&#39;] = {
+                &#39;type&#39;: &#39;bearer&#39;,
+                &#39;in&#39;: &#39;header&#39;,
+                &#39;format&#39;: &#39;psToken&#39;,
+                &#39;key&#39;: &#39;Authorization&#39;,
+                &#39;value&#39;: &#39;Bearer &#39; + self.access_token
+            }
         return auth
 
     def to_debug_report(self):
@@ -1333,6 +1349,14 @@ from https server.</p></div>
             &#39;type&#39;: &#39;bearer&#39;,
             &#39;in&#39;: &#39;header&#39;,
             &#39;format&#39;: &#39;JWT&#39;,
+            &#39;key&#39;: &#39;Authorization&#39;,
+            &#39;value&#39;: &#39;Bearer &#39; + self.access_token
+        }
+    if self.access_token is not None:
+        auth[&#39;PsTokenAuth&#39;] = {
+            &#39;type&#39;: &#39;bearer&#39;,
+            &#39;in&#39;: &#39;header&#39;,
+            &#39;format&#39;: &#39;psToken&#39;,
             &#39;key&#39;: &#39;Authorization&#39;,
             &#39;value&#39;: &#39;Bearer &#39; + self.access_token
         }

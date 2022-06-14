@@ -65,11 +65,13 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.application import Application
     from libica.openapi.v2.model.metadata_model import MetadataModel
     from libica.openapi.v2.model.project_tag import ProjectTag
     from libica.openapi.v2.model.region import Region
     from libica.openapi.v2.model.storage_bundle import StorageBundle
     from libica.openapi.v2.model.storage_configuration import StorageConfiguration
+    globals()[&#39;Application&#39;] = Application
     globals()[&#39;MetadataModel&#39;] = MetadataModel
     globals()[&#39;ProjectTag&#39;] = ProjectTag
     globals()[&#39;Region&#39;] = Region
@@ -159,6 +161,7 @@ class Project(ModelNormal):
             &#39;storage_bundle&#39;: (StorageBundle,),  # noqa: E501
             &#39;self_managed_storage_configuration&#39;: (StorageConfiguration,),  # noqa: E501
             &#39;metadata_model&#39;: (MetadataModel,),  # noqa: E501
+            &#39;application&#39;: (Application,),  # noqa: E501
         }
 
     @cached_property
@@ -184,6 +187,7 @@ class Project(ModelNormal):
         &#39;storage_bundle&#39;: &#39;storageBundle&#39;,  # noqa: E501
         &#39;self_managed_storage_configuration&#39;: &#39;selfManagedStorageConfiguration&#39;,  # noqa: E501
         &#39;metadata_model&#39;: &#39;metadataModel&#39;,  # noqa: E501
+        &#39;application&#39;: &#39;application&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -246,6 +250,7 @@ class Project(ModelNormal):
             storage_bundle (StorageBundle): [optional]  # noqa: E501
             self_managed_storage_configuration (StorageConfiguration): [optional]  # noqa: E501
             metadata_model (MetadataModel): [optional]  # noqa: E501
+            application (Application): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -356,6 +361,7 @@ class Project(ModelNormal):
             storage_bundle (StorageBundle): [optional]  # noqa: E501
             self_managed_storage_configuration (StorageConfiguration): [optional]  # noqa: E501
             metadata_model (MetadataModel): [optional]  # noqa: E501
+            application (Application): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -421,11 +427,13 @@ class Project(ModelNormal):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def lazy_import():
+    from libica.openapi.v2.model.application import Application
     from libica.openapi.v2.model.metadata_model import MetadataModel
     from libica.openapi.v2.model.project_tag import ProjectTag
     from libica.openapi.v2.model.region import Region
     from libica.openapi.v2.model.storage_bundle import StorageBundle
     from libica.openapi.v2.model.storage_configuration import StorageConfiguration
+    globals()[&#39;Application&#39;] = Application
     globals()[&#39;MetadataModel&#39;] = MetadataModel
     globals()[&#39;ProjectTag&#39;] = ProjectTag
     globals()[&#39;Region&#39;] = Region
@@ -529,6 +537,8 @@ storage_bundle (StorageBundle): [optional]
 self_managed_storage_configuration (StorageConfiguration): [optional]
 # noqa: E501
 metadata_model (MetadataModel): [optional]
+# noqa: E501
+application (Application): [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -616,6 +626,7 @@ metadata_model (MetadataModel): [optional]
             &#39;storage_bundle&#39;: (StorageBundle,),  # noqa: E501
             &#39;self_managed_storage_configuration&#39;: (StorageConfiguration,),  # noqa: E501
             &#39;metadata_model&#39;: (MetadataModel,),  # noqa: E501
+            &#39;application&#39;: (Application,),  # noqa: E501
         }
 
     @cached_property
@@ -641,6 +652,7 @@ metadata_model (MetadataModel): [optional]
         &#39;storage_bundle&#39;: &#39;storageBundle&#39;,  # noqa: E501
         &#39;self_managed_storage_configuration&#39;: &#39;selfManagedStorageConfiguration&#39;,  # noqa: E501
         &#39;metadata_model&#39;: &#39;metadataModel&#39;,  # noqa: E501
+        &#39;application&#39;: &#39;application&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -703,6 +715,7 @@ metadata_model (MetadataModel): [optional]
             storage_bundle (StorageBundle): [optional]  # noqa: E501
             self_managed_storage_configuration (StorageConfiguration): [optional]  # noqa: E501
             metadata_model (MetadataModel): [optional]  # noqa: E501
+            application (Application): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -813,6 +826,7 @@ metadata_model (MetadataModel): [optional]
             storage_bundle (StorageBundle): [optional]  # noqa: E501
             self_managed_storage_configuration (StorageConfiguration): [optional]  # noqa: E501
             metadata_model (MetadataModel): [optional]  # noqa: E501
+            application (Application): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

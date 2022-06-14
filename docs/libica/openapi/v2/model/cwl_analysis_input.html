@@ -66,11 +66,13 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.analysis_data_input import AnalysisDataInput
+    from libica.openapi.v2.model.analysis_input_data_mount import AnalysisInputDataMount
     from libica.openapi.v2.model.analysis_parameter import AnalysisParameter
     from libica.openapi.v2.model.analysis_reference_data_parameter import AnalysisReferenceDataParameter
     from libica.openapi.v2.model.cwl_analysis_json_input import CwlAnalysisJsonInput
     from libica.openapi.v2.model.cwl_analysis_structured_input import CwlAnalysisStructuredInput
     globals()[&#39;AnalysisDataInput&#39;] = AnalysisDataInput
+    globals()[&#39;AnalysisInputDataMount&#39;] = AnalysisInputDataMount
     globals()[&#39;AnalysisParameter&#39;] = AnalysisParameter
     globals()[&#39;AnalysisReferenceDataParameter&#39;] = AnalysisReferenceDataParameter
     globals()[&#39;CwlAnalysisJsonInput&#39;] = CwlAnalysisJsonInput
@@ -138,6 +140,7 @@ class CwlAnalysisInput(ModelComposed):
             &#39;parameters&#39;: ([AnalysisParameter], none_type,),  # noqa: E501
             &#39;reference_data_parameters&#39;: ([AnalysisReferenceDataParameter], none_type,),  # noqa: E501
             &#39;data_ids&#39;: ([str, none_type], none_type,),  # noqa: E501
+            &#39;mounts&#39;: ([AnalysisInputDataMount], none_type,),  # noqa: E501
             &#39;inputs&#39;: ([AnalysisDataInput],),  # noqa: E501
             &#39;input_json&#39;: (str,),  # noqa: E501
         }
@@ -160,6 +163,7 @@ class CwlAnalysisInput(ModelComposed):
         &#39;parameters&#39;: &#39;parameters&#39;,  # noqa: E501
         &#39;reference_data_parameters&#39;: &#39;referenceDataParameters&#39;,  # noqa: E501
         &#39;data_ids&#39;: &#39;dataIds&#39;,  # noqa: E501
+        &#39;mounts&#39;: &#39;mounts&#39;,  # noqa: E501
         &#39;inputs&#39;: &#39;inputs&#39;,  # noqa: E501
         &#39;input_json&#39;: &#39;inputJson&#39;,  # noqa: E501
     }
@@ -207,6 +211,7 @@ class CwlAnalysisInput(ModelComposed):
             parameters ([AnalysisParameter], none_type): [optional]  # noqa: E501
             reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [optional]  # noqa: E501
             data_ids ([str, none_type], none_type): [optional]  # noqa: E501
+            mounts ([AnalysisInputDataMount], none_type): [optional]  # noqa: E501
             inputs ([AnalysisDataInput]): [optional]  # noqa: E501
             input_json (str): Contains the input JSON, as an escaped JSON String.. [optional]  # noqa: E501
         &#34;&#34;&#34;
@@ -312,6 +317,7 @@ class CwlAnalysisInput(ModelComposed):
             parameters ([AnalysisParameter], none_type): [optional]  # noqa: E501
             reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [optional]  # noqa: E501
             data_ids ([str, none_type], none_type): [optional]  # noqa: E501
+            mounts ([AnalysisInputDataMount], none_type): [optional]  # noqa: E501
             inputs ([AnalysisDataInput]): [optional]  # noqa: E501
             input_json (str): Contains the input JSON, as an escaped JSON String.. [optional]  # noqa: E501
         &#34;&#34;&#34;
@@ -405,11 +411,13 @@ class CwlAnalysisInput(ModelComposed):
 </summary>
 <pre><code class="python">def lazy_import():
     from libica.openapi.v2.model.analysis_data_input import AnalysisDataInput
+    from libica.openapi.v2.model.analysis_input_data_mount import AnalysisInputDataMount
     from libica.openapi.v2.model.analysis_parameter import AnalysisParameter
     from libica.openapi.v2.model.analysis_reference_data_parameter import AnalysisReferenceDataParameter
     from libica.openapi.v2.model.cwl_analysis_json_input import CwlAnalysisJsonInput
     from libica.openapi.v2.model.cwl_analysis_structured_input import CwlAnalysisStructuredInput
     globals()[&#39;AnalysisDataInput&#39;] = AnalysisDataInput
+    globals()[&#39;AnalysisInputDataMount&#39;] = AnalysisInputDataMount
     globals()[&#39;AnalysisParameter&#39;] = AnalysisParameter
     globals()[&#39;AnalysisReferenceDataParameter&#39;] = AnalysisReferenceDataParameter
     globals()[&#39;CwlAnalysisJsonInput&#39;] = CwlAnalysisJsonInput
@@ -491,6 +499,8 @@ reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [option
 # noqa: E501
 data_ids ([str, none_type], none_type): [optional]
 # noqa: E501
+mounts ([AnalysisInputDataMount], none_type): [optional]
+# noqa: E501
 inputs ([AnalysisDataInput]): [optional]
 # noqa: E501
 input_json (str): Contains the input JSON, as an escaped JSON String.. [optional]
@@ -560,6 +570,7 @@ input_json (str): Contains the input JSON, as an escaped JSON String.. [optional
             &#39;parameters&#39;: ([AnalysisParameter], none_type,),  # noqa: E501
             &#39;reference_data_parameters&#39;: ([AnalysisReferenceDataParameter], none_type,),  # noqa: E501
             &#39;data_ids&#39;: ([str, none_type], none_type,),  # noqa: E501
+            &#39;mounts&#39;: ([AnalysisInputDataMount], none_type,),  # noqa: E501
             &#39;inputs&#39;: ([AnalysisDataInput],),  # noqa: E501
             &#39;input_json&#39;: (str,),  # noqa: E501
         }
@@ -582,6 +593,7 @@ input_json (str): Contains the input JSON, as an escaped JSON String.. [optional
         &#39;parameters&#39;: &#39;parameters&#39;,  # noqa: E501
         &#39;reference_data_parameters&#39;: &#39;referenceDataParameters&#39;,  # noqa: E501
         &#39;data_ids&#39;: &#39;dataIds&#39;,  # noqa: E501
+        &#39;mounts&#39;: &#39;mounts&#39;,  # noqa: E501
         &#39;inputs&#39;: &#39;inputs&#39;,  # noqa: E501
         &#39;input_json&#39;: &#39;inputJson&#39;,  # noqa: E501
     }
@@ -629,6 +641,7 @@ input_json (str): Contains the input JSON, as an escaped JSON String.. [optional
             parameters ([AnalysisParameter], none_type): [optional]  # noqa: E501
             reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [optional]  # noqa: E501
             data_ids ([str, none_type], none_type): [optional]  # noqa: E501
+            mounts ([AnalysisInputDataMount], none_type): [optional]  # noqa: E501
             inputs ([AnalysisDataInput]): [optional]  # noqa: E501
             input_json (str): Contains the input JSON, as an escaped JSON String.. [optional]  # noqa: E501
         &#34;&#34;&#34;
@@ -734,6 +747,7 @@ input_json (str): Contains the input JSON, as an escaped JSON String.. [optional
             parameters ([AnalysisParameter], none_type): [optional]  # noqa: E501
             reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [optional]  # noqa: E501
             data_ids ([str, none_type], none_type): [optional]  # noqa: E501
+            mounts ([AnalysisInputDataMount], none_type): [optional]  # noqa: E501
             inputs ([AnalysisDataInput]): [optional]  # noqa: E501
             input_json (str): Contains the input JSON, as an escaped JSON String.. [optional]  # noqa: E501
         &#34;&#34;&#34;

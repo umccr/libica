@@ -103,7 +103,7 @@ class CreateNextflowAnalysis(ModelNormal):
             &#39;max_length&#39;: 255,
             &#39;min_length&#39;: 1,
             &#39;regex&#39;: {
-                &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*+$&#39;,  # noqa: E501
+                &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$&#39;,  # noqa: E501
             },
         },
     }
@@ -137,6 +137,7 @@ class CreateNextflowAnalysis(ModelNormal):
             &#39;activation_code_detail_id&#39;: (str,),  # noqa: E501
             &#39;analysis_input&#39;: (NextflowAnalysisInput,),  # noqa: E501
             &#39;analysis_storage_id&#39;: (str, none_type,),  # noqa: E501
+            &#39;output_parent_folder_id&#39;: (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -151,6 +152,7 @@ class CreateNextflowAnalysis(ModelNormal):
         &#39;activation_code_detail_id&#39;: &#39;activationCodeDetailId&#39;,  # noqa: E501
         &#39;analysis_input&#39;: &#39;analysisInput&#39;,  # noqa: E501
         &#39;analysis_storage_id&#39;: &#39;analysisStorageId&#39;,  # noqa: E501
+        &#39;output_parent_folder_id&#39;: &#39;outputParentFolderId&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -202,6 +204,7 @@ class CreateNextflowAnalysis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
+            output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -296,6 +299,7 @@ class CreateNextflowAnalysis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
+            output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -442,6 +446,8 @@ Animal class but this time we won't travel
 through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
 analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]
+# noqa: E501
+output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -479,7 +485,7 @@ analysis_storage_id (str, none_type): The id of the storage to use for the analy
             &#39;max_length&#39;: 255,
             &#39;min_length&#39;: 1,
             &#39;regex&#39;: {
-                &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*+$&#39;,  # noqa: E501
+                &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$&#39;,  # noqa: E501
             },
         },
     }
@@ -513,6 +519,7 @@ analysis_storage_id (str, none_type): The id of the storage to use for the analy
             &#39;activation_code_detail_id&#39;: (str,),  # noqa: E501
             &#39;analysis_input&#39;: (NextflowAnalysisInput,),  # noqa: E501
             &#39;analysis_storage_id&#39;: (str, none_type,),  # noqa: E501
+            &#39;output_parent_folder_id&#39;: (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -527,6 +534,7 @@ analysis_storage_id (str, none_type): The id of the storage to use for the analy
         &#39;activation_code_detail_id&#39;: &#39;activationCodeDetailId&#39;,  # noqa: E501
         &#39;analysis_input&#39;: &#39;analysisInput&#39;,  # noqa: E501
         &#39;analysis_storage_id&#39;: &#39;analysisStorageId&#39;,  # noqa: E501
+        &#39;output_parent_folder_id&#39;: &#39;outputParentFolderId&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -578,6 +586,7 @@ analysis_storage_id (str, none_type): The id of the storage to use for the analy
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
+            output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -672,6 +681,7 @@ analysis_storage_id (str, none_type): The id of the storage to use for the analy
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
+            output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

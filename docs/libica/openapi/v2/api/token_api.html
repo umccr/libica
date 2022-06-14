@@ -76,7 +76,8 @@ class TokenApi(object):
                 &#39;response_type&#39;: (Token,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
-                    &#39;BasicAuth&#39;
+                    &#39;BasicAuth&#39;,
+                    &#39;PsTokenAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/tokens&#39;,
                 &#39;operation_id&#39;: &#39;create_jwt_token&#39;,
@@ -173,9 +174,9 @@ class TokenApi(object):
         self,
         **kwargs
     ):
-        &#34;&#34;&#34;Generate a JWT using an API-key or Basic Authentication.  # noqa: E501
+        &#34;&#34;&#34;Generate a JWT using an API-key, Basic Authentication or a psToken.  # noqa: E501
 
-        When using Basic Authentication, and you are member of several tenants, also provide the tenant request parameter to indicate for which tenant you want to authenticate. Note that Basic Authentication will not work for SSO (Single Sign On) enabled authentication.  # noqa: E501
+        Generate a JWT using an API-key, Basic Authentication or a psToken. When using Basic Authentication, and you are member of several tenants, also provide the tenant request parameter to indicate for which tenant you want to authenticate. Note that Basic Authentication will not work for SSO (Single Sign On) enabled authentication.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -354,7 +355,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                 &#39;response_type&#39;: (Token,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
-                    &#39;BasicAuth&#39;
+                    &#39;BasicAuth&#39;,
+                    &#39;PsTokenAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/tokens&#39;,
                 &#39;operation_id&#39;: &#39;create_jwt_token&#39;,
@@ -451,9 +453,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self,
         **kwargs
     ):
-        &#34;&#34;&#34;Generate a JWT using an API-key or Basic Authentication.  # noqa: E501
+        &#34;&#34;&#34;Generate a JWT using an API-key, Basic Authentication or a psToken.  # noqa: E501
 
-        When using Basic Authentication, and you are member of several tenants, also provide the tenant request parameter to indicate for which tenant you want to authenticate. Note that Basic Authentication will not work for SSO (Single Sign On) enabled authentication.  # noqa: E501
+        Generate a JWT using an API-key, Basic Authentication or a psToken. When using Basic Authentication, and you are member of several tenants, also provide the tenant request parameter to indicate for which tenant you want to authenticate. Note that Basic Authentication will not work for SSO (Single Sign On) enabled authentication.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -600,9 +602,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 <span>def <span class="ident">create_jwt_token</span></span>(<span>self, **kwargs)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Generate a JWT using an API-key or Basic Authentication.
+<div class="desc"><p>Generate a JWT using an API-key, Basic Authentication or a psToken.
 # noqa: E501</p>
-<p>When using Basic Authentication, and you are member of several tenants, also provide the tenant request parameter to indicate for which tenant you want to authenticate. Note that Basic Authentication will not work for SSO (Single Sign On) enabled authentication.
+<p>Generate a JWT using an API-key, Basic Authentication or a psToken. When using Basic Authentication, and you are member of several tenants, also provide the tenant request parameter to indicate for which tenant you want to authenticate. Note that Basic Authentication will not work for SSO (Single Sign On) enabled authentication.
 # noqa: E501
 This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
@@ -649,9 +651,9 @@ thread.</p></div>
     self,
     **kwargs
 ):
-    &#34;&#34;&#34;Generate a JWT using an API-key or Basic Authentication.  # noqa: E501
+    &#34;&#34;&#34;Generate a JWT using an API-key, Basic Authentication or a psToken.  # noqa: E501
 
-    When using Basic Authentication, and you are member of several tenants, also provide the tenant request parameter to indicate for which tenant you want to authenticate. Note that Basic Authentication will not work for SSO (Single Sign On) enabled authentication.  # noqa: E501
+    Generate a JWT using an API-key, Basic Authentication or a psToken. When using Basic Authentication, and you are member of several tenants, also provide the tenant request parameter to indicate for which tenant you want to authenticate. Note that Basic Authentication will not work for SSO (Single Sign On) enabled authentication.  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 

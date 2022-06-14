@@ -2,8 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=emulateIE7" />
-    <title>Coverage for libica/openapi/libgds/api/volumes_api.py: 14%</title>
+    <title>Coverage for libica/openapi/libgds/api/volumes_api.py: 13%</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="coverage_html.js" defer></script>
@@ -13,47 +12,71 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>libica/openapi/libgds/api/volumes_api.py</b>:
-            <span class="pc_cov">14%</span>
+            <span class="pc_cov">13%</span>
         </h1>
-        <div id="help_panel_wrapper">
+        <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
             <label for="help_panel_state">
                 <img id="keyboard_icon" src="keybd_closed.png" alt="Show/hide keyboard shortcuts" />
             </label>
             <div id="help_panel">
                 <p class="legend">Shortcuts on this page</p>
-                <div>
-                    <p class="keyhelp">
+                <div class="keyhelp">
+                    <p>
                         <kbd>r</kbd>
                         <kbd>m</kbd>
                         <kbd>x</kbd>
                         &nbsp; toggle line displays
                     </p>
-                    <p class="keyhelp">
+                    <p>
                         <kbd>j</kbd>
-                        <kbd>k</kbd> &nbsp; next/prev highlighted chunk
+                        <kbd>k</kbd>
+                        &nbsp; next/prev highlighted chunk
                     </p>
-                    <p class="keyhelp">
+                    <p>
                         <kbd>0</kbd> &nbsp; (zero) top of page
                     </p>
-                    <p class="keyhelp">
+                    <p>
                         <kbd>1</kbd> &nbsp; (one) first highlighted chunk
+                    </p>
+                    <p>
+                        <kbd>[</kbd>
+                        <kbd>]</kbd>
+                        &nbsp; prev/next file
+                    </p>
+                    <p>
+                        <kbd>u</kbd> &nbsp; up to the index
+                    </p>
+                    <p>
+                        <kbd>?</kbd> &nbsp; show/hide this help
                     </p>
                 </div>
             </div>
-        </div>
+        </aside>
         <h2>
-            <span class="text">136 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">19<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">117<span class="text"> missing</span></button>
+            <span class="text">167 statements &nbsp;</span>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">21<span class="text"> run</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">146<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
         </h2>
-        <div style="display: none;">
-            <button type="button" class="button_next_chunk" data-shortcut="j">Next highlighted chunk</button>
-            <button type="button" class="button_prev_chunk" data-shortcut="k">Previous highlighted chunk</button>
-            <button type="button" class="button_top_of_page" data-shortcut="0">Goto top of page</button>
-            <button type="button" class="button_first_chunk" data-shortcut="1">Goto first highlighted chunk</button>
-        </div>
+        <p class="text">
+            <a id="prevFileLink" class="nav" href="d_f2af5ecf3152e5ca_volume_configurations_api_py.html">&#xab; prev</a> &nbsp; &nbsp;
+            <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
+            <a id="nextFileLink" class="nav" href="d_54fe5b346cbdc503_api_client_py.html">&#xbb; next</a>
+            &nbsp; &nbsp; &nbsp;
+            <a class="nav" href="https://coverage.readthedocs.io">coverage.py v6.4.1</a>,
+            created at 2022-06-14 11:17 +1000
+        </p>
+        <aside class="hidden">
+            <button type="button" class="button_next_chunk" data-shortcut="j"/>
+            <button type="button" class="button_prev_chunk" data-shortcut="k"/>
+            <button type="button" class="button_top_of_page" data-shortcut="0"/>
+            <button type="button" class="button_first_chunk" data-shortcut="1"/>
+            <button type="button" class="button_prev_file" data-shortcut="["/>
+            <button type="button" class="button_next_file" data-shortcut="]"/>
+            <button type="button" class="button_to_index" data-shortcut="u"/>
+            <button type="button" class="button_show_hide_help" data-shortcut="?"/>
+        </aside>
     </div>
 </header>
 <main id="source">
@@ -595,12 +618,144 @@
     <p class="pln"><span class="n"><a id="t536" href="#t536">536</a></span><span class="t">            <span class="nam">_preload_content</span><span class="op">=</span><span class="nam">local_var_params</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">'_preload_content'</span><span class="op">,</span> <span class="key">True</span><span class="op">)</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t537" href="#t537">537</a></span><span class="t">            <span class="nam">_request_timeout</span><span class="op">=</span><span class="nam">local_var_params</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">'_request_timeout'</span><span class="op">)</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t538" href="#t538">538</a></span><span class="t">            <span class="nam">collection_formats</span><span class="op">=</span><span class="nam">collection_formats</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t539" href="#t539">539</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t540" href="#t540">540</a></span><span class="t">    <span class="key">def</span> <span class="nam">update_volume</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">volume_id</span><span class="op">,</span> <span class="op">**</span><span class="nam">kwargs</span><span class="op">)</span><span class="op">:</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t541" href="#t541">541</a></span><span class="t">        <span class="str">"""Update a volume content  # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t542" href="#t542">542</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t543" href="#t543">543</a></span><span class="t"><span class="str">        Update an existing volume in GDS and return upload credentials for that volume.   # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t544" href="#t544">544</a></span><span class="t"><span class="str">        This method makes a synchronous HTTP request by default. To make an</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t545" href="#t545">545</a></span><span class="t"><span class="str">        asynchronous HTTP request, please pass async_req=True</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t546" href="#t546">546</a></span><span class="t"><span class="str">        >>> thread = api.update_volume(volume_id, async_req=True)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t547" href="#t547">547</a></span><span class="t"><span class="str">        >>> result = thread.get()</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t548" href="#t548">548</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t549" href="#t549">549</a></span><span class="t"><span class="str">        :param async_req bool: execute request asynchronously</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t550" href="#t550">550</a></span><span class="t"><span class="str">        :param str volume_id: Unique identifier for the volume to be updated. (required)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t551" href="#t551">551</a></span><span class="t"><span class="str">        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t552" href="#t552">552</a></span><span class="t"><span class="str">        :param UpdateVolumeRequest body:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t553" href="#t553">553</a></span><span class="t"><span class="str">        :param _preload_content: if False, the urllib3.HTTPResponse object will</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t554" href="#t554">554</a></span><span class="t"><span class="str">                                 be returned without reading/decoding response</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t555" href="#t555">555</a></span><span class="t"><span class="str">                                 data. Default is True.</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t556" href="#t556">556</a></span><span class="t"><span class="str">        :param _request_timeout: timeout setting for this request. If one</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t557" href="#t557">557</a></span><span class="t"><span class="str">                                 number provided, it will be total request</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t558" href="#t558">558</a></span><span class="t"><span class="str">                                 timeout. It can also be a pair (tuple) of</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t559" href="#t559">559</a></span><span class="t"><span class="str">                                 (connection, read) timeouts.</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t560" href="#t560">560</a></span><span class="t"><span class="str">        :return: VolumeResponse</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t561" href="#t561">561</a></span><span class="t"><span class="str">                 If the method is called asynchronously,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t562" href="#t562">562</a></span><span class="t"><span class="str">                 returns the request thread.</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t563" href="#t563">563</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t564" href="#t564">564</a></span><span class="t">        <span class="nam">kwargs</span><span class="op">[</span><span class="str">'_return_http_data_only'</span><span class="op">]</span> <span class="op">=</span> <span class="key">True</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t565" href="#t565">565</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">update_volume_with_http_info</span><span class="op">(</span><span class="nam">volume_id</span><span class="op">,</span> <span class="op">**</span><span class="nam">kwargs</span><span class="op">)</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t566" href="#t566">566</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="run"><span class="n"><a id="t567" href="#t567">567</a></span><span class="t">    <span class="key">def</span> <span class="nam">update_volume_with_http_info</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">volume_id</span><span class="op">,</span> <span class="op">**</span><span class="nam">kwargs</span><span class="op">)</span><span class="op">:</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t568" href="#t568">568</a></span><span class="t">        <span class="str">"""Update a volume content  # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t569" href="#t569">569</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t570" href="#t570">570</a></span><span class="t"><span class="str">        Update an existing volume in GDS and return upload credentials for that volume.   # noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t571" href="#t571">571</a></span><span class="t"><span class="str">        This method makes a synchronous HTTP request by default. To make an</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t572" href="#t572">572</a></span><span class="t"><span class="str">        asynchronous HTTP request, please pass async_req=True</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t573" href="#t573">573</a></span><span class="t"><span class="str">        >>> thread = api.update_volume_with_http_info(volume_id, async_req=True)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t574" href="#t574">574</a></span><span class="t"><span class="str">        >>> result = thread.get()</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t575" href="#t575">575</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t576" href="#t576">576</a></span><span class="t"><span class="str">        :param async_req bool: execute request asynchronously</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t577" href="#t577">577</a></span><span class="t"><span class="str">        :param str volume_id: Unique identifier for the volume to be updated. (required)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t578" href="#t578">578</a></span><span class="t"><span class="str">        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t579" href="#t579">579</a></span><span class="t"><span class="str">        :param UpdateVolumeRequest body:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t580" href="#t580">580</a></span><span class="t"><span class="str">        :param _return_http_data_only: response data without head status code</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t581" href="#t581">581</a></span><span class="t"><span class="str">                                       and headers</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t582" href="#t582">582</a></span><span class="t"><span class="str">        :param _preload_content: if False, the urllib3.HTTPResponse object will</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t583" href="#t583">583</a></span><span class="t"><span class="str">                                 be returned without reading/decoding response</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t584" href="#t584">584</a></span><span class="t"><span class="str">                                 data. Default is True.</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t585" href="#t585">585</a></span><span class="t"><span class="str">        :param _request_timeout: timeout setting for this request. If one</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t586" href="#t586">586</a></span><span class="t"><span class="str">                                 number provided, it will be total request</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t587" href="#t587">587</a></span><span class="t"><span class="str">                                 timeout. It can also be a pair (tuple) of</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t588" href="#t588">588</a></span><span class="t"><span class="str">                                 (connection, read) timeouts.</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t589" href="#t589">589</a></span><span class="t"><span class="str">        :return: tuple(VolumeResponse, status_code(int), headers(HTTPHeaderDict))</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t590" href="#t590">590</a></span><span class="t"><span class="str">                 If the method is called asynchronously,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t591" href="#t591">591</a></span><span class="t"><span class="str">                 returns the request thread.</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t592" href="#t592">592</a></span><span class="t"><span class="str">        """</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t593" href="#t593">593</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t594" href="#t594">594</a></span><span class="t">        <span class="nam">local_var_params</span> <span class="op">=</span> <span class="nam">locals</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t595" href="#t595">595</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t596" href="#t596">596</a></span><span class="t">        <span class="nam">all_params</span> <span class="op">=</span> <span class="op">[</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t597" href="#t597">597</a></span><span class="t">            <span class="str">'volume_id'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t598" href="#t598">598</a></span><span class="t">            <span class="str">'include'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t599" href="#t599">599</a></span><span class="t">            <span class="str">'body'</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t600" href="#t600">600</a></span><span class="t">        <span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t601" href="#t601">601</a></span><span class="t">        <span class="nam">all_params</span><span class="op">.</span><span class="nam">extend</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t602" href="#t602">602</a></span><span class="t">            <span class="op">[</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t603" href="#t603">603</a></span><span class="t">                <span class="str">'async_req'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t604" href="#t604">604</a></span><span class="t">                <span class="str">'_return_http_data_only'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t605" href="#t605">605</a></span><span class="t">                <span class="str">'_preload_content'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t606" href="#t606">606</a></span><span class="t">                <span class="str">'_request_timeout'</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t607" href="#t607">607</a></span><span class="t">            <span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t608" href="#t608">608</a></span><span class="t">        <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t609" href="#t609">609</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t610" href="#t610">610</a></span><span class="t">        <span class="key">for</span> <span class="nam">key</span><span class="op">,</span> <span class="nam">val</span> <span class="key">in</span> <span class="nam">six</span><span class="op">.</span><span class="nam">iteritems</span><span class="op">(</span><span class="nam">local_var_params</span><span class="op">[</span><span class="str">'kwargs'</span><span class="op">]</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t611" href="#t611">611</a></span><span class="t">            <span class="key">if</span> <span class="nam">key</span> <span class="key">not</span> <span class="key">in</span> <span class="nam">all_params</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t612" href="#t612">612</a></span><span class="t">                <span class="key">raise</span> <span class="nam">ApiTypeError</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t613" href="#t613">613</a></span><span class="t">                    <span class="str">"Got an unexpected keyword argument '%s'"</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t614" href="#t614">614</a></span><span class="t">                    <span class="str">" to method update_volume"</span> <span class="op">%</span> <span class="nam">key</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t615" href="#t615">615</a></span><span class="t">                <span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t616" href="#t616">616</a></span><span class="t">            <span class="nam">local_var_params</span><span class="op">[</span><span class="nam">key</span><span class="op">]</span> <span class="op">=</span> <span class="nam">val</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t617" href="#t617">617</a></span><span class="t">        <span class="key">del</span> <span class="nam">local_var_params</span><span class="op">[</span><span class="str">'kwargs'</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t618" href="#t618">618</a></span><span class="t">        <span class="com"># verify the required parameter 'volume_id' is set</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t619" href="#t619">619</a></span><span class="t">        <span class="key">if</span> <span class="nam">self</span><span class="op">.</span><span class="nam">api_client</span><span class="op">.</span><span class="nam">client_side_validation</span> <span class="key">and</span> <span class="op">(</span><span class="str">'volume_id'</span> <span class="key">not</span> <span class="key">in</span> <span class="nam">local_var_params</span> <span class="key">or</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t620" href="#t620">620</a></span><span class="t">                                                        <span class="nam">local_var_params</span><span class="op">[</span><span class="str">'volume_id'</span><span class="op">]</span> <span class="key">is</span> <span class="key">None</span><span class="op">)</span><span class="op">:</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t621" href="#t621">621</a></span><span class="t">            <span class="key">raise</span> <span class="nam">ApiValueError</span><span class="op">(</span><span class="str">"Missing the required parameter `volume_id` when calling `update_volume`"</span><span class="op">)</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t622" href="#t622">622</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t623" href="#t623">623</a></span><span class="t">        <span class="nam">collection_formats</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t624" href="#t624">624</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t625" href="#t625">625</a></span><span class="t">        <span class="nam">path_params</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t626" href="#t626">626</a></span><span class="t">        <span class="key">if</span> <span class="str">'volume_id'</span> <span class="key">in</span> <span class="nam">local_var_params</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t627" href="#t627">627</a></span><span class="t">            <span class="nam">path_params</span><span class="op">[</span><span class="str">'volumeId'</span><span class="op">]</span> <span class="op">=</span> <span class="nam">local_var_params</span><span class="op">[</span><span class="str">'volume_id'</span><span class="op">]</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t628" href="#t628">628</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t629" href="#t629">629</a></span><span class="t">        <span class="nam">query_params</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t630" href="#t630">630</a></span><span class="t">        <span class="key">if</span> <span class="str">'include'</span> <span class="key">in</span> <span class="nam">local_var_params</span> <span class="key">and</span> <span class="nam">local_var_params</span><span class="op">[</span><span class="str">'include'</span><span class="op">]</span> <span class="key">is</span> <span class="key">not</span> <span class="key">None</span><span class="op">:</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t631" href="#t631">631</a></span><span class="t">            <span class="nam">query_params</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="op">(</span><span class="str">'include'</span><span class="op">,</span> <span class="nam">local_var_params</span><span class="op">[</span><span class="str">'include'</span><span class="op">]</span><span class="op">)</span><span class="op">)</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t632" href="#t632">632</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t633" href="#t633">633</a></span><span class="t">        <span class="nam">header_params</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t634" href="#t634">634</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t635" href="#t635">635</a></span><span class="t">        <span class="nam">form_params</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t636" href="#t636">636</a></span><span class="t">        <span class="nam">local_var_files</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t637" href="#t637">637</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t638" href="#t638">638</a></span><span class="t">        <span class="nam">body_params</span> <span class="op">=</span> <span class="key">None</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t639" href="#t639">639</a></span><span class="t">        <span class="key">if</span> <span class="str">'body'</span> <span class="key">in</span> <span class="nam">local_var_params</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t640" href="#t640">640</a></span><span class="t">            <span class="nam">body_params</span> <span class="op">=</span> <span class="nam">local_var_params</span><span class="op">[</span><span class="str">'body'</span><span class="op">]</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t641" href="#t641">641</a></span><span class="t">        <span class="com"># HTTP header `Accept`</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t642" href="#t642">642</a></span><span class="t">        <span class="nam">header_params</span><span class="op">[</span><span class="str">'Accept'</span><span class="op">]</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">api_client</span><span class="op">.</span><span class="nam">select_header_accept</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t643" href="#t643">643</a></span><span class="t">            <span class="op">[</span><span class="str">'application/json'</span><span class="op">]</span><span class="op">)</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t644" href="#t644">644</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t645" href="#t645">645</a></span><span class="t">        <span class="com"># HTTP header `Content-Type`</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t646" href="#t646">646</a></span><span class="t">        <span class="nam">header_params</span><span class="op">[</span><span class="str">'Content-Type'</span><span class="op">]</span> <span class="op">=</span> <span class="nam">self</span><span class="op">.</span><span class="nam">api_client</span><span class="op">.</span><span class="nam">select_header_content_type</span><span class="op">(</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t647" href="#t647">647</a></span><span class="t">            <span class="op">[</span><span class="str">'application/json-patch+json'</span><span class="op">,</span> <span class="str">'application/json'</span><span class="op">,</span> <span class="str">'text/json'</span><span class="op">,</span> <span class="str">'application/*+json'</span><span class="op">]</span><span class="op">)</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t648" href="#t648">648</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t649" href="#t649">649</a></span><span class="t">        <span class="com"># Authentication setting</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t650" href="#t650">650</a></span><span class="t">        <span class="nam">auth_settings</span> <span class="op">=</span> <span class="op">[</span><span class="str">'Bearer'</span><span class="op">]</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t651" href="#t651">651</a></span><span class="t">&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t652" href="#t652">652</a></span><span class="t">        <span class="key">return</span> <span class="nam">self</span><span class="op">.</span><span class="nam">api_client</span><span class="op">.</span><span class="nam">call_api</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t653" href="#t653">653</a></span><span class="t">            <span class="str">'/v1/volumes/{volumeId}'</span><span class="op">,</span> <span class="str">'PATCH'</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t654" href="#t654">654</a></span><span class="t">            <span class="nam">path_params</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t655" href="#t655">655</a></span><span class="t">            <span class="nam">query_params</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t656" href="#t656">656</a></span><span class="t">            <span class="nam">header_params</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t657" href="#t657">657</a></span><span class="t">            <span class="nam">body</span><span class="op">=</span><span class="nam">body_params</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t658" href="#t658">658</a></span><span class="t">            <span class="nam">post_params</span><span class="op">=</span><span class="nam">form_params</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t659" href="#t659">659</a></span><span class="t">            <span class="nam">files</span><span class="op">=</span><span class="nam">local_var_files</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t660" href="#t660">660</a></span><span class="t">            <span class="nam">response_type</span><span class="op">=</span><span class="str">'VolumeResponse'</span><span class="op">,</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t661" href="#t661">661</a></span><span class="t">            <span class="nam">auth_settings</span><span class="op">=</span><span class="nam">auth_settings</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t662" href="#t662">662</a></span><span class="t">            <span class="nam">async_req</span><span class="op">=</span><span class="nam">local_var_params</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">'async_req'</span><span class="op">)</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t663" href="#t663">663</a></span><span class="t">            <span class="nam">_return_http_data_only</span><span class="op">=</span><span class="nam">local_var_params</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">'_return_http_data_only'</span><span class="op">)</span><span class="op">,</span>  <span class="com"># noqa: E501</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t664" href="#t664">664</a></span><span class="t">            <span class="nam">_preload_content</span><span class="op">=</span><span class="nam">local_var_params</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">'_preload_content'</span><span class="op">,</span> <span class="key">True</span><span class="op">)</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t665" href="#t665">665</a></span><span class="t">            <span class="nam">_request_timeout</span><span class="op">=</span><span class="nam">local_var_params</span><span class="op">.</span><span class="nam">get</span><span class="op">(</span><span class="str">'_request_timeout'</span><span class="op">)</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
+    <p class="pln"><span class="n"><a id="t666" href="#t666">666</a></span><span class="t">            <span class="nam">collection_formats</span><span class="op">=</span><span class="nam">collection_formats</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
 </main>
 <footer>
     <div class="content">
         <p>
-            <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v6.1.1</a>,
-            created at 2022-02-23 23:37 +1100
+            <a id="prevFileLink" class="nav" href="d_f2af5ecf3152e5ca_volume_configurations_api_py.html">&#xab; prev</a> &nbsp; &nbsp;
+            <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
+            <a id="nextFileLink" class="nav" href="d_54fe5b346cbdc503_api_client_py.html">&#xbb; next</a>
+            &nbsp; &nbsp; &nbsp;
+            <a class="nav" href="https://coverage.readthedocs.io">coverage.py v6.4.1</a>,
+            created at 2022-06-14 11:17 +1000
         </p>
     </div>
 </footer>

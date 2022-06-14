@@ -58,7 +58,6 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
 )
 from libica.openapi.v2.model.bundle_pipeline_list import BundlePipelineList
 from libica.openapi.v2.model.problem import Problem
-from libica.openapi.v2.model.project_pipeline import ProjectPipeline
 
 
 class BundlePipelineApi(object):
@@ -127,7 +126,7 @@ class BundlePipelineApi(object):
         )
         self.link_pipeline_to_bundle_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (ProjectPipeline,),
+                &#39;response_type&#39;: None,
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -177,8 +176,7 @@ class BundlePipelineApi(object):
             },
             headers_map={
                 &#39;accept&#39;: [
-                    &#39;application/problem+json&#39;,
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/problem+json&#39;
                 ],
                 &#39;content_type&#39;: [],
             },
@@ -367,7 +365,7 @@ class BundlePipelineApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            ProjectPipeline
+            None
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -570,7 +568,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         )
         self.link_pipeline_to_bundle_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (ProjectPipeline,),
+                &#39;response_type&#39;: None,
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -620,8 +618,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             },
             headers_map={
                 &#39;accept&#39;: [
-                    &#39;application/problem+json&#39;,
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/problem+json&#39;
                 ],
                 &#39;content_type&#39;: [],
             },
@@ -810,7 +807,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             async_req (bool): execute request asynchronously
 
         Returns:
-            ProjectPipeline
+            None
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -1102,7 +1099,7 @@ that we want to use.
 Default is read from the configuration.
 async_req (bool): execute request asynchronously</p>
 <h2 id="returns">Returns</h2>
-<p>ProjectPipeline
+<p>None
 If the method is called asynchronously, returns the request
 thread.</p></div>
 <details class="source">
@@ -1156,7 +1153,7 @@ thread.</p></div>
         async_req (bool): execute request asynchronously
 
     Returns:
-        ProjectPipeline
+        None
             If the method is called asynchronously, returns the request
             thread.
     &#34;&#34;&#34;
