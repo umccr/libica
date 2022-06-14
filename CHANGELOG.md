@@ -1,3 +1,12 @@
+2.1.0
+-----
+* Release date: 2022-06-14
+* Updated for upstream ICA v2 API Release "07 June 2022 - ICA v2.6.0 and CLI v2.3.0"
+* Updated for upstream ICA v1 API Release -- _apparently a couple of updates in GDS_
+* Refactored and improved App package
+* Added Python 3.10 support
+* See [milestone 2.1.0 for all related PRs](https://github.com/umccr-illumina/libica/milestone/6?closed=1)
+
 2.0.0
 -----
 * Release date: 2022-02-23
