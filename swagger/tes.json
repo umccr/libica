@@ -1128,116 +1128,6 @@
     }
   },
   "definitions": {
-    "TaskSummary": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "Global identifier for object",
-          "type": "string"
-        },
-        "href": {
-          "description": "Href of the object",
-          "type": "string"
-        },
-        "urn": {
-          "description": "URN of the resource",
-          "type": "string"
-        },
-        "name": {
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "description": {
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "acl": {
-          "description": "Access Control List",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "tenantId": {
-          "type": "string"
-        },
-        "subTenantId": {
-          "type": "string"
-        },
-        "createdBy": {
-          "description": "User who created the object",
-          "type": "string"
-        },
-        "timeCreated": {
-          "format": "date-time",
-          "description": "Date and Time (in UTC) when object was created in TES",
-          "type": "string"
-        },
-        "modifiedBy": {
-          "description": "User who updated the object",
-          "type": "string"
-        },
-        "timeModified": {
-          "format": "date-time",
-          "description": "Date and Time (in UTC) when object was modified in TES",
-          "type": "string"
-        }
-      }
-    },
-    "TaskSummaryPagedItems": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TaskSummary"
-          }
-        },
-        "itemCount": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "firstPageToken": {
-          "type": "string"
-        },
-        "nextPageToken": {
-          "type": "string"
-        },
-        "prevPageToken": {
-          "type": "string"
-        },
-        "lastPageToken": {
-          "type": "string"
-        },
-        "totalItemCount": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "totalPageCount": {
-          "format": "int64",
-          "type": "integer"
-        }
-      }
-    },
-    "ErrorResponse": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "type": "object"
-          }
-        }
-      }
-    },
     "Credentials": {
       "type": "object",
       "properties": {
@@ -1325,6 +1215,9 @@
           "additionalProperties": {
             "type": "string"
           }
+        },
+        "serviceUrl": {
+          "type": "string"
         }
       }
     },
@@ -1470,6 +1363,808 @@
         "retryCount": {
           "format": "int32",
           "default": 0,
+          "type": "integer"
+        }
+      }
+    },
+    "TaskVersionSummary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Global identifier for object",
+          "type": "string"
+        },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
+        "version": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "subTenantId": {
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "User who created the object",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was created in TES",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "User who updated the object",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was modified in TES",
+          "type": "string"
+        }
+      }
+    },
+    "TaskRunLogs": {
+      "type": "object",
+      "properties": {
+        "startTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "endTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        },
+        "errorDetails": {
+          "type": "string"
+        },
+        "stdout": {
+          "type": "string"
+        },
+        "stderr": {
+          "type": "string"
+        }
+      }
+    },
+    "TaskRun": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Global identifier for object",
+          "type": "string"
+        },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "status": {
+          "default": "Pending",
+          "type": "string"
+        },
+        "statusDetails": {
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "typeOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "sizeOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "tierOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "execution": {
+          "$ref": "#/definitions/Execution"
+        },
+        "taskVersionSummary": {
+          "$ref": "#/definitions/TaskVersionSummary"
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskRunLogs"
+          }
+        },
+        "executionRawJson": {
+          "type": "string"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "subTenantId": {
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "User who created the object",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was created in TES",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "User who updated the object",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was modified in TES",
+          "type": "string"
+        }
+      }
+    },
+    "ClusterSummary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Global identifier for object",
+          "type": "string"
+        },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "svcAcctUId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "taskRuns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskRun"
+          }
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "subTenantId": {
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "User who created the object",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was created in TES",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "User who updated the object",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was modified in TES",
+          "type": "string"
+        }
+      }
+    },
+    "ClusterSummaryPagedItems": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClusterSummary"
+          }
+        },
+        "itemCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstPageToken": {
+          "type": "string"
+        },
+        "nextPageToken": {
+          "type": "string"
+        },
+        "prevPageToken": {
+          "type": "string"
+        },
+        "lastPageToken": {
+          "type": "string"
+        },
+        "totalItemCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalPageCount": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "CreateClusterRequest": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "svcAcctUId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Cluster": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Global identifier for object",
+          "type": "string"
+        },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "svcAcctUId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "taskRuns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskRun"
+          }
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "subTenantId": {
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "User who created the object",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was created in TES",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "User who updated the object",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was modified in TES",
+          "type": "string"
+        }
+      }
+    },
+    "UpdateClusterRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "User-defined name of the cluster",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "svcAcctUId": {
+          "description": "Service account user id to be associated with the cluster",
+          "type": "string"
+        },
+        "status": {
+          "description": "User-defined status of the cluster",
+          "type": "string"
+        },
+        "type": {
+          "description": "User-defined type of the cluster",
+          "type": "string"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "CheckOutQueuedTaskRunRequest": {
+      "type": "object",
+      "properties": {
+        "computeType": {
+          "description": "Type of the compute requested (Fpga and NonFpga)",
+          "enum": [
+            "Fpga",
+            "NonFpga"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "AgentTaskRun": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Global identifier for object",
+          "type": "string"
+        },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
+        "nonce": {
+          "type": "string"
+        },
+        "encryptionKey": {
+          "type": "string"
+        },
+        "inputManifestUrl": {
+          "type": "string"
+        },
+        "outputManifestUrl": {
+          "type": "string"
+        },
+        "heartbeatManifestUrl": {
+          "type": "string"
+        },
+        "outputTokenManifestUrl": {
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "status": {
+          "default": "Pending",
+          "type": "string"
+        },
+        "statusDetails": {
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "typeOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "sizeOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "tierOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "execution": {
+          "$ref": "#/definitions/Execution"
+        },
+        "taskVersionSummary": {
+          "$ref": "#/definitions/TaskVersionSummary"
+        },
+        "logs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskRunLogs"
+          }
+        },
+        "executionRawJson": {
+          "type": "string"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "subTenantId": {
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "User who created the object",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was created in TES",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "User who updated the object",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was modified in TES",
+          "type": "string"
+        }
+      }
+    },
+    "TaskRunSummary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Global identifier for object",
+          "type": "string"
+        },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "status": {
+          "default": "Pending",
+          "type": "string"
+        },
+        "statusDetails": {
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "typeOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "sizeOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "tierOfResource": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "taskVersionSummary": {
+          "$ref": "#/definitions/TaskVersionSummary"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "subTenantId": {
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "User who created the object",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was created in TES",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "User who updated the object",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was modified in TES",
+          "type": "string"
+        }
+      }
+    },
+    "TaskRunSummaryPagedItems": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskRunSummary"
+          }
+        },
+        "itemCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstPageToken": {
+          "type": "string"
+        },
+        "nextPageToken": {
+          "type": "string"
+        },
+        "prevPageToken": {
+          "type": "string"
+        },
+        "lastPageToken": {
+          "type": "string"
+        },
+        "totalItemCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalPageCount": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "UpdateTaskRunStateRequest": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "New TaskRun status to be updated",
+          "enum": [
+            "CheckedOut",
+            "Runnable",
+            "Running",
+            "Finalizing",
+            "Completed",
+            "FailedRestartable",
+            "Failed",
+            "Aborted",
+            "TimedOut"
+          ],
+          "type": "string"
+        },
+        "statusDetails": {
+          "description": "Description of the event that triggered the state change",
+          "type": "string"
+        },
+        "startTime": {
+          "format": "date-time",
+          "description": "TaskRun execution start time",
+          "type": "string"
+        },
+        "completionTime": {
+          "format": "date-time",
+          "description": "TaskRun execution completion time",
+          "type": "string"
+        }
+      }
+    },
+    "TaskSummary": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Global identifier for object",
+          "type": "string"
+        },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "subTenantId": {
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "User who created the object",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was created in TES",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "User who updated the object",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was modified in TES",
+          "type": "string"
+        }
+      }
+    },
+    "TaskSummaryPagedItems": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskSummary"
+          }
+        },
+        "itemCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "firstPageToken": {
+          "type": "string"
+        },
+        "nextPageToken": {
+          "type": "string"
+        },
+        "prevPageToken": {
+          "type": "string"
+        },
+        "lastPageToken": {
+          "type": "string"
+        },
+        "totalItemCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalPageCount": {
+          "format": "int64",
           "type": "integer"
         }
       }
@@ -1686,184 +2381,6 @@
         }
       }
     },
-    "TaskVersionSummary": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "Global identifier for object",
-          "type": "string"
-        },
-        "href": {
-          "description": "Href of the object",
-          "type": "string"
-        },
-        "urn": {
-          "description": "URN of the resource",
-          "type": "string"
-        },
-        "version": {
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "description": {
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "acl": {
-          "description": "Access Control List",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "tenantId": {
-          "type": "string"
-        },
-        "subTenantId": {
-          "type": "string"
-        },
-        "createdBy": {
-          "description": "User who created the object",
-          "type": "string"
-        },
-        "timeCreated": {
-          "format": "date-time",
-          "description": "Date and Time (in UTC) when object was created in TES",
-          "type": "string"
-        },
-        "modifiedBy": {
-          "description": "User who updated the object",
-          "type": "string"
-        },
-        "timeModified": {
-          "format": "date-time",
-          "description": "Date and Time (in UTC) when object was modified in TES",
-          "type": "string"
-        }
-      }
-    },
-    "TaskRunSummary": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "Global identifier for object",
-          "type": "string"
-        },
-        "href": {
-          "description": "Href of the object",
-          "type": "string"
-        },
-        "urn": {
-          "description": "URN of the resource",
-          "type": "string"
-        },
-        "name": {
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "description": {
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "status": {
-          "default": "Pending",
-          "type": "string"
-        },
-        "statusDetails": {
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "typeOfResource": {
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "sizeOfResource": {
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "tierOfResource": {
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "taskVersionSummary": {
-          "$ref": "#/definitions/TaskVersionSummary"
-        },
-        "acl": {
-          "description": "Access Control List",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "tenantId": {
-          "type": "string"
-        },
-        "subTenantId": {
-          "type": "string"
-        },
-        "createdBy": {
-          "description": "User who created the object",
-          "type": "string"
-        },
-        "timeCreated": {
-          "format": "date-time",
-          "description": "Date and Time (in UTC) when object was created in TES",
-          "type": "string"
-        },
-        "modifiedBy": {
-          "description": "User who updated the object",
-          "type": "string"
-        },
-        "timeModified": {
-          "format": "date-time",
-          "description": "Date and Time (in UTC) when object was modified in TES",
-          "type": "string"
-        }
-      }
-    },
-    "TaskRunSummaryPagedItems": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TaskRunSummary"
-          }
-        },
-        "itemCount": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "firstPageToken": {
-          "type": "string"
-        },
-        "nextPageToken": {
-          "type": "string"
-        },
-        "prevPageToken": {
-          "type": "string"
-        },
-        "lastPageToken": {
-          "type": "string"
-        },
-        "totalItemCount": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "totalPageCount": {
-          "format": "int64",
-          "type": "integer"
-        }
-      }
-    },
     "CreateTaskRunRequest": {
       "type": "object",
       "properties": {
@@ -1888,125 +2405,6 @@
         },
         "execution": {
           "$ref": "#/definitions/Execution"
-        }
-      }
-    },
-    "TaskRunLogs": {
-      "type": "object",
-      "properties": {
-        "startTime": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "endTime": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "error": {
-          "type": "string"
-        },
-        "errorDetails": {
-          "type": "string"
-        },
-        "stdout": {
-          "type": "string"
-        },
-        "stderr": {
-          "type": "string"
-        }
-      }
-    },
-    "TaskRun": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "Global identifier for object",
-          "type": "string"
-        },
-        "href": {
-          "description": "Href of the object",
-          "type": "string"
-        },
-        "urn": {
-          "description": "URN of the resource",
-          "type": "string"
-        },
-        "name": {
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "description": {
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "status": {
-          "default": "Pending",
-          "type": "string"
-        },
-        "statusDetails": {
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "typeOfResource": {
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "sizeOfResource": {
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "tierOfResource": {
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "execution": {
-          "$ref": "#/definitions/Execution"
-        },
-        "taskVersionSummary": {
-          "$ref": "#/definitions/TaskVersionSummary"
-        },
-        "logs": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TaskRunLogs"
-          }
-        },
-        "acl": {
-          "description": "Access Control List",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "tenantId": {
-          "type": "string"
-        },
-        "subTenantId": {
-          "type": "string"
-        },
-        "createdBy": {
-          "description": "User who created the object",
-          "type": "string"
-        },
-        "timeCreated": {
-          "format": "date-time",
-          "description": "Date and Time (in UTC) when object was created in TES",
-          "type": "string"
-        },
-        "modifiedBy": {
-          "description": "User who updated the object",
-          "type": "string"
-        },
-        "timeModified": {
-          "format": "date-time",
-          "description": "Date and Time (in UTC) when object was modified in TES",
-          "type": "string"
         }
       }
     },

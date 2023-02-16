@@ -1451,279 +1451,21 @@
     }
   },
   "definitions": {
-    "WorkflowCompact": {
-      "description": "Compact details of a workflow",
+    "AbortWorkflowRunRequest": {
+      "description": "Abort a workflow run",
+      "required": [
+        "error"
+      ],
       "type": "object",
       "properties": {
-        "id": {
-          "description": "Unique resource ID",
-          "type": "string"
-        },
-        "urn": {
-          "description": "URN of the resource",
-          "type": "string"
-        },
-        "href": {
-          "format": "uri",
-          "description": "HREF to the resource",
-          "type": "string"
-        },
-        "name": {
-          "description": "Name of the workflow",
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "organization": {
-          "description": "Organization associated with the workflow",
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "description": {
-          "description": "Description of the workflow",
+        "error": {
           "maxLength": 256,
           "minLength": 0,
           "type": "string"
         },
-        "toolClass": {
-          "description": "Workflow type",
-          "type": "string"
-        },
-        "categories": {
-          "description": "Categories of the workflow (Limit Max Size : 10)",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "createdByClientId": {
-          "description": "Client ID of the Origin Request",
-          "type": "string"
-        },
-        "timeCreated": {
-          "format": "date-time",
-          "description": "Time (in UTC) the resource was created",
-          "type": "string"
-        },
-        "timeModified": {
-          "format": "date-time",
-          "description": "Time (in UTC) the resource was modified",
-          "type": "string"
-        },
-        "createdBy": {
-          "description": "User that created the resource",
-          "type": "string"
-        },
-        "modifiedBy": {
-          "description": "User that modified the resource",
-          "type": "string"
-        },
-        "tenantId": {
-          "description": "Tenant ID the resource belongs to",
-          "maxLength": 255,
+        "cause": {
+          "maxLength": 32768,
           "minLength": 0,
-          "type": "string"
-        },
-        "acl": {
-          "description": "Access control list of the resource",
-          "maxLength": 128,
-          "minLength": 0,
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "WorkflowList": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "description": "Items in paged list",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/WorkflowCompact"
-          }
-        },
-        "itemCount": {
-          "format": "int32",
-          "description": "Number of items included in the page",
-          "type": "integer"
-        },
-        "firstPageToken": {
-          "description": "PageToken for first paged list",
-          "type": "string"
-        },
-        "nextPageToken": {
-          "description": "PageToken for the next paged list",
-          "type": "string"
-        },
-        "prevPageToken": {
-          "description": "PageToken for the previous paged list",
-          "type": "string"
-        },
-        "lastPageToken": {
-          "description": "PageToken for the last paged list. Only included when totalItemCount is listed",
-          "type": "string"
-        },
-        "totalItemCount": {
-          "format": "int64",
-          "description": "Total number of items in all pages. Only included when requested",
-          "type": "integer"
-        },
-        "totalPageCount": {
-          "format": "int64",
-          "description": "Total number of pages. Only included when totalItemCount is listed",
-          "type": "integer"
-        }
-      }
-    },
-    "ErrorResponse": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        },
-        "details": {
-          "type": "array",
-          "items": {
-            "type": "object"
-          }
-        }
-      }
-    },
-    "WorkflowArgument": {
-      "description": "Argument definition",
-      "required": [
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "Name of the argument key",
-          "maxLength": 128,
-          "minLength": 0,
-          "type": "string"
-        },
-        "value": {
-          "description": "A simple string value for the argument. Cannot provide both Value and Json at the same time.",
-          "type": "string"
-        },
-        "json": {
-          "description": "A JSON value for the argument. Cannot provide both Value and Json at the same time."
-        },
-        "options": {
-          "description": "Comma separated list of options for the argument: Required, Overridable, Writable, Json, Optional, ReadOnly, Final\r\nSome combinations of options are considered errors, like Required/Optional, Overridable/Final, Writable/ReadOnly, etc.",
-          "type": "string"
-        }
-      }
-    },
-    "WorkflowConnection": {
-      "description": "Defines a connection that can be used in a workflow definition to perform actions",
-      "required": [
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "name": {
-          "maxLength": 128,
-          "minLength": 0,
-          "type": "string"
-        },
-        "type": {
-          "description": "Type of the connection: PlatformJwt, ApiBearerToken, AwsCredentials, ApiCustomAuthentication, BsshOAuthV2",
-          "type": "string"
-        },
-        "host": {
-          "format": "uri",
-          "description": "For API based connections, the Host part of the API endpoint",
-          "maxLength": 1024,
-          "minLength": 0,
-          "type": "string",
-          "example": "https://api.myhost.com/v1/"
-        },
-        "hostValidationRegex": {
-          "description": "Regex that hosts associated with this connection must meet (when host override by each run is allowed)",
-          "maxLength": 100,
-          "minLength": 0,
-          "type": "string"
-        },
-        "credentials": {
-          "description": "Credentials associated with the connection. Format depends on type of connection.",
-          "type": "string"
-        },
-        "options": {
-          "description": "Comma separated list of options associated with the connection: CredentialsRequired, AllowCredentialsOverride, AutoDisableCredentialsAfterUse, AllowHostOverride",
-          "type": "string"
-        },
-        "autoDisableUrl": {
-          "format": "uri",
-          "description": "Relative URL (relative to Host) to call in order to disable the credentials",
-          "maxLength": 1024,
-          "minLength": 0,
-          "type": "string"
-        },
-        "autoDisableHttpMethod": {
-          "description": "Http method to use to disable the credentials. Must be POST, PUT or DELETE",
-          "maxLength": 10,
-          "minLength": 0,
-          "type": "string"
-        }
-      }
-    },
-    "WorkflowLanguage": {
-      "description": "Language details about a workflow version",
-      "required": [
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "The name of the workflow language",
-          "type": "string"
-        },
-        "version": {
-          "description": "The version of the workflow language, if any",
-          "type": "string"
-        }
-      }
-    },
-    "CreateWorkflowVersionRequest": {
-      "description": "Create a new workflow version under an existing workflow root",
-      "required": [
-        "version"
-      ],
-      "type": "object",
-      "properties": {
-        "version": {
-          "type": "string"
-        },
-        "description": {
-          "maxLength": 256,
-          "minLength": 0,
-          "type": "string"
-        },
-        "language": {
-          "$ref": "#/definitions/WorkflowLanguage"
-        },
-        "definition": { },
-        "acl": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "status": {
-          "description": "Published Status of the workflow version",
-          "enum": [
-            "draft",
-            "released",
-            "obsolete"
-          ],
           "type": "string"
         }
       }
@@ -1736,6 +1478,7 @@
       "type": "object",
       "properties": {
         "name": {
+          "minLength": 1,
           "type": "string"
         },
         "description": {
@@ -1769,6 +1512,166 @@
           "items": {
             "type": "string"
           }
+        }
+      }
+    },
+    "CreateWorkflowVersionRequest": {
+      "description": "Create a new workflow version under an existing workflow root",
+      "required": [
+        "version"
+      ],
+      "type": "object",
+      "properties": {
+        "version": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 256,
+          "minLength": 0,
+          "type": "string"
+        },
+        "language": {
+          "$ref": "#/definitions/WorkflowLanguage"
+        },
+        "definition": { },
+        "acl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "description": "Published Status of the workflow version",
+          "enum": [
+            "draft",
+            "released",
+            "obsolete"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": { }
+        }
+      }
+    },
+    "FailWorkflowSignalRequest": {
+      "description": "Fail workflow signal request",
+      "required": [
+        "error"
+      ],
+      "type": "object",
+      "properties": {
+        "error": {
+          "description": "Externally provided Error of a signalling action.",
+          "minLength": 1,
+          "type": "string"
+        },
+        "cause": {
+          "description": "Externally provided Cause of a failed signalling action.",
+          "type": "string"
+        }
+      }
+    },
+    "LaunchWorkflowVersionRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of the workflow run",
+          "maxLength": 255,
+          "minLength": 0,
+          "pattern": "^(?![wW][fF][rR]\\..*)(^[0-9a-zA-Z-_\\.]*$)",
+          "type": "string"
+        },
+        "input": {
+          "description": "Input for the launched workflow run. Must resolve to a JSON object."
+        },
+        "engineParameters": {
+          "description": "Runtime options for launching workflows (currently only used for Airflow     and otherwise ignored). Must resolve to a JSON object."
+        }
+      }
+    },
+    "SucceedWorkflowSignalRequest": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "description": "External result of a successful signal. Must resolve to a JSON value."
+        }
+      }
+    },
+    "UpdateWorkflowRequest": {
+      "description": "Update an existing workflow",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 256,
+          "minLength": 0,
+          "type": "string"
+        },
+        "organization": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "acl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "UpdateWorkflowVersionRequest": {
+      "description": "Update a workflow version definition using patch semantics",
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "description": {
+          "maxLength": 256,
+          "minLength": 0,
+          "type": "string"
+        },
+        "language": {
+          "$ref": "#/definitions/WorkflowLanguage"
+        },
+        "definition": { },
+        "acl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "status": {
+          "description": "New Status for workflow version",
+          "enum": [
+            "draft",
+            "released",
+            "obsolete"
+          ],
+          "type": "string"
         }
       }
     },
@@ -1857,78 +1760,77 @@
         }
       }
     },
-    "UpdateWorkflowRequest": {
-      "description": "Update an existing workflow",
+    "WorkflowArgument": {
+      "description": "Argument definition",
+      "required": [
+        "name"
+      ],
       "type": "object",
       "properties": {
         "name": {
+          "description": "Name of the argument key",
+          "maxLength": 128,
+          "minLength": 0,
           "type": "string"
         },
-        "description": {
-          "maxLength": 256,
+        "value": {
+          "description": "A simple string value for the argument. Cannot provide both Value and Json at the same time.",
+          "type": "string"
+        },
+        "json": {
+          "description": "A JSON value for the argument. Cannot provide both Value and Json at the same time."
+        },
+        "options": {
+          "description": "Comma separated list of options for the argument: Required, Overridable, Writable, Json, Optional, ReadOnly, Final\r\nSome combinations of options are considered errors, like Required/Optional, Overridable/Final, Writable/ReadOnly, etc.",
+          "type": "string"
+        }
+      }
+    },
+    "WorkflowCompact": {
+      "description": "Compact details of a workflow",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Unique resource ID",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
+        "href": {
+          "format": "uri",
+          "description": "HREF to the resource",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the workflow",
+          "maxLength": 255,
           "minLength": 0,
           "type": "string"
         },
         "organization": {
+          "description": "Organization associated with the workflow",
           "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "acl": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "categories": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "WorkflowVersionCompact": {
-      "description": "Compact details of a Workflow version definition",
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "Unique resource ID",
-          "type": "string"
-        },
-        "urn": {
-          "description": "URN of the resource",
-          "type": "string"
-        },
-        "href": {
-          "format": "uri",
-          "description": "HREF to the resource",
-          "type": "string"
-        },
-        "version": {
-          "description": "Name of the workflow version",
-          "maxLength": 40,
-          "minLength": 0,
-          "type": "string"
-        },
-        "category": {
-          "description": "Category of the workflow version",
-          "maxLength": 128,
           "minLength": 0,
           "type": "string"
         },
         "description": {
-          "description": "Description of the workflow version",
+          "description": "Description of the workflow",
           "maxLength": 256,
           "minLength": 0,
           "type": "string"
         },
-        "language": {
-          "$ref": "#/definitions/WorkflowLanguage"
-        },
-        "status": {
-          "description": "Published Status of the workflow version",
+        "toolClass": {
+          "description": "Workflow type",
           "type": "string"
+        },
+        "categories": {
+          "description": "Categories of the workflow (Limit Max Size : 10)",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "createdByClientId": {
           "description": "Client ID of the Origin Request",
@@ -1969,112 +1871,85 @@
         }
       }
     },
-    "WorkflowRunCompact": {
-      "description": "Compact details of a workflow run",
+    "WorkflowConnection": {
+      "description": "Defines a connection that can be used in a workflow definition to perform actions",
+      "required": [
+        "name"
+      ],
       "type": "object",
       "properties": {
-        "id": {
-          "description": "Unique resource ID",
-          "type": "string"
-        },
-        "urn": {
-          "description": "URN of the resource",
-          "type": "string"
-        },
-        "href": {
-          "format": "uri",
-          "description": "HREF to the resource",
-          "type": "string"
-        },
         "name": {
-          "description": "Name of the workflow run",
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "timeStarted": {
-          "format": "date-time",
-          "description": "The time (in UTC) the workflow run started",
-          "type": "string"
-        },
-        "timeStopped": {
-          "format": "date-time",
-          "description": "The time (in UTC) the Workflow Run stopped",
-          "type": "string"
-        },
-        "status": {
-          "description": "Workflow run status",
-          "type": "string"
-        },
-        "idempotencyKey": {
-          "type": "string"
-        },
-        "statusSummary": {
-          "description": "Workflow run status summary",
-          "type": "string"
-        },
-        "error": {
-          "description": "Error for a failed workflow run",
-          "type": "string"
-        },
-        "errorCause": {
-          "description": "Error cause for a failed workflow run",
-          "type": "string"
-        },
-        "workflowVersion": {
-          "$ref": "#/definitions/WorkflowVersionCompact"
-        },
-        "createdByClientId": {
-          "description": "Client ID of the Origin Request",
-          "type": "string"
-        },
-        "engineParameters": {
-          "description": "Workflow Engine Parameters",
-          "type": "string"
-        },
-        "timeCreated": {
-          "format": "date-time",
-          "description": "Time (in UTC) the resource was created",
-          "type": "string"
-        },
-        "timeModified": {
-          "format": "date-time",
-          "description": "Time (in UTC) the resource was modified",
-          "type": "string"
-        },
-        "createdBy": {
-          "description": "User that created the resource",
-          "type": "string"
-        },
-        "modifiedBy": {
-          "description": "User that modified the resource",
-          "type": "string"
-        },
-        "tenantId": {
-          "description": "Tenant ID the resource belongs to",
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "acl": {
-          "description": "Access control list of the resource",
           "maxLength": 128,
           "minLength": 0,
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the connection: PlatformJwt, ApiBearerToken, AwsCredentials, ApiCustomAuthentication, BsshOAuthV2",
+          "type": "string"
+        },
+        "host": {
+          "format": "uri",
+          "description": "For API based connections, the Host part of the API endpoint",
+          "maxLength": 1024,
+          "minLength": 0,
+          "type": "string",
+          "example": "https://api.myhost.com/v1/"
+        },
+        "hostValidationRegex": {
+          "description": "Regex that hosts associated with this connection must meet (when host override by each run is allowed)",
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "credentials": {
+          "description": "Credentials associated with the connection. Format depends on type of connection.",
+          "type": "string"
+        },
+        "options": {
+          "description": "Comma separated list of options associated with the connection: CredentialsRequired, AllowCredentialsOverride, AutoDisableCredentialsAfterUse, AllowHostOverride",
+          "type": "string"
+        },
+        "autoDisableUrl": {
+          "format": "uri",
+          "description": "Relative URL (relative to Host) to call in order to disable the credentials",
+          "maxLength": 1024,
+          "minLength": 0,
+          "type": "string"
+        },
+        "autoDisableHttpMethod": {
+          "description": "Http method to use to disable the credentials. Must be POST, PUT or DELETE",
+          "maxLength": 10,
+          "minLength": 0,
+          "type": "string"
         }
       }
     },
-    "WorkflowRunList": {
+    "WorkflowLanguage": {
+      "description": "Language details about a workflow version",
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "The name of the workflow language",
+          "minLength": 1,
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the workflow language, if any",
+          "type": "string"
+        }
+      }
+    },
+    "WorkflowList": {
       "type": "object",
       "properties": {
         "items": {
           "description": "Items in paged list",
           "type": "array",
           "items": {
-            "$ref": "#/definitions/WorkflowRunCompact"
+            "$ref": "#/definitions/WorkflowCompact"
           }
         },
         "itemCount": {
@@ -2218,22 +2093,101 @@
         }
       }
     },
-    "AbortWorkflowRunRequest": {
-      "description": "Abort a workflow run",
-      "required": [
-        "error"
-      ],
+    "WorkflowRunCompact": {
+      "description": "Compact details of a workflow run",
       "type": "object",
       "properties": {
-        "error": {
-          "maxLength": 256,
+        "id": {
+          "description": "Unique resource ID",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
+        "href": {
+          "format": "uri",
+          "description": "HREF to the resource",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the workflow run",
+          "maxLength": 255,
           "minLength": 0,
           "type": "string"
         },
-        "cause": {
-          "maxLength": 32768,
+        "timeStarted": {
+          "format": "date-time",
+          "description": "The time (in UTC) the workflow run started",
+          "type": "string"
+        },
+        "timeStopped": {
+          "format": "date-time",
+          "description": "The time (in UTC) the Workflow Run stopped",
+          "type": "string"
+        },
+        "status": {
+          "description": "Workflow run status",
+          "type": "string"
+        },
+        "idempotencyKey": {
+          "type": "string"
+        },
+        "statusSummary": {
+          "description": "Workflow run status summary",
+          "type": "string"
+        },
+        "error": {
+          "description": "Error for a failed workflow run",
+          "type": "string"
+        },
+        "errorCause": {
+          "description": "Error cause for a failed workflow run",
+          "type": "string"
+        },
+        "workflowVersion": {
+          "$ref": "#/definitions/WorkflowVersionCompact"
+        },
+        "createdByClientId": {
+          "description": "Client ID of the Origin Request",
+          "type": "string"
+        },
+        "engineParameters": {
+          "description": "Workflow Engine Parameters",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Time (in UTC) the resource was created",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "Time (in UTC) the resource was modified",
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "User that created the resource",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "User that modified the resource",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "Tenant ID the resource belongs to",
+          "maxLength": 255,
           "minLength": 0,
           "type": "string"
+        },
+        "acl": {
+          "description": "Access control list of the resource",
+          "maxLength": 128,
+          "minLength": 0,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -2265,8 +2219,7 @@
           "type": "string"
         },
         "eventDetails": {
-          "description": "Details for history event",
-          "type": "object"
+          "description": "Details for history event"
         }
       }
     },
@@ -2278,6 +2231,49 @@
           "type": "array",
           "items": {
             "$ref": "#/definitions/WorkflowRunHistoryEvent"
+          }
+        },
+        "itemCount": {
+          "format": "int32",
+          "description": "Number of items included in the page",
+          "type": "integer"
+        },
+        "firstPageToken": {
+          "description": "PageToken for first paged list",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "PageToken for the next paged list",
+          "type": "string"
+        },
+        "prevPageToken": {
+          "description": "PageToken for the previous paged list",
+          "type": "string"
+        },
+        "lastPageToken": {
+          "description": "PageToken for the last paged list. Only included when totalItemCount is listed",
+          "type": "string"
+        },
+        "totalItemCount": {
+          "format": "int64",
+          "description": "Total number of items in all pages. Only included when requested",
+          "type": "integer"
+        },
+        "totalPageCount": {
+          "format": "int64",
+          "description": "Total number of pages. Only included when totalItemCount is listed",
+          "type": "integer"
+        }
+      }
+    },
+    "WorkflowRunList": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "description": "Items in paged list",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WorkflowRunCompact"
           }
         },
         "itemCount": {
@@ -2577,31 +2573,6 @@
         }
       }
     },
-    "SucceedWorkflowSignalRequest": {
-      "type": "object",
-      "properties": {
-        "result": {
-          "description": "External result of a successful signal. Must resolve to a JSON value."
-        }
-      }
-    },
-    "FailWorkflowSignalRequest": {
-      "description": "Fail workflow signal request",
-      "required": [
-        "error"
-      ],
-      "type": "object",
-      "properties": {
-        "error": {
-          "description": "Externally provided Error of a signalling action.",
-          "type": "string"
-        },
-        "cause": {
-          "description": "Externally provided Cause of a failed signalling action.",
-          "type": "string"
-        }
-      }
-    },
     "WorkflowVersion": {
       "description": "Details of a Workflow version definition",
       "type": "object",
@@ -2687,14 +2658,37 @@
         }
       }
     },
-    "UpdateWorkflowVersionRequest": {
-      "description": "Update a workflow version definition using patch semantics",
+    "WorkflowVersionCompact": {
+      "description": "Compact details of a Workflow version definition",
       "type": "object",
       "properties": {
+        "id": {
+          "description": "Unique resource ID",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
+        "href": {
+          "format": "uri",
+          "description": "HREF to the resource",
+          "type": "string"
+        },
         "version": {
+          "description": "Name of the workflow version",
+          "maxLength": 40,
+          "minLength": 0,
+          "type": "string"
+        },
+        "category": {
+          "description": "Category of the workflow version",
+          "maxLength": 128,
+          "minLength": 0,
           "type": "string"
         },
         "description": {
+          "description": "Description of the workflow version",
           "maxLength": 256,
           "minLength": 0,
           "type": "string"
@@ -2702,21 +2696,46 @@
         "language": {
           "$ref": "#/definitions/WorkflowLanguage"
         },
-        "definition": { },
+        "status": {
+          "description": "Published Status of the workflow version",
+          "type": "string"
+        },
+        "createdByClientId": {
+          "description": "Client ID of the Origin Request",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Time (in UTC) the resource was created",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "Time (in UTC) the resource was modified",
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "User that created the resource",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "User that modified the resource",
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "Tenant ID the resource belongs to",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
         "acl": {
+          "description": "Access control list of the resource",
+          "maxLength": 128,
+          "minLength": 0,
           "type": "array",
           "items": {
             "type": "string"
           }
-        },
-        "status": {
-          "description": "New Status for workflow version",
-          "enum": [
-            "draft",
-            "released",
-            "obsolete"
-          ],
-          "type": "string"
         }
       }
     },
@@ -2760,24 +2779,6 @@
           "format": "int64",
           "description": "Total number of pages. Only included when totalItemCount is listed",
           "type": "integer"
-        }
-      }
-    },
-    "LaunchWorkflowVersionRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "Name of the workflow run",
-          "maxLength": 255,
-          "minLength": 0,
-          "pattern": "^(?![wW][fF][rR]\\..*)(^[0-9a-zA-Z-_\\.]*$)",
-          "type": "string"
-        },
-        "input": {
-          "description": "Input for the launched workflow run. Must resolve to a JSON object."
-        },
-        "engineParameters": {
-          "description": "Runtime options for launching workflows (currently only used for Airflow     and otherwise ignored). Must resolve to a JSON object."
         }
       }
     }

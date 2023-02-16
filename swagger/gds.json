@@ -57,6 +57,12 @@
             "name": "metadata.exclude",
             "description": "Optional parameter to specify comma separated patterns to exclude metadata by their field names.",
             "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "description": "Optionally include additional fields in the response.\r\n            Possible values: ObjectStoreAccess",
+            "type": "string"
           }
         ],
         "responses": {
@@ -352,7 +358,7 @@
             }
           },
           "202": {
-            "description": "Success",
+            "description": "Accepted",
             "schema": {
               "$ref": "#/definitions/BulkFileUpdateResponse"
             }
@@ -571,6 +577,74 @@
           },
           "403": {
             "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/files/copy": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Copy list of files",
+        "description": "Copies a list of files enumerated by file Ids to a destination folder",
+        "operationId": "copyFiles",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FileListCopyRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/JobResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -1119,6 +1193,12 @@
           },
           {
             "in": "query",
+            "name": "includeActiveJobs",
+            "description": "Optional parameter to return active jobs associated to folder",
+            "type": "boolean"
+          },
+          {
+            "in": "query",
             "name": "metadata.include",
             "description": "Optional parameter to specify comma separated patterns to include metadata by their field names.",
             "type": "string"
@@ -1127,6 +1207,12 @@
             "in": "query",
             "name": "metadata.exclude",
             "description": "Optional parameter to specify comma separated patterns to exclude metadata by their field names.",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "description": "Optionally include additional fields in the response.\r\n            Possible values: ObjectStoreAccess",
             "type": "string"
           }
         ],
@@ -1750,7 +1836,7 @@
         ],
         "responses": {
           "201": {
-            "description": "Success",
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/CreateSessionResponse"
             }
@@ -1787,6 +1873,72 @@
           },
           "default": {
             "description": "Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/folders/bulkMetadataFolderUpdate": {
+      "patch": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Updates list of folders with metadata",
+        "description": "Updates list of folders with metadata",
+        "operationId": "bulkMetadataFolderUpdate",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/BulkFolderMetadataUpdateRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/JobResponse"
+            }
+          },
+          "202": {
+            "description": "Accepted",
+            "schema": {
+              "$ref": "#/definitions/JobResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
             "schema": {
               "$ref": "#/definitions/ErrorResponse"
             }
@@ -1864,7 +2016,226 @@
         }
       }
     },
-    "/v1/jobs/{jobId}": { },
+    "/v1/jobs/{jobId}": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Get information about a job in GDS.",
+        "description": "Get information for the specified job ID.",
+        "operationId": "getJob",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "jobId",
+            "description": "Unique identifier for the job to retrieve.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "tenantId",
+            "description": "Optional parameter to see shared data in another tenant",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "includeErrors",
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/JobResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Job not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/jobs": {
+      "get": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Get a list of jobs for a given folder",
+        "description": "Given a folder id, get a list of jobs accessible by the JWT. The default sort returned is by job progress status. The default page size is 10 items",
+        "operationId": "listJobs",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "jobStatuses",
+            "description": "Optional field that specifies comma-separated JobStatuses to include in the list",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "folderId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "pageSize",
+            "description": "START_DESC END_DESC",
+            "type": "integer",
+            "format": "int32",
+            "maximum": 1000,
+            "minimum": 0
+          },
+          {
+            "in": "query",
+            "name": "pageToken",
+            "description": "START_DESC END_DESC",
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "include",
+            "description": "Optionally include additional fields in the response. Multiple fields can be included by comma-separation.\r\nPossible values: TotalItemCount, InheritedAcl",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/JobListResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "/v1/jobs/{jobId}:abort": {
+      "post": {
+        "tags": [
+          "Jobs"
+        ],
+        "summary": "Abort a job in GDS.",
+        "description": "Abort the specified job ID.",
+        "operationId": "abortJob",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "jobId",
+            "description": "Unique identifier for the job to be aborted.",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted.",
+            "schema": {
+              "$ref": "#/definitions/JobResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Job not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator."
+          }
+        }
+      }
+    },
     "/v1/volumeconfigurations": {
       "get": {
         "tags": [
@@ -2558,15 +2929,6 @@
     }
   },
   "definitions": {
-    "ArchiveStatuses": {
-      "description": "The valid Archive Status values for files in GDS",
-      "enum": [
-        "None",
-        "Archived",
-        "Unarchiving"
-      ],
-      "type": "string"
-    },
     "AWSS3ObjectStoreSetting": {
       "required": [
         "bucketName"
@@ -2593,6 +2955,15 @@
           "type": "string"
         }
       }
+    },
+    "ArchiveStatuses": {
+      "description": "The valid Archive Status values for files in GDS",
+      "enum": [
+        "None",
+        "Archived",
+        "Unarchiving"
+      ],
+      "type": "string"
     },
     "AwsS3PresignedUrlForUpload": {
       "description": "AwsS3PresignedUrlForUpload",
@@ -2746,6 +3117,32 @@
         }
       }
     },
+    "BulkFolderMetadataUpdateRequest": {
+      "description": "Request to bulk update metadata on folders and sub files.",
+      "required": [
+        "folderId"
+      ],
+      "type": "object",
+      "properties": {
+        "folderId": {
+          "description": "Folder unique id.",
+          "type": "string"
+        },
+        "fileStatus": {
+          "description": "File status to filter on.",
+          "type": "string"
+        },
+        "parentFolderMetadataUpdates": {
+          "$ref": "#/definitions/MetadataUpdateRequest"
+        },
+        "childrenFoldersUpdates": {
+          "$ref": "#/definitions/MetadataUpdateRequest"
+        },
+        "childrenFilesUpdates": {
+          "$ref": "#/definitions/MetadataUpdateRequest"
+        }
+      }
+    },
     "BulkFolderUpdateItem": {
       "type": "object",
       "properties": {
@@ -2792,6 +3189,33 @@
           "format": "int32",
           "description": "Total items failed to be updated",
           "type": "integer"
+        }
+      }
+    },
+    "BulkMetadataUpdateOperationParameters": {
+      "description": "Operation parameters for folder bulk metadata update operations",
+      "type": "object",
+      "properties": {
+        "folderId": {
+          "type": "string"
+        },
+        "folderPath": {
+          "type": "string"
+        },
+        "volumeId": {
+          "type": "string"
+        },
+        "fileStatus": {
+          "type": "string"
+        },
+        "parentFolderMetadataUpdates": {
+          "$ref": "#/definitions/MetadataUpdateRequest"
+        },
+        "childrenFoldersUpdates": {
+          "$ref": "#/definitions/MetadataUpdateRequest"
+        },
+        "childrenFilesUpdates": {
+          "$ref": "#/definitions/MetadataUpdateRequest"
         }
       }
     },
@@ -3057,6 +3481,10 @@
         "lifeCycle": {
           "$ref": "#/definitions/VolumeLifeCycleSettings"
         },
+        "migrationStatus": {
+          "description": "Status of the root folder migration status from v1 to v2",
+          "type": "string"
+        },
         "importSessionId": {
           "description": "Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom\r\nVolume configurations.",
           "type": "string"
@@ -3103,6 +3531,60 @@
       ],
       "type": "string"
     },
+    "FileCopyOperationParameters": {
+      "description": "Operation parameters for folder copy operations",
+      "type": "object",
+      "properties": {
+        "sourceVolumeId": {
+          "type": "string"
+        },
+        "sourceFileIds": {
+          "description": "The file Ids for the copy operation",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "targetFolderId": {
+          "type": "string"
+        },
+        "metadataToCopy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duplicateFileAction": {
+          "type": "string"
+        }
+      }
+    },
+    "FileCopyOutput": {
+      "type": "object",
+      "properties": {
+        "itemsSkippedCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "itemsFailedCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "itemsCopiedCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "elasticIndexingMatched": {
+          "type": "boolean"
+        },
+        "itemsFailed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BulkFailedItem"
+          }
+        }
+      }
+    },
     "FileLifeCycleSettings": {
       "type": "object",
       "properties": {
@@ -3123,6 +3605,40 @@
         },
         "archiveStorageTier": {
           "$ref": "#/definitions/FileArchiveStorageTier"
+        }
+      }
+    },
+    "FileListCopyRequest": {
+      "required": [
+        "destinationFolderId",
+        "ids",
+        "sourceVolumeId"
+      ],
+      "type": "object",
+      "properties": {
+        "sourceVolumeId": {
+          "description": "The volume where the source files are copied from.",
+          "type": "string"
+        },
+        "destinationFolderId": {
+          "description": "The folder into which the source folder will be copied.",
+          "type": "string"
+        },
+        "ids": {
+          "description": "List of files ids to copy",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "metadataToCopy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duplicateFileAction": {
+          "type": "string"
         }
       }
     },
@@ -3174,6 +3690,10 @@
       "properties": {
         "volumeMetadata": {
           "description": "Metadata about this file's volume"
+        },
+        "copyJobId": {
+          "description": "Job that copied the file",
+          "type": "string"
         },
         "id": {
           "description": "A unique identifier for this File",
@@ -3287,6 +3807,9 @@
         "presignedUrl": {
           "description": "The presigned Url allowing access to this File",
           "type": "string"
+        },
+        "objectStoreAccess": {
+          "$ref": "#/definitions/ObjectStoreAccess"
         }
       }
     },
@@ -3295,7 +3818,8 @@
         "Partial",
         "Available",
         "Archived",
-        "Unarchiving"
+        "Unarchiving",
+        "Copying"
       ],
       "type": "string"
     },
@@ -3480,6 +4004,24 @@
         "destinationFolderName": {
           "description": "The folder name for the copied folder",
           "type": "string"
+        },
+        "metadataToCopy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duplicateFileAction": {
+          "type": "string"
+        },
+        "copyUploadedFilesOnly": {
+          "type": "boolean"
+        },
+        "sourceFolderId": {
+          "type": "string"
+        },
+        "targetFolderId": {
+          "type": "string"
         }
       }
     },
@@ -3496,6 +4038,15 @@
         "destinationFolderName": {
           "description": "A new name for the destination folder. Required if target parent folder is the same as the destination folder.\r\nWhen optional and not provided, the source folder name is used as the destination folder name.",
           "pattern": "^[^/]+$",
+          "type": "string"
+        },
+        "metadataToCopy": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "duplicateFileAction": {
           "type": "string"
         }
       }
@@ -3639,6 +4190,20 @@
         },
         "archiveJobStorageTier": {
           "$ref": "#/definitions/StorageTier"
+        },
+        "migrationStatus": {
+          "description": "Status of the root folder migration status from v1 to v2",
+          "type": "string"
+        },
+        "activeJobIds": {
+          "description": "List of Jobs in Pending and In Progress status",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "objectStoreAccess": {
+          "$ref": "#/definitions/ObjectStoreAccess"
         }
       }
     },
@@ -3756,6 +4321,17 @@
         "archiveJobStorageTier": {
           "$ref": "#/definitions/StorageTier"
         },
+        "migrationStatus": {
+          "description": "Status of the root folder migration status from v1 to v2",
+          "type": "string"
+        },
+        "activeJobIds": {
+          "description": "List of Jobs in Pending and In Progress status",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "objectStoreAccess": {
           "$ref": "#/definitions/ObjectStoreAccess"
         }
@@ -3770,6 +4346,49 @@
       ],
       "type": "string"
     },
+    "JobListResponse": {
+      "type": "object",
+      "properties": {
+        "items": {
+          "description": "Items in paged list",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/JobResponse"
+          }
+        },
+        "itemCount": {
+          "format": "int32",
+          "description": "Number of items included in the page",
+          "type": "integer"
+        },
+        "firstPageToken": {
+          "description": "PageToken for first paged list",
+          "type": "string"
+        },
+        "nextPageToken": {
+          "description": "PageToken for the next paged list",
+          "type": "string"
+        },
+        "prevPageToken": {
+          "description": "PageToken for the previous paged list",
+          "type": "string"
+        },
+        "lastPageToken": {
+          "description": "PageToken for the last paged list. Only included when totalItemCount is listed",
+          "type": "string"
+        },
+        "totalItemCount": {
+          "format": "int64",
+          "description": "Total number of items in all pages. Only included when requested",
+          "type": "integer"
+        },
+        "totalPageCount": {
+          "format": "int64",
+          "description": "Total number of pages. Only included when totalItemCount is listed",
+          "type": "integer"
+        }
+      }
+    },
     "JobOperationParameters": {
       "description": "Container for XXXOperationParameters objects, which have additional details related to the specific job operation type.\r\nOnly one object will be populated.",
       "type": "object",
@@ -3779,11 +4398,20 @@
         },
         "folderDelete": {
           "$ref": "#/definitions/FolderDeleteOperationParameters"
+        },
+        "volumeMigration": {
+          "$ref": "#/definitions/VolumeMigrationOperationParameters"
+        },
+        "fileCopy": {
+          "$ref": "#/definitions/FileCopyOperationParameters"
+        },
+        "bulkMetadataUpdate": {
+          "$ref": "#/definitions/BulkMetadataUpdateOperationParameters"
         }
       }
     },
     "JobOperationType": {
-      "description": "The valid job operation type values for resources in GDS",
+      "description": "The valid job operation type values for resources in GDS\r\nIMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK",
       "enum": [
         "Unknown",
         "FolderArchive",
@@ -3793,13 +4421,32 @@
       ],
       "type": "string"
     },
+    "JobOutput": {
+      "type": "object",
+      "properties": {
+        "folderCopy": {
+          "$ref": "#/definitions/FileCopyOutput"
+        },
+        "fileCopy": {
+          "$ref": "#/definitions/FileCopyOutput"
+        },
+        "folderMetadataUpdateOutput": {
+          "$ref": "#/definitions/MetadataUpdateOutput"
+        },
+        "fileMetadataUpdateOutput": {
+          "$ref": "#/definitions/MetadataUpdateOutput"
+        }
+      }
+    },
     "JobProgressStatus": {
-      "description": "The valid Job Status values for folders in GDS.",
+      "description": "The valid Job Status values for folders in GDS.\r\nIMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK",
       "enum": [
         "Pending",
         "InProgress",
         "Completed",
-        "Failed"
+        "Failed",
+        "CompletedWithError",
+        "Aborted"
       ],
       "type": "string"
     },
@@ -3817,8 +4464,14 @@
         "operationType": {
           "$ref": "#/definitions/JobOperationType"
         },
+        "jobType": {
+          "type": "string"
+        },
         "operationParameters": {
           "$ref": "#/definitions/JobOperationParameters"
+        },
+        "results": {
+          "$ref": "#/definitions/JobOutput"
         },
         "progressStatus": {
           "$ref": "#/definitions/JobProgressStatus"
@@ -3845,7 +4498,7 @@
       }
     },
     "JobStatus": {
-      "description": "This enum was originally created to store the type of job on a folder or file entity. \r\nThe Job entity is now used to track this information for copy operations, with the Illumina.Gds.Api.Models.Enums.JobOperationType \r\nand Illumina.Gds.Api.Models.Enums.JobProgressStatus used to record the type and progress status of the job.",
+      "description": "This enum was originally created to store the type of job on a folder or file entity. \r\nThe Job entity is now used to track this information for copy operations, with the Illumina.Gds.Api.Models.Enums.JobOperationType \r\nand Illumina.Gds.Api.Models.Enums.JobProgressStatus used to record the type and progress status of the job.\r\nIMPORTANT - Please consider backward compatibility before adding a new enum value. Adding a new enum value will break the existing client using swagger SDK",
       "enum": [
         "None",
         "Archiving",
@@ -3853,6 +4506,41 @@
         "Deleting"
       ],
       "type": "string"
+    },
+    "MetadataUpdateOutput": {
+      "type": "object",
+      "properties": {
+        "totalCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "processedCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "itemsFailedCount": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "itemsFailed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BulkFailedItem"
+          }
+        }
+      }
+    },
+    "MetadataUpdateRequest": {
+      "description": "Metadata to update and/or delete.",
+      "type": "object",
+      "properties": {
+        "updateMetadata": {
+          "description": "Metadata to update."
+        },
+        "deleteMetadata": {
+          "description": "Metadata to delete."
+        }
+      }
     },
     "ObjectStoreAccess": {
       "description": "ObjectStoreAccess to get the temporaryCredentials per provider",
@@ -4234,6 +4922,16 @@
         }
       }
     },
+    "VolumeMigrationOperationParameters": {
+      "description": "Operation parameters for volume migration operations",
+      "type": "object",
+      "properties": {
+        "volumeId": {
+          "description": "The volume id for the migration operation",
+          "type": "string"
+        }
+      }
+    },
     "VolumeResponse": {
       "type": "object",
       "properties": {
@@ -4302,6 +5000,10 @@
         },
         "lifeCycle": {
           "$ref": "#/definitions/VolumeLifeCycleSettings"
+        },
+        "migrationStatus": {
+          "description": "Status of the root folder migration status from v1 to v2",
+          "type": "string"
         }
       }
     }

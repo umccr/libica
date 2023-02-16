@@ -276,57 +276,51 @@
     }
   },
   "definitions": {
-    "DeliveryTargetAwsSnsTopic": {
-      "description": "Configuration for an AWS SNS delivery topic",
+    "CreateSubscriptionRequest": {
       "required": [
-        "topicArn"
-      ],
-      "type": "object",
-      "properties": {
-        "topicArn": {
-          "description": "ARN for the AWS SNS topic",
-          "type": "string"
-        }
-      }
-    },
-    "DeliveryTargetAwsSqsQueue": {
-      "description": "Configuration for an AWS SQS delivery queue",
-      "required": [
-        "queueUrl"
-      ],
-      "type": "object",
-      "properties": {
-        "queueUrl": {
-          "description": "URL for the AWS SQS queue",
-          "type": "string"
-        }
-      }
-    },
-    "DeliveryTargetWorkflowRunLaunch": {
-      "description": "Configuration for a delivery via WES workflow run launch",
-      "required": [
-        "id",
+        "deliveryTarget",
         "name",
-        "version"
+        "type"
       ],
       "type": "object",
       "properties": {
-        "id": {
-          "description": "Id of the workflow to launch",
+        "type": {
+          "description": "Event type which will be subscribed to",
+          "maxLength": 255,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z]+[.a-zA-Z]*$",
           "type": "string"
         },
-        "version": {
-          "description": "Version of the workflow to launch, for the given id",
-          "type": "string"
+        "actions": {
+          "description": "Actions which will be subscribed to for the event type",
+          "maxItems": 255,
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         },
         "name": {
-          "description": "Name for the workflowRun",
+          "description": "Name of the subscription",
+          "maxLength": 255,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$",
           "type": "string"
         },
-        "input": {
-          "description": "Arguments for the workflowRun"
+        "description": {
+          "description": "Optional description for the subscription",
+          "maxLength": 8192,
+          "type": "string"
+        },
+        "filterExpression": {
+          "description": "JSON-structured filter expression for events matching the subscription",
+          "maxLength": 8192,
+          "type": "string"
+        },
+        "deliveryTarget": {
+          "$ref": "#/definitions/DeliveryTarget"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "DeliveryTarget": {
       "description": "Configuration for the action to perform for events matching this subscription; only one delivery type may be specified",
@@ -341,7 +335,95 @@
         "workflowRunLaunch": {
           "$ref": "#/definitions/DeliveryTargetWorkflowRunLaunch"
         }
-      }
+      },
+      "additionalProperties": false
+    },
+    "DeliveryTargetAwsSnsTopic": {
+      "description": "Configuration for an AWS SNS delivery topic",
+      "required": [
+        "topicArn"
+      ],
+      "type": "object",
+      "properties": {
+        "topicArn": {
+          "description": "ARN for the AWS SNS topic",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "DeliveryTargetAwsSqsQueue": {
+      "description": "Configuration for an AWS SQS delivery queue",
+      "required": [
+        "queueUrl"
+      ],
+      "type": "object",
+      "properties": {
+        "queueUrl": {
+          "description": "URL for the AWS SQS queue",
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "DeliveryTargetWorkflowRunLaunch": {
+      "description": "Configuration for a delivery via WES workflow run launch",
+      "required": [
+        "id",
+        "name",
+        "version"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Id of the workflow to launch",
+          "minLength": 1,
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the workflow to launch, for the given id",
+          "minLength": 1,
+          "type": "string"
+        },
+        "name": {
+          "description": "Name for the workflowRun",
+          "minLength": 1,
+          "type": "string"
+        },
+        "input": {
+          "description": "Arguments for the workflowRun"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ErrorResponse": {
+      "description": "Details for an error which occurred",
+      "type": "object",
+      "properties": {
+        "code": {
+          "description": "Error code which uniquely identifies the type of error which occurred",
+          "type": "string"
+        },
+        "message": {
+          "description": "Description of the error which occurred",
+          "type": "string"
+        },
+        "details": {
+          "description": "Additional details for conditions which caused the error",
+          "type": "array",
+          "items": { }
+        }
+      },
+      "additionalProperties": false
+    },
+    "SortDirection": {
+      "enum": [
+        "Asc",
+        "Desc"
+      ],
+      "type": "string"
     },
     "Subscription": {
       "description": "Details for an Event Notification Service subscription",
@@ -421,22 +503,8 @@
           "description": "Whether or not the subscription has been deleted",
           "type": "boolean"
         }
-      }
-    },
-    "SubscriptionListSortFields": {
-      "enum": [
-        "id"
-      ],
-      "type": "string"
-    },
-    "SortDirection": {
-      "enum": [
-        "Asc",
-        "Desc",
-        "Ascending",
-        "Descending"
-      ],
-      "type": "string"
+      },
+      "additionalProperties": false
     },
     "SubscriptionList": {
       "type": "object",
@@ -477,71 +545,14 @@
         "sortDirection": {
           "$ref": "#/definitions/SortDirection"
         }
-      }
+      },
+      "additionalProperties": false
     },
-    "ErrorResponse": {
-      "description": "Details for an error which occurred",
-      "type": "object",
-      "properties": {
-        "code": {
-          "description": "Error code which uniquely identifies the type of error which occurred",
-          "type": "string"
-        },
-        "message": {
-          "description": "Description of the error which occurred",
-          "type": "string"
-        },
-        "details": {
-          "description": "Additional details for conditions which caused the error",
-          "type": "array",
-          "items": {
-            "type": "object"
-          }
-        }
-      }
-    },
-    "CreateSubscriptionRequest": {
-      "required": [
-        "deliveryTarget",
-        "name",
-        "type"
+    "SubscriptionListSortFields": {
+      "enum": [
+        "id"
       ],
-      "type": "object",
-      "properties": {
-        "type": {
-          "description": "Event type which will be subscribed to",
-          "maxLength": 255,
-          "pattern": "^[a-zA-Z]+[.a-zA-Z]*$",
-          "type": "string"
-        },
-        "actions": {
-          "description": "Actions which will be subscribed to for the event type",
-          "maxLength": 255,
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "name": {
-          "description": "Name of the subscription",
-          "maxLength": 255,
-          "pattern": "^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$",
-          "type": "string"
-        },
-        "description": {
-          "description": "Optional description for the subscription",
-          "maxLength": 8192,
-          "type": "string"
-        },
-        "filterExpression": {
-          "description": "JSON-structured filter expression for events matching the subscription",
-          "maxLength": 8192,
-          "type": "string"
-        },
-        "deliveryTarget": {
-          "$ref": "#/definitions/DeliveryTarget"
-        }
-      }
+      "type": "string"
     }
   },
   "securityDefinitions": {
