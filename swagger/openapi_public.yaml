@@ -73,13 +73,15 @@ paths:
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -118,6 +120,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateBundle'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateBundle'
       responses:
@@ -195,6 +200,97 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The bundle is successfully released
+          content:
+            application/vnd.illumina.v3+json: {}
+  /api/bundles/{bundleId}/termsOfUse:
+    get:
+      tags:
+      - Bundle
+      summary: Retrieve the last version of terms of use for a bundle.
+      operationId: getBundleTermsOfUse
+      parameters:
+      - name: bundleId
+        in: path
+        description: The ID of the bundle of the terms of use to retrieve
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: Terms of use are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/TermsOfUse'
+  /api/bundles/{bundleId}/termsOfUse:new:
+    post:
+      tags:
+      - Bundle
+      summary: Insert a new version of the terms of use for a bundle
+      operationId: insertBundleTermsOfUse
+      parameters:
+      - name: bundleId
+        in: path
+        description: The ID of the bundle to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateTermsOfUse'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateTermsOfUse'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTermsOfUse'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: A new version of the terms of use are successfully created.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/TermsOfUse'
+  /api/bundles/{bundleId}:deprecate:
+    post:
+      tags:
+      - Bundle
+      summary: deprecate a bundle
+      operationId: deprecateBundle
+      parameters:
+      - name: bundleId
+        in: path
+        description: The ID of the bundle to deprecate.
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The bundle is successfully deprecated.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/bundles/{bundleId}/data:
     get:
       tags:
@@ -244,10 +340,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
-          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
+          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -404,16 +500,25 @@ paths:
           be returned.  This filter implies a filter of type File.
         schema:
           type: string
+      - name: instrumentRunId
+        in: query
+        description: The instrument run IDs of the sequencing runs to filter on.
+        schema:
+          type: array
+          items:
+            type: string
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -476,6 +581,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully linked to this bundle.
+          content:
+            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Bundle Data
@@ -501,6 +608,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully unlinked from this bundle.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/bundles/{bundleId}/pipelines:
     get:
       tags:
@@ -555,6 +664,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully linked to the bundle.
+          content:
+            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Bundle Pipeline
@@ -582,6 +693,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully unlinked from the bundle.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/bundles/{bundleId}/samples:
     get:
       tags:
@@ -607,13 +720,15 @@ paths:
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -676,6 +791,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The sample is successfully linked to the bundle.
+          content:
+            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Bundle Sample
@@ -701,6 +818,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The sample is successfully unlinked from the bundle.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/bundles/{bundleId}/tools:
     get:
       tags:
@@ -781,6 +900,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The tool is successfully linked to the bundle.
+          content:
+            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Bundle Tool
@@ -806,6 +927,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The tool is successfully unlinked from this bundle.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/connectors:
     get:
       tags:
@@ -841,6 +964,9 @@ paths:
         description: The connector to create.
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateConnector'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateConnector'
       responses:
@@ -920,6 +1046,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateUploadRule'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateUploadRule'
       responses:
@@ -1019,6 +1148,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/UploadRule'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadRule'
       responses:
         default:
           description: A problem occurred.
@@ -1064,6 +1196,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The upload rule is successfully deleted.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/connectors/{connectorId}/downloadRules:
     get:
       tags:
@@ -1103,6 +1237,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateDownloadRule'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateDownloadRule'
       responses:
@@ -1199,6 +1336,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/DownloadRule'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DownloadRule'
       responses:
         default:
           description: A problem occurred.
@@ -1244,6 +1384,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The download rule is successfully deleted.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/connectors/{connectorId}:cancel:
     post:
       tags:
@@ -1267,6 +1409,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The connector is successfully cancelled.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/connectors/{connectorId}:enable:
     post:
       tags:
@@ -1290,6 +1434,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The connector is successfully enabled.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/connectors/{connectorId}:disable:
     post:
       tags:
@@ -1313,6 +1459,103 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The connector is successfully disabled.
+          content:
+            application/vnd.illumina.v3+json: {}
+  /api/data/{dataUrn}:
+    get:
+      tags:
+      - Data
+      summary: Retrieve a data.
+      operationId: getData
+      parameters:
+      - name: dataUrn
+        in: path
+        description: "The format is urn:ilmn:ica:region:\\<ID of the region\\>:data:\\\
+          <ID of the data\\>#\\<optional data path\\>. The path can be omitted, in\
+          \ that case the hashtag (#) must also be omitted."
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The data is successfully retrieved.
+          headers:
+            ETag:
+              description: The current version of the resource. Can be passed to the
+                corresponding PUT endpoint to enable conflict exposure (409 response).
+              style: simple
+              schema:
+                type: string
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/Data'
+  /api/data/{dataUrn}:createInlineViewUrl:
+    post:
+      tags:
+      - Data
+      summary: Retrieve an URL for this data to use for inline view in a browser.
+      description: "Can be used to view a file directly from the region where it is\
+        \ located, no connector is needed."
+      operationId: createInlineViewUrlForDataWithoutProjectContext
+      parameters:
+      - name: dataUrn
+        in: path
+        description: "The format is urn:ilmn:ica:region:\\<ID of the region\\>:data:\\\
+          <ID of the data\\>#\\<optional data path\\>. The path can be omitted, in\
+          \ that case the hashtag (#) must also be omitted."
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The inline view URL is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/InlineView'
+  /api/data/{dataUrn}:createDownloadUrl:
+    post:
+      tags:
+      - Data
+      summary: Retrieve a download URL for this data.
+      description: "Can be used to download a file directly from the region where\
+        \ it is located, no connector is needed. Not applicable for Folder."
+      operationId: createDownloadUrlForDataWithoutProjectContext
+      parameters:
+      - name: dataUrn
+        in: path
+        description: "The format is urn:ilmn:ica:region:\\<ID of the region\\>:data:\\\
+          <ID of the data\\>#\\<optional data path\\>. The path can be omitted, in\
+          \ that case the hashtag (#) must also be omitted."
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The download URL is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/Download'
   /api/dataFormats:
     get:
       tags:
@@ -1323,13 +1566,15 @@ paths:
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -1384,13 +1629,15 @@ paths:
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -1462,6 +1709,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/SearchMatchingActivationCodesForCwlAnalysis'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchMatchingActivationCodesForCwlAnalysis'
       responses:
         default:
           description: A problem occurred.
@@ -1488,6 +1738,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/SearchMatchingActivationCodesForNextflowAnalysis'
+          application/json:
             schema:
               $ref: '#/components/schemas/SearchMatchingActivationCodesForNextflowAnalysis'
       responses:
@@ -1518,6 +1771,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/SearchMatchingActivationCodesForCwlAnalysis'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchMatchingActivationCodesForCwlAnalysis'
       responses:
         default:
           description: A problem occurred.
@@ -1543,6 +1799,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/SearchMatchingActivationCodesForNextflowAnalysis'
+          application/json:
             schema:
               $ref: '#/components/schemas/SearchMatchingActivationCodesForNextflowAnalysis'
       responses:
@@ -1637,6 +1896,96 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/EventLogList'
+  /api/jobs:
+    get:
+      tags:
+      - Job
+      summary: Retrieve a list of jobs.
+      operationId: getJobs
+      parameters:
+      - name: status
+        in: query
+        description: The statuses to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - INITIALIZED
+            - WAITING_FOR_RESOURCES
+            - RUNNING
+            - STOPPED
+            - SUCCEEDED
+            - PARTIALLY_SUCCEEDED
+            - FAILED
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "Which field to order the results by. The default order is ascending,\
+          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
+          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
+          \ lastName desc\""
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of jobs is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/JobPagedList'
+  /api/jobs/{jobId}:
+    get:
+      tags:
+      - Job
+      summary: Retrieve a job.
+      operationId: getJob
+      parameters:
+      - name: jobId
+        in: path
+        description: The ID of the job.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The job is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/Job'
   /api/metadataModels:
     get:
       tags:
@@ -1767,6 +2116,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/CreateNotificationChannel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNotificationChannel'
       responses:
         default:
           description: A problem occurred.
@@ -1853,6 +2205,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/NotificationChannel'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationChannel'
       responses:
         default:
           description: A problem occurred.
@@ -1894,11 +2249,15 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The notification channel is successfully deleted
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/pipelines:
     get:
       tags:
       - Pipeline
       summary: Retrieve a list of pipelines.
+      description: Only lists pipelines that are owned by the user/tenant (not those
+        to which a user is entitled).
       operationId: getPipelines
       responses:
         default:
@@ -1998,11 +2357,59 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ReferenceSetList'
+  /api/pipelines/{pipelineId}/documentation/HTML:
+    get:
+      tags:
+      - Pipeline
+      summary: Retrieve HTML documentation for a project pipeline.
+      description: Retrieve HTML documentation for a project pipeline. This can be
+        a pipeline from a linked bundle.
+      operationId: getPipelineHtmlDocumentation
+      parameters:
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve HTML documentation
+          from
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The HTML documentation is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelineHtmlDocumentation'
+  /api/pipelineLanguages/nextflow/versions:
+    get:
+      tags:
+      - Pipeline Language
+      summary: Retrieve a list of nextflow versions.
+      operationId: getNextflowVersions
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of nextflow versions is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelineLanguageVersionList'
   /api/projects/{projectId}/analyses:
     get:
       tags:
       - Project Analysis
-      summary: Retrieve the list of project analyses.
+      summary: Retrieve the list of analyses.
       operationId: getAnalyses
       parameters:
       - name: reference
@@ -2038,13 +2445,15 @@ paths:
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -2151,6 +2560,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/Analysis'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Analysis'
       responses:
         default:
           description: A problem occurred.
@@ -2237,7 +2649,9 @@ paths:
     get:
       tags:
       - Project Analysis
-      summary: Retrieve the outputs of an analysis.
+      summary: "Retrieve the outputs of an analysis. The list might be incomplete\
+        \ if a folder contains too many output files, but all the data can always\
+        \ be retrieved through the GET data endpoint."
       operationId: getAnalysisOutputs
       parameters:
       - name: projectId
@@ -2295,6 +2709,7 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/AnalysisRawOutput'
+      deprecated: true
   /api/projects/{projectId}/analyses/{analysisId}/configurations:
     get:
       tags:
@@ -2357,6 +2772,202 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The analysis is successfully aborted.
+          content:
+            application/vnd.illumina.v3+json: {}
+  /api/projects/{projectId}/analysisCreationBatch:
+    post:
+      tags:
+      - Project Analysis Creation Batch
+      summary: Create and start multiple analyses in batch.
+      operationId: createAnalysisCreationBatch
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to <a href=\"\
+          https://tools.ietf.org/id/draft-idempotency-header-01.html\">the IETF spec</a>\
+          \ and is allowed to be max 255 characters long. If the header is supplied,\
+          \ the response of the request will be saved for 7 days for the specific\
+          \ API endpoint, header value and user reference. When the same user makes\
+          \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
+          \ header value, following use cases can occur:<br /><ul><li>the request\
+          \ body is the same as the previous request and an answer is stored => the\
+          \ stored response is returned without executing the request again.</li><li>the\
+          \ request body is the same as the previous request and no answer is stored\
+          \ because the previous request has not finished => 409 error response.</li><li>the\
+          \ request body is not the same as the previous request => 422 error response.</li></ul>This\
+          \ means that each time when executing an API request using the Idempotency-Key\
+          \ header, the request has to contain a new value that hasn't been used in\
+          \ the past 7 days for that specific API and by the specific user."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateAnalysisCreationBatch'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The analyses are scheduled for creation.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisCreationBatch'
+  /api/projects/{projectId}/analysisCreationBatch/{batchId}:
+    get:
+      tags:
+      - Project Analysis Creation Batch
+      summary: Retrieve a analysis creation batch.
+      operationId: getAnalysisCreationBatch
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        description: The ID of the analysis creation batch
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The analysis creation batch is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisCreationBatch'
+  /api/projects/{projectId}/analysisCreationBatch/{batchId}/items:
+    get:
+      tags:
+      - Project Analysis Creation Batch
+      summary: Retrieve a list of analysis creation batch items.
+      operationId: getAnalysisCreationBatchItem
+      parameters:
+      - name: status
+        in: query
+        description: The statuses to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - RUNNING
+            - WAITING_RESOURCES
+            - SUCCEEDED
+            - FAILED
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "Which field to order the results by. The default order is ascending,\
+          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
+          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
+          \ lastName desc\""
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        description: The ID of the analysis creation batch
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of analysis creation batch items is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisCreationBatchItemPagedList'
+  /api/projects/{projectId}/analysisCreationBatch/{batchId}/items/{itemId}:
+    get:
+      tags:
+      - Project Analysis Creation Batch
+      summary: Retrieve a analysis creation batch item.
+      operationId: getAnalysisCreationBatchItem_1
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        description: The ID of the analysis creation batch
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: itemId
+        in: path
+        description: The ID of the analysis creation batch item
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The analysis creation batch item is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisCreationBatchItem'
   /api/projects/{projectId}/analysis:cwl:
     post:
       tags:
@@ -2500,13 +3111,15 @@ paths:
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -2545,6 +3158,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateProject'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateProject'
       responses:
@@ -2612,6 +3228,7 @@ paths:
         - tags
         - storageBundle
         - metaDataModel
+        - analysisPriority
       operationId: updateProject
       parameters:
       - name: projectId
@@ -2633,6 +3250,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/json:
             schema:
               $ref: '#/components/schemas/Project'
       responses:
@@ -2667,7 +3287,6 @@ paths:
         required: true
         schema:
           type: string
-          format: uuid
       responses:
         default:
           description: A problem occurred.
@@ -2693,7 +3312,6 @@ paths:
         required: true
         schema:
           type: string
-          format: uuid
       - name: bundleId
         in: path
         required: true
@@ -2724,7 +3342,6 @@ paths:
         required: true
         schema:
           type: string
-          format: uuid
       - name: bundleId
         in: path
         required: true
@@ -2755,7 +3372,6 @@ paths:
         required: true
         schema:
           type: string
-          format: uuid
       - name: bundleId
         in: path
         required: true
@@ -2771,6 +3387,31 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "200":
           description: The bundle is successfully unlinked from the project.
+          content:
+            application/vnd.illumina.v3+json: {}
+  /api/projects/{projectId}:hide:
+    post:
+      tags:
+      - Project
+      summary: Hide a project.
+      operationId: hideProject
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The project is hidden.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/base:connectionDetails:
     post:
       tags:
@@ -2780,7 +3421,6 @@ paths:
       parameters:
       - name: projectId
         in: path
-        description: The ID of the project
         required: true
         schema:
           type: string
@@ -2800,10 +3440,39 @@ paths:
   /api/projects/{projectId}/base/jobs:
     get:
       tags:
-      - Project Base Job
+      - Project Base
       summary: Retrieve a list of base jobs
       operationId: getBaseJobs
       parameters:
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "Which field to order the results by. The default order is ascending,\
+          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
+          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
+          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- description\n\
+          - type"
+        schema:
+          type: string
       - name: projectId
         in: path
         required: true
@@ -2825,7 +3494,7 @@ paths:
   /api/projects/{projectId}/base/jobs/{baseJobId}:
     get:
       tags:
-      - Project Base Job
+      - Project Base
       summary: Retrieve a base job.
       operationId: getBaseJob
       parameters:
@@ -2862,8 +3531,8 @@ paths:
   /api/projects/{projectId}/base/tables:
     get:
       tags:
-      - Project Base Table
-      summary: Retrieve a liste of base tables.
+      - Project Base
+      summary: Retrieve a list of base tables.
       operationId: getBaseTables
       parameters:
       - name: projectId
@@ -2887,7 +3556,7 @@ paths:
   /api/projects/{projectId}/base/tables/{tableId}:loadData:
     post:
       tags:
-      - Project Base Table
+      - Project Base
       summary: Load data in a base table.
       description: Load data in the specified table
       operationId: loadData
@@ -2908,6 +3577,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/LoadDataInBaseRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoadDataInBaseRequest'
       responses:
         default:
           description: A problem occurred.
@@ -2926,6 +3598,10 @@ paths:
       tags:
       - Project Custom Events
       summary: Create a new custom event.
+      description: "Warning: this endpoint allows to create custom events with a code\
+        \ larger than 20 characters (max 50), but the endpoint for creating a custom\
+        \ notification subscription (POST /api/projects/{projectId}/customNotificationSubscriptions)\
+        \ only accepts event codes up to 20 characters."
       operationId: createCustomEvent
       parameters:
       - name: projectId
@@ -2948,6 +3624,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The event is successfully created.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/customNotificationSubscriptions:
     get:
       tags:
@@ -2982,7 +3660,6 @@ paths:
       parameters:
       - name: projectId
         in: path
-        description: The ID of the project
         required: true
         schema:
           type: string
@@ -2990,6 +3667,9 @@ paths:
         description: The new subscription
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomNotificationSubscription'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateCustomNotificationSubscription'
       responses:
@@ -3092,6 +3772,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/CustomNotificationSubscription'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomNotificationSubscription'
       responses:
         default:
           description: A problem occurred.
@@ -3120,7 +3803,6 @@ paths:
       parameters:
       - name: projectId
         in: path
-        description: The ID of the project
         required: true
         schema:
           type: string
@@ -3139,6 +3821,104 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The custom notification subscription is successfully deleted
+          content:
+            application/vnd.illumina.v3+json: {}
+  /api/projects/{projectId}/analyses/{analysisId}/cwl/inputJson:
+    get:
+      tags:
+      - Project Analysis
+      summary: Retrieve the input json of a CWL analysis.
+      operationId: getCWLInputJson
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: analysisId
+        in: path
+        description: The ID of the CWL analysis for which to retrieve the input json
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The input json of the CWL analysis is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/CwlAnalysisInputJson'
+  /api/projects/{projectId}/analyses/{analysisId}/cwl/outputJson:
+    get:
+      tags:
+      - Project Analysis
+      summary: Retrieve the output json of a CWL analysis.
+      operationId: getCWLOutputJson
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: analysisId
+        in: path
+        description: The ID of the CWL analysis for which to retrieve the output json
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The output json of the CWL analysis is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/CwlAnalysisOutputJson'
+  /api/projects/{projectId}/data:createDownloadUrls:
+    post:
+      tags:
+      - Project Data
+      summary: Retrieve download URLs for the data.
+      description: "Can be used to download files directly from the region where it\
+        \ is located, no connector is needed. Not applicable for Folders."
+      operationId: createDownloadUrlsForData
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/DataUrlIdList'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The download URLs are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/DataUrlList'
   /api/projects/{projectId}/data:
     get:
       tags:
@@ -3194,10 +3974,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
-          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
+          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -3376,16 +4156,25 @@ paths:
           be returned.  This filter implies a filter of type File.
         schema:
           type: boolean
+      - name: instrumentRunId
+        in: query
+        description: The instrument run IDs of the sequencing runs to filter on.
+        schema:
+          type: array
+          items:
+            type: string
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -3437,6 +4226,9 @@ paths:
         description: The data to create.
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateData'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateData'
       responses:
@@ -3514,10 +4306,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
-          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
+          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -3696,16 +4488,25 @@ paths:
           be returned. This filter implies a filter of type File.
         schema:
           type: boolean
+      - name: instrumentRunId
+        in: query
+        description: The instrument run IDs of the sequencing runs to filter on.
+        schema:
+          type: array
+          items:
+            type: string
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -3752,13 +4553,15 @@ paths:
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -3854,6 +4657,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/ProjectData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectData'
       responses:
         default:
           description: A problem occurred.
@@ -3915,8 +4721,31 @@ paths:
       tags:
       - Project Data
       summary: Retrieve the children of this data.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\nInitial version\n## [V4]\nAdded pagination\n"
       operationId: getProjectDataChildren
       parameters:
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
       - name: projectId
         in: path
         required: true
@@ -3937,6 +4766,9 @@ paths:
         "200":
           description: The list of data children is successfully retrieved.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataPagedList'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/DataList'
@@ -3982,7 +4814,6 @@ paths:
         required: true
         schema:
           type: string
-          format: uuid
       - name: dataId
         in: path
         required: true
@@ -4013,7 +4844,6 @@ paths:
         required: true
         schema:
           type: string
-          format: uuid
       - name: dataId
         in: path
         required: true
@@ -4033,6 +4863,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The secondary data is successfully added.
+          content:
+            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Project Data
@@ -4044,7 +4876,6 @@ paths:
         required: true
         schema:
           type: string
-          format: uuid
       - name: dataId
         in: path
         required: true
@@ -4064,14 +4895,15 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The secondary data is successfully removed.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/data/{dataId}:createInlineViewUrl:
     post:
       tags:
       - Project Data
       summary: Retrieve an URL for this data to use for inline view in a browser.
       description: "Can be used to view a file directly from the region where it is\
-        \ located, no connector is needed. Only small files can be viewed, otherwise\
-        \ a response with status 400 will be returned if the file is too big."
+        \ located, no connector is needed."
       operationId: createInlineViewUrlForData
       parameters:
       - name: projectId
@@ -4103,7 +4935,7 @@ paths:
       - Project Data
       summary: Retrieve a download URL for this data.
       description: "Can be used to download a file directly from the region where\
-        \ it is located, no connector is needed."
+        \ it is located, no connector is needed. Not applicable for Folder."
       operationId: createDownloadUrlForData
       parameters:
       - name: projectId
@@ -4135,8 +4967,7 @@ paths:
       - Project Data
       summary: Retrieve an upload URL for this data.
       description: "Can be used to upload a file directly from the region where it\
-        \ is located, no connector is needed. Only small files can be uploaded, otherwise\
-        \ a response with status 400 will be returned if the file is too big."
+        \ is located, no connector is needed."
       operationId: createUploadUrlForData
       parameters:
       - name: projectId
@@ -4195,6 +5026,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/CreateTemporaryCredentials'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTemporaryCredentials'
       responses:
         default:
           description: A problem occurred.
@@ -4232,6 +5066,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/ScheduleDownload'
+          application/json:
             schema:
               $ref: '#/components/schemas/ScheduleDownload'
         required: true
@@ -4275,6 +5112,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully unlinked from this project.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/data/{dataId}:archive:
     post:
       tags:
@@ -4304,6 +5143,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully scheduled for archival.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/data/{dataId}:unarchive:
     post:
       tags:
@@ -4333,6 +5174,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully scheduled for unarchival.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/data/{dataId}:delete:
     post:
       tags:
@@ -4362,6 +5205,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully scheduled for deletion.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/data/{dataId}/folderUploadSessions:
     post:
       tags:
@@ -4386,6 +5231,9 @@ paths:
         description: Temporary credentials request options.
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateTemporaryCredentials'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateTemporaryCredentials'
       responses:
@@ -4469,6 +5317,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/CompleteFolderUploadSession'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompleteFolderUploadSession'
       responses:
         default:
           description: A problem occurred.
@@ -4482,6 +5333,181 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/FolderUploadSession'
+  /api/projects/{projectId}/dataLinkingBatch:
+    post:
+      tags:
+      - Project Data Linking Batch
+      summary: Create a project data linking batch.
+      operationId: createProjectDataLinkingBatch
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDataLinkingBatch'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDataLinkingBatch'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The project data linking batch is successfully created.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataLinkingBatch'
+  /api/projects/{projectId}/dataLinkingBatch/{batchId}:
+    get:
+      tags:
+      - Project Data Linking Batch
+      summary: Retrieve a project data linking batch.
+      operationId: getProjectDataLinkingBatch
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project data linking batch is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataLinkingBatch'
+  /api/projects/{projectId}/dataLinkingBatch/{batchId}/items:
+    get:
+      tags:
+      - Project Data Linking Batch
+      summary: Retrieve a list of project data linking batch items.
+      operationId: getProjectDataLinkingBatchItems
+      parameters:
+      - name: status
+        in: query
+        description: The statuses to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - INITIALISED
+            - WAITING_RESOURCES
+            - RUNNING
+            - LINKED
+            - ALREADY_LINKED
+            - FAILED
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "Which field to order the results by. The default order is ascending,\
+          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
+          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
+          \ lastName desc\""
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project data linking batch items is successfully
+            retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataLinkingBatchItemPagedList'
+  /api/projects/{projectId}/dataLinkingBatch/{batchId}/items/{itemId}:
+    get:
+      tags:
+      - Project Data Linking Batch
+      summary: Retrieve a project data linking batch item.
+      operationId: getProjectDataLinkingBatchItem
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project data linking batch item is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataLinkingBatchItem'
   /api/projects/{projectId}/dataTransfers:
     get:
       tags:
@@ -4509,13 +5535,15 @@ paths:
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -4551,7 +5579,7 @@ paths:
           content:
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/DataTransfers'
+                $ref: '#/components/schemas/DataTransferPagedList'
   /api/projects/{projectId}/dataTransfers/{dataTransferId}:
     get:
       tags:
@@ -4617,6 +5645,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data transfer is successfully aborted.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/notificationSubscriptions:
     get:
       tags:
@@ -4659,6 +5689,9 @@ paths:
         description: The new subscription
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateNotificationSubscription'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateNotificationSubscription'
       responses:
@@ -4761,6 +5794,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/NotificationSubscription'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationSubscription'
       responses:
         default:
           description: A problem occurred.
@@ -4808,6 +5844,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The notification subscription is successfully deleted
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/permissions:
     get:
       tags:
@@ -4847,6 +5885,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectPermission'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateProjectPermission'
       responses:
@@ -4946,6 +5987,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/ProjectPermission'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectPermission'
       responses:
         default:
           description: A problem occurred.
@@ -4971,8 +6015,7 @@ paths:
       tags:
       - Project Pipeline
       summary: Retrieve a list of project pipelines.
-      description: Retrieve a list of project pipelines. This includes pipelines from
-        linked bundles.
+      description: Lists all pipelines that are available to the project.
       operationId: getProjectPipelines
       parameters:
       - name: projectId
@@ -4999,24 +6042,21 @@ paths:
       tags:
       - Project Pipeline
       summary: Retrieve a project pipeline.
-      description: Retrieve a project pipeline. This can be a pipeline from a linked
-        bundle.
+      description: "Retrieves a project pipeline. This can be a pipeline from a linked\
+        \ bundle or an entitled, unlinked bundle."
       operationId: getProjectPipeline
       parameters:
       - name: projectId
         in: path
-        description: The ID of the project
         required: true
         schema:
           type: string
-          format: uuid
       - name: pipelineId
         in: path
         description: The ID of the project pipeline to retrieve
         required: true
         schema:
           type: string
-          format: uuid
       responses:
         default:
           description: A problem occurred.
@@ -5045,7 +6085,6 @@ paths:
       parameters:
       - name: projectId
         in: path
-        description: The ID of the project
         required: true
         schema:
           type: string
@@ -5064,6 +6103,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully linked to the project.
+          content:
+            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Project Pipeline
@@ -5072,7 +6113,6 @@ paths:
       parameters:
       - name: projectId
         in: path
-        description: The ID of the project
         required: true
         schema:
           type: string
@@ -5091,6 +6131,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully unlinked from the project.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/pipelines/{pipelineId}/inputParameters:
     get:
       tags:
@@ -5102,18 +6144,15 @@ paths:
       parameters:
       - name: projectId
         in: path
-        description: The ID of the project
         required: true
         schema:
           type: string
-          format: uuid
       - name: pipelineId
         in: path
         description: The ID of the project pipeline to retrieve input parameters for
         required: true
         schema:
           type: string
-          format: uuid
       responses:
         default:
           description: A problem occurred.
@@ -5138,18 +6177,15 @@ paths:
       parameters:
       - name: projectId
         in: path
-        description: The ID of the project
         required: true
         schema:
           type: string
-          format: uuid
       - name: pipelineId
         in: path
         description: The ID of the pipeline to retrieve reference sets for
         required: true
         schema:
           type: string
-          format: uuid
       responses:
         default:
           description: A problem occurred.
@@ -5172,7 +6208,6 @@ paths:
       parameters:
       - name: projectId
         in: path
-        description: The ID of the project
         required: true
         schema:
           type: string
@@ -5191,6 +6226,42 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully released.
+          content:
+            application/vnd.illumina.v3+json: {}
+  /api/projects/{projectId}/pipelines/{pipelineId}/documentation/HTML:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Retrieve HTML documentation for a project pipeline.
+      description: Retrieve HTML documentation for a project pipeline. This can be
+        a pipeline from a linked bundle.
+      operationId: getProjectPipelineHtmlDocumentation
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve HTML documentation
+          from
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The HTML documentation is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelineHtmlDocumentation'
   /api/projects/{projectId}/pipelines:createNextflowPipeline:
     post:
       tags:
@@ -5200,7 +6271,6 @@ paths:
       parameters:
       - name: projectId
         in: path
-        description: The ID of the project
         required: true
         schema:
           type: string
@@ -5231,7 +6301,6 @@ paths:
       parameters:
       - name: projectId
         in: path
-        description: The ID of the project
         required: true
         schema:
           type: string
@@ -5265,13 +6334,15 @@ paths:
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -5297,6 +6368,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/FindProjectSamples'
+          application/json:
             schema:
               $ref: '#/components/schemas/FindProjectSamples'
       responses:
@@ -5327,6 +6401,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateSample'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateSample'
       responses:
@@ -5423,6 +6500,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/ProjectSample'
+          application/json:
             schema:
               $ref: '#/components/schemas/ProjectSample'
       responses:
@@ -5541,6 +6621,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The sample is successfully completed.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}:unlink:
     post:
       tags:
@@ -5567,6 +6649,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The sample is successfully unlinked from the project.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}/projects:
     get:
       tags:
@@ -5653,10 +6737,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
-          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
+          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -5829,16 +6913,25 @@ paths:
           \ not used in a run."
         schema:
           type: boolean
+      - name: instrumentRunId
+        in: query
+        description: The instrument run IDs of the sequencing runs to filter on.
+        schema:
+          type: array
+          items:
+            type: string
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -5914,6 +7007,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully linked to the sample.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}/data/{dataId}:unlink:
     post:
       tags:
@@ -5947,6 +7042,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully unlinked from the sample.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}:deleteDeep:
     post:
       tags:
@@ -5975,8 +7072,10 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Problem'
-        "200":
+        "204":
           description: The sample and all of its data are successfully deleted.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}:deleteWithInput:
     post:
       tags:
@@ -6005,8 +7104,10 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Problem'
-        "200":
+        "204":
           description: The sample and its input data are successfully deleted.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}:deleteMark:
     post:
       tags:
@@ -6034,8 +7135,10 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Problem'
-        "200":
+        "204":
           description: The sample is successfully marked as deleted.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}:deleteUnlink:
     post:
       tags:
@@ -6064,9 +7167,11 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Problem'
-        "200":
+        "204":
           description: The sample is successfully deleted and the its data is successfully
             unlinked.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}/metadata/{metadataModelId}:
     post:
       tags:
@@ -6100,6 +7205,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The metadata model is successfully added to the sample.
+          content:
+            application/vnd.illumina.v3+json: {}
       deprecated: true
   /api/projects/{projectId}/samples/{sampleId}/metadata:updateFields:
     post:
@@ -6125,6 +7232,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/UpdateMetadata'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMetadata'
       responses:
         default:
           description: A problem occurred.
@@ -6132,7 +7242,7 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/Problem'
-        "200":
+        "204":
           description: The metadata is successfully updated.
           content:
             application/vnd.illumina.v3+json:
@@ -6222,6 +7332,254 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/Field'
+  /api/projects/{projectId}/sampleCreationBatch:
+    post:
+      tags:
+      - Project Sample Batch
+      summary: Create a sample creation batch.
+      operationId: createSampleCreationBatch
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to <a href=\"\
+          https://tools.ietf.org/id/draft-idempotency-header-01.html\">the IETF spec</a>\
+          \ and is allowed to be max 255 characters long. If the header is supplied,\
+          \ the response of the request will be saved for 7 days for the specific\
+          \ API endpoint, header value and user reference. When the same user makes\
+          \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
+          \ header value, following use cases can occur:<br /><ul><li>the request\
+          \ body is the same as the previous request and an answer is stored => the\
+          \ stored response is returned without executing the request again.</li><li>the\
+          \ request body is the same as the previous request and no answer is stored\
+          \ because the previous request has not finished => 409 error response.</li><li>the\
+          \ request body is not the same as the previous request => 422 error response.</li></ul>This\
+          \ means that each time when executing an API request using the Idempotency-Key\
+          \ header, the request has to contain a new value that hasn't been used in\
+          \ the past 7 days for that specific API and by the specific user."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateSampleCreationBatch'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateSampleCreationBatch'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSampleCreationBatch'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The sample creation batch is successfully created.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/SampleCreationBatch'
+  /api/projects/{projectId}/sampleCreationBatch/{batchId}:
+    get:
+      tags:
+      - Project Sample Batch
+      summary: Retrieve a sample creation batch.
+      operationId: getSampleCreationBatch
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        description: The ID of the sample creation batch
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The sample creation batch is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/SampleCreationBatch'
+  /api/projects/{projectId}/sampleCreationBatch/{batchId}/items:
+    get:
+      tags:
+      - Project Sample Batch
+      summary: Retrieve a list of sample creation batch items.
+      operationId: getSampleCreationBatchItems
+      parameters:
+      - name: status
+        in: query
+        description: The statuses to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - INITIALIZED
+            - WAITING_RESOURCES
+            - RUNNING
+            - SUCCEEDED
+            - PARTIALLY_SUCCEEDED
+            - FAILED
+            - STOPPED
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "Which field to order the results by. The default order is ascending,\
+          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
+          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
+          \ lastName desc\""
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        description: The ID of the sample creation batch
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of sample creation batch items is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/SampleCreationBatchItemPagedList'
+  /api/projects/{projectId}/sampleCreationBatch/{batchId}/items/{itemId}:
+    get:
+      tags:
+      - Project Sample Batch
+      summary: Retrieve a sample creation batch item.
+      operationId: getSampleCreationBatchItem
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        description: The ID of the sample creation batch
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: itemId
+        in: path
+        description: The ID of the sample creation batch item
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The sample creation batch item is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/SampleCreationBatchSampleItem'
+  /api/referenceSets:
+    get:
+      tags:
+      - Reference Set
+      summary: Retrieve a list of of reference sets.
+      operationId: getReferenceSets
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of reference sets is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ReferenceSetList'
+  /api/referenceSets/{referenceSetId}/species:
+    get:
+      tags:
+      - Reference Set
+      summary: Retrieve a list of species linked to the reference set.
+      operationId: getSpecies
+      parameters:
+      - name: referenceSetId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of species is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/SpeciesList'
   /api/regions:
     get:
       tags:
@@ -6299,13 +7657,15 @@ paths:
       - name: pageOffset
         in: query
         description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter.
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
         schema:
           type: string
       - name: pageToken
         in: query
         description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination.
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
         schema:
           type: string
       - name: pageSize
@@ -6382,6 +7742,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateStorageConfiguration'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateStorageConfiguration'
       responses:
@@ -6487,6 +7850,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The storage configuration is successfully shared.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/storageCredentials:
     get:
       tags:
@@ -6514,6 +7879,9 @@ paths:
       requestBody:
         content:
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateStorageCredential'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateStorageCredential'
       responses:
@@ -6593,6 +7961,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The storage credential is successfully shared.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/storageCredentials/{storageCredentialId}:updateSecrets:
     post:
       tags:
@@ -6612,6 +7982,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/UpdateStorageCredentialSecrets'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateStorageCredentialSecrets'
       responses:
         default:
           description: A problem occurred.
@@ -6621,6 +7994,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The storage credential secrets are successfully updated.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/tokens:
     post:
       tags:
@@ -6685,6 +8060,13 @@ paths:
       - User
       summary: Retrieve a list of users.
       operationId: getUsers
+      parameters:
+      - name: emailAddress
+        in: query
+        description: The email address to filter on
+        schema:
+          type: string
+          nullable: true
       responses:
         default:
           description: A problem occurred.
@@ -6772,6 +8154,9 @@ paths:
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/User'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
       responses:
         default:
           description: A problem occurred.
@@ -6815,6 +8200,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The user is successfully approved.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/users/{userId}:assignTenantAdministratorRights:
     post:
       tags:
@@ -6839,6 +8226,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The tenant administrator rights are successfully assigned.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/users/{userId}:revokeTenantAdministratorRights:
     post:
       tags:
@@ -6863,6 +8252,8 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The tenant administrator rights are successfully revoked.
+          content:
+            application/vnd.illumina.v3+json: {}
   /api/workgroups:
     get:
       tags:
@@ -7313,6 +8704,47 @@ components:
             description: category tags as string array
         links:
           $ref: '#/components/schemas/Links'
+    TermsOfUse:
+      required:
+      - requiresUserAcceptance
+      - termsOfUse
+      type: object
+      properties:
+        termsOfUse:
+          type: string
+          description: Terms of Use for a bundle. Supports plain text or HTML.
+        requiresUserAcceptance:
+          type: boolean
+          description: Flag indicating whether the Terms of Use should be accepted
+            before using/viewing the bundle.
+        releaseVersion:
+          type: string
+          description: Version number of the Terms of Use.
+    CreateTermsOfUse:
+      required:
+      - releaseVersion
+      - requiresUserAcceptance
+      - resetAcceptanceRecords
+      - termsOfUse
+      type: object
+      properties:
+        termsOfUse:
+          maxLength: 2147483647
+          minLength: 1
+          type: string
+          description: Terms of Use for a bundle. Supports plain text or HTML.
+        requiresUserAcceptance:
+          type: boolean
+          description: Flag indicating whether the Terms of Use should be accepted
+            before using/viewing the bundle.
+        releaseVersion:
+          maxLength: 4000
+          minLength: 1
+          type: string
+          description: Version number of the Terms of Use.
+        resetAcceptanceRecords:
+          type: boolean
+          description: Do you want to reset the acceptance records.
     BundleData:
       required:
       - bundleId
@@ -7371,6 +8803,10 @@ components:
         timeModified:
           type: string
           format: date-time
+        creatorId:
+          type: string
+          format: uuid
+          nullable: true
         tenantId:
           type: string
           format: uuid
@@ -7435,6 +8871,8 @@ components:
           description: Specifies when the data object will be deleted.
           format: date-time
           nullable: true
+        sequencingRun:
+          $ref: '#/components/schemas/SequencingRun'
       description: The details of this data. This object is optional because it is
         possible that these details are deleted.
       nullable: true
@@ -7448,6 +8886,15 @@ components:
           minLength: 1
           type: string
           description: The id of the file/folder as it was uploaded.
+        urn:
+          maxLength: 2000
+          minLength: 1
+          type: string
+          description: "The URN of this data. The format is urn:ilmn:ica:region:\\\
+            <ID of the region\\>:data:\\<ID of the data\\>#\\<optional data path\\\
+            >. The path can be omitted, in that case the hashtag (#) must also be\
+            \ omitted."
+          nullable: true
         details:
           $ref: '#/components/schemas/DataDetails'
     DataFormat:
@@ -7521,6 +8968,25 @@ components:
           type: array
           items:
             type: string
+    SequencingRun:
+      required:
+      - id
+      - instrumentRunId
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        instrumentRunId:
+          maxLength: 255
+          minLength: 0
+          type: string
+        name:
+          maxLength: 255
+          minLength: 0
+          type: string
+      nullable: true
     BundlePipeline:
       required:
       - bundleId
@@ -7576,9 +9042,17 @@ components:
         code:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
           type: string
           description: The code of the pipeline
+        urn:
+          maxLength: 2000
+          minLength: 1
+          type: string
+          description: "The URN of the pipeline. The format is urn:ilmn:ica:\\<type\
+            \ of the object\\>:\\<ID of the object\\>#\\<optional human readable hint\
+            \ representing the object\\>. The hint can be omitted, in that case the\
+            \ hashtag (#) must also be omitted."
+          nullable: true
         description:
           maxLength: 4000
           minLength: 1
@@ -7591,10 +9065,35 @@ components:
           - CWL
           - NEXTFLOW
           - UNKNOWN
+        languageVersion:
+          $ref: '#/components/schemas/PipelineLanguageVersion'
         pipelineTags:
           $ref: '#/components/schemas/PipelineTag'
         analysisStorage:
           $ref: '#/components/schemas/AnalysisStorage'
+    PipelineLanguageVersion:
+      required:
+      - id
+      - language
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The name of the version
+        language:
+          type: string
+          description: The language of the version
+          enum:
+          - CWL
+          - NEXTFLOW
+          - UNKNOWN
+      nullable: true
     PipelineTag:
       required:
       - technicalTags
@@ -7737,6 +9236,11 @@ components:
           description: The metadata of the sample
           items:
             $ref: '#/components/schemas/MetadataField'
+        sequencingRuns:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/SequencingRun'
     SampleTag:
       required:
       - connectorTags
@@ -8140,6 +9644,15 @@ components:
         tenantName:
           type: string
           nullable: true
+        urn:
+          maxLength: 2000
+          minLength: 1
+          type: string
+          description: "The URN of the project. The format is urn:ilmn:ica:\\<type\
+            \ of the object\\>:\\<ID of the object\\>#\\<optional human readable hint\
+            \ representing the object\\>. The hint can be omitted, in that case the\
+            \ hashtag (#) must also be omitted."
+          nullable: true
         name:
           maxLength: 255
           minLength: 1
@@ -8147,6 +9660,10 @@ components:
         active:
           type: boolean
           description: Indicates whether the project is active or hidden.
+        baseEnabled:
+          type: boolean
+          description: Indicates whether the project is base enabled.
+          nullable: true
         shortDescription:
           maxLength: 4000
           minLength: 1
@@ -8177,10 +9694,22 @@ components:
           $ref: '#/components/schemas/StorageBundle'
         selfManagedStorageConfiguration:
           $ref: '#/components/schemas/StorageConfiguration'
+        analysisPriority:
+          type: string
+          description: "Indicates the priority given to a project and its analyses\
+            \ within a single tenant. Note that for a PUT call, when not providing\
+            \ a value for this attribute (null value or absent attribute), the persisted\
+            \ value will not change."
+          nullable: true
+          enum:
+          - Low
+          - Medium
+          - High
         metadataModel:
           $ref: '#/components/schemas/MetadataModel'
         application:
           $ref: '#/components/schemas/Application'
+      nullable: true
     ProjectTag:
       required:
       - technicalTags
@@ -8411,7 +9940,6 @@ components:
         projectId:
           type: string
           description: The project to which the data will be uploaded.
-          format: uuid
     DownloadRule:
       required:
       - code
@@ -8534,6 +10062,24 @@ components:
           type: string
           description: Will allow the filename to be modified including a set of variables
           nullable: true
+    InlineView:
+      required:
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+          description: A pre-signed url which is temporarily available for inline
+            viewing the data.
+    Download:
+      required:
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+          description: A pre-signed url which is temporarily available for downloading
+            the data.
     DataFormatPagedList:
       required:
       - items
@@ -8565,34 +10111,38 @@ components:
           nullable: true
     ActivationCodeDetail:
       required:
+      - allowedSlots
       - id
+      - movedSlots
+      - originalSlots
       - pipelineBundle
       - usages
+      - usedSlots
       type: object
       properties:
         id:
           type: string
           format: uuid
         allowedSlots:
+          minimum: -1
           type: integer
-          description: "The allowed slot within this code, empty means unlimited"
+          description: "The allowed slot within this code, -1 means unlimited"
           format: int32
-          nullable: true
         usedSlots:
+          minimum: 0
           type: integer
           description: Indicates how many slots can are used.
           format: int32
-          nullable: true
         movedSlots:
+          minimum: 0
           type: integer
           description: The slots that where moved to another activation code
           format: int32
-          nullable: true
         originalSlots:
+          minimum: -1
           type: integer
-          description: "The assigned allowed slot within this code, empty means unlimited"
+          description: "The assigned allowed slot within this code, -1 means unlimited"
           format: int32
-          nullable: true
         pipelineBundle:
           $ref: '#/components/schemas/PipelineBundle'
         usages:
@@ -8600,30 +10150,34 @@ components:
           items:
             $ref: '#/components/schemas/ActivationCodeDetailUsage'
     ActivationCodeDetailUsage:
+      required:
+      - allowedSlots
+      - id
+      - usedSlots
       type: object
       properties:
+        id:
+          type: string
+          format: uuid
         project:
           $ref: '#/components/schemas/Project'
         usedSlots:
-          maximum: 2147483647
-          minimum: 0
+          minimum: -1
           type: integer
-          description: Indicates how many slots can are used
+          description: "Indicates how many slots can are used, -1 means unused"
           format: int32
-          nullable: true
         allowedSlots:
-          maximum: 2147483647
-          minimum: 0
+          minimum: -1
           type: integer
-          description: Indicates how many slots can be used
+          description: "Indicates how many slots can be used, -1 means unlimited"
           format: int32
-          nullable: true
     PipelineBundle:
       required:
       - activePipelines
       - analysisStorages
       - canceledPipelines
       - id
+      - maxNumberOfAllowedSlots
       - name
       - regions
       - retiredPipelines
@@ -8635,11 +10189,9 @@ components:
         name:
           type: string
         maxNumberOfAllowedSlots:
-          maximum: 2147483647
-          minimum: 0
+          minimum: -1
           type: integer
           format: int32
-          nullable: true
         activePipelines:
           type: array
           items:
@@ -8669,10 +10221,8 @@ components:
           type: string
         dataIds:
           type: array
-          nullable: true
           items:
             type: string
-            nullable: true
         mounts:
           type: array
           nullable: true
@@ -8693,13 +10243,25 @@ components:
             \ path is encouraged, but an absolute path is also allowed. The path should\
             \ end with the file name, which may differ from the original input data."
       nullable: true
-    AnalysisParameter:
+    AnalysisParameterInput:
       type: object
       properties:
         code:
           type: string
         value:
           type: string
+          description: The value for single-value parameters.
+          nullable: true
+        multiValue:
+          type: array
+          description: The values for multi-value parameters.
+          nullable: true
+          items:
+            type: string
+            description: The values for multi-value parameters.
+            nullable: true
+      description: "Supports multi-value parameters, only one of attributes 'value'\
+        \ or 'multiValue' must be provided"
       nullable: true
     AnalysisReferenceDataParameter:
       type: object
@@ -8739,10 +10301,8 @@ components:
           description: "Contains the input JSON, as an escaped JSON String."
         dataIds:
           type: array
-          nullable: true
           items:
             type: string
-            nullable: true
         mounts:
           type: array
           nullable: true
@@ -8767,7 +10327,7 @@ components:
           type: array
           nullable: true
           items:
-            $ref: '#/components/schemas/AnalysisParameter'
+            $ref: '#/components/schemas/AnalysisParameterInput'
         referenceDataParameters:
           type: array
           nullable: true
@@ -8782,10 +10342,8 @@ components:
       properties:
         projectId:
           type: string
-          format: uuid
         pipelineId:
           type: string
-          format: uuid
         analysisInput:
           $ref: '#/components/schemas/CwlAnalysisInput'
     NextflowAnalysisInput:
@@ -8801,7 +10359,7 @@ components:
           type: array
           nullable: true
           items:
-            $ref: '#/components/schemas/AnalysisParameter'
+            $ref: '#/components/schemas/AnalysisParameterInput'
         referenceDataParameters:
           type: array
           nullable: true
@@ -8816,10 +10374,8 @@ components:
       properties:
         projectId:
           type: string
-          format: uuid
         pipelineId:
           type: string
-          format: uuid
         analysisInput:
           $ref: '#/components/schemas/NextflowAnalysisInput'
     ActivationCodeDetailList:
@@ -8916,6 +10472,208 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventLog'
+    Job:
+      required:
+      - id
+      - owner
+      - status
+      - subjectId
+      - subjectType
+      - timeCreated
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - WAITING_FOR_RESOURCES
+          - RUNNING
+          - STOPPED
+          - SUCCEEDED
+          - PARTIALLY_SUCCEEDED
+          - FAILED
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this job.
+          nullable: true
+        subjectType:
+          type: string
+          description: The type of the subject for which this job provides execution.
+          example: SampleCreationBatch
+        subjectId:
+          type: string
+          description: The id of the subject for which this job provides execution.
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeStarted:
+          type: string
+          format: date-time
+          nullable: true
+        timeFinished:
+          type: string
+          format: date-time
+          nullable: true
+        owner:
+          $ref: '#/components/schemas/User'
+        project:
+          $ref: '#/components/schemas/Project'
+      nullable: true
+    JobPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Job'
+        nextPageToken:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    User:
+      required:
+      - active
+      - email
+      - emailVerified
+      - id
+      - ownerId
+      - tenantAdministrator
+      - tenantId
+      - timeCreated
+      - timeModified
+      - twoFactorAuthentication
+      - username
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        tenantName:
+          type: string
+          nullable: true
+        username:
+          maxLength: 255
+          minLength: 1
+          type: string
+        email:
+          maxLength: 255
+          minLength: 1
+          type: string
+        firstname:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        lastname:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        active:
+          type: boolean
+        tenantAdministrator:
+          type: boolean
+        jobTitle:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        greeting:
+          type: string
+          nullable: true
+          enum:
+          - MR
+          - MRS
+          - MS
+          - MISS
+          - DR
+          - HR
+          - SR
+        mobilePhoneNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        phoneNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        faxNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        emailVerified:
+          type: boolean
+        twoFactorAuthentication:
+          type: boolean
+        country:
+          $ref: '#/components/schemas/Country'
+        addressLine1:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        addressLine2:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        addressLine3:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        postalCode:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        city:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        state:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
     MetadataModelList:
       required:
       - items
@@ -9147,7 +10905,7 @@ components:
           maxLength: 255
           minLength: 1
           type: string
-          description: The name of the reference set
+          description: The name of the reference data
         species:
           $ref: '#/components/schemas/Species'
         dataFormat:
@@ -9156,7 +10914,7 @@ components:
           maxLength: 255
           minLength: 1
           type: string
-          description: The version of the reference set
+          description: The version of the reference data
         typeList:
           $ref: '#/components/schemas/TypeList'
     ReferenceDataList:
@@ -9246,7 +11004,6 @@ components:
           minLength: 1
           type: string
           description: The name of the species
-      nullable: true
     Type:
       required:
       - id
@@ -9289,6 +11046,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Type'
+    PipelineHtmlDocumentation:
+      required:
+      - content
+      type: object
+      properties:
+        content:
+          type: string
+          description: The content of the HTML documentation
+    PipelineLanguageVersionList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineLanguageVersion'
     Analysis:
       required:
       - id
@@ -9333,6 +11107,8 @@ components:
           description: The user reference of the analysis
         pipeline:
           $ref: '#/components/schemas/Pipeline'
+        workflowSession:
+          $ref: '#/components/schemas/WorkflowSession'
         status:
           type: string
           description: The status of the analysis
@@ -9360,6 +11136,14 @@ components:
           nullable: true
         analysisStorage:
           $ref: '#/components/schemas/AnalysisStorage'
+        analysisPriority:
+          type: string
+          description: The priority of the analysis
+          nullable: true
+          enum:
+          - Low
+          - Medium
+          - High
         tags:
           $ref: '#/components/schemas/AnalysisTag'
     AnalysisPagedList:
@@ -9416,6 +11200,123 @@ components:
           items:
             type: string
             description: Reference tags
+    Workflow:
+      required:
+      - analysisStorage
+      - code
+      - description
+      - id
+      - urn
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The code of the workflow
+        urn:
+          maxLength: 2000
+          minLength: 1
+          type: string
+          description: "The URN of the workflow. The format is urn:ilmn:ica:\\<type\
+            \ of the object\\>:\\<ID of the object\\>#\\<optional human readable hint\
+            \ representing the object\\>. The hint can be omitted, in that case the\
+            \ hashtag (#) must also be omitted."
+        description:
+          maxLength: 4000
+          minLength: 1
+          type: string
+          description: The description of the workflow
+        languageVersion:
+          $ref: '#/components/schemas/PipelineLanguageVersion'
+        workflowTags:
+          $ref: '#/components/schemas/PipelineTag'
+        analysisStorage:
+          $ref: '#/components/schemas/AnalysisStorage'
+    WorkflowSession:
+      required:
+      - id
+      - ownerId
+      - status
+      - tags
+      - tenantId
+      - timeCreated
+      - userReference
+      - workflow
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        tenantName:
+          type: string
+          nullable: true
+        userReference:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The user reference of the workflow session
+        workflow:
+          $ref: '#/components/schemas/Workflow'
+        status:
+          type: string
+          description: The status of the workflow session
+          enum:
+          - REQUESTED
+          - AWAITINGINPUT
+          - INPROGRESS
+          - SUCCEEDED
+          - FAILED
+          - FAILEDFINAL
+          - ABORTED
+        startDate:
+          type: string
+          description: When the workflow session was started
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          description: When the workflow session was finished
+          format: date-time
+          nullable: true
+        summary:
+          type: string
+          description: The summary of the workflow session
+          nullable: true
+        tags:
+          $ref: '#/components/schemas/WorkflowSessionTag'
+      nullable: true
+    WorkflowSessionTag:
+      type: object
+      properties:
+        technicalTags:
+          type: array
+          description: Technical tags
+          nullable: true
+          items:
+            type: string
+            description: Technical tags
+            nullable: true
+        userTags:
+          type: array
+          description: User tags
+          nullable: true
+          items:
+            type: string
+            description: User tags
+            nullable: true
     AnalysisStep:
       required:
       - id
@@ -9546,6 +11447,11 @@ components:
         code:
           type: string
           description: The name of the output-parameter.
+        projectId:
+          type: string
+          description: The ID of the project containing the analysis-data produced
+            by the analysis for the output-parameter.
+          format: uuid
         data:
           type: array
           items:
@@ -9595,6 +11501,48 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExecutionConfiguration'
+    AnalysisCreationBatch:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        job:
+          $ref: '#/components/schemas/Job'
+    AnalysisOutputMapping:
+      required:
+      - sourcePath
+      - targetPath
+      - targetProjectId
+      type: object
+      properties:
+        sourcePath:
+          type: string
+        type:
+          type: string
+          enum:
+          - FILE
+          - FOLDER
+        targetProjectId:
+          type: string
+        targetPath:
+          type: string
+        actionOnExist:
+          type: string
+      nullable: true
+    CreateAnalysisCreationBatch:
+      type: object
+      properties:
+        cwlItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateCwlAnalysis'
+        nextflowItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateNextflowAnalysis'
     CreateCwlAnalysis:
       required:
       - activationCodeDetailId
@@ -9614,7 +11562,6 @@ components:
         pipelineId:
           type: string
           description: The pipeline for which an analysis will be created.
-          format: uuid
         tags:
           $ref: '#/components/schemas/AnalysisTag'
         activationCodeDetailId:
@@ -9630,6 +11577,11 @@ components:
           type: string
           description: The id of the folder in which the output folder should be created.
           nullable: true
+        analysisOutput:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisOutputMapping'
         analysisInput:
           $ref: '#/components/schemas/CwlAnalysisInput'
     CreateNextflowAnalysis:
@@ -9651,7 +11603,6 @@ components:
         pipelineId:
           type: string
           description: The pipeline for which an analysis will be created.
-          format: uuid
         tags:
           $ref: '#/components/schemas/AnalysisTag'
         activationCodeDetailId:
@@ -9667,8 +11618,88 @@ components:
           type: string
           description: The id of the folder in which the output folder should be created.
           nullable: true
+        analysisOutput:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisOutputMapping'
         analysisInput:
           $ref: '#/components/schemas/NextflowAnalysisInput'
+    AnalysisCreationBatchItem:
+      required:
+      - id
+      - processing
+      - request
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        request:
+          $ref: '#/components/schemas/AnalysisCreationBatchItemRequest'
+        processing:
+          $ref: '#/components/schemas/AnalysisCreationBatchItemProcessing'
+        createdAnalysis:
+          $ref: '#/components/schemas/Analysis'
+    AnalysisCreationBatchItemPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalysisCreationBatchItem'
+        nextPageToken:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    AnalysisCreationBatchItemProcessing:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - RUNNING
+          - WAITING_RESOURCES
+          - SUCCEEDED
+          - FAILED
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this batch item.
+          nullable: true
+    AnalysisCreationBatchItemRequest:
+      required:
+      - pipelineId
+      - tags
+      - userReference
+      type: object
+      properties:
+        userReference:
+          type: string
+        pipelineId:
+          type: string
+          description: The pipeline for which an analysis will be created.
+        tags:
+          $ref: '#/components/schemas/AnalysisTag'
     ProjectPagedList:
       required:
       - items
@@ -9762,6 +11793,16 @@ components:
           description: Required when specifying a storageConfigurationId. The subfolder
             determines the object prefix of your self managed storage.
           nullable: true
+        analysisPriority:
+          type: string
+          description: "Indicates the priority given to a project and its analyses\
+            \ within a single tenant, where Medium is the default value."
+          nullable: true
+          enum:
+          - Low
+          - Medium
+          - High
+          default: Medium
     ProjectBundle:
       required:
       - bundle
@@ -9898,6 +11939,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BaseJob'
+        nextPageToken:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
     ProjectBaseTable:
       required:
       - id
@@ -10001,10 +12062,10 @@ components:
           type: string
           description: Encoding
           nullable: true
-          default: UTF8
           enum:
           - UTF8
           - ISO88591
+          default: UTF8
         forceLoad:
           type: boolean
           description: "When false (default): the data will not be loaded if it was\
@@ -10074,11 +12135,11 @@ components:
           type: string
           description: specifies how to write data in the table.
           nullable: true
-          default: APPENDTOTABLE
           enum:
           - WRITEIFEMPTY
           - APPENDTOTABLE
           - OVERWRITETABLE
+          default: APPENDTOTABLE
     CreateCustomEvent:
       required:
       - code
@@ -10176,6 +12237,60 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomNotificationSubscription'
+    CwlAnalysisInputJson:
+      required:
+      - inputJson
+      type: object
+      properties:
+        inputJson:
+          type: string
+          description: The input json of the CWL analysis.
+    CwlAnalysisOutputJson:
+      required:
+      - outputJson
+      type: object
+      properties:
+        outputJson:
+          type: string
+          description: The output json of the CWL analysis.
+    DataUrl:
+      required:
+      - dataId
+      - dataUrn
+      - url
+      type: object
+      properties:
+        dataId:
+          type: string
+          description: The id of the file/folder as it was uploaded.
+        dataUrn:
+          type: string
+          description: "The URN of this data. The format is urn:ilmn:ica:region:\\\
+            <ID of the region\\>:data:\\<ID of the data\\>#\\<optional data path\\\
+            >. The path can be omitted, in that case the hashtag (#) must also be\
+            \ omitted."
+        url:
+          type: string
+    DataUrlList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataUrl'
+    DataUrlIdList:
+      required:
+      - dataIds
+      type: object
+      properties:
+        dataIds:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          items:
+            type: string
     ProjectData:
       required:
       - data
@@ -10187,6 +12302,7 @@ components:
         projectId:
           type: string
           format: uuid
+      nullable: true
     ProjectDataPagedList:
       required:
       - items
@@ -10296,24 +12412,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Project'
-    InlineView:
-      required:
-      - url
-      type: object
-      properties:
-        url:
-          type: string
-          description: A pre-signed url which is temporarily available for inline
-            viewing the data.
-    Download:
-      required:
-      - url
-      type: object
-      properties:
-        url:
-          type: string
-          description: A pre-signed url which is temporarily available for downloading
-            the data.
     Upload:
       required:
       - url
@@ -10368,8 +12466,6 @@ components:
             \ \"x-amz-server-side-encryption-aws-kms-key-id\" value. Value will be\
             \ ignored if encryption is \"AES256\""
           nullable: true
-      description: "In case of AWS S3 stored data, this will contain the credentials\
-        \ for uploading or downloading the data."
       nullable: true
     RcloneTempCredentials:
       required:
@@ -10399,9 +12495,6 @@ components:
           description: The folder upload session id which can be used after upload
             to complete the upload session.
           nullable: true
-      description: "In case of providing the credentialsFormat = rclone, this will\
-        \ contain the credentials for uploading or downloading the data in rclone\
-        \ format."
       nullable: true
     TempCredentials:
       type: object
@@ -10565,15 +12658,132 @@ components:
           type: integer
           description: The number of expected uploaded files within this session.
           format: int32
-    DataTransfers:
+    ProjectDataLinkingBatch:
       required:
-      - dataTransfers
+      - id
+      - job
       type: object
       properties:
-        dataTransfers:
+        id:
+          type: string
+          format: uuid
+        job:
+          $ref: '#/components/schemas/Job'
+    CreateProjectDataLinkingBatch:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateProjectDataLinkingBatchItem'
+    CreateProjectDataLinkingBatchItem:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+    ProjectDataLinkingBatchItem:
+      required:
+      - id
+      - processing
+      - request
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        request:
+          $ref: '#/components/schemas/ProjectDataLinkingBatchItemRequest'
+        processing:
+          $ref: '#/components/schemas/ProjectDataLinkingBatchItemProcessing'
+        createdProjectData:
+          $ref: '#/components/schemas/ProjectData'
+    ProjectDataLinkingBatchItemPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDataLinkingBatchItem'
+        nextPageToken:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    ProjectDataLinkingBatchItemProcessing:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - INITIALISED
+          - WAITING_RESOURCES
+          - RUNNING
+          - LINKED
+          - ALREADY_LINKED
+          - FAILED
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this batch item.
+          nullable: true
+    ProjectDataLinkingBatchItemRequest:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+    DataTransferPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
           type: array
           items:
             $ref: '#/components/schemas/DataTransfer'
+        nextPageToken:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
     NotificationSubscription:
       required:
       - enabled
@@ -10748,128 +12958,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProjectPermission'
-    User:
-      required:
-      - active
-      - email
-      - emailVerified
-      - id
-      - ownerId
-      - tenantAdministrator
-      - tenantId
-      - timeCreated
-      - timeModified
-      - twoFactorAuthentication
-      - username
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        timeCreated:
-          type: string
-          format: date-time
-        timeModified:
-          type: string
-          format: date-time
-        ownerId:
-          type: string
-          format: uuid
-        tenantId:
-          type: string
-          format: uuid
-        tenantName:
-          type: string
-          nullable: true
-        username:
-          maxLength: 255
-          minLength: 1
-          type: string
-        email:
-          maxLength: 255
-          minLength: 1
-          type: string
-        firstname:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        lastname:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        active:
-          type: boolean
-        tenantAdministrator:
-          type: boolean
-        jobTitle:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        greeting:
-          type: string
-          nullable: true
-          enum:
-          - MR
-          - MRS
-          - MS
-          - MISS
-          - DR
-          - HR
-          - SR
-        mobilePhoneNumber:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        phoneNumber:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        faxNumber:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        emailVerified:
-          type: boolean
-        twoFactorAuthentication:
-          type: boolean
-        country:
-          $ref: '#/components/schemas/Country'
-        addressLine1:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        addressLine2:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        addressLine3:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        postalCode:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        city:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        state:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
     Workgroup:
       required:
       - description
@@ -11001,6 +13089,11 @@ components:
           pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
           type: string
           description: The code of the pipeline
+        pipelineLanguageVersionId:
+          type: string
+          description: The id of the Nextflow version to use for the pipeline.
+          format: uuid
+          nullable: true
         description:
           maxLength: 4000
           minLength: 1
@@ -11009,6 +13102,10 @@ components:
         mainNextflowFile:
           type: string
           description: The main Nextflow file.
+          format: binary
+        nextflowConfigFile:
+          type: string
+          description: The Nextflow config file.
           format: binary
         otherNextflowFiles:
           type: array
@@ -11048,6 +13145,12 @@ components:
     InputPart:
       type: object
       properties:
+        headers:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
         mediaType:
           type: object
           properties:
@@ -11067,12 +13170,6 @@ components:
           type: string
         contentTypeFromMessage:
           type: boolean
-        headers:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     MultipartFormDataInput:
       type: object
       properties:
@@ -11198,8 +13295,6 @@ components:
       properties:
         id:
           type: string
-      description: The field ID to be updated. Either the field ID or field name is
-        required.
       nullable: true
     FindProjectSamples:
       required:
@@ -11316,6 +13411,12 @@ components:
           - EXACT
           - EXCLUDE
           - FUZZY
+        instrumentRunIds:
+          type: array
+          nullable: true
+          items:
+            type: string
+            nullable: true
     FindSampleBooleanCondition:
       type: object
       properties:
@@ -11403,7 +13504,35 @@ components:
           description: The description of the sample.
           nullable: true
         tags:
-          $ref: '#/components/schemas/SampleTag'
+          $ref: '#/components/schemas/OptionalSampleTags'
+    OptionalSampleTags:
+      type: object
+      properties:
+        technicalTags:
+          type: array
+          nullable: true
+          items:
+            type: string
+            nullable: true
+        userTags:
+          type: array
+          nullable: true
+          items:
+            type: string
+            nullable: true
+        connectorTags:
+          type: array
+          nullable: true
+          items:
+            type: string
+            nullable: true
+        runInTags:
+          type: array
+          nullable: true
+          items:
+            type: string
+            nullable: true
+      nullable: true
     SampleHistory:
       required:
       - occurredAt
@@ -11506,6 +13635,135 @@ components:
             type: string
             description: The updated value(s)
       description: List of metadata fields to be updated
+    SampleCreationBatch:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        job:
+          $ref: '#/components/schemas/Job'
+    CreateSampleCreationBatchDataItem:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+      description: The data to be linked to the new sample.
+      nullable: true
+    CreateSampleCreationBatch:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateSampleCreationBatchSampleItem'
+    CreateSampleCreationBatchSampleItem:
+      required:
+      - completeSample
+      - sampleToCreate
+      type: object
+      properties:
+        sampleToCreate:
+          $ref: '#/components/schemas/CreateSample'
+        dataToLink:
+          type: array
+          description: The data to be linked to the new sample.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/CreateSampleCreationBatchDataItem'
+        completeSample:
+          type: boolean
+          description: Indicates whether the sample must be completed.
+    SampleCreationBatchItemPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SampleCreationBatchSampleItem'
+        nextPageToken:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    SampleCreationBatchItemProcessing:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - WAITING_RESOURCES
+          - RUNNING
+          - SUCCEEDED
+          - PARTIALLY_SUCCEEDED
+          - FAILED
+          - STOPPED
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this batch item.
+          nullable: true
+    SampleCreationBatchItemRequest:
+      required:
+      - completeSample
+      - sampleToCreate
+      type: object
+      properties:
+        sampleToCreate:
+          $ref: '#/components/schemas/CreateSample'
+        completeSample:
+          type: boolean
+          description: Indicates whether the sample must be completed.
+    SampleCreationBatchSampleItem:
+      required:
+      - id
+      - processing
+      - request
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        request:
+          $ref: '#/components/schemas/SampleCreationBatchItemRequest'
+        processing:
+          $ref: '#/components/schemas/SampleCreationBatchItemProcessing'
+        createdSample:
+          $ref: '#/components/schemas/Sample'
+    SpeciesList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Species'
     RegionList:
       required:
       - items
@@ -11628,7 +13886,6 @@ components:
       properties:
         awsS3:
           $ref: '#/components/schemas/AWSDetails'
-      description: Contains the specific provider details
     StorageConfigurationWithDetails:
       required:
       - id
@@ -11759,8 +14016,6 @@ components:
           pattern: "[^=,]*"
           type: string
           description: The secret access key found in aws console
-      description: The credentials that are required when the type of the Storage
-        Credential being updated is AWS
       nullable: true
     CreateStorageCredential:
       required:
