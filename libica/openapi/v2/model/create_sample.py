@@ -30,8 +30,8 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from libica.openapi.v2.model.sample_tag import SampleTag
-    globals()['SampleTag'] = SampleTag
+    from libica.openapi.v2.model.optional_sample_tags import OptionalSampleTags
+    globals()['OptionalSampleTags'] = OptionalSampleTags
 
 
 class CreateSample(ModelNormal):
@@ -97,7 +97,7 @@ class CreateSample(ModelNormal):
         return {
             'name': (str,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
-            'tags': (SampleTag,),  # noqa: E501
+            'tags': (OptionalSampleTags,),  # noqa: E501
         }
 
     @cached_property
@@ -156,7 +156,7 @@ class CreateSample(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             description (str, none_type): The description of the sample.. [optional]  # noqa: E501
-            tags (SampleTag): [optional]  # noqa: E501
+            tags (OptionalSampleTags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -243,7 +243,7 @@ class CreateSample(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             description (str, none_type): The description of the sample.. [optional]  # noqa: E501
-            tags (SampleTag): [optional]  # noqa: E501
+            tags (OptionalSampleTags): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

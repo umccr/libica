@@ -64,6 +64,18 @@ class ActivationCodeDetail(ModelNormal):
     }
 
     validations = {
+        ('allowed_slots',): {
+            'inclusive_minimum': -1,
+        },
+        ('used_slots',): {
+            'inclusive_minimum': 0,
+        },
+        ('moved_slots',): {
+            'inclusive_minimum': 0,
+        },
+        ('original_slots',): {
+            'inclusive_minimum': -1,
+        },
     }
 
     @cached_property
@@ -90,12 +102,12 @@ class ActivationCodeDetail(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
+            'allowed_slots': (int,),  # noqa: E501
+            'used_slots': (int,),  # noqa: E501
+            'moved_slots': (int,),  # noqa: E501
+            'original_slots': (int,),  # noqa: E501
             'pipeline_bundle': (PipelineBundle,),  # noqa: E501
             'usages': ([ActivationCodeDetailUsage],),  # noqa: E501
-            'allowed_slots': (int, none_type,),  # noqa: E501
-            'used_slots': (int, none_type,),  # noqa: E501
-            'moved_slots': (int, none_type,),  # noqa: E501
-            'original_slots': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,12 +117,12 @@ class ActivationCodeDetail(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
-        'pipeline_bundle': 'pipelineBundle',  # noqa: E501
-        'usages': 'usages',  # noqa: E501
         'allowed_slots': 'allowedSlots',  # noqa: E501
         'used_slots': 'usedSlots',  # noqa: E501
         'moved_slots': 'movedSlots',  # noqa: E501
         'original_slots': 'originalSlots',  # noqa: E501
+        'pipeline_bundle': 'pipelineBundle',  # noqa: E501
+        'usages': 'usages',  # noqa: E501
     }
 
     read_only_vars = {
@@ -120,11 +132,15 @@ class ActivationCodeDetail(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, id, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, id, allowed_slots, used_slots, moved_slots, original_slots, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
         """ActivationCodeDetail - a model defined in OpenAPI
 
         Args:
             id (str):
+            allowed_slots (int): The allowed slot within this code, -1 means unlimited
+            used_slots (int): Indicates how many slots can are used.
+            moved_slots (int): The slots that where moved to another activation code
+            original_slots (int): The assigned allowed slot within this code, -1 means unlimited
             pipeline_bundle (PipelineBundle):
             usages ([ActivationCodeDetailUsage]):
 
@@ -159,10 +175,6 @@ class ActivationCodeDetail(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            allowed_slots (int, none_type): The allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used.. [optional]  # noqa: E501
-            moved_slots (int, none_type): The slots that where moved to another activation code. [optional]  # noqa: E501
-            original_slots (int, none_type): The assigned allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -191,6 +203,10 @@ class ActivationCodeDetail(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.id = id
+        self.allowed_slots = allowed_slots
+        self.used_slots = used_slots
+        self.moved_slots = moved_slots
+        self.original_slots = original_slots
         self.pipeline_bundle = pipeline_bundle
         self.usages = usages
         for var_name, var_value in kwargs.items():
@@ -213,11 +229,15 @@ class ActivationCodeDetail(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, allowed_slots, used_slots, moved_slots, original_slots, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
         """ActivationCodeDetail - a model defined in OpenAPI
 
         Args:
             id (str):
+            allowed_slots (int): The allowed slot within this code, -1 means unlimited
+            used_slots (int): Indicates how many slots can are used.
+            moved_slots (int): The slots that where moved to another activation code
+            original_slots (int): The assigned allowed slot within this code, -1 means unlimited
             pipeline_bundle (PipelineBundle):
             usages ([ActivationCodeDetailUsage]):
 
@@ -252,10 +272,6 @@ class ActivationCodeDetail(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            allowed_slots (int, none_type): The allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used.. [optional]  # noqa: E501
-            moved_slots (int, none_type): The slots that where moved to another activation code. [optional]  # noqa: E501
-            original_slots (int, none_type): The assigned allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -282,6 +298,10 @@ class ActivationCodeDetail(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.id = id
+        self.allowed_slots = allowed_slots
+        self.used_slots = used_slots
+        self.moved_slots = moved_slots
+        self.original_slots = original_slots
         self.pipeline_bundle = pipeline_bundle
         self.usages = usages
         for var_name, var_value in kwargs.items():

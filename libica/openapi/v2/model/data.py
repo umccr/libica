@@ -66,6 +66,10 @@ class Data(ModelNormal):
             'max_length': 255,
             'min_length': 1,
         },
+        ('urn',): {
+            'max_length': 2000,
+            'min_length': 1,
+        },
     }
 
     @cached_property
@@ -92,6 +96,7 @@ class Data(ModelNormal):
         lazy_import()
         return {
             'id': (str,),  # noqa: E501
+            'urn': (str, none_type,),  # noqa: E501
             'details': (DataDetails,),  # noqa: E501
         }
 
@@ -102,6 +107,7 @@ class Data(ModelNormal):
 
     attribute_map = {
         'id': 'id',  # noqa: E501
+        'urn': 'urn',  # noqa: E501
         'details': 'details',  # noqa: E501
     }
 
@@ -149,6 +155,7 @@ class Data(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            urn (str, none_type): The URN of this data. The format is urn:ilmn:ica:region:\\<ID of the region\\>:data:\\<ID of the data\\>#\\<optional data path\\>. The path can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             details (DataDetails): [optional]  # noqa: E501
         """
 
@@ -235,6 +242,7 @@ class Data(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            urn (str, none_type): The URN of this data. The format is urn:ilmn:ica:region:\\<ID of the region\\>:data:\\<ID of the data\\>#\\<optional data path\\>. The path can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             details (DataDetails): [optional]  # noqa: E501
         """
 

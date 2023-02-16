@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **metadata_model_id** | **str, none_type** |  | [optional] 
 **storage_configuration_id** | **str, none_type** | An optional storage configuration id to have self managed storage. | [optional] 
 **storage_configuration_subfolder** | **str, none_type** | Required when specifying a storageConfigurationId. The subfolder determines the object prefix of your self managed storage. | [optional] 
+**analysis_priority** | **str, none_type** | Indicates the priority given to a project and its analyses within a single tenant, where Medium is the default value. | [optional]  if omitted the server will use the default value of "Medium"
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

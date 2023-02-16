@@ -7,12 +7,14 @@ Method | HTTP request | Description
 [**abort_analysis**](ProjectAnalysisApi.md#abort_analysis) | **POST** /api/projects/{projectId}/analyses/{analysisId}:abort | Abort an analysis.
 [**create_cwl_analysis**](ProjectAnalysisApi.md#create_cwl_analysis) | **POST** /api/projects/{projectId}/analysis:cwl | Create and start an analysis for a CWL pipeline.
 [**create_nextflow_analysis**](ProjectAnalysisApi.md#create_nextflow_analysis) | **POST** /api/projects/{projectId}/analysis:nextflow | Create and start an analysis for a Nextflow pipeline.
-[**get_analyses**](ProjectAnalysisApi.md#get_analyses) | **GET** /api/projects/{projectId}/analyses | Retrieve the list of project analyses.
+[**get_analyses**](ProjectAnalysisApi.md#get_analyses) | **GET** /api/projects/{projectId}/analyses | Retrieve the list of analyses.
 [**get_analysis**](ProjectAnalysisApi.md#get_analysis) | **GET** /api/projects/{projectId}/analyses/{analysisId} | Retrieve an analysis.
 [**get_analysis_configurations**](ProjectAnalysisApi.md#get_analysis_configurations) | **GET** /api/projects/{projectId}/analyses/{analysisId}/configurations | Retrieve the configurations of an analysis.
 [**get_analysis_inputs**](ProjectAnalysisApi.md#get_analysis_inputs) | **GET** /api/projects/{projectId}/analyses/{analysisId}/inputs | Retrieve the inputs of an analysis.
-[**get_analysis_outputs**](ProjectAnalysisApi.md#get_analysis_outputs) | **GET** /api/projects/{projectId}/analyses/{analysisId}/outputs | Retrieve the outputs of an analysis.
+[**get_analysis_outputs**](ProjectAnalysisApi.md#get_analysis_outputs) | **GET** /api/projects/{projectId}/analyses/{analysisId}/outputs | Retrieve the outputs of an analysis. The list might be incomplete if a folder contains too many output files, but all the data can always be retrieved through the GET data endpoint.
 [**get_analysis_steps**](ProjectAnalysisApi.md#get_analysis_steps) | **GET** /api/projects/{projectId}/analyses/{analysisId}/steps | Retrieve the individual steps of an analysis.
+[**get_cwl_input_json**](ProjectAnalysisApi.md#get_cwl_input_json) | **GET** /api/projects/{projectId}/analyses/{analysisId}/cwl/inputJson | Retrieve the input json of a CWL analysis.
+[**get_cwl_output_json**](ProjectAnalysisApi.md#get_cwl_output_json) | **GET** /api/projects/{projectId}/analyses/{analysisId}/cwl/outputJson | Retrieve the output json of a CWL analysis.
 [**get_raw_analysis_output**](ProjectAnalysisApi.md#get_raw_analysis_output) | **GET** /api/projects/{projectId}/analyses/{analysisId}/rawOutput | Retrieve the raw output of an analysis.
 [**update_analysis**](ProjectAnalysisApi.md#update_analysis) | **PUT** /api/projects/{projectId}/analyses/{analysisId} | Update an analysis.
 
@@ -166,6 +168,15 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         activation_code_detail_id="activation_code_detail_id_example",
         analysis_storage_id="analysis_storage_id_example",
         output_parent_folder_id="output_parent_folder_id_example",
+        analysis_output=[
+            AnalysisOutputMapping(
+                source_path="source_path_example",
+                type="FILE",
+                target_project_id="target_project_id_example",
+                target_path="target_path_example",
+                action_on_exist="action_on_exist_example",
+            ),
+        ],
         analysis_input=CwlAnalysisInput(),
     ) # CreateCwlAnalysis |  (optional)
 
@@ -282,6 +293,15 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         activation_code_detail_id="activation_code_detail_id_example",
         analysis_storage_id="analysis_storage_id_example",
         output_parent_folder_id="output_parent_folder_id_example",
+        analysis_output=[
+            AnalysisOutputMapping(
+                source_path="source_path_example",
+                type="FILE",
+                target_project_id="target_project_id_example",
+                target_path="target_path_example",
+                action_on_exist="action_on_exist_example",
+            ),
+        ],
         analysis_input=NextflowAnalysisInput(
             inputs=[
                 AnalysisDataInput(
@@ -298,9 +318,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
             ],
             parameters=[
-                AnalysisParameter(
+                AnalysisParameterInput(
                     code="code_example",
                     value="value_example",
+                    multi_value=[
+                        "multi_value_example",
+                    ],
                 ),
             ],
             reference_data_parameters=[
@@ -365,7 +388,7 @@ Name | Type | Description  | Notes
 # **get_analyses**
 > AnalysisPagedList get_analyses(project_id)
 
-Retrieve the list of project analyses.
+Retrieve the list of analyses.
 
 ### Example
 
@@ -412,14 +435,14 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     usertag = "usertag_example" # str | The user-tags to filter on. (optional)
     technicaltag = "technicaltag_example" # str | The technical-tags to filter on. (optional)
     referencetag = "referencetag_example" # str | The reference-data-tags to filter on. (optional)
-    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. (optional)
-    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. (optional)
+    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
+    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
     sort = "sort_example" # str | Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary  (optional)
 
     # example passing only required values which don't have defaults set
     try:
-        # Retrieve the list of project analyses.
+        # Retrieve the list of analyses.
         api_response = api_instance.get_analyses(project_id)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
@@ -428,7 +451,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Retrieve the list of project analyses.
+        # Retrieve the list of analyses.
         api_response = api_instance.get_analyses(project_id, reference=reference, userreference=userreference, status=status, usertag=usertag, technicaltag=technicaltag, referencetag=referencetag, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
@@ -447,8 +470,8 @@ Name | Type | Description  | Notes
  **usertag** | **str**| The user-tags to filter on. | [optional]
  **technicaltag** | **str**| The technical-tags to filter on. | [optional]
  **referencetag** | **str**| The reference-data-tags to filter on. | [optional]
- **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. | [optional]
- **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. | [optional]
+ **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
+ **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
  **page_size** | **str**| The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. | [optional]
  **sort** | **str**| Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;dateCreated, lastName desc\&quot;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary  | [optional]
 
@@ -736,7 +759,7 @@ Name | Type | Description  | Notes
 # **get_analysis_outputs**
 > AnalysisOutputList get_analysis_outputs(project_id, analysis_id)
 
-Retrieve the outputs of an analysis.
+Retrieve the outputs of an analysis. The list might be incomplete if a folder contains too many output files, but all the data can always be retrieved through the GET data endpoint.
 
 ### Example
 
@@ -781,7 +804,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Retrieve the outputs of an analysis.
+        # Retrieve the outputs of an analysis. The list might be incomplete if a folder contains too many output files, but all the data can always be retrieved through the GET data endpoint.
         api_response = api_instance.get_analysis_outputs(project_id, analysis_id)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
@@ -901,6 +924,178 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The individual steps of the analysis are successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_cwl_input_json**
+> CwlAnalysisInputJson get_cwl_input_json(project_id, analysis_id)
+
+Retrieve the input json of a CWL analysis.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_analysis_api
+from libica.openapi.v2.model.cwl_analysis_input_json import CwlAnalysisInputJson
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_analysis_api.ProjectAnalysisApi(api_client)
+    project_id = "projectId_example" # str | 
+    analysis_id = "analysisId_example" # str | The ID of the CWL analysis for which to retrieve the input json
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Retrieve the input json of a CWL analysis.
+        api_response = api_instance.get_cwl_input_json(project_id, analysis_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectAnalysisApi->get_cwl_input_json: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **analysis_id** | **str**| The ID of the CWL analysis for which to retrieve the input json |
+
+### Return type
+
+[**CwlAnalysisInputJson**](CwlAnalysisInputJson.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The input json of the CWL analysis is successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_cwl_output_json**
+> CwlAnalysisOutputJson get_cwl_output_json(project_id, analysis_id)
+
+Retrieve the output json of a CWL analysis.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_analysis_api
+from libica.openapi.v2.model.cwl_analysis_output_json import CwlAnalysisOutputJson
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_analysis_api.ProjectAnalysisApi(api_client)
+    project_id = "projectId_example" # str | 
+    analysis_id = "analysisId_example" # str | The ID of the CWL analysis for which to retrieve the output json
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Retrieve the output json of a CWL analysis.
+        api_response = api_instance.get_cwl_output_json(project_id, analysis_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectAnalysisApi->get_cwl_output_json: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **analysis_id** | **str**| The ID of the CWL analysis for which to retrieve the output json |
+
+### Return type
+
+[**CwlAnalysisOutputJson**](CwlAnalysisOutputJson.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The output json of the CWL analysis is successfully retrieved. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1055,9 +1250,15 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             owner_id="owner_id_example",
             tenant_id="tenant_id_example",
             tenant_name="tenant_name_example",
-            code="26bUUGjjNSwg0_bs9ZayIM/dgN/b6gvxmPb9GcsM61ate1RA89q3w1l4eH4XxEz-5awxoFZxHzs6ED-kjUSnTINkYPUndNl8pmPg5K897Fu1JEFj9R1_dz/rEoBi0LnU8SsOWJ7wYrczi/Qdt8mVLxbg4bCLrLBcmXxWQK6MzKSg5jphei0IfRRwpnT_Z-qKa_YppZepezJ0-VmLSUTLYyW- e_jxxzpBvw-y P/SI-13 AOsiPRVvnXrDhh58EJzzOxprDzE3pjHRAkK7vI7/jcoPqzNk YKJOXJ2zkgYnmU-hV4pJhQ7dhTAGxjARc6SZKg2qV/ hA054g00j8CXRM4JZgexx5/BmiUdb8V-5tS7Ce-8OP8jM6Q/ap ieHoJL0cOHxhIz6IzRjPiSbv46JLcKaA-xTwLJcAkoNQxJsCUIkorO-2KAnnTOE8M6xmSejA6BGR RDxxWc493QsJ JFt/rxtNb3BtpHGNB33FSli/EaSDC3Jwlo9Aq-OZySuGXBwuNL5ICjOL uxZFN7oEXv3Rjr7mZXbY7cFU6HPiDV aM8XFtx5ef7XxGahEx5as4igHCaW/gfGuN6Yogo9e2fmFQ_q_V0iz1l6lakAtMD7gXmnBhySbG7coPhWOlWnLvrLZaxa78JI_LGepDuQ3z-LtIx RE8z6ZbHjz/3coUV uT/EXw3Z8KLTvaqhteQpbwYU8rf85eyxCXQ02l2UfQbP/Hwb TbI1I6mS 9V-ofBBak wevR6F 37RS4Mqp-z9OYCpSjEqZEdbOOqMNkk0MEG4PgSZp-tY7nzp2V09rLuCvfKd3/B7Nke4pyLFXi20uVuBIVQWxeziEmPj4-KIZ4EBDYGMeHwlQHgxMV_coQzDZPhSAcDWSu58NayafWzmTt-P7RTuj3iloSmvq6ptM/paqws8RfvaYMfrqa8yWUb/aew8fGzxL8UBpf4IYjQxCBv0aEqODMs6 __HvAARQCZ_HKqroXyt6-Y8imaC5It9ZEZjIoZP9V1EjbA-tFQv/KOFpHUcVNnqDdEconiUhJ/_OYqv01dQetO3oDTHSQdhLouT7merxKTcqNMpXfpU5ktnd4BBULIW0N/GhiW92gAEui/l WoiEW-tzti/9q3K407VNjp2Rdt_M_wxbjDN svNTMlZscMPUeqTE205sTZIkhsadNbiDH3R9hn/97bNktDzITop4y58kMdi7sEjYIZXQNI/G2UN7cFEvraG_8ul060s0W5myfNUsZOAfyRSKwumr7vrmbObYZ5LLOTkAJpJ6yD/EyKvzp oyT1iV44YK Q7W9XH_ nC87n1lMXx/cpcof84rc bTU20M2sFqt4zswj63S37gymcb35PFmFooUEItJ/WXmmb6rN-PG7CfVVrIXdUuyma63xZJQfyqFaad9jaJKwsaFZawt9CZCsgO_EkphsT/YD6 2t z_dodcIO0StQgTXeyp0Q-9qUn4jz1sIzDHdZi5DAKyeNjBARo-Dde72ZQ7rgUiF6NuAm_ZXdh 6NvD08O/uXF_iMcrZ0AkcxL21NwNNfADepMfPI jxbyGRU9VFh-_a9Mbcva1MSFLSU/GAcLlmJPzj1b/En KXp2ZJ1qP6EIAQRw6KWw-PSWFS0LzB0tz6JsM zfsuuNyQ1F qNTmvGd/34AbRwr1Mi1qq8Bv/7r73NXsLH6lkp_YwgeBZkfv7aEST19XJTe9 4t GIqXuFdD/054gT-SQFzTGrV3v TunXGLysUh_by7pmMGuKPyyeSFxct6Ze7099nRsM3R50i8YYD7uU6_-V/RO7VbVfLxqbCc-GimutTgMtTfBOiI07gLv8fxp8Rrvb2oVixDwL_5GL/dkyb0ofYJLarfJrS4gkeTAfK5NMnpgtwWLpKWVb8A/uQa TKwyJvJPBgILfXHpRfA79W9rCcVEcc1VmOZvW3--sp_E2t2terN4_2lcppBwgjIIFpE/9wjR SU K0GOwW4T/aO1NV6_Hx-5jhuPYUigmskjs38qptZPjGbQcMS6bq4jio6/n_hxYgCm- Z/K_7Ms5LyP8NoYNVF5v/C_I7qzU/pSP39e4y_L 2jAgjSpNK_48uV-MZ7CZL92Y/TDLRif4BX0k_kxk-VTaov2mlM18SfVTJ/mcMNVIO85230RBh-y9g8MNnnvGKT10t-mI5XH9biew58zTl0rQVIApvKA eQe3wv SD86JI2WO4rz8dSltvVqfei/m5FrnEpLvFqwhHFvdn0kEWtwPAhULVh_u/c  m 15yE3/jO3gKaP YHCaCFHZkWsh-mLTR_p_ZhJXuOoIsNHZsK m5ntCxGzmy4lVW_PKmo 4vtEAhOm289Yqnh43gtmE0DcSlXRhP/iRTQHkAPGO AROE GYzP3aIBvIz2Du0PJgDeBXnU3IgkF7V-jBW/R9V8PHmR5UHiFYWfIRAHRUzlaQ_5fkL16fmprt8wmIyj95MZALC3mmE-9-9QIQ_TxYHnPGd129xGytHvWDBO-HWa9uog_gy/B_Lcv_NbdKzBHV0mHJ0otqw-2cVo74hoJwmXoaUvId-qA0zLPa/yNACHAPKtKgQ-wkE FxSQB6am1_36v_4sO/L0 obeH_A5Q g0U8nnM/tLSIw h_9TVGO7HSAcUt2jm2mJ6jxIaRYSQHPbXmRPRzaWrmwaKy4EMWPwbc-aU2Q37XoigypCN/O vMz_s2eIdV-ysI6yTso6oV4n2icY_UqIX3aXe8/fjQVrmDXiXxxvBTvfg06jgn9-ScpKH8N5C4XWGVGRk3j37rxQmI4kwvKHhIKCAUvIkWH6jwZxFRo eIKF/u9HDcrUBkJ7XvQAc-6hPCiLNyumZW bZ1Z1lFtnk615uonsVXHfF05q0NRqj15TZJbNNeHStQMOuYC_jqdm9E9SG W_klzb/D/EIYyIete7WHGdGvaz8OlgB8y7yFT3urhGfXNdaf9LPJpeol/Hsm_twH5CZ0hw5E79TYBg5mTcvHosbmds0/lnttAjUMBqupVLK3x4 0AG976YmWGXzKcfMwo/AJe6AqMxeiI54JCwm88akvPHFEeT/B2_DFbeoWsodas1SE0ZbMSAutkOh5Xxm5JinIE-HSc3Uum5CXQM8IAqgV7Pt7UP7R-a-gxq3pkrhbyaL /g06Y18ROfY0YdRY3jzlcCRRc0YCrW8XRt5tBgOBd9I6/WfODawxODTr6XaLBZ4N4HcKJ0/9/176mYQK5G5Zg_-QRvAnzbzYh01qrNB/0OPLkLvQwJMAZYcIIuHLVBKQgB0tiFZAgCaX_xRaJdoCvlRQ2NFmqxndmXhZUKursXMGxzxNhAE-TRB8qkmv3x3zsY/hWxhBU-WrXobNN/UrgSnP/Hqo0hrfoM/2nH G5cT7PUzahLIwtoU8svwt-H5quoR L8lSHdFBrWE3qxdnl3KF6G9CqDK1MEEUL/z_3v2OEgVjFWE0PvPA tgxkNhx5gRDEgjBNW",
+            code="code_example",
+            urn="urn_example",
             description="description_example",
             language="CWL",
+            language_version=PipelineLanguageVersion(
+                id="id_example",
+                name="name_example",
+                language="CWL",
+            ),
             pipeline_tags=PipelineTag(
                 technical_tags=[
                     "technical_tags_example",
@@ -1074,6 +1275,52 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 description="description_example",
             ),
         ),
+        workflow_session=WorkflowSession(
+            id="id_example",
+            time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
+            owner_id="owner_id_example",
+            tenant_id="tenant_id_example",
+            tenant_name="tenant_name_example",
+            user_reference="user_reference_example",
+            workflow=Workflow(
+                id="id_example",
+                code="code_example",
+                urn="urn_example",
+                description="description_example",
+                language_version=PipelineLanguageVersion(
+                    id="id_example",
+                    name="name_example",
+                    language="CWL",
+                ),
+                workflow_tags=PipelineTag(
+                    technical_tags=[
+                        "technical_tags_example",
+                    ],
+                ),
+                analysis_storage=AnalysisStorage(
+                    id="id_example",
+                    time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                    time_modified=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                    owner_id="owner_id_example",
+                    tenant_id="tenant_id_example",
+                    tenant_name="tenant_name_example",
+                    name="name_example",
+                    description="description_example",
+                ),
+            ),
+            status="REQUESTED",
+            start_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
+            end_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
+            summary="summary_example",
+            tags=WorkflowSessionTag(
+                technical_tags=[
+                    "technical_tags_example",
+                ],
+                user_tags=[
+                    "user_tags_example",
+                ],
+            ),
+        ),
         status="REQUESTED",
         start_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
         end_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
@@ -1088,6 +1335,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             name="name_example",
             description="description_example",
         ),
+        analysis_priority="Low",
         tags=AnalysisTag(
             technical_tags=[
                 "technical_tags_example",
@@ -1139,7 +1387,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 

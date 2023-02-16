@@ -33,9 +33,11 @@ def lazy_import():
     from libica.openapi.v2.model.analysis_storage import AnalysisStorage
     from libica.openapi.v2.model.analysis_tag import AnalysisTag
     from libica.openapi.v2.model.pipeline import Pipeline
+    from libica.openapi.v2.model.workflow_session import WorkflowSession
     globals()['AnalysisStorage'] = AnalysisStorage
     globals()['AnalysisTag'] = AnalysisTag
     globals()['Pipeline'] = Pipeline
+    globals()['WorkflowSession'] = WorkflowSession
 
 
 class Analysis(ModelNormal):
@@ -71,6 +73,12 @@ class Analysis(ModelNormal):
             'FAILED': "FAILED",
             'FAILEDFINAL': "FAILEDFINAL",
             'ABORTED': "ABORTED",
+        },
+        ('analysis_priority',): {
+            'None': None,
+            'LOW': "Low",
+            'MEDIUM': "Medium",
+            'HIGH': "High",
         },
     }
 
@@ -119,10 +127,12 @@ class Analysis(ModelNormal):
             'status': (str,),  # noqa: E501
             'tags': (AnalysisTag,),  # noqa: E501
             'tenant_name': (str, none_type,),  # noqa: E501
+            'workflow_session': (WorkflowSession,),  # noqa: E501
             'start_date': (datetime, none_type,),  # noqa: E501
             'end_date': (datetime, none_type,),  # noqa: E501
             'summary': (str, none_type,),  # noqa: E501
             'analysis_storage': (AnalysisStorage,),  # noqa: E501
+            'analysis_priority': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -142,10 +152,12 @@ class Analysis(ModelNormal):
         'status': 'status',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         'tenant_name': 'tenantName',  # noqa: E501
+        'workflow_session': 'workflowSession',  # noqa: E501
         'start_date': 'startDate',  # noqa: E501
         'end_date': 'endDate',  # noqa: E501
         'summary': 'summary',  # noqa: E501
         'analysis_storage': 'analysisStorage',  # noqa: E501
+        'analysis_priority': 'analysisPriority',  # noqa: E501
     }
 
     read_only_vars = {
@@ -202,10 +214,12 @@ class Analysis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            workflow_session (WorkflowSession): [optional]  # noqa: E501
             start_date (datetime, none_type): When the analysis was started. [optional]  # noqa: E501
             end_date (datetime, none_type): When the analysis was finished. [optional]  # noqa: E501
             summary (str, none_type): The summary of the analysis. [optional]  # noqa: E501
             analysis_storage (AnalysisStorage): [optional]  # noqa: E501
+            analysis_priority (str, none_type): The priority of the analysis. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -310,10 +324,12 @@ class Analysis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            workflow_session (WorkflowSession): [optional]  # noqa: E501
             start_date (datetime, none_type): When the analysis was started. [optional]  # noqa: E501
             end_date (datetime, none_type): When the analysis was finished. [optional]  # noqa: E501
             summary (str, none_type): The summary of the analysis. [optional]  # noqa: E501
             analysis_storage (AnalysisStorage): [optional]  # noqa: E501
+            analysis_priority (str, none_type): The priority of the analysis. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

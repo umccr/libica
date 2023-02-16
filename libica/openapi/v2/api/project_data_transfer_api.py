@@ -22,7 +22,7 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from libica.openapi.v2.model.data_transfer import DataTransfer
-from libica.openapi.v2.model.data_transfers import DataTransfers
+from libica.openapi.v2.model.data_transfer_paged_list import DataTransferPagedList
 from libica.openapi.v2.model.problem import Problem
 
 
@@ -156,7 +156,7 @@ class ProjectDataTransferApi(object):
         )
         self.get_data_transfers_endpoint = _Endpoint(
             settings={
-                'response_type': (DataTransfers,),
+                'response_type': (DataTransferPagedList,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -427,8 +427,8 @@ class ProjectDataTransferApi(object):
             connector (str): The ID of the connector to filter on.. [optional]
             direction (str): The direction to filter on.. [optional]
             status (str): The status to filter on.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter.. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination.. [optional]
+            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
             page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
             sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - reference - direction - connector - protocol - dataTransferred - status - statusMessage - duration . [optional]
             _return_http_data_only (bool): response data without head status
@@ -459,7 +459,7 @@ class ProjectDataTransferApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            DataTransfers
+            DataTransferPagedList
                 If the method is called asynchronously, returns the request
                 thread.
         """

@@ -88,6 +88,7 @@ class AnalysisOutput(ModelNormal):
         lazy_import()
         return {
             'code': (str,),  # noqa: E501
+            'project_id': (str,),  # noqa: E501
             'data': ([AnalysisData],),  # noqa: E501
         }
 
@@ -98,6 +99,7 @@ class AnalysisOutput(ModelNormal):
 
     attribute_map = {
         'code': 'code',  # noqa: E501
+        'project_id': 'projectId',  # noqa: E501
         'data': 'data',  # noqa: E501
     }
 
@@ -145,6 +147,7 @@ class AnalysisOutput(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            project_id (str): The ID of the project containing the analysis-data produced by the analysis for the output-parameter.. [optional]  # noqa: E501
             data ([AnalysisData]): [optional]  # noqa: E501
         """
 
@@ -231,6 +234,7 @@ class AnalysisOutput(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            project_id (str): The ID of the project containing the analysis-data produced by the analysis for the output-parameter.. [optional]  # noqa: E501
             data ([AnalysisData]): [optional]  # noqa: E501
         """
 

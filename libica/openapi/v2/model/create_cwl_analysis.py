@@ -30,8 +30,10 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.analysis_output_mapping import AnalysisOutputMapping
     from libica.openapi.v2.model.analysis_tag import AnalysisTag
     from libica.openapi.v2.model.cwl_analysis_input import CwlAnalysisInput
+    globals()['AnalysisOutputMapping'] = AnalysisOutputMapping
     globals()['AnalysisTag'] = AnalysisTag
     globals()['CwlAnalysisInput'] = CwlAnalysisInput
 
@@ -103,6 +105,7 @@ class CreateCwlAnalysis(ModelNormal):
             'analysis_input': (CwlAnalysisInput,),  # noqa: E501
             'analysis_storage_id': (str, none_type,),  # noqa: E501
             'output_parent_folder_id': (str, none_type,),  # noqa: E501
+            'analysis_output': ([AnalysisOutputMapping], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -118,6 +121,7 @@ class CreateCwlAnalysis(ModelNormal):
         'analysis_input': 'analysisInput',  # noqa: E501
         'analysis_storage_id': 'analysisStorageId',  # noqa: E501
         'output_parent_folder_id': 'outputParentFolderId',  # noqa: E501
+        'analysis_output': 'analysisOutput',  # noqa: E501
     }
 
     read_only_vars = {
@@ -170,6 +174,7 @@ class CreateCwlAnalysis(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
+            analysis_output ([AnalysisOutputMapping], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -265,6 +270,7 @@ class CreateCwlAnalysis(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
+            analysis_output ([AnalysisOutputMapping], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

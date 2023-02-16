@@ -63,12 +63,10 @@ class ActivationCodeDetailUsage(ModelNormal):
 
     validations = {
         ('used_slots',): {
-            'inclusive_maximum': 2147483647,
-            'inclusive_minimum': 0,
+            'inclusive_minimum': -1,
         },
         ('allowed_slots',): {
-            'inclusive_maximum': 2147483647,
-            'inclusive_minimum': 0,
+            'inclusive_minimum': -1,
         },
     }
 
@@ -95,9 +93,10 @@ class ActivationCodeDetailUsage(ModelNormal):
         """
         lazy_import()
         return {
+            'id': (str,),  # noqa: E501
+            'used_slots': (int,),  # noqa: E501
+            'allowed_slots': (int,),  # noqa: E501
             'project': (Project,),  # noqa: E501
-            'used_slots': (int, none_type,),  # noqa: E501
-            'allowed_slots': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,9 +105,10 @@ class ActivationCodeDetailUsage(ModelNormal):
 
 
     attribute_map = {
-        'project': 'project',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'used_slots': 'usedSlots',  # noqa: E501
         'allowed_slots': 'allowedSlots',  # noqa: E501
+        'project': 'project',  # noqa: E501
     }
 
     read_only_vars = {
@@ -118,8 +118,13 @@ class ActivationCodeDetailUsage(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, id, used_slots, allowed_slots, *args, **kwargs):  # noqa: E501
         """ActivationCodeDetailUsage - a model defined in OpenAPI
+
+        Args:
+            id (str):
+            used_slots (int): Indicates how many slots can are used, -1 means unused
+            allowed_slots (int): Indicates how many slots can be used, -1 means unlimited
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -153,8 +158,6 @@ class ActivationCodeDetailUsage(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             project (Project): [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used. [optional]  # noqa: E501
-            allowed_slots (int, none_type): Indicates how many slots can be used. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -182,6 +185,9 @@ class ActivationCodeDetailUsage(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.id = id
+        self.used_slots = used_slots
+        self.allowed_slots = allowed_slots
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -202,8 +208,13 @@ class ActivationCodeDetailUsage(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, used_slots, allowed_slots, *args, **kwargs):  # noqa: E501
         """ActivationCodeDetailUsage - a model defined in OpenAPI
+
+        Args:
+            id (str):
+            used_slots (int): Indicates how many slots can are used, -1 means unused
+            allowed_slots (int): Indicates how many slots can be used, -1 means unlimited
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -237,8 +248,6 @@ class ActivationCodeDetailUsage(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             project (Project): [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used. [optional]  # noqa: E501
-            allowed_slots (int, none_type): Indicates how many slots can be used. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -264,6 +273,9 @@ class ActivationCodeDetailUsage(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.id = id
+        self.used_slots = used_slots
+        self.allowed_slots = allowed_slots
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

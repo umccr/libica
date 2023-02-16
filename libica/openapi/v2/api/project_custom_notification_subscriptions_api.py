@@ -92,7 +92,8 @@ class ProjectCustomNotificationSubscriptionsApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -332,7 +333,8 @@ class ProjectCustomNotificationSubscriptionsApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -352,7 +354,7 @@ class ProjectCustomNotificationSubscriptionsApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
 
         Keyword Args:
             create_custom_notification_subscription (CreateCustomNotificationSubscription): The new subscription. [optional]
@@ -431,7 +433,7 @@ class ProjectCustomNotificationSubscriptionsApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
             subscription_id (str): The ID of the custom notification subscription to delete
 
         Keyword Args:

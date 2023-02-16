@@ -246,7 +246,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     create_sample = CreateSample(
         name="name_example",
         description="description_example",
-        tags=SampleTag(
+        tags=OptionalSampleTags(
             technical_tags=[
                 "technical_tags_example",
             ],
@@ -298,7 +298,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -392,7 +392,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The sample and all of its data are successfully deleted. |  -  |
+**204** | The sample and all of its data are successfully deleted. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -478,7 +478,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The sample is successfully deleted and the its data is successfully unlinked. |  -  |
+**204** | The sample is successfully deleted and the its data is successfully unlinked. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -564,7 +564,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The sample and its input data are successfully deleted. |  -  |
+**204** | The sample and its input data are successfully deleted. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -702,8 +702,8 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_sample_api.ProjectSampleApi(api_client)
     project_id = "projectId_example" # str | 
-    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. (optional)
-    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. (optional)
+    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
+    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
     sort = "sort_example" # str | Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\" The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status (optional)
     find_project_samples = FindProjectSamples(
@@ -778,6 +778,9 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             "tech_tags_example",
         ],
         tech_tag_match_mode="EXACT",
+        instrument_run_ids=[
+            "instrument_run_ids_example",
+        ],
     ) # FindProjectSamples |  (optional)
 
     # example passing only required values which don't have defaults set
@@ -804,8 +807,8 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
- **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. | [optional]
- **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. | [optional]
+ **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
+ **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
  **page_size** | **str**| The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. | [optional]
  **sort** | **str**| Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;dateCreated, lastName desc\&quot; The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status | [optional]
  **find_project_samples** | [**FindProjectSamples**](FindProjectSamples.md)|  | [optional]
@@ -820,7 +823,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -1015,8 +1018,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     ] # [str] | The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done. (optional)
     technical_tag_match_mode = "EXACT" # str | How the technicalTags are filtered.  (optional)
     not_in_run = True # bool | When set to true, the data will be filtered on data which is not used in a run. (optional)
-    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. (optional)
-    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. (optional)
+    instrument_run_id = [
+        "instrumentRunId_example",
+    ] # [str] | The instrument run IDs of the sequencing runs to filter on. (optional)
+    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
+    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
     sort = "sort_example" # str | Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt (optional)
 
@@ -1032,7 +1038,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Retrieve the list of sample data.
-        api_response = api_instance.get_sample_data_list(project_id, sample_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
+        api_response = api_instance.get_sample_data_list(project_id, sample_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, instrument_run_id=instrument_run_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectSampleApi->get_sample_data_list: %s\n" % e)
@@ -1072,8 +1078,9 @@ Name | Type | Description  | Notes
  **technical_tag** | **[str]**| The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done. | [optional]
  **technical_tag_match_mode** | **str**| How the technicalTags are filtered.  | [optional]
  **not_in_run** | **bool**| When set to true, the data will be filtered on data which is not used in a run. | [optional]
- **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. | [optional]
- **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. | [optional]
+ **instrument_run_id** | **[str]**| The instrument run IDs of the sequencing runs to filter on. | [optional]
+ **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
+ **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
  **page_size** | **str**| The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. | [optional]
  **sort** | **str**| Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;dateCreated, lastName desc\&quot;  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt | [optional]
 
@@ -1619,7 +1626,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The sample is successfully marked as deleted. |  -  |
+**204** | The sample is successfully marked as deleted. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1903,6 +1910,13 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     ],
                 ),
             ],
+            sequencing_runs=[
+                SequencingRun(
+                    id="id_example",
+                    instrument_run_id="instrument_run_id_example",
+                    name="name_example",
+                ),
+            ],
         ),
         project_id="project_id_example",
     ) # ProjectSample |  (optional)
@@ -1945,7 +1959,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -2077,7 +2091,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -2085,7 +2099,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The metadata is successfully updated. |  -  |
+**204** | The metadata is successfully updated. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

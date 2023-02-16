@@ -31,10 +31,10 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.analysis_data_input import AnalysisDataInput
-    from libica.openapi.v2.model.analysis_parameter import AnalysisParameter
+    from libica.openapi.v2.model.analysis_parameter_input import AnalysisParameterInput
     from libica.openapi.v2.model.analysis_reference_data_parameter import AnalysisReferenceDataParameter
     globals()['AnalysisDataInput'] = AnalysisDataInput
-    globals()['AnalysisParameter'] = AnalysisParameter
+    globals()['AnalysisParameterInput'] = AnalysisParameterInput
     globals()['AnalysisReferenceDataParameter'] = AnalysisReferenceDataParameter
 
 
@@ -92,7 +92,7 @@ class NextflowAnalysisInput(ModelNormal):
         lazy_import()
         return {
             'inputs': ([AnalysisDataInput],),  # noqa: E501
-            'parameters': ([AnalysisParameter], none_type,),  # noqa: E501
+            'parameters': ([AnalysisParameterInput], none_type,),  # noqa: E501
             'reference_data_parameters': ([AnalysisReferenceDataParameter], none_type,),  # noqa: E501
         }
 
@@ -151,7 +151,7 @@ class NextflowAnalysisInput(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            parameters ([AnalysisParameter], none_type): [optional]  # noqa: E501
+            parameters ([AnalysisParameterInput], none_type): [optional]  # noqa: E501
             reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [optional]  # noqa: E501
         """
 
@@ -238,7 +238,7 @@ class NextflowAnalysisInput(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            parameters ([AnalysisParameter], none_type): [optional]  # noqa: E501
+            parameters ([AnalysisParameterInput], none_type): [optional]  # noqa: E501
             reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [optional]  # noqa: E501
         """
 

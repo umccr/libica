@@ -33,9 +33,11 @@ def lazy_import():
     from libica.openapi.v2.model.metadata_field import MetadataField
     from libica.openapi.v2.model.region import Region
     from libica.openapi.v2.model.sample_tag import SampleTag
+    from libica.openapi.v2.model.sequencing_run import SequencingRun
     globals()['MetadataField'] = MetadataField
     globals()['Region'] = Region
     globals()['SampleTag'] = SampleTag
+    globals()['SequencingRun'] = SequencingRun
 
 
 class Sample(ModelNormal):
@@ -117,6 +119,7 @@ class Sample(ModelNormal):
             'metadata': ([MetadataField],),  # noqa: E501
             'tenant_name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'sequencing_runs': ([SequencingRun], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -138,6 +141,7 @@ class Sample(ModelNormal):
         'metadata': 'metadata',  # noqa: E501
         'tenant_name': 'tenantName',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'sequencing_runs': 'sequencingRuns',  # noqa: E501
     }
 
     read_only_vars = {
@@ -196,6 +200,7 @@ class Sample(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The description of the sample. [optional]  # noqa: E501
+            sequencing_runs ([SequencingRun], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -303,6 +308,7 @@ class Sample(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The description of the sample. [optional]  # noqa: E501
+            sequencing_runs ([SequencingRun], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

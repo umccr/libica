@@ -131,6 +131,7 @@ class FindProjectSamples(ModelNormal):
             'connector_tag_match_mode': (str, none_type,),  # noqa: E501
             'tech_tags': ([str, none_type], none_type,),  # noqa: E501
             'tech_tag_match_mode': (str, none_type,),  # noqa: E501
+            'instrument_run_ids': ([str, none_type], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -153,6 +154,7 @@ class FindProjectSamples(ModelNormal):
         'connector_tag_match_mode': 'connectorTagMatchMode',  # noqa: E501
         'tech_tags': 'techTags',  # noqa: E501
         'tech_tag_match_mode': 'techTagMatchMode',  # noqa: E501
+        'instrument_run_ids': 'instrumentRunIds',  # noqa: E501
     }
 
     read_only_vars = {
@@ -212,6 +214,7 @@ class FindProjectSamples(ModelNormal):
             connector_tag_match_mode (str, none_type): How the connectorTags are filtered.. [optional]  # noqa: E501
             tech_tags ([str, none_type], none_type): The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done.. [optional]  # noqa: E501
             tech_tag_match_mode (str, none_type): How the technicalTags are filtered.. [optional]  # noqa: E501
+            instrument_run_ids ([str, none_type], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -313,6 +316,7 @@ class FindProjectSamples(ModelNormal):
             connector_tag_match_mode (str, none_type): How the connectorTags are filtered.. [optional]  # noqa: E501
             tech_tags ([str, none_type], none_type): The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done.. [optional]  # noqa: E501
             tech_tag_match_mode (str, none_type): How the technicalTags are filtered.. [optional]  # noqa: E501
+            instrument_run_ids ([str, none_type], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

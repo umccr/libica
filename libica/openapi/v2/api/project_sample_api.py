@@ -221,7 +221,8 @@ class ProjectSampleApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -533,7 +534,8 @@ class ProjectSampleApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -640,6 +642,7 @@ class ProjectSampleApi(object):
                     'technical_tag',
                     'technical_tag_match_mode',
                     'not_in_run',
+                    'instrument_run_id',
                     'page_offset',
                     'page_token',
                     'page_size',
@@ -784,6 +787,8 @@ class ProjectSampleApi(object):
                         (str,),
                     'not_in_run':
                         (bool,),
+                    'instrument_run_id':
+                        ([str],),
                     'page_offset':
                         (str,),
                     'page_token':
@@ -823,6 +828,7 @@ class ProjectSampleApi(object):
                     'technical_tag': 'technicalTag',
                     'technical_tag_match_mode': 'technicalTagMatchMode',
                     'not_in_run': 'notInRun',
+                    'instrument_run_id': 'instrumentRunId',
                     'page_offset': 'pageOffset',
                     'page_token': 'pageToken',
                     'page_size': 'pageSize',
@@ -858,6 +864,7 @@ class ProjectSampleApi(object):
                     'technical_tag': 'query',
                     'technical_tag_match_mode': 'query',
                     'not_in_run': 'query',
+                    'instrument_run_id': 'query',
                     'page_offset': 'query',
                     'page_token': 'query',
                     'page_size': 'query',
@@ -876,6 +883,7 @@ class ProjectSampleApi(object):
                     'run_output_tag': 'multi',
                     'connector_tag': 'multi',
                     'technical_tag': 'multi',
+                    'instrument_run_id': 'multi',
                 }
             },
             headers_map={
@@ -1444,7 +1452,8 @@ class ProjectSampleApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -1509,7 +1518,8 @@ class ProjectSampleApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -2105,8 +2115,8 @@ class ProjectSampleApi(object):
             project_id (str):
 
         Keyword Args:
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter.. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination.. [optional]
+            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
             page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
             sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\" The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
             find_project_samples (FindProjectSamples): [optional]
@@ -2297,8 +2307,9 @@ class ProjectSampleApi(object):
             technical_tag ([str]): The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done.. [optional]
             technical_tag_match_mode (str): How the technicalTags are filtered. . [optional]
             not_in_run (bool): When set to true, the data will be filtered on data which is not used in a run.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter.. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination.. [optional]
+            instrument_run_id ([str]): The instrument run IDs of the sequencing runs to filter on.. [optional]
+            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
             page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
             sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt. [optional]
             _return_http_data_only (bool): response data without head status

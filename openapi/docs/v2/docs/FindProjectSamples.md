@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **connector_tag_match_mode** | **str, none_type** | How the connectorTags are filtered. | [optional] 
 **tech_tags** | **[str, none_type], none_type** | The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done. | [optional] 
 **tech_tag_match_mode** | **str, none_type** | How the technicalTags are filtered. | [optional] 
+**instrument_run_ids** | **[str, none_type], none_type** |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

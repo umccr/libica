@@ -23,6 +23,7 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
 )
 from libica.openapi.v2.model.input_parameter_list import InputParameterList
 from libica.openapi.v2.model.links import Links
+from libica.openapi.v2.model.pipeline_html_documentation import PipelineHtmlDocumentation
 from libica.openapi.v2.model.problem import Problem
 from libica.openapi.v2.model.project_pipeline import ProjectPipeline
 from libica.openapi.v2.model.project_pipeline_list import ProjectPipelineList
@@ -201,6 +202,8 @@ class ProjectPipelineApi(object):
                     'main_nextflow_file',
                     'parameters_xml_file',
                     'analysis_storage_id',
+                    'pipeline_language_version_id',
+                    'nextflow_config_file',
                     'other_nextflow_files',
                     'metadata_model_file',
                     'links',
@@ -217,6 +220,7 @@ class ProjectPipelineApi(object):
                     'analysis_storage_id',
                 ],
                 'nullable': [
+                    'pipeline_language_version_id',
                     'metadata_model_file',
                     'links',
                     'version_comment',
@@ -265,6 +269,10 @@ class ProjectPipelineApi(object):
                         (file_type,),
                     'analysis_storage_id':
                         (str,),
+                    'pipeline_language_version_id':
+                        (str, none_type,),
+                    'nextflow_config_file':
+                        (file_type,),
                     'other_nextflow_files':
                         ([file_type],),
                     'metadata_model_file':
@@ -285,6 +293,8 @@ class ProjectPipelineApi(object):
                     'main_nextflow_file': 'mainNextflowFile',
                     'parameters_xml_file': 'parametersXmlFile',
                     'analysis_storage_id': 'analysisStorageId',
+                    'pipeline_language_version_id': 'pipelineLanguageVersionId',
+                    'nextflow_config_file': 'nextflowConfigFile',
                     'other_nextflow_files': 'otherNextflowFiles',
                     'metadata_model_file': 'metadataModelFile',
                     'links': 'links',
@@ -299,6 +309,8 @@ class ProjectPipelineApi(object):
                     'main_nextflow_file': 'form',
                     'parameters_xml_file': 'form',
                     'analysis_storage_id': 'form',
+                    'pipeline_language_version_id': 'form',
+                    'nextflow_config_file': 'form',
                     'other_nextflow_files': 'form',
                     'metadata_model_file': 'form',
                     'links': 'form',
@@ -331,6 +343,65 @@ class ProjectPipelineApi(object):
                 ],
                 'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}',
                 'operation_id': 'get_project_pipeline',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'pipeline_id',
+                ],
+                'required': [
+                    'project_id',
+                    'pipeline_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'pipeline_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'pipeline_id': 'pipelineId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'pipeline_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_project_pipeline_html_documentation_endpoint = _Endpoint(
+            settings={
+                'response_type': (PipelineHtmlDocumentation,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/documentation/HTML',
+                'operation_id': 'get_project_pipeline_html_documentation',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -746,7 +817,7 @@ class ProjectPipelineApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
             code (str): The code of the CWL pipeline
             description (str): The description of the CWL pipeline
             workflow_cwl_file (file_type): The CWL workflow file.
@@ -849,7 +920,7 @@ class ProjectPipelineApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
             code (str): The code of the pipeline
             description (str): The description of the pipeline
             main_nextflow_file (file_type): The main Nextflow file.
@@ -857,6 +928,8 @@ class ProjectPipelineApi(object):
             analysis_storage_id (str): The id of the storage to use for the pipeline.
 
         Keyword Args:
+            pipeline_language_version_id (str, none_type): The id of the Nextflow version to use for the pipeline.. [optional]
+            nextflow_config_file (file_type): The Nextflow config file.. [optional]
             other_nextflow_files ([file_type]): [optional]
             metadata_model_file (file_type, none_type): The metadata model json file(contents can be retrieved from the controlplane).. [optional]
             links (Links): [optional]
@@ -941,7 +1014,7 @@ class ProjectPipelineApi(object):
     ):
         """Retrieve a project pipeline.  # noqa: E501
 
-        Retrieve a project pipeline. This can be a pipeline from a linked bundle.  # noqa: E501
+        Retrieves a project pipeline. This can be a pipeline from a linked bundle or an entitled, unlinked bundle.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -949,7 +1022,7 @@ class ProjectPipelineApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
             pipeline_id (str): The ID of the project pipeline to retrieve
 
         Keyword Args:
@@ -1015,6 +1088,88 @@ class ProjectPipelineApi(object):
             pipeline_id
         return self.get_project_pipeline_endpoint.call_with_http_info(**kwargs)
 
+    def get_project_pipeline_html_documentation(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        """Retrieve HTML documentation for a project pipeline.  # noqa: E501
+
+        Retrieve HTML documentation for a project pipeline. This can be a pipeline from a linked bundle.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_project_pipeline_html_documentation(project_id, pipeline_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            pipeline_id (str): The ID of the project pipeline to retrieve HTML documentation from
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            PipelineHtmlDocumentation
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['pipeline_id'] = \
+            pipeline_id
+        return self.get_project_pipeline_html_documentation_endpoint.call_with_http_info(**kwargs)
+
     def get_project_pipeline_input_parameters(
         self,
         project_id,
@@ -1031,7 +1186,7 @@ class ProjectPipelineApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
             pipeline_id (str): The ID of the project pipeline to retrieve input parameters for
 
         Keyword Args:
@@ -1113,7 +1268,7 @@ class ProjectPipelineApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
             pipeline_id (str): The ID of the pipeline to retrieve reference sets for
 
         Keyword Args:
@@ -1186,7 +1341,7 @@ class ProjectPipelineApi(object):
     ):
         """Retrieve a list of project pipelines.  # noqa: E501
 
-        Retrieve a list of project pipelines. This includes pipelines from linked bundles.  # noqa: E501
+        Lists all pipelines that are available to the project.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1272,7 +1427,7 @@ class ProjectPipelineApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
             pipeline_id (str): The ID of the pipeline
 
         Keyword Args:
@@ -1353,7 +1508,7 @@ class ProjectPipelineApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
             pipeline_id (str): The ID of the pipeline
 
         Keyword Args:
@@ -1434,7 +1589,7 @@ class ProjectPipelineApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
             pipeline_id (str): The ID of the pipeline
 
         Keyword Args:

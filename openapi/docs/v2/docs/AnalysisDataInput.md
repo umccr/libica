@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **parameter_code** | **str** |  | 
-**data_ids** | **[str, none_type], none_type** |  | [optional] 
+**data_ids** | **[str]** |  | [optional] 
 **mounts** | [**[AnalysisInputDataMount], none_type**](AnalysisInputDataMount.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

@@ -194,7 +194,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -299,7 +299,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -403,7 +403,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -1364,7 +1364,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -1455,8 +1455,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             owner_id="owner_id_example",
             tenant_id="tenant_id_example",
             tenant_name="tenant_name_example",
+            urn="urn_example",
             name="name_example",
             active=True,
+            base_enabled=True,
             short_description="short_description_example",
             information="information_example",
             region=Region(
@@ -1556,6 +1558,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
                 is_default=True,
             ),
+            analysis_priority="Low",
             metadata_model=MetadataModel(
                 id="id_example",
                 time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
@@ -1615,7 +1618,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 

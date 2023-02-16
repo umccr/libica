@@ -6,9 +6,9 @@ This object contains a \"oneOf\" construct. With the \"objectType\" attribute yo
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **object_type** | **str** |  | 
-**parameters** | [**[AnalysisParameter], none_type**](AnalysisParameter.md) |  | [optional] 
+**parameters** | [**[AnalysisParameterInput], none_type**](AnalysisParameterInput.md) |  | [optional] 
 **reference_data_parameters** | [**[AnalysisReferenceDataParameter], none_type**](AnalysisReferenceDataParameter.md) |  | [optional] 
-**data_ids** | **[str, none_type], none_type** |  | [optional] 
+**data_ids** | **[str]** |  | [optional] 
 **mounts** | [**[AnalysisInputDataMount], none_type**](AnalysisInputDataMount.md) |  | [optional] 
 **inputs** | [**[AnalysisDataInput]**](AnalysisDataInput.md) |  | [optional] 
 **input_json** | **str** | Contains the input JSON, as an escaped JSON String. | [optional] 

@@ -307,11 +307,13 @@ configuration = libica.openapi.v2.Configuration(
 with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = user_api.UserApi(api_client)
+    email_address = "emailAddress_example" # str, none_type | The email address to filter on (optional)
 
-    # example, this endpoint has no required or optional parameters
+    # example passing only required values which don't have defaults set
+    # and optional values
     try:
         # Retrieve a list of users.
-        api_response = api_instance.get_users()
+        api_response = api_instance.get_users(email_address=email_address)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling UserApi->get_users: %s\n" % e)
@@ -319,7 +321,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **email_address** | **str, none_type**| The email address to filter on | [optional]
 
 ### Return type
 
@@ -551,7 +556,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 

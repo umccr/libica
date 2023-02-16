@@ -12,6 +12,8 @@ Method | HTTP request | Description
 
 Create a new custom event.
 
+Warning: this endpoint allows to create custom events with a code larger than 20 characters (max 50), but the endpoint for creating a custom notification subscription (POST /api/projects/{projectId}/customNotificationSubscriptions) only accepts event codes up to 20 characters.
+
 ### Example
 
 * Api Key Authentication (ApiKeyAuth):

@@ -85,7 +85,8 @@ class NotificationChannelApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -300,7 +301,8 @@ class NotificationChannelApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client

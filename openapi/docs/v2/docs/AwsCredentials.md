@@ -1,6 +1,5 @@
 # AwsCredentials
 
-The credentials that are required when the type of the Storage Credential being updated is AWS
 
 ## Properties
 Name | Type | Description | Notes

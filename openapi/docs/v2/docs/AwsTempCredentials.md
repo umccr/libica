@@ -1,6 +1,5 @@
 # AwsTempCredentials
 
-In case of AWS S3 stored data, this will contain the credentials for uploading or downloading the data.
 
 ## Properties
 Name | Type | Description | Notes

@@ -208,9 +208,11 @@ class UserApi(object):
             },
             params_map={
                 'all': [
+                    'email_address',
                 ],
                 'required': [],
                 'nullable': [
+                    'email_address',
                 ],
                 'enum': [
                 ],
@@ -223,10 +225,14 @@ class UserApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
+                    'email_address':
+                        (str, none_type,),
                 },
                 'attribute_map': {
+                    'email_address': 'emailAddress',
                 },
                 'location_map': {
+                    'email_address': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -351,7 +357,8 @@ class UserApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -604,6 +611,7 @@ class UserApi(object):
 
 
         Keyword Args:
+            email_address (str, none_type): The email address to filter on. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

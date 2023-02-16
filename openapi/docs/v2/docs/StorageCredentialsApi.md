@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -439,7 +439,7 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json
 
 

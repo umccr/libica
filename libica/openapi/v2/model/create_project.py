@@ -63,6 +63,12 @@ class CreateProject(ModelNormal):
             'PROJECT': "PROJECT",
             'TENANT': "TENANT",
         },
+        ('analysis_priority',): {
+            'None': None,
+            'LOW': "Low",
+            'MEDIUM': "Medium",
+            'HIGH': "High",
+        },
     }
 
     validations = {
@@ -114,6 +120,7 @@ class CreateProject(ModelNormal):
             'metadata_model_id': (str, none_type,),  # noqa: E501
             'storage_configuration_id': (str, none_type,),  # noqa: E501
             'storage_configuration_subfolder': (str, none_type,),  # noqa: E501
+            'analysis_priority': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -134,6 +141,7 @@ class CreateProject(ModelNormal):
         'metadata_model_id': 'metadataModelId',  # noqa: E501
         'storage_configuration_id': 'storageConfigurationId',  # noqa: E501
         'storage_configuration_subfolder': 'storageConfigurationSubfolder',  # noqa: E501
+        'analysis_priority': 'analysisPriority',  # noqa: E501
     }
 
     read_only_vars = {
@@ -191,6 +199,7 @@ class CreateProject(ModelNormal):
             metadata_model_id (str, none_type): [optional]  # noqa: E501
             storage_configuration_id (str, none_type): An optional storage configuration id to have self managed storage.. [optional]  # noqa: E501
             storage_configuration_subfolder (str, none_type): Required when specifying a storageConfigurationId. The subfolder determines the object prefix of your self managed storage.. [optional]  # noqa: E501
+            analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant, where Medium is the default value.. [optional] if omitted the server will use the default value of "Medium"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -291,6 +300,7 @@ class CreateProject(ModelNormal):
             metadata_model_id (str, none_type): [optional]  # noqa: E501
             storage_configuration_id (str, none_type): An optional storage configuration id to have self managed storage.. [optional]  # noqa: E501
             storage_configuration_subfolder (str, none_type): Required when specifying a storageConfigurationId. The subfolder determines the object prefix of your self managed storage.. [optional]  # noqa: E501
+            analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant, where Medium is the default value.. [optional] if omitted the server will use the default value of "Medium"  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

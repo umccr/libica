@@ -1,6 +1,5 @@
 # RcloneTempCredentials
 
-In case of providing the credentialsFormat = rclone, this will contain the credentials for uploading or downloading the data in rclone format.
 
 ## Properties
 Name | Type | Description | Notes

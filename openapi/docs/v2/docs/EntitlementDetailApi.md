@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -167,9 +167,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
             ],
             parameters=[
-                AnalysisParameter(
+                AnalysisParameterInput(
                     code="code_example",
                     value="value_example",
+                    multi_value=[
+                        "multi_value_example",
+                    ],
                 ),
             ],
             reference_data_parameters=[
@@ -208,7 +211,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -300,7 +303,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -378,9 +381,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
             ],
             parameters=[
-                AnalysisParameter(
+                AnalysisParameterInput(
                     code="code_example",
                     value="value_example",
+                    multi_value=[
+                        "multi_value_example",
+                    ],
                 ),
             ],
             reference_data_parameters=[
@@ -419,7 +425,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 

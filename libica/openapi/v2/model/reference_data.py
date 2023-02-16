@@ -147,8 +147,8 @@ class ReferenceData(ModelNormal):
             time_modified (datetime):
             owner_id (str):
             tenant_id (str):
-            name (str): The name of the reference set
-            version (str): The version of the reference set
+            name (str): The name of the reference data
+            version (str): The version of the reference data
             type_list (TypeList):
 
         Keyword Args:
@@ -249,8 +249,8 @@ class ReferenceData(ModelNormal):
             time_modified (datetime):
             owner_id (str):
             tenant_id (str):
-            name (str): The name of the reference set
-            version (str): The version of the reference set
+            name (str): The name of the reference data
+            version (str): The version of the reference data
             type_list (TypeList):
 
         Keyword Args:

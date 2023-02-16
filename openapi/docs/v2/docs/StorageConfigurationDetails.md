@@ -1,6 +1,5 @@
 # StorageConfigurationDetails
 
-Contains the specific provider details
 
 ## Properties
 Name | Type | Description | Notes

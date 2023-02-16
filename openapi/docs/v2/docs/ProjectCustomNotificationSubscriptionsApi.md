@@ -55,7 +55,7 @@ configuration = libica.openapi.v2.Configuration(
 with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_custom_notification_subscriptions_api.ProjectCustomNotificationSubscriptionsApi(api_client)
-    project_id = "projectId_example" # str | The ID of the project
+    project_id = "projectId_example" # str | 
     create_custom_notification_subscription = CreateCustomNotificationSubscription(
         custom_event_code="custom_event_code_example",
         filter_expression="filter_expression_example",
@@ -86,7 +86,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **str**| The ID of the project |
+ **project_id** | **str**|  |
  **create_custom_notification_subscription** | [**CreateCustomNotificationSubscription**](CreateCustomNotificationSubscription.md)| The new subscription | [optional]
 
 ### Return type
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -154,7 +154,7 @@ configuration = libica.openapi.v2.Configuration(
 with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_custom_notification_subscriptions_api.ProjectCustomNotificationSubscriptionsApi(api_client)
-    project_id = "projectId_example" # str | The ID of the project
+    project_id = "projectId_example" # str | 
     subscription_id = "subscriptionId_example" # str | The ID of the custom notification subscription to delete
 
     # example passing only required values which don't have defaults set
@@ -170,7 +170,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | **str**| The ID of the project |
+ **project_id** | **str**|  |
  **subscription_id** | **str**| The ID of the custom notification subscription to delete |
 
 ### Return type
@@ -475,7 +475,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 

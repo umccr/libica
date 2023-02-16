@@ -261,8 +261,8 @@ class BundleSampleApi(object):
             search (str): To search through multiple fields of data.. [optional]
             user_tags (str): The user tags to filter on.. [optional]
             technical_tags (str): The technical tags to filter on.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter.. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination.. [optional]
+            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
             page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
             sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\" The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
             _return_http_data_only (bool): response data without head status

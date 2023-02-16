@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **pipeline_tags** | [**PipelineTag**](PipelineTag.md) |  | 
 **analysis_storage** | [**AnalysisStorage**](AnalysisStorage.md) |  | 
 **tenant_name** | **str, none_type** |  | [optional] 
+**urn** | **str, none_type** | The URN of the pipeline. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted. | [optional] 
+**language_version** | [**PipelineLanguageVersion**](PipelineLanguageVersion.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

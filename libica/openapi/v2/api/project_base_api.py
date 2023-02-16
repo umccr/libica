@@ -22,7 +22,11 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from libica.openapi.v2.model.base_connection import BaseConnection
+from libica.openapi.v2.model.base_job import BaseJob
+from libica.openapi.v2.model.base_job_list import BaseJobList
+from libica.openapi.v2.model.load_data_in_base_request import LoadDataInBaseRequest
 from libica.openapi.v2.model.problem import Problem
+from libica.openapi.v2.model.project_base_table_list import ProjectBaseTableList
 
 
 class ProjectBaseApi(object):
@@ -89,6 +93,257 @@ class ProjectBaseApi(object):
             },
             api_client=api_client
         )
+        self.get_base_job_endpoint = _Endpoint(
+            settings={
+                'response_type': (BaseJob,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/base/jobs/{baseJobId}',
+                'operation_id': 'get_base_job',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'base_job_id',
+                ],
+                'required': [
+                    'project_id',
+                    'base_job_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'base_job_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'base_job_id': 'baseJobId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'base_job_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_base_jobs_endpoint = _Endpoint(
+            settings={
+                'response_type': (BaseJobList,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/base/jobs',
+                'operation_id': 'get_base_jobs',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'page_offset',
+                    'page_token',
+                    'page_size',
+                    'sort',
+                ],
+                'required': [
+                    'project_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'page_offset':
+                        (str,),
+                    'page_token':
+                        (str,),
+                    'page_size':
+                        (str,),
+                    'sort':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'page_offset': 'pageOffset',
+                    'page_token': 'pageToken',
+                    'page_size': 'pageSize',
+                    'sort': 'sort',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'page_offset': 'query',
+                    'page_token': 'query',
+                    'page_size': 'query',
+                    'sort': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_base_tables_endpoint = _Endpoint(
+            settings={
+                'response_type': (ProjectBaseTableList,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/base/tables',
+                'operation_id': 'get_base_tables',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                ],
+                'required': [
+                    'project_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.load_data_endpoint = _Endpoint(
+            settings={
+                'response_type': (BaseJob,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/base/tables/{tableId}:loadData',
+                'operation_id': 'load_data',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'table_id',
+                    'load_data_in_base_request',
+                ],
+                'required': [
+                    'project_id',
+                    'table_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'table_id':
+                        (str,),
+                    'load_data_in_base_request':
+                        (LoadDataInBaseRequest,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'table_id': 'tableId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'table_id': 'path',
+                    'load_data_in_base_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
 
     def create_base_connection_details(
         self,
@@ -104,7 +359,7 @@ class ProjectBaseApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -166,4 +421,326 @@ class ProjectBaseApi(object):
         kwargs['project_id'] = \
             project_id
         return self.create_base_connection_details_endpoint.call_with_http_info(**kwargs)
+
+    def get_base_job(
+        self,
+        project_id,
+        base_job_id,
+        **kwargs
+    ):
+        """Retrieve a base job.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_base_job(project_id, base_job_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            base_job_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            BaseJob
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['base_job_id'] = \
+            base_job_id
+        return self.get_base_job_endpoint.call_with_http_info(**kwargs)
+
+    def get_base_jobs(
+        self,
+        project_id,
+        **kwargs
+    ):
+        """Retrieve a list of base jobs  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_base_jobs(project_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+
+        Keyword Args:
+            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
+            sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - description - type. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            BaseJobList
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        return self.get_base_jobs_endpoint.call_with_http_info(**kwargs)
+
+    def get_base_tables(
+        self,
+        project_id,
+        **kwargs
+    ):
+        """Retrieve a list of base tables.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_base_tables(project_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ProjectBaseTableList
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        return self.get_base_tables_endpoint.call_with_http_info(**kwargs)
+
+    def load_data(
+        self,
+        project_id,
+        table_id,
+        **kwargs
+    ):
+        """Load data in a base table.  # noqa: E501
+
+        Load data in the specified table  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.load_data(project_id, table_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            table_id (str):
+
+        Keyword Args:
+            load_data_in_base_request (LoadDataInBaseRequest): Load data request. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            BaseJob
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['table_id'] = \
+            table_id
+        return self.load_data_endpoint.call_with_http_info(**kwargs)
 

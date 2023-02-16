@@ -27,6 +27,8 @@ from libica.openapi.v2.model.create_temporary_credentials import CreateTemporary
 from libica.openapi.v2.model.data_list import DataList
 from libica.openapi.v2.model.data_paged_list import DataPagedList
 from libica.openapi.v2.model.data_transfer import DataTransfer
+from libica.openapi.v2.model.data_url_id_list import DataUrlIdList
+from libica.openapi.v2.model.data_url_list import DataUrlList
 from libica.openapi.v2.model.download import Download
 from libica.openapi.v2.model.folder_upload_session import FolderUploadSession
 from libica.openapi.v2.model.inline_view import InlineView
@@ -238,7 +240,8 @@ class ProjectDataApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -297,7 +300,8 @@ class ProjectDataApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -361,6 +365,65 @@ class ProjectDataApi(object):
             },
             api_client=api_client
         )
+        self.create_download_urls_for_data_endpoint = _Endpoint(
+            settings={
+                'response_type': (DataUrlList,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/data:createDownloadUrls',
+                'operation_id': 'create_download_urls_for_data',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'data_url_id_list',
+                ],
+                'required': [
+                    'project_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'data_url_id_list':
+                        (DataUrlIdList,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'data_url_id_list': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json'
+                ]
+            },
+            api_client=api_client
+        )
         self.create_folder_upload_session_endpoint = _Endpoint(
             settings={
                 'response_type': (FolderUploadSession,),
@@ -421,7 +484,8 @@ class ProjectDataApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -545,7 +609,8 @@ class ProjectDataApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -720,6 +785,7 @@ class ProjectDataApi(object):
                     'technical_tag_match_mode',
                     'not_in_run',
                     'not_linked_to_sample',
+                    'instrument_run_id',
                     'page_offset',
                     'page_token',
                     'page_size',
@@ -863,6 +929,8 @@ class ProjectDataApi(object):
                         (bool,),
                     'not_linked_to_sample':
                         (bool,),
+                    'instrument_run_id':
+                        ([str],),
                     'page_offset':
                         (str,),
                     'page_token':
@@ -902,6 +970,7 @@ class ProjectDataApi(object):
                     'technical_tag_match_mode': 'technicalTagMatchMode',
                     'not_in_run': 'notInRun',
                     'not_linked_to_sample': 'notLinkedToSample',
+                    'instrument_run_id': 'instrumentRunId',
                     'page_offset': 'pageOffset',
                     'page_token': 'pageToken',
                     'page_size': 'pageSize',
@@ -937,6 +1006,7 @@ class ProjectDataApi(object):
                     'technical_tag_match_mode': 'query',
                     'not_in_run': 'query',
                     'not_linked_to_sample': 'query',
+                    'instrument_run_id': 'query',
                     'page_offset': 'query',
                     'page_token': 'query',
                     'page_size': 'query',
@@ -955,6 +1025,7 @@ class ProjectDataApi(object):
                     'run_output_tag': 'multi',
                     'connector_tag': 'multi',
                     'technical_tag': 'multi',
+                    'instrument_run_id': 'multi',
                 }
             },
             headers_map={
@@ -1160,7 +1231,7 @@ class ProjectDataApi(object):
         )
         self.get_project_data_children_endpoint = _Endpoint(
             settings={
-                'response_type': (DataList,),
+                'response_type': (ProjectDataPagedList,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -1174,6 +1245,9 @@ class ProjectDataApi(object):
                 'all': [
                     'project_id',
                     'data_id',
+                    'page_offset',
+                    'page_token',
+                    'page_size',
                 ],
                 'required': [
                     'project_id',
@@ -1196,14 +1270,26 @@ class ProjectDataApi(object):
                         (str,),
                     'data_id':
                         (str,),
+                    'page_offset':
+                        (str,),
+                    'page_token':
+                        (str,),
+                    'page_size':
+                        (str,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
                     'data_id': 'dataId',
+                    'page_offset': 'pageOffset',
+                    'page_token': 'pageToken',
+                    'page_size': 'pageSize',
                 },
                 'location_map': {
                     'project_id': 'path',
                     'data_id': 'path',
+                    'page_offset': 'query',
+                    'page_token': 'query',
+                    'page_size': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -1211,6 +1297,7 @@ class ProjectDataApi(object):
             headers_map={
                 'accept': [
                     'application/problem+json',
+                    'application/vnd.illumina.v4+json',
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [],
@@ -1260,6 +1347,7 @@ class ProjectDataApi(object):
                     'technical_tag_match_mode',
                     'not_in_run',
                     'not_linked_to_sample',
+                    'instrument_run_id',
                     'page_offset',
                     'page_token',
                     'page_size',
@@ -1403,6 +1491,8 @@ class ProjectDataApi(object):
                         (bool,),
                     'not_linked_to_sample':
                         (bool,),
+                    'instrument_run_id':
+                        ([str],),
                     'page_offset':
                         (str,),
                     'page_token':
@@ -1442,6 +1532,7 @@ class ProjectDataApi(object):
                     'technical_tag_match_mode': 'technicalTagMatchMode',
                     'not_in_run': 'notInRun',
                     'not_linked_to_sample': 'notLinkedToSample',
+                    'instrument_run_id': 'instrumentRunId',
                     'page_offset': 'pageOffset',
                     'page_token': 'pageToken',
                     'page_size': 'pageSize',
@@ -1477,6 +1568,7 @@ class ProjectDataApi(object):
                     'technical_tag_match_mode': 'query',
                     'not_in_run': 'query',
                     'not_linked_to_sample': 'query',
+                    'instrument_run_id': 'query',
                     'page_offset': 'query',
                     'page_token': 'query',
                     'page_size': 'query',
@@ -1495,6 +1587,7 @@ class ProjectDataApi(object):
                     'run_output_tag': 'multi',
                     'connector_tag': 'multi',
                     'technical_tag': 'multi',
+                    'instrument_run_id': 'multi',
                 }
             },
             headers_map={
@@ -1807,7 +1900,8 @@ class ProjectDataApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -1951,6 +2045,7 @@ class ProjectDataApi(object):
                     'data_id',
                 ],
                 'nullable': [
+                    'project_data',
                 ],
                 'enum': [
                 ],
@@ -1988,7 +2083,8 @@ class ProjectDataApi(object):
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
-                    'application/vnd.illumina.v3+json'
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -2334,7 +2430,7 @@ class ProjectDataApi(object):
     ):
         """Retrieve a download URL for this data.  # noqa: E501
 
-        Can be used to download a file directly from the region where it is located, no connector is needed.  # noqa: E501
+        Can be used to download a file directly from the region where it is located, no connector is needed. Not applicable for Folder.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2407,6 +2503,85 @@ class ProjectDataApi(object):
         kwargs['data_id'] = \
             data_id
         return self.create_download_url_for_data_endpoint.call_with_http_info(**kwargs)
+
+    def create_download_urls_for_data(
+        self,
+        project_id,
+        **kwargs
+    ):
+        """Retrieve download URLs for the data.  # noqa: E501
+
+        Can be used to download files directly from the region where it is located, no connector is needed. Not applicable for Folders.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_download_urls_for_data(project_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+
+        Keyword Args:
+            data_url_id_list (DataUrlIdList): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            DataUrlList
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        return self.create_download_urls_for_data_endpoint.call_with_http_info(**kwargs)
 
     def create_folder_upload_session(
         self,
@@ -2499,7 +2674,7 @@ class ProjectDataApi(object):
     ):
         """Retrieve an URL for this data to use for inline view in a browser.  # noqa: E501
 
-        Can be used to view a file directly from the region where it is located, no connector is needed. Only small files can be viewed, otherwise a response with status 400 will be returned if the file is too big.  # noqa: E501
+        Can be used to view a file directly from the region where it is located, no connector is needed.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2664,7 +2839,7 @@ class ProjectDataApi(object):
     ):
         """Retrieve an upload URL for this data.  # noqa: E501
 
-        Can be used to upload a file directly from the region where it is located, no connector is needed. Only small files can be uploaded, otherwise a response with status 400 will be returned if the file is too big.  # noqa: E501
+        Can be used to upload a file directly from the region where it is located, no connector is needed.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2867,8 +3042,9 @@ class ProjectDataApi(object):
             technical_tag_match_mode (str): How the technicalTags are filtered. . [optional]
             not_in_run (bool): When set to true, the data will be filtered on data which is not used in a run.. [optional]
             not_linked_to_sample (bool): When set to true only data that is unlinked to a sample will be returned. This filter implies a filter of type File.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter.. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination.. [optional]
+            instrument_run_id ([str]): The instrument run IDs of the sequencing runs to filter on.. [optional]
+            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
             page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
             sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt. [optional]
             _return_http_data_only (bool): response data without head status
@@ -3034,8 +3210,8 @@ class ProjectDataApi(object):
             project_id (str):
 
         Keyword Args:
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter.. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination.. [optional]
+            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
             page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -3186,6 +3362,7 @@ class ProjectDataApi(object):
     ):
         """Retrieve the children of this data.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Added pagination   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3197,6 +3374,9 @@ class ProjectDataApi(object):
             data_id (str):
 
         Keyword Args:
+            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3225,7 +3405,7 @@ class ProjectDataApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            DataList
+            ProjectDataPagedList
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -3304,8 +3484,9 @@ class ProjectDataApi(object):
             technical_tag_match_mode (str): How the technicalTags are filtered. . [optional]
             not_in_run (bool): When set to true, the data will be filtered on data which is not used in a run.. [optional]
             not_linked_to_sample (bool): When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter.. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination.. [optional]
+            instrument_run_id ([str]): The instrument run IDs of the sequencing runs to filter on.. [optional]
+            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
             page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
             sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt. [optional]
             _return_http_data_only (bool): response data without head status

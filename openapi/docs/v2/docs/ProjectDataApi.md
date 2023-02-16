@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**complete_folder_upload_session**](ProjectDataApi.md#complete_folder_upload_session) | **POST** /api/projects/{projectId}/data/{dataId}/folderUploadSessions/{folderUploadSessionId}:complete | Complete a trackable folder upload session.
 [**create_data_in_project**](ProjectDataApi.md#create_data_in_project) | **POST** /api/projects/{projectId}/data | Create data in this project.
 [**create_download_url_for_data**](ProjectDataApi.md#create_download_url_for_data) | **POST** /api/projects/{projectId}/data/{dataId}:createDownloadUrl | Retrieve a download URL for this data.
+[**create_download_urls_for_data**](ProjectDataApi.md#create_download_urls_for_data) | **POST** /api/projects/{projectId}/data:createDownloadUrls | Retrieve download URLs for the data.
 [**create_folder_upload_session**](ProjectDataApi.md#create_folder_upload_session) | **POST** /api/projects/{projectId}/data/{dataId}/folderUploadSessions | Create a trackable folder upload session.
 [**create_inline_view_url_for_data**](ProjectDataApi.md#create_inline_view_url_for_data) | **POST** /api/projects/{projectId}/data/{dataId}:createInlineViewUrl | Retrieve an URL for this data to use for inline view in a browser.
 [**create_temporary_credentials_for_data**](ProjectDataApi.md#create_temporary_credentials_for_data) | **POST** /api/projects/{projectId}/data/{dataId}:createTemporaryCredentials | Retrieve temporary credentials for this data.
@@ -293,7 +294,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -395,7 +396,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -413,7 +414,7 @@ Name | Type | Description  | Notes
 
 Retrieve a download URL for this data.
 
-Can be used to download a file directly from the region where it is located, no connector is needed.
+Can be used to download a file directly from the region where it is located, no connector is needed. Not applicable for Folder.
 
 ### Example
 
@@ -492,6 +493,108 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The download URL is successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_download_urls_for_data**
+> DataUrlList create_download_urls_for_data(project_id)
+
+Retrieve download URLs for the data.
+
+Can be used to download files directly from the region where it is located, no connector is needed. Not applicable for Folders.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_data_api
+from libica.openapi.v2.model.data_url_id_list import DataUrlIdList
+from libica.openapi.v2.model.data_url_list import DataUrlList
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_data_api.ProjectDataApi(api_client)
+    project_id = "projectId_example" # str | 
+    data_url_id_list = DataUrlIdList(
+        data_ids=[
+            "data_ids_example",
+        ],
+    ) # DataUrlIdList |  (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Retrieve download URLs for the data.
+        api_response = api_instance.create_download_urls_for_data(project_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_download_urls_for_data: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Retrieve download URLs for the data.
+        api_response = api_instance.create_download_urls_for_data(project_id, data_url_id_list=data_url_id_list)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_download_urls_for_data: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **data_url_id_list** | [**DataUrlIdList**](DataUrlIdList.md)|  | [optional]
+
+### Return type
+
+[**DataUrlList**](DataUrlList.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The download URLs are successfully retrieved. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -585,7 +688,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -603,7 +706,7 @@ Name | Type | Description  | Notes
 
 Retrieve an URL for this data to use for inline view in a browser.
 
-Can be used to view a file directly from the region where it is located, no connector is needed. Only small files can be viewed, otherwise a response with status 400 will be returned if the file is too big.
+Can be used to view a file directly from the region where it is located, no connector is needed.
 
 ### Example
 
@@ -775,7 +878,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 
@@ -793,7 +896,7 @@ Name | Type | Description  | Notes
 
 Retrieve an upload URL for this data.
 
-Can be used to upload a file directly from the region where it is located, no connector is needed. Only small files can be uploaded, otherwise a response with status 400 will be returned if the file is too big.
+Can be used to upload a file directly from the region where it is located, no connector is needed.
 
 ### Example
 
@@ -1071,8 +1174,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     technical_tag_match_mode = "EXACT" # str | How the technicalTags are filtered.  (optional)
     not_in_run = True # bool | When set to true, the data will be filtered on data which is not used in a run. (optional)
     not_linked_to_sample = True # bool | When set to true only data that is unlinked to a sample will be returned. This filter implies a filter of type File. (optional)
-    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. (optional)
-    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. (optional)
+    instrument_run_id = [
+        "instrumentRunId_example",
+    ] # [str] | The instrument run IDs of the sequencing runs to filter on. (optional)
+    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
+    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
     sort = "sort_example" # str | Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt (optional)
 
@@ -1088,7 +1194,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Retrieve a list of data eligible for linking to the current project.
-        api_response = api_instance.get_data_eligible_for_linking(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, not_linked_to_sample=not_linked_to_sample, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
+        api_response = api_instance.get_data_eligible_for_linking(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, not_linked_to_sample=not_linked_to_sample, instrument_run_id=instrument_run_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataApi->get_data_eligible_for_linking: %s\n" % e)
@@ -1128,8 +1234,9 @@ Name | Type | Description  | Notes
  **technical_tag_match_mode** | **str**| How the technicalTags are filtered.  | [optional]
  **not_in_run** | **bool**| When set to true, the data will be filtered on data which is not used in a run. | [optional]
  **not_linked_to_sample** | **bool**| When set to true only data that is unlinked to a sample will be returned. This filter implies a filter of type File. | [optional]
- **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. | [optional]
- **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. | [optional]
+ **instrument_run_id** | **[str]**| The instrument run IDs of the sequencing runs to filter on. | [optional]
+ **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
+ **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
  **page_size** | **str**| The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. | [optional]
  **sort** | **str**| Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;dateCreated, lastName desc\&quot;  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt | [optional]
 
@@ -1290,8 +1397,8 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_data_api.ProjectDataApi(api_client)
     project_id = "projectId_example" # str | 
-    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. (optional)
-    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. (optional)
+    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
+    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
 
     # example passing only required values which don't have defaults set
@@ -1318,8 +1425,8 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
- **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. | [optional]
- **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. | [optional]
+ **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
+ **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
  **page_size** | **str**| The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. | [optional]
 
 ### Return type
@@ -1432,9 +1539,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_data_children**
-> DataList get_project_data_children(project_id, data_id)
+> ProjectDataPagedList get_project_data_children(project_id, data_id)
 
 Retrieve the children of this data.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Added pagination 
 
 ### Example
 
@@ -1446,6 +1555,7 @@ import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_data_api
 from libica.openapi.v2.model.data_list import DataList
+from libica.openapi.v2.model.project_data_paged_list import ProjectDataPagedList
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -1476,11 +1586,23 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     api_instance = project_data_api.ProjectDataApi(api_client)
     project_id = "projectId_example" # str | 
     data_id = "dataId_example" # str | 
+    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
+    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
+    page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Retrieve the children of this data.
         api_response = api_instance.get_project_data_children(project_id, data_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->get_project_data_children: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Retrieve the children of this data.
+        api_response = api_instance.get_project_data_children(project_id, data_id, page_offset=page_offset, page_token=page_token, page_size=page_size)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataApi->get_project_data_children: %s\n" % e)
@@ -1493,10 +1615,13 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
  **data_id** | **str**|  |
+ **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
+ **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
+ **page_size** | **str**| The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. | [optional]
 
 ### Return type
 
-[**DataList**](DataList.md)
+[**ProjectDataPagedList**](ProjectDataPagedList.md)
 
 ### Authorization
 
@@ -1505,7 +1630,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -1613,8 +1738,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     technical_tag_match_mode = "EXACT" # str | How the technicalTags are filtered.  (optional)
     not_in_run = True # bool | When set to true, the data will be filtered on data which is not used in a run. (optional)
     not_linked_to_sample = True # bool | When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File. (optional)
-    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. (optional)
-    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. (optional)
+    instrument_run_id = [
+        "instrumentRunId_example",
+    ] # [str] | The instrument run IDs of the sequencing runs to filter on. (optional)
+    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
+    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
     sort = "sort_example" # str | Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt (optional)
 
@@ -1630,7 +1758,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Retrieve the list of project data.
-        api_response = api_instance.get_project_data_list(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, not_linked_to_sample=not_linked_to_sample, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
+        api_response = api_instance.get_project_data_list(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, not_linked_to_sample=not_linked_to_sample, instrument_run_id=instrument_run_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataApi->get_project_data_list: %s\n" % e)
@@ -1670,8 +1798,9 @@ Name | Type | Description  | Notes
  **technical_tag_match_mode** | **str**| How the technicalTags are filtered.  | [optional]
  **not_in_run** | **bool**| When set to true, the data will be filtered on data which is not used in a run. | [optional]
  **not_linked_to_sample** | **bool**| When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File. | [optional]
- **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. | [optional]
- **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. | [optional]
+ **instrument_run_id** | **[str]**| The instrument run IDs of the sequencing runs to filter on. | [optional]
+ **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
+ **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
  **page_size** | **str**| The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. | [optional]
  **sort** | **str**| Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;dateCreated, lastName desc\&quot;  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt | [optional]
 
@@ -2124,7 +2253,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/vnd.illumina.v3+json
 
 
@@ -2356,9 +2485,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     project_data = ProjectData(
         data=Data(
             id="id_example",
+            urn="urn_example",
             details=DataDetails(
                 time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
                 time_modified=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                creator_id="creator_id_example",
                 tenant_id="tenant_id_example",
                 tenant_name="tenant_name_example",
                 owning_project_id="owning_project_id_example",
@@ -2424,6 +2555,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
                 will_be_archived_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
                 will_be_deleted_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                sequencing_run=SequencingRun(
+                    id="id_example",
+                    instrument_run_id="instrument_run_id_example",
+                    name="name_example",
+                ),
             ),
         ),
         project_id="project_id_example",
@@ -2466,7 +2602,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
  - **Accept**: application/problem+json, application/vnd.illumina.v3+json
 
 

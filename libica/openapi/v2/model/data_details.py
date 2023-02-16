@@ -33,9 +33,11 @@ def lazy_import():
     from libica.openapi.v2.model.data_format import DataFormat
     from libica.openapi.v2.model.data_tag import DataTag
     from libica.openapi.v2.model.region import Region
+    from libica.openapi.v2.model.sequencing_run import SequencingRun
     globals()['DataFormat'] = DataFormat
     globals()['DataTag'] = DataTag
     globals()['Region'] = Region
+    globals()['SequencingRun'] = SequencingRun
 
 
 class DataDetails(ModelNormal):
@@ -111,6 +113,7 @@ class DataDetails(ModelNormal):
             'status': (str,),  # noqa: E501
             'tags': (DataTag,),  # noqa: E501
             'data_type': (str,),  # noqa: E501
+            'creator_id': (str, none_type,),  # noqa: E501
             'tenant_name': (str, none_type,),  # noqa: E501
             'owning_project_name': (str, none_type,),  # noqa: E501
             'path': (str, none_type,),  # noqa: E501
@@ -121,6 +124,7 @@ class DataDetails(ModelNormal):
             'region': (Region,),  # noqa: E501
             'will_be_archived_at': (datetime, none_type,),  # noqa: E501
             'will_be_deleted_at': (datetime, none_type,),  # noqa: E501
+            'sequencing_run': (SequencingRun,),  # noqa: E501
         }
 
     @cached_property
@@ -137,6 +141,7 @@ class DataDetails(ModelNormal):
         'status': 'status',  # noqa: E501
         'tags': 'tags',  # noqa: E501
         'data_type': 'dataType',  # noqa: E501
+        'creator_id': 'creatorId',  # noqa: E501
         'tenant_name': 'tenantName',  # noqa: E501
         'owning_project_name': 'owningProjectName',  # noqa: E501
         'path': 'path',  # noqa: E501
@@ -147,6 +152,7 @@ class DataDetails(ModelNormal):
         'region': 'region',  # noqa: E501
         'will_be_archived_at': 'willBeArchivedAt',  # noqa: E501
         'will_be_deleted_at': 'willBeDeletedAt',  # noqa: E501
+        'sequencing_run': 'sequencingRun',  # noqa: E501
     }
 
     read_only_vars = {
@@ -200,6 +206,7 @@ class DataDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            creator_id (str, none_type): [optional]  # noqa: E501
             tenant_name (str, none_type): [optional]  # noqa: E501
             owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
@@ -210,6 +217,7 @@ class DataDetails(ModelNormal):
             region (Region): [optional]  # noqa: E501
             will_be_archived_at (datetime, none_type): Specifies when the data object will be archived.. [optional]  # noqa: E501
             will_be_deleted_at (datetime, none_type): Specifies when the data object will be deleted.. [optional]  # noqa: E501
+            sequencing_run (SequencingRun): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -309,6 +317,7 @@ class DataDetails(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            creator_id (str, none_type): [optional]  # noqa: E501
             tenant_name (str, none_type): [optional]  # noqa: E501
             owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
@@ -319,6 +328,7 @@ class DataDetails(ModelNormal):
             region (Region): [optional]  # noqa: E501
             will_be_archived_at (datetime, none_type): Specifies when the data object will be archived.. [optional]  # noqa: E501
             will_be_deleted_at (datetime, none_type): Specifies when the data object will be deleted.. [optional]  # noqa: E501
+            sequencing_run (SequencingRun): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

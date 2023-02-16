@@ -67,8 +67,7 @@ class PipelineBundle(ModelNormal):
 
     validations = {
         ('max_number_of_allowed_slots',): {
-            'inclusive_maximum': 2147483647,
-            'inclusive_minimum': 0,
+            'inclusive_minimum': -1,
         },
     }
 
@@ -97,12 +96,12 @@ class PipelineBundle(ModelNormal):
         return {
             'id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
+            'max_number_of_allowed_slots': (int,),  # noqa: E501
             'active_pipelines': ([Pipeline],),  # noqa: E501
             'canceled_pipelines': ([Pipeline],),  # noqa: E501
             'retired_pipelines': ([Pipeline],),  # noqa: E501
             'regions': ([Region],),  # noqa: E501
             'analysis_storages': ([AnalysisStorage],),  # noqa: E501
-            'max_number_of_allowed_slots': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -113,12 +112,12 @@ class PipelineBundle(ModelNormal):
     attribute_map = {
         'id': 'id',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'max_number_of_allowed_slots': 'maxNumberOfAllowedSlots',  # noqa: E501
         'active_pipelines': 'activePipelines',  # noqa: E501
         'canceled_pipelines': 'canceledPipelines',  # noqa: E501
         'retired_pipelines': 'retiredPipelines',  # noqa: E501
         'regions': 'regions',  # noqa: E501
         'analysis_storages': 'analysisStorages',  # noqa: E501
-        'max_number_of_allowed_slots': 'maxNumberOfAllowedSlots',  # noqa: E501
     }
 
     read_only_vars = {
@@ -128,12 +127,13 @@ class PipelineBundle(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, id, name, active_pipelines, canceled_pipelines, retired_pipelines, regions, analysis_storages, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, id, name, max_number_of_allowed_slots, active_pipelines, canceled_pipelines, retired_pipelines, regions, analysis_storages, *args, **kwargs):  # noqa: E501
         """PipelineBundle - a model defined in OpenAPI
 
         Args:
             id (str):
             name (str):
+            max_number_of_allowed_slots (int):
             active_pipelines ([Pipeline]):
             canceled_pipelines ([Pipeline]):
             retired_pipelines ([Pipeline]):
@@ -171,7 +171,6 @@ class PipelineBundle(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            max_number_of_allowed_slots (int, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -201,6 +200,7 @@ class PipelineBundle(ModelNormal):
 
         self.id = id
         self.name = name
+        self.max_number_of_allowed_slots = max_number_of_allowed_slots
         self.active_pipelines = active_pipelines
         self.canceled_pipelines = canceled_pipelines
         self.retired_pipelines = retired_pipelines
@@ -226,12 +226,13 @@ class PipelineBundle(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, name, active_pipelines, canceled_pipelines, retired_pipelines, regions, analysis_storages, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, name, max_number_of_allowed_slots, active_pipelines, canceled_pipelines, retired_pipelines, regions, analysis_storages, *args, **kwargs):  # noqa: E501
         """PipelineBundle - a model defined in OpenAPI
 
         Args:
             id (str):
             name (str):
+            max_number_of_allowed_slots (int):
             active_pipelines ([Pipeline]):
             canceled_pipelines ([Pipeline]):
             retired_pipelines ([Pipeline]):
@@ -269,7 +270,6 @@ class PipelineBundle(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            max_number_of_allowed_slots (int, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -297,6 +297,7 @@ class PipelineBundle(ModelNormal):
 
         self.id = id
         self.name = name
+        self.max_number_of_allowed_slots = max_number_of_allowed_slots
         self.active_pipelines = active_pipelines
         self.canceled_pipelines = canceled_pipelines
         self.retired_pipelines = retired_pipelines
