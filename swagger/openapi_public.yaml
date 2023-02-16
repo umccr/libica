@@ -200,8 +200,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The bundle is successfully released
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/bundles/{bundleId}/termsOfUse:
     get:
       tags:
@@ -289,8 +287,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The bundle is successfully deprecated.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/bundles/{bundleId}/data:
     get:
       tags:
@@ -581,8 +577,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully linked to this bundle.
-          content:
-            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Bundle Data
@@ -608,8 +602,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully unlinked from this bundle.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/bundles/{bundleId}/pipelines:
     get:
       tags:
@@ -664,8 +656,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully linked to the bundle.
-          content:
-            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Bundle Pipeline
@@ -693,8 +683,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully unlinked from the bundle.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/bundles/{bundleId}/samples:
     get:
       tags:
@@ -791,8 +779,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The sample is successfully linked to the bundle.
-          content:
-            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Bundle Sample
@@ -818,8 +804,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The sample is successfully unlinked from the bundle.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/bundles/{bundleId}/tools:
     get:
       tags:
@@ -900,8 +884,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The tool is successfully linked to the bundle.
-          content:
-            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Bundle Tool
@@ -927,8 +909,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The tool is successfully unlinked from this bundle.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/connectors:
     get:
       tags:
@@ -1196,8 +1176,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The upload rule is successfully deleted.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/connectors/{connectorId}/downloadRules:
     get:
       tags:
@@ -1384,8 +1362,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The download rule is successfully deleted.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/connectors/{connectorId}:cancel:
     post:
       tags:
@@ -1409,8 +1385,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The connector is successfully cancelled.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/connectors/{connectorId}:enable:
     post:
       tags:
@@ -1434,8 +1408,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The connector is successfully enabled.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/connectors/{connectorId}:disable:
     post:
       tags:
@@ -1459,8 +1431,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The connector is successfully disabled.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/data/{dataUrn}:
     get:
       tags:
@@ -2249,8 +2219,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The notification channel is successfully deleted
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/pipelines:
     get:
       tags:
@@ -2772,8 +2740,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The analysis is successfully aborted.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/analysisCreationBatch:
     post:
       tags:
@@ -3387,8 +3353,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "200":
           description: The bundle is successfully unlinked from the project.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}:hide:
     post:
       tags:
@@ -3410,8 +3374,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The project is hidden.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/base:connectionDetails:
     post:
       tags:
@@ -3624,8 +3586,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The event is successfully created.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/customNotificationSubscriptions:
     get:
       tags:
@@ -3821,8 +3781,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The custom notification subscription is successfully deleted
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/analyses/{analysisId}/cwl/inputJson:
     get:
       tags:
@@ -4863,8 +4821,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The secondary data is successfully added.
-          content:
-            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Project Data
@@ -4895,8 +4851,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The secondary data is successfully removed.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/data/{dataId}:createInlineViewUrl:
     post:
       tags:
@@ -5112,8 +5066,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully unlinked from this project.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/data/{dataId}:archive:
     post:
       tags:
@@ -5143,8 +5095,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully scheduled for archival.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/data/{dataId}:unarchive:
     post:
       tags:
@@ -5174,8 +5124,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully scheduled for unarchival.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/data/{dataId}:delete:
     post:
       tags:
@@ -5205,8 +5153,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully scheduled for deletion.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/data/{dataId}/folderUploadSessions:
     post:
       tags:
@@ -5645,8 +5591,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data transfer is successfully aborted.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/notificationSubscriptions:
     get:
       tags:
@@ -5844,8 +5788,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The notification subscription is successfully deleted
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/permissions:
     get:
       tags:
@@ -6103,8 +6045,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully linked to the project.
-          content:
-            application/vnd.illumina.v3+json: {}
     delete:
       tags:
       - Project Pipeline
@@ -6131,8 +6071,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully unlinked from the project.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/pipelines/{pipelineId}/inputParameters:
     get:
       tags:
@@ -6226,8 +6164,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully released.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/pipelines/{pipelineId}/documentation/HTML:
     get:
       tags:
@@ -6621,8 +6557,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The sample is successfully completed.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}:unlink:
     post:
       tags:
@@ -6649,8 +6583,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The sample is successfully unlinked from the project.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}/projects:
     get:
       tags:
@@ -7007,8 +6939,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully linked to the sample.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}/data/{dataId}:unlink:
     post:
       tags:
@@ -7042,8 +6972,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully unlinked from the sample.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}:deleteDeep:
     post:
       tags:
@@ -7074,8 +7002,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The sample and all of its data are successfully deleted.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}:deleteWithInput:
     post:
       tags:
@@ -7106,8 +7032,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The sample and its input data are successfully deleted.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}:deleteMark:
     post:
       tags:
@@ -7137,8 +7061,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The sample is successfully marked as deleted.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}:deleteUnlink:
     post:
       tags:
@@ -7170,8 +7092,6 @@ paths:
         "204":
           description: The sample is successfully deleted and the its data is successfully
             unlinked.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/projects/{projectId}/samples/{sampleId}/metadata/{metadataModelId}:
     post:
       tags:
@@ -7205,8 +7125,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The metadata model is successfully added to the sample.
-          content:
-            application/vnd.illumina.v3+json: {}
       deprecated: true
   /api/projects/{projectId}/samples/{sampleId}/metadata:updateFields:
     post:
@@ -7850,8 +7768,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The storage configuration is successfully shared.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/storageCredentials:
     get:
       tags:
@@ -7961,8 +7877,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The storage credential is successfully shared.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/storageCredentials/{storageCredentialId}:updateSecrets:
     post:
       tags:
@@ -7994,8 +7908,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The storage credential secrets are successfully updated.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/tokens:
     post:
       tags:
@@ -8200,8 +8112,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The user is successfully approved.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/users/{userId}:assignTenantAdministratorRights:
     post:
       tags:
@@ -8226,8 +8136,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The tenant administrator rights are successfully assigned.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/users/{userId}:revokeTenantAdministratorRights:
     post:
       tags:
@@ -8252,8 +8160,6 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The tenant administrator rights are successfully revoked.
-          content:
-            application/vnd.illumina.v3+json: {}
   /api/workgroups:
     get:
       tags:
