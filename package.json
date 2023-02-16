@@ -1,9 +1,10 @@
 {
   "devDependencies": {
     "@apidevtools/swagger-cli": "^4.0.4",
-    "@openapitools/openapi-generator-cli": "^2.5.1"
+    "@openapitools/openapi-generator-cli": "^2.5.2"
   },
   "resolutions": {
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "minimatch": "^3.0.5"
   }
 }
