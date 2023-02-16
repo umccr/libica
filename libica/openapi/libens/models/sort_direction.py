@@ -30,10 +30,8 @@ class SortDirection(object):
     """
     ASC = "Asc"
     DESC = "Desc"
-    ASCENDING = "Ascending"
-    DESCENDING = "Descending"
 
-    allowable_values = [ASC, DESC, ASCENDING, DESCENDING]  # noqa: E501
+    allowable_values = [ASC, DESC]  # noqa: E501
 
     """
     Attributes:

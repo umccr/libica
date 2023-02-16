@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**archive_file**](FilesApi.md#archive_file) | **POST** /v1/files/{fileId}:archive | Archive a file
 [**bulk_file_update**](FilesApi.md#bulk_file_update) | **PATCH** /v1/files | Updates list of files with metadata
 [**complete_file_upload**](FilesApi.md#complete_file_upload) | **POST** /v1/files/{fileId}:completeUpload | Complete a file Upload
+[**copy_files**](FilesApi.md#copy_files) | **POST** /v1/files/copy | Copy list of files
 [**create_file**](FilesApi.md#create_file) | **POST** /v1/files | Create a file entry in GDS and get temporary credentials for upload
 [**delete_file**](FilesApi.md#delete_file) | **DELETE** /v1/files/{fileId} | Permanently delete a file
 [**get_file**](FilesApi.md#get_file) | **GET** /v1/files/{fileId} | Get details about a file, including a pre-signed URL for download
@@ -174,7 +175,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Success. |  -  |
-**202** | Success |  -  |
+**202** | Accepted |  -  |
 **400** | Bad request. |  -  |
 **401** | Unauthorized. |  -  |
 **403** | Forbidden. |  -  |
@@ -262,6 +263,88 @@ Name | Type | Description  | Notes
 **403** | Forbidden. |  -  |
 **404** | File not found. |  -  |
 **409** | Conflict. |  -  |
+**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **copy_files**
+> JobResponse copy_files(body)
+
+Copy list of files
+
+Copies a list of files enumerated by file Ids to a destination folder
+
+### Example
+
+* Api Key Authentication (Bearer):
+```python
+from __future__ import print_function
+import time
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Bearer
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com",
+    api_key = {
+        'Authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
+    body = libica.openapi.libgds.FileListCopyRequest() # FileListCopyRequest | 
+
+    try:
+        # Copy list of files
+        api_response = api_instance.copy_files(body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling FilesApi->copy_files: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**FileListCopyRequest**](FileListCopyRequest.md)|  | 
+
+### Return type
+
+[**JobResponse**](JobResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success. |  -  |
+**400** | Bad request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**409** | Conflict |  -  |
 **0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -434,7 +517,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_file**
-> FileResponse get_file(file_id, tenant_id=tenant_id, presigned_url_mode=presigned_url_mode, include_volume_metadata=include_volume_metadata, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
+> FileResponse get_file(file_id, tenant_id=tenant_id, presigned_url_mode=presigned_url_mode, include_volume_metadata=include_volume_metadata, metadata_include=metadata_include, metadata_exclude=metadata_exclude, include=include)
 
 Get details about a file, including a pre-signed URL for download
 
@@ -480,10 +563,11 @@ presigned_url_mode = 'presigned_url_mode_example' # str | Optional parameter to 
 include_volume_metadata = True # bool | Optional parameter to return volume's metadata (optional)
 metadata_include = 'metadata_include_example' # str | Optional parameter to specify comma separated patterns to include metadata by their field names. (optional)
 metadata_exclude = 'metadata_exclude_example' # str | Optional parameter to specify comma separated patterns to exclude metadata by their field names. (optional)
+include = 'include_example' # str | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (optional)
 
     try:
         # Get details about a file, including a pre-signed URL for download
-        api_response = api_instance.get_file(file_id, tenant_id=tenant_id, presigned_url_mode=presigned_url_mode, include_volume_metadata=include_volume_metadata, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
+        api_response = api_instance.get_file(file_id, tenant_id=tenant_id, presigned_url_mode=presigned_url_mode, include_volume_metadata=include_volume_metadata, metadata_include=metadata_include, metadata_exclude=metadata_exclude, include=include)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FilesApi->get_file: %s\n" % e)
@@ -499,6 +583,7 @@ Name | Type | Description  | Notes
  **include_volume_metadata** | **bool**| Optional parameter to return volume&#39;s metadata | [optional] 
  **metadata_include** | **str**| Optional parameter to specify comma separated patterns to include metadata by their field names. | [optional] 
  **metadata_exclude** | **str**| Optional parameter to specify comma separated patterns to exclude metadata by their field names. | [optional] 
+ **include** | **str**| Optionally include additional fields in the response.              Possible values: ObjectStoreAccess | [optional] 
 
 ### Return type
 

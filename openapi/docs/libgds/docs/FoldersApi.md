@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**archive_folder**](FoldersApi.md#archive_folder) | **POST** /v1/folders/{folderId}:archive | Archive a folder
 [**bulk_folder_update**](FoldersApi.md#bulk_folder_update) | **PATCH** /v1/folders | Updates list of folders with metadata
+[**bulk_metadata_folder_update**](FoldersApi.md#bulk_metadata_folder_update) | **PATCH** /v1/folders/bulkMetadataFolderUpdate | Updates list of folders with metadata
 [**complete_folder_session**](FoldersApi.md#complete_folder_session) | **POST** /v1/folders/{folderId}/sessions/{sessionId}:complete | Complete a folder upload in GDS
 [**copy_folder**](FoldersApi.md#copy_folder) | **POST** /v1/folders/{folderId}:copy | Copy a folder
 [**create_folder**](FoldersApi.md#create_folder) | **POST** /v1/folders | Create a folder in GDS and receive credentials for upload
@@ -179,6 +180,88 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Success |  -  |
 **202** | Accepted. |  -  |
+**400** | Bad request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **bulk_metadata_folder_update**
+> JobResponse bulk_metadata_folder_update(body=body)
+
+Updates list of folders with metadata
+
+Updates list of folders with metadata
+
+### Example
+
+* Api Key Authentication (Bearer):
+```python
+from __future__ import print_function
+import time
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Bearer
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com",
+    api_key = {
+        'Authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
+    body = libica.openapi.libgds.BulkFolderMetadataUpdateRequest() # BulkFolderMetadataUpdateRequest |  (optional)
+
+    try:
+        # Updates list of folders with metadata
+        api_response = api_instance.bulk_metadata_folder_update(body=body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling FoldersApi->bulk_metadata_folder_update: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**BulkFolderMetadataUpdateRequest**](BulkFolderMetadataUpdateRequest.md)|  | [optional] 
+
+### Return type
+
+[**JobResponse**](JobResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: text/plain, application/json, text/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success. |  -  |
+**202** | Accepted |  -  |
 **400** | Bad request. |  -  |
 **401** | Unauthorized. |  -  |
 **403** | Forbidden. |  -  |
@@ -521,7 +604,7 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Success |  -  |
+**201** | Created |  -  |
 **400** | Bad Request |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
@@ -612,7 +695,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_folder**
-> FolderResponse get_folder(folder_id, tenant_id=tenant_id, include_volume_metadata=include_volume_metadata, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
+> FolderResponse get_folder(folder_id, tenant_id=tenant_id, include_volume_metadata=include_volume_metadata, include_active_jobs=include_active_jobs, metadata_include=metadata_include, metadata_exclude=metadata_exclude, include=include)
 
 Get information about a folder in GDS.
 
@@ -655,12 +738,14 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     folder_id = 'folder_id_example' # str | Unique identifier for the folder to retrieve.
 tenant_id = 'tenant_id_example' # str | Optional parameter to see shared data in another tenant (optional)
 include_volume_metadata = True # bool | Optional parameter to return volume's metadata (optional)
+include_active_jobs = True # bool | Optional parameter to return active jobs associated to folder (optional)
 metadata_include = 'metadata_include_example' # str | Optional parameter to specify comma separated patterns to include metadata by their field names. (optional)
 metadata_exclude = 'metadata_exclude_example' # str | Optional parameter to specify comma separated patterns to exclude metadata by their field names. (optional)
+include = 'include_example' # str | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (optional)
 
     try:
         # Get information about a folder in GDS.
-        api_response = api_instance.get_folder(folder_id, tenant_id=tenant_id, include_volume_metadata=include_volume_metadata, metadata_include=metadata_include, metadata_exclude=metadata_exclude)
+        api_response = api_instance.get_folder(folder_id, tenant_id=tenant_id, include_volume_metadata=include_volume_metadata, include_active_jobs=include_active_jobs, metadata_include=metadata_include, metadata_exclude=metadata_exclude, include=include)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FoldersApi->get_folder: %s\n" % e)
@@ -673,8 +758,10 @@ Name | Type | Description  | Notes
  **folder_id** | **str**| Unique identifier for the folder to retrieve. | 
  **tenant_id** | **str**| Optional parameter to see shared data in another tenant | [optional] 
  **include_volume_metadata** | **bool**| Optional parameter to return volume&#39;s metadata | [optional] 
+ **include_active_jobs** | **bool**| Optional parameter to return active jobs associated to folder | [optional] 
  **metadata_include** | **str**| Optional parameter to specify comma separated patterns to include metadata by their field names. | [optional] 
  **metadata_exclude** | **str**| Optional parameter to specify comma separated patterns to exclude metadata by their field names. | [optional] 
+ **include** | **str**| Optionally include additional fields in the response.              Possible values: ObjectStoreAccess | [optional] 
 
 ### Return type
 

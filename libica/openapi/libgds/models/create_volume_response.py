@@ -49,6 +49,7 @@ class CreateVolumeResponse(object):
         'job_status': 'JobStatus',
         'metadata': 'object',
         'life_cycle': 'VolumeLifeCycleSettings',
+        'migration_status': 'str',
         'import_session_id': 'str',
         'object_store_access': 'ObjectStoreAccess'
     }
@@ -70,11 +71,12 @@ class CreateVolumeResponse(object):
         'job_status': 'jobStatus',
         'metadata': 'metadata',
         'life_cycle': 'lifeCycle',
+        'migration_status': 'migrationStatus',
         'import_session_id': 'importSessionId',
         'object_store_access': 'objectStoreAccess'
     }
 
-    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, import_session_id=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, migration_status=None, import_session_id=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         """CreateVolumeResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -96,6 +98,7 @@ class CreateVolumeResponse(object):
         self._job_status = None
         self._metadata = None
         self._life_cycle = None
+        self._migration_status = None
         self._import_session_id = None
         self._object_store_access = None
         self.discriminator = None
@@ -132,6 +135,8 @@ class CreateVolumeResponse(object):
             self.metadata = metadata
         if life_cycle is not None:
             self.life_cycle = life_cycle
+        if migration_status is not None:
+            self.migration_status = migration_status
         if import_session_id is not None:
             self.import_session_id = import_session_id
         if object_store_access is not None:
@@ -500,6 +505,29 @@ class CreateVolumeResponse(object):
         """
 
         self._life_cycle = life_cycle
+
+    @property
+    def migration_status(self):
+        """Gets the migration_status of this CreateVolumeResponse.  # noqa: E501
+
+        Status of the root folder migration status from v1 to v2  # noqa: E501
+
+        :return: The migration_status of this CreateVolumeResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._migration_status
+
+    @migration_status.setter
+    def migration_status(self, migration_status):
+        """Sets the migration_status of this CreateVolumeResponse.
+
+        Status of the root folder migration status from v1 to v2  # noqa: E501
+
+        :param migration_status: The migration_status of this CreateVolumeResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._migration_status = migration_status
 
     @property
     def import_session_id(self):

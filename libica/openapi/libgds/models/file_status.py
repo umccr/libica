@@ -32,8 +32,9 @@ class FileStatus(object):
     AVAILABLE = "Available"
     ARCHIVED = "Archived"
     UNARCHIVING = "Unarchiving"
+    COPYING = "Copying"
 
-    allowable_values = [PARTIAL, AVAILABLE, ARCHIVED, UNARCHIVING]  # noqa: E501
+    allowable_values = [PARTIAL, AVAILABLE, ARCHIVED, UNARCHIVING, COPYING]  # noqa: E501
 
     """
     Attributes:

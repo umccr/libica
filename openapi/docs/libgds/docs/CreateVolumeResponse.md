@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **job_status** | [**JobStatus**](JobStatus.md) |  | [optional] 
 **metadata** | [**object**](.md) | Metadata about this Volume | [optional] 
 **life_cycle** | [**VolumeLifeCycleSettings**](VolumeLifeCycleSettings.md) |  | [optional] 
+**migration_status** | **str** | Status of the root folder migration status from v1 to v2 | [optional] 
 **import_session_id** | **str** | Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations. | [optional] 
 **object_store_access** | [**ObjectStoreAccess**](ObjectStoreAccess.md) |  | [optional] 
 

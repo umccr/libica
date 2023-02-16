@@ -100,6 +100,9 @@ class CreateSubscriptionRequest(object):
                 type is not None and len(type) > 255):
             raise ValueError("Invalid value for `type`, length must be less than or equal to `255`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
+                type is not None and len(type) < 1):
+            raise ValueError("Invalid value for `type`, length must be greater than or equal to `1`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
                 type is not None and not re.search(r'^[a-zA-Z]+[.a-zA-Z]*$', type)):  # noqa: E501
             raise ValueError(r"Invalid value for `type`, must be a follow pattern or equal to `/^[a-zA-Z]+[.a-zA-Z]*$/`")  # noqa: E501
 
@@ -153,6 +156,9 @@ class CreateSubscriptionRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 name is not None and len(name) > 255):
             raise ValueError("Invalid value for `name`, length must be less than or equal to `255`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) < 1):
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 name is not None and not re.search(r'^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$', name)):  # noqa: E501
             raise ValueError(r"Invalid value for `name`, must be a follow pattern or equal to `/^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$/`")  # noqa: E501

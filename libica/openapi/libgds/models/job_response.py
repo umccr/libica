@@ -36,7 +36,9 @@ class JobResponse(object):
         'id': 'str',
         'parent_folder_urn': 'str',
         'operation_type': 'JobOperationType',
+        'job_type': 'str',
         'operation_parameters': 'JobOperationParameters',
+        'results': 'JobOutput',
         'progress_status': 'JobProgressStatus',
         'time_created': 'datetime',
         'created_by': 'str',
@@ -48,7 +50,9 @@ class JobResponse(object):
         'id': 'id',
         'parent_folder_urn': 'parentFolderUrn',
         'operation_type': 'operationType',
+        'job_type': 'jobType',
         'operation_parameters': 'operationParameters',
+        'results': 'results',
         'progress_status': 'progressStatus',
         'time_created': 'timeCreated',
         'created_by': 'createdBy',
@@ -56,7 +60,7 @@ class JobResponse(object):
         'time_completed': 'timeCompleted'
     }
 
-    def __init__(self, id=None, parent_folder_urn=None, operation_type=None, operation_parameters=None, progress_status=None, time_created=None, created_by=None, time_modified=None, time_completed=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, parent_folder_urn=None, operation_type=None, job_type=None, operation_parameters=None, results=None, progress_status=None, time_created=None, created_by=None, time_modified=None, time_completed=None, local_vars_configuration=None):  # noqa: E501
         """JobResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -65,7 +69,9 @@ class JobResponse(object):
         self._id = None
         self._parent_folder_urn = None
         self._operation_type = None
+        self._job_type = None
         self._operation_parameters = None
+        self._results = None
         self._progress_status = None
         self._time_created = None
         self._created_by = None
@@ -79,8 +85,12 @@ class JobResponse(object):
             self.parent_folder_urn = parent_folder_urn
         if operation_type is not None:
             self.operation_type = operation_type
+        if job_type is not None:
+            self.job_type = job_type
         if operation_parameters is not None:
             self.operation_parameters = operation_parameters
+        if results is not None:
+            self.results = results
         if progress_status is not None:
             self.progress_status = progress_status
         if time_created is not None:
@@ -160,6 +170,27 @@ class JobResponse(object):
         self._operation_type = operation_type
 
     @property
+    def job_type(self):
+        """Gets the job_type of this JobResponse.  # noqa: E501
+
+
+        :return: The job_type of this JobResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._job_type
+
+    @job_type.setter
+    def job_type(self, job_type):
+        """Sets the job_type of this JobResponse.
+
+
+        :param job_type: The job_type of this JobResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._job_type = job_type
+
+    @property
     def operation_parameters(self):
         """Gets the operation_parameters of this JobResponse.  # noqa: E501
 
@@ -179,6 +210,27 @@ class JobResponse(object):
         """
 
         self._operation_parameters = operation_parameters
+
+    @property
+    def results(self):
+        """Gets the results of this JobResponse.  # noqa: E501
+
+
+        :return: The results of this JobResponse.  # noqa: E501
+        :rtype: JobOutput
+        """
+        return self._results
+
+    @results.setter
+    def results(self, results):
+        """Sets the results of this JobResponse.
+
+
+        :param results: The results of this JobResponse.  # noqa: E501
+        :type: JobOutput
+        """
+
+        self._results = results
 
     @property
     def progress_status(self):

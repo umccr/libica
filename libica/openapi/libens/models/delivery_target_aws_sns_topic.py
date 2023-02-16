@@ -73,6 +73,9 @@ class DeliveryTargetAwsSnsTopic(object):
         """
         if self.local_vars_configuration.client_side_validation and topic_arn is None:  # noqa: E501
             raise ValueError("Invalid value for `topic_arn`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                topic_arn is not None and len(topic_arn) < 1):
+            raise ValueError("Invalid value for `topic_arn`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._topic_arn = topic_arn
 

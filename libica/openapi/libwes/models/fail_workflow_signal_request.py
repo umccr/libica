@@ -78,6 +78,9 @@ class FailWorkflowSignalRequest(object):
         """
         if self.local_vars_configuration.client_side_validation and error is None:  # noqa: E501
             raise ValueError("Invalid value for `error`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                error is not None and len(error) < 1):
+            raise ValueError("Invalid value for `error`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._error = error
 

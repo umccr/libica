@@ -73,6 +73,9 @@ class DeliveryTargetAwsSqsQueue(object):
         """
         if self.local_vars_configuration.client_side_validation and queue_url is None:  # noqa: E501
             raise ValueError("Invalid value for `queue_url`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                queue_url is not None and len(queue_url) < 1):
+            raise ValueError("Invalid value for `queue_url`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._queue_url = queue_url
 

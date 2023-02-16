@@ -19,6 +19,7 @@ __version__ = "1.0.0"
 # import apis into sdk package
 from libica.openapi.libgds.api.files_api import FilesApi
 from libica.openapi.libgds.api.folders_api import FoldersApi
+from libica.openapi.libgds.api.jobs_api import JobsApi
 from libica.openapi.libgds.api.volume_configurations_api import VolumeConfigurationsApi
 from libica.openapi.libgds.api.volumes_api import VolumesApi
 
@@ -39,9 +40,11 @@ from libica.openapi.libgds.models.bulk_failed_item import BulkFailedItem
 from libica.openapi.libgds.models.bulk_file_update_item import BulkFileUpdateItem
 from libica.openapi.libgds.models.bulk_file_update_request import BulkFileUpdateRequest
 from libica.openapi.libgds.models.bulk_file_update_response import BulkFileUpdateResponse
+from libica.openapi.libgds.models.bulk_folder_metadata_update_request import BulkFolderMetadataUpdateRequest
 from libica.openapi.libgds.models.bulk_folder_update_item import BulkFolderUpdateItem
 from libica.openapi.libgds.models.bulk_folder_update_request import BulkFolderUpdateRequest
 from libica.openapi.libgds.models.bulk_folder_update_response import BulkFolderUpdateResponse
+from libica.openapi.libgds.models.bulk_metadata_update_operation_parameters import BulkMetadataUpdateOperationParameters
 from libica.openapi.libgds.models.bulk_update_failed_item import BulkUpdateFailedItem
 from libica.openapi.libgds.models.complete_session_request import CompleteSessionRequest
 from libica.openapi.libgds.models.create_file_request import CreateFileRequest
@@ -54,7 +57,10 @@ from libica.openapi.libgds.models.create_volume_response import CreateVolumeResp
 from libica.openapi.libgds.models.error_response import ErrorResponse
 from libica.openapi.libgds.models.file_archive_request import FileArchiveRequest
 from libica.openapi.libgds.models.file_archive_storage_tier import FileArchiveStorageTier
+from libica.openapi.libgds.models.file_copy_operation_parameters import FileCopyOperationParameters
+from libica.openapi.libgds.models.file_copy_output import FileCopyOutput
 from libica.openapi.libgds.models.file_life_cycle_settings import FileLifeCycleSettings
+from libica.openapi.libgds.models.file_list_copy_request import FileListCopyRequest
 from libica.openapi.libgds.models.file_list_response import FileListResponse
 from libica.openapi.libgds.models.file_response import FileResponse
 from libica.openapi.libgds.models.file_status import FileStatus
@@ -72,11 +78,15 @@ from libica.openapi.libgds.models.folder_unarchive_request import FolderUnarchiv
 from libica.openapi.libgds.models.folder_update_request import FolderUpdateRequest
 from libica.openapi.libgds.models.folder_writeable_response import FolderWriteableResponse
 from libica.openapi.libgds.models.grace_period_end_action import GracePeriodEndAction
+from libica.openapi.libgds.models.job_list_response import JobListResponse
 from libica.openapi.libgds.models.job_operation_parameters import JobOperationParameters
 from libica.openapi.libgds.models.job_operation_type import JobOperationType
+from libica.openapi.libgds.models.job_output import JobOutput
 from libica.openapi.libgds.models.job_progress_status import JobProgressStatus
 from libica.openapi.libgds.models.job_response import JobResponse
 from libica.openapi.libgds.models.job_status import JobStatus
+from libica.openapi.libgds.models.metadata_update_output import MetadataUpdateOutput
+from libica.openapi.libgds.models.metadata_update_request import MetadataUpdateRequest
 from libica.openapi.libgds.models.object_store_access import ObjectStoreAccess
 from libica.openapi.libgds.models.object_store_settings import ObjectStoreSettings
 from libica.openapi.libgds.models.part_etag import PartEtag
@@ -93,5 +103,6 @@ from libica.openapi.libgds.models.volume_file_list_request import VolumeFileList
 from libica.openapi.libgds.models.volume_file_list_response import VolumeFileListResponse
 from libica.openapi.libgds.models.volume_life_cycle_settings import VolumeLifeCycleSettings
 from libica.openapi.libgds.models.volume_list_response import VolumeListResponse
+from libica.openapi.libgds.models.volume_migration_operation_parameters import VolumeMigrationOperationParameters
 from libica.openapi.libgds.models.volume_response import VolumeResponse
 

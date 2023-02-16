@@ -86,6 +86,9 @@ class DeliveryTargetWorkflowRunLaunch(object):
         """
         if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                id is not None and len(id) < 1):
+            raise ValueError("Invalid value for `id`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._id = id
 
@@ -111,6 +114,9 @@ class DeliveryTargetWorkflowRunLaunch(object):
         """
         if self.local_vars_configuration.client_side_validation and version is None:  # noqa: E501
             raise ValueError("Invalid value for `version`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                version is not None and len(version) < 1):
+            raise ValueError("Invalid value for `version`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._version = version
 
@@ -136,6 +142,9 @@ class DeliveryTargetWorkflowRunLaunch(object):
         """
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) < 1):
+            raise ValueError("Invalid value for `name`, length must be greater than or equal to `1`")  # noqa: E501
 
         self._name = name
 

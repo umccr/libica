@@ -46,6 +46,7 @@ class TaskRun(object):
         'execution': 'Execution',
         'task_version_summary': 'TaskVersionSummary',
         'logs': 'list[TaskRunLogs]',
+        'execution_raw_json': 'str',
         'acl': 'list[str]',
         'tenant_id': 'str',
         'sub_tenant_id': 'str',
@@ -69,6 +70,7 @@ class TaskRun(object):
         'execution': 'execution',
         'task_version_summary': 'taskVersionSummary',
         'logs': 'logs',
+        'execution_raw_json': 'executionRawJson',
         'acl': 'acl',
         'tenant_id': 'tenantId',
         'sub_tenant_id': 'subTenantId',
@@ -78,7 +80,7 @@ class TaskRun(object):
         'time_modified': 'timeModified'
     }
 
-    def __init__(self, id=None, href=None, urn=None, name=None, description=None, status='Pending', status_details=None, type_of_resource=None, size_of_resource=None, tier_of_resource=None, execution=None, task_version_summary=None, logs=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, href=None, urn=None, name=None, description=None, status='Pending', status_details=None, type_of_resource=None, size_of_resource=None, tier_of_resource=None, execution=None, task_version_summary=None, logs=None, execution_raw_json=None, acl=None, tenant_id=None, sub_tenant_id=None, created_by=None, time_created=None, modified_by=None, time_modified=None, local_vars_configuration=None):  # noqa: E501
         """TaskRun - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -97,6 +99,7 @@ class TaskRun(object):
         self._execution = None
         self._task_version_summary = None
         self._logs = None
+        self._execution_raw_json = None
         self._acl = None
         self._tenant_id = None
         self._sub_tenant_id = None
@@ -132,6 +135,8 @@ class TaskRun(object):
             self.task_version_summary = task_version_summary
         if logs is not None:
             self.logs = logs
+        if execution_raw_json is not None:
+            self.execution_raw_json = execution_raw_json
         if acl is not None:
             self.acl = acl
         if tenant_id is not None:
@@ -461,6 +466,27 @@ class TaskRun(object):
         """
 
         self._logs = logs
+
+    @property
+    def execution_raw_json(self):
+        """Gets the execution_raw_json of this TaskRun.  # noqa: E501
+
+
+        :return: The execution_raw_json of this TaskRun.  # noqa: E501
+        :rtype: str
+        """
+        return self._execution_raw_json
+
+    @execution_raw_json.setter
+    def execution_raw_json(self, execution_raw_json):
+        """Sets the execution_raw_json of this TaskRun.
+
+
+        :param execution_raw_json: The execution_raw_json of this TaskRun.  # noqa: E501
+        :type: str
+        """
+
+        self._execution_raw_json = execution_raw_json
 
     @property
     def acl(self):

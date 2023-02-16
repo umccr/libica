@@ -34,15 +34,21 @@ class JobOperationParameters(object):
     """
     openapi_types = {
         'folder_copy': 'FolderCopyOperationParameters',
-        'folder_delete': 'FolderDeleteOperationParameters'
+        'folder_delete': 'FolderDeleteOperationParameters',
+        'volume_migration': 'VolumeMigrationOperationParameters',
+        'file_copy': 'FileCopyOperationParameters',
+        'bulk_metadata_update': 'BulkMetadataUpdateOperationParameters'
     }
 
     attribute_map = {
         'folder_copy': 'folderCopy',
-        'folder_delete': 'folderDelete'
+        'folder_delete': 'folderDelete',
+        'volume_migration': 'volumeMigration',
+        'file_copy': 'fileCopy',
+        'bulk_metadata_update': 'bulkMetadataUpdate'
     }
 
-    def __init__(self, folder_copy=None, folder_delete=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, folder_copy=None, folder_delete=None, volume_migration=None, file_copy=None, bulk_metadata_update=None, local_vars_configuration=None):  # noqa: E501
         """JobOperationParameters - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -50,12 +56,21 @@ class JobOperationParameters(object):
 
         self._folder_copy = None
         self._folder_delete = None
+        self._volume_migration = None
+        self._file_copy = None
+        self._bulk_metadata_update = None
         self.discriminator = None
 
         if folder_copy is not None:
             self.folder_copy = folder_copy
         if folder_delete is not None:
             self.folder_delete = folder_delete
+        if volume_migration is not None:
+            self.volume_migration = volume_migration
+        if file_copy is not None:
+            self.file_copy = file_copy
+        if bulk_metadata_update is not None:
+            self.bulk_metadata_update = bulk_metadata_update
 
     @property
     def folder_copy(self):
@@ -98,6 +113,69 @@ class JobOperationParameters(object):
         """
 
         self._folder_delete = folder_delete
+
+    @property
+    def volume_migration(self):
+        """Gets the volume_migration of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The volume_migration of this JobOperationParameters.  # noqa: E501
+        :rtype: VolumeMigrationOperationParameters
+        """
+        return self._volume_migration
+
+    @volume_migration.setter
+    def volume_migration(self, volume_migration):
+        """Sets the volume_migration of this JobOperationParameters.
+
+
+        :param volume_migration: The volume_migration of this JobOperationParameters.  # noqa: E501
+        :type: VolumeMigrationOperationParameters
+        """
+
+        self._volume_migration = volume_migration
+
+    @property
+    def file_copy(self):
+        """Gets the file_copy of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The file_copy of this JobOperationParameters.  # noqa: E501
+        :rtype: FileCopyOperationParameters
+        """
+        return self._file_copy
+
+    @file_copy.setter
+    def file_copy(self, file_copy):
+        """Sets the file_copy of this JobOperationParameters.
+
+
+        :param file_copy: The file_copy of this JobOperationParameters.  # noqa: E501
+        :type: FileCopyOperationParameters
+        """
+
+        self._file_copy = file_copy
+
+    @property
+    def bulk_metadata_update(self):
+        """Gets the bulk_metadata_update of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The bulk_metadata_update of this JobOperationParameters.  # noqa: E501
+        :rtype: BulkMetadataUpdateOperationParameters
+        """
+        return self._bulk_metadata_update
+
+    @bulk_metadata_update.setter
+    def bulk_metadata_update(self, bulk_metadata_update):
+        """Sets the bulk_metadata_update of this JobOperationParameters.
+
+
+        :param bulk_metadata_update: The bulk_metadata_update of this JobOperationParameters.  # noqa: E501
+        :type: BulkMetadataUpdateOperationParameters
+        """
+
+        self._bulk_metadata_update = bulk_metadata_update
 
     def to_dict(self):
         """Returns the model properties as a dict"""

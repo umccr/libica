@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **job_status** | [**JobStatus**](JobStatus.md) |  | [optional] 
 **metadata** | [**object**](.md) | Metadata about this Volume | [optional] 
 **life_cycle** | [**VolumeLifeCycleSettings**](VolumeLifeCycleSettings.md) |  | [optional] 
+**migration_status** | **str** | Status of the root folder migration status from v1 to v2 | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

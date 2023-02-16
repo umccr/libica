@@ -32,8 +32,10 @@ class JobProgressStatus(object):
     INPROGRESS = "InProgress"
     COMPLETED = "Completed"
     FAILED = "Failed"
+    COMPLETEDWITHERROR = "CompletedWithError"
+    ABORTED = "Aborted"
 
-    allowable_values = [PENDING, INPROGRESS, COMPLETED, FAILED]  # noqa: E501
+    allowable_values = [PENDING, INPROGRESS, COMPLETED, FAILED, COMPLETEDWITHERROR, ABORTED]  # noqa: E501
 
     """
     Attributes:

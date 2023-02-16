@@ -34,15 +34,19 @@ class FolderCopyRequest(object):
     """
     openapi_types = {
         'target_parent_folder_id': 'str',
-        'destination_folder_name': 'str'
+        'destination_folder_name': 'str',
+        'metadata_to_copy': 'list[str]',
+        'duplicate_file_action': 'str'
     }
 
     attribute_map = {
         'target_parent_folder_id': 'targetParentFolderId',
-        'destination_folder_name': 'destinationFolderName'
+        'destination_folder_name': 'destinationFolderName',
+        'metadata_to_copy': 'metadataToCopy',
+        'duplicate_file_action': 'duplicateFileAction'
     }
 
-    def __init__(self, target_parent_folder_id=None, destination_folder_name=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, target_parent_folder_id=None, destination_folder_name=None, metadata_to_copy=None, duplicate_file_action=None, local_vars_configuration=None):  # noqa: E501
         """FolderCopyRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -50,11 +54,17 @@ class FolderCopyRequest(object):
 
         self._target_parent_folder_id = None
         self._destination_folder_name = None
+        self._metadata_to_copy = None
+        self._duplicate_file_action = None
         self.discriminator = None
 
         self.target_parent_folder_id = target_parent_folder_id
         if destination_folder_name is not None:
             self.destination_folder_name = destination_folder_name
+        if metadata_to_copy is not None:
+            self.metadata_to_copy = metadata_to_copy
+        if duplicate_file_action is not None:
+            self.duplicate_file_action = duplicate_file_action
 
     @property
     def target_parent_folder_id(self):
@@ -106,6 +116,48 @@ class FolderCopyRequest(object):
             raise ValueError(r"Invalid value for `destination_folder_name`, must be a follow pattern or equal to `/^[^\/]+$/`")  # noqa: E501
 
         self._destination_folder_name = destination_folder_name
+
+    @property
+    def metadata_to_copy(self):
+        """Gets the metadata_to_copy of this FolderCopyRequest.  # noqa: E501
+
+
+        :return: The metadata_to_copy of this FolderCopyRequest.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._metadata_to_copy
+
+    @metadata_to_copy.setter
+    def metadata_to_copy(self, metadata_to_copy):
+        """Sets the metadata_to_copy of this FolderCopyRequest.
+
+
+        :param metadata_to_copy: The metadata_to_copy of this FolderCopyRequest.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._metadata_to_copy = metadata_to_copy
+
+    @property
+    def duplicate_file_action(self):
+        """Gets the duplicate_file_action of this FolderCopyRequest.  # noqa: E501
+
+
+        :return: The duplicate_file_action of this FolderCopyRequest.  # noqa: E501
+        :rtype: str
+        """
+        return self._duplicate_file_action
+
+    @duplicate_file_action.setter
+    def duplicate_file_action(self, duplicate_file_action):
+        """Sets the duplicate_file_action of this FolderCopyRequest.
+
+
+        :param duplicate_file_action: The duplicate_file_action of this FolderCopyRequest.  # noqa: E501
+        :type: str
+        """
+
+        self._duplicate_file_action = duplicate_file_action
 
     def to_dict(self):
         """Returns the model properties as a dict"""

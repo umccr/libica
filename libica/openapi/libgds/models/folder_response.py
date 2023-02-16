@@ -52,7 +52,10 @@ class FolderResponse(object):
         'volume_metadata': 'object',
         'job_status': 'JobStatus',
         'job_id': 'str',
-        'archive_job_storage_tier': 'StorageTier'
+        'archive_job_storage_tier': 'StorageTier',
+        'migration_status': 'str',
+        'active_job_ids': 'list[str]',
+        'object_store_access': 'ObjectStoreAccess'
     }
 
     attribute_map = {
@@ -75,10 +78,13 @@ class FolderResponse(object):
         'volume_metadata': 'volumeMetadata',
         'job_status': 'jobStatus',
         'job_id': 'jobId',
-        'archive_job_storage_tier': 'archiveJobStorageTier'
+        'archive_job_storage_tier': 'archiveJobStorageTier',
+        'migration_status': 'migrationStatus',
+        'active_job_ids': 'activeJobIds',
+        'object_store_access': 'objectStoreAccess'
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, volume_metadata=None, job_status=None, job_id=None, archive_job_storage_tier=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, volume_metadata=None, job_status=None, job_id=None, archive_job_storage_tier=None, migration_status=None, active_job_ids=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         """FolderResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -104,6 +110,9 @@ class FolderResponse(object):
         self._job_status = None
         self._job_id = None
         self._archive_job_storage_tier = None
+        self._migration_status = None
+        self._active_job_ids = None
+        self._object_store_access = None
         self.discriminator = None
 
         if id is not None:
@@ -146,6 +155,12 @@ class FolderResponse(object):
             self.job_id = job_id
         if archive_job_storage_tier is not None:
             self.archive_job_storage_tier = archive_job_storage_tier
+        if migration_status is not None:
+            self.migration_status = migration_status
+        if active_job_ids is not None:
+            self.active_job_ids = active_job_ids
+        if object_store_access is not None:
+            self.object_store_access = object_store_access
 
     @property
     def id(self):
@@ -602,6 +617,73 @@ class FolderResponse(object):
         """
 
         self._archive_job_storage_tier = archive_job_storage_tier
+
+    @property
+    def migration_status(self):
+        """Gets the migration_status of this FolderResponse.  # noqa: E501
+
+        Status of the root folder migration status from v1 to v2  # noqa: E501
+
+        :return: The migration_status of this FolderResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._migration_status
+
+    @migration_status.setter
+    def migration_status(self, migration_status):
+        """Sets the migration_status of this FolderResponse.
+
+        Status of the root folder migration status from v1 to v2  # noqa: E501
+
+        :param migration_status: The migration_status of this FolderResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._migration_status = migration_status
+
+    @property
+    def active_job_ids(self):
+        """Gets the active_job_ids of this FolderResponse.  # noqa: E501
+
+        List of Jobs in Pending and In Progress status  # noqa: E501
+
+        :return: The active_job_ids of this FolderResponse.  # noqa: E501
+        :rtype: list[str]
+        """
+        return self._active_job_ids
+
+    @active_job_ids.setter
+    def active_job_ids(self, active_job_ids):
+        """Sets the active_job_ids of this FolderResponse.
+
+        List of Jobs in Pending and In Progress status  # noqa: E501
+
+        :param active_job_ids: The active_job_ids of this FolderResponse.  # noqa: E501
+        :type: list[str]
+        """
+
+        self._active_job_ids = active_job_ids
+
+    @property
+    def object_store_access(self):
+        """Gets the object_store_access of this FolderResponse.  # noqa: E501
+
+
+        :return: The object_store_access of this FolderResponse.  # noqa: E501
+        :rtype: ObjectStoreAccess
+        """
+        return self._object_store_access
+
+    @object_store_access.setter
+    def object_store_access(self, object_store_access):
+        """Sets the object_store_access of this FolderResponse.
+
+
+        :param object_store_access: The object_store_access of this FolderResponse.  # noqa: E501
+        :type: ObjectStoreAccess
+        """
+
+        self._object_store_access = object_store_access
 
     def to_dict(self):
         """Returns the model properties as a dict"""

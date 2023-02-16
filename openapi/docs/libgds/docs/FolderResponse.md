@@ -23,6 +23,9 @@ Name | Type | Description | Notes
 **job_status** | [**JobStatus**](JobStatus.md) |  | [optional] 
 **job_id** | **str** | The job identifier for the current folder operation. Currently only being used for the delete folder operation. | [optional] 
 **archive_job_storage_tier** | [**StorageTier**](StorageTier.md) |  | [optional] 
+**migration_status** | **str** | Status of the root folder migration status from v1 to v2 | [optional] 
+**active_job_ids** | **list[str]** | List of Jobs in Pending and In Progress status | [optional] 
+**object_store_access** | [**ObjectStoreAccess**](ObjectStoreAccess.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **execution** | [**Execution**](Execution.md) |  | [optional] 
 **task_version_summary** | [**TaskVersionSummary**](TaskVersionSummary.md) |  | [optional] 
 **logs** | [**list[TaskRunLogs]**](TaskRunLogs.md) |  | [optional] 
+**execution_raw_json** | **str** |  | [optional] 
 **acl** | **list[str]** | Access Control List | [optional] 
 **tenant_id** | **str** |  | [optional] 
 **sub_tenant_id** | **str** |  | [optional] 

@@ -48,7 +48,8 @@ class VolumeResponse(object):
         'modified_by': 'str',
         'job_status': 'JobStatus',
         'metadata': 'object',
-        'life_cycle': 'VolumeLifeCycleSettings'
+        'life_cycle': 'VolumeLifeCycleSettings',
+        'migration_status': 'str'
     }
 
     attribute_map = {
@@ -67,10 +68,11 @@ class VolumeResponse(object):
         'modified_by': 'modifiedBy',
         'job_status': 'jobStatus',
         'metadata': 'metadata',
-        'life_cycle': 'lifeCycle'
+        'life_cycle': 'lifeCycle',
+        'migration_status': 'migrationStatus'
     }
 
-    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, migration_status=None, local_vars_configuration=None):  # noqa: E501
         """VolumeResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -92,6 +94,7 @@ class VolumeResponse(object):
         self._job_status = None
         self._metadata = None
         self._life_cycle = None
+        self._migration_status = None
         self.discriminator = None
 
         if id is not None:
@@ -126,6 +129,8 @@ class VolumeResponse(object):
             self.metadata = metadata
         if life_cycle is not None:
             self.life_cycle = life_cycle
+        if migration_status is not None:
+            self.migration_status = migration_status
 
     @property
     def id(self):
@@ -490,6 +495,29 @@ class VolumeResponse(object):
         """
 
         self._life_cycle = life_cycle
+
+    @property
+    def migration_status(self):
+        """Gets the migration_status of this VolumeResponse.  # noqa: E501
+
+        Status of the root folder migration status from v1 to v2  # noqa: E501
+
+        :return: The migration_status of this VolumeResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._migration_status
+
+    @migration_status.setter
+    def migration_status(self, migration_status):
+        """Sets the migration_status of this VolumeResponse.
+
+        Status of the root folder migration status from v1 to v2  # noqa: E501
+
+        :param migration_status: The migration_status of this VolumeResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._migration_status = migration_status
 
     def to_dict(self):
         """Returns the model properties as a dict"""

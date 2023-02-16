@@ -38,7 +38,8 @@ class MountMappingWithCreds(object):
         'urn': 'str',
         'type': 'str',
         'storage_provider': 'str',
-        'credentials': 'dict(str, str)'
+        'credentials': 'dict(str, str)',
+        'service_url': 'str'
     }
 
     attribute_map = {
@@ -47,10 +48,11 @@ class MountMappingWithCreds(object):
         'urn': 'urn',
         'type': 'type',
         'storage_provider': 'storageProvider',
-        'credentials': 'credentials'
+        'credentials': 'credentials',
+        'service_url': 'serviceUrl'
     }
 
-    def __init__(self, path=None, url=None, urn=None, type=None, storage_provider=None, credentials=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, path=None, url=None, urn=None, type=None, storage_provider=None, credentials=None, service_url=None, local_vars_configuration=None):  # noqa: E501
         """MountMappingWithCreds - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -62,6 +64,7 @@ class MountMappingWithCreds(object):
         self._type = None
         self._storage_provider = None
         self._credentials = None
+        self._service_url = None
         self.discriminator = None
 
         if path is not None:
@@ -76,6 +79,8 @@ class MountMappingWithCreds(object):
             self.storage_provider = storage_provider
         if credentials is not None:
             self.credentials = credentials
+        if service_url is not None:
+            self.service_url = service_url
 
     @property
     def path(self):
@@ -202,6 +207,27 @@ class MountMappingWithCreds(object):
         """
 
         self._credentials = credentials
+
+    @property
+    def service_url(self):
+        """Gets the service_url of this MountMappingWithCreds.  # noqa: E501
+
+
+        :return: The service_url of this MountMappingWithCreds.  # noqa: E501
+        :rtype: str
+        """
+        return self._service_url
+
+    @service_url.setter
+    def service_url(self, service_url):
+        """Sets the service_url of this MountMappingWithCreds.
+
+
+        :param service_url: The service_url of this MountMappingWithCreds.  # noqa: E501
+        :type: str
+        """
+
+        self._service_url = service_url
 
     def to_dict(self):
         """Returns the model properties as a dict"""
