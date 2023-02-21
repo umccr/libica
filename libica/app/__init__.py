@@ -128,7 +128,7 @@ class AppHelper:
 
     def get_icav2_cli_session_project_id(self):
         session = self.get_icav2_cli_session()
-        project_id = os.getenv("ICA_PROJECT", session['project_id'])
+        project_id = os.getenv("ICAV2_PROJECT_ID", session['project_id'])
         return project_id
 
     def build_icav2_configuration(self):

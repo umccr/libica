@@ -2,7 +2,7 @@
 Usage:
     Set
         export ICAV2_ACCESS_TOKEN=...
-        export ICA_PROJECT=...
+        export ICAV2_PROJECT_ID=...
     Then
         python pilot.py
 """
@@ -16,7 +16,7 @@ from libica.openapi.v2.model.project_data_paged_list import ProjectDataPagedList
 
 if __name__ == '__main__':
 
-    project_id = os.environ['ICA_PROJECT']
+    project_id = os.environ['ICAV2_PROJECT_ID']
     file_path = ["/test_folder/"]  # empty will list everything under project
 
     icav2_access_token = os.environ['ICAV2_ACCESS_TOKEN']
