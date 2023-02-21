@@ -13,7 +13,17 @@ from libica.app import gds
 from libica.openapi import libgds
 from tests.app import IcaUnitTests, IcaIntegrationTests, logger
 
-file_id, gds_path = ("fil.482c722485f0403f40c108d95dc270f4", "gds://development/primary_data/200612_A01052_0017_BH5LYWDSXY/WGS_TsqNano/PTC_TsqN200511_L2000432_S1_L003_R1_001.fastq.gz")
+# NOTE:
+# This can be any available file in development.
+# Since in development context, they may come and go as time goes by.
+# So. this could get outdated and please do update this as see fit.
+# You can find one suitable one as follows.
+#
+# ica files list gds://development/primary_data/
+# ica files list gds://development/primary_data/210708_A00130_0166_AH7KTJDSX2/
+csv_file_dl_path = "gds://development/primary_data/210708_A00130_0166_AH7KTJDSX2/202203122acad425/10X_10X-ATAC/Reports/fastq_list.csv"  # pick something small csv
+# ica files get gds://development/primary_data/210708_A00130_0166_AH7KTJDSX2/202203122acad425/10X_10X-ATAC/PRJ210645_LPRJ210645_S1_L001_I1_001.fastq.gz
+file_id, gds_path = ("fil.c9e59c2937bd4ab1c84808d9fddc8a4d", "gds://development/primary_data/210708_A00130_0166_AH7KTJDSX2/202203122acad425/10X_10X-ATAC/PRJ210645_LPRJ210645_S1_L001_I1_001.fastq.gz")
 
 
 class GdsUnitTests(IcaUnitTests):
@@ -127,7 +137,9 @@ class GdsUnitTests(IcaUnitTests):
 class GdsIntegrationTests(IcaIntegrationTests):
     # integration test hit actual File or API endpoint, thus, manual run in most cases
     # required appropriate access mechanism setup such as active aws login session
-    # uncomment @skip and hit the each test case!
+    #
+    # export ICA_ACCESS_TOKEN=<ica_v1_development_project_context_jwt_token>
+    # uncomment @skip and hit each test case!
     # and keep decorated @skip after tested
 
     def setUp(self) -> None:
@@ -159,7 +171,7 @@ class GdsIntegrationTests(IcaIntegrationTests):
         python -m unittest tests.app.test_gds.GdsIntegrationTests.test_check_file_not_found
         """
         try:
-            gds.check_file("gds://umccr-fastq-data-dev/I_AM_NOT_EXIST.csv")
+            gds.check_file("gds://development/I_DO_NOT_EXIST.csv")
         except Exception as e:
             logger.exception(f"THIS ERROR EXCEPTION IS INTENTIONAL FOR TEST. NOT ACTUAL ERROR. \n{e}")
         self.assertRaises(FileNotFoundError)
@@ -169,9 +181,8 @@ class GdsIntegrationTests(IcaIntegrationTests):
         """
         python -m unittest tests.app.test_gds.GdsIntegrationTests.test_download_gds_file
         """
-        dl_path = "gds://development/primary_data/200612_A01052_0017_BH5LYWDSXY/samplesheets-by-assay-type/SampleSheet.TSO-DNA_TSODNA.csv"
 
-        vol, path = gds.parse_path(dl_path)
+        vol, path = gds.parse_path(csv_file_dl_path)
         ntf: NamedTemporaryFile = gds.download_gds_file(vol, path)
         self.assertIsNotNone(ntf)
 

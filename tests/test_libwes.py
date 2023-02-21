@@ -32,6 +32,9 @@ class LibWESIntegrationTests(TestCase):
         self.api_client.pool.close()
 
     def test_get_workflow(self):
+        """
+        python -m unittest tests.test_libwes.LibWESIntegrationTests.test_get_workflow
+        """
         wfl_api: libwes.WorkflowsApi = libwes.WorkflowsApi(self.api_client)
         wfl_id = "mock"
         wfl: Workflow = wfl_api.get_workflow(workflow_id=wfl_id)
@@ -39,6 +42,9 @@ class LibWESIntegrationTests(TestCase):
         _logger.info(wfl.name)
 
     def test_list_workflows(self):
+        """
+        python -m unittest tests.test_libwes.LibWESIntegrationTests.test_list_workflows
+        """
         wfl_api: libwes.WorkflowsApi = libwes.WorkflowsApi(self.api_client)
         try:
             page_token = None
@@ -58,7 +64,7 @@ class LibWESIntegrationTests(TestCase):
 
     def test_get_workflow_version(self):
         """
-        python -m unittest tests.integration.test_libwes.LibWESIntegrationTests.test_get_workflow_version
+        python -m unittest tests.test_libwes.LibWESIntegrationTests.test_get_workflow_version
         """
         wfv_api: libwes.WorkflowVersionsApi = libwes.WorkflowVersionsApi(self.api_client)
         wfv: WorkflowVersion = wfv_api.get_workflow_version(workflow_id="wfl.id_does_matter", version_name="v1")
@@ -67,7 +73,7 @@ class LibWESIntegrationTests(TestCase):
 
     def test_update_workflow_version(self):
         """
-        python -m unittest tests.integration.test_libwes.LibWESIntegrationTests.test_update_workflow_version
+        python -m unittest tests.test_libwes.LibWESIntegrationTests.test_update_workflow_version
         """
         wfv_api: libwes.WorkflowVersionsApi = libwes.WorkflowVersionsApi(self.api_client)
 
