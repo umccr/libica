@@ -6,7 +6,7 @@
 
 ### App for ICA v2
 
-See [pilotapp.py](https://github.com/umccr-illumina/libica/blob/main/pilotapp.py)
+See [pilotapp.py](https://github.com/umccr-illumina/libica/blob/main/examples/pilotapp.py)
 
 Example: `ProjectDataOps` app to list project files, download a file, etc...
 

@@ -23,7 +23,7 @@ pip install libica
 
 ## Getting started with SDK for ICA v2
 
-See [pilot.py](https://github.com/umccr-illumina/libica/blob/main/pilot.py)
+See [pilot.py](https://github.com/umccr-illumina/libica/blob/main/examples/pilot.py)
 
 ```python
 # List all data in a project
@@ -143,7 +143,7 @@ with libwes.ApiClient(configuration) as api_client:
 
 ### App for ICA v2
 
-See [pilotapp.py](https://github.com/umccr-illumina/libica/blob/main/pilotapp.py)
+See [pilotapp.py](https://github.com/umccr-illumina/libica/blob/main/examples/pilotapp.py)
 
 Example: `ProjectDataOps` app to list project files, download a file, etc...
 
