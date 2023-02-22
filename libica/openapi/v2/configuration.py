@@ -124,7 +124,7 @@ conf = libica.openapi.v2.Configuration(
                  disabled_client_side_validations="",
                  server_index=None, server_variables=None,
                  server_operation_index=None, server_operation_variables=None,
-                 ssl_ca_cert=None,
+                 ssl_ca_cert=None, form_filename_basename=True,
                  ):
         """Constructor
         """
@@ -232,6 +232,10 @@ conf = libica.openapi.v2.Configuration(
 
         # Options to pass down to the underlying urllib3 socket
         self.socket_options = None
+
+        # FIXME form filename basename wrapping or not
+        #  See use case https://github.com/umccr-illumina/libica/issues/74
+        self.form_filename_basename = form_filename_basename
 
     def __deepcopy__(self, memo):
         cls = self.__class__

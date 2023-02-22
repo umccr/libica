@@ -549,6 +549,10 @@ class ApiClient(object):
                         "for %s must be open." % param_name
                     )
                 filename = os.path.basename(file_instance.name)
+                # FIXME check ApiClient Configuration to see whether we wish to unwrap basename for filename
+                #  See use case https://github.com/umccr-illumina/libica/issues/74
+                if not self.configuration.form_filename_basename:
+                    filename = file_instance.name  # allow as-is user pass-in filename
                 filedata = self.get_file_data_and_close_file(file_instance)
                 mimetype = (mimetypes.guess_type(filename)[0] or
                             'application/octet-stream')
