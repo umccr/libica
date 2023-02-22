@@ -1,3 +1,12 @@
+2.2.0rc1
+-----
+* Release date: 2023-02-XX
+* Updated for upstream ICA v2 API Release "DD Feb 2023 - ICA v2.x.x and CLI v2.x.x"
+* Updated for upstream ICA v1 API Release
+* Dropped Python 3.6 support
+* Added Python 3.11 support
+* See [milestone 2.2.0 for all related PRs](https://github.com/umccr-illumina/libica/milestone/7?closed=1)
+
 2.1.0
 -----
 * Release date: 2022-06-14

@@ -14,7 +14,7 @@ pip install libica
 
 ## Overview
 
-- Tested for Python 3.6, 3.7, 3.8, 3.9, 3.10
+- Tested for Python 3.7, 3.8, 3.9, 3.10, 3.11
 - See [ChangeLog](https://github.com/umccr-illumina/libica/blob/main/CHANGELOG.md) and [Milestones](https://github.com/umccr-illumina/libica/milestones?state=closed)
 - [Test Coverage](https://umccr-illumina.github.io/libica/coverage/)
 - [Wiki](https://github.com/umccr-illumina/libica/wiki)
@@ -268,7 +268,7 @@ make test
 - These tools are Node.js app, hence, required build tools `node`, `npm`, `npx` and `yarn` as follows.
 ```commandline
 node -v
- v14.19.0
+ v16.15.0
 npm -i -g yarn
 yarn install
 npx openapi-generator-cli help
