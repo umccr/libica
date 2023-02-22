@@ -11,7 +11,7 @@ from libica.openapi.v2.model.project_data import ProjectData
 from libica.openapi.v2.model.project_data_paged_list import ProjectDataPagedList
 from libica.openapi.v2.model.project_paged_list import ProjectPagedList
 from libica.openapi.v2.model.project_tag import ProjectTag
-from . import _logger, MOCK_EP
+from .. import _logger, MOCK_EP
 
 
 class ProjectIntegrationTests(TestCase):
@@ -35,7 +35,7 @@ class ProjectIntegrationTests(TestCase):
 
     def test_get_project(self):
         """
-        python -m unittest tests.test_project.ProjectIntegrationTests.test_get_project
+        python -m unittest tests.v2.test_project.ProjectIntegrationTests.test_get_project
         """
         project_api: ProjectApi = ProjectApi(api_client=self.api_client)
         project_id = "mock"
@@ -48,7 +48,7 @@ class ProjectIntegrationTests(TestCase):
 
     def test_get_projects(self):
         """
-        python -m unittest tests.test_project.ProjectIntegrationTests.test_get_projects
+        python -m unittest tests.v2.test_project.ProjectIntegrationTests.test_get_projects
         """
         project_api: ProjectApi = ProjectApi(api_client=self.api_client)
         try:
@@ -73,7 +73,7 @@ class ProjectIntegrationTests(TestCase):
 
     def test_create_project(self):
         """
-        python -m unittest tests.test_project.ProjectIntegrationTests.test_create_project
+        python -m unittest tests.v2.test_project.ProjectIntegrationTests.test_create_project
         """
         project_api: ProjectApi = ProjectApi(api_client=self.api_client)
         create_project = CreateProject(
@@ -106,7 +106,7 @@ class ProjectIntegrationTests(TestCase):
 
     def test_get_project_data_list(self):
         """
-        python -m unittest tests.test_project.ProjectIntegrationTests.test_get_project_data_list
+        python -m unittest tests.v2.test_project.ProjectIntegrationTests.test_get_project_data_list
         """
         project_data_api: ProjectDataApi = ProjectDataApi(api_client=self.api_client)
         mock_project_id = str(uuid.uuid4())
