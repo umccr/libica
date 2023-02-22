@@ -178,8 +178,7 @@ def download_gds_file(volume_name: str, path: str) -> (NamedTemporaryFile, None)
     return ntf
 
 
-def presign_gds_file(file_id: str, volume_name: str, path_: str, presigned_url_mode: str = "Attachment") -> (
-bool, str):
+def presign_gds_file(file_id: str, volume_name: str, path_: str, presigned_url_mode: str = "Attachment") -> (bool, str):
     with libgds.ApiClient(configuration(libgds)) as gds_client:
         files_api = libgds.FilesApi(gds_client)
         try:

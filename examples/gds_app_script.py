@@ -6,15 +6,18 @@ Usage:
         export ICA_ACCESS_TOKEN=...
         export ICA_BASE_URL=...
     Then
-        python gds.py
+        python gds_app_script.py
 """
 from libica.app import gds
 
 
 def get_gds_presigned_url():
-    is_success, val = gds.presign_gds_file(file_id="fil.{NUMBER}", volume_name="development",
-                                           path_="somePath",
-                                           presigned_url_mode="inline")
+    is_success, val = gds.presign_gds_file(
+        file_id="fil.7a02239fb56f4f8ac22508d98cef9222",
+        volume_name="development",
+        path_="/reference-data/genomes/hg38/hg38.fa",
+        presigned_url_mode="inline",  # default is Attachment mode
+    )
 
     if is_success:
         print('PresignedUrl:', val)
