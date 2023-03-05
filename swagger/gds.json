@@ -2998,6 +2998,52 @@
         }
       }
     },
+    "AwsS3TemporaryReadOnlyCredentials": {
+      "type": "object",
+      "properties": {
+        "access_Key_Id": {
+          "description": "Access key for use with AWS S3",
+          "type": "string"
+        },
+        "secret_Access_Key": {
+          "description": "Secret key for use with AWS S3",
+          "type": "string"
+        },
+        "session_Token": {
+          "description": "Token for use with AWS S3",
+          "type": "string"
+        },
+        "region": {
+          "description": "AWS region the folder will/does reside in",
+          "type": "string"
+        },
+        "bucketName": {
+          "description": "AWS bucket the folder will/does reside in",
+          "type": "string"
+        },
+        "keyPrefix": {
+          "description": "AWS upload location for this folder",
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "description": "expiration for temporary credentials",
+          "type": "string"
+        },
+        "serviceUrl": {
+          "description": "Service endpoint for accessing S3.\r\nThis is optional for AWS S3, but mandatory for other services like Taiwan Computing Cloud.",
+          "type": "string"
+        },
+        "serverSideEncryptionAlgorithm": {
+          "description": "Used to specify the type of server-side encryption (SSE) to be used on the object provider.\r\nThis value is used to determine the Amazon S3 header \"x-amz-server-side-encryption\" value.\r\nFor example, specify \"AES256\" for SSE-S3, or \"AWS:KMS\" for SSE-KMS.\r\nBy default if none is specified, \"AES256\" will be used.",
+          "type": "string"
+        },
+        "serverSideEncryptionKey": {
+          "description": "Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm\r\nThis value can be the AWS KMS arn key, to be used for the Amazon S3 header \"x-amz-server-side-encryption-aws-kms-key-id\" value\r\nValue will be ignored if encryption is \"AES256\"",
+          "type": "string"
+        }
+      }
+    },
     "AwsS3TemporaryUploadCredentials": {
       "description": "AwsS3TemporaryUploadCredentials",
       "type": "object",
@@ -4554,6 +4600,9 @@
         },
         "awsS3PresignedUrlForUpload": {
           "$ref": "#/definitions/AwsS3PresignedUrlForUpload"
+        },
+        "awsS3TemporaryReadOnlyCredentials": {
+          "$ref": "#/definitions/AwsS3TemporaryReadOnlyCredentials"
         }
       }
     },
