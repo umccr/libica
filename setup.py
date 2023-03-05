@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="libica",
-    version="2.2.0rc1",
+    version="2.2.0rc2",
     url="https://github.com/umccr-illumina/libica",
     license="MIT",
     author="UMCCR and Contributors",
@@ -18,6 +18,7 @@ setup(
         "Bug Tracker": "https://github.com/umccr-illumina/libica/issues",
     },
     classifiers=[
+        "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",

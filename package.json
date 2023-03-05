@@ -4,7 +4,6 @@
     "@openapitools/openapi-generator-cli": "^2.5.2"
   },
   "resolutions": {
-    "validator": "^13.7.0",
-    "minimatch": "^3.0.5"
+    "validator": "^13.7.0"
   }
 }

@@ -17,6 +17,7 @@ from __future__ import absolute_import
 from libica.openapi.libgds.models.awss3_object_store_setting import AWSS3ObjectStoreSetting
 from libica.openapi.libgds.models.archive_statuses import ArchiveStatuses
 from libica.openapi.libgds.models.aws_s3_presigned_url_for_upload import AwsS3PresignedUrlForUpload
+from libica.openapi.libgds.models.aws_s3_temporary_read_only_credentials import AwsS3TemporaryReadOnlyCredentials
 from libica.openapi.libgds.models.aws_s3_temporary_upload_credentials import AwsS3TemporaryUploadCredentials
 from libica.openapi.libgds.models.bulk_failed_item import BulkFailedItem
 from libica.openapi.libgds.models.bulk_file_update_item import BulkFileUpdateItem
