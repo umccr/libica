@@ -1,7 +1,7 @@
-2.2.0rc1
+2.2.0
 -----
-* Release date: 2023-02-XX
-* Updated for upstream ICA v2 API Release "DD Feb 2023 - ICA v2.x.x and CLI v2.x.x"
+* Release date: 2023-02-06
+* Updated for upstream ICA v2 API Release -- [28 February 2023 - ICA v2.13.0](https://help.ica.illumina.com/reference/r-releasenotes#28-february-2023-ica-v2.13.0)
 * Updated for upstream ICA v1 API Release
 * Dropped Python 3.6 support
 * Added Python 3.11 support
@@ -10,7 +10,7 @@
 2.1.0
 -----
 * Release date: 2022-06-14
-* Updated for upstream ICA v2 API Release "07 June 2022 - ICA v2.6.0 and CLI v2.3.0"
+* Updated for upstream ICA v2 API Release -- [07 June 2022 - ICA v2.6.0 and CLI v2.3.0](https://help.ica.illumina.com/reference/r-releasenotes#07-june-2022-ica-v2.6.0-and-cli-v2.3.0)
 * Updated for upstream ICA v1 API Release -- _apparently a couple of updates in GDS_
 * Refactored and improved App package
 * Added Python 3.10 support

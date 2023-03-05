@@ -1,5 +1,6 @@
 import json
 import os
+from importlib.metadata import version
 
 import libica
 from libica.openapi.v2 import Configuration
@@ -15,6 +16,8 @@ configuration = Configuration(
     host=ica_url,
     access_token=icav2_access_token,
 )
+
+
 # configuration.debug = True  # uncomment to debug API call logging
 
 
@@ -44,6 +47,8 @@ def get_activation_id(project_id: str, pipeline_id: str, analysis_input) -> str:
 
 
 if __name__ == '__main__':
+    print(f"libica-{version('libica')}")
+    print("-" * 64)
 
     cwl_analysis_input = CwlAnalysisJsonInput(
         object_type='JSON',  # STRUCTURED or JSON
@@ -56,4 +61,4 @@ if __name__ == '__main__':
         analysis_input=cwl_analysis_input
     )
 
-    print(activation_id)
+    print(f"activation_id: {activation_id}")

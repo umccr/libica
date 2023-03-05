@@ -9,10 +9,15 @@ Debug:
     export ICAV2_ACCESS_TOKEN=blah
     cd examples
     python create_cwl_pipeline.py
+
+Check:
+    Check created CWL pipeline using CLI as follows
+    icav2 projectpipelines list | grep libica
 """
 
 import os
 import uuid
+from importlib.metadata import version
 from pathlib import Path
 
 import libica
@@ -30,6 +35,10 @@ configuration = Configuration(
 # configuration.debug = True  # uncomment to debug API call logging
 
 if __name__ == '__main__':
+
+    print(f"libica-{version('libica')}")
+    print("-" * 64)
+
     workflow_package = "tabix-workflow__0.2.6__1677025399"
 
     workflow_files = [
