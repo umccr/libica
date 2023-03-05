@@ -336,10 +336,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
+          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
-          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -1838,12 +1838,12 @@ paths:
           - INFO
       - name: dateFrom
         in: query
-        description: Date from
+        description: "Date from. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z"
         schema:
           type: string
       - name: dateUntil
         in: query
-        description: Date until
+        description: "Date until. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z"
         schema:
           type: string
       - name: rows
@@ -3845,38 +3845,6 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/CwlAnalysisOutputJson'
-  /api/projects/{projectId}/data:createDownloadUrls:
-    post:
-      tags:
-      - Project Data
-      summary: Retrieve download URLs for the data.
-      description: "Can be used to download files directly from the region where it\
-        \ is located, no connector is needed. Not applicable for Folders."
-      operationId: createDownloadUrlsForData
-      parameters:
-      - name: projectId
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/vnd.illumina.v3+json:
-            schema:
-              $ref: '#/components/schemas/DataUrlIdList'
-      responses:
-        default:
-          description: A problem occurred.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        "200":
-          description: The download URLs are successfully retrieved.
-          content:
-            application/vnd.illumina.v3+json:
-              schema:
-                $ref: '#/components/schemas/DataUrlList'
   /api/projects/{projectId}/data:
     get:
       tags:
@@ -3932,10 +3900,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
+          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
-          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -4264,10 +4232,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
+          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
-          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -6258,70 +6226,6 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectPipeline'
-  /api/projects/{projectId}/samples:search:
-    post:
-      tags:
-      - Project Sample
-      summary: Retrieve project samples.
-      description: "Endpoint for retrieving project samples. This is a non-RESTful\
-        \ endpoint, as the path of this endpoint is not representing a REST resource."
-      operationId: getProjectSamples
-      parameters:
-      - name: pageOffset
-        in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
-        schema:
-          type: string
-      - name: pageToken
-        in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
-        schema:
-          type: string
-      - name: pageSize
-        in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
-        schema:
-          type: string
-      - name: sort
-        in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
-          - timeModified\n- name\n- description\n- metadataValid\n- status"
-        schema:
-          type: string
-      - name: projectId
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/vnd.illumina.v3+json:
-            schema:
-              $ref: '#/components/schemas/FindProjectSamples'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/FindProjectSamples'
-      responses:
-        default:
-          description: A problem occurred.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        "200":
-          description: The project samples are successfully retrieved.
-          content:
-            application/vnd.illumina.v3+json:
-              schema:
-                $ref: '#/components/schemas/ProjectSamplePagedList'
   /api/projects/{projectId}/samples:
     post:
       tags:
@@ -6669,10 +6573,10 @@ paths:
           \ (abc.txt and ABC.txt)."
         schema:
           type: string
+          default: STARTS_WITH_CASE_INSENSITIVE
           enum:
           - STARTS_WITH_CASE_INSENSITIVE
           - FULL_CASE_INSENSITIVE
-          default: STARTS_WITH_CASE_INSENSITIVE
       - name: status
         in: query
         description: The statuses to filter on.
@@ -8206,6 +8110,102 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/Workgroup'
+  /api/projects/{projectId}/data:createDownloadUrls:
+    post:
+      tags:
+      - Project Data
+      summary: Retrieve download URLs for the data.
+      description: "Can be used to download files directly from the region where it\
+        \ is located, no connector is needed. Not applicable for Folders."
+      operationId: createDownloadUrlsForData
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/DataIdOrPathList'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The download URLs are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/DataUrlWithPathList'
+  /api/projects/{projectId}/samples:search:
+    post:
+      tags:
+      - Project Sample
+      summary: Retrieve project samples.
+      description: "Endpoint for retrieving project samples. This is a non-RESTful\
+        \ endpoint, as the path of this endpoint is not representing a REST resource."
+      operationId: getProjectSamples
+      parameters:
+      - name: pageOffset
+        in: query
+        description: The amount of rows to skip in the result. Ideally this is a multiple
+          of the size parameter. Offset-based pagination has a result limit of 200K
+          rows and does not guarantee unique results across pages
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: The cursor to get subsequent results. The value to use is returned
+          in the result when using cursor-based pagination. Cursor-based pagination
+          guarantees complete and unique results across all pages.
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: The amount of rows to return. Use in combination with the offset
+          or cursor parameter to get subsequent results.
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "Which field to order the results by. The default order is ascending,\
+          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
+          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
+          \ lastName desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
+          - timeModified\n- name\n- description\n- metadataValid\n- status"
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/FindProjectSamples'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FindProjectSamples'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project samples are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectSamplePagedList'
 components:
   schemas:
     Problem:
@@ -8441,7 +8441,6 @@ components:
         region:
           type: string
           description: The region where the country belong to.
-      nullable: true
     Link:
       required:
       - name
@@ -9324,38 +9323,6 @@ components:
           type: string
           description: The key provided via other channels to initialize the installation.
           nullable: true
-        country:
-          $ref: '#/components/schemas/Country'
-        addressLine1:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
-        addressLine2:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
-        addressLine3:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
-        postalCode:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
-        city:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
-        state:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
         description:
           type: string
           description: The general description of the connector instance including
@@ -9423,42 +9390,6 @@ components:
           type: string
         active:
           type: boolean
-        countryId:
-          type: string
-          description: ID of the country. If not provided then the country of the
-            tenant will be used.
-          format: uuid
-          nullable: true
-        addressLine1:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
-        addressLine2:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
-        addressLine3:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
-        postalCode:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
-        city:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
-        state:
-          maxLength: 255
-          minLength: 1
-          type: string
-          nullable: true
         description:
           type: string
           description: The general description of the connector instance including
@@ -10624,6 +10555,7 @@ components:
           type: array
           items:
             type: string
+      nullable: true
     FieldList:
       required:
       - items
@@ -11704,11 +11636,11 @@ components:
           description: "Indicates the priority given to a project and its analyses\
             \ within a single tenant, where Medium is the default value."
           nullable: true
+          default: Medium
           enum:
           - Low
           - Medium
           - High
-          default: Medium
     ProjectBundle:
       required:
       - bundle
@@ -11968,10 +11900,10 @@ components:
           type: string
           description: Encoding
           nullable: true
+          default: UTF8
           enum:
           - UTF8
           - ISO88591
-          default: UTF8
         forceLoad:
           type: boolean
           description: "When false (default): the data will not be loaded if it was\
@@ -12041,11 +11973,11 @@ components:
           type: string
           description: specifies how to write data in the table.
           nullable: true
+          default: APPENDTOTABLE
           enum:
           - WRITEIFEMPTY
           - APPENDTOTABLE
           - OVERWRITETABLE
-          default: APPENDTOTABLE
     CreateCustomEvent:
       required:
       - code
@@ -12159,44 +12091,6 @@ components:
         outputJson:
           type: string
           description: The output json of the CWL analysis.
-    DataUrl:
-      required:
-      - dataId
-      - dataUrn
-      - url
-      type: object
-      properties:
-        dataId:
-          type: string
-          description: The id of the file/folder as it was uploaded.
-        dataUrn:
-          type: string
-          description: "The URN of this data. The format is urn:ilmn:ica:region:\\\
-            <ID of the region\\>:data:\\<ID of the data\\>#\\<optional data path\\\
-            >. The path can be omitted, in that case the hashtag (#) must also be\
-            \ omitted."
-        url:
-          type: string
-    DataUrlList:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataUrl'
-    DataUrlIdList:
-      required:
-      - dataIds
-      type: object
-      properties:
-        dataIds:
-          maxItems: 2147483647
-          minItems: 1
-          type: array
-          items:
-            type: string
     ProjectData:
       required:
       - data
@@ -13072,10 +12966,10 @@ components:
               type: boolean
             wildcardSubtype:
               type: boolean
-        bodyAsString:
-          type: string
         contentTypeFromMessage:
           type: boolean
+        bodyAsString:
+          type: string
     MultipartFormDataInput:
       type: object
       properties:
@@ -13165,234 +13059,6 @@ components:
         projectId:
           type: string
           format: uuid
-    ProjectSamplePagedList:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectSample'
-        nextPageToken:
-          maxLength: 2000
-          minLength: 0
-          type: string
-          description: The cursor to request the next page. For offset-based paging
-            the value is an empty string.
-          nullable: true
-        remainingRecords:
-          minimum: 0
-          type: integer
-          description: The number of records remaining (used in cursor based pagination)
-          format: int64
-          nullable: true
-        totalItemCount:
-          minimum: 0
-          type: integer
-          description: The total number of records matching the search criteria (used
-            in offset based pagination)
-          format: int64
-          nullable: true
-    FieldId:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-      nullable: true
-    FindProjectSamples:
-      required:
-      - booleanConditions
-      - conditions
-      - dateConditions
-      - numberConditions
-      type: object
-      properties:
-        conditions:
-          type: array
-          description: Adds a condition on a string field.
-          items:
-            $ref: '#/components/schemas/FindSampleCondition'
-        dateConditions:
-          type: array
-          description: Adds a condition on a date metadate field. If both the dateBefore
-            and dateAfter parameter are null it will return any sample that has no
-            value for the date field.
-          items:
-            $ref: '#/components/schemas/FindSampleDateCondition'
-        numberConditions:
-          type: array
-          description: Adds a condition on a number metadata field. If both the lowerBoundary
-            and upperBoundary parameter are null it will return any sample that has
-            no value for the number field.
-          items:
-            $ref: '#/components/schemas/FindSampleNumberCondition'
-        booleanConditions:
-          type: array
-          description: Adds a condition on a boolean field.
-          items:
-            $ref: '#/components/schemas/FindSampleBooleanCondition'
-        fullTextSearchString:
-          type: string
-          description: "Adds a fuzzy matching condition for the text on all string\
-            \ fields of the sample i.e. on both the fixed fields (name, description)\
-            \ as any metadata text field."
-          nullable: true
-        includeDeleted:
-          type: boolean
-          description: Indicates whether deleted samples should be included.
-          nullable: true
-          default: false
-        userTags:
-          type: array
-          description: The usertags to filter on. The userTagMatchMode-parameter determines
-            how the filtering is done.
-          nullable: true
-          items:
-            type: string
-            description: The usertags to filter on. The userTagMatchMode-parameter
-              determines how the filtering is done.
-            nullable: true
-        userTagMatchMode:
-          type: string
-          description: How the usertags are filtered.
-          nullable: true
-          enum:
-          - EXACT
-          - EXCLUDE
-          - FUZZY
-        runInputTags:
-          type: array
-          description: The runInputTags to filter on. The runInputTagMatchMode-parameter
-            determines how the filtering is done.
-          nullable: true
-          items:
-            type: string
-            description: The runInputTags to filter on. The runInputTagMatchMode-parameter
-              determines how the filtering is done.
-            nullable: true
-        runInputTagMatchMode:
-          type: string
-          description: How the runInputTags are filtered.
-          nullable: true
-          enum:
-          - EXACT
-          - EXCLUDE
-          - FUZZY
-        connectorTags:
-          type: array
-          description: The connectorTags to filter on. The connectorTagMatchMode-parameter
-            determines how the filtering is done.
-          nullable: true
-          items:
-            type: string
-            description: The connectorTags to filter on. The connectorTagMatchMode-parameter
-              determines how the filtering is done.
-            nullable: true
-        connectorTagMatchMode:
-          type: string
-          description: How the connectorTags are filtered.
-          nullable: true
-          enum:
-          - EXACT
-          - EXCLUDE
-          - FUZZY
-        techTags:
-          type: array
-          description: The technicalTags to filter on. The techTagMatchMode-parameter
-            determines how the filtering is done.
-          nullable: true
-          items:
-            type: string
-            description: The technicalTags to filter on. The techTagMatchMode-parameter
-              determines how the filtering is done.
-            nullable: true
-        techTagMatchMode:
-          type: string
-          description: How the technicalTags are filtered.
-          nullable: true
-          enum:
-          - EXACT
-          - EXCLUDE
-          - FUZZY
-        instrumentRunIds:
-          type: array
-          nullable: true
-          items:
-            type: string
-            nullable: true
-    FindSampleBooleanCondition:
-      type: object
-      properties:
-        metadataField:
-          $ref: '#/components/schemas/Field'
-        field:
-          type: string
-          nullable: true
-        value:
-          type: string
-          nullable: true
-      description: Adds a condition on a boolean field.
-    FindSampleCondition:
-      required:
-      - values
-      type: object
-      properties:
-        metadataField:
-          $ref: '#/components/schemas/FieldId'
-        field:
-          type: string
-          nullable: true
-        matchMode:
-          type: string
-          description: Defines how the value will be matched.
-          nullable: true
-          enum:
-          - EXACT
-          - EXCLUDE
-          - FUZZY
-        values:
-          uniqueItems: true
-          type: array
-          items:
-            type: string
-      description: Adds a condition on a string field.
-    FindSampleDateCondition:
-      type: object
-      properties:
-        metadataField:
-          $ref: '#/components/schemas/FieldId'
-        field:
-          type: string
-          nullable: true
-        beforeDate:
-          type: string
-          nullable: true
-        afterDate:
-          type: string
-          nullable: true
-      description: Adds a condition on a date metadate field. If both the dateBefore
-        and dateAfter parameter are null it will return any sample that has no value
-        for the date field.
-    FindSampleNumberCondition:
-      type: object
-      properties:
-        metadataField:
-          $ref: '#/components/schemas/FieldId'
-        field:
-          type: string
-          nullable: true
-        lowerBound:
-          type: string
-          nullable: true
-        upperBound:
-          type: string
-          nullable: true
-      description: Adds a condition on a number metadata field. If both the lowerBoundary
-        and upperBoundary parameter are null it will return any sample that has no
-        value for the number field.
     CreateSample:
       required:
       - name
@@ -13485,6 +13151,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SampleHistory'
+    FieldId:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+      nullable: true
     UpdateMetadata:
       type: object
       properties:
@@ -13979,6 +13653,273 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Workgroup'
+    DataUrlWithPath:
+      required:
+      - dataId
+      - dataPath
+      - dataUrn
+      - url
+      type: object
+      properties:
+        dataId:
+          type: string
+          description: The id of the file/folder as it was uploaded.
+        dataUrn:
+          type: string
+          description: "The URN of this data. The format is urn:ilmn:ica:region:\\\
+            <ID of the region\\>:data:\\<ID of the data\\>#\\<optional data path\\\
+            >. The path can be omitted, in that case the hashtag (#) must also be\
+            \ omitted."
+        dataPath:
+          type: string
+        url:
+          type: string
+    DataUrlWithPathList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataUrlWithPath'
+    DataIdOrPathList:
+      type: object
+      properties:
+        dataIds:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          items:
+            type: string
+        dataPaths:
+          maxItems: 2147483647
+          minItems: 1
+          type: array
+          items:
+            type: string
+    ProjectSamplePagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectSample'
+        nextPageToken:
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    FindProjectSamples:
+      required:
+      - booleanConditions
+      - conditions
+      - dateConditions
+      - numberConditions
+      type: object
+      properties:
+        conditions:
+          type: array
+          description: Adds a condition on a string field.
+          items:
+            $ref: '#/components/schemas/FindSampleCondition'
+        dateConditions:
+          type: array
+          description: Adds a condition on a date metadate field. If both the dateBefore
+            and dateAfter parameter are null it will return any sample that has no
+            value for the date field.
+          items:
+            $ref: '#/components/schemas/FindSampleDateCondition'
+        numberConditions:
+          type: array
+          description: Adds a condition on a number metadata field. If both the lowerBoundary
+            and upperBoundary parameter are null it will return any sample that has
+            no value for the number field.
+          items:
+            $ref: '#/components/schemas/FindSampleNumberCondition'
+        booleanConditions:
+          type: array
+          description: Adds a condition on a boolean field.
+          items:
+            $ref: '#/components/schemas/FindSampleBooleanCondition'
+        fullTextSearchString:
+          type: string
+          description: "Adds a fuzzy matching condition for the text on all string\
+            \ fields of the sample i.e. on both the fixed fields (name, description)\
+            \ as any metadata text field."
+          nullable: true
+        includeDeleted:
+          type: boolean
+          description: Indicates whether deleted samples should be included.
+          nullable: true
+          default: false
+        userTags:
+          type: array
+          description: The usertags to filter on. The userTagMatchMode-parameter determines
+            how the filtering is done.
+          nullable: true
+          items:
+            type: string
+            description: The usertags to filter on. The userTagMatchMode-parameter
+              determines how the filtering is done.
+            nullable: true
+        userTagMatchMode:
+          type: string
+          description: How the usertags are filtered.
+          nullable: true
+          enum:
+          - EXACT
+          - EXCLUDE
+          - FUZZY
+        runInputTags:
+          type: array
+          description: The runInputTags to filter on. The runInputTagMatchMode-parameter
+            determines how the filtering is done.
+          nullable: true
+          items:
+            type: string
+            description: The runInputTags to filter on. The runInputTagMatchMode-parameter
+              determines how the filtering is done.
+            nullable: true
+        runInputTagMatchMode:
+          type: string
+          description: How the runInputTags are filtered.
+          nullable: true
+          enum:
+          - EXACT
+          - EXCLUDE
+          - FUZZY
+        connectorTags:
+          type: array
+          description: The connectorTags to filter on. The connectorTagMatchMode-parameter
+            determines how the filtering is done.
+          nullable: true
+          items:
+            type: string
+            description: The connectorTags to filter on. The connectorTagMatchMode-parameter
+              determines how the filtering is done.
+            nullable: true
+        connectorTagMatchMode:
+          type: string
+          description: How the connectorTags are filtered.
+          nullable: true
+          enum:
+          - EXACT
+          - EXCLUDE
+          - FUZZY
+        techTags:
+          type: array
+          description: The technicalTags to filter on. The techTagMatchMode-parameter
+            determines how the filtering is done.
+          nullable: true
+          items:
+            type: string
+            description: The technicalTags to filter on. The techTagMatchMode-parameter
+              determines how the filtering is done.
+            nullable: true
+        techTagMatchMode:
+          type: string
+          description: How the technicalTags are filtered.
+          nullable: true
+          enum:
+          - EXACT
+          - EXCLUDE
+          - FUZZY
+        instrumentRunIds:
+          type: array
+          nullable: true
+          items:
+            type: string
+            nullable: true
+    FindSampleBooleanCondition:
+      type: object
+      properties:
+        metadataField:
+          $ref: '#/components/schemas/Field'
+        field:
+          type: string
+          nullable: true
+        value:
+          type: string
+          nullable: true
+      description: Adds a condition on a boolean field.
+    FindSampleCondition:
+      required:
+      - values
+      type: object
+      properties:
+        metadataField:
+          $ref: '#/components/schemas/FieldId'
+        field:
+          type: string
+          nullable: true
+        matchMode:
+          type: string
+          description: Defines how the value will be matched.
+          nullable: true
+          enum:
+          - EXACT
+          - EXCLUDE
+          - FUZZY
+        values:
+          uniqueItems: true
+          type: array
+          items:
+            type: string
+      description: Adds a condition on a string field.
+    FindSampleDateCondition:
+      type: object
+      properties:
+        metadataField:
+          $ref: '#/components/schemas/FieldId'
+        field:
+          type: string
+          nullable: true
+        beforeDate:
+          type: string
+          description: "Before date. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z"
+          nullable: true
+        afterDate:
+          type: string
+          description: "After date. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z"
+          nullable: true
+      description: Adds a condition on a date metadate field. If both the dateBefore
+        and dateAfter parameter are null it will return any sample that has no value
+        for the date field.
+    FindSampleNumberCondition:
+      type: object
+      properties:
+        metadataField:
+          $ref: '#/components/schemas/FieldId'
+        field:
+          type: string
+          nullable: true
+        lowerBound:
+          type: string
+          nullable: true
+        upperBound:
+          type: string
+          nullable: true
+      description: Adds a condition on a number metadata field. If both the lowerBoundary
+        and upperBoundary parameter are null it will return any sample that has no
+        value for the number field.
   securitySchemes:
     JwtAuth:
       type: http
