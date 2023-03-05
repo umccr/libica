@@ -498,7 +498,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_download_urls_for_data**
-> DataUrlList create_download_urls_for_data(project_id)
+> DataUrlWithPathList create_download_urls_for_data(project_id)
 
 Retrieve download URLs for the data.
 
@@ -513,8 +513,8 @@ Can be used to download files directly from the region where it is located, no c
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_data_api
-from libica.openapi.v2.model.data_url_id_list import DataUrlIdList
-from libica.openapi.v2.model.data_url_list import DataUrlList
+from libica.openapi.v2.model.data_id_or_path_list import DataIdOrPathList
+from libica.openapi.v2.model.data_url_with_path_list import DataUrlWithPathList
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -544,11 +544,14 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_data_api.ProjectDataApi(api_client)
     project_id = "projectId_example" # str | 
-    data_url_id_list = DataUrlIdList(
+    data_id_or_path_list = DataIdOrPathList(
         data_ids=[
             "data_ids_example",
         ],
-    ) # DataUrlIdList |  (optional)
+        data_paths=[
+            "data_paths_example",
+        ],
+    ) # DataIdOrPathList |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -562,7 +565,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Retrieve download URLs for the data.
-        api_response = api_instance.create_download_urls_for_data(project_id, data_url_id_list=data_url_id_list)
+        api_response = api_instance.create_download_urls_for_data(project_id, data_id_or_path_list=data_id_or_path_list)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataApi->create_download_urls_for_data: %s\n" % e)
@@ -574,11 +577,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
- **data_url_id_list** | [**DataUrlIdList**](DataUrlIdList.md)|  | [optional]
+ **data_id_or_path_list** | [**DataIdOrPathList**](DataIdOrPathList.md)|  | [optional]
 
 ### Return type
 
-[**DataUrlList**](DataUrlList.md)
+[**DataUrlWithPathList**](DataUrlWithPathList.md)
 
 ### Authorization
 

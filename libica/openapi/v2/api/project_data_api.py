@@ -24,11 +24,11 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
 from libica.openapi.v2.model.complete_folder_upload_session import CompleteFolderUploadSession
 from libica.openapi.v2.model.create_data import CreateData
 from libica.openapi.v2.model.create_temporary_credentials import CreateTemporaryCredentials
+from libica.openapi.v2.model.data_id_or_path_list import DataIdOrPathList
 from libica.openapi.v2.model.data_list import DataList
 from libica.openapi.v2.model.data_paged_list import DataPagedList
 from libica.openapi.v2.model.data_transfer import DataTransfer
-from libica.openapi.v2.model.data_url_id_list import DataUrlIdList
-from libica.openapi.v2.model.data_url_list import DataUrlList
+from libica.openapi.v2.model.data_url_with_path_list import DataUrlWithPathList
 from libica.openapi.v2.model.download import Download
 from libica.openapi.v2.model.folder_upload_session import FolderUploadSession
 from libica.openapi.v2.model.inline_view import InlineView
@@ -367,7 +367,7 @@ class ProjectDataApi(object):
         )
         self.create_download_urls_for_data_endpoint = _Endpoint(
             settings={
-                'response_type': (DataUrlList,),
+                'response_type': (DataUrlWithPathList,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -380,7 +380,7 @@ class ProjectDataApi(object):
             params_map={
                 'all': [
                     'project_id',
-                    'data_url_id_list',
+                    'data_id_or_path_list',
                 ],
                 'required': [
                     'project_id',
@@ -400,15 +400,15 @@ class ProjectDataApi(object):
                 'openapi_types': {
                     'project_id':
                         (str,),
-                    'data_url_id_list':
-                        (DataUrlIdList,),
+                    'data_id_or_path_list':
+                        (DataIdOrPathList,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
                 },
                 'location_map': {
                     'project_id': 'path',
-                    'data_url_id_list': 'body',
+                    'data_id_or_path_list': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -2522,7 +2522,7 @@ class ProjectDataApi(object):
             project_id (str):
 
         Keyword Args:
-            data_url_id_list (DataUrlIdList): [optional]
+            data_id_or_path_list (DataIdOrPathList): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2551,7 +2551,7 @@ class ProjectDataApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            DataUrlList
+            DataUrlWithPathList
                 If the method is called asynchronously, returns the request
                 thread.
         """

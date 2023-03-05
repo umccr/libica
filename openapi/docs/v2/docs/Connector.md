@@ -19,13 +19,6 @@ Name | Type | Description | Notes
 **new_connector_version_available** | **bool** |  | 
 **tenant_name** | **str, none_type** |  | [optional] 
 **initialization_key** | **str, none_type** | The key provided via other channels to initialize the installation. | [optional] 
-**country** | [**Country**](Country.md) |  | [optional] 
-**address_line1** | **str, none_type** |  | [optional] 
-**address_line2** | **str, none_type** |  | [optional] 
-**address_line3** | **str, none_type** |  | [optional] 
-**postal_code** | **str, none_type** |  | [optional] 
-**city** | **str, none_type** |  | [optional] 
-**state** | **str, none_type** |  | [optional] 
 **description** | **str, none_type** | The general description of the connector instance including its purpose. | [optional] 
 **max_bandwidth** | **float, none_type** | The maximum bandwidth defined in MB per second. | [optional] 
 **max_concurrent_transfers** | **int, none_type** | The maximum amount of concurrent transfers that this connector can execute. | [optional] 

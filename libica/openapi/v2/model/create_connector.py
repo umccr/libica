@@ -73,30 +73,6 @@ class CreateConnector(ModelNormal):
             'max_length': 255,
             'min_length': 1,
         },
-        ('address_line1',): {
-            'max_length': 255,
-            'min_length': 1,
-        },
-        ('address_line2',): {
-            'max_length': 255,
-            'min_length': 1,
-        },
-        ('address_line3',): {
-            'max_length': 255,
-            'min_length': 1,
-        },
-        ('postal_code',): {
-            'max_length': 255,
-            'min_length': 1,
-        },
-        ('city',): {
-            'max_length': 255,
-            'min_length': 1,
-        },
-        ('state',): {
-            'max_length': 255,
-            'min_length': 1,
-        },
         ('max_bandwidth',): {
             'inclusive_minimum': 0.01,
         },
@@ -130,13 +106,6 @@ class CreateConnector(ModelNormal):
             'active': (bool,),  # noqa: E501
             'mode': (str,),  # noqa: E501
             'os': (str,),  # noqa: E501
-            'country_id': (str, none_type,),  # noqa: E501
-            'address_line1': (str, none_type,),  # noqa: E501
-            'address_line2': (str, none_type,),  # noqa: E501
-            'address_line3': (str, none_type,),  # noqa: E501
-            'postal_code': (str, none_type,),  # noqa: E501
-            'city': (str, none_type,),  # noqa: E501
-            'state': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
             'max_bandwidth': (float, none_type,),  # noqa: E501
             'max_concurrent_transfers': (int, none_type,),  # noqa: E501
@@ -152,13 +121,6 @@ class CreateConnector(ModelNormal):
         'active': 'active',  # noqa: E501
         'mode': 'mode',  # noqa: E501
         'os': 'os',  # noqa: E501
-        'country_id': 'countryId',  # noqa: E501
-        'address_line1': 'addressLine1',  # noqa: E501
-        'address_line2': 'addressLine2',  # noqa: E501
-        'address_line3': 'addressLine3',  # noqa: E501
-        'postal_code': 'postalCode',  # noqa: E501
-        'city': 'city',  # noqa: E501
-        'state': 'state',  # noqa: E501
         'description': 'description',  # noqa: E501
         'max_bandwidth': 'maxBandwidth',  # noqa: E501
         'max_concurrent_transfers': 'maxConcurrentTransfers',  # noqa: E501
@@ -211,13 +173,6 @@ class CreateConnector(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            country_id (str, none_type): ID of the country. If not provided then the country of the tenant will be used.. [optional]  # noqa: E501
-            address_line1 (str, none_type): [optional]  # noqa: E501
-            address_line2 (str, none_type): [optional]  # noqa: E501
-            address_line3 (str, none_type): [optional]  # noqa: E501
-            postal_code (str, none_type): [optional]  # noqa: E501
-            city (str, none_type): [optional]  # noqa: E501
-            state (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The general description of the connector instance including its purpose.. [optional]  # noqa: E501
             max_bandwidth (float, none_type): The maximum bandwidth defined in MB per second.. [optional]  # noqa: E501
             max_concurrent_transfers (int, none_type): The maximum amount of concurrent transfers that this connector can execute.. [optional] if omitted the server will use the default value of 2  # noqa: E501
@@ -312,13 +267,6 @@ class CreateConnector(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            country_id (str, none_type): ID of the country. If not provided then the country of the tenant will be used.. [optional]  # noqa: E501
-            address_line1 (str, none_type): [optional]  # noqa: E501
-            address_line2 (str, none_type): [optional]  # noqa: E501
-            address_line3 (str, none_type): [optional]  # noqa: E501
-            postal_code (str, none_type): [optional]  # noqa: E501
-            city (str, none_type): [optional]  # noqa: E501
-            state (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The general description of the connector instance including its purpose.. [optional]  # noqa: E501
             max_bandwidth (float, none_type): The maximum bandwidth defined in MB per second.. [optional]  # noqa: E501
             max_concurrent_transfers (int, none_type): The maximum amount of concurrent transfers that this connector can execute.. [optional] if omitted the server will use the default value of 2  # noqa: E501

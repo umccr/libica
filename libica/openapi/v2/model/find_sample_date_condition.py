@@ -148,8 +148,8 @@ class FindSampleDateCondition(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             metadata_field (FieldId): [optional]  # noqa: E501
             field (str, none_type): [optional]  # noqa: E501
-            before_date (str, none_type): [optional]  # noqa: E501
-            after_date (str, none_type): [optional]  # noqa: E501
+            before_date (str, none_type): Before date. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z. [optional]  # noqa: E501
+            after_date (str, none_type): After date. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -233,8 +233,8 @@ class FindSampleDateCondition(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             metadata_field (FieldId): [optional]  # noqa: E501
             field (str, none_type): [optional]  # noqa: E501
-            before_date (str, none_type): [optional]  # noqa: E501
-            after_date (str, none_type): [optional]  # noqa: E501
+            before_date (str, none_type): Before date. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z. [optional]  # noqa: E501
+            after_date (str, none_type): After date. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

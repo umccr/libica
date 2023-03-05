@@ -144,8 +144,8 @@ class EventLogApi(object):
             code (str): Code. [optional]
             code_filter_type (str): Code filter type. [optional]
             category (str): Category. [optional]
-            date_from (str): Date from. [optional]
-            date_until (str): Date until. [optional]
+            date_from (str): Date from. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z. [optional]
+            date_until (str): Date until. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z. [optional]
             rows (int): Amount of rows to fetch. Maximum 250. Defaults to 250. [optional] if omitted the server will use the default value of 250
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

@@ -53,8 +53,8 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     code = "code_example" # str | Code (optional)
     code_filter_type = "STARTS_WITH" # str | Code filter type (optional)
     category = "ERROR" # str | Category (optional)
-    date_from = "dateFrom_example" # str | Date from (optional)
-    date_until = "dateUntil_example" # str | Date until (optional)
+    date_from = "dateFrom_example" # str | Date from. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z (optional)
+    date_until = "dateUntil_example" # str | Date until. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z (optional)
     rows = 250 # int | Amount of rows to fetch. Maximum 250. Defaults to 250 (optional) if omitted the server will use the default value of 250
 
     # example passing only required values which don't have defaults set
@@ -75,8 +75,8 @@ Name | Type | Description  | Notes
  **code** | **str**| Code | [optional]
  **code_filter_type** | **str**| Code filter type | [optional]
  **category** | **str**| Category | [optional]
- **date_from** | **str**| Date from | [optional]
- **date_until** | **str**| Date until | [optional]
+ **date_from** | **str**| Date from. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39; eg: 2017-01-10T10:47:56.039Z | [optional]
+ **date_until** | **str**| Date until. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss.SSS&#39;Z&#39; eg: 2017-01-10T10:47:56.039Z | [optional]
  **rows** | **int**| Amount of rows to fetch. Maximum 250. Defaults to 250 | [optional] if omitted the server will use the default value of 250
 
 ### Return type

@@ -153,13 +153,6 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     create_connector = CreateConnector(
         code="code_example",
         active=True,
-        country_id="country_id_example",
-        address_line1="address_line1_example",
-        address_line2="address_line2_example",
-        address_line3="address_line3_example",
-        postal_code="postal_code_example",
-        city="city_example",
-        state="state_example",
         description="description_example",
         mode="DOWNLOAD",
         max_bandwidth=0.01,

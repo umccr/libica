@@ -95,14 +95,14 @@ from libica.openapi.v2.model.data import Data
 from libica.openapi.v2.model.data_details import DataDetails
 from libica.openapi.v2.model.data_format import DataFormat
 from libica.openapi.v2.model.data_format_paged_list import DataFormatPagedList
+from libica.openapi.v2.model.data_id_or_path_list import DataIdOrPathList
 from libica.openapi.v2.model.data_list import DataList
 from libica.openapi.v2.model.data_paged_list import DataPagedList
 from libica.openapi.v2.model.data_tag import DataTag
 from libica.openapi.v2.model.data_transfer import DataTransfer
 from libica.openapi.v2.model.data_transfer_paged_list import DataTransferPagedList
-from libica.openapi.v2.model.data_url import DataUrl
-from libica.openapi.v2.model.data_url_id_list import DataUrlIdList
-from libica.openapi.v2.model.data_url_list import DataUrlList
+from libica.openapi.v2.model.data_url_with_path import DataUrlWithPath
+from libica.openapi.v2.model.data_url_with_path_list import DataUrlWithPathList
 from libica.openapi.v2.model.download import Download
 from libica.openapi.v2.model.download_rule import DownloadRule
 from libica.openapi.v2.model.download_rule_list import DownloadRuleList
