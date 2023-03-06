@@ -243,9 +243,11 @@ class UserApi(object):
             },
             params_map={
                 &#39;all&#39;: [
+                    &#39;email_address&#39;,
                 ],
                 &#39;required&#39;: [],
                 &#39;nullable&#39;: [
+                    &#39;email_address&#39;,
                 ],
                 &#39;enum&#39;: [
                 ],
@@ -258,10 +260,14 @@ class UserApi(object):
                 &#39;allowed_values&#39;: {
                 },
                 &#39;openapi_types&#39;: {
+                    &#39;email_address&#39;:
+                        (str, none_type,),
                 },
                 &#39;attribute_map&#39;: {
+                    &#39;email_address&#39;: &#39;emailAddress&#39;,
                 },
                 &#39;location_map&#39;: {
+                    &#39;email_address&#39;: &#39;query&#39;,
                 },
                 &#39;collection_format_map&#39;: {
                 }
@@ -386,7 +392,8 @@ class UserApi(object):
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
                 ]
             },
             api_client=api_client
@@ -639,6 +646,7 @@ class UserApi(object):
 
 
         Keyword Args:
+            email_address (str, none_type): The email address to filter on. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1059,9 +1067,11 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             },
             params_map={
                 &#39;all&#39;: [
+                    &#39;email_address&#39;,
                 ],
                 &#39;required&#39;: [],
                 &#39;nullable&#39;: [
+                    &#39;email_address&#39;,
                 ],
                 &#39;enum&#39;: [
                 ],
@@ -1074,10 +1084,14 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                 &#39;allowed_values&#39;: {
                 },
                 &#39;openapi_types&#39;: {
+                    &#39;email_address&#39;:
+                        (str, none_type,),
                 },
                 &#39;attribute_map&#39;: {
+                    &#39;email_address&#39;: &#39;emailAddress&#39;,
                 },
                 &#39;location_map&#39;: {
+                    &#39;email_address&#39;: &#39;query&#39;,
                 },
                 &#39;collection_format_map&#39;: {
                 }
@@ -1202,7 +1216,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
                 ]
             },
             api_client=api_client
@@ -1455,6 +1470,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
 
         Keyword Args:
+            email_address (str, none_type): The email address to filter on. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2069,6 +2085,7 @@ asynchronous HTTP request, please pass async_req=True</p>
 &gt;&gt;&gt; result = thread.get()
 </code></pre>
 <p>Keyword Args:
+email_address (str, none_type): The email address to filter on. [optional]
 _return_http_data_only (bool): response data without head status
 code and headers. Default is True.
 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2117,6 +2134,7 @@ thread.</p></div>
 
 
     Keyword Args:
+        email_address (str, none_type): The email address to filter on. [optional]
         _return_http_data_only (bool): response data without head status
             code and headers. Default is True.
         _preload_content (bool): if False, the urllib3.HTTPResponse object

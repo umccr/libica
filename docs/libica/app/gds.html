@@ -210,11 +210,12 @@ def download_gds_file(volume_name: str, path: str) -&gt; (NamedTemporaryFile, No
     return ntf
 
 
-def presign_gds_file(file_id: str, volume_name: str, path_: str) -&gt; (bool, str):
+def presign_gds_file(file_id: str, volume_name: str, path_: str, presigned_url_mode: str = &#34;Attachment&#34;) -&gt; (bool, str):
     with libgds.ApiClient(configuration(libgds)) as gds_client:
         files_api = libgds.FilesApi(gds_client)
         try:
-            file_details: libgds.FileResponse = files_api.get_file(file_id=file_id)
+            file_details: libgds.FileResponse = files_api.get_file(file_id=file_id,
+                                                                   presigned_url_mode=presigned_url_mode)
             return True, file_details.presigned_url
         except libgds.ApiException as e:
             message = f&#34;Failed to sign the specified GDS file (gds://{volume_name}{path_}). Exception - {e}&#34;
@@ -330,7 +331,7 @@ Otherwise, it return file(s) found.</p>
 </details>
 </dd>
 <dt id="libica.app.gds.download_gds_file"><code class="name flex">
-<span>def <span class="ident">download_gds_file</span></span>(<span>volume_name: str, path: str) ‑> (<function NamedTemporaryFile at 0x10ad45990>, None)</span>
+<span>def <span class="ident">download_gds_file</span></span>(<span>volume_name: str, path: str) ‑> (<function NamedTemporaryFile at 0x10a11dbd0>, None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Retrieve <em>single</em> GDS file</p>
@@ -590,7 +591,7 @@ PreSignedUrl is always included.</p>
 </details>
 </dd>
 <dt id="libica.app.gds.presign_gds_file"><code class="name flex">
-<span>def <span class="ident">presign_gds_file</span></span>(<span>file_id: str, volume_name: str, path_: str) ‑> (<class 'bool'>, <class 'str'>)</span>
+<span>def <span class="ident">presign_gds_file</span></span>(<span>file_id: str, volume_name: str, path_: str, presigned_url_mode: str = 'Attachment') ‑> (<class 'bool'>, <class 'str'>)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
@@ -598,11 +599,12 @@ PreSignedUrl is always included.</p>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def presign_gds_file(file_id: str, volume_name: str, path_: str) -&gt; (bool, str):
+<pre><code class="python">def presign_gds_file(file_id: str, volume_name: str, path_: str, presigned_url_mode: str = &#34;Attachment&#34;) -&gt; (bool, str):
     with libgds.ApiClient(configuration(libgds)) as gds_client:
         files_api = libgds.FilesApi(gds_client)
         try:
-            file_details: libgds.FileResponse = files_api.get_file(file_id=file_id)
+            file_details: libgds.FileResponse = files_api.get_file(file_id=file_id,
+                                                                   presigned_url_mode=presigned_url_mode)
             return True, file_details.presigned_url
         except libgds.ApiException as e:
             message = f&#34;Failed to sign the specified GDS file (gds://{volume_name}{path_}). Exception - {e}&#34;

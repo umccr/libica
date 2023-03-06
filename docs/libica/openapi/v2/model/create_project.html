@@ -98,6 +98,16 @@ class CreateProject(ModelNormal):
             &#39;PROJECT&#39;: &#34;PROJECT&#34;,
             &#39;TENANT&#39;: &#34;TENANT&#34;,
         },
+        # FIXME Their OpenAPI document says expected values should be &#39;Low&#39;, &#39;Medium&#39;, &#39;High&#39; and nullable
+        #  But. On the actual server, it responses with capitalised &#39;MEDIUM&#39;
+        #  curl -s -H &#34;Accept: application/vnd.illumina.v3+json&#34; -H &#34;Authorization: Bearer $ICAV2_ACCESS_TOKEN&#34; &#34;https://ica.illumina.com/ica/rest/api/projects&#34; | jq
+        #  So. There is discrepancy. Since we have to accept whatever value from server, commenting out this for now.
+        # (&#39;analysis_priority&#39;,): {
+        #     &#39;None&#39;: None,
+        #     &#39;LOW&#39;: &#34;Low&#34;,
+        #     &#39;MEDIUM&#39;: &#34;Medium&#34;,
+        #     &#39;HIGH&#39;: &#34;High&#34;,
+        # },
     }
 
     validations = {
@@ -149,6 +159,7 @@ class CreateProject(ModelNormal):
             &#39;metadata_model_id&#39;: (str, none_type,),  # noqa: E501
             &#39;storage_configuration_id&#39;: (str, none_type,),  # noqa: E501
             &#39;storage_configuration_subfolder&#39;: (str, none_type,),  # noqa: E501
+            &#39;analysis_priority&#39;: (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -169,6 +180,7 @@ class CreateProject(ModelNormal):
         &#39;metadata_model_id&#39;: &#39;metadataModelId&#39;,  # noqa: E501
         &#39;storage_configuration_id&#39;: &#39;storageConfigurationId&#39;,  # noqa: E501
         &#39;storage_configuration_subfolder&#39;: &#39;storageConfigurationSubfolder&#39;,  # noqa: E501
+        &#39;analysis_priority&#39;: &#39;analysisPriority&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -226,6 +238,7 @@ class CreateProject(ModelNormal):
             metadata_model_id (str, none_type): [optional]  # noqa: E501
             storage_configuration_id (str, none_type): An optional storage configuration id to have self managed storage.. [optional]  # noqa: E501
             storage_configuration_subfolder (str, none_type): Required when specifying a storageConfigurationId. The subfolder determines the object prefix of your self managed storage.. [optional]  # noqa: E501
+            analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant, where Medium is the default value.. [optional] if omitted the server will use the default value of &#34;Medium&#34;  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -326,6 +339,7 @@ class CreateProject(ModelNormal):
             metadata_model_id (str, none_type): [optional]  # noqa: E501
             storage_configuration_id (str, none_type): An optional storage configuration id to have self managed storage.. [optional]  # noqa: E501
             storage_configuration_subfolder (str, none_type): Required when specifying a storageConfigurationId. The subfolder determines the object prefix of your self managed storage.. [optional]  # noqa: E501
+            analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant, where Medium is the default value.. [optional] if omitted the server will use the default value of &#34;Medium&#34;  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -482,6 +496,8 @@ metadata_model_id (str, none_type): [optional]
 storage_configuration_id (str, none_type): An optional storage configuration id to have self managed storage.. [optional]
 # noqa: E501
 storage_configuration_subfolder (str, none_type): Required when specifying a storageConfigurationId. The subfolder determines the object prefix of your self managed storage.. [optional]
+# noqa: E501
+analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant, where Medium is the default value.. [optional] if omitted the server will use the default value of "Medium"
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -516,6 +532,16 @@ storage_configuration_subfolder (str, none_type): Required when specifying a sto
             &#39;PROJECT&#39;: &#34;PROJECT&#34;,
             &#39;TENANT&#39;: &#34;TENANT&#34;,
         },
+        # FIXME Their OpenAPI document says expected values should be &#39;Low&#39;, &#39;Medium&#39;, &#39;High&#39; and nullable
+        #  But. On the actual server, it responses with capitalised &#39;MEDIUM&#39;
+        #  curl -s -H &#34;Accept: application/vnd.illumina.v3+json&#34; -H &#34;Authorization: Bearer $ICAV2_ACCESS_TOKEN&#34; &#34;https://ica.illumina.com/ica/rest/api/projects&#34; | jq
+        #  So. There is discrepancy. Since we have to accept whatever value from server, commenting out this for now.
+        # (&#39;analysis_priority&#39;,): {
+        #     &#39;None&#39;: None,
+        #     &#39;LOW&#39;: &#34;Low&#34;,
+        #     &#39;MEDIUM&#39;: &#34;Medium&#34;,
+        #     &#39;HIGH&#39;: &#34;High&#34;,
+        # },
     }
 
     validations = {
@@ -567,6 +593,7 @@ storage_configuration_subfolder (str, none_type): Required when specifying a sto
             &#39;metadata_model_id&#39;: (str, none_type,),  # noqa: E501
             &#39;storage_configuration_id&#39;: (str, none_type,),  # noqa: E501
             &#39;storage_configuration_subfolder&#39;: (str, none_type,),  # noqa: E501
+            &#39;analysis_priority&#39;: (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -587,6 +614,7 @@ storage_configuration_subfolder (str, none_type): Required when specifying a sto
         &#39;metadata_model_id&#39;: &#39;metadataModelId&#39;,  # noqa: E501
         &#39;storage_configuration_id&#39;: &#39;storageConfigurationId&#39;,  # noqa: E501
         &#39;storage_configuration_subfolder&#39;: &#39;storageConfigurationSubfolder&#39;,  # noqa: E501
+        &#39;analysis_priority&#39;: &#39;analysisPriority&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -644,6 +672,7 @@ storage_configuration_subfolder (str, none_type): Required when specifying a sto
             metadata_model_id (str, none_type): [optional]  # noqa: E501
             storage_configuration_id (str, none_type): An optional storage configuration id to have self managed storage.. [optional]  # noqa: E501
             storage_configuration_subfolder (str, none_type): Required when specifying a storageConfigurationId. The subfolder determines the object prefix of your self managed storage.. [optional]  # noqa: E501
+            analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant, where Medium is the default value.. [optional] if omitted the server will use the default value of &#34;Medium&#34;  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -744,6 +773,7 @@ storage_configuration_subfolder (str, none_type): Required when specifying a sto
             metadata_model_id (str, none_type): [optional]  # noqa: E501
             storage_configuration_id (str, none_type): An optional storage configuration id to have self managed storage.. [optional]  # noqa: E501
             storage_configuration_subfolder (str, none_type): Required when specifying a storageConfigurationId. The subfolder determines the object prefix of your self managed storage.. [optional]  # noqa: E501
+            analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant, where Medium is the default value.. [optional] if omitted the server will use the default value of &#34;Medium&#34;  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

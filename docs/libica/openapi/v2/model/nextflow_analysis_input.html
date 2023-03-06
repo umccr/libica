@@ -66,10 +66,10 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.analysis_data_input import AnalysisDataInput
-    from libica.openapi.v2.model.analysis_parameter import AnalysisParameter
+    from libica.openapi.v2.model.analysis_parameter_input import AnalysisParameterInput
     from libica.openapi.v2.model.analysis_reference_data_parameter import AnalysisReferenceDataParameter
     globals()[&#39;AnalysisDataInput&#39;] = AnalysisDataInput
-    globals()[&#39;AnalysisParameter&#39;] = AnalysisParameter
+    globals()[&#39;AnalysisParameterInput&#39;] = AnalysisParameterInput
     globals()[&#39;AnalysisReferenceDataParameter&#39;] = AnalysisReferenceDataParameter
 
 
@@ -127,7 +127,7 @@ class NextflowAnalysisInput(ModelNormal):
         lazy_import()
         return {
             &#39;inputs&#39;: ([AnalysisDataInput],),  # noqa: E501
-            &#39;parameters&#39;: ([AnalysisParameter], none_type,),  # noqa: E501
+            &#39;parameters&#39;: ([AnalysisParameterInput], none_type,),  # noqa: E501
             &#39;reference_data_parameters&#39;: ([AnalysisReferenceDataParameter], none_type,),  # noqa: E501
         }
 
@@ -186,7 +186,7 @@ class NextflowAnalysisInput(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            parameters ([AnalysisParameter], none_type): [optional]  # noqa: E501
+            parameters ([AnalysisParameterInput], none_type): [optional]  # noqa: E501
             reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -273,7 +273,7 @@ class NextflowAnalysisInput(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            parameters ([AnalysisParameter], none_type): [optional]  # noqa: E501
+            parameters ([AnalysisParameterInput], none_type): [optional]  # noqa: E501
             reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -332,10 +332,10 @@ class NextflowAnalysisInput(ModelNormal):
 </summary>
 <pre><code class="python">def lazy_import():
     from libica.openapi.v2.model.analysis_data_input import AnalysisDataInput
-    from libica.openapi.v2.model.analysis_parameter import AnalysisParameter
+    from libica.openapi.v2.model.analysis_parameter_input import AnalysisParameterInput
     from libica.openapi.v2.model.analysis_reference_data_parameter import AnalysisReferenceDataParameter
     globals()[&#39;AnalysisDataInput&#39;] = AnalysisDataInput
-    globals()[&#39;AnalysisParameter&#39;] = AnalysisParameter
+    globals()[&#39;AnalysisParameterInput&#39;] = AnalysisParameterInput
     globals()[&#39;AnalysisReferenceDataParameter&#39;] = AnalysisReferenceDataParameter</code></pre>
 </details>
 </dd>
@@ -409,7 +409,7 @@ Then in Dog, we will make an instance of the
 Animal class but this time we won't travel
 through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
-parameters ([AnalysisParameter], none_type): [optional]
+parameters ([AnalysisParameterInput], none_type): [optional]
 # noqa: E501
 reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [optional]
 # noqa: E501</p></div>
@@ -471,7 +471,7 @@ reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [option
         lazy_import()
         return {
             &#39;inputs&#39;: ([AnalysisDataInput],),  # noqa: E501
-            &#39;parameters&#39;: ([AnalysisParameter], none_type,),  # noqa: E501
+            &#39;parameters&#39;: ([AnalysisParameterInput], none_type,),  # noqa: E501
             &#39;reference_data_parameters&#39;: ([AnalysisReferenceDataParameter], none_type,),  # noqa: E501
         }
 
@@ -530,7 +530,7 @@ reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [option
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            parameters ([AnalysisParameter], none_type): [optional]  # noqa: E501
+            parameters ([AnalysisParameterInput], none_type): [optional]  # noqa: E501
             reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -617,7 +617,7 @@ reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [option
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            parameters ([AnalysisParameter], none_type): [optional]  # noqa: E501
+            parameters ([AnalysisParameterInput], none_type): [optional]  # noqa: E501
             reference_data_parameters ([AnalysisReferenceDataParameter], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 

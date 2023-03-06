@@ -133,6 +133,9 @@ class CreateSubscriptionRequest(object):
                 type is not None and len(type) &gt; 255):
             raise ValueError(&#34;Invalid value for `type`, length must be less than or equal to `255`&#34;)  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
+                type is not None and len(type) &lt; 1):
+            raise ValueError(&#34;Invalid value for `type`, length must be greater than or equal to `1`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
                 type is not None and not re.search(r&#39;^[a-zA-Z]+[.a-zA-Z]*$&#39;, type)):  # noqa: E501
             raise ValueError(r&#34;Invalid value for `type`, must be a follow pattern or equal to `/^[a-zA-Z]+[.a-zA-Z]*$/`&#34;)  # noqa: E501
 
@@ -186,6 +189,9 @@ class CreateSubscriptionRequest(object):
         if (self.local_vars_configuration.client_side_validation and
                 name is not None and len(name) &gt; 255):
             raise ValueError(&#34;Invalid value for `name`, length must be less than or equal to `255`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) &lt; 1):
+            raise ValueError(&#34;Invalid value for `name`, length must be greater than or equal to `1`&#34;)  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 name is not None and not re.search(r&#39;^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$&#39;, name)):  # noqa: E501
             raise ValueError(r&#34;Invalid value for `name`, must be a follow pattern or equal to `/^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$/`&#34;)  # noqa: E501
@@ -418,6 +424,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                 type is not None and len(type) &gt; 255):
             raise ValueError(&#34;Invalid value for `type`, length must be less than or equal to `255`&#34;)  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
+                type is not None and len(type) &lt; 1):
+            raise ValueError(&#34;Invalid value for `type`, length must be greater than or equal to `1`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
                 type is not None and not re.search(r&#39;^[a-zA-Z]+[.a-zA-Z]*$&#39;, type)):  # noqa: E501
             raise ValueError(r&#34;Invalid value for `type`, must be a follow pattern or equal to `/^[a-zA-Z]+[.a-zA-Z]*$/`&#34;)  # noqa: E501
 
@@ -471,6 +480,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         if (self.local_vars_configuration.client_side_validation and
                 name is not None and len(name) &gt; 255):
             raise ValueError(&#34;Invalid value for `name`, length must be less than or equal to `255`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) &lt; 1):
+            raise ValueError(&#34;Invalid value for `name`, length must be greater than or equal to `1`&#34;)  # noqa: E501
         if (self.local_vars_configuration.client_side_validation and
                 name is not None and not re.search(r&#39;^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$&#39;, name)):  # noqa: E501
             raise ValueError(r&#34;Invalid value for `name`, must be a follow pattern or equal to `/^[a-zA-Z0-9]+[a-zA-Z0-9_-]*$/`&#34;)  # noqa: E501

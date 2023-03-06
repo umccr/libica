@@ -108,11 +108,25 @@ class Project(ModelNormal):
             &#39;PROJECT&#39;: &#34;PROJECT&#34;,
             &#39;TENANT&#39;: &#34;TENANT&#34;,
         },
+        # FIXME Their OpenAPI document says expected values should be &#39;Low&#39;, &#39;Medium&#39;, &#39;High&#39; and nullable
+        #  But. On the actual server, it responses with capitalised &#39;MEDIUM&#39;
+        #  curl -s -H &#34;Accept: application/vnd.illumina.v3+json&#34; -H &#34;Authorization: Bearer $ICAV2_ACCESS_TOKEN&#34; &#34;https://ica.illumina.com/ica/rest/api/projects&#34; | jq
+        #  So. There is discrepancy. Since we have to accept whatever value from server, commenting out this for now.
+        # (&#39;analysis_priority&#39;,): {
+        #     &#39;None&#39;: None,
+        #     &#39;LOW&#39;: &#34;Low&#34;,
+        #     &#39;MEDIUM&#39;: &#34;Medium&#34;,
+        #     &#39;HIGH&#39;: &#34;High&#34;,
+        # },
     }
 
     validations = {
         (&#39;name&#39;,): {
             &#39;max_length&#39;: 255,
+            &#39;min_length&#39;: 1,
+        },
+        (&#39;urn&#39;,): {
+            &#39;max_length&#39;: 2000,
             &#39;min_length&#39;: 1,
         },
         (&#39;short_description&#39;,): {
@@ -130,7 +144,7 @@ class Project(ModelNormal):
         lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
-    _nullable = False
+    _nullable = True
 
     @cached_property
     def openapi_types():
@@ -155,11 +169,14 @@ class Project(ModelNormal):
             &#39;billing_mode&#39;: (str,),  # noqa: E501
             &#39;tags&#39;: (ProjectTag,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
+            &#39;urn&#39;: (str, none_type,),  # noqa: E501
+            &#39;base_enabled&#39;: (bool, none_type,),  # noqa: E501
             &#39;short_description&#39;: (str, none_type,),  # noqa: E501
             &#39;information&#39;: (str, none_type,),  # noqa: E501
             &#39;data_sharing_enabled&#39;: (bool, none_type,),  # noqa: E501
             &#39;storage_bundle&#39;: (StorageBundle,),  # noqa: E501
             &#39;self_managed_storage_configuration&#39;: (StorageConfiguration,),  # noqa: E501
+            &#39;analysis_priority&#39;: (str, none_type,),  # noqa: E501
             &#39;metadata_model&#39;: (MetadataModel,),  # noqa: E501
             &#39;application&#39;: (Application,),  # noqa: E501
         }
@@ -181,11 +198,14 @@ class Project(ModelNormal):
         &#39;billing_mode&#39;: &#39;billingMode&#39;,  # noqa: E501
         &#39;tags&#39;: &#39;tags&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
+        &#39;urn&#39;: &#39;urn&#39;,  # noqa: E501
+        &#39;base_enabled&#39;: &#39;baseEnabled&#39;,  # noqa: E501
         &#39;short_description&#39;: &#39;shortDescription&#39;,  # noqa: E501
         &#39;information&#39;: &#39;information&#39;,  # noqa: E501
         &#39;data_sharing_enabled&#39;: &#39;dataSharingEnabled&#39;,  # noqa: E501
         &#39;storage_bundle&#39;: &#39;storageBundle&#39;,  # noqa: E501
         &#39;self_managed_storage_configuration&#39;: &#39;selfManagedStorageConfiguration&#39;,  # noqa: E501
+        &#39;analysis_priority&#39;: &#39;analysisPriority&#39;,  # noqa: E501
         &#39;metadata_model&#39;: &#39;metadataModel&#39;,  # noqa: E501
         &#39;application&#39;: &#39;application&#39;,  # noqa: E501
     }
@@ -244,11 +264,14 @@ class Project(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            urn (str, none_type): The URN of the project. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
+            base_enabled (bool, none_type): Indicates whether the project is base enabled.. [optional]  # noqa: E501
             short_description (str, none_type): [optional]  # noqa: E501
             information (str, none_type): Information about the project. Note that the value of this field can be arbitrary large.. [optional]  # noqa: E501
             data_sharing_enabled (bool, none_type): Indicates whether the Data and Samples created in this Project can be linked to other Projects.. [optional]  # noqa: E501
             storage_bundle (StorageBundle): [optional]  # noqa: E501
             self_managed_storage_configuration (StorageConfiguration): [optional]  # noqa: E501
+            analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant. Note that for a PUT call, when not providing a value for this attribute (null value or absent attribute), the persisted value will not change.. [optional]  # noqa: E501
             metadata_model (MetadataModel): [optional]  # noqa: E501
             application (Application): [optional]  # noqa: E501
         &#34;&#34;&#34;
@@ -355,11 +378,14 @@ class Project(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            urn (str, none_type): The URN of the project. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
+            base_enabled (bool, none_type): Indicates whether the project is base enabled.. [optional]  # noqa: E501
             short_description (str, none_type): [optional]  # noqa: E501
             information (str, none_type): Information about the project. Note that the value of this field can be arbitrary large.. [optional]  # noqa: E501
             data_sharing_enabled (bool, none_type): Indicates whether the Data and Samples created in this Project can be linked to other Projects.. [optional]  # noqa: E501
             storage_bundle (StorageBundle): [optional]  # noqa: E501
             self_managed_storage_configuration (StorageConfiguration): [optional]  # noqa: E501
+            analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant. Note that for a PUT call, when not providing a value for this attribute (null value or absent attribute), the persisted value will not change.. [optional]  # noqa: E501
             metadata_model (MetadataModel): [optional]  # noqa: E501
             application (Application): [optional]  # noqa: E501
         &#34;&#34;&#34;
@@ -526,6 +552,10 @@ through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
 tenant_name (str, none_type): [optional]
 # noqa: E501
+urn (str, none_type): The URN of the project. The format is urn:ilmn:ica:\&lt;type of the object>:\&lt;ID of the object>#\&lt;optional human readable hint representing the object>. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]
+# noqa: E501
+base_enabled (bool, none_type): Indicates whether the project is base enabled.. [optional]
+# noqa: E501
 short_description (str, none_type): [optional]
 # noqa: E501
 information (str, none_type): Information about the project. Note that the value of this field can be arbitrary large.. [optional]
@@ -535,6 +565,8 @@ data_sharing_enabled (bool, none_type): Indicates whether the Data and Samples c
 storage_bundle (StorageBundle): [optional]
 # noqa: E501
 self_managed_storage_configuration (StorageConfiguration): [optional]
+# noqa: E501
+analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant. Note that for a PUT call, when not providing a value for this attribute (null value or absent attribute), the persisted value will not change.. [optional]
 # noqa: E501
 metadata_model (MetadataModel): [optional]
 # noqa: E501
@@ -573,11 +605,25 @@ application (Application): [optional]
             &#39;PROJECT&#39;: &#34;PROJECT&#34;,
             &#39;TENANT&#39;: &#34;TENANT&#34;,
         },
+        # FIXME Their OpenAPI document says expected values should be &#39;Low&#39;, &#39;Medium&#39;, &#39;High&#39; and nullable
+        #  But. On the actual server, it responses with capitalised &#39;MEDIUM&#39;
+        #  curl -s -H &#34;Accept: application/vnd.illumina.v3+json&#34; -H &#34;Authorization: Bearer $ICAV2_ACCESS_TOKEN&#34; &#34;https://ica.illumina.com/ica/rest/api/projects&#34; | jq
+        #  So. There is discrepancy. Since we have to accept whatever value from server, commenting out this for now.
+        # (&#39;analysis_priority&#39;,): {
+        #     &#39;None&#39;: None,
+        #     &#39;LOW&#39;: &#34;Low&#34;,
+        #     &#39;MEDIUM&#39;: &#34;Medium&#34;,
+        #     &#39;HIGH&#39;: &#34;High&#34;,
+        # },
     }
 
     validations = {
         (&#39;name&#39;,): {
             &#39;max_length&#39;: 255,
+            &#39;min_length&#39;: 1,
+        },
+        (&#39;urn&#39;,): {
+            &#39;max_length&#39;: 2000,
             &#39;min_length&#39;: 1,
         },
         (&#39;short_description&#39;,): {
@@ -595,7 +641,7 @@ application (Application): [optional]
         lazy_import()
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
-    _nullable = False
+    _nullable = True
 
     @cached_property
     def openapi_types():
@@ -620,11 +666,14 @@ application (Application): [optional]
             &#39;billing_mode&#39;: (str,),  # noqa: E501
             &#39;tags&#39;: (ProjectTag,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
+            &#39;urn&#39;: (str, none_type,),  # noqa: E501
+            &#39;base_enabled&#39;: (bool, none_type,),  # noqa: E501
             &#39;short_description&#39;: (str, none_type,),  # noqa: E501
             &#39;information&#39;: (str, none_type,),  # noqa: E501
             &#39;data_sharing_enabled&#39;: (bool, none_type,),  # noqa: E501
             &#39;storage_bundle&#39;: (StorageBundle,),  # noqa: E501
             &#39;self_managed_storage_configuration&#39;: (StorageConfiguration,),  # noqa: E501
+            &#39;analysis_priority&#39;: (str, none_type,),  # noqa: E501
             &#39;metadata_model&#39;: (MetadataModel,),  # noqa: E501
             &#39;application&#39;: (Application,),  # noqa: E501
         }
@@ -646,11 +695,14 @@ application (Application): [optional]
         &#39;billing_mode&#39;: &#39;billingMode&#39;,  # noqa: E501
         &#39;tags&#39;: &#39;tags&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
+        &#39;urn&#39;: &#39;urn&#39;,  # noqa: E501
+        &#39;base_enabled&#39;: &#39;baseEnabled&#39;,  # noqa: E501
         &#39;short_description&#39;: &#39;shortDescription&#39;,  # noqa: E501
         &#39;information&#39;: &#39;information&#39;,  # noqa: E501
         &#39;data_sharing_enabled&#39;: &#39;dataSharingEnabled&#39;,  # noqa: E501
         &#39;storage_bundle&#39;: &#39;storageBundle&#39;,  # noqa: E501
         &#39;self_managed_storage_configuration&#39;: &#39;selfManagedStorageConfiguration&#39;,  # noqa: E501
+        &#39;analysis_priority&#39;: &#39;analysisPriority&#39;,  # noqa: E501
         &#39;metadata_model&#39;: &#39;metadataModel&#39;,  # noqa: E501
         &#39;application&#39;: &#39;application&#39;,  # noqa: E501
     }
@@ -709,11 +761,14 @@ application (Application): [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            urn (str, none_type): The URN of the project. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
+            base_enabled (bool, none_type): Indicates whether the project is base enabled.. [optional]  # noqa: E501
             short_description (str, none_type): [optional]  # noqa: E501
             information (str, none_type): Information about the project. Note that the value of this field can be arbitrary large.. [optional]  # noqa: E501
             data_sharing_enabled (bool, none_type): Indicates whether the Data and Samples created in this Project can be linked to other Projects.. [optional]  # noqa: E501
             storage_bundle (StorageBundle): [optional]  # noqa: E501
             self_managed_storage_configuration (StorageConfiguration): [optional]  # noqa: E501
+            analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant. Note that for a PUT call, when not providing a value for this attribute (null value or absent attribute), the persisted value will not change.. [optional]  # noqa: E501
             metadata_model (MetadataModel): [optional]  # noqa: E501
             application (Application): [optional]  # noqa: E501
         &#34;&#34;&#34;
@@ -820,11 +875,14 @@ application (Application): [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            urn (str, none_type): The URN of the project. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
+            base_enabled (bool, none_type): Indicates whether the project is base enabled.. [optional]  # noqa: E501
             short_description (str, none_type): [optional]  # noqa: E501
             information (str, none_type): Information about the project. Note that the value of this field can be arbitrary large.. [optional]  # noqa: E501
             data_sharing_enabled (bool, none_type): Indicates whether the Data and Samples created in this Project can be linked to other Projects.. [optional]  # noqa: E501
             storage_bundle (StorageBundle): [optional]  # noqa: E501
             self_managed_storage_configuration (StorageConfiguration): [optional]  # noqa: E501
+            analysis_priority (str, none_type): Indicates the priority given to a project and its analyses within a single tenant. Note that for a PUT call, when not providing a value for this attribute (null value or absent attribute), the persisted value will not change.. [optional]  # noqa: E501
             metadata_model (MetadataModel): [optional]  # noqa: E501
             application (Application): [optional]  # noqa: E501
         &#34;&#34;&#34;

@@ -66,8 +66,10 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.analysis_storage import AnalysisStorage
+    from libica.openapi.v2.model.pipeline_language_version import PipelineLanguageVersion
     from libica.openapi.v2.model.pipeline_tag import PipelineTag
     globals()[&#39;AnalysisStorage&#39;] = AnalysisStorage
+    globals()[&#39;PipelineLanguageVersion&#39;] = PipelineLanguageVersion
     globals()[&#39;PipelineTag&#39;] = PipelineTag
 
 
@@ -107,12 +109,13 @@ class Pipeline(ModelNormal):
         (&#39;code&#39;,): {
             &#39;max_length&#39;: 255,
             &#39;min_length&#39;: 1,
-            &#39;regex&#39;: {
-                &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$&#39;,  # noqa: E501
-            },
         },
         (&#39;description&#39;,): {
             &#39;max_length&#39;: 4000,
+            &#39;min_length&#39;: 1,
+        },
+        (&#39;urn&#39;,): {
+            &#39;max_length&#39;: 2000,
             &#39;min_length&#39;: 1,
         },
     }
@@ -151,6 +154,8 @@ class Pipeline(ModelNormal):
             &#39;pipeline_tags&#39;: (PipelineTag,),  # noqa: E501
             &#39;analysis_storage&#39;: (AnalysisStorage,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
+            &#39;urn&#39;: (str, none_type,),  # noqa: E501
+            &#39;language_version&#39;: (PipelineLanguageVersion,),  # noqa: E501
         }
 
     @cached_property
@@ -170,6 +175,8 @@ class Pipeline(ModelNormal):
         &#39;pipeline_tags&#39;: &#39;pipelineTags&#39;,  # noqa: E501
         &#39;analysis_storage&#39;: &#39;analysisStorage&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
+        &#39;urn&#39;: &#39;urn&#39;,  # noqa: E501
+        &#39;language_version&#39;: &#39;languageVersion&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -226,6 +233,8 @@ class Pipeline(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
+            language_version (PipelineLanguageVersion): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -330,6 +339,8 @@ class Pipeline(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
+            language_version (PipelineLanguageVersion): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -396,8 +407,10 @@ class Pipeline(ModelNormal):
 </summary>
 <pre><code class="python">def lazy_import():
     from libica.openapi.v2.model.analysis_storage import AnalysisStorage
+    from libica.openapi.v2.model.pipeline_language_version import PipelineLanguageVersion
     from libica.openapi.v2.model.pipeline_tag import PipelineTag
     globals()[&#39;AnalysisStorage&#39;] = AnalysisStorage
+    globals()[&#39;PipelineLanguageVersion&#39;] = PipelineLanguageVersion
     globals()[&#39;PipelineTag&#39;] = PipelineTag</code></pre>
 </details>
 </dd>
@@ -486,6 +499,10 @@ Animal class but this time we won't travel
 through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
 tenant_name (str, none_type): [optional]
+# noqa: E501
+urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\&lt;type of the object>:\&lt;ID of the object>#\&lt;optional human readable hint representing the object>. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]
+# noqa: E501
+language_version (PipelineLanguageVersion): [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -527,12 +544,13 @@ tenant_name (str, none_type): [optional]
         (&#39;code&#39;,): {
             &#39;max_length&#39;: 255,
             &#39;min_length&#39;: 1,
-            &#39;regex&#39;: {
-                &#39;pattern&#39;: r&#39;^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$&#39;,  # noqa: E501
-            },
         },
         (&#39;description&#39;,): {
             &#39;max_length&#39;: 4000,
+            &#39;min_length&#39;: 1,
+        },
+        (&#39;urn&#39;,): {
+            &#39;max_length&#39;: 2000,
             &#39;min_length&#39;: 1,
         },
     }
@@ -571,6 +589,8 @@ tenant_name (str, none_type): [optional]
             &#39;pipeline_tags&#39;: (PipelineTag,),  # noqa: E501
             &#39;analysis_storage&#39;: (AnalysisStorage,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
+            &#39;urn&#39;: (str, none_type,),  # noqa: E501
+            &#39;language_version&#39;: (PipelineLanguageVersion,),  # noqa: E501
         }
 
     @cached_property
@@ -590,6 +610,8 @@ tenant_name (str, none_type): [optional]
         &#39;pipeline_tags&#39;: &#39;pipelineTags&#39;,  # noqa: E501
         &#39;analysis_storage&#39;: &#39;analysisStorage&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
+        &#39;urn&#39;: &#39;urn&#39;,  # noqa: E501
+        &#39;language_version&#39;: &#39;languageVersion&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -646,6 +668,8 @@ tenant_name (str, none_type): [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
+            language_version (PipelineLanguageVersion): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -750,6 +774,8 @@ tenant_name (str, none_type): [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
+            language_version (PipelineLanguageVersion): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

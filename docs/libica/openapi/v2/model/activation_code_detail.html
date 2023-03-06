@@ -99,6 +99,18 @@ class ActivationCodeDetail(ModelNormal):
     }
 
     validations = {
+        (&#39;allowed_slots&#39;,): {
+            &#39;inclusive_minimum&#39;: -1,
+        },
+        (&#39;used_slots&#39;,): {
+            &#39;inclusive_minimum&#39;: 0,
+        },
+        (&#39;moved_slots&#39;,): {
+            &#39;inclusive_minimum&#39;: 0,
+        },
+        (&#39;original_slots&#39;,): {
+            &#39;inclusive_minimum&#39;: -1,
+        },
     }
 
     @cached_property
@@ -125,12 +137,12 @@ class ActivationCodeDetail(ModelNormal):
         lazy_import()
         return {
             &#39;id&#39;: (str,),  # noqa: E501
+            &#39;allowed_slots&#39;: (int,),  # noqa: E501
+            &#39;used_slots&#39;: (int,),  # noqa: E501
+            &#39;moved_slots&#39;: (int,),  # noqa: E501
+            &#39;original_slots&#39;: (int,),  # noqa: E501
             &#39;pipeline_bundle&#39;: (PipelineBundle,),  # noqa: E501
             &#39;usages&#39;: ([ActivationCodeDetailUsage],),  # noqa: E501
-            &#39;allowed_slots&#39;: (int, none_type,),  # noqa: E501
-            &#39;used_slots&#39;: (int, none_type,),  # noqa: E501
-            &#39;moved_slots&#39;: (int, none_type,),  # noqa: E501
-            &#39;original_slots&#39;: (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -140,12 +152,12 @@ class ActivationCodeDetail(ModelNormal):
 
     attribute_map = {
         &#39;id&#39;: &#39;id&#39;,  # noqa: E501
-        &#39;pipeline_bundle&#39;: &#39;pipelineBundle&#39;,  # noqa: E501
-        &#39;usages&#39;: &#39;usages&#39;,  # noqa: E501
         &#39;allowed_slots&#39;: &#39;allowedSlots&#39;,  # noqa: E501
         &#39;used_slots&#39;: &#39;usedSlots&#39;,  # noqa: E501
         &#39;moved_slots&#39;: &#39;movedSlots&#39;,  # noqa: E501
         &#39;original_slots&#39;: &#39;originalSlots&#39;,  # noqa: E501
+        &#39;pipeline_bundle&#39;: &#39;pipelineBundle&#39;,  # noqa: E501
+        &#39;usages&#39;: &#39;usages&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -155,11 +167,15 @@ class ActivationCodeDetail(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, id, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, id, allowed_slots, used_slots, moved_slots, original_slots, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;ActivationCodeDetail - a model defined in OpenAPI
 
         Args:
             id (str):
+            allowed_slots (int): The allowed slot within this code, -1 means unlimited
+            used_slots (int): Indicates how many slots can are used.
+            moved_slots (int): The slots that where moved to another activation code
+            original_slots (int): The assigned allowed slot within this code, -1 means unlimited
             pipeline_bundle (PipelineBundle):
             usages ([ActivationCodeDetailUsage]):
 
@@ -194,10 +210,6 @@ class ActivationCodeDetail(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            allowed_slots (int, none_type): The allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used.. [optional]  # noqa: E501
-            moved_slots (int, none_type): The slots that where moved to another activation code. [optional]  # noqa: E501
-            original_slots (int, none_type): The assigned allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -226,6 +238,10 @@ class ActivationCodeDetail(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.id = id
+        self.allowed_slots = allowed_slots
+        self.used_slots = used_slots
+        self.moved_slots = moved_slots
+        self.original_slots = original_slots
         self.pipeline_bundle = pipeline_bundle
         self.usages = usages
         for var_name, var_value in kwargs.items():
@@ -248,11 +264,15 @@ class ActivationCodeDetail(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, allowed_slots, used_slots, moved_slots, original_slots, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;ActivationCodeDetail - a model defined in OpenAPI
 
         Args:
             id (str):
+            allowed_slots (int): The allowed slot within this code, -1 means unlimited
+            used_slots (int): Indicates how many slots can are used.
+            moved_slots (int): The slots that where moved to another activation code
+            original_slots (int): The assigned allowed slot within this code, -1 means unlimited
             pipeline_bundle (PipelineBundle):
             usages ([ActivationCodeDetailUsage]):
 
@@ -287,10 +307,6 @@ class ActivationCodeDetail(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            allowed_slots (int, none_type): The allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used.. [optional]  # noqa: E501
-            moved_slots (int, none_type): The slots that where moved to another activation code. [optional]  # noqa: E501
-            original_slots (int, none_type): The assigned allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -317,6 +333,10 @@ class ActivationCodeDetail(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.id = id
+        self.allowed_slots = allowed_slots
+        self.used_slots = used_slots
+        self.moved_slots = moved_slots
+        self.original_slots = original_slots
         self.pipeline_bundle = pipeline_bundle
         self.usages = usages
         for var_name, var_value in kwargs.items():
@@ -362,7 +382,7 @@ class ActivationCodeDetail(ModelNormal):
 <dl>
 <dt id="libica.openapi.v2.model.activation_code_detail.ActivationCodeDetail"><code class="flex name class">
 <span>class <span class="ident">ActivationCodeDetail</span></span>
-<span>(</span><span>id, pipeline_bundle, usages, *args, **kwargs)</span>
+<span>(</span><span>id, allowed_slots, used_slots, moved_slots, original_slots, pipeline_bundle, usages, *args, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -393,8 +413,18 @@ as additional properties values.</dd>
 </dl>
 <p>ActivationCodeDetail - a model defined in OpenAPI</p>
 <h2 id="args">Args</h2>
-<p>id (str):
-pipeline_bundle (PipelineBundle):
+<dl>
+<dt>id (str):</dt>
+<dt><strong><code>allowed_slots</code></strong> :&ensp;<code>int</code></dt>
+<dd>The allowed slot within this code, -1 means unlimited</dd>
+<dt><strong><code>used_slots</code></strong> :&ensp;<code>int</code></dt>
+<dd>Indicates how many slots can are used.</dd>
+<dt><strong><code>moved_slots</code></strong> :&ensp;<code>int</code></dt>
+<dd>The slots that where moved to another activation code</dd>
+<dt><strong><code>original_slots</code></strong> :&ensp;<code>int</code></dt>
+<dd>The assigned allowed slot within this code, -1 means unlimited</dd>
+</dl>
+<p>pipeline_bundle (PipelineBundle):
 usages ([ActivationCodeDetailUsage]):
 Keyword Args:
 _check_type (bool): if True, values for parameters in openapi_types
@@ -426,15 +456,7 @@ once using the discriminator, and pick Dog.
 Then in Dog, we will make an instance of the
 Animal class but this time we won't travel
 through its discriminator because we passed in
-_visited_composed_classes = (Animal,)
-allowed_slots (int, none_type): The allowed slot within this code, empty means unlimited. [optional]
-# noqa: E501
-used_slots (int, none_type): Indicates how many slots can are used.. [optional]
-# noqa: E501
-moved_slots (int, none_type): The slots that where moved to another activation code. [optional]
-# noqa: E501
-original_slots (int, none_type): The assigned allowed slot within this code, empty means unlimited. [optional]
-# noqa: E501</p></div>
+_visited_composed_classes = (Animal,)</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -467,6 +489,18 @@ original_slots (int, none_type): The assigned allowed slot within this code, emp
     }
 
     validations = {
+        (&#39;allowed_slots&#39;,): {
+            &#39;inclusive_minimum&#39;: -1,
+        },
+        (&#39;used_slots&#39;,): {
+            &#39;inclusive_minimum&#39;: 0,
+        },
+        (&#39;moved_slots&#39;,): {
+            &#39;inclusive_minimum&#39;: 0,
+        },
+        (&#39;original_slots&#39;,): {
+            &#39;inclusive_minimum&#39;: -1,
+        },
     }
 
     @cached_property
@@ -493,12 +527,12 @@ original_slots (int, none_type): The assigned allowed slot within this code, emp
         lazy_import()
         return {
             &#39;id&#39;: (str,),  # noqa: E501
+            &#39;allowed_slots&#39;: (int,),  # noqa: E501
+            &#39;used_slots&#39;: (int,),  # noqa: E501
+            &#39;moved_slots&#39;: (int,),  # noqa: E501
+            &#39;original_slots&#39;: (int,),  # noqa: E501
             &#39;pipeline_bundle&#39;: (PipelineBundle,),  # noqa: E501
             &#39;usages&#39;: ([ActivationCodeDetailUsage],),  # noqa: E501
-            &#39;allowed_slots&#39;: (int, none_type,),  # noqa: E501
-            &#39;used_slots&#39;: (int, none_type,),  # noqa: E501
-            &#39;moved_slots&#39;: (int, none_type,),  # noqa: E501
-            &#39;original_slots&#39;: (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -508,12 +542,12 @@ original_slots (int, none_type): The assigned allowed slot within this code, emp
 
     attribute_map = {
         &#39;id&#39;: &#39;id&#39;,  # noqa: E501
-        &#39;pipeline_bundle&#39;: &#39;pipelineBundle&#39;,  # noqa: E501
-        &#39;usages&#39;: &#39;usages&#39;,  # noqa: E501
         &#39;allowed_slots&#39;: &#39;allowedSlots&#39;,  # noqa: E501
         &#39;used_slots&#39;: &#39;usedSlots&#39;,  # noqa: E501
         &#39;moved_slots&#39;: &#39;movedSlots&#39;,  # noqa: E501
         &#39;original_slots&#39;: &#39;originalSlots&#39;,  # noqa: E501
+        &#39;pipeline_bundle&#39;: &#39;pipelineBundle&#39;,  # noqa: E501
+        &#39;usages&#39;: &#39;usages&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -523,11 +557,15 @@ original_slots (int, none_type): The assigned allowed slot within this code, emp
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, id, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, id, allowed_slots, used_slots, moved_slots, original_slots, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;ActivationCodeDetail - a model defined in OpenAPI
 
         Args:
             id (str):
+            allowed_slots (int): The allowed slot within this code, -1 means unlimited
+            used_slots (int): Indicates how many slots can are used.
+            moved_slots (int): The slots that where moved to another activation code
+            original_slots (int): The assigned allowed slot within this code, -1 means unlimited
             pipeline_bundle (PipelineBundle):
             usages ([ActivationCodeDetailUsage]):
 
@@ -562,10 +600,6 @@ original_slots (int, none_type): The assigned allowed slot within this code, emp
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            allowed_slots (int, none_type): The allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used.. [optional]  # noqa: E501
-            moved_slots (int, none_type): The slots that where moved to another activation code. [optional]  # noqa: E501
-            original_slots (int, none_type): The assigned allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -594,6 +628,10 @@ original_slots (int, none_type): The assigned allowed slot within this code, emp
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.id = id
+        self.allowed_slots = allowed_slots
+        self.used_slots = used_slots
+        self.moved_slots = moved_slots
+        self.original_slots = original_slots
         self.pipeline_bundle = pipeline_bundle
         self.usages = usages
         for var_name, var_value in kwargs.items():
@@ -616,11 +654,15 @@ original_slots (int, none_type): The assigned allowed slot within this code, emp
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, allowed_slots, used_slots, moved_slots, original_slots, pipeline_bundle, usages, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;ActivationCodeDetail - a model defined in OpenAPI
 
         Args:
             id (str):
+            allowed_slots (int): The allowed slot within this code, -1 means unlimited
+            used_slots (int): Indicates how many slots can are used.
+            moved_slots (int): The slots that where moved to another activation code
+            original_slots (int): The assigned allowed slot within this code, -1 means unlimited
             pipeline_bundle (PipelineBundle):
             usages ([ActivationCodeDetailUsage]):
 
@@ -655,10 +697,6 @@ original_slots (int, none_type): The assigned allowed slot within this code, emp
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            allowed_slots (int, none_type): The allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used.. [optional]  # noqa: E501
-            moved_slots (int, none_type): The slots that where moved to another activation code. [optional]  # noqa: E501
-            original_slots (int, none_type): The assigned allowed slot within this code, empty means unlimited. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -685,6 +723,10 @@ original_slots (int, none_type): The assigned allowed slot within this code, emp
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.id = id
+        self.allowed_slots = allowed_slots
+        self.used_slots = used_slots
+        self.moved_slots = moved_slots
+        self.original_slots = original_slots
         self.pipeline_bundle = pipeline_bundle
         self.usages = usages
         for var_name, var_value in kwargs.items():

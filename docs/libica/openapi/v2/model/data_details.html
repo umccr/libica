@@ -68,9 +68,11 @@ def lazy_import():
     from libica.openapi.v2.model.data_format import DataFormat
     from libica.openapi.v2.model.data_tag import DataTag
     from libica.openapi.v2.model.region import Region
+    from libica.openapi.v2.model.sequencing_run import SequencingRun
     globals()[&#39;DataFormat&#39;] = DataFormat
     globals()[&#39;DataTag&#39;] = DataTag
     globals()[&#39;Region&#39;] = Region
+    globals()[&#39;SequencingRun&#39;] = SequencingRun
 
 
 class DataDetails(ModelNormal):
@@ -146,6 +148,7 @@ class DataDetails(ModelNormal):
             &#39;status&#39;: (str,),  # noqa: E501
             &#39;tags&#39;: (DataTag,),  # noqa: E501
             &#39;data_type&#39;: (str,),  # noqa: E501
+            &#39;creator_id&#39;: (str, none_type,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
             &#39;owning_project_name&#39;: (str, none_type,),  # noqa: E501
             &#39;path&#39;: (str, none_type,),  # noqa: E501
@@ -156,6 +159,7 @@ class DataDetails(ModelNormal):
             &#39;region&#39;: (Region,),  # noqa: E501
             &#39;will_be_archived_at&#39;: (datetime, none_type,),  # noqa: E501
             &#39;will_be_deleted_at&#39;: (datetime, none_type,),  # noqa: E501
+            &#39;sequencing_run&#39;: (SequencingRun,),  # noqa: E501
         }
 
     @cached_property
@@ -172,6 +176,7 @@ class DataDetails(ModelNormal):
         &#39;status&#39;: &#39;status&#39;,  # noqa: E501
         &#39;tags&#39;: &#39;tags&#39;,  # noqa: E501
         &#39;data_type&#39;: &#39;dataType&#39;,  # noqa: E501
+        &#39;creator_id&#39;: &#39;creatorId&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
         &#39;owning_project_name&#39;: &#39;owningProjectName&#39;,  # noqa: E501
         &#39;path&#39;: &#39;path&#39;,  # noqa: E501
@@ -182,6 +187,7 @@ class DataDetails(ModelNormal):
         &#39;region&#39;: &#39;region&#39;,  # noqa: E501
         &#39;will_be_archived_at&#39;: &#39;willBeArchivedAt&#39;,  # noqa: E501
         &#39;will_be_deleted_at&#39;: &#39;willBeDeletedAt&#39;,  # noqa: E501
+        &#39;sequencing_run&#39;: &#39;sequencingRun&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -235,6 +241,7 @@ class DataDetails(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            creator_id (str, none_type): [optional]  # noqa: E501
             tenant_name (str, none_type): [optional]  # noqa: E501
             owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
@@ -245,6 +252,7 @@ class DataDetails(ModelNormal):
             region (Region): [optional]  # noqa: E501
             will_be_archived_at (datetime, none_type): Specifies when the data object will be archived.. [optional]  # noqa: E501
             will_be_deleted_at (datetime, none_type): Specifies when the data object will be deleted.. [optional]  # noqa: E501
+            sequencing_run (SequencingRun): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -344,6 +352,7 @@ class DataDetails(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            creator_id (str, none_type): [optional]  # noqa: E501
             tenant_name (str, none_type): [optional]  # noqa: E501
             owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
@@ -354,6 +363,7 @@ class DataDetails(ModelNormal):
             region (Region): [optional]  # noqa: E501
             will_be_archived_at (datetime, none_type): Specifies when the data object will be archived.. [optional]  # noqa: E501
             will_be_deleted_at (datetime, none_type): Specifies when the data object will be deleted.. [optional]  # noqa: E501
+            sequencing_run (SequencingRun): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -420,9 +430,11 @@ class DataDetails(ModelNormal):
     from libica.openapi.v2.model.data_format import DataFormat
     from libica.openapi.v2.model.data_tag import DataTag
     from libica.openapi.v2.model.region import Region
+    from libica.openapi.v2.model.sequencing_run import SequencingRun
     globals()[&#39;DataFormat&#39;] = DataFormat
     globals()[&#39;DataTag&#39;] = DataTag
-    globals()[&#39;Region&#39;] = Region</code></pre>
+    globals()[&#39;Region&#39;] = Region
+    globals()[&#39;SequencingRun&#39;] = SequencingRun</code></pre>
 </details>
 </dd>
 </dl>
@@ -505,6 +517,8 @@ Then in Dog, we will make an instance of the
 Animal class but this time we won't travel
 through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
+creator_id (str, none_type): [optional]
+# noqa: E501
 tenant_name (str, none_type): [optional]
 # noqa: E501
 owning_project_name (str, none_type): [optional]
@@ -524,6 +538,8 @@ region (Region): [optional]
 will_be_archived_at (datetime, none_type): Specifies when the data object will be archived.. [optional]
 # noqa: E501
 will_be_deleted_at (datetime, none_type): Specifies when the data object will be deleted.. [optional]
+# noqa: E501
+sequencing_run (SequencingRun): [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -602,6 +618,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
             &#39;status&#39;: (str,),  # noqa: E501
             &#39;tags&#39;: (DataTag,),  # noqa: E501
             &#39;data_type&#39;: (str,),  # noqa: E501
+            &#39;creator_id&#39;: (str, none_type,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
             &#39;owning_project_name&#39;: (str, none_type,),  # noqa: E501
             &#39;path&#39;: (str, none_type,),  # noqa: E501
@@ -612,6 +629,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
             &#39;region&#39;: (Region,),  # noqa: E501
             &#39;will_be_archived_at&#39;: (datetime, none_type,),  # noqa: E501
             &#39;will_be_deleted_at&#39;: (datetime, none_type,),  # noqa: E501
+            &#39;sequencing_run&#39;: (SequencingRun,),  # noqa: E501
         }
 
     @cached_property
@@ -628,6 +646,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
         &#39;status&#39;: &#39;status&#39;,  # noqa: E501
         &#39;tags&#39;: &#39;tags&#39;,  # noqa: E501
         &#39;data_type&#39;: &#39;dataType&#39;,  # noqa: E501
+        &#39;creator_id&#39;: &#39;creatorId&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
         &#39;owning_project_name&#39;: &#39;owningProjectName&#39;,  # noqa: E501
         &#39;path&#39;: &#39;path&#39;,  # noqa: E501
@@ -638,6 +657,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
         &#39;region&#39;: &#39;region&#39;,  # noqa: E501
         &#39;will_be_archived_at&#39;: &#39;willBeArchivedAt&#39;,  # noqa: E501
         &#39;will_be_deleted_at&#39;: &#39;willBeDeletedAt&#39;,  # noqa: E501
+        &#39;sequencing_run&#39;: &#39;sequencingRun&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -691,6 +711,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            creator_id (str, none_type): [optional]  # noqa: E501
             tenant_name (str, none_type): [optional]  # noqa: E501
             owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
@@ -701,6 +722,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
             region (Region): [optional]  # noqa: E501
             will_be_archived_at (datetime, none_type): Specifies when the data object will be archived.. [optional]  # noqa: E501
             will_be_deleted_at (datetime, none_type): Specifies when the data object will be deleted.. [optional]  # noqa: E501
+            sequencing_run (SequencingRun): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -800,6 +822,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            creator_id (str, none_type): [optional]  # noqa: E501
             tenant_name (str, none_type): [optional]  # noqa: E501
             owning_project_name (str, none_type): [optional]  # noqa: E501
             path (str, none_type): The user friendly path of the parent of this data.. [optional]  # noqa: E501
@@ -810,6 +833,7 @@ will_be_deleted_at (datetime, none_type): Specifies when the data object will be
             region (Region): [optional]  # noqa: E501
             will_be_archived_at (datetime, none_type): Specifies when the data object will be archived.. [optional]  # noqa: E501
             will_be_deleted_at (datetime, none_type): Specifies when the data object will be deleted.. [optional]  # noqa: E501
+            sequencing_run (SequencingRun): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

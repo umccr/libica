@@ -437,6 +437,124 @@ class FilesApi(object):
             _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
             collection_formats=collection_formats)
 
+    def copy_files(self, body, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Copy list of files  # noqa: E501
+
+        Copies a list of files enumerated by file Ids to a destination folder  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.copy_files(body, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param FileListCopyRequest body: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: JobResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;_return_http_data_only&#39;] = True
+        return self.copy_files_with_http_info(body, **kwargs)  # noqa: E501
+
+    def copy_files_with_http_info(self, body, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Copy list of files  # noqa: E501
+
+        Copies a list of files enumerated by file Ids to a destination folder  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.copy_files_with_http_info(body, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param FileListCopyRequest body: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+
+        local_var_params = locals()
+
+        all_params = [
+            &#39;body&#39;
+        ]
+        all_params.extend(
+            [
+                &#39;async_req&#39;,
+                &#39;_return_http_data_only&#39;,
+                &#39;_preload_content&#39;,
+                &#39;_request_timeout&#39;
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+            if key not in all_params:
+                raise ApiTypeError(
+                    &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                    &#34; to method copy_files&#34; % key
+                )
+            local_var_params[key] = val
+        del local_var_params[&#39;kwargs&#39;]
+        # verify the required parameter &#39;body&#39; is set
+        if self.api_client.client_side_validation and (&#39;body&#39; not in local_var_params or  # noqa: E501
+                                                        local_var_params[&#39;body&#39;] is None):  # noqa: E501
+            raise ApiValueError(&#34;Missing the required parameter `body` when calling `copy_files`&#34;)  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if &#39;body&#39; in local_var_params:
+            body_params = local_var_params[&#39;body&#39;]
+        # HTTP header `Accept`
+        header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+            [&#39;application/json&#39;])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+            [&#39;application/json-patch+json&#39;, &#39;application/json&#39;, &#39;text/json&#39;, &#39;application/*+json&#39;])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+        return self.api_client.call_api(
+            &#39;/v1/files/copy&#39;, &#39;POST&#39;,
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=&#39;JobResponse&#39;,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get(&#39;async_req&#39;),
+            _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+            _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+            _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+            collection_formats=collection_formats)
+
     def create_file(self, body, **kwargs):  # noqa: E501
         &#34;&#34;&#34;Create a file entry in GDS and get temporary credentials for upload  # noqa: E501
 
@@ -699,6 +817,7 @@ class FilesApi(object):
         :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
         :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
         :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -729,6 +848,7 @@ class FilesApi(object):
         :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
         :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
         :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -751,7 +871,8 @@ class FilesApi(object):
             &#39;presigned_url_mode&#39;,
             &#39;include_volume_metadata&#39;,
             &#39;metadata_include&#39;,
-            &#39;metadata_exclude&#39;
+            &#39;metadata_exclude&#39;,
+            &#39;include&#39;
         ]
         all_params.extend(
             [
@@ -792,6 +913,8 @@ class FilesApi(object):
             query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
         if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
             query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
+        if &#39;include&#39; in local_var_params and local_var_params[&#39;include&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
         header_params = {}
 
@@ -1783,6 +1906,124 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
             collection_formats=collection_formats)
 
+    def copy_files(self, body, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Copy list of files  # noqa: E501
+
+        Copies a list of files enumerated by file Ids to a destination folder  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.copy_files(body, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param FileListCopyRequest body: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: JobResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;_return_http_data_only&#39;] = True
+        return self.copy_files_with_http_info(body, **kwargs)  # noqa: E501
+
+    def copy_files_with_http_info(self, body, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Copy list of files  # noqa: E501
+
+        Copies a list of files enumerated by file Ids to a destination folder  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.copy_files_with_http_info(body, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param FileListCopyRequest body: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+
+        local_var_params = locals()
+
+        all_params = [
+            &#39;body&#39;
+        ]
+        all_params.extend(
+            [
+                &#39;async_req&#39;,
+                &#39;_return_http_data_only&#39;,
+                &#39;_preload_content&#39;,
+                &#39;_request_timeout&#39;
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+            if key not in all_params:
+                raise ApiTypeError(
+                    &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                    &#34; to method copy_files&#34; % key
+                )
+            local_var_params[key] = val
+        del local_var_params[&#39;kwargs&#39;]
+        # verify the required parameter &#39;body&#39; is set
+        if self.api_client.client_side_validation and (&#39;body&#39; not in local_var_params or  # noqa: E501
+                                                        local_var_params[&#39;body&#39;] is None):  # noqa: E501
+            raise ApiValueError(&#34;Missing the required parameter `body` when calling `copy_files`&#34;)  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if &#39;body&#39; in local_var_params:
+            body_params = local_var_params[&#39;body&#39;]
+        # HTTP header `Accept`
+        header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+            [&#39;application/json&#39;])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+            [&#39;application/json-patch+json&#39;, &#39;application/json&#39;, &#39;text/json&#39;, &#39;application/*+json&#39;])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+        return self.api_client.call_api(
+            &#39;/v1/files/copy&#39;, &#39;POST&#39;,
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=&#39;JobResponse&#39;,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get(&#39;async_req&#39;),
+            _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+            _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+            _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+            collection_formats=collection_formats)
+
     def create_file(self, body, **kwargs):  # noqa: E501
         &#34;&#34;&#34;Create a file entry in GDS and get temporary credentials for upload  # noqa: E501
 
@@ -2045,6 +2286,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
         :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
         :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -2075,6 +2317,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
         :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
         :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2097,7 +2340,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             &#39;presigned_url_mode&#39;,
             &#39;include_volume_metadata&#39;,
             &#39;metadata_include&#39;,
-            &#39;metadata_exclude&#39;
+            &#39;metadata_exclude&#39;,
+            &#39;include&#39;
         ]
         all_params.extend(
             [
@@ -2138,6 +2382,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
         if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
             query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
+        if &#39;include&#39; in local_var_params and local_var_params[&#39;include&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
         header_params = {}
 
@@ -3287,6 +3533,186 @@ returns the request thread.</p></div>
         collection_formats=collection_formats)</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libgds.api.files_api.FilesApi.copy_files"><code class="name flex">
+<span>def <span class="ident">copy_files</span></span>(<span>self, body, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Copy list of files
+# noqa: E501</p>
+<p>Copies a list of files enumerated by file Ids to a destination folder
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.copy_files(body, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<p>:param async_req bool: execute request asynchronously
+:param FileListCopyRequest body: (required)
+:param _preload_content: if False, the urllib3.HTTPResponse object will
+be returned without reading/decoding response
+data. Default is True.
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:return: JobResponse
+If the method is called asynchronously,
+returns the request thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def copy_files(self, body, **kwargs):  # noqa: E501
+    &#34;&#34;&#34;Copy list of files  # noqa: E501
+
+    Copies a list of files enumerated by file Ids to a destination folder  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    &gt;&gt;&gt; thread = api.copy_files(body, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    :param async_req bool: execute request asynchronously
+    :param FileListCopyRequest body: (required)
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                             be returned without reading/decoding response
+                             data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :return: JobResponse
+             If the method is called asynchronously,
+             returns the request thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;_return_http_data_only&#39;] = True
+    return self.copy_files_with_http_info(body, **kwargs)  # noqa: E501</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.api.files_api.FilesApi.copy_files_with_http_info"><code class="name flex">
+<span>def <span class="ident">copy_files_with_http_info</span></span>(<span>self, body, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Copy list of files
+# noqa: E501</p>
+<p>Copies a list of files enumerated by file Ids to a destination folder
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.copy_files_with_http_info(body, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<p>:param async_req bool: execute request asynchronously
+:param FileListCopyRequest body: (required)
+:param _return_http_data_only: response data without head status code
+and headers
+:param _preload_content: if False, the urllib3.HTTPResponse object will
+be returned without reading/decoding response
+data. Default is True.
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+If the method is called asynchronously,
+returns the request thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def copy_files_with_http_info(self, body, **kwargs):  # noqa: E501
+    &#34;&#34;&#34;Copy list of files  # noqa: E501
+
+    Copies a list of files enumerated by file Ids to a destination folder  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    &gt;&gt;&gt; thread = api.copy_files_with_http_info(body, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    :param async_req bool: execute request asynchronously
+    :param FileListCopyRequest body: (required)
+    :param _return_http_data_only: response data without head status code
+                                   and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                             be returned without reading/decoding response
+                             data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously,
+             returns the request thread.
+    &#34;&#34;&#34;
+
+    local_var_params = locals()
+
+    all_params = [
+        &#39;body&#39;
+    ]
+    all_params.extend(
+        [
+            &#39;async_req&#39;,
+            &#39;_return_http_data_only&#39;,
+            &#39;_preload_content&#39;,
+            &#39;_request_timeout&#39;
+        ]
+    )
+
+    for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+        if key not in all_params:
+            raise ApiTypeError(
+                &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                &#34; to method copy_files&#34; % key
+            )
+        local_var_params[key] = val
+    del local_var_params[&#39;kwargs&#39;]
+    # verify the required parameter &#39;body&#39; is set
+    if self.api_client.client_side_validation and (&#39;body&#39; not in local_var_params or  # noqa: E501
+                                                    local_var_params[&#39;body&#39;] is None):  # noqa: E501
+        raise ApiValueError(&#34;Missing the required parameter `body` when calling `copy_files`&#34;)  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    if &#39;body&#39; in local_var_params:
+        body_params = local_var_params[&#39;body&#39;]
+    # HTTP header `Accept`
+    header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+        [&#39;application/json&#39;])  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+        [&#39;application/json-patch+json&#39;, &#39;application/json&#39;, &#39;text/json&#39;, &#39;application/*+json&#39;])  # noqa: E501
+
+    # Authentication setting
+    auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+    return self.api_client.call_api(
+        &#39;/v1/files/copy&#39;, &#39;POST&#39;,
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type=&#39;JobResponse&#39;,  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get(&#39;async_req&#39;),
+        _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+        _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+        _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+        collection_formats=collection_formats)</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libgds.api.files_api.FilesApi.create_file"><code class="name flex">
 <span>def <span class="ident">create_file</span></span>(<span>self, body, **kwargs)</span>
 </code></dt>
@@ -3684,6 +4110,8 @@ Possible values: Attachment, Inline, Browser
 :param bool include_volume_metadata: Optional parameter to return volume's metadata
 :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
 :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+:param str include: Optionally include additional fields in the response.
+Possible values: ObjectStoreAccess
 :param _preload_content: if False, the urllib3.HTTPResponse object will
 be returned without reading/decoding response
 data. Default is True.
@@ -3714,6 +4142,7 @@ returns the request thread.</p></div>
     :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
     :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
     :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+    :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                              be returned without reading/decoding response
                              data. Default is True.
@@ -3750,6 +4179,8 @@ Possible values: Attachment, Inline, Browser
 :param bool include_volume_metadata: Optional parameter to return volume's metadata
 :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
 :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+:param str include: Optionally include additional fields in the response.
+Possible values: ObjectStoreAccess
 :param _return_http_data_only: response data without head status code
 and headers
 :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -3782,6 +4213,7 @@ returns the request thread.</p></div>
     :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
     :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
     :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+    :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
     :param _return_http_data_only: response data without head status code
                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -3804,7 +4236,8 @@ returns the request thread.</p></div>
         &#39;presigned_url_mode&#39;,
         &#39;include_volume_metadata&#39;,
         &#39;metadata_include&#39;,
-        &#39;metadata_exclude&#39;
+        &#39;metadata_exclude&#39;,
+        &#39;include&#39;
     ]
     all_params.extend(
         [
@@ -3845,6 +4278,8 @@ returns the request thread.</p></div>
         query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
     if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
         query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
+    if &#39;include&#39; in local_var_params and local_var_params[&#39;include&#39;] is not None:  # noqa: E501
+        query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
     header_params = {}
 
@@ -4748,6 +5183,8 @@ returns the request thread.</p></div>
 <li><code><a title="libica.openapi.libgds.api.files_api.FilesApi.bulk_file_update_with_http_info" href="#libica.openapi.libgds.api.files_api.FilesApi.bulk_file_update_with_http_info">bulk_file_update_with_http_info</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.files_api.FilesApi.complete_file_upload" href="#libica.openapi.libgds.api.files_api.FilesApi.complete_file_upload">complete_file_upload</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.files_api.FilesApi.complete_file_upload_with_http_info" href="#libica.openapi.libgds.api.files_api.FilesApi.complete_file_upload_with_http_info">complete_file_upload_with_http_info</a></code></li>
+<li><code><a title="libica.openapi.libgds.api.files_api.FilesApi.copy_files" href="#libica.openapi.libgds.api.files_api.FilesApi.copy_files">copy_files</a></code></li>
+<li><code><a title="libica.openapi.libgds.api.files_api.FilesApi.copy_files_with_http_info" href="#libica.openapi.libgds.api.files_api.FilesApi.copy_files_with_http_info">copy_files_with_http_info</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.files_api.FilesApi.create_file" href="#libica.openapi.libgds.api.files_api.FilesApi.create_file">create_file</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.files_api.FilesApi.create_file_with_http_info" href="#libica.openapi.libgds.api.files_api.FilesApi.create_file_with_http_info">create_file_with_http_info</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.files_api.FilesApi.delete_file" href="#libica.openapi.libgds.api.files_api.FilesApi.delete_file">delete_file</a></code></li>

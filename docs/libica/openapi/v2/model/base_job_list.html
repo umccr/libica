@@ -97,6 +97,16 @@ class BaseJobList(ModelNormal):
     }
 
     validations = {
+        (&#39;next_page_token&#39;,): {
+            &#39;max_length&#39;: 2000,
+            &#39;min_length&#39;: 0,
+        },
+        (&#39;remaining_records&#39;,): {
+            &#39;inclusive_minimum&#39;: 0,
+        },
+        (&#39;total_item_count&#39;,): {
+            &#39;inclusive_minimum&#39;: 0,
+        },
     }
 
     @cached_property
@@ -123,6 +133,9 @@ class BaseJobList(ModelNormal):
         lazy_import()
         return {
             &#39;items&#39;: ([BaseJob],),  # noqa: E501
+            &#39;next_page_token&#39;: (str, none_type,),  # noqa: E501
+            &#39;remaining_records&#39;: (int, none_type,),  # noqa: E501
+            &#39;total_item_count&#39;: (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -132,6 +145,9 @@ class BaseJobList(ModelNormal):
 
     attribute_map = {
         &#39;items&#39;: &#39;items&#39;,  # noqa: E501
+        &#39;next_page_token&#39;: &#39;nextPageToken&#39;,  # noqa: E501
+        &#39;remaining_records&#39;: &#39;remainingRecords&#39;,  # noqa: E501
+        &#39;total_item_count&#39;: &#39;totalItemCount&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -178,6 +194,9 @@ class BaseJobList(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            next_page_token (str, none_type): The cursor to request the next page. For offset-based paging the value is an empty string.. [optional]  # noqa: E501
+            remaining_records (int, none_type): The number of records remaining (used in cursor based pagination). [optional]  # noqa: E501
+            total_item_count (int, none_type): The total number of records matching the search criteria (used in offset based pagination). [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -263,6 +282,9 @@ class BaseJobList(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            next_page_token (str, none_type): The cursor to request the next page. For offset-based paging the value is an empty string.. [optional]  # noqa: E501
+            remaining_records (int, none_type): The number of records remaining (used in cursor based pagination). [optional]  # noqa: E501
+            total_item_count (int, none_type): The total number of records matching the search criteria (used in offset based pagination). [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -392,7 +414,13 @@ once using the discriminator, and pick Dog.
 Then in Dog, we will make an instance of the
 Animal class but this time we won't travel
 through its discriminator because we passed in
-_visited_composed_classes = (Animal,)</p></div>
+_visited_composed_classes = (Animal,)
+next_page_token (str, none_type): The cursor to request the next page. For offset-based paging the value is an empty string.. [optional]
+# noqa: E501
+remaining_records (int, none_type): The number of records remaining (used in cursor based pagination). [optional]
+# noqa: E501
+total_item_count (int, none_type): The total number of records matching the search criteria (used in offset based pagination). [optional]
+# noqa: E501</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -425,6 +453,16 @@ _visited_composed_classes = (Animal,)</p></div>
     }
 
     validations = {
+        (&#39;next_page_token&#39;,): {
+            &#39;max_length&#39;: 2000,
+            &#39;min_length&#39;: 0,
+        },
+        (&#39;remaining_records&#39;,): {
+            &#39;inclusive_minimum&#39;: 0,
+        },
+        (&#39;total_item_count&#39;,): {
+            &#39;inclusive_minimum&#39;: 0,
+        },
     }
 
     @cached_property
@@ -451,6 +489,9 @@ _visited_composed_classes = (Animal,)</p></div>
         lazy_import()
         return {
             &#39;items&#39;: ([BaseJob],),  # noqa: E501
+            &#39;next_page_token&#39;: (str, none_type,),  # noqa: E501
+            &#39;remaining_records&#39;: (int, none_type,),  # noqa: E501
+            &#39;total_item_count&#39;: (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -460,6 +501,9 @@ _visited_composed_classes = (Animal,)</p></div>
 
     attribute_map = {
         &#39;items&#39;: &#39;items&#39;,  # noqa: E501
+        &#39;next_page_token&#39;: &#39;nextPageToken&#39;,  # noqa: E501
+        &#39;remaining_records&#39;: &#39;remainingRecords&#39;,  # noqa: E501
+        &#39;total_item_count&#39;: &#39;totalItemCount&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -506,6 +550,9 @@ _visited_composed_classes = (Animal,)</p></div>
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            next_page_token (str, none_type): The cursor to request the next page. For offset-based paging the value is an empty string.. [optional]  # noqa: E501
+            remaining_records (int, none_type): The number of records remaining (used in cursor based pagination). [optional]  # noqa: E501
+            total_item_count (int, none_type): The total number of records matching the search criteria (used in offset based pagination). [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -591,6 +638,9 @@ _visited_composed_classes = (Animal,)</p></div>
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            next_page_token (str, none_type): The cursor to request the next page. For offset-based paging the value is an empty string.. [optional]  # noqa: E501
+            remaining_records (int, none_type): The number of records remaining (used in cursor based pagination). [optional]  # noqa: E501
+            total_item_count (int, none_type): The total number of records matching the search criteria (used in offset based pagination). [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

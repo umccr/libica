@@ -65,8 +65,10 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.analysis_output_mapping import AnalysisOutputMapping
     from libica.openapi.v2.model.analysis_tag import AnalysisTag
     from libica.openapi.v2.model.cwl_analysis_input import CwlAnalysisInput
+    globals()[&#39;AnalysisOutputMapping&#39;] = AnalysisOutputMapping
     globals()[&#39;AnalysisTag&#39;] = AnalysisTag
     globals()[&#39;CwlAnalysisInput&#39;] = CwlAnalysisInput
 
@@ -138,6 +140,7 @@ class CreateCwlAnalysis(ModelNormal):
             &#39;analysis_input&#39;: (CwlAnalysisInput,),  # noqa: E501
             &#39;analysis_storage_id&#39;: (str, none_type,),  # noqa: E501
             &#39;output_parent_folder_id&#39;: (str, none_type,),  # noqa: E501
+            &#39;analysis_output&#39;: ([AnalysisOutputMapping], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -153,6 +156,7 @@ class CreateCwlAnalysis(ModelNormal):
         &#39;analysis_input&#39;: &#39;analysisInput&#39;,  # noqa: E501
         &#39;analysis_storage_id&#39;: &#39;analysisStorageId&#39;,  # noqa: E501
         &#39;output_parent_folder_id&#39;: &#39;outputParentFolderId&#39;,  # noqa: E501
+        &#39;analysis_output&#39;: &#39;analysisOutput&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -205,6 +209,7 @@ class CreateCwlAnalysis(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
+            analysis_output ([AnalysisOutputMapping], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -300,6 +305,7 @@ class CreateCwlAnalysis(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
+            analysis_output ([AnalysisOutputMapping], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -360,8 +366,10 @@ class CreateCwlAnalysis(ModelNormal):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def lazy_import():
+    from libica.openapi.v2.model.analysis_output_mapping import AnalysisOutputMapping
     from libica.openapi.v2.model.analysis_tag import AnalysisTag
     from libica.openapi.v2.model.cwl_analysis_input import CwlAnalysisInput
+    globals()[&#39;AnalysisOutputMapping&#39;] = AnalysisOutputMapping
     globals()[&#39;AnalysisTag&#39;] = AnalysisTag
     globals()[&#39;CwlAnalysisInput&#39;] = CwlAnalysisInput</code></pre>
 </details>
@@ -448,6 +456,8 @@ _visited_composed_classes = (Animal,)
 analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]
 # noqa: E501
 output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]
+# noqa: E501
+analysis_output ([AnalysisOutputMapping], none_type): [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -520,6 +530,7 @@ output_parent_folder_id (str, none_type): The id of the folder in which the outp
             &#39;analysis_input&#39;: (CwlAnalysisInput,),  # noqa: E501
             &#39;analysis_storage_id&#39;: (str, none_type,),  # noqa: E501
             &#39;output_parent_folder_id&#39;: (str, none_type,),  # noqa: E501
+            &#39;analysis_output&#39;: ([AnalysisOutputMapping], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -535,6 +546,7 @@ output_parent_folder_id (str, none_type): The id of the folder in which the outp
         &#39;analysis_input&#39;: &#39;analysisInput&#39;,  # noqa: E501
         &#39;analysis_storage_id&#39;: &#39;analysisStorageId&#39;,  # noqa: E501
         &#39;output_parent_folder_id&#39;: &#39;outputParentFolderId&#39;,  # noqa: E501
+        &#39;analysis_output&#39;: &#39;analysisOutput&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -587,6 +599,7 @@ output_parent_folder_id (str, none_type): The id of the folder in which the outp
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
+            analysis_output ([AnalysisOutputMapping], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -682,6 +695,7 @@ output_parent_folder_id (str, none_type): The id of the folder in which the outp
                                 _visited_composed_classes = (Animal,)
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id of the folder in which the output folder should be created.. [optional]  # noqa: E501
+            analysis_output ([AnalysisOutputMapping], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

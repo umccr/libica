@@ -68,9 +68,11 @@ def lazy_import():
     from libica.openapi.v2.model.analysis_storage import AnalysisStorage
     from libica.openapi.v2.model.analysis_tag import AnalysisTag
     from libica.openapi.v2.model.pipeline import Pipeline
+    from libica.openapi.v2.model.workflow_session import WorkflowSession
     globals()[&#39;AnalysisStorage&#39;] = AnalysisStorage
     globals()[&#39;AnalysisTag&#39;] = AnalysisTag
     globals()[&#39;Pipeline&#39;] = Pipeline
+    globals()[&#39;WorkflowSession&#39;] = WorkflowSession
 
 
 class Analysis(ModelNormal):
@@ -107,6 +109,16 @@ class Analysis(ModelNormal):
             &#39;FAILEDFINAL&#39;: &#34;FAILEDFINAL&#34;,
             &#39;ABORTED&#39;: &#34;ABORTED&#34;,
         },
+        # FIXME Their OpenAPI document says expected values should be &#39;Low&#39;, &#39;Medium&#39;, &#39;High&#39; and nullable
+        #  But. On the actual server, it responses with capitalised &#39;MEDIUM&#39;
+        #  curl -s -H &#34;Accept: application/vnd.illumina.v3+json&#34; -H &#34;Authorization: Bearer $ICAV2_ACCESS_TOKEN&#34; &#34;https://ica.illumina.com/ica/rest/api/projects/&lt;project_id&gt;/analyses/&lt;analysis_id&gt;&#34; | jq
+        #  So. There is discrepancy. Since we have to accept whatever value from server, commenting out this for now.
+        # (&#39;analysis_priority&#39;,): {
+        #     &#39;None&#39;: None,
+        #     &#39;LOW&#39;: &#34;Low&#34;,
+        #     &#39;MEDIUM&#39;: &#34;Medium&#34;,
+        #     &#39;HIGH&#39;: &#34;High&#34;,
+        # },
     }
 
     validations = {
@@ -154,10 +166,12 @@ class Analysis(ModelNormal):
             &#39;status&#39;: (str,),  # noqa: E501
             &#39;tags&#39;: (AnalysisTag,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
+            &#39;workflow_session&#39;: (WorkflowSession,),  # noqa: E501
             &#39;start_date&#39;: (datetime, none_type,),  # noqa: E501
             &#39;end_date&#39;: (datetime, none_type,),  # noqa: E501
             &#39;summary&#39;: (str, none_type,),  # noqa: E501
             &#39;analysis_storage&#39;: (AnalysisStorage,),  # noqa: E501
+            &#39;analysis_priority&#39;: (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -177,10 +191,12 @@ class Analysis(ModelNormal):
         &#39;status&#39;: &#39;status&#39;,  # noqa: E501
         &#39;tags&#39;: &#39;tags&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
+        &#39;workflow_session&#39;: &#39;workflowSession&#39;,  # noqa: E501
         &#39;start_date&#39;: &#39;startDate&#39;,  # noqa: E501
         &#39;end_date&#39;: &#39;endDate&#39;,  # noqa: E501
         &#39;summary&#39;: &#39;summary&#39;,  # noqa: E501
         &#39;analysis_storage&#39;: &#39;analysisStorage&#39;,  # noqa: E501
+        &#39;analysis_priority&#39;: &#39;analysisPriority&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -237,10 +253,12 @@ class Analysis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            workflow_session (WorkflowSession): [optional]  # noqa: E501
             start_date (datetime, none_type): When the analysis was started. [optional]  # noqa: E501
             end_date (datetime, none_type): When the analysis was finished. [optional]  # noqa: E501
             summary (str, none_type): The summary of the analysis. [optional]  # noqa: E501
             analysis_storage (AnalysisStorage): [optional]  # noqa: E501
+            analysis_priority (str, none_type): The priority of the analysis. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -345,10 +363,12 @@ class Analysis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            workflow_session (WorkflowSession): [optional]  # noqa: E501
             start_date (datetime, none_type): When the analysis was started. [optional]  # noqa: E501
             end_date (datetime, none_type): When the analysis was finished. [optional]  # noqa: E501
             summary (str, none_type): The summary of the analysis. [optional]  # noqa: E501
             analysis_storage (AnalysisStorage): [optional]  # noqa: E501
+            analysis_priority (str, none_type): The priority of the analysis. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -417,9 +437,11 @@ class Analysis(ModelNormal):
     from libica.openapi.v2.model.analysis_storage import AnalysisStorage
     from libica.openapi.v2.model.analysis_tag import AnalysisTag
     from libica.openapi.v2.model.pipeline import Pipeline
+    from libica.openapi.v2.model.workflow_session import WorkflowSession
     globals()[&#39;AnalysisStorage&#39;] = AnalysisStorage
     globals()[&#39;AnalysisTag&#39;] = AnalysisTag
-    globals()[&#39;Pipeline&#39;] = Pipeline</code></pre>
+    globals()[&#39;Pipeline&#39;] = Pipeline
+    globals()[&#39;WorkflowSession&#39;] = WorkflowSession</code></pre>
 </details>
 </dd>
 </dl>
@@ -508,6 +530,8 @@ through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
 tenant_name (str, none_type): [optional]
 # noqa: E501
+workflow_session (WorkflowSession): [optional]
+# noqa: E501
 start_date (datetime, none_type): When the analysis was started. [optional]
 # noqa: E501
 end_date (datetime, none_type): When the analysis was finished. [optional]
@@ -515,6 +539,8 @@ end_date (datetime, none_type): When the analysis was finished. [optional]
 summary (str, none_type): The summary of the analysis. [optional]
 # noqa: E501
 analysis_storage (AnalysisStorage): [optional]
+# noqa: E501
+analysis_priority (str, none_type): The priority of the analysis. [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -554,6 +580,16 @@ analysis_storage (AnalysisStorage): [optional]
             &#39;FAILEDFINAL&#39;: &#34;FAILEDFINAL&#34;,
             &#39;ABORTED&#39;: &#34;ABORTED&#34;,
         },
+        # FIXME Their OpenAPI document says expected values should be &#39;Low&#39;, &#39;Medium&#39;, &#39;High&#39; and nullable
+        #  But. On the actual server, it responses with capitalised &#39;MEDIUM&#39;
+        #  curl -s -H &#34;Accept: application/vnd.illumina.v3+json&#34; -H &#34;Authorization: Bearer $ICAV2_ACCESS_TOKEN&#34; &#34;https://ica.illumina.com/ica/rest/api/projects/&lt;project_id&gt;/analyses/&lt;analysis_id&gt;&#34; | jq
+        #  So. There is discrepancy. Since we have to accept whatever value from server, commenting out this for now.
+        # (&#39;analysis_priority&#39;,): {
+        #     &#39;None&#39;: None,
+        #     &#39;LOW&#39;: &#34;Low&#34;,
+        #     &#39;MEDIUM&#39;: &#34;Medium&#34;,
+        #     &#39;HIGH&#39;: &#34;High&#34;,
+        # },
     }
 
     validations = {
@@ -601,10 +637,12 @@ analysis_storage (AnalysisStorage): [optional]
             &#39;status&#39;: (str,),  # noqa: E501
             &#39;tags&#39;: (AnalysisTag,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
+            &#39;workflow_session&#39;: (WorkflowSession,),  # noqa: E501
             &#39;start_date&#39;: (datetime, none_type,),  # noqa: E501
             &#39;end_date&#39;: (datetime, none_type,),  # noqa: E501
             &#39;summary&#39;: (str, none_type,),  # noqa: E501
             &#39;analysis_storage&#39;: (AnalysisStorage,),  # noqa: E501
+            &#39;analysis_priority&#39;: (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -624,10 +662,12 @@ analysis_storage (AnalysisStorage): [optional]
         &#39;status&#39;: &#39;status&#39;,  # noqa: E501
         &#39;tags&#39;: &#39;tags&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
+        &#39;workflow_session&#39;: &#39;workflowSession&#39;,  # noqa: E501
         &#39;start_date&#39;: &#39;startDate&#39;,  # noqa: E501
         &#39;end_date&#39;: &#39;endDate&#39;,  # noqa: E501
         &#39;summary&#39;: &#39;summary&#39;,  # noqa: E501
         &#39;analysis_storage&#39;: &#39;analysisStorage&#39;,  # noqa: E501
+        &#39;analysis_priority&#39;: &#39;analysisPriority&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -684,10 +724,12 @@ analysis_storage (AnalysisStorage): [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            workflow_session (WorkflowSession): [optional]  # noqa: E501
             start_date (datetime, none_type): When the analysis was started. [optional]  # noqa: E501
             end_date (datetime, none_type): When the analysis was finished. [optional]  # noqa: E501
             summary (str, none_type): The summary of the analysis. [optional]  # noqa: E501
             analysis_storage (AnalysisStorage): [optional]  # noqa: E501
+            analysis_priority (str, none_type): The priority of the analysis. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -792,10 +834,12 @@ analysis_storage (AnalysisStorage): [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
+            workflow_session (WorkflowSession): [optional]  # noqa: E501
             start_date (datetime, none_type): When the analysis was started. [optional]  # noqa: E501
             end_date (datetime, none_type): When the analysis was finished. [optional]  # noqa: E501
             summary (str, none_type): The summary of the analysis. [optional]  # noqa: E501
             analysis_storage (AnalysisStorage): [optional]  # noqa: E501
+            analysis_priority (str, none_type): The priority of the analysis. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

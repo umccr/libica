@@ -160,7 +160,7 @@ class AppHelper:
 
     def get_icav2_cli_session_project_id(self):
         session = self.get_icav2_cli_session()
-        project_id = os.getenv(&#34;ICA_PROJECT&#34;, session[&#39;project_id&#39;])
+        project_id = os.getenv(&#34;ICAV2_PROJECT_ID&#34;, session[&#39;project_id&#39;])
         return project_id
 
     def build_icav2_configuration(self):
@@ -364,7 +364,7 @@ class AppOps:
 
     def get_icav2_cli_session_project_id(self):
         session = self.get_icav2_cli_session()
-        project_id = os.getenv(&#34;ICA_PROJECT&#34;, session[&#39;project_id&#39;])
+        project_id = os.getenv(&#34;ICAV2_PROJECT_ID&#34;, session[&#39;project_id&#39;])
         return project_id
 
     def build_icav2_configuration(self):
@@ -633,7 +633,7 @@ class AppOps:
 </summary>
 <pre><code class="python">def get_icav2_cli_session_project_id(self):
     session = self.get_icav2_cli_session()
-    project_id = os.getenv(&#34;ICA_PROJECT&#34;, session[&#39;project_id&#39;])
+    project_id = os.getenv(&#34;ICAV2_PROJECT_ID&#34;, session[&#39;project_id&#39;])
     return project_id</code></pre>
 </details>
 </dd>

@@ -111,6 +111,9 @@ class WorkflowLanguage(object):
         &#34;&#34;&#34;
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError(&#34;Invalid value for `name`, must not be `None`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) &lt; 1):
+            raise ValueError(&#34;Invalid value for `name`, length must be greater than or equal to `1`&#34;)  # noqa: E501
 
         self._name = name
 
@@ -266,6 +269,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
         if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
             raise ValueError(&#34;Invalid value for `name`, must not be `None`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and len(name) &lt; 1):
+            raise ValueError(&#34;Invalid value for `name`, length must be greater than or equal to `1`&#34;)  # noqa: E501
 
         self._name = name
 

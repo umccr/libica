@@ -123,6 +123,7 @@ class AnalysisOutput(ModelNormal):
         lazy_import()
         return {
             &#39;code&#39;: (str,),  # noqa: E501
+            &#39;project_id&#39;: (str,),  # noqa: E501
             &#39;data&#39;: ([AnalysisData],),  # noqa: E501
         }
 
@@ -133,6 +134,7 @@ class AnalysisOutput(ModelNormal):
 
     attribute_map = {
         &#39;code&#39;: &#39;code&#39;,  # noqa: E501
+        &#39;project_id&#39;: &#39;projectId&#39;,  # noqa: E501
         &#39;data&#39;: &#39;data&#39;,  # noqa: E501
     }
 
@@ -180,6 +182,7 @@ class AnalysisOutput(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            project_id (str): The ID of the project containing the analysis-data produced by the analysis for the output-parameter.. [optional]  # noqa: E501
             data ([AnalysisData]): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -266,6 +269,7 @@ class AnalysisOutput(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            project_id (str): The ID of the project containing the analysis-data produced by the analysis for the output-parameter.. [optional]  # noqa: E501
             data ([AnalysisData]): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -400,6 +404,8 @@ Then in Dog, we will make an instance of the
 Animal class but this time we won't travel
 through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
+project_id (str): The ID of the project containing the analysis-data produced by the analysis for the output-parameter.. [optional]
+# noqa: E501
 data ([AnalysisData]): [optional]
 # noqa: E501</p></div>
 <details class="source">
@@ -460,6 +466,7 @@ data ([AnalysisData]): [optional]
         lazy_import()
         return {
             &#39;code&#39;: (str,),  # noqa: E501
+            &#39;project_id&#39;: (str,),  # noqa: E501
             &#39;data&#39;: ([AnalysisData],),  # noqa: E501
         }
 
@@ -470,6 +477,7 @@ data ([AnalysisData]): [optional]
 
     attribute_map = {
         &#39;code&#39;: &#39;code&#39;,  # noqa: E501
+        &#39;project_id&#39;: &#39;projectId&#39;,  # noqa: E501
         &#39;data&#39;: &#39;data&#39;,  # noqa: E501
     }
 
@@ -517,6 +525,7 @@ data ([AnalysisData]): [optional]
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            project_id (str): The ID of the project containing the analysis-data produced by the analysis for the output-parameter.. [optional]  # noqa: E501
             data ([AnalysisData]): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -603,6 +612,7 @@ data ([AnalysisData]): [optional]
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            project_id (str): The ID of the project containing the analysis-data produced by the analysis for the output-parameter.. [optional]  # noqa: E501
             data ([AnalysisData]): [optional]  # noqa: E501
         &#34;&#34;&#34;
 

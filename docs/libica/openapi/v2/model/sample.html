@@ -68,9 +68,11 @@ def lazy_import():
     from libica.openapi.v2.model.metadata_field import MetadataField
     from libica.openapi.v2.model.region import Region
     from libica.openapi.v2.model.sample_tag import SampleTag
+    from libica.openapi.v2.model.sequencing_run import SequencingRun
     globals()[&#39;MetadataField&#39;] = MetadataField
     globals()[&#39;Region&#39;] = Region
     globals()[&#39;SampleTag&#39;] = SampleTag
+    globals()[&#39;SequencingRun&#39;] = SequencingRun
 
 
 class Sample(ModelNormal):
@@ -152,6 +154,7 @@ class Sample(ModelNormal):
             &#39;metadata&#39;: ([MetadataField],),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
             &#39;description&#39;: (str, none_type,),  # noqa: E501
+            &#39;sequencing_runs&#39;: ([SequencingRun], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -173,6 +176,7 @@ class Sample(ModelNormal):
         &#39;metadata&#39;: &#39;metadata&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
         &#39;description&#39;: &#39;description&#39;,  # noqa: E501
+        &#39;sequencing_runs&#39;: &#39;sequencingRuns&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -231,6 +235,7 @@ class Sample(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The description of the sample. [optional]  # noqa: E501
+            sequencing_runs ([SequencingRun], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -338,6 +343,7 @@ class Sample(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The description of the sample. [optional]  # noqa: E501
+            sequencing_runs ([SequencingRun], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -407,9 +413,11 @@ class Sample(ModelNormal):
     from libica.openapi.v2.model.metadata_field import MetadataField
     from libica.openapi.v2.model.region import Region
     from libica.openapi.v2.model.sample_tag import SampleTag
+    from libica.openapi.v2.model.sequencing_run import SequencingRun
     globals()[&#39;MetadataField&#39;] = MetadataField
     globals()[&#39;Region&#39;] = Region
-    globals()[&#39;SampleTag&#39;] = SampleTag</code></pre>
+    globals()[&#39;SampleTag&#39;] = SampleTag
+    globals()[&#39;SequencingRun&#39;] = SequencingRun</code></pre>
 </details>
 </dd>
 </dl>
@@ -500,6 +508,8 @@ _visited_composed_classes = (Animal,)
 tenant_name (str, none_type): [optional]
 # noqa: E501
 description (str, none_type): The description of the sample. [optional]
+# noqa: E501
+sequencing_runs ([SequencingRun], none_type): [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -584,6 +594,7 @@ description (str, none_type): The description of the sample. [optional]
             &#39;metadata&#39;: ([MetadataField],),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
             &#39;description&#39;: (str, none_type,),  # noqa: E501
+            &#39;sequencing_runs&#39;: ([SequencingRun], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -605,6 +616,7 @@ description (str, none_type): The description of the sample. [optional]
         &#39;metadata&#39;: &#39;metadata&#39;,  # noqa: E501
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
         &#39;description&#39;: &#39;description&#39;,  # noqa: E501
+        &#39;sequencing_runs&#39;: &#39;sequencingRuns&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -663,6 +675,7 @@ description (str, none_type): The description of the sample. [optional]
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The description of the sample. [optional]  # noqa: E501
+            sequencing_runs ([SequencingRun], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -770,6 +783,7 @@ description (str, none_type): The description of the sample. [optional]
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The description of the sample. [optional]  # noqa: E501
+            sequencing_runs ([SequencingRun], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

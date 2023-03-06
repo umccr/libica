@@ -139,6 +139,7 @@ class ProjectCustomEventsApi(object):
     ):
         &#34;&#34;&#34;Create a new custom event.  # noqa: E501
 
+        Warning: this endpoint allows to create custom events with a code larger than 20 characters (max 50), but the endpoint for creating a custom notification subscription (POST /api/projects/{projectId}/customNotificationSubscriptions) only accepts event codes up to 20 characters.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -313,6 +314,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     ):
         &#34;&#34;&#34;Create a new custom event.  # noqa: E501
 
+        Warning: this endpoint allows to create custom events with a code larger than 20 characters (max 50), but the endpoint for creating a custom notification subscription (POST /api/projects/{projectId}/customNotificationSubscriptions) only accepts event codes up to 20 characters.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -394,7 +396,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 <dd>
 <div class="desc"><p>Create a new custom event.
 # noqa: E501</p>
-<p>This method makes a synchronous HTTP request by default. To make an
+<p>Warning: this endpoint allows to create custom events with a code larger than 20 characters (max 50), but the endpoint for creating a custom notification subscription (POST /api/projects/{projectId}/customNotificationSubscriptions) only accepts event codes up to 20 characters.
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.create_custom_event(project_id, create_custom_event, async_req=True)
 &gt;&gt;&gt; result = thread.get()
@@ -445,6 +449,7 @@ thread.</p></div>
 ):
     &#34;&#34;&#34;Create a new custom event.  # noqa: E501
 
+    Warning: this endpoint allows to create custom events with a code larger than 20 characters (max 50), but the endpoint for creating a custom notification subscription (POST /api/projects/{projectId}/customNotificationSubscriptions) only accepts event codes up to 20 characters.  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 

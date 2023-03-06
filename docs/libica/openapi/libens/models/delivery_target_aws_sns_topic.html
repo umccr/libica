@@ -106,6 +106,9 @@ class DeliveryTargetAwsSnsTopic(object):
         &#34;&#34;&#34;
         if self.local_vars_configuration.client_side_validation and topic_arn is None:  # noqa: E501
             raise ValueError(&#34;Invalid value for `topic_arn`, must not be `None`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                topic_arn is not None and len(topic_arn) &lt; 1):
+            raise ValueError(&#34;Invalid value for `topic_arn`, length must be greater than or equal to `1`&#34;)  # noqa: E501
 
         self._topic_arn = topic_arn
 
@@ -233,6 +236,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
         if self.local_vars_configuration.client_side_validation and topic_arn is None:  # noqa: E501
             raise ValueError(&#34;Invalid value for `topic_arn`, must not be `None`&#34;)  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                topic_arn is not None and len(topic_arn) &lt; 1):
+            raise ValueError(&#34;Invalid value for `topic_arn`, length must be greater than or equal to `1`&#34;)  # noqa: E501
 
         self._topic_arn = topic_arn
 

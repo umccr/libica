@@ -123,7 +123,7 @@ class AnalysisDataInput(ModelNormal):
         lazy_import()
         return {
             &#39;parameter_code&#39;: (str,),  # noqa: E501
-            &#39;data_ids&#39;: ([str, none_type], none_type,),  # noqa: E501
+            &#39;data_ids&#39;: ([str],),  # noqa: E501
             &#39;mounts&#39;: ([AnalysisInputDataMount], none_type,),  # noqa: E501
         }
 
@@ -182,7 +182,7 @@ class AnalysisDataInput(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            data_ids ([str, none_type], none_type): [optional]  # noqa: E501
+            data_ids ([str]): [optional]  # noqa: E501
             mounts ([AnalysisInputDataMount], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -269,7 +269,7 @@ class AnalysisDataInput(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            data_ids ([str, none_type], none_type): [optional]  # noqa: E501
+            data_ids ([str]): [optional]  # noqa: E501
             mounts ([AnalysisInputDataMount], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -401,7 +401,7 @@ Then in Dog, we will make an instance of the
 Animal class but this time we won't travel
 through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
-data_ids ([str, none_type], none_type): [optional]
+data_ids ([str]): [optional]
 # noqa: E501
 mounts ([AnalysisInputDataMount], none_type): [optional]
 # noqa: E501</p></div>
@@ -463,7 +463,7 @@ mounts ([AnalysisInputDataMount], none_type): [optional]
         lazy_import()
         return {
             &#39;parameter_code&#39;: (str,),  # noqa: E501
-            &#39;data_ids&#39;: ([str, none_type], none_type,),  # noqa: E501
+            &#39;data_ids&#39;: ([str],),  # noqa: E501
             &#39;mounts&#39;: ([AnalysisInputDataMount], none_type,),  # noqa: E501
         }
 
@@ -522,7 +522,7 @@ mounts ([AnalysisInputDataMount], none_type): [optional]
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            data_ids ([str, none_type], none_type): [optional]  # noqa: E501
+            data_ids ([str]): [optional]  # noqa: E501
             mounts ([AnalysisInputDataMount], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -609,7 +609,7 @@ mounts ([AnalysisInputDataMount], none_type): [optional]
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            data_ids ([str, none_type], none_type): [optional]  # noqa: E501
+            data_ids ([str]): [optional]  # noqa: E501
             mounts ([AnalysisInputDataMount], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 

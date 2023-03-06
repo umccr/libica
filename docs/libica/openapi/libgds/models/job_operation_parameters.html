@@ -67,15 +67,21 @@ class JobOperationParameters(object):
     &#34;&#34;&#34;
     openapi_types = {
         &#39;folder_copy&#39;: &#39;FolderCopyOperationParameters&#39;,
-        &#39;folder_delete&#39;: &#39;FolderDeleteOperationParameters&#39;
+        &#39;folder_delete&#39;: &#39;FolderDeleteOperationParameters&#39;,
+        &#39;volume_migration&#39;: &#39;VolumeMigrationOperationParameters&#39;,
+        &#39;file_copy&#39;: &#39;FileCopyOperationParameters&#39;,
+        &#39;bulk_metadata_update&#39;: &#39;BulkMetadataUpdateOperationParameters&#39;
     }
 
     attribute_map = {
         &#39;folder_copy&#39;: &#39;folderCopy&#39;,
-        &#39;folder_delete&#39;: &#39;folderDelete&#39;
+        &#39;folder_delete&#39;: &#39;folderDelete&#39;,
+        &#39;volume_migration&#39;: &#39;volumeMigration&#39;,
+        &#39;file_copy&#39;: &#39;fileCopy&#39;,
+        &#39;bulk_metadata_update&#39;: &#39;bulkMetadataUpdate&#39;
     }
 
-    def __init__(self, folder_copy=None, folder_delete=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, folder_copy=None, folder_delete=None, volume_migration=None, file_copy=None, bulk_metadata_update=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;JobOperationParameters - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -83,12 +89,21 @@ class JobOperationParameters(object):
 
         self._folder_copy = None
         self._folder_delete = None
+        self._volume_migration = None
+        self._file_copy = None
+        self._bulk_metadata_update = None
         self.discriminator = None
 
         if folder_copy is not None:
             self.folder_copy = folder_copy
         if folder_delete is not None:
             self.folder_delete = folder_delete
+        if volume_migration is not None:
+            self.volume_migration = volume_migration
+        if file_copy is not None:
+            self.file_copy = file_copy
+        if bulk_metadata_update is not None:
+            self.bulk_metadata_update = bulk_metadata_update
 
     @property
     def folder_copy(self):
@@ -131,6 +146,69 @@ class JobOperationParameters(object):
         &#34;&#34;&#34;
 
         self._folder_delete = folder_delete
+
+    @property
+    def volume_migration(self):
+        &#34;&#34;&#34;Gets the volume_migration of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The volume_migration of this JobOperationParameters.  # noqa: E501
+        :rtype: VolumeMigrationOperationParameters
+        &#34;&#34;&#34;
+        return self._volume_migration
+
+    @volume_migration.setter
+    def volume_migration(self, volume_migration):
+        &#34;&#34;&#34;Sets the volume_migration of this JobOperationParameters.
+
+
+        :param volume_migration: The volume_migration of this JobOperationParameters.  # noqa: E501
+        :type: VolumeMigrationOperationParameters
+        &#34;&#34;&#34;
+
+        self._volume_migration = volume_migration
+
+    @property
+    def file_copy(self):
+        &#34;&#34;&#34;Gets the file_copy of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The file_copy of this JobOperationParameters.  # noqa: E501
+        :rtype: FileCopyOperationParameters
+        &#34;&#34;&#34;
+        return self._file_copy
+
+    @file_copy.setter
+    def file_copy(self, file_copy):
+        &#34;&#34;&#34;Sets the file_copy of this JobOperationParameters.
+
+
+        :param file_copy: The file_copy of this JobOperationParameters.  # noqa: E501
+        :type: FileCopyOperationParameters
+        &#34;&#34;&#34;
+
+        self._file_copy = file_copy
+
+    @property
+    def bulk_metadata_update(self):
+        &#34;&#34;&#34;Gets the bulk_metadata_update of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The bulk_metadata_update of this JobOperationParameters.  # noqa: E501
+        :rtype: BulkMetadataUpdateOperationParameters
+        &#34;&#34;&#34;
+        return self._bulk_metadata_update
+
+    @bulk_metadata_update.setter
+    def bulk_metadata_update(self, bulk_metadata_update):
+        &#34;&#34;&#34;Sets the bulk_metadata_update of this JobOperationParameters.
+
+
+        :param bulk_metadata_update: The bulk_metadata_update of this JobOperationParameters.  # noqa: E501
+        :type: BulkMetadataUpdateOperationParameters
+        &#34;&#34;&#34;
+
+        self._bulk_metadata_update = bulk_metadata_update
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -190,7 +268,7 @@ class JobOperationParameters(object):
 <dl>
 <dt id="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters"><code class="flex name class">
 <span>class <span class="ident">JobOperationParameters</span></span>
-<span>(</span><span>folder_copy=None, folder_delete=None, local_vars_configuration=None)</span>
+<span>(</span><span>folder_copy=None, folder_delete=None, volume_migration=None, file_copy=None, bulk_metadata_update=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -217,15 +295,21 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     &#34;&#34;&#34;
     openapi_types = {
         &#39;folder_copy&#39;: &#39;FolderCopyOperationParameters&#39;,
-        &#39;folder_delete&#39;: &#39;FolderDeleteOperationParameters&#39;
+        &#39;folder_delete&#39;: &#39;FolderDeleteOperationParameters&#39;,
+        &#39;volume_migration&#39;: &#39;VolumeMigrationOperationParameters&#39;,
+        &#39;file_copy&#39;: &#39;FileCopyOperationParameters&#39;,
+        &#39;bulk_metadata_update&#39;: &#39;BulkMetadataUpdateOperationParameters&#39;
     }
 
     attribute_map = {
         &#39;folder_copy&#39;: &#39;folderCopy&#39;,
-        &#39;folder_delete&#39;: &#39;folderDelete&#39;
+        &#39;folder_delete&#39;: &#39;folderDelete&#39;,
+        &#39;volume_migration&#39;: &#39;volumeMigration&#39;,
+        &#39;file_copy&#39;: &#39;fileCopy&#39;,
+        &#39;bulk_metadata_update&#39;: &#39;bulkMetadataUpdate&#39;
     }
 
-    def __init__(self, folder_copy=None, folder_delete=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, folder_copy=None, folder_delete=None, volume_migration=None, file_copy=None, bulk_metadata_update=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;JobOperationParameters - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -233,12 +317,21 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
         self._folder_copy = None
         self._folder_delete = None
+        self._volume_migration = None
+        self._file_copy = None
+        self._bulk_metadata_update = None
         self.discriminator = None
 
         if folder_copy is not None:
             self.folder_copy = folder_copy
         if folder_delete is not None:
             self.folder_delete = folder_delete
+        if volume_migration is not None:
+            self.volume_migration = volume_migration
+        if file_copy is not None:
+            self.file_copy = file_copy
+        if bulk_metadata_update is not None:
+            self.bulk_metadata_update = bulk_metadata_update
 
     @property
     def folder_copy(self):
@@ -281,6 +374,69 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._folder_delete = folder_delete
+
+    @property
+    def volume_migration(self):
+        &#34;&#34;&#34;Gets the volume_migration of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The volume_migration of this JobOperationParameters.  # noqa: E501
+        :rtype: VolumeMigrationOperationParameters
+        &#34;&#34;&#34;
+        return self._volume_migration
+
+    @volume_migration.setter
+    def volume_migration(self, volume_migration):
+        &#34;&#34;&#34;Sets the volume_migration of this JobOperationParameters.
+
+
+        :param volume_migration: The volume_migration of this JobOperationParameters.  # noqa: E501
+        :type: VolumeMigrationOperationParameters
+        &#34;&#34;&#34;
+
+        self._volume_migration = volume_migration
+
+    @property
+    def file_copy(self):
+        &#34;&#34;&#34;Gets the file_copy of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The file_copy of this JobOperationParameters.  # noqa: E501
+        :rtype: FileCopyOperationParameters
+        &#34;&#34;&#34;
+        return self._file_copy
+
+    @file_copy.setter
+    def file_copy(self, file_copy):
+        &#34;&#34;&#34;Sets the file_copy of this JobOperationParameters.
+
+
+        :param file_copy: The file_copy of this JobOperationParameters.  # noqa: E501
+        :type: FileCopyOperationParameters
+        &#34;&#34;&#34;
+
+        self._file_copy = file_copy
+
+    @property
+    def bulk_metadata_update(self):
+        &#34;&#34;&#34;Gets the bulk_metadata_update of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The bulk_metadata_update of this JobOperationParameters.  # noqa: E501
+        :rtype: BulkMetadataUpdateOperationParameters
+        &#34;&#34;&#34;
+        return self._bulk_metadata_update
+
+    @bulk_metadata_update.setter
+    def bulk_metadata_update(self, bulk_metadata_update):
+        &#34;&#34;&#34;Sets the bulk_metadata_update of this JobOperationParameters.
+
+
+        :param bulk_metadata_update: The bulk_metadata_update of this JobOperationParameters.  # noqa: E501
+        :type: BulkMetadataUpdateOperationParameters
+        &#34;&#34;&#34;
+
+        self._bulk_metadata_update = bulk_metadata_update
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -341,6 +497,50 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 </dl>
 <h3>Instance variables</h3>
 <dl>
+<dt id="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.bulk_metadata_update"><code class="name">var <span class="ident">bulk_metadata_update</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the bulk_metadata_update of this JobOperationParameters.
+# noqa: E501</p>
+<p>:return: The bulk_metadata_update of this JobOperationParameters.
+# noqa: E501
+:rtype: BulkMetadataUpdateOperationParameters</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def bulk_metadata_update(self):
+    &#34;&#34;&#34;Gets the bulk_metadata_update of this JobOperationParameters.  # noqa: E501
+
+
+    :return: The bulk_metadata_update of this JobOperationParameters.  # noqa: E501
+    :rtype: BulkMetadataUpdateOperationParameters
+    &#34;&#34;&#34;
+    return self._bulk_metadata_update</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.file_copy"><code class="name">var <span class="ident">file_copy</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the file_copy of this JobOperationParameters.
+# noqa: E501</p>
+<p>:return: The file_copy of this JobOperationParameters.
+# noqa: E501
+:rtype: FileCopyOperationParameters</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def file_copy(self):
+    &#34;&#34;&#34;Gets the file_copy of this JobOperationParameters.  # noqa: E501
+
+
+    :return: The file_copy of this JobOperationParameters.  # noqa: E501
+    :rtype: FileCopyOperationParameters
+    &#34;&#34;&#34;
+    return self._file_copy</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.folder_copy"><code class="name">var <span class="ident">folder_copy</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the folder_copy of this JobOperationParameters.
@@ -383,6 +583,28 @@ def folder_delete(self):
     :rtype: FolderDeleteOperationParameters
     &#34;&#34;&#34;
     return self._folder_delete</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.volume_migration"><code class="name">var <span class="ident">volume_migration</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the volume_migration of this JobOperationParameters.
+# noqa: E501</p>
+<p>:return: The volume_migration of this JobOperationParameters.
+# noqa: E501
+:rtype: VolumeMigrationOperationParameters</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def volume_migration(self):
+    &#34;&#34;&#34;Gets the volume_migration of this JobOperationParameters.  # noqa: E501
+
+
+    :return: The volume_migration of this JobOperationParameters.  # noqa: E501
+    :rtype: VolumeMigrationOperationParameters
+    &#34;&#34;&#34;
+    return self._volume_migration</code></pre>
 </details>
 </dd>
 </dl>
@@ -456,13 +678,16 @@ def folder_delete(self):
 <ul>
 <li>
 <h4><code><a title="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters" href="#libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters">JobOperationParameters</a></code></h4>
-<ul class="two-column">
+<ul class="">
 <li><code><a title="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.attribute_map" href="#libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.attribute_map">attribute_map</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.bulk_metadata_update" href="#libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.bulk_metadata_update">bulk_metadata_update</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.file_copy" href="#libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.file_copy">file_copy</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.folder_copy" href="#libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.folder_copy">folder_copy</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.folder_delete" href="#libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.folder_delete">folder_delete</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.openapi_types" href="#libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.openapi_types">openapi_types</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.to_dict" href="#libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.to_dict">to_dict</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.to_str" href="#libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.to_str">to_str</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.volume_migration" href="#libica.openapi.libgds.models.job_operation_parameters.JobOperationParameters.volume_migration">volume_migration</a></code></li>
 </ul>
 </li>
 </ul>

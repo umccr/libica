@@ -98,12 +98,10 @@ class ActivationCodeDetailUsage(ModelNormal):
 
     validations = {
         (&#39;used_slots&#39;,): {
-            &#39;inclusive_maximum&#39;: 2147483647,
-            &#39;inclusive_minimum&#39;: 0,
+            &#39;inclusive_minimum&#39;: -1,
         },
         (&#39;allowed_slots&#39;,): {
-            &#39;inclusive_maximum&#39;: 2147483647,
-            &#39;inclusive_minimum&#39;: 0,
+            &#39;inclusive_minimum&#39;: -1,
         },
     }
 
@@ -130,9 +128,10 @@ class ActivationCodeDetailUsage(ModelNormal):
         &#34;&#34;&#34;
         lazy_import()
         return {
+            &#39;id&#39;: (str,),  # noqa: E501
+            &#39;used_slots&#39;: (int,),  # noqa: E501
+            &#39;allowed_slots&#39;: (int,),  # noqa: E501
             &#39;project&#39;: (Project,),  # noqa: E501
-            &#39;used_slots&#39;: (int, none_type,),  # noqa: E501
-            &#39;allowed_slots&#39;: (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -141,9 +140,10 @@ class ActivationCodeDetailUsage(ModelNormal):
 
 
     attribute_map = {
-        &#39;project&#39;: &#39;project&#39;,  # noqa: E501
+        &#39;id&#39;: &#39;id&#39;,  # noqa: E501
         &#39;used_slots&#39;: &#39;usedSlots&#39;,  # noqa: E501
         &#39;allowed_slots&#39;: &#39;allowedSlots&#39;,  # noqa: E501
+        &#39;project&#39;: &#39;project&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -153,8 +153,13 @@ class ActivationCodeDetailUsage(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, id, used_slots, allowed_slots, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;ActivationCodeDetailUsage - a model defined in OpenAPI
+
+        Args:
+            id (str):
+            used_slots (int): Indicates how many slots can are used, -1 means unused
+            allowed_slots (int): Indicates how many slots can be used, -1 means unlimited
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -188,8 +193,6 @@ class ActivationCodeDetailUsage(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             project (Project): [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used. [optional]  # noqa: E501
-            allowed_slots (int, none_type): Indicates how many slots can be used. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -217,6 +220,9 @@ class ActivationCodeDetailUsage(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.id = id
+        self.used_slots = used_slots
+        self.allowed_slots = allowed_slots
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -237,8 +243,13 @@ class ActivationCodeDetailUsage(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, used_slots, allowed_slots, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;ActivationCodeDetailUsage - a model defined in OpenAPI
+
+        Args:
+            id (str):
+            used_slots (int): Indicates how many slots can are used, -1 means unused
+            allowed_slots (int): Indicates how many slots can be used, -1 means unlimited
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -272,8 +283,6 @@ class ActivationCodeDetailUsage(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             project (Project): [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used. [optional]  # noqa: E501
-            allowed_slots (int, none_type): Indicates how many slots can be used. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -299,6 +308,9 @@ class ActivationCodeDetailUsage(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.id = id
+        self.used_slots = used_slots
+        self.allowed_slots = allowed_slots
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -340,7 +352,7 @@ class ActivationCodeDetailUsage(ModelNormal):
 <dl>
 <dt id="libica.openapi.v2.model.activation_code_detail_usage.ActivationCodeDetailUsage"><code class="flex name class">
 <span>class <span class="ident">ActivationCodeDetailUsage</span></span>
-<span>(</span><span>*args, **kwargs)</span>
+<span>(</span><span>id, used_slots, allowed_slots, *args, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -370,6 +382,14 @@ inclusive_minimum, and regex.</dd>
 as additional properties values.</dd>
 </dl>
 <p>ActivationCodeDetailUsage - a model defined in OpenAPI</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt>id (str):</dt>
+<dt><strong><code>used_slots</code></strong> :&ensp;<code>int</code></dt>
+<dd>Indicates how many slots can are used, -1 means unused</dd>
+<dt><strong><code>allowed_slots</code></strong> :&ensp;<code>int</code></dt>
+<dd>Indicates how many slots can be used, -1 means unlimited</dd>
+</dl>
 <p>Keyword Args:
 _check_type (bool): if True, values for parameters in openapi_types
 will be type checked and a TypeError will be
@@ -402,10 +422,6 @@ Animal class but this time we won't travel
 through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
 project (Project): [optional]
-# noqa: E501
-used_slots (int, none_type): Indicates how many slots can are used. [optional]
-# noqa: E501
-allowed_slots (int, none_type): Indicates how many slots can be used. [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -440,12 +456,10 @@ allowed_slots (int, none_type): Indicates how many slots can be used. [optional]
 
     validations = {
         (&#39;used_slots&#39;,): {
-            &#39;inclusive_maximum&#39;: 2147483647,
-            &#39;inclusive_minimum&#39;: 0,
+            &#39;inclusive_minimum&#39;: -1,
         },
         (&#39;allowed_slots&#39;,): {
-            &#39;inclusive_maximum&#39;: 2147483647,
-            &#39;inclusive_minimum&#39;: 0,
+            &#39;inclusive_minimum&#39;: -1,
         },
     }
 
@@ -472,9 +486,10 @@ allowed_slots (int, none_type): Indicates how many slots can be used. [optional]
         &#34;&#34;&#34;
         lazy_import()
         return {
+            &#39;id&#39;: (str,),  # noqa: E501
+            &#39;used_slots&#39;: (int,),  # noqa: E501
+            &#39;allowed_slots&#39;: (int,),  # noqa: E501
             &#39;project&#39;: (Project,),  # noqa: E501
-            &#39;used_slots&#39;: (int, none_type,),  # noqa: E501
-            &#39;allowed_slots&#39;: (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -483,9 +498,10 @@ allowed_slots (int, none_type): Indicates how many slots can be used. [optional]
 
 
     attribute_map = {
-        &#39;project&#39;: &#39;project&#39;,  # noqa: E501
+        &#39;id&#39;: &#39;id&#39;,  # noqa: E501
         &#39;used_slots&#39;: &#39;usedSlots&#39;,  # noqa: E501
         &#39;allowed_slots&#39;: &#39;allowedSlots&#39;,  # noqa: E501
+        &#39;project&#39;: &#39;project&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -495,8 +511,13 @@ allowed_slots (int, none_type): Indicates how many slots can be used. [optional]
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, id, used_slots, allowed_slots, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;ActivationCodeDetailUsage - a model defined in OpenAPI
+
+        Args:
+            id (str):
+            used_slots (int): Indicates how many slots can are used, -1 means unused
+            allowed_slots (int): Indicates how many slots can be used, -1 means unlimited
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -530,8 +551,6 @@ allowed_slots (int, none_type): Indicates how many slots can be used. [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             project (Project): [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used. [optional]  # noqa: E501
-            allowed_slots (int, none_type): Indicates how many slots can be used. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -559,6 +578,9 @@ allowed_slots (int, none_type): Indicates how many slots can be used. [optional]
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.id = id
+        self.used_slots = used_slots
+        self.allowed_slots = allowed_slots
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -579,8 +601,13 @@ allowed_slots (int, none_type): Indicates how many slots can be used. [optional]
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, id, used_slots, allowed_slots, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;ActivationCodeDetailUsage - a model defined in OpenAPI
+
+        Args:
+            id (str):
+            used_slots (int): Indicates how many slots can are used, -1 means unused
+            allowed_slots (int): Indicates how many slots can be used, -1 means unlimited
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -614,8 +641,6 @@ allowed_slots (int, none_type): Indicates how many slots can be used. [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             project (Project): [optional]  # noqa: E501
-            used_slots (int, none_type): Indicates how many slots can are used. [optional]  # noqa: E501
-            allowed_slots (int, none_type): Indicates how many slots can be used. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -641,6 +666,9 @@ allowed_slots (int, none_type): Indicates how many slots can be used. [optional]
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.id = id
+        self.used_slots = used_slots
+        self.allowed_slots = allowed_slots
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

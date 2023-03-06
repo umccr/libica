@@ -166,6 +166,7 @@ class FindProjectSamples(ModelNormal):
             &#39;connector_tag_match_mode&#39;: (str, none_type,),  # noqa: E501
             &#39;tech_tags&#39;: ([str, none_type], none_type,),  # noqa: E501
             &#39;tech_tag_match_mode&#39;: (str, none_type,),  # noqa: E501
+            &#39;instrument_run_ids&#39;: ([str, none_type], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -188,6 +189,7 @@ class FindProjectSamples(ModelNormal):
         &#39;connector_tag_match_mode&#39;: &#39;connectorTagMatchMode&#39;,  # noqa: E501
         &#39;tech_tags&#39;: &#39;techTags&#39;,  # noqa: E501
         &#39;tech_tag_match_mode&#39;: &#39;techTagMatchMode&#39;,  # noqa: E501
+        &#39;instrument_run_ids&#39;: &#39;instrumentRunIds&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -247,6 +249,7 @@ class FindProjectSamples(ModelNormal):
             connector_tag_match_mode (str, none_type): How the connectorTags are filtered.. [optional]  # noqa: E501
             tech_tags ([str, none_type], none_type): The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done.. [optional]  # noqa: E501
             tech_tag_match_mode (str, none_type): How the technicalTags are filtered.. [optional]  # noqa: E501
+            instrument_run_ids ([str, none_type], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -348,6 +351,7 @@ class FindProjectSamples(ModelNormal):
             connector_tag_match_mode (str, none_type): How the connectorTags are filtered.. [optional]  # noqa: E501
             tech_tags ([str, none_type], none_type): The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done.. [optional]  # noqa: E501
             tech_tag_match_mode (str, none_type): How the technicalTags are filtered.. [optional]  # noqa: E501
+            instrument_run_ids ([str, none_type], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -515,6 +519,8 @@ connector_tag_match_mode (str, none_type): How the connectorTags are filtered.. 
 tech_tags ([str, none_type], none_type): The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done.. [optional]
 # noqa: E501
 tech_tag_match_mode (str, none_type): How the technicalTags are filtered.. [optional]
+# noqa: E501
+instrument_run_ids ([str, none_type], none_type): [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -611,6 +617,7 @@ tech_tag_match_mode (str, none_type): How the technicalTags are filtered.. [opti
             &#39;connector_tag_match_mode&#39;: (str, none_type,),  # noqa: E501
             &#39;tech_tags&#39;: ([str, none_type], none_type,),  # noqa: E501
             &#39;tech_tag_match_mode&#39;: (str, none_type,),  # noqa: E501
+            &#39;instrument_run_ids&#39;: ([str, none_type], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -633,6 +640,7 @@ tech_tag_match_mode (str, none_type): How the technicalTags are filtered.. [opti
         &#39;connector_tag_match_mode&#39;: &#39;connectorTagMatchMode&#39;,  # noqa: E501
         &#39;tech_tags&#39;: &#39;techTags&#39;,  # noqa: E501
         &#39;tech_tag_match_mode&#39;: &#39;techTagMatchMode&#39;,  # noqa: E501
+        &#39;instrument_run_ids&#39;: &#39;instrumentRunIds&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -692,6 +700,7 @@ tech_tag_match_mode (str, none_type): How the technicalTags are filtered.. [opti
             connector_tag_match_mode (str, none_type): How the connectorTags are filtered.. [optional]  # noqa: E501
             tech_tags ([str, none_type], none_type): The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done.. [optional]  # noqa: E501
             tech_tag_match_mode (str, none_type): How the technicalTags are filtered.. [optional]  # noqa: E501
+            instrument_run_ids ([str, none_type], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -793,6 +802,7 @@ tech_tag_match_mode (str, none_type): How the technicalTags are filtered.. [opti
             connector_tag_match_mode (str, none_type): How the connectorTags are filtered.. [optional]  # noqa: E501
             tech_tags ([str, none_type], none_type): The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done.. [optional]  # noqa: E501
             tech_tag_match_mode (str, none_type): How the technicalTags are filtered.. [optional]  # noqa: E501
+            instrument_run_ids ([str, none_type], none_type): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

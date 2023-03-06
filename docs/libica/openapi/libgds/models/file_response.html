@@ -67,6 +67,7 @@ class FileResponse(object):
     &#34;&#34;&#34;
     openapi_types = {
         &#39;volume_metadata&#39;: &#39;object&#39;,
+        &#39;copy_job_id&#39;: &#39;str&#39;,
         &#39;id&#39;: &#39;str&#39;,
         &#39;name&#39;: &#39;str&#39;,
         &#39;volume_id&#39;: &#39;str&#39;,
@@ -94,11 +95,13 @@ class FileResponse(object):
         &#39;format_edam&#39;: &#39;str&#39;,
         &#39;status&#39;: &#39;FileStatus&#39;,
         &#39;life_cycle&#39;: &#39;FileLifeCycleSettings&#39;,
-        &#39;presigned_url&#39;: &#39;str&#39;
+        &#39;presigned_url&#39;: &#39;str&#39;,
+        &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;
     }
 
     attribute_map = {
         &#39;volume_metadata&#39;: &#39;volumeMetadata&#39;,
+        &#39;copy_job_id&#39;: &#39;copyJobId&#39;,
         &#39;id&#39;: &#39;id&#39;,
         &#39;name&#39;: &#39;name&#39;,
         &#39;volume_id&#39;: &#39;volumeId&#39;,
@@ -126,16 +129,18 @@ class FileResponse(object):
         &#39;format_edam&#39;: &#39;formatEdam&#39;,
         &#39;status&#39;: &#39;status&#39;,
         &#39;life_cycle&#39;: &#39;lifeCycle&#39;,
-        &#39;presigned_url&#39;: &#39;presignedUrl&#39;
+        &#39;presigned_url&#39;: &#39;presignedUrl&#39;,
+        &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, volume_metadata=None, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, presigned_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, volume_metadata=None, copy_job_id=None, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, presigned_url=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FileResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._volume_metadata = None
+        self._copy_job_id = None
         self._id = None
         self._name = None
         self._volume_id = None
@@ -164,10 +169,13 @@ class FileResponse(object):
         self._status = None
         self._life_cycle = None
         self._presigned_url = None
+        self._object_store_access = None
         self.discriminator = None
 
         if volume_metadata is not None:
             self.volume_metadata = volume_metadata
+        if copy_job_id is not None:
+            self.copy_job_id = copy_job_id
         if id is not None:
             self.id = id
         if name is not None:
@@ -224,6 +232,8 @@ class FileResponse(object):
             self.life_cycle = life_cycle
         if presigned_url is not None:
             self.presigned_url = presigned_url
+        if object_store_access is not None:
+            self.object_store_access = object_store_access
 
     @property
     def volume_metadata(self):
@@ -247,6 +257,29 @@ class FileResponse(object):
         &#34;&#34;&#34;
 
         self._volume_metadata = volume_metadata
+
+    @property
+    def copy_job_id(self):
+        &#34;&#34;&#34;Gets the copy_job_id of this FileResponse.  # noqa: E501
+
+        Job that copied the file  # noqa: E501
+
+        :return: The copy_job_id of this FileResponse.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._copy_job_id
+
+    @copy_job_id.setter
+    def copy_job_id(self, copy_job_id):
+        &#34;&#34;&#34;Sets the copy_job_id of this FileResponse.
+
+        Job that copied the file  # noqa: E501
+
+        :param copy_job_id: The copy_job_id of this FileResponse.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._copy_job_id = copy_job_id
 
     @property
     def id(self):
@@ -881,6 +914,27 @@ class FileResponse(object):
         &#34;&#34;&#34;
 
         self._presigned_url = presigned_url
+
+    @property
+    def object_store_access(self):
+        &#34;&#34;&#34;Gets the object_store_access of this FileResponse.  # noqa: E501
+
+
+        :return: The object_store_access of this FileResponse.  # noqa: E501
+        :rtype: ObjectStoreAccess
+        &#34;&#34;&#34;
+        return self._object_store_access
+
+    @object_store_access.setter
+    def object_store_access(self, object_store_access):
+        &#34;&#34;&#34;Sets the object_store_access of this FileResponse.
+
+
+        :param object_store_access: The object_store_access of this FileResponse.  # noqa: E501
+        :type: ObjectStoreAccess
+        &#34;&#34;&#34;
+
+        self._object_store_access = object_store_access
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -940,7 +994,7 @@ class FileResponse(object):
 <dl>
 <dt id="libica.openapi.libgds.models.file_response.FileResponse"><code class="flex name class">
 <span>class <span class="ident">FileResponse</span></span>
-<span>(</span><span>volume_metadata=None, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, presigned_url=None, local_vars_configuration=None)</span>
+<span>(</span><span>volume_metadata=None, copy_job_id=None, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, presigned_url=None, object_store_access=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -967,6 +1021,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     &#34;&#34;&#34;
     openapi_types = {
         &#39;volume_metadata&#39;: &#39;object&#39;,
+        &#39;copy_job_id&#39;: &#39;str&#39;,
         &#39;id&#39;: &#39;str&#39;,
         &#39;name&#39;: &#39;str&#39;,
         &#39;volume_id&#39;: &#39;str&#39;,
@@ -994,11 +1049,13 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;format_edam&#39;: &#39;str&#39;,
         &#39;status&#39;: &#39;FileStatus&#39;,
         &#39;life_cycle&#39;: &#39;FileLifeCycleSettings&#39;,
-        &#39;presigned_url&#39;: &#39;str&#39;
+        &#39;presigned_url&#39;: &#39;str&#39;,
+        &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;
     }
 
     attribute_map = {
         &#39;volume_metadata&#39;: &#39;volumeMetadata&#39;,
+        &#39;copy_job_id&#39;: &#39;copyJobId&#39;,
         &#39;id&#39;: &#39;id&#39;,
         &#39;name&#39;: &#39;name&#39;,
         &#39;volume_id&#39;: &#39;volumeId&#39;,
@@ -1026,16 +1083,18 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;format_edam&#39;: &#39;formatEdam&#39;,
         &#39;status&#39;: &#39;status&#39;,
         &#39;life_cycle&#39;: &#39;lifeCycle&#39;,
-        &#39;presigned_url&#39;: &#39;presignedUrl&#39;
+        &#39;presigned_url&#39;: &#39;presignedUrl&#39;,
+        &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, volume_metadata=None, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, presigned_url=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, volume_metadata=None, copy_job_id=None, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, presigned_url=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FileResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._volume_metadata = None
+        self._copy_job_id = None
         self._id = None
         self._name = None
         self._volume_id = None
@@ -1064,10 +1123,13 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._status = None
         self._life_cycle = None
         self._presigned_url = None
+        self._object_store_access = None
         self.discriminator = None
 
         if volume_metadata is not None:
             self.volume_metadata = volume_metadata
+        if copy_job_id is not None:
+            self.copy_job_id = copy_job_id
         if id is not None:
             self.id = id
         if name is not None:
@@ -1124,6 +1186,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.life_cycle = life_cycle
         if presigned_url is not None:
             self.presigned_url = presigned_url
+        if object_store_access is not None:
+            self.object_store_access = object_store_access
 
     @property
     def volume_metadata(self):
@@ -1147,6 +1211,29 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._volume_metadata = volume_metadata
+
+    @property
+    def copy_job_id(self):
+        &#34;&#34;&#34;Gets the copy_job_id of this FileResponse.  # noqa: E501
+
+        Job that copied the file  # noqa: E501
+
+        :return: The copy_job_id of this FileResponse.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._copy_job_id
+
+    @copy_job_id.setter
+    def copy_job_id(self, copy_job_id):
+        &#34;&#34;&#34;Sets the copy_job_id of this FileResponse.
+
+        Job that copied the file  # noqa: E501
+
+        :param copy_job_id: The copy_job_id of this FileResponse.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._copy_job_id = copy_job_id
 
     @property
     def id(self):
@@ -1781,6 +1868,27 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._presigned_url = presigned_url
+
+    @property
+    def object_store_access(self):
+        &#34;&#34;&#34;Gets the object_store_access of this FileResponse.  # noqa: E501
+
+
+        :return: The object_store_access of this FileResponse.  # noqa: E501
+        :rtype: ObjectStoreAccess
+        &#34;&#34;&#34;
+        return self._object_store_access
+
+    @object_store_access.setter
+    def object_store_access(self, object_store_access):
+        &#34;&#34;&#34;Sets the object_store_access of this FileResponse.
+
+
+        :param object_store_access: The object_store_access of this FileResponse.  # noqa: E501
+        :type: ObjectStoreAccess
+        &#34;&#34;&#34;
+
+        self._object_store_access = object_store_access
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -1861,6 +1969,31 @@ def archive_status(self):
     :rtype: ArchiveStatuses
     &#34;&#34;&#34;
     return self._archive_status</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.file_response.FileResponse.copy_job_id"><code class="name">var <span class="ident">copy_job_id</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the copy_job_id of this FileResponse.
+# noqa: E501</p>
+<p>Job that copied the file
+# noqa: E501</p>
+<p>:return: The copy_job_id of this FileResponse.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def copy_job_id(self):
+    &#34;&#34;&#34;Gets the copy_job_id of this FileResponse.  # noqa: E501
+
+    Job that copied the file  # noqa: E501
+
+    :return: The copy_job_id of this FileResponse.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._copy_job_id</code></pre>
 </details>
 </dd>
 <dt id="libica.openapi.libgds.models.file_response.FileResponse.created_by"><code class="name">var <span class="ident">created_by</span></code></dt>
@@ -2130,6 +2263,28 @@ def name(self):
     :rtype: str
     &#34;&#34;&#34;
     return self._name</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.file_response.FileResponse.object_store_access"><code class="name">var <span class="ident">object_store_access</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the object_store_access of this FileResponse.
+# noqa: E501</p>
+<p>:return: The object_store_access of this FileResponse.
+# noqa: E501
+:rtype: ObjectStoreAccess</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def object_store_access(self):
+    &#34;&#34;&#34;Gets the object_store_access of this FileResponse.  # noqa: E501
+
+
+    :return: The object_store_access of this FileResponse.  # noqa: E501
+    :rtype: ObjectStoreAccess
+    &#34;&#34;&#34;
+    return self._object_store_access</code></pre>
 </details>
 </dd>
 <dt id="libica.openapi.libgds.models.file_response.FileResponse.parent_folder_id"><code class="name">var <span class="ident">parent_folder_id</span></code></dt>
@@ -2625,6 +2780,7 @@ def volume_name(self):
 <ul class="">
 <li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.archive_status" href="#libica.openapi.libgds.models.file_response.FileResponse.archive_status">archive_status</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.attribute_map" href="#libica.openapi.libgds.models.file_response.FileResponse.attribute_map">attribute_map</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.copy_job_id" href="#libica.openapi.libgds.models.file_response.FileResponse.copy_job_id">copy_job_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.created_by" href="#libica.openapi.libgds.models.file_response.FileResponse.created_by">created_by</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.e_tag" href="#libica.openapi.libgds.models.file_response.FileResponse.e_tag">e_tag</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.format" href="#libica.openapi.libgds.models.file_response.FileResponse.format">format</a></code></li>
@@ -2636,6 +2792,7 @@ def volume_name(self):
 <li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.metadata" href="#libica.openapi.libgds.models.file_response.FileResponse.metadata">metadata</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.modified_by" href="#libica.openapi.libgds.models.file_response.FileResponse.modified_by">modified_by</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.name" href="#libica.openapi.libgds.models.file_response.FileResponse.name">name</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.object_store_access" href="#libica.openapi.libgds.models.file_response.FileResponse.object_store_access">object_store_access</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.openapi_types" href="#libica.openapi.libgds.models.file_response.FileResponse.openapi_types">openapi_types</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.parent_folder_id" href="#libica.openapi.libgds.models.file_response.FileResponse.parent_folder_id">parent_folder_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_response.FileResponse.path" href="#libica.openapi.libgds.models.file_response.FileResponse.path">path</a></code></li>

@@ -127,7 +127,8 @@ class ProjectCustomNotificationSubscriptionsApi(object):
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
                 ]
             },
             api_client=api_client
@@ -367,7 +368,8 @@ class ProjectCustomNotificationSubscriptionsApi(object):
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
                 ]
             },
             api_client=api_client
@@ -387,7 +389,7 @@ class ProjectCustomNotificationSubscriptionsApi(object):
         &gt;&gt;&gt; result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
 
         Keyword Args:
             create_custom_notification_subscription (CreateCustomNotificationSubscription): The new subscription. [optional]
@@ -466,7 +468,7 @@ class ProjectCustomNotificationSubscriptionsApi(object):
         &gt;&gt;&gt; result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
             subscription_id (str): The ID of the custom notification subscription to delete
 
         Keyword Args:
@@ -861,7 +863,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
                 ]
             },
             api_client=api_client
@@ -1101,7 +1104,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
                 ]
             },
             api_client=api_client
@@ -1121,7 +1125,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &gt;&gt;&gt; result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
 
         Keyword Args:
             create_custom_notification_subscription (CreateCustomNotificationSubscription): The new subscription. [optional]
@@ -1200,7 +1204,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &gt;&gt;&gt; result = thread.get()
 
         Args:
-            project_id (str): The ID of the project
+            project_id (str):
             subscription_id (str): The ID of the custom notification subscription to delete
 
         Keyword Args:
@@ -1522,11 +1526,8 @@ asynchronous HTTP request, please pass async_req=True</p>
 &gt;&gt;&gt; result = thread.get()
 </code></pre>
 <h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>project_id</code></strong> :&ensp;<code>str</code></dt>
-<dd>The ID of the project</dd>
-</dl>
-<p>Keyword Args:
+<p>project_id (str):
+Keyword Args:
 create_custom_notification_subscription (CreateCustomNotificationSubscription): The new subscription. [optional]
 _return_http_data_only (bool): response data without head status
 code and headers. Default is True.
@@ -1576,7 +1577,7 @@ thread.</p></div>
     &gt;&gt;&gt; result = thread.get()
 
     Args:
-        project_id (str): The ID of the project
+        project_id (str):
 
     Keyword Args:
         create_custom_notification_subscription (CreateCustomNotificationSubscription): The new subscription. [optional]
@@ -1654,8 +1655,7 @@ asynchronous HTTP request, please pass async_req=True</p>
 </code></pre>
 <h2 id="args">Args</h2>
 <dl>
-<dt><strong><code>project_id</code></strong> :&ensp;<code>str</code></dt>
-<dd>The ID of the project</dd>
+<dt>project_id (str):</dt>
 <dt><strong><code>subscription_id</code></strong> :&ensp;<code>str</code></dt>
 <dd>The ID of the custom notification subscription to delete</dd>
 </dl>
@@ -1709,7 +1709,7 @@ thread.</p></div>
     &gt;&gt;&gt; result = thread.get()
 
     Args:
-        project_id (str): The ID of the project
+        project_id (str):
         subscription_id (str): The ID of the custom notification subscription to delete
 
     Keyword Args:

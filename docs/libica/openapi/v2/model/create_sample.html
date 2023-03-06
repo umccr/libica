@@ -65,8 +65,8 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from libica.openapi.v2.model.sample_tag import SampleTag
-    globals()[&#39;SampleTag&#39;] = SampleTag
+    from libica.openapi.v2.model.optional_sample_tags import OptionalSampleTags
+    globals()[&#39;OptionalSampleTags&#39;] = OptionalSampleTags
 
 
 class CreateSample(ModelNormal):
@@ -132,7 +132,7 @@ class CreateSample(ModelNormal):
         return {
             &#39;name&#39;: (str,),  # noqa: E501
             &#39;description&#39;: (str, none_type,),  # noqa: E501
-            &#39;tags&#39;: (SampleTag,),  # noqa: E501
+            &#39;tags&#39;: (OptionalSampleTags,),  # noqa: E501
         }
 
     @cached_property
@@ -191,7 +191,7 @@ class CreateSample(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             description (str, none_type): The description of the sample.. [optional]  # noqa: E501
-            tags (SampleTag): [optional]  # noqa: E501
+            tags (OptionalSampleTags): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -278,7 +278,7 @@ class CreateSample(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             description (str, none_type): The description of the sample.. [optional]  # noqa: E501
-            tags (SampleTag): [optional]  # noqa: E501
+            tags (OptionalSampleTags): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -335,8 +335,8 @@ class CreateSample(ModelNormal):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def lazy_import():
-    from libica.openapi.v2.model.sample_tag import SampleTag
-    globals()[&#39;SampleTag&#39;] = SampleTag</code></pre>
+    from libica.openapi.v2.model.optional_sample_tags import OptionalSampleTags
+    globals()[&#39;OptionalSampleTags&#39;] = OptionalSampleTags</code></pre>
 </details>
 </dd>
 </dl>
@@ -414,7 +414,7 @@ through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
 description (str, none_type): The description of the sample.. [optional]
 # noqa: E501
-tags (SampleTag): [optional]
+tags (OptionalSampleTags): [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -483,7 +483,7 @@ tags (SampleTag): [optional]
         return {
             &#39;name&#39;: (str,),  # noqa: E501
             &#39;description&#39;: (str, none_type,),  # noqa: E501
-            &#39;tags&#39;: (SampleTag,),  # noqa: E501
+            &#39;tags&#39;: (OptionalSampleTags,),  # noqa: E501
         }
 
     @cached_property
@@ -542,7 +542,7 @@ tags (SampleTag): [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             description (str, none_type): The description of the sample.. [optional]  # noqa: E501
-            tags (SampleTag): [optional]  # noqa: E501
+            tags (OptionalSampleTags): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -629,7 +629,7 @@ tags (SampleTag): [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             description (str, none_type): The description of the sample.. [optional]  # noqa: E501
-            tags (SampleTag): [optional]  # noqa: E501
+            tags (OptionalSampleTags): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

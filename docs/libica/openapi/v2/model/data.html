@@ -101,6 +101,10 @@ class Data(ModelNormal):
             &#39;max_length&#39;: 255,
             &#39;min_length&#39;: 1,
         },
+        (&#39;urn&#39;,): {
+            &#39;max_length&#39;: 2000,
+            &#39;min_length&#39;: 1,
+        },
     }
 
     @cached_property
@@ -127,6 +131,7 @@ class Data(ModelNormal):
         lazy_import()
         return {
             &#39;id&#39;: (str,),  # noqa: E501
+            &#39;urn&#39;: (str, none_type,),  # noqa: E501
             &#39;details&#39;: (DataDetails,),  # noqa: E501
         }
 
@@ -137,6 +142,7 @@ class Data(ModelNormal):
 
     attribute_map = {
         &#39;id&#39;: &#39;id&#39;,  # noqa: E501
+        &#39;urn&#39;: &#39;urn&#39;,  # noqa: E501
         &#39;details&#39;: &#39;details&#39;,  # noqa: E501
     }
 
@@ -184,6 +190,7 @@ class Data(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            urn (str, none_type): The URN of this data. The format is urn:ilmn:ica:region:\\&lt;ID of the region\\&gt;:data:\\&lt;ID of the data\\&gt;#\\&lt;optional data path\\&gt;. The path can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             details (DataDetails): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -270,6 +277,7 @@ class Data(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            urn (str, none_type): The URN of this data. The format is urn:ilmn:ica:region:\\&lt;ID of the region\\&gt;:data:\\&lt;ID of the data\\&gt;#\\&lt;optional data path\\&gt;. The path can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             details (DataDetails): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -404,6 +412,8 @@ Then in Dog, we will make an instance of the
 Animal class but this time we won't travel
 through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
+urn (str, none_type): The URN of this data. The format is urn:ilmn:ica:region:\&lt;ID of the region>:data:\&lt;ID of the data>#\&lt;optional data path>. The path can be omitted, in that case the hashtag (#) must also be omitted.. [optional]
+# noqa: E501
 details (DataDetails): [optional]
 # noqa: E501</p></div>
 <details class="source">
@@ -442,6 +452,10 @@ details (DataDetails): [optional]
             &#39;max_length&#39;: 255,
             &#39;min_length&#39;: 1,
         },
+        (&#39;urn&#39;,): {
+            &#39;max_length&#39;: 2000,
+            &#39;min_length&#39;: 1,
+        },
     }
 
     @cached_property
@@ -468,6 +482,7 @@ details (DataDetails): [optional]
         lazy_import()
         return {
             &#39;id&#39;: (str,),  # noqa: E501
+            &#39;urn&#39;: (str, none_type,),  # noqa: E501
             &#39;details&#39;: (DataDetails,),  # noqa: E501
         }
 
@@ -478,6 +493,7 @@ details (DataDetails): [optional]
 
     attribute_map = {
         &#39;id&#39;: &#39;id&#39;,  # noqa: E501
+        &#39;urn&#39;: &#39;urn&#39;,  # noqa: E501
         &#39;details&#39;: &#39;details&#39;,  # noqa: E501
     }
 
@@ -525,6 +541,7 @@ details (DataDetails): [optional]
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            urn (str, none_type): The URN of this data. The format is urn:ilmn:ica:region:\\&lt;ID of the region\\&gt;:data:\\&lt;ID of the data\\&gt;#\\&lt;optional data path\\&gt;. The path can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             details (DataDetails): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -611,6 +628,7 @@ details (DataDetails): [optional]
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            urn (str, none_type): The URN of this data. The format is urn:ilmn:ica:region:\\&lt;ID of the region\\&gt;:data:\\&lt;ID of the data\\&gt;#\\&lt;optional data path\\&gt;. The path can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             details (DataDetails): [optional]  # noqa: E501
         &#34;&#34;&#34;
 

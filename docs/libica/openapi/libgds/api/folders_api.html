@@ -310,6 +310,120 @@ class FoldersApi(object):
             _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
             collection_formats=collection_formats)
 
+    def bulk_metadata_folder_update(self, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Updates list of folders with metadata  # noqa: E501
+
+        Updates list of folders with metadata  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.bulk_metadata_folder_update(async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param BulkFolderMetadataUpdateRequest body:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: JobResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;_return_http_data_only&#39;] = True
+        return self.bulk_metadata_folder_update_with_http_info(**kwargs)  # noqa: E501
+
+    def bulk_metadata_folder_update_with_http_info(self, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Updates list of folders with metadata  # noqa: E501
+
+        Updates list of folders with metadata  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.bulk_metadata_folder_update_with_http_info(async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param BulkFolderMetadataUpdateRequest body:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+
+        local_var_params = locals()
+
+        all_params = [
+            &#39;body&#39;
+        ]
+        all_params.extend(
+            [
+                &#39;async_req&#39;,
+                &#39;_return_http_data_only&#39;,
+                &#39;_preload_content&#39;,
+                &#39;_request_timeout&#39;
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+            if key not in all_params:
+                raise ApiTypeError(
+                    &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                    &#34; to method bulk_metadata_folder_update&#34; % key
+                )
+            local_var_params[key] = val
+        del local_var_params[&#39;kwargs&#39;]
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if &#39;body&#39; in local_var_params:
+            body_params = local_var_params[&#39;body&#39;]
+        # HTTP header `Accept`
+        header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+            [&#39;text/plain&#39;, &#39;application/json&#39;, &#39;text/json&#39;])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+            [&#39;application/json&#39;])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+        return self.api_client.call_api(
+            &#39;/v1/folders/bulkMetadataFolderUpdate&#39;, &#39;PATCH&#39;,
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=&#39;JobResponse&#39;,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get(&#39;async_req&#39;),
+            _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+            _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+            _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+            collection_formats=collection_formats)
+
     def complete_folder_session(self, folder_id, session_id, body, **kwargs):  # noqa: E501
         &#34;&#34;&#34;Complete a folder upload in GDS  # noqa: E501
 
@@ -953,8 +1067,10 @@ class FoldersApi(object):
         :param str folder_id: Unique identifier for the folder to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
         :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+        :param bool include_active_jobs: Optional parameter to return active jobs associated to folder
         :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
         :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -982,8 +1098,10 @@ class FoldersApi(object):
         :param str folder_id: Unique identifier for the folder to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
         :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+        :param bool include_active_jobs: Optional parameter to return active jobs associated to folder
         :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
         :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -1004,8 +1122,10 @@ class FoldersApi(object):
             &#39;folder_id&#39;,
             &#39;tenant_id&#39;,
             &#39;include_volume_metadata&#39;,
+            &#39;include_active_jobs&#39;,
             &#39;metadata_include&#39;,
-            &#39;metadata_exclude&#39;
+            &#39;metadata_exclude&#39;,
+            &#39;include&#39;
         ]
         all_params.extend(
             [
@@ -1040,10 +1160,14 @@ class FoldersApi(object):
             query_params.append((&#39;tenantId&#39;, local_var_params[&#39;tenant_id&#39;]))  # noqa: E501
         if &#39;include_volume_metadata&#39; in local_var_params and local_var_params[&#39;include_volume_metadata&#39;] is not None:  # noqa: E501
             query_params.append((&#39;includeVolumeMetadata&#39;, local_var_params[&#39;include_volume_metadata&#39;]))  # noqa: E501
+        if &#39;include_active_jobs&#39; in local_var_params and local_var_params[&#39;include_active_jobs&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;includeActiveJobs&#39;, local_var_params[&#39;include_active_jobs&#39;]))  # noqa: E501
         if &#39;metadata_include&#39; in local_var_params and local_var_params[&#39;metadata_include&#39;] is not None:  # noqa: E501
             query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
         if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
             query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
+        if &#39;include&#39; in local_var_params and local_var_params[&#39;include&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
         header_params = {}
 
@@ -2023,6 +2147,120 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
             collection_formats=collection_formats)
 
+    def bulk_metadata_folder_update(self, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Updates list of folders with metadata  # noqa: E501
+
+        Updates list of folders with metadata  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.bulk_metadata_folder_update(async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param BulkFolderMetadataUpdateRequest body:
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: JobResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;_return_http_data_only&#39;] = True
+        return self.bulk_metadata_folder_update_with_http_info(**kwargs)  # noqa: E501
+
+    def bulk_metadata_folder_update_with_http_info(self, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Updates list of folders with metadata  # noqa: E501
+
+        Updates list of folders with metadata  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.bulk_metadata_folder_update_with_http_info(async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param BulkFolderMetadataUpdateRequest body:
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+
+        local_var_params = locals()
+
+        all_params = [
+            &#39;body&#39;
+        ]
+        all_params.extend(
+            [
+                &#39;async_req&#39;,
+                &#39;_return_http_data_only&#39;,
+                &#39;_preload_content&#39;,
+                &#39;_request_timeout&#39;
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+            if key not in all_params:
+                raise ApiTypeError(
+                    &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                    &#34; to method bulk_metadata_folder_update&#34; % key
+                )
+            local_var_params[key] = val
+        del local_var_params[&#39;kwargs&#39;]
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if &#39;body&#39; in local_var_params:
+            body_params = local_var_params[&#39;body&#39;]
+        # HTTP header `Accept`
+        header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+            [&#39;text/plain&#39;, &#39;application/json&#39;, &#39;text/json&#39;])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+            [&#39;application/json&#39;])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+        return self.api_client.call_api(
+            &#39;/v1/folders/bulkMetadataFolderUpdate&#39;, &#39;PATCH&#39;,
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=&#39;JobResponse&#39;,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get(&#39;async_req&#39;),
+            _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+            _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+            _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+            collection_formats=collection_formats)
+
     def complete_folder_session(self, folder_id, session_id, body, **kwargs):  # noqa: E501
         &#34;&#34;&#34;Complete a folder upload in GDS  # noqa: E501
 
@@ -2666,8 +2904,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param str folder_id: Unique identifier for the folder to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
         :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+        :param bool include_active_jobs: Optional parameter to return active jobs associated to folder
         :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
         :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -2695,8 +2935,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param str folder_id: Unique identifier for the folder to retrieve. (required)
         :param str tenant_id: Optional parameter to see shared data in another tenant
         :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+        :param bool include_active_jobs: Optional parameter to return active jobs associated to folder
         :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
         :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+        :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2717,8 +2959,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             &#39;folder_id&#39;,
             &#39;tenant_id&#39;,
             &#39;include_volume_metadata&#39;,
+            &#39;include_active_jobs&#39;,
             &#39;metadata_include&#39;,
-            &#39;metadata_exclude&#39;
+            &#39;metadata_exclude&#39;,
+            &#39;include&#39;
         ]
         all_params.extend(
             [
@@ -2753,10 +2997,14 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             query_params.append((&#39;tenantId&#39;, local_var_params[&#39;tenant_id&#39;]))  # noqa: E501
         if &#39;include_volume_metadata&#39; in local_var_params and local_var_params[&#39;include_volume_metadata&#39;] is not None:  # noqa: E501
             query_params.append((&#39;includeVolumeMetadata&#39;, local_var_params[&#39;include_volume_metadata&#39;]))  # noqa: E501
+        if &#39;include_active_jobs&#39; in local_var_params and local_var_params[&#39;include_active_jobs&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;includeActiveJobs&#39;, local_var_params[&#39;include_active_jobs&#39;]))  # noqa: E501
         if &#39;metadata_include&#39; in local_var_params and local_var_params[&#39;metadata_include&#39;] is not None:  # noqa: E501
             query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
         if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
             query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
+        if &#39;include&#39; in local_var_params and local_var_params[&#39;include&#39;] is not None:  # noqa: E501
+            query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
         header_params = {}
 
@@ -3830,6 +4078,182 @@ returns the request thread.</p></div>
         collection_formats=collection_formats)</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libgds.api.folders_api.FoldersApi.bulk_metadata_folder_update"><code class="name flex">
+<span>def <span class="ident">bulk_metadata_folder_update</span></span>(<span>self, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates list of folders with metadata
+# noqa: E501</p>
+<p>Updates list of folders with metadata
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.bulk_metadata_folder_update(async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<p>:param async_req bool: execute request asynchronously
+:param BulkFolderMetadataUpdateRequest body:
+:param _preload_content: if False, the urllib3.HTTPResponse object will
+be returned without reading/decoding response
+data. Default is True.
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:return: JobResponse
+If the method is called asynchronously,
+returns the request thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bulk_metadata_folder_update(self, **kwargs):  # noqa: E501
+    &#34;&#34;&#34;Updates list of folders with metadata  # noqa: E501
+
+    Updates list of folders with metadata  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    &gt;&gt;&gt; thread = api.bulk_metadata_folder_update(async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    :param async_req bool: execute request asynchronously
+    :param BulkFolderMetadataUpdateRequest body:
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                             be returned without reading/decoding response
+                             data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :return: JobResponse
+             If the method is called asynchronously,
+             returns the request thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;_return_http_data_only&#39;] = True
+    return self.bulk_metadata_folder_update_with_http_info(**kwargs)  # noqa: E501</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.api.folders_api.FoldersApi.bulk_metadata_folder_update_with_http_info"><code class="name flex">
+<span>def <span class="ident">bulk_metadata_folder_update_with_http_info</span></span>(<span>self, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates list of folders with metadata
+# noqa: E501</p>
+<p>Updates list of folders with metadata
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.bulk_metadata_folder_update_with_http_info(async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<p>:param async_req bool: execute request asynchronously
+:param BulkFolderMetadataUpdateRequest body:
+:param _return_http_data_only: response data without head status code
+and headers
+:param _preload_content: if False, the urllib3.HTTPResponse object will
+be returned without reading/decoding response
+data. Default is True.
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+If the method is called asynchronously,
+returns the request thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bulk_metadata_folder_update_with_http_info(self, **kwargs):  # noqa: E501
+    &#34;&#34;&#34;Updates list of folders with metadata  # noqa: E501
+
+    Updates list of folders with metadata  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    &gt;&gt;&gt; thread = api.bulk_metadata_folder_update_with_http_info(async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    :param async_req bool: execute request asynchronously
+    :param BulkFolderMetadataUpdateRequest body:
+    :param _return_http_data_only: response data without head status code
+                                   and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                             be returned without reading/decoding response
+                             data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously,
+             returns the request thread.
+    &#34;&#34;&#34;
+
+    local_var_params = locals()
+
+    all_params = [
+        &#39;body&#39;
+    ]
+    all_params.extend(
+        [
+            &#39;async_req&#39;,
+            &#39;_return_http_data_only&#39;,
+            &#39;_preload_content&#39;,
+            &#39;_request_timeout&#39;
+        ]
+    )
+
+    for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+        if key not in all_params:
+            raise ApiTypeError(
+                &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                &#34; to method bulk_metadata_folder_update&#34; % key
+            )
+        local_var_params[key] = val
+    del local_var_params[&#39;kwargs&#39;]
+
+    collection_formats = {}
+
+    path_params = {}
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    if &#39;body&#39; in local_var_params:
+        body_params = local_var_params[&#39;body&#39;]
+    # HTTP header `Accept`
+    header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+        [&#39;text/plain&#39;, &#39;application/json&#39;, &#39;text/json&#39;])  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+        [&#39;application/json&#39;])  # noqa: E501
+
+    # Authentication setting
+    auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+    return self.api_client.call_api(
+        &#39;/v1/folders/bulkMetadataFolderUpdate&#39;, &#39;PATCH&#39;,
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type=&#39;JobResponse&#39;,  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get(&#39;async_req&#39;),
+        _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+        _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+        _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+        collection_formats=collection_formats)</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libgds.api.folders_api.FoldersApi.complete_folder_session"><code class="name flex">
 <span>def <span class="ident">complete_folder_session</span></span>(<span>self, folder_id, session_id, body, **kwargs)</span>
 </code></dt>
@@ -4797,8 +5221,11 @@ asynchronous HTTP request, please pass async_req=True</p>
 :param str folder_id: Unique identifier for the folder to retrieve. (required)
 :param str tenant_id: Optional parameter to see shared data in another tenant
 :param bool include_volume_metadata: Optional parameter to return volume's metadata
+:param bool include_active_jobs: Optional parameter to return active jobs associated to folder
 :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
 :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+:param str include: Optionally include additional fields in the response.
+Possible values: ObjectStoreAccess
 :param _preload_content: if False, the urllib3.HTTPResponse object will
 be returned without reading/decoding response
 data. Default is True.
@@ -4826,8 +5253,10 @@ returns the request thread.</p></div>
     :param str folder_id: Unique identifier for the folder to retrieve. (required)
     :param str tenant_id: Optional parameter to see shared data in another tenant
     :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+    :param bool include_active_jobs: Optional parameter to return active jobs associated to folder
     :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
     :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+    :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                              be returned without reading/decoding response
                              data. Default is True.
@@ -5234,8 +5663,11 @@ asynchronous HTTP request, please pass async_req=True</p>
 :param str folder_id: Unique identifier for the folder to retrieve. (required)
 :param str tenant_id: Optional parameter to see shared data in another tenant
 :param bool include_volume_metadata: Optional parameter to return volume's metadata
+:param bool include_active_jobs: Optional parameter to return active jobs associated to folder
 :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
 :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+:param str include: Optionally include additional fields in the response.
+Possible values: ObjectStoreAccess
 :param _return_http_data_only: response data without head status code
 and headers
 :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -5265,8 +5697,10 @@ returns the request thread.</p></div>
     :param str folder_id: Unique identifier for the folder to retrieve. (required)
     :param str tenant_id: Optional parameter to see shared data in another tenant
     :param bool include_volume_metadata: Optional parameter to return volume&#39;s metadata
+    :param bool include_active_jobs: Optional parameter to return active jobs associated to folder
     :param str metadata_include: Optional parameter to specify comma separated patterns to include metadata by their field names.
     :param str metadata_exclude: Optional parameter to specify comma separated patterns to exclude metadata by their field names.
+    :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
     :param _return_http_data_only: response data without head status code
                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -5287,8 +5721,10 @@ returns the request thread.</p></div>
         &#39;folder_id&#39;,
         &#39;tenant_id&#39;,
         &#39;include_volume_metadata&#39;,
+        &#39;include_active_jobs&#39;,
         &#39;metadata_include&#39;,
-        &#39;metadata_exclude&#39;
+        &#39;metadata_exclude&#39;,
+        &#39;include&#39;
     ]
     all_params.extend(
         [
@@ -5323,10 +5759,14 @@ returns the request thread.</p></div>
         query_params.append((&#39;tenantId&#39;, local_var_params[&#39;tenant_id&#39;]))  # noqa: E501
     if &#39;include_volume_metadata&#39; in local_var_params and local_var_params[&#39;include_volume_metadata&#39;] is not None:  # noqa: E501
         query_params.append((&#39;includeVolumeMetadata&#39;, local_var_params[&#39;include_volume_metadata&#39;]))  # noqa: E501
+    if &#39;include_active_jobs&#39; in local_var_params and local_var_params[&#39;include_active_jobs&#39;] is not None:  # noqa: E501
+        query_params.append((&#39;includeActiveJobs&#39;, local_var_params[&#39;include_active_jobs&#39;]))  # noqa: E501
     if &#39;metadata_include&#39; in local_var_params and local_var_params[&#39;metadata_include&#39;] is not None:  # noqa: E501
         query_params.append((&#39;metadata.include&#39;, local_var_params[&#39;metadata_include&#39;]))  # noqa: E501
     if &#39;metadata_exclude&#39; in local_var_params and local_var_params[&#39;metadata_exclude&#39;] is not None:  # noqa: E501
         query_params.append((&#39;metadata.exclude&#39;, local_var_params[&#39;metadata_exclude&#39;]))  # noqa: E501
+    if &#39;include&#39; in local_var_params and local_var_params[&#39;include&#39;] is not None:  # noqa: E501
+        query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
     header_params = {}
 
@@ -6031,6 +6471,8 @@ returns the request thread.</p></div>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.archive_folder_with_http_info" href="#libica.openapi.libgds.api.folders_api.FoldersApi.archive_folder_with_http_info">archive_folder_with_http_info</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.bulk_folder_update" href="#libica.openapi.libgds.api.folders_api.FoldersApi.bulk_folder_update">bulk_folder_update</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.bulk_folder_update_with_http_info" href="#libica.openapi.libgds.api.folders_api.FoldersApi.bulk_folder_update_with_http_info">bulk_folder_update_with_http_info</a></code></li>
+<li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.bulk_metadata_folder_update" href="#libica.openapi.libgds.api.folders_api.FoldersApi.bulk_metadata_folder_update">bulk_metadata_folder_update</a></code></li>
+<li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.bulk_metadata_folder_update_with_http_info" href="#libica.openapi.libgds.api.folders_api.FoldersApi.bulk_metadata_folder_update_with_http_info">bulk_metadata_folder_update_with_http_info</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.complete_folder_session" href="#libica.openapi.libgds.api.folders_api.FoldersApi.complete_folder_session">complete_folder_session</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.complete_folder_session_with_http_info" href="#libica.openapi.libgds.api.folders_api.FoldersApi.complete_folder_session_with_http_info">complete_folder_session_with_http_info</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.copy_folder" href="#libica.openapi.libgds.api.folders_api.FoldersApi.copy_folder">copy_folder</a></code></li>
