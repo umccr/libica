@@ -1,9 +1,13 @@
 name: Pull Request Build
 
+# FIXME turn off GitHub Action workflow trigger
+# As it don't get run for some reason. Probably either we hit to free quota or something else.
+# https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
 on:
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch
+#  pull_request:
+#    branches:
+#      - main
 
 # See https://github.com/actions/setup-python#usage
 jobs:

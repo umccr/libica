@@ -4,6 +4,7 @@
     "@openapitools/openapi-generator-cli": "^2.5.2"
   },
   "resolutions": {
-    "validator": "^13.7.0"
+    "validator": "^13.7.0",
+    "@nestjs/core": "^9.0.5"
   }
 }
