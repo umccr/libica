@@ -43,7 +43,9 @@ from tempfile import NamedTemporaryFile
 from typing import List
 from urllib.parse import urlparse
 
+import boto3
 import requests
+from botocore.exceptions import ClientError
 
 from libica.app import configuration
 from libica.openapi import libgds
@@ -223,6 +225,76 @@ def presign_gds_file(file_id: str, volume_name: str, path_: str, presigned_url_m
             return False, message
 
 
+def presign_gds_file_with_override(file_id: str, **kwargs) -&gt; (bool, str):
+    &#34;&#34;&#34;Default override option for response_content_type is text/html and response_content_disposition is inline&#34;&#34;&#34;
+    with libgds.ApiClient(configuration(libgds)) as gds_client:
+        files_api = libgds.FilesApi(gds_client)
+        try:
+            resp: libgds.FileResponse = files_api.update_file(file_id=file_id, include=&#39;objectStoreAccess&#39;)
+            cred: libgds.AwsS3TemporaryUploadCredentials = resp.object_store_access.aws_s3_temporary_upload_credentials
+
+            # See S3 API, &#34;Overriding Response Header Values&#34; section on for all possible override
+            # https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html
+
+            expiration = kwargs.get(&#39;expiration&#39;, 3600)
+            response_content_type = kwargs.get(&#39;response_content_type&#39;, &#39;text/html&#39;)
+            response_content_disposition = kwargs.get(&#39;response_content_disposition&#39;, &#39;inline&#39;)
+
+            s3_client = boto3.client(
+                &#39;s3&#39;,
+                aws_access_key_id=cred.access_key_id,
+                aws_secret_access_key=cred.secret_access_key,
+                aws_session_token=cred.session_token,
+                region_name=cred.region,
+            )
+
+            signed_url = s3_client.generate_presigned_url(
+                &#39;get_object&#39;,
+                Params={
+                    &#39;Bucket&#39;: cred.bucket_name,
+                    &#39;Key&#39;: cred.key_prefix,
+                    &#39;ResponseContentType&#39;: response_content_type,
+                    &#39;ResponseContentDisposition&#39;: response_content_disposition,
+                },
+                ExpiresIn=expiration)
+            return True, signed_url
+        except libgds.ApiException as e:
+            message = f&#34;Failed to sign the GDS file ID ({file_id}). Exception - {e}&#34;
+            logger.error(message)
+            return False, message
+        except ClientError as e:
+            message = f&#34;Failed to sign the GDS file ID ({file_id}). Exception - {e}&#34;
+            return False, message
+
+
+def get_file_cred(file_id: str) -&gt; (bool, libgds.AwsS3TemporaryUploadCredentials):
+    &#34;&#34;&#34;Return underlay S3 object store credential details for given GDS File ID with r+w&#34;&#34;&#34;
+    with libgds.ApiClient(configuration(libgds)) as gds_client:
+        files_api = libgds.FilesApi(gds_client)
+        try:
+            resp: libgds.FileResponse = files_api.update_file(file_id=file_id, include=&#39;objectStoreAccess&#39;)
+            cred: libgds.AwsS3TemporaryUploadCredentials = resp.object_store_access.aws_s3_temporary_upload_credentials
+            return True, cred
+        except libgds.ApiException as e:
+            message = f&#34;Failed to get temporary credentials for GDS file ID ({file_id}). Exception - {e}&#34;
+            logger.error(message)
+            return False, message
+
+
+def get_folder_cred(folder_id: str) -&gt; (bool, libgds.AwsS3TemporaryUploadCredentials):
+    &#34;&#34;&#34;Return underlay S3 object store credential details for given GDS Folder ID with r+w&#34;&#34;&#34;
+    with libgds.ApiClient(configuration(libgds)) as gds_client:
+        folders_api = libgds.FoldersApi(gds_client)
+        try:
+            resp: libgds.FolderResponse = folders_api.update_folder(folder_id=folder_id, include=&#39;objectStoreAccess&#39;)
+            cred: libgds.AwsS3TemporaryUploadCredentials = resp.object_store_access.aws_s3_temporary_upload_credentials
+            return True, cred
+        except libgds.ApiException as e:
+            message = f&#34;Failed to get temporary credentials for GDS folder ID ({folder_id}). Exception - {e}&#34;
+            logger.error(message)
+            return False, message
+
+
 def get_files_from_gds_by_suffix(location: str, file_suffix: str) -&gt; List[str]:
     &#34;&#34;&#34;
     Use case:
@@ -331,7 +403,7 @@ Otherwise, it return file(s) found.</p>
 </details>
 </dd>
 <dt id="libica.app.gds.download_gds_file"><code class="name flex">
-<span>def <span class="ident">download_gds_file</span></span>(<span>volume_name: str, path: str) ‑> (<function NamedTemporaryFile at 0x10a11dbd0>, None)</span>
+<span>def <span class="ident">download_gds_file</span></span>(<span>volume_name: str, path: str) ‑> (<function NamedTemporaryFile at 0x103925bd0>, None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Retrieve <em>single</em> GDS file</p>
@@ -402,6 +474,29 @@ csv_reader = csv.reader(csv_file, delimiter=',')
         f.write(gds_req.content)
 
     return ntf</code></pre>
+</details>
+</dd>
+<dt id="libica.app.gds.get_file_cred"><code class="name flex">
+<span>def <span class="ident">get_file_cred</span></span>(<span>file_id: str) ‑> (<class 'bool'>, <class '<a title="libica.openapi.libgds.models.aws_s3_temporary_upload_credentials.AwsS3TemporaryUploadCredentials" href="../openapi/libgds/models/aws_s3_temporary_upload_credentials.html#libica.openapi.libgds.models.aws_s3_temporary_upload_credentials.AwsS3TemporaryUploadCredentials">AwsS3TemporaryUploadCredentials</a>'>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return underlay S3 object store credential details for given GDS File ID with r+w</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_file_cred(file_id: str) -&gt; (bool, libgds.AwsS3TemporaryUploadCredentials):
+    &#34;&#34;&#34;Return underlay S3 object store credential details for given GDS File ID with r+w&#34;&#34;&#34;
+    with libgds.ApiClient(configuration(libgds)) as gds_client:
+        files_api = libgds.FilesApi(gds_client)
+        try:
+            resp: libgds.FileResponse = files_api.update_file(file_id=file_id, include=&#39;objectStoreAccess&#39;)
+            cred: libgds.AwsS3TemporaryUploadCredentials = resp.object_store_access.aws_s3_temporary_upload_credentials
+            return True, cred
+        except libgds.ApiException as e:
+            message = f&#34;Failed to get temporary credentials for GDS file ID ({file_id}). Exception - {e}&#34;
+            logger.error(message)
+            return False, message</code></pre>
 </details>
 </dd>
 <dt id="libica.app.gds.get_file_list"><code class="name flex">
@@ -530,6 +625,29 @@ PreSignedUrl is always included.</p>
     return items</code></pre>
 </details>
 </dd>
+<dt id="libica.app.gds.get_folder_cred"><code class="name flex">
+<span>def <span class="ident">get_folder_cred</span></span>(<span>folder_id: str) ‑> (<class 'bool'>, <class '<a title="libica.openapi.libgds.models.aws_s3_temporary_upload_credentials.AwsS3TemporaryUploadCredentials" href="../openapi/libgds/models/aws_s3_temporary_upload_credentials.html#libica.openapi.libgds.models.aws_s3_temporary_upload_credentials.AwsS3TemporaryUploadCredentials">AwsS3TemporaryUploadCredentials</a>'>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return underlay S3 object store credential details for given GDS Folder ID with r+w</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_folder_cred(folder_id: str) -&gt; (bool, libgds.AwsS3TemporaryUploadCredentials):
+    &#34;&#34;&#34;Return underlay S3 object store credential details for given GDS Folder ID with r+w&#34;&#34;&#34;
+    with libgds.ApiClient(configuration(libgds)) as gds_client:
+        folders_api = libgds.FoldersApi(gds_client)
+        try:
+            resp: libgds.FolderResponse = folders_api.update_folder(folder_id=folder_id, include=&#39;objectStoreAccess&#39;)
+            cred: libgds.AwsS3TemporaryUploadCredentials = resp.object_store_access.aws_s3_temporary_upload_credentials
+            return True, cred
+        except libgds.ApiException as e:
+            message = f&#34;Failed to get temporary credentials for GDS folder ID ({folder_id}). Exception - {e}&#34;
+            logger.error(message)
+            return False, message</code></pre>
+</details>
+</dd>
 <dt id="libica.app.gds.get_gds_file_to_bytes"><code class="name flex">
 <span>def <span class="ident">get_gds_file_to_bytes</span></span>(<span>gds_volume_name: str, gds_path: str) ‑> bytes</span>
 </code></dt>
@@ -612,6 +730,57 @@ PreSignedUrl is always included.</p>
             return False, message</code></pre>
 </details>
 </dd>
+<dt id="libica.app.gds.presign_gds_file_with_override"><code class="name flex">
+<span>def <span class="ident">presign_gds_file_with_override</span></span>(<span>file_id: str, **kwargs) ‑> (<class 'bool'>, <class 'str'>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Default override option for response_content_type is text/html and response_content_disposition is inline</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def presign_gds_file_with_override(file_id: str, **kwargs) -&gt; (bool, str):
+    &#34;&#34;&#34;Default override option for response_content_type is text/html and response_content_disposition is inline&#34;&#34;&#34;
+    with libgds.ApiClient(configuration(libgds)) as gds_client:
+        files_api = libgds.FilesApi(gds_client)
+        try:
+            resp: libgds.FileResponse = files_api.update_file(file_id=file_id, include=&#39;objectStoreAccess&#39;)
+            cred: libgds.AwsS3TemporaryUploadCredentials = resp.object_store_access.aws_s3_temporary_upload_credentials
+
+            # See S3 API, &#34;Overriding Response Header Values&#34; section on for all possible override
+            # https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html
+
+            expiration = kwargs.get(&#39;expiration&#39;, 3600)
+            response_content_type = kwargs.get(&#39;response_content_type&#39;, &#39;text/html&#39;)
+            response_content_disposition = kwargs.get(&#39;response_content_disposition&#39;, &#39;inline&#39;)
+
+            s3_client = boto3.client(
+                &#39;s3&#39;,
+                aws_access_key_id=cred.access_key_id,
+                aws_secret_access_key=cred.secret_access_key,
+                aws_session_token=cred.session_token,
+                region_name=cred.region,
+            )
+
+            signed_url = s3_client.generate_presigned_url(
+                &#39;get_object&#39;,
+                Params={
+                    &#39;Bucket&#39;: cred.bucket_name,
+                    &#39;Key&#39;: cred.key_prefix,
+                    &#39;ResponseContentType&#39;: response_content_type,
+                    &#39;ResponseContentDisposition&#39;: response_content_disposition,
+                },
+                ExpiresIn=expiration)
+            return True, signed_url
+        except libgds.ApiException as e:
+            message = f&#34;Failed to sign the GDS file ID ({file_id}). Exception - {e}&#34;
+            logger.error(message)
+            return False, message
+        except ClientError as e:
+            message = f&#34;Failed to sign the GDS file ID ({file_id}). Exception - {e}&#34;
+            return False, message</code></pre>
+</details>
+</dd>
 </dl>
 </section>
 <section>
@@ -633,13 +802,16 @@ PreSignedUrl is always included.</p>
 <li><code><a title="libica.app.gds.check_file" href="#libica.app.gds.check_file">check_file</a></code></li>
 <li><code><a title="libica.app.gds.check_path" href="#libica.app.gds.check_path">check_path</a></code></li>
 <li><code><a title="libica.app.gds.download_gds_file" href="#libica.app.gds.download_gds_file">download_gds_file</a></code></li>
+<li><code><a title="libica.app.gds.get_file_cred" href="#libica.app.gds.get_file_cred">get_file_cred</a></code></li>
 <li><code><a title="libica.app.gds.get_file_list" href="#libica.app.gds.get_file_list">get_file_list</a></code></li>
 <li><code><a title="libica.app.gds.get_files_from_gds_by_suffix" href="#libica.app.gds.get_files_from_gds_by_suffix">get_files_from_gds_by_suffix</a></code></li>
 <li><code><a title="libica.app.gds.get_files_list" href="#libica.app.gds.get_files_list">get_files_list</a></code></li>
+<li><code><a title="libica.app.gds.get_folder_cred" href="#libica.app.gds.get_folder_cred">get_folder_cred</a></code></li>
 <li><code><a title="libica.app.gds.get_gds_file_to_bytes" href="#libica.app.gds.get_gds_file_to_bytes">get_gds_file_to_bytes</a></code></li>
 <li><code><a title="libica.app.gds.get_gds_uri" href="#libica.app.gds.get_gds_uri">get_gds_uri</a></code></li>
 <li><code><a title="libica.app.gds.parse_path" href="#libica.app.gds.parse_path">parse_path</a></code></li>
 <li><code><a title="libica.app.gds.presign_gds_file" href="#libica.app.gds.presign_gds_file">presign_gds_file</a></code></li>
+<li><code><a title="libica.app.gds.presign_gds_file_with_override" href="#libica.app.gds.presign_gds_file_with_override">presign_gds_file_with_override</a></code></li>
 </ul>
 </li>
 </ul>
