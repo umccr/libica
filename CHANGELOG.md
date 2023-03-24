@@ -1,3 +1,9 @@
+2.2.1
+-----
+* Release date: 2023-03-25
+* Added generating GDS PreSigned URL with override options 
+* See [milestone 2.2.1 for all related PRs](https://github.com/umccr-illumina/libica/milestone/8?closed=1)
+
 2.2.0
 -----
 * Release date: 2023-02-06

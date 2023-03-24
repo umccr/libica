@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="libica",
-    version="2.2.0",
+    version="2.2.1",
     url="https://github.com/umccr-illumina/libica",
     license="MIT",
     author="UMCCR and Contributors",
@@ -53,5 +53,7 @@ setup(
         "certifi",
         "libumccr",
         "PyYAML",
+        "boto3",
+        "botocore",
     ],
 )
