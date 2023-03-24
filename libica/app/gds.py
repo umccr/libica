@@ -11,7 +11,9 @@ from tempfile import NamedTemporaryFile
 from typing import List
 from urllib.parse import urlparse
 
+import boto3
 import requests
+from botocore.exceptions import ClientError
 
 from libica.app import configuration
 from libica.openapi import libgds
@@ -187,6 +189,76 @@ def presign_gds_file(file_id: str, volume_name: str, path_: str, presigned_url_m
             return True, file_details.presigned_url
         except libgds.ApiException as e:
             message = f"Failed to sign the specified GDS file (gds://{volume_name}{path_}). Exception - {e}"
+            logger.error(message)
+            return False, message
+
+
+def presign_gds_file_with_override(file_id: str, **kwargs) -> (bool, str):
+    """Default override option for response_content_type is text/html and response_content_disposition is inline"""
+    with libgds.ApiClient(configuration(libgds)) as gds_client:
+        files_api = libgds.FilesApi(gds_client)
+        try:
+            resp: libgds.FileResponse = files_api.update_file(file_id=file_id, include='objectStoreAccess')
+            cred: libgds.AwsS3TemporaryUploadCredentials = resp.object_store_access.aws_s3_temporary_upload_credentials
+
+            # See S3 API, "Overriding Response Header Values" section on for all possible override
+            # https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html
+
+            expiration = kwargs.get('expiration', 3600)
+            response_content_type = kwargs.get('response_content_type', 'text/html')
+            response_content_disposition = kwargs.get('response_content_disposition', 'inline')
+
+            s3_client = boto3.client(
+                's3',
+                aws_access_key_id=cred.access_key_id,
+                aws_secret_access_key=cred.secret_access_key,
+                aws_session_token=cred.session_token,
+                region_name=cred.region,
+            )
+
+            signed_url = s3_client.generate_presigned_url(
+                'get_object',
+                Params={
+                    'Bucket': cred.bucket_name,
+                    'Key': cred.key_prefix,
+                    'ResponseContentType': response_content_type,
+                    'ResponseContentDisposition': response_content_disposition,
+                },
+                ExpiresIn=expiration)
+            return True, signed_url
+        except libgds.ApiException as e:
+            message = f"Failed to sign the GDS file ID ({file_id}). Exception - {e}"
+            logger.error(message)
+            return False, message
+        except ClientError as e:
+            message = f"Failed to sign the GDS file ID ({file_id}). Exception - {e}"
+            return False, message
+
+
+def get_file_cred(file_id: str) -> (bool, libgds.AwsS3TemporaryUploadCredentials):
+    """Return underlay S3 object store credential details for given GDS File ID with r+w"""
+    with libgds.ApiClient(configuration(libgds)) as gds_client:
+        files_api = libgds.FilesApi(gds_client)
+        try:
+            resp: libgds.FileResponse = files_api.update_file(file_id=file_id, include='objectStoreAccess')
+            cred: libgds.AwsS3TemporaryUploadCredentials = resp.object_store_access.aws_s3_temporary_upload_credentials
+            return True, cred
+        except libgds.ApiException as e:
+            message = f"Failed to get temporary credentials for GDS file ID ({file_id}). Exception - {e}"
+            logger.error(message)
+            return False, message
+
+
+def get_folder_cred(folder_id: str) -> (bool, libgds.AwsS3TemporaryUploadCredentials):
+    """Return underlay S3 object store credential details for given GDS Folder ID with r+w"""
+    with libgds.ApiClient(configuration(libgds)) as gds_client:
+        folders_api = libgds.FoldersApi(gds_client)
+        try:
+            resp: libgds.FolderResponse = folders_api.update_folder(folder_id=folder_id, include='objectStoreAccess')
+            cred: libgds.AwsS3TemporaryUploadCredentials = resp.object_store_access.aws_s3_temporary_upload_credentials
+            return True, cred
+        except libgds.ApiException as e:
+            message = f"Failed to get temporary credentials for GDS folder ID ({folder_id}). Exception - {e}"
             logger.error(message)
             return False, message
 

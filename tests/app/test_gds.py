@@ -22,8 +22,8 @@ from tests.app import IcaUnitTests, IcaIntegrationTests, logger
 # ica files list gds://development/primary_data/
 # ica files list gds://development/primary_data/210708_A00130_0166_AH7KTJDSX2/
 csv_file_dl_path = "gds://development/primary_data/210708_A00130_0166_AH7KTJDSX2/202203122acad425/10X_10X-ATAC/Reports/fastq_list.csv"  # pick something small csv
-# ica files get gds://development/primary_data/210708_A00130_0166_AH7KTJDSX2/202203122acad425/10X_10X-ATAC/PRJ210645_LPRJ210645_S1_L001_I1_001.fastq.gz
-file_id, gds_path = ("fil.c9e59c2937bd4ab1c84808d9fddc8a4d", "gds://development/primary_data/210708_A00130_0166_AH7KTJDSX2/202203122acad425/10X_10X-ATAC/PRJ210645_LPRJ210645_S1_L001_I1_001.fastq.gz")
+# ica files get gds://development/analysis_data/SBJ00006/wgs_alignment_qc/20220312be2a88ce/NTC_Tsqn210707_dragen_alignment_multiqc/NTC_Tsqn210707_dragen_alignment_multiqc.html
+folder_id, file_id, gds_path = ("fol.9c541a81ed5540b4ac0f08d9fd472eb1", "fil.a420c3d4fbc84eadd19d08d9fddc8a4d", "gds://development/analysis_data/SBJ00006/wgs_alignment_qc/20220312be2a88ce/NTC_Tsqn210707_dragen_alignment_multiqc/NTC_Tsqn210707_dragen_alignment_multiqc.html")
 
 
 class GdsUnitTests(IcaUnitTests):
@@ -211,7 +211,65 @@ class GdsIntegrationTests(IcaIntegrationTests):
         python -m unittest tests.app.test_gds.GdsIntegrationTests.test_presign_gds_file
         """
         _, presigned_url = gds.presign_gds_file(file_id=file_id, volume_name=self.vol, path_=self.path)
-
+        logger.info(presigned_url)
         self.assertIsNotNone(presigned_url)
         self.assertIsInstance(presigned_url, str)
+
+    @skip
+    def test_presign_gds_file_with_override(self):
+        """
+        python -m unittest tests.app.test_gds.GdsIntegrationTests.test_presign_gds_file_with_override
+        """
+        _, presigned_url = gds.presign_gds_file_with_override(
+            file_id=file_id,
+            expiration=7200,
+            response_content_type="text/html; charset=utf-8",
+            response_content_disposition="browser",
+        )
         logger.info(presigned_url)
+        self.assertIsNotNone(presigned_url)
+        self.assertIsInstance(presigned_url, str)
+
+    @skip
+    def test_presign_gds_file_with_override_default(self):
+        """
+        python -m unittest tests.app.test_gds.GdsIntegrationTests.test_presign_gds_file_with_override_default
+        """
+        _, presigned_url = gds.presign_gds_file_with_override(file_id=file_id)
+        logger.info(presigned_url)
+        self.assertIsNotNone(presigned_url)
+        self.assertIsInstance(presigned_url, str)
+
+    @skip
+    def test_presign_gds_file_with_override_attachment(self):
+        """
+        python -m unittest tests.app.test_gds.GdsIntegrationTests.test_presign_gds_file_with_override_attachment
+        """
+        _, presigned_url = gds.presign_gds_file_with_override(
+            file_id=file_id,
+            response_content_type="text/html; charset=utf-8",
+            response_content_disposition="attachment",
+        )
+        logger.info(presigned_url)
+        self.assertIsNotNone(presigned_url)
+        self.assertIsInstance(presigned_url, str)
+
+    @skip
+    def test_get_file_cred(self):
+        """
+        python -m unittest tests.app.test_gds.GdsIntegrationTests.test_get_file_cred
+        """
+        _, cred = gds.get_file_cred(file_id=file_id)
+        logger.info(f"-------------------- \n\n {cred}")
+        self.assertIsNotNone(cred)
+        self.assertIsInstance(cred, libgds.AwsS3TemporaryUploadCredentials)
+
+    @skip
+    def test_get_folder_cred(self):
+        """
+        python -m unittest tests.app.test_gds.GdsIntegrationTests.test_get_folder_cred
+        """
+        _, cred = gds.get_folder_cred(folder_id=folder_id)
+        logger.info(f"-------------------- \n\n {cred}")
+        self.assertIsNotNone(cred)
+        self.assertIsInstance(cred, libgds.AwsS3TemporaryUploadCredentials)
