@@ -98,7 +98,7 @@ class AwsTempCredentials(ModelNormal):
 
     attribute_map = {
         'access_key': 'accessKey',  # noqa: E501
-        'secret_key': 'secretKey',  # noqa: E501
+        'secret_key': 'secretKey',  # noqa: E501 # pragma: allowlist secret
         'session_token': 'sessionToken',  # noqa: E501
         'region': 'region',  # noqa: E501
         'bucket': 'bucket',  # noqa: E501

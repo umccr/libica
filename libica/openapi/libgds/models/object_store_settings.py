@@ -34,13 +34,13 @@ class ObjectStoreSettings(object):
     """
     openapi_types = {
         'aws_s3': 'AWSS3ObjectStoreSetting',
-        'secret_name': 'str',
+        'secret_name': 'str',  # pragma: allowlist secret
         'secret_id': 'str'
     }
 
     attribute_map = {
         'aws_s3': 'awsS3',
-        'secret_name': 'secretName',
+        'secret_name': 'secretName',  # pragma: allowlist secret
         'secret_id': 'secretId'
     }
 

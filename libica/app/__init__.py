@@ -18,12 +18,12 @@ logger = logging.getLogger(__name__)
 
 # v1
 ICA_BASE_URL = "https://aps2.platform.illumina.com"
-ICA_TOKEN_SECRET_NAME = "IcaSecretsPortal"
+ICA_TOKEN_SECRET_NAME = "IcaSecretsPortal"  # pragma: allowlist secret
 
 # v2
 ICA_URL = "https://ica.illumina.com/ica/rest"
-ICAV2_TOKEN_SECRET_NAME = "Icav2SecretsPortal"
-ICAV2_API_KEY_SECRET_NAME = "Icav2ApiKeySecretsPortal"
+ICAV2_TOKEN_SECRET_NAME = "Icav2SecretsPortal"  # pragma: allowlist secret
+ICAV2_API_KEY_SECRET_NAME = "Icav2ApiKeySecretsPortal"  # pragma: allowlist secret
 
 
 class ENSEventType(Enum):
@@ -202,7 +202,7 @@ class AppHelper:
         )
 
         if bearer:
-            self.configuration.api_key_prefix['ApiKeyAuth'] = "Bearer"
+            self.configuration.api_key_prefix['ApiKeyAuth'] = "Bearer"  # pragma: allowlist secret
 
         self.configuration.debug = self.debug
 
