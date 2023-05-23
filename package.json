@@ -1,10 +1,10 @@
 {
+  "scripts": {
+    "audit": "yarn npm audit"
+  },
   "devDependencies": {
     "@apidevtools/swagger-cli": "^4.0.4",
-    "@openapitools/openapi-generator-cli": "^2.5.2"
+    "@openapitools/openapi-generator-cli": "^2.6.0"
   },
-  "resolutions": {
-    "validator": "^13.7.0",
-    "@nestjs/core": "^9.0.5"
-  }
+  "packageManager": "yarn@3.5.1"
 }
