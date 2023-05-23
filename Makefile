@@ -1,6 +1,15 @@
 help:
 	@echo 'make doc'
 
+scan:
+	@trufflehog --debug --only-verified git file://./ --since-commit main --branch HEAD --fail
+
+deep: scan
+	@ggshield secret scan repo .
+
+pre-commit:
+	@pre-commit run --all-files
+
 .PHONY: doc
 doc:
 	@pdoc --force --html libica -o docs/
@@ -31,6 +40,7 @@ test_icav2_mock:
 install:
 	@pip install '.[test,dev]'
 	@yarn install
+	@pre-commit install
 
 unit:
 	@py.test --no-cov tests/

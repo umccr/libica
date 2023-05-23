@@ -55,7 +55,7 @@ class TestVolumeConfigurationListResponse(unittest.TestCase):
                                 bucket_name = '012', 
                                 key_prefix = 'gds-volumes/', ), 
                             # platform_credentials_name = '0',
-                            secret_name='test',
+                            secret_name='test',  # pragma: allowlist secret
                         ), )
                     ],
                 item_count = 56, 

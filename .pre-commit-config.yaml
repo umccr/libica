@@ -1,0 +1,31 @@
+repos:
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+        exclude: ^(yarn.lock|.yarn/)
+#      - id: check-json
+#      - id: check-yaml
+#      - id: detect-aws-credentials
+      - id: detect-private-key
+#      - id: end-of-file-fixer
+#      - id: trailing-whitespace
+      - id: no-commit-to-branch
+        args: [ --branch, main, --branch, master, --pattern, release/.* ]
+
+#  - repo: https://github.com/psf/black
+#    rev: 23.3.0
+#    hooks:
+#      - id: black
+#        language_version: python3.10
+#        args: [ '--check' ]
+#        exclude: ^(skel/)
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        name: detect secrets
+        args: [ '--baseline', '.secrets.baseline' ]
+        exclude: ^(yarn.lock|.yarn/|.local/|docs/|openapi/|swagger/)

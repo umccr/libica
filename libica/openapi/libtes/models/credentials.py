@@ -34,12 +34,12 @@ class Credentials(object):
     """
     openapi_types = {
         'username': 'str',
-        'password': 'str'
+        'password': 'str'  # pragma: allowlist secret
     }
 
     attribute_map = {
         'username': 'username',
-        'password': 'password'
+        'password': 'password'  # pragma: allowlist secret
     }
 
     def __init__(self, username=None, password=None, local_vars_configuration=None):  # noqa: E501

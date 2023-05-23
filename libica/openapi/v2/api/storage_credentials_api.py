@@ -286,7 +286,7 @@ class StorageCredentialsApi(object):
                 },
                 'location_map': {
                     'storage_credential_id': 'path',
-                    'update_storage_credential_secrets': 'body',
+                    'update_storage_credential_secrets': 'body',  # pragma: allowlist secret
                 },
                 'collection_format_map': {
                 }

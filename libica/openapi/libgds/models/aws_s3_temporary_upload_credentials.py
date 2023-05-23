@@ -34,7 +34,7 @@ class AwsS3TemporaryUploadCredentials(object):
     """
     openapi_types = {
         'access_key_id': 'str',
-        'secret_access_key': 'str',
+        'secret_access_key': 'str',  # pragma: allowlist secret
         'session_token': 'str',
         'region': 'str',
         'bucket_name': 'str',
@@ -47,7 +47,7 @@ class AwsS3TemporaryUploadCredentials(object):
 
     attribute_map = {
         'access_key_id': 'access_Key_Id',
-        'secret_access_key': 'secret_Access_Key',
+        'secret_access_key': 'secret_Access_Key',  # pragma: allowlist secret
         'session_token': 'session_Token',
         'region': 'region',
         'bucket_name': 'bucketName',

@@ -83,7 +83,7 @@ conf = libica.openapi.libconsole.Configuration(
 
 conf = libica.openapi.libconsole.Configuration(
     username='the-user',
-    password='the-password',
+    password='the-password',  # pragma: allowlist secret
 )
 
     """

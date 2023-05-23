@@ -35,6 +35,10 @@ setup(
             "mkdocs",
             "mkdocs-material",
             "openapi-spec-validator",
+            "pre-commit",
+            "detect-secrets",
+            "black",
+            "ggshield"
         ],
         "test": [
             "pytest",

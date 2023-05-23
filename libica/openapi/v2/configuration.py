@@ -109,7 +109,7 @@ conf = libica.openapi.v2.Configuration(
 
 conf = libica.openapi.v2.Configuration(
     username='the-user',
-    password='the-password',
+    password='the-password',  # pragma: allowlist secret
 )
 
     """

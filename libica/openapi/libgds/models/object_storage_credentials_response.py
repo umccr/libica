@@ -34,7 +34,7 @@ class ObjectStorageCredentialsResponse(object):
     """
     openapi_types = {
         'access_key': 'str',
-        'secret_key': 'str',
+        'secret_key': 'str',  # pragma: allowlist secret
         'session_token': 'str',
         'region': 'str',
         'bucket_name': 'str',
@@ -45,7 +45,7 @@ class ObjectStorageCredentialsResponse(object):
 
     attribute_map = {
         'access_key': 'accessKey',
-        'secret_key': 'secretKey',
+        'secret_key': 'secretKey',  # pragma: allowlist secret
         'session_token': 'sessionToken',
         'region': 'region',
         'bucket_name': 'bucketName',

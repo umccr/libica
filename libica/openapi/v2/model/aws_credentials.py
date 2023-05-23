@@ -106,7 +106,7 @@ class AwsCredentials(ModelNormal):
 
     attribute_map = {
         'access_key_id': 'accessKeyId',  # noqa: E501
-        'secret_access_key': 'secretAccessKey',  # noqa: E501
+        'secret_access_key': 'secretAccessKey',  # noqa: E501 # pragma: allowlist secret
     }
 
     read_only_vars = {
