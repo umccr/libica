@@ -1963,7 +1963,10 @@
         },
         "nextPageToken": {
           "description": "PageToken for the next paged list",
-          "type": "string"
+          "type": "string",
+          "x-faker": {
+            "helpers.arrayElement": [["page1", ""]]
+          }
         },
         "prevPageToken": {
           "description": "PageToken for the previous paged list",
@@ -2244,7 +2247,10 @@
         },
         "nextPageToken": {
           "description": "PageToken for the next paged list",
-          "type": "string"
+          "type": "string",
+          "x-faker": {
+            "helpers.arrayElement": [["page1", ""]]
+          }
         },
         "prevPageToken": {
           "description": "PageToken for the previous paged list",
@@ -2287,7 +2293,10 @@
         },
         "nextPageToken": {
           "description": "PageToken for the next paged list",
-          "type": "string"
+          "type": "string",
+          "x-faker": {
+            "helpers.arrayElement": [["page1", ""]]
+          }
         },
         "prevPageToken": {
           "description": "PageToken for the previous paged list",
@@ -2551,7 +2560,10 @@
         },
         "nextPageToken": {
           "description": "PageToken for the next paged list",
-          "type": "string"
+          "type": "string",
+          "x-faker": {
+            "helpers.arrayElement": [["page1", ""]]
+          }
         },
         "prevPageToken": {
           "description": "PageToken for the previous paged list",
@@ -2760,7 +2772,10 @@
         },
         "nextPageToken": {
           "description": "PageToken for the next paged list",
-          "type": "string"
+          "type": "string",
+          "x-faker": {
+            "helpers.arrayElement": [["page1", ""]]
+          }
         },
         "prevPageToken": {
           "description": "PageToken for the previous paged list",

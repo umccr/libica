@@ -8383,6 +8383,8 @@ components:
           items:
             $ref: '#/components/schemas/Bundle'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -8671,6 +8673,8 @@ components:
           items:
             $ref: '#/components/schemas/BundleData'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -9031,6 +9035,8 @@ components:
           items:
             $ref: '#/components/schemas/BundleSample'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -9927,6 +9933,8 @@ components:
           items:
             $ref: '#/components/schemas/DataFormat'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -10370,6 +10378,8 @@ components:
           items:
             $ref: '#/components/schemas/Job'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -10994,6 +11004,8 @@ components:
           items:
             $ref: '#/components/schemas/Analysis'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -11489,6 +11501,8 @@ components:
           items:
             $ref: '#/components/schemas/AnalysisCreationBatchItem'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -11548,6 +11562,8 @@ components:
           items:
             $ref: '#/components/schemas/Project'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -11778,6 +11794,8 @@ components:
           items:
             $ref: '#/components/schemas/BaseJob'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -12113,6 +12131,8 @@ components:
           items:
             $ref: '#/components/schemas/ProjectData'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -12142,6 +12162,8 @@ components:
           items:
             $ref: '#/components/schemas/Data'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -12511,6 +12533,8 @@ components:
           items:
             $ref: '#/components/schemas/ProjectDataLinkingBatchItem'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -12565,6 +12589,8 @@ components:
           items:
             $ref: '#/components/schemas/DataTransfer'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -13270,6 +13296,8 @@ components:
           items:
             $ref: '#/components/schemas/SampleCreationBatchSampleItem'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -13363,6 +13391,8 @@ components:
           items:
             $ref: '#/components/schemas/Sample'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
@@ -13708,6 +13738,8 @@ components:
           items:
             $ref: '#/components/schemas/ProjectSample'
         nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
