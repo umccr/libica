@@ -271,9 +271,14 @@ make test
 - These tools are Node.js app, hence, required build tools `node`, `npm`, `npx` and `yarn` as follows.
 ```commandline
 node -v
- v16.15.0
-npm -i -g yarn
+v18.16.1
+
+npm i -g yarn
+yarn -v
+3.5.1
+
 yarn install
+
 npx openapi-generator-cli help
 npx swagger-cli --help
 ```
