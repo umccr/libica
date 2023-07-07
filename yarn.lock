@@ -1202,10 +1202,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"validator@npm:^12.0.0":
-  version: 12.2.0
-  resolution: "validator@npm:12.2.0"
-  checksum: f635a8136a043a47ea7ade7aac8d6735609ebd40732517ed383d7c35155767d41742a858a9dd0b63833483014c508fef90457d7ea12e9166983a39eb798b38d6
+"validator@npm:13.7.0":
+  version: 13.7.0
+  resolution: "validator@npm:13.7.0"
+  checksum: 2b83283de1222ca549a7ef57f46e8d49c6669213348db78b7045bce36a3b5843ff1e9f709ebf74574e06223461ee1f264f8cc9a26a0060a79a27de079d8286ef
   languageName: node
   linkType: hard
 
