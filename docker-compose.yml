@@ -3,14 +3,14 @@ version: '3.1'
 services:
 
   haproxy:
-    image: haproxy
+    image: haproxy:2.8
     ports:
       - "80:80"
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
 
   wes:
-    image: stoplight/prism:4
+    image: stoplight/prism:5
     platform: linux/amd64
     command: mock -d -h 0.0.0.0 "/swagger/wes.json"
     restart: always
@@ -20,7 +20,7 @@ services:
       - ./swagger:/swagger
 
   tes:
-    image: stoplight/prism:4
+    image: stoplight/prism:5
     platform: linux/amd64
     command: mock -d -h 0.0.0.0 "/swagger/tes.json"
     restart: always
@@ -30,7 +30,7 @@ services:
       - ./swagger:/swagger
 
   gds:
-    image: stoplight/prism:4
+    image: stoplight/prism:5
     platform: linux/amd64
     command: mock -d -h 0.0.0.0 "/swagger/gds.json"
     restart: always
@@ -40,7 +40,7 @@ services:
       - ./swagger:/swagger
 
   ens:
-    image: stoplight/prism:4
+    image: stoplight/prism:5
     platform: linux/amd64
     command: mock -d -h 0.0.0.0 "/swagger/ens.json"
     restart: always
@@ -50,7 +50,7 @@ services:
       - ./swagger:/swagger
 
   console:
-    image: stoplight/prism:4
+    image: stoplight/prism:5
     platform: linux/amd64
     command: mock -d -h 0.0.0.0 "/swagger/console.json"
     restart: always
@@ -60,7 +60,7 @@ services:
       - ./swagger:/swagger
 
   v2:
-    image: stoplight/prism:4
+    image: stoplight/prism:5
     platform: linux/amd64
     command: mock -d -h 0.0.0.0 "/swagger/openapi_public.yaml"
     restart: always

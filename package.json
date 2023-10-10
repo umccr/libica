@@ -4,7 +4,7 @@
   },
   "devDependencies": {
     "@apidevtools/swagger-cli": "^4.0.4",
-    "@openapitools/openapi-generator-cli": "^2.6.0"
+    "@openapitools/openapi-generator-cli": "^2.7.0"
   },
   "resolutions": {
     "validator": "13.7.0"
