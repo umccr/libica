@@ -123,47 +123,6 @@
         }
       }
     },
-    "/v1/regions": {
-      "get": {
-        "tags": [
-          "Regions"
-        ],
-        "summary": "Get a list of available regions",
-        "description": "Get a list of available regions",
-        "operationId": "listRegions",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "instrumentType",
-            "description": "Instrument type",
-            "type": "string"
-          },
-          {
-            "in": "query",
-            "name": "version",
-            "description": "Instrument version",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Regions found and returned successfully.",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Region"
-              }
-            }
-          },
-          "default": {
-            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator."
-          }
-        }
-      }
-    },
     "/v1/tokens": {
       "post": {
         "tags": [
@@ -394,168 +353,6 @@
         }
       }
     },
-    "/v1/usages": {
-      "get": {
-        "tags": [
-          "Usages"
-        ],
-        "summary": "Get current tenant's usage detail by period.  Default returns current period usage data. ",
-        "description": "This endpoint provides the ability for the user to get the aggregated usage data",
-        "operationId": "getUsage",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "periods",
-            "type": "integer",
-            "format": "int32",
-            "maximum": 6,
-            "minimum": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The usages are returned successfully.",
-            "schema": {
-              "$ref": "#/definitions/UsageResponse"
-            }
-          },
-          "400": {
-            "description": "An invalid or missing input parameter will result in a bad request.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "401": {
-            "description": "The acting identity cannot be authenticated and authorized.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "The acting identity is not authorized to subscribe to the given event type or deliver to the given delivery target.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "default": {
-            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/v1/usages/details": {
-      "get": {
-        "tags": [
-          "Usages"
-        ],
-        "summary": "Get current tenant's usage detail by period.  Default returns current period usage data. ",
-        "description": "This endpoint provides the billing details for specified period id. Summarize each compute usage and daily gds usage",
-        "operationId": "getUsageDetails",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "periodId",
-            "type": "integer",
-            "format": "int64"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The usages are returned successfully.",
-            "schema": {
-              "$ref": "#/definitions/UsageResponse"
-            }
-          },
-          "400": {
-            "description": "An invalid or missing input parameter will result in a bad request.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "401": {
-            "description": "The acting identity cannot be authenticated and authorized.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "The acting identity is not authorized to subscribe to the given event type or deliver to the given delivery target.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "default": {
-            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-    },
-    "/v1/usages/periods": {
-      "get": {
-        "tags": [
-          "Usages"
-        ],
-        "summary": "Get periods detail info ",
-        "description": "This endpoint provides the periods details",
-        "operationId": "getUsagePeriods",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "in": "query",
-            "name": "limit",
-            "type": "integer",
-            "format": "int32",
-            "default": 26
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "The periods are returned successfully.",
-            "schema": {
-              "$ref": "#/definitions/UsageResponse"
-            }
-          },
-          "400": {
-            "description": "An invalid or missing input parameter will result in a bad request.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "401": {
-            "description": "The acting identity cannot be authenticated and authorized.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "403": {
-            "description": "The acting identity is not authorized to subscribe to the given event type or deliver to the given delivery target.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          },
-          "default": {
-            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
-            "schema": {
-              "$ref": "#/definitions/ErrorResponse"
-            }
-          }
-        }
-      }
-    },
     "/v1/workgroups": {
       "get": {
         "tags": [
@@ -585,13 +382,12 @@
     }
   },
   "definitions": {
-    "Domain": {
+    "AccessTokenRequest": {
+      "description": "Access token passed into an api request",
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
+        "access_token": {
+          "description": "This is either a psToken or a JWT token depending on the context of the call.",
           "type": "string"
         }
       }
@@ -613,47 +409,14 @@
         }
       }
     },
-    "HealthCheckStatuses": {
-      "format": "int32",
-      "description": "Health status",
-      "enum": [
-        0,
-        1,
-        2,
-        3
-      ],
-      "type": "integer"
-    },
-    "ServiceHealthResponse": {
-      "description": "Describes the individual health of all services in the platform",
+    "Domain": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "name": {
-          "description": "Name of the service",
           "type": "string"
-        },
-        "status": {
-          "$ref": "#/definitions/HealthCheckStatuses"
-        },
-        "version": {
-          "description": "Current version for the deployed service",
-          "type": "string"
-        }
-      }
-    },
-    "SystemHealthResponse": {
-      "description": "The overall health of the platform",
-      "type": "object",
-      "properties": {
-        "status": {
-          "$ref": "#/definitions/HealthCheckStatuses"
-        },
-        "details": {
-          "description": "Service health details",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ServiceHealthResponse"
-          }
         }
       }
     },
@@ -668,11 +431,20 @@
         },
         "details": {
           "type": "array",
-          "items": {
-            "type": "object"
-          }
+          "items": { }
         }
       }
+    },
+    "HealthCheckStatuses": {
+      "format": "int32",
+      "description": "Health status",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "type": "integer"
     },
     "Project": {
       "type": "object",
@@ -743,63 +515,36 @@
         }
       }
     },
-    "Region": {
-      "description": "Resource representing environment details",
+    "ServiceHealthResponse": {
+      "description": "Describes the individual health of all services in the platform",
       "type": "object",
       "properties": {
         "name": {
-          "description": "Name of the environment",
+          "description": "Name of the service",
           "type": "string"
         },
-        "displayName": {
-          "description": "Display name for the environment",
-          "type": "string"
+        "status": {
+          "$ref": "#/definitions/HealthCheckStatuses"
         },
-        "baseUrl": {
-          "description": "BaseUrl for the environment",
-          "type": "string"
-        },
-        "isEnabled": {
-          "description": "True if the environment is enabled",
-          "type": "boolean"
-        }
-      }
-    },
-    "TokenResponse": {
-      "description": "Response payload for token create",
-      "type": "object",
-      "properties": {
-        "access_token": {
-          "description": "The returned token is either a psToken or a JWT token depending on the context of the call.",
-          "type": "string"
-        },
-        "token_type": {
-          "description": "The type of token requested.",
+        "version": {
+          "description": "Current version for the deployed service",
           "type": "string"
         }
       }
     },
-    "AccessTokenRequest": {
-      "description": "Access token passed into an api request",
+    "SystemHealthResponse": {
+      "description": "The overall health of the platform",
       "type": "object",
       "properties": {
-        "access_token": {
-          "description": "This is either a psToken or a JWT token depending on the context of the call.",
-          "type": "string"
-        }
-      }
-    },
-    "Workgroup": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
+        "status": {
+          "$ref": "#/definitions/HealthCheckStatuses"
         },
-        "name": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
+        "details": {
+          "description": "Service health details",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ServiceHealthResponse"
+          }
         }
       }
     },
@@ -832,102 +577,31 @@
         }
       }
     },
-    "ProductUsage": {
-      "required": [
-        "amount",
-        "type",
-        "unit"
-      ],
+    "TokenResponse": {
+      "description": "Response payload for token create",
       "type": "object",
       "properties": {
-        "type": {
+        "access_token": {
+          "description": "The returned token is either a psToken or a JWT token depending on the context of the call.",
           "type": "string"
         },
-        "amount": {
-          "format": "double",
-          "type": "number"
-        },
-        "unit": {
-          "type": "string"
-        },
-        "iCredit": {
-          "format": "double",
-          "type": "number"
-        }
-      }
-    },
-    "User": {
-      "type": "object",
-      "properties": {
-        "fullName": {
-          "type": "string"
-        },
-        "userName": {
-          "type": "string"
-        },
-        "domain": {
-          "$ref": "#/definitions/Domain"
-        },
-        "type": {
+        "token_type": {
+          "description": "The type of token requested.",
           "type": "string"
         }
       }
     },
-    "UserAggregatedUsage": {
+    "Workgroup": {
       "type": "object",
       "properties": {
-        "user": {
-          "$ref": "#/definitions/User"
-        },
-        "iCredit": {
-          "format": "double",
-          "type": "number"
-        },
-        "usages": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ProductUsage"
-          }
-        }
-      }
-    },
-    "PeriodUsageSummary": {
-      "type": "object",
-      "properties": {
-        "start": {
-          "format": "date-time",
+        "id": {
           "type": "string"
         },
-        "end": {
-          "format": "date-time",
+        "name": {
           "type": "string"
         },
-        "iCredit": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "totalUsages": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ProductUsage"
-          }
-        },
-        "userAggregatedUsages": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/UserAggregatedUsage"
-          }
-        }
-      }
-    },
-    "UsageResponse": {
-      "type": "object",
-      "properties": {
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/PeriodUsageSummary"
-          }
+        "description": {
+          "type": "string"
         }
       }
     },

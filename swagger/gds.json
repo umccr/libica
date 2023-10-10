@@ -590,6 +590,74 @@
         }
       }
     },
+    "/v1/files/move": {
+      "post": {
+        "tags": [
+          "Files"
+        ],
+        "summary": "Move list of files",
+        "description": "Moves a list of files enumerated by file Ids to a destination folder",
+        "operationId": "moveFiles",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FileListMoveRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success.",
+            "schema": {
+              "$ref": "#/definitions/JobResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          }
+        }
+      }
+    },
     "/v1/files/copy": {
       "post": {
         "tags": [
@@ -1429,6 +1497,90 @@
             "required": true,
             "schema": {
               "$ref": "#/definitions/FolderCopyRequest"
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted.",
+            "schema": {
+              "$ref": "#/definitions/JobResponse"
+            }
+          },
+          "400": {
+            "description": "Bad request.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "403": {
+            "description": "Forbidden.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "404": {
+            "description": "Folder not found.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "409": {
+            "description": "Conflict.",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "500": {
+            "description": "Server Error",
+            "schema": {
+              "$ref": "#/definitions/ErrorResponse"
+            }
+          },
+          "default": {
+            "description": "Unexpected issue. Please try your request again. If problem persists, please contact the system administrator."
+          }
+        }
+      }
+    },
+    "/v1/folders/{folderId}:move": {
+      "post": {
+        "tags": [
+          "Folders"
+        ],
+        "summary": "Move a folder",
+        "description": "Move a folder into a target parent folder",
+        "operationId": "moveFolder",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "folderId",
+            "description": "Unique identifier for the folder to be copied.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/FolderMoveRequest"
             }
           }
         ],
@@ -3091,6 +3243,60 @@
         }
       }
     },
+    "AzureTemporaryReadOnlyCredentials": {
+      "type": "object",
+      "properties": {
+        "storageAccountName": {
+          "type": "string"
+        },
+        "storageContainerName": {
+          "type": "string"
+        },
+        "objectLocation": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "sasToken": {
+          "type": "string"
+        },
+        "objectStorePermissions": {
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "AzureTemporaryUploadCredentials": {
+      "type": "object",
+      "properties": {
+        "storageAccountName": {
+          "type": "string"
+        },
+        "storageContainerName": {
+          "type": "string"
+        },
+        "objectLocation": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "sasToken": {
+          "type": "string"
+        },
+        "objectStorePermissions": {
+          "type": "string"
+        },
+        "expirationDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
     "BulkFailedItem": {
       "type": "object",
       "properties": {
@@ -3112,6 +3318,12 @@
         },
         "metadata": {
           "description": "Metadata about this file and its contents"
+        },
+        "addMetadata": {
+          "description": "Add an item to a metadata with array type"
+        },
+        "deleteMetadata": {
+          "description": "Delete an item from a metadata with array type"
         },
         "format": {
           "description": "The File's Format",
@@ -3198,6 +3410,12 @@
         },
         "metadata": {
           "description": "Metadata about this folder and its contents"
+        },
+        "addMetadata": {
+          "description": "Add an item to a metadata with array type"
+        },
+        "deleteMetadata": {
+          "description": "Delete an item from a metadata with array type"
         }
       }
     },
@@ -3426,8 +3644,14 @@
           "description": "Name for the volume configuration",
           "type": "string"
         },
+        "providerName": {
+          "$ref": "#/definitions/ObjectStorageProviderNames"
+        },
         "objectStoreSettings": {
           "$ref": "#/definitions/ObjectStoreSettings"
+        },
+        "restoreType": {
+          "$ref": "#/definitions/RestoreType"
         }
       }
     },
@@ -3461,6 +3685,13 @@
     "CreateVolumeResponse": {
       "type": "object",
       "properties": {
+        "importSessionId": {
+          "description": "Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom\r\nVolume configurations.",
+          "type": "string"
+        },
+        "objectStoreAccess": {
+          "$ref": "#/definitions/ObjectStoreAccess"
+        },
         "id": {
           "description": "A unique identifier for this Volume",
           "type": "string"
@@ -3530,13 +3761,6 @@
         "migrationStatus": {
           "description": "Status of the root folder migration status from v1 to v2",
           "type": "string"
-        },
-        "importSessionId": {
-          "description": "Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom\r\nVolume configurations.",
-          "type": "string"
-        },
-        "objectStoreAccess": {
-          "$ref": "#/definitions/ObjectStoreAccess"
         }
       }
     },
@@ -3578,7 +3802,7 @@
       "type": "string"
     },
     "FileCopyOperationParameters": {
-      "description": "Operation parameters for folder copy operations",
+      "description": "Operation parameters for file copy operations",
       "type": "object",
       "properties": {
         "sourceVolumeId": {
@@ -3667,7 +3891,7 @@
           "type": "string"
         },
         "destinationFolderId": {
-          "description": "The folder into which the source folder will be copied.",
+          "description": "The folder into which the source files will be copied.",
           "type": "string"
         },
         "ids": {
@@ -3685,6 +3909,31 @@
         },
         "duplicateFileAction": {
           "type": "string"
+        }
+      }
+    },
+    "FileListMoveRequest": {
+      "required": [
+        "destinationFolderId",
+        "ids",
+        "sourceVolumeId"
+      ],
+      "type": "object",
+      "properties": {
+        "sourceVolumeId": {
+          "description": "The volume where the source files are moved from.",
+          "type": "string"
+        },
+        "destinationFolderId": {
+          "description": "The folder into which the source files will be moved.",
+          "type": "string"
+        },
+        "ids": {
+          "description": "List of files ids to moved",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },
@@ -3734,6 +3983,55 @@
         }
       }
     },
+    "FileMoveOperationParameters": {
+      "description": "Operation parameters for file move operations",
+      "type": "object",
+      "properties": {
+        "sourceVolumeId": {
+          "type": "string"
+        },
+        "sourceFileIds": {
+          "description": "The file Ids for the move operation",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "targetFolderId": {
+          "type": "string"
+        }
+      }
+    },
+    "FileMoveOutput": {
+      "type": "object",
+      "properties": {
+        "itemsSkippedCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "itemsFailedCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "itemsMovedCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "foldersMovedCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "elasticIndexingMatched": {
+          "type": "boolean"
+        },
+        "itemsFailed": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BulkFailedItem"
+          }
+        }
+      }
+    },
     "FileResponse": {
       "type": "object",
       "properties": {
@@ -3742,6 +4040,10 @@
         },
         "copyJobId": {
           "description": "Job that copied the file",
+          "type": "string"
+        },
+        "jobId": {
+          "description": "Job that performed operation on the file",
           "type": "string"
         },
         "id": {
@@ -3853,6 +4155,11 @@
         "lifeCycle": {
           "$ref": "#/definitions/FileLifeCycleSettings"
         },
+        "restoreExpiration": {
+          "format": "date-time",
+          "description": "Restore expiration time",
+          "type": "string"
+        },
         "presignedUrl": {
           "description": "The presigned Url allowing access to this File",
           "type": "string"
@@ -3868,7 +4175,7 @@
         "Available",
         "Archived",
         "Unarchiving",
-        "Copying"
+        "Moving"
       ],
       "type": "string"
     },
@@ -4014,6 +4321,11 @@
         "lifeCycle": {
           "$ref": "#/definitions/FileLifeCycleSettings"
         },
+        "restoreExpiration": {
+          "format": "date-time",
+          "description": "Restore expiration time",
+          "type": "string"
+        },
         "objectStoreAccess": {
           "$ref": "#/definitions/ObjectStoreAccess"
         }
@@ -4156,6 +4468,50 @@
         }
       }
     },
+    "FolderMoveOperationParameters": {
+      "description": "Operation parameters for folder move operations",
+      "type": "object",
+      "properties": {
+        "sourceFolderUrn": {
+          "description": "The Urn of the source folder for the move operation",
+          "type": "string"
+        },
+        "targetFolderUrn": {
+          "description": "The Urn of the target folder for the move operation",
+          "type": "string"
+        },
+        "sourceFolderId": {
+          "type": "string"
+        },
+        "targetFolderId": {
+          "type": "string"
+        },
+        "sourceVolumeId": {
+          "type": "string"
+        },
+        "originalSourceObjectStoreLocationPrefix": {
+          "type": "string"
+        },
+        "destinationObjectStoreLocation": {
+          "type": "string"
+        },
+        "originalSourcePath": {
+          "type": "string"
+        }
+      }
+    },
+    "FolderMoveRequest": {
+      "required": [
+        "targetParentFolderId"
+      ],
+      "type": "object",
+      "properties": {
+        "targetParentFolderId": {
+          "description": "The parent folder into which the folder will be moved.",
+          "type": "string"
+        }
+      }
+    },
     "FolderResponse": {
       "type": "object",
       "properties": {
@@ -4254,6 +4610,10 @@
             "type": "string"
           }
         },
+        "copyJobId": {
+          "description": "Job that copied the folder",
+          "type": "string"
+        },
         "objectStoreAccess": {
           "$ref": "#/definitions/ObjectStoreAccess"
         }
@@ -4276,6 +4636,12 @@
       "properties": {
         "metadata": {
           "description": "Metadata about this folder and its contents"
+        },
+        "addMetadata": {
+          "description": "Add an item to a metadata with array type"
+        },
+        "deleteMetadata": {
+          "description": "Delete an item from a metadata with array type"
         },
         "acl": {
           "description": "Optional array to replace the acl on the resource.",
@@ -4384,6 +4750,10 @@
             "type": "string"
           }
         },
+        "copyJobId": {
+          "description": "Job that copied the folder",
+          "type": "string"
+        },
         "objectStoreAccess": {
           "$ref": "#/definitions/ObjectStoreAccess"
         }
@@ -4462,6 +4832,12 @@
         },
         "bulkMetadataUpdate": {
           "$ref": "#/definitions/BulkMetadataUpdateOperationParameters"
+        },
+        "fileMove": {
+          "$ref": "#/definitions/FileMoveOperationParameters"
+        },
+        "folderMove": {
+          "$ref": "#/definitions/FolderMoveOperationParameters"
         }
       }
     },
@@ -4490,6 +4866,12 @@
         },
         "fileMetadataUpdateOutput": {
           "$ref": "#/definitions/MetadataUpdateOutput"
+        },
+        "fileMove": {
+          "$ref": "#/definitions/FileMoveOutput"
+        },
+        "folderMove": {
+          "$ref": "#/definitions/FileMoveOutput"
         }
       }
     },
@@ -4549,6 +4931,10 @@
           "format": "date-time",
           "description": "The date & time this Job was completed, in GDS",
           "type": "string"
+        },
+        "errorMessage": {
+          "description": "Error message returned from the job",
+          "type": "string"
         }
       }
     },
@@ -4558,7 +4944,8 @@
         "None",
         "Archiving",
         "Unarchiving",
-        "Deleting"
+        "Deleting",
+        "Moving"
       ],
       "type": "string"
     },
@@ -4597,6 +4984,40 @@
         }
       }
     },
+    "ObjectContainerSettings": {
+      "required": [
+        "objectContainer"
+      ],
+      "type": "object",
+      "properties": {
+        "objectContainer": {
+          "description": "The object container name",
+          "maxLength": 63,
+          "minLength": 3,
+          "type": "string"
+        },
+        "keyPrefix": {
+          "description": "Key prefix within the bucket for GDS to operate within. Volumes may only be created within this prefix and the given credentials need only authorize\r\naccess here. If not set, default is to allow operation on the full container. No leading slash, and must end with a trailing slash.",
+          "pattern": "^[^/].*$",
+          "type": "string"
+        },
+        "serverSideEncryptionAlgorithm": {
+          "description": "Used to specify the type of server-side encryption (SSE) to be used on the object provider.\r\nThis value is used to determine the Amazon S3 header \"x-amz-server-side-encryption\" value.\r\nFor example, specify \"AES256\" for SSE-S3, or \"AWS:KMS\" for SSE-KMS.\r\nBy default if none is specified, \"AES256\" will be used.",
+          "type": "string"
+        },
+        "serverSideEncryptionKey": {
+          "description": "Used to specify the serve-side encryption key that might be associated with the specified server-side encryption algorithm\r\nThis value can be the AWS KMS arn key, to be used for the Amazon S3 header \"x-amz-server-side-encryption-aws-kms-key-id\" value\r\nValue will be ignored if encryption is \"AES256\"",
+          "type": "string"
+        }
+      }
+    },
+    "ObjectStorageProviderNames": {
+      "enum": [
+        "Amazon",
+        "Azure"
+      ],
+      "type": "string"
+    },
     "ObjectStoreAccess": {
       "description": "ObjectStoreAccess to get the temporaryCredentials per provider",
       "type": "object",
@@ -4610,8 +5031,14 @@
         "awsS3PresignedUrlForUpload": {
           "$ref": "#/definitions/AwsS3PresignedUrlForUpload"
         },
+        "azureTemporaryUploadCredentials": {
+          "$ref": "#/definitions/AzureTemporaryUploadCredentials"
+        },
         "awsS3TemporaryReadOnlyCredentials": {
           "$ref": "#/definitions/AwsS3TemporaryReadOnlyCredentials"
+        },
+        "azureTemporaryReadOnlyCredentials": {
+          "$ref": "#/definitions/AzureTemporaryReadOnlyCredentials"
         }
       }
     },
@@ -4620,6 +5047,9 @@
       "properties": {
         "awsS3": {
           "$ref": "#/definitions/AWSS3ObjectStoreSetting"
+        },
+        "objectContainerSettings": {
+          "$ref": "#/definitions/ObjectContainerSettings"
         },
         "secretName": {
           "description": "Platform credentials Name\r\nMust provide either SecretId or SecretName",
@@ -4670,6 +5100,14 @@
         }
       }
     },
+    "RestoreType": {
+      "description": "Object Restore Types in Storage Engine",
+      "enum": [
+        "Permanent",
+        "Temporary"
+      ],
+      "type": "string"
+    },
     "SessionResponse": {
       "type": "object",
       "properties": {
@@ -4716,6 +5154,15 @@
       ],
       "type": "string"
     },
+    "StorageContainerVersioningState": {
+      "description": "Bucket Versioning State",
+      "enum": [
+        "Disabled",
+        "Enabled",
+        "Suspended"
+      ],
+      "type": "string"
+    },
     "StorageTier": {
       "description": "StorageTier",
       "enum": [
@@ -4746,6 +5193,12 @@
         },
         "metadata": {
           "description": "Metadata about this file and its contents"
+        },
+        "addMetadata": {
+          "description": "Add an item to a metadata with array type"
+        },
+        "deleteMetadata": {
+          "description": "Delete an item from a metadata with array type"
         }
       }
     },
@@ -4822,6 +5275,9 @@
           "description": "Name for the volume configuration",
           "type": "string"
         },
+        "storageContainerVersioningState": {
+          "$ref": "#/definitions/StorageContainerVersioningState"
+        },
         "tenantId": {
           "description": "The unique identifier for this Volume Configuration's Tenant",
           "type": "string"
@@ -4868,8 +5324,14 @@
           "description": "The updator of this Volume",
           "type": "string"
         },
+        "providerName": {
+          "$ref": "#/definitions/ObjectStorageProviderNames"
+        },
         "objectStoreSettings": {
           "$ref": "#/definitions/ObjectStoreSettings"
+        },
+        "restoreType": {
+          "$ref": "#/definitions/RestoreType"
         }
       }
     },
