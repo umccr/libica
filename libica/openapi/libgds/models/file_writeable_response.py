@@ -60,6 +60,7 @@ class FileWriteableResponse(object):
         'format_edam': 'str',
         'status': 'FileStatus',
         'life_cycle': 'FileLifeCycleSettings',
+        'restore_expiration': 'datetime',
         'object_store_access': 'ObjectStoreAccess'
     }
 
@@ -91,10 +92,11 @@ class FileWriteableResponse(object):
         'format_edam': 'formatEdam',
         'status': 'status',
         'life_cycle': 'lifeCycle',
+        'restore_expiration': 'restoreExpiration',
         'object_store_access': 'objectStoreAccess'
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, restore_expiration=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         """FileWriteableResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -127,6 +129,7 @@ class FileWriteableResponse(object):
         self._format_edam = None
         self._status = None
         self._life_cycle = None
+        self._restore_expiration = None
         self._object_store_access = None
         self.discriminator = None
 
@@ -184,6 +187,8 @@ class FileWriteableResponse(object):
             self.status = status
         if life_cycle is not None:
             self.life_cycle = life_cycle
+        if restore_expiration is not None:
+            self.restore_expiration = restore_expiration
         if object_store_access is not None:
             self.object_store_access = object_store_access
 
@@ -797,6 +802,29 @@ class FileWriteableResponse(object):
         """
 
         self._life_cycle = life_cycle
+
+    @property
+    def restore_expiration(self):
+        """Gets the restore_expiration of this FileWriteableResponse.  # noqa: E501
+
+        Restore expiration time  # noqa: E501
+
+        :return: The restore_expiration of this FileWriteableResponse.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._restore_expiration
+
+    @restore_expiration.setter
+    def restore_expiration(self, restore_expiration):
+        """Sets the restore_expiration of this FileWriteableResponse.
+
+        Restore expiration time  # noqa: E501
+
+        :param restore_expiration: The restore_expiration of this FileWriteableResponse.  # noqa: E501
+        :type: datetime
+        """
+
+        self._restore_expiration = restore_expiration
 
     @property
     def object_store_access(self):

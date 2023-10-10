@@ -5,6 +5,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **volume_metadata** | [**object**](.md) | Metadata about this file&#39;s volume | [optional] 
 **copy_job_id** | **str** | Job that copied the file | [optional] 
+**job_id** | **str** | Job that performed operation on the file | [optional] 
 **id** | **str** | A unique identifier for this File | [optional] 
 **name** | **str** | The name of this File | [optional] 
 **volume_id** | **str** | The unique identifier of the volume where the file resides | [optional] 
@@ -32,6 +33,7 @@ Name | Type | Description | Notes
 **format_edam** | **str** |  | [optional] 
 **status** | [**FileStatus**](FileStatus.md) |  | [optional] 
 **life_cycle** | [**FileLifeCycleSettings**](FileLifeCycleSettings.md) |  | [optional] 
+**restore_expiration** | **datetime** | Restore expiration time | [optional] 
 **presigned_url** | **str** | The presigned Url allowing access to this File | [optional] 
 **object_store_access** | [**ObjectStoreAccess**](ObjectStoreAccess.md) |  | [optional] 
 

@@ -43,7 +43,8 @@ class JobResponse(object):
         'time_created': 'datetime',
         'created_by': 'str',
         'time_modified': 'datetime',
-        'time_completed': 'datetime'
+        'time_completed': 'datetime',
+        'error_message': 'str'
     }
 
     attribute_map = {
@@ -57,10 +58,11 @@ class JobResponse(object):
         'time_created': 'timeCreated',
         'created_by': 'createdBy',
         'time_modified': 'timeModified',
-        'time_completed': 'timeCompleted'
+        'time_completed': 'timeCompleted',
+        'error_message': 'errorMessage'
     }
 
-    def __init__(self, id=None, parent_folder_urn=None, operation_type=None, job_type=None, operation_parameters=None, results=None, progress_status=None, time_created=None, created_by=None, time_modified=None, time_completed=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, parent_folder_urn=None, operation_type=None, job_type=None, operation_parameters=None, results=None, progress_status=None, time_created=None, created_by=None, time_modified=None, time_completed=None, error_message=None, local_vars_configuration=None):  # noqa: E501
         """JobResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -77,6 +79,7 @@ class JobResponse(object):
         self._created_by = None
         self._time_modified = None
         self._time_completed = None
+        self._error_message = None
         self.discriminator = None
 
         if id is not None:
@@ -101,6 +104,8 @@ class JobResponse(object):
             self.time_modified = time_modified
         if time_completed is not None:
             self.time_completed = time_completed
+        if error_message is not None:
+            self.error_message = error_message
 
     @property
     def id(self):
@@ -344,6 +349,29 @@ class JobResponse(object):
         """
 
         self._time_completed = time_completed
+
+    @property
+    def error_message(self):
+        """Gets the error_message of this JobResponse.  # noqa: E501
+
+        Error message returned from the job  # noqa: E501
+
+        :return: The error_message of this JobResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._error_message
+
+    @error_message.setter
+    def error_message(self, error_message):
+        """Sets the error_message of this JobResponse.
+
+        Error message returned from the job  # noqa: E501
+
+        :param error_message: The error_message of this JobResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._error_message = error_message
 
     def to_dict(self):
         """Returns the model properties as a dict"""

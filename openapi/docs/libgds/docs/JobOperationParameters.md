@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **volume_migration** | [**VolumeMigrationOperationParameters**](VolumeMigrationOperationParameters.md) |  | [optional] 
 **file_copy** | [**FileCopyOperationParameters**](FileCopyOperationParameters.md) |  | [optional] 
 **bulk_metadata_update** | [**BulkMetadataUpdateOperationParameters**](BulkMetadataUpdateOperationParameters.md) |  | [optional] 
+**file_move** | [**FileMoveOperationParameters**](FileMoveOperationParameters.md) |  | [optional] 
+**folder_move** | [**FolderMoveOperationParameters**](FolderMoveOperationParameters.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

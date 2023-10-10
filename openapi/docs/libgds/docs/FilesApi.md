@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**get_file**](FilesApi.md#get_file) | **GET** /v1/files/{fileId} | Get details about a file, including a pre-signed URL for download
 [**list_files**](FilesApi.md#list_files) | **GET** /v1/files | Get a list of files
 [**list_volume_files**](FilesApi.md#list_volume_files) | **POST** /v1/files/list | Get a list of volume files
+[**move_files**](FilesApi.md#move_files) | **POST** /v1/files/move | Move list of files
 [**unarchive_file**](FilesApi.md#unarchive_file) | **POST** /v1/files/{fileId}:unarchive | Unarchive a file
 [**update_file**](FilesApi.md#update_file) | **PATCH** /v1/files/{fileId} | Update a file entry in GDS and get temporary credentials for upload
 
@@ -792,6 +793,88 @@ Name | Type | Description  | Notes
 **400** | Bad request. |  -  |
 **401** | Unauthorized. |  -  |
 **403** | Forbidden. |  -  |
+**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **move_files**
+> JobResponse move_files(body)
+
+Move list of files
+
+Moves a list of files enumerated by file Ids to a destination folder
+
+### Example
+
+* Api Key Authentication (Bearer):
+```python
+from __future__ import print_function
+import time
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Bearer
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com",
+    api_key = {
+        'Authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.libgds.FilesApi(api_client)
+    body = libica.openapi.libgds.FileListMoveRequest() # FileListMoveRequest | 
+
+    try:
+        # Move list of files
+        api_response = api_instance.move_files(body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling FilesApi->move_files: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | [**FileListMoveRequest**](FileListMoveRequest.md)|  | 
+
+### Return type
+
+[**JobResponse**](JobResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Success. |  -  |
+**400** | Bad request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**409** | Conflict |  -  |
 **0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

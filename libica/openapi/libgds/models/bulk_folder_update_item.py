@@ -34,15 +34,19 @@ class BulkFolderUpdateItem(object):
     """
     openapi_types = {
         'id': 'str',
-        'metadata': 'object'
+        'metadata': 'object',
+        'add_metadata': 'object',
+        'delete_metadata': 'object'
     }
 
     attribute_map = {
         'id': 'id',
-        'metadata': 'metadata'
+        'metadata': 'metadata',
+        'add_metadata': 'addMetadata',
+        'delete_metadata': 'deleteMetadata'
     }
 
-    def __init__(self, id=None, metadata=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, metadata=None, add_metadata=None, delete_metadata=None, local_vars_configuration=None):  # noqa: E501
         """BulkFolderUpdateItem - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -50,12 +54,18 @@ class BulkFolderUpdateItem(object):
 
         self._id = None
         self._metadata = None
+        self._add_metadata = None
+        self._delete_metadata = None
         self.discriminator = None
 
         if id is not None:
             self.id = id
         if metadata is not None:
             self.metadata = metadata
+        if add_metadata is not None:
+            self.add_metadata = add_metadata
+        if delete_metadata is not None:
+            self.delete_metadata = delete_metadata
 
     @property
     def id(self):
@@ -102,6 +112,52 @@ class BulkFolderUpdateItem(object):
         """
 
         self._metadata = metadata
+
+    @property
+    def add_metadata(self):
+        """Gets the add_metadata of this BulkFolderUpdateItem.  # noqa: E501
+
+        Add an item to a metadata with array type  # noqa: E501
+
+        :return: The add_metadata of this BulkFolderUpdateItem.  # noqa: E501
+        :rtype: object
+        """
+        return self._add_metadata
+
+    @add_metadata.setter
+    def add_metadata(self, add_metadata):
+        """Sets the add_metadata of this BulkFolderUpdateItem.
+
+        Add an item to a metadata with array type  # noqa: E501
+
+        :param add_metadata: The add_metadata of this BulkFolderUpdateItem.  # noqa: E501
+        :type: object
+        """
+
+        self._add_metadata = add_metadata
+
+    @property
+    def delete_metadata(self):
+        """Gets the delete_metadata of this BulkFolderUpdateItem.  # noqa: E501
+
+        Delete an item from a metadata with array type  # noqa: E501
+
+        :return: The delete_metadata of this BulkFolderUpdateItem.  # noqa: E501
+        :rtype: object
+        """
+        return self._delete_metadata
+
+    @delete_metadata.setter
+    def delete_metadata(self, delete_metadata):
+        """Sets the delete_metadata of this BulkFolderUpdateItem.
+
+        Delete an item from a metadata with array type  # noqa: E501
+
+        :param delete_metadata: The delete_metadata of this BulkFolderUpdateItem.  # noqa: E501
+        :type: object
+        """
+
+        self._delete_metadata = delete_metadata
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **file_copy** | [**FileCopyOutput**](FileCopyOutput.md) |  | [optional] 
 **folder_metadata_update_output** | [**MetadataUpdateOutput**](MetadataUpdateOutput.md) |  | [optional] 
 **file_metadata_update_output** | [**MetadataUpdateOutput**](MetadataUpdateOutput.md) |  | [optional] 
+**file_move** | [**FileMoveOutput**](FileMoveOutput.md) |  | [optional] 
+**folder_move** | [**FileMoveOutput**](FileMoveOutput.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

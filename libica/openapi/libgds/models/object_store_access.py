@@ -36,17 +36,21 @@ class ObjectStoreAccess(object):
         'session_id': 'str',
         'aws_s3_temporary_upload_credentials': 'AwsS3TemporaryUploadCredentials',
         'aws_s3_presigned_url_for_upload': 'AwsS3PresignedUrlForUpload',
-        'aws_s3_temporary_read_only_credentials': 'AwsS3TemporaryReadOnlyCredentials'
+        'azure_temporary_upload_credentials': 'AzureTemporaryUploadCredentials',
+        'aws_s3_temporary_read_only_credentials': 'AwsS3TemporaryReadOnlyCredentials',
+        'azure_temporary_read_only_credentials': 'AzureTemporaryReadOnlyCredentials'
     }
 
     attribute_map = {
         'session_id': 'sessionId',
         'aws_s3_temporary_upload_credentials': 'awsS3TemporaryUploadCredentials',
         'aws_s3_presigned_url_for_upload': 'awsS3PresignedUrlForUpload',
-        'aws_s3_temporary_read_only_credentials': 'awsS3TemporaryReadOnlyCredentials'
+        'azure_temporary_upload_credentials': 'azureTemporaryUploadCredentials',
+        'aws_s3_temporary_read_only_credentials': 'awsS3TemporaryReadOnlyCredentials',
+        'azure_temporary_read_only_credentials': 'azureTemporaryReadOnlyCredentials'
     }
 
-    def __init__(self, session_id=None, aws_s3_temporary_upload_credentials=None, aws_s3_presigned_url_for_upload=None, aws_s3_temporary_read_only_credentials=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, session_id=None, aws_s3_temporary_upload_credentials=None, aws_s3_presigned_url_for_upload=None, azure_temporary_upload_credentials=None, aws_s3_temporary_read_only_credentials=None, azure_temporary_read_only_credentials=None, local_vars_configuration=None):  # noqa: E501
         """ObjectStoreAccess - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -55,7 +59,9 @@ class ObjectStoreAccess(object):
         self._session_id = None
         self._aws_s3_temporary_upload_credentials = None
         self._aws_s3_presigned_url_for_upload = None
+        self._azure_temporary_upload_credentials = None
         self._aws_s3_temporary_read_only_credentials = None
+        self._azure_temporary_read_only_credentials = None
         self.discriminator = None
 
         if session_id is not None:
@@ -64,8 +70,12 @@ class ObjectStoreAccess(object):
             self.aws_s3_temporary_upload_credentials = aws_s3_temporary_upload_credentials
         if aws_s3_presigned_url_for_upload is not None:
             self.aws_s3_presigned_url_for_upload = aws_s3_presigned_url_for_upload
+        if azure_temporary_upload_credentials is not None:
+            self.azure_temporary_upload_credentials = azure_temporary_upload_credentials
         if aws_s3_temporary_read_only_credentials is not None:
             self.aws_s3_temporary_read_only_credentials = aws_s3_temporary_read_only_credentials
+        if azure_temporary_read_only_credentials is not None:
+            self.azure_temporary_read_only_credentials = azure_temporary_read_only_credentials
 
     @property
     def session_id(self):
@@ -131,6 +141,27 @@ class ObjectStoreAccess(object):
         self._aws_s3_presigned_url_for_upload = aws_s3_presigned_url_for_upload
 
     @property
+    def azure_temporary_upload_credentials(self):
+        """Gets the azure_temporary_upload_credentials of this ObjectStoreAccess.  # noqa: E501
+
+
+        :return: The azure_temporary_upload_credentials of this ObjectStoreAccess.  # noqa: E501
+        :rtype: AzureTemporaryUploadCredentials
+        """
+        return self._azure_temporary_upload_credentials
+
+    @azure_temporary_upload_credentials.setter
+    def azure_temporary_upload_credentials(self, azure_temporary_upload_credentials):
+        """Sets the azure_temporary_upload_credentials of this ObjectStoreAccess.
+
+
+        :param azure_temporary_upload_credentials: The azure_temporary_upload_credentials of this ObjectStoreAccess.  # noqa: E501
+        :type: AzureTemporaryUploadCredentials
+        """
+
+        self._azure_temporary_upload_credentials = azure_temporary_upload_credentials
+
+    @property
     def aws_s3_temporary_read_only_credentials(self):
         """Gets the aws_s3_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
 
@@ -150,6 +181,27 @@ class ObjectStoreAccess(object):
         """
 
         self._aws_s3_temporary_read_only_credentials = aws_s3_temporary_read_only_credentials
+
+    @property
+    def azure_temporary_read_only_credentials(self):
+        """Gets the azure_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
+
+
+        :return: The azure_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
+        :rtype: AzureTemporaryReadOnlyCredentials
+        """
+        return self._azure_temporary_read_only_credentials
+
+    @azure_temporary_read_only_credentials.setter
+    def azure_temporary_read_only_credentials(self, azure_temporary_read_only_credentials):
+        """Sets the azure_temporary_read_only_credentials of this ObjectStoreAccess.
+
+
+        :param azure_temporary_read_only_credentials: The azure_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
+        :type: AzureTemporaryReadOnlyCredentials
+        """
+
+        self._azure_temporary_read_only_credentials = azure_temporary_read_only_credentials
 
     def to_dict(self):
         """Returns the model properties as a dict"""

@@ -98,7 +98,7 @@ class FileListCopyRequest(object):
     def destination_folder_id(self):
         """Gets the destination_folder_id of this FileListCopyRequest.  # noqa: E501
 
-        The folder into which the source folder will be copied.  # noqa: E501
+        The folder into which the source files will be copied.  # noqa: E501
 
         :return: The destination_folder_id of this FileListCopyRequest.  # noqa: E501
         :rtype: str
@@ -109,7 +109,7 @@ class FileListCopyRequest(object):
     def destination_folder_id(self, destination_folder_id):
         """Sets the destination_folder_id of this FileListCopyRequest.
 
-        The folder into which the source folder will be copied.  # noqa: E501
+        The folder into which the source files will be copied.  # noqa: E501
 
         :param destination_folder_id: The destination_folder_id of this FileListCopyRequest.  # noqa: E501
         :type: str

@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **format_edam** | **str** |  | [optional] 
 **status** | [**FileStatus**](FileStatus.md) |  | [optional] 
 **life_cycle** | [**FileLifeCycleSettings**](FileLifeCycleSettings.md) |  | [optional] 
+**restore_expiration** | **datetime** | Restore expiration time | [optional] 
 **object_store_access** | [**ObjectStoreAccess**](ObjectStoreAccess.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

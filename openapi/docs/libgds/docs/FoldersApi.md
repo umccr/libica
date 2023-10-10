@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**get_folder_job**](FoldersApi.md#get_folder_job) | **GET** /v1/folders/{folderId}/jobs/{jobId} | Get status of a folder job in GDS
 [**get_folder_session**](FoldersApi.md#get_folder_session) | **GET** /v1/folders/{folderId}/sessions/{sessionId} | Get status of a folder upload in GDS
 [**list_folders**](FoldersApi.md#list_folders) | **GET** /v1/folders | Get a list of folders
+[**move_folder**](FoldersApi.md#move_folder) | **POST** /v1/folders/{folderId}:move | Move a folder
 [**unarchive_folder**](FoldersApi.md#unarchive_folder) | **POST** /v1/folders/{folderId}:unarchive | Unarchive a folder
 [**update_folder**](FoldersApi.md#update_folder) | **PATCH** /v1/folders/{folderId} | Update a folder content or acl
 
@@ -1057,6 +1058,92 @@ Name | Type | Description  | Notes
 **400** | Bad request. |  -  |
 **401** | Unauthorized. |  -  |
 **403** | Forbidden. |  -  |
+**0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **move_folder**
+> JobResponse move_folder(folder_id, body)
+
+Move a folder
+
+Move a folder into a target parent folder
+
+### Example
+
+* Api Key Authentication (Bearer):
+```python
+from __future__ import print_function
+import time
+import libica.openapi.libgds
+from libica.openapi.libgds.rest import ApiException
+from pprint import pprint
+# Defining the host is optional and defaults to https://aps2.platform.illumina.com
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: Bearer
+configuration = libica.openapi.libgds.Configuration(
+    host = "https://aps2.platform.illumina.com",
+    api_key = {
+        'Authorization': 'YOUR_API_KEY'
+    }
+)
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['Authorization'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.libgds.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.libgds.FoldersApi(api_client)
+    folder_id = 'folder_id_example' # str | Unique identifier for the folder to be copied.
+body = libica.openapi.libgds.FolderMoveRequest() # FolderMoveRequest | 
+
+    try:
+        # Move a folder
+        api_response = api_instance.move_folder(folder_id, body)
+        pprint(api_response)
+    except ApiException as e:
+        print("Exception when calling FoldersApi->move_folder: %s\n" % e)
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **folder_id** | **str**| Unique identifier for the folder to be copied. | 
+ **body** | [**FolderMoveRequest**](FolderMoveRequest.md)|  | 
+
+### Return type
+
+[**JobResponse**](JobResponse.md)
+
+### Authorization
+
+[Bearer](../README.md#Bearer)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | Accepted. |  -  |
+**400** | Bad request. |  -  |
+**401** | Unauthorized. |  -  |
+**403** | Forbidden. |  -  |
+**404** | Folder not found. |  -  |
+**409** | Conflict. |  -  |
+**500** | Server Error |  -  |
 **0** | Unexpected issue. Please try your request again. If problem persists, please contact the system administrator. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

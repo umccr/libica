@@ -1,6 +1,6 @@
 # FileCopyOperationParameters
 
-Operation parameters for folder copy operations
+Operation parameters for file copy operations
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

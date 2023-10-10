@@ -34,29 +34,34 @@ class ObjectStoreSettings(object):
     """
     openapi_types = {
         'aws_s3': 'AWSS3ObjectStoreSetting',
+        'object_container_settings': 'ObjectContainerSettings',
         'secret_name': 'str',  # pragma: allowlist secret
         'secret_id': 'str'
     }
 
     attribute_map = {
         'aws_s3': 'awsS3',
+        'object_container_settings': 'objectContainerSettings',
         'secret_name': 'secretName',  # pragma: allowlist secret
         'secret_id': 'secretId'
     }
 
-    def __init__(self, aws_s3=None, secret_name=None, secret_id=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, aws_s3=None, object_container_settings=None, secret_name=None, secret_id=None, local_vars_configuration=None):  # noqa: E501
         """ObjectStoreSettings - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._aws_s3 = None
+        self._object_container_settings = None
         self._secret_name = None
         self._secret_id = None
         self.discriminator = None
 
         if aws_s3 is not None:
             self.aws_s3 = aws_s3
+        if object_container_settings is not None:
+            self.object_container_settings = object_container_settings
         if secret_name is not None:
             self.secret_name = secret_name
         if secret_id is not None:
@@ -82,6 +87,27 @@ class ObjectStoreSettings(object):
         """
 
         self._aws_s3 = aws_s3
+
+    @property
+    def object_container_settings(self):
+        """Gets the object_container_settings of this ObjectStoreSettings.  # noqa: E501
+
+
+        :return: The object_container_settings of this ObjectStoreSettings.  # noqa: E501
+        :rtype: ObjectContainerSettings
+        """
+        return self._object_container_settings
+
+    @object_container_settings.setter
+    def object_container_settings(self, object_container_settings):
+        """Sets the object_container_settings of this ObjectStoreSettings.
+
+
+        :param object_container_settings: The object_container_settings of this ObjectStoreSettings.  # noqa: E501
+        :type: ObjectContainerSettings
+        """
+
+        self._object_container_settings = object_container_settings
 
     @property
     def secret_name(self):

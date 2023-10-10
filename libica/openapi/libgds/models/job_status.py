@@ -32,8 +32,9 @@ class JobStatus(object):
     ARCHIVING = "Archiving"
     UNARCHIVING = "Unarchiving"
     DELETING = "Deleting"
+    MOVING = "Moving"
 
-    allowable_values = [NONE, ARCHIVING, UNARCHIVING, DELETING]  # noqa: E501
+    allowable_values = [NONE, ARCHIVING, UNARCHIVING, DELETING, MOVING]  # noqa: E501
 
     """
     Attributes:
