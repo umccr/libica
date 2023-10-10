@@ -128,7 +128,7 @@
         ],
         "responses": {
           "201": {
-            "description": "Success",
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/Task"
             }
@@ -448,7 +448,7 @@
         ],
         "responses": {
           "201": {
-            "description": "Success",
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/TaskRun"
             }
@@ -832,7 +832,7 @@
         ],
         "responses": {
           "201": {
-            "description": "Success",
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/TaskVersion"
             }
@@ -1082,7 +1082,7 @@
         ],
         "responses": {
           "201": {
-            "description": "Success",
+            "description": "Created",
             "schema": {
               "$ref": "#/definitions/TaskRun"
             }
@@ -1128,246 +1128,7 @@
     }
   },
   "definitions": {
-    "Credentials": {
-      "type": "object",
-      "properties": {
-        "username": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        }
-      }
-    },
-    "Image": {
-      "required": [
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "Name of url for Docker Image",
-          "type": "string"
-        },
-        "tag": {
-          "description": "Version of image as defined in repository",
-          "type": "string"
-        },
-        "digest": {
-          "description": "Version of image as defined in repository",
-          "type": "string"
-        },
-        "credentials": {
-          "$ref": "#/definitions/Credentials"
-        }
-      }
-    },
-    "InputMountMappingWithCreds": {
-      "type": "object",
-      "properties": {
-        "storageProvider": {
-          "type": "string"
-        },
-        "credentials": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "path": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        },
-        "urn": {
-          "type": "string"
-        },
-        "mode": {
-          "type": "string"
-        },
-        "type": {
-          "default": "File",
-          "type": "string"
-        }
-      }
-    },
-    "MountMappingWithCreds": {
-      "type": "object",
-      "properties": {
-        "path": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        },
-        "urn": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "storageProvider": {
-          "type": "string"
-        },
-        "credentials": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "serviceUrl": {
-          "type": "string"
-        }
-      }
-    },
-    "SystemFiles": {
-      "type": "object",
-      "properties": {
-        "url": {
-          "type": "string"
-        },
-        "urn": {
-          "type": "string"
-        },
-        "storageProvider": {
-          "type": "string"
-        },
-        "credentials": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Resources": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string"
-        },
-        "size": {
-          "type": "string"
-        },
-        "cpuCores": {
-          "format": "double",
-          "type": "number"
-        },
-        "memoryGb": {
-          "format": "double",
-          "type": "number"
-        },
-        "hardware": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "tier": {
-          "type": "string"
-        }
-      }
-    },
-    "InputStreamSettings": {
-      "type": "object",
-      "properties": {
-        "accessPattern": {
-          "default": "sequential",
-          "type": "string"
-        },
-        "cacheSizeGB": {
-          "format": "int32",
-          "default": 50,
-          "maximum": 10000,
-          "minimum": 50,
-          "type": "integer"
-        },
-        "blockSizeMB": {
-          "format": "double",
-          "default": 32,
-          "maximum": 1024,
-          "minimum": 0,
-          "type": "number"
-        },
-        "prefetchBlocks": {
-          "format": "int32",
-          "default": 32,
-          "maximum": 64,
-          "minimum": 0,
-          "type": "integer"
-        }
-      }
-    },
-    "Environment": {
-      "type": "object",
-      "properties": {
-        "variables": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "resources": {
-          "$ref": "#/definitions/Resources"
-        },
-        "inputStreamSettings": {
-          "$ref": "#/definitions/InputStreamSettings"
-        }
-      }
-    },
-    "Execution": {
-      "type": "object",
-      "properties": {
-        "image": {
-          "$ref": "#/definitions/Image"
-        },
-        "command": {
-          "type": "string"
-        },
-        "args": {
-          "description": "Argument to run specified task",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "inputs": {
-          "description": "Path (Inputs) - Path to mount file at valid Url\r\nURL (Inputs) - Url of file mounted at specified path",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/InputMountMappingWithCreds"
-          }
-        },
-        "outputs": {
-          "description": "Path (Outputs) - Path where files will be output to valid Url\r\nURL (Outputs) - Url of folder with files from the path will be uploaded",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/MountMappingWithCreds"
-          }
-        },
-        "systemFiles": {
-          "$ref": "#/definitions/SystemFiles"
-        },
-        "environment": {
-          "$ref": "#/definitions/Environment"
-        },
-        "workingDirectory": {
-          "type": "string"
-        },
-        "retryLimit": {
-          "format": "int32",
-          "default": 3,
-          "type": "integer"
-        },
-        "retryCount": {
-          "format": "int32",
-          "default": 0,
-          "type": "integer"
-        }
-      }
-    },
-    "TaskVersionSummary": {
+    "AgentTaskRun": {
       "type": "object",
       "properties": {
         "id": {
@@ -1382,87 +1143,22 @@
           "description": "URN of the resource",
           "type": "string"
         },
-        "version": {
-          "maxLength": 255,
-          "minLength": 0,
+        "nonce": {
           "type": "string"
         },
-        "description": {
-          "maxLength": 4096,
-          "minLength": 0,
+        "encryptionKey": {
           "type": "string"
         },
-        "acl": {
-          "description": "Access Control List",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "tenantId": {
+        "inputManifestUrl": {
           "type": "string"
         },
-        "subTenantId": {
+        "outputManifestUrl": {
           "type": "string"
         },
-        "createdBy": {
-          "description": "User who created the object",
+        "heartbeatManifestUrl": {
           "type": "string"
         },
-        "timeCreated": {
-          "format": "date-time",
-          "description": "Date and Time (in UTC) when object was created in TES",
-          "type": "string"
-        },
-        "modifiedBy": {
-          "description": "User who updated the object",
-          "type": "string"
-        },
-        "timeModified": {
-          "format": "date-time",
-          "description": "Date and Time (in UTC) when object was modified in TES",
-          "type": "string"
-        }
-      }
-    },
-    "TaskRunLogs": {
-      "type": "object",
-      "properties": {
-        "startTime": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "endTime": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "error": {
-          "type": "string"
-        },
-        "errorDetails": {
-          "type": "string"
-        },
-        "stdout": {
-          "type": "string"
-        },
-        "stderr": {
-          "type": "string"
-        }
-      }
-    },
-    "TaskRun": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "description": "Global identifier for object",
-          "type": "string"
-        },
-        "href": {
-          "description": "Href of the object",
-          "type": "string"
-        },
-        "urn": {
-          "description": "URN of the resource",
+        "outputTokenManifestUrl": {
           "type": "string"
         },
         "name": {
@@ -1513,6 +1209,87 @@
         },
         "executionRawJson": {
           "type": "string"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "subTenantId": {
+          "type": "string"
+        },
+        "createdBy": {
+          "description": "User who created the object",
+          "type": "string"
+        },
+        "timeCreated": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was created in TES",
+          "type": "string"
+        },
+        "modifiedBy": {
+          "description": "User who updated the object",
+          "type": "string"
+        },
+        "timeModified": {
+          "format": "date-time",
+          "description": "Date and Time (in UTC) when object was modified in TES",
+          "type": "string"
+        }
+      }
+    },
+    "CheckOutQueuedTaskRunRequest": {
+      "type": "object",
+      "properties": {
+        "computeType": {
+          "description": "Type of the compute requested (Fpga and NonFpga)",
+          "enum": [
+            "Fpga",
+            "NonFpga"
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "Cluster": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "Global identifier for object",
+          "type": "string"
+        },
+        "href": {
+          "description": "Href of the object",
+          "type": "string"
+        },
+        "urn": {
+          "description": "URN of the resource",
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "svcAcctUId": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "taskRuns": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/TaskRun"
+          }
         },
         "acl": {
           "description": "Access Control List",
@@ -1650,20 +1427,78 @@
         }
       }
     },
-    "ErrorResponse": {
+    "ContainerState": {
       "type": "object",
       "properties": {
-        "code": {
+        "waiting": {
+          "$ref": "#/definitions/ContainerStateWaiting"
+        },
+        "running": {
+          "$ref": "#/definitions/ContainerStateRunning"
+        },
+        "terminated": {
+          "$ref": "#/definitions/ContainerStateTerminated"
+        }
+      }
+    },
+    "ContainerStateRunning": {
+      "type": "object",
+      "properties": {
+        "startedAt": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "ContainerStateTerminated": {
+      "type": "object",
+      "properties": {
+        "exitCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "signal": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "reason": {
           "type": "string"
         },
         "message": {
           "type": "string"
         },
-        "details": {
-          "type": "array",
-          "items": {
-            "type": "object"
-          }
+        "startedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "finishedAt": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "containerID": {
+          "type": "string"
+        }
+      }
+    },
+    "ContainerStateWaiting": {
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "ContainerStatus": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "state": {
+          "$ref": "#/definitions/ContainerState"
         }
       }
     },
@@ -1696,7 +1531,414 @@
         }
       }
     },
-    "Cluster": {
+    "CreateTaskRequest": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "User-defined name of the task",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "description": {
+          "description": "User-defined description of the task",
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "taskVersions": {
+          "description": "List of task versions",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/CreateTaskVersionRequest"
+          }
+        }
+      }
+    },
+    "CreateTaskRunRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "User-defined name of the task run",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "description": {
+          "description": "User-defined description of the task run",
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "execution": {
+          "$ref": "#/definitions/Execution"
+        }
+      }
+    },
+    "CreateTaskVersionRequest": {
+      "required": [
+        "version"
+      ],
+      "type": "object",
+      "properties": {
+        "version": {
+          "description": "User-defined version of task version",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "description": {
+          "description": "User-defined description of task version",
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "execution": {
+          "$ref": "#/definitions/Execution"
+        },
+        "acl": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Credentials": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Environment": {
+      "type": "object",
+      "properties": {
+        "variables": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "resources": {
+          "$ref": "#/definitions/Resources"
+        },
+        "inputStreamSettings": {
+          "$ref": "#/definitions/InputStreamSettings"
+        }
+      }
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": { }
+        }
+      }
+    },
+    "Execution": {
+      "type": "object",
+      "properties": {
+        "image": {
+          "$ref": "#/definitions/Image"
+        },
+        "command": {
+          "type": "string"
+        },
+        "args": {
+          "description": "Argument to run specified task",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "inputs": {
+          "description": "Path (Inputs) - Path to mount file at valid Url\r\nURL (Inputs) - Url of file mounted at specified path",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/InputMountMappingWithCreds"
+          }
+        },
+        "outputs": {
+          "description": "Path (Outputs) - Path where files will be output to valid Url\r\nURL (Outputs) - Url of folder with files from the path will be uploaded",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/MountMappingWithCreds"
+          }
+        },
+        "systemFiles": {
+          "$ref": "#/definitions/SystemFiles"
+        },
+        "environment": {
+          "$ref": "#/definitions/Environment"
+        },
+        "workingDirectory": {
+          "type": "string"
+        },
+        "retryLimit": {
+          "format": "int32",
+          "default": 3,
+          "type": "integer"
+        },
+        "retryCount": {
+          "format": "int32",
+          "default": 0,
+          "type": "integer"
+        }
+      }
+    },
+    "HeartbeatTaskRunRequest": {
+      "type": "object",
+      "properties": {
+        "lastHeartbeat": {
+          "description": "LastHeartbeat",
+          "type": "boolean"
+        },
+        "podName": {
+          "type": "string"
+        },
+        "podUID": {
+          "type": "string"
+        },
+        "podHardwareDetails": {
+          "type": "string"
+        },
+        "jobRetryCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "nonce": {
+          "type": "string"
+        },
+        "containerStatus": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ContainerStatus"
+          }
+        }
+      }
+    },
+    "Image": {
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "Name of url for Docker Image",
+          "minLength": 1,
+          "type": "string"
+        },
+        "tag": {
+          "description": "Version of image as defined in repository",
+          "type": "string"
+        },
+        "digest": {
+          "description": "Version of image as defined in repository",
+          "type": "string"
+        },
+        "credentials": {
+          "$ref": "#/definitions/Credentials"
+        }
+      }
+    },
+    "InputMountMappingWithCreds": {
+      "type": "object",
+      "properties": {
+        "storageProvider": {
+          "type": "string"
+        },
+        "credentials": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "path": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "urn": {
+          "type": "string"
+        },
+        "mode": {
+          "type": "string"
+        },
+        "type": {
+          "default": "File",
+          "type": "string"
+        }
+      }
+    },
+    "InputStreamSettings": {
+      "type": "object",
+      "properties": {
+        "accessPattern": {
+          "default": "sequential",
+          "type": "string"
+        },
+        "cacheSizeGB": {
+          "format": "int32",
+          "default": 50,
+          "maximum": 10000,
+          "minimum": 50,
+          "type": "integer"
+        },
+        "blockSizeMB": {
+          "format": "double",
+          "default": 32,
+          "maximum": 1024,
+          "minimum": 0,
+          "type": "number"
+        },
+        "prefetchBlocks": {
+          "format": "int32",
+          "default": 32,
+          "maximum": 64,
+          "minimum": 0,
+          "type": "integer"
+        }
+      }
+    },
+    "LaunchTaskRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "User-defined name for the task run, if not specified version string of task version will be used",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "description": {
+          "description": "User-defined description for the task run, if not specified task version description will be used",
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "arguments": {
+          "description": "Arguments to launch a task run",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "MountMappingWithCreds": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        },
+        "urn": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "storageProvider": {
+          "type": "string"
+        },
+        "credentials": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        },
+        "serviceUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "Resources": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "size": {
+          "type": "string"
+        },
+        "cpuCores": {
+          "format": "double",
+          "type": "number"
+        },
+        "memoryGb": {
+          "format": "double",
+          "type": "number"
+        },
+        "hardware": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tier": {
+          "type": "string"
+        }
+      }
+    },
+    "SystemFiles": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "urn": {
+          "type": "string"
+        },
+        "storageProvider": {
+          "type": "string"
+        },
+        "credentials": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Task": {
       "type": "object",
       "properties": {
         "id": {
@@ -1716,19 +1958,15 @@
           "minLength": 0,
           "type": "string"
         },
-        "svcAcctUId": {
+        "description": {
+          "maxLength": 4096,
+          "minLength": 0,
           "type": "string"
         },
-        "status": {
-          "type": "string"
-        },
-        "type": {
-          "type": "string"
-        },
-        "taskRuns": {
+        "taskVersions": {
           "type": "array",
           "items": {
-            "$ref": "#/definitions/TaskRun"
+            "$ref": "#/definitions/TaskVersion"
           }
         },
         "acl": {
@@ -1764,50 +2002,7 @@
         }
       }
     },
-    "UpdateClusterRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "User-defined name of the cluster",
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "svcAcctUId": {
-          "description": "Service account user id to be associated with the cluster",
-          "type": "string"
-        },
-        "status": {
-          "description": "User-defined status of the cluster",
-          "type": "string"
-        },
-        "type": {
-          "description": "User-defined type of the cluster",
-          "type": "string"
-        },
-        "acl": {
-          "description": "Access Control List",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "CheckOutQueuedTaskRunRequest": {
-      "type": "object",
-      "properties": {
-        "computeType": {
-          "description": "Type of the compute requested (Fpga and NonFpga)",
-          "enum": [
-            "Fpga",
-            "NonFpga"
-          ],
-          "type": "string"
-        }
-      }
-    },
-    "AgentTaskRun": {
+    "TaskRun": {
       "type": "object",
       "properties": {
         "id": {
@@ -1820,24 +2015,6 @@
         },
         "urn": {
           "description": "URN of the resource",
-          "type": "string"
-        },
-        "nonce": {
-          "type": "string"
-        },
-        "encryptionKey": {
-          "type": "string"
-        },
-        "inputManifestUrl": {
-          "type": "string"
-        },
-        "outputManifestUrl": {
-          "type": "string"
-        },
-        "heartbeatManifestUrl": {
-          "type": "string"
-        },
-        "outputTokenManifestUrl": {
           "type": "string"
         },
         "name": {
@@ -1918,6 +2095,39 @@
         "timeModified": {
           "format": "date-time",
           "description": "Date and Time (in UTC) when object was modified in TES",
+          "type": "string"
+        }
+      }
+    },
+    "TaskRunHeartbeat": {
+      "type": "object",
+      "properties": {
+        "jwt": {
+          "type": "string"
+        }
+      }
+    },
+    "TaskRunLogs": {
+      "type": "object",
+      "properties": {
+        "startTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "endTime": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        },
+        "errorDetails": {
+          "type": "string"
+        },
+        "stdout": {
+          "type": "string"
+        },
+        "stderr": {
           "type": "string"
         }
       }
@@ -2042,40 +2252,6 @@
         }
       }
     },
-    "UpdateTaskRunStateRequest": {
-      "type": "object",
-      "properties": {
-        "status": {
-          "description": "New TaskRun status to be updated",
-          "enum": [
-            "CheckedOut",
-            "Runnable",
-            "Running",
-            "Finalizing",
-            "Completed",
-            "FailedRestartable",
-            "Failed",
-            "Aborted",
-            "TimedOut"
-          ],
-          "type": "string"
-        },
-        "statusDetails": {
-          "description": "Description of the event that triggered the state change",
-          "type": "string"
-        },
-        "startTime": {
-          "format": "date-time",
-          "description": "TaskRun execution start time",
-          "type": "string"
-        },
-        "completionTime": {
-          "format": "date-time",
-          "description": "TaskRun execution completion time",
-          "type": "string"
-        }
-      }
-    },
     "TaskSummary": {
       "type": "object",
       "properties": {
@@ -2169,69 +2345,6 @@
         }
       }
     },
-    "CreateTaskVersionRequest": {
-      "required": [
-        "version"
-      ],
-      "type": "object",
-      "properties": {
-        "version": {
-          "description": "User-defined version of task version",
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "description": {
-          "description": "User-defined description of task version",
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "execution": {
-          "$ref": "#/definitions/Execution"
-        },
-        "acl": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "CreateTaskRequest": {
-      "required": [
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "User-defined name of the task",
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "description": {
-          "description": "User-defined description of the task",
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "acl": {
-          "description": "Access Control List",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "taskVersions": {
-          "description": "List of task versions",
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/CreateTaskVersionRequest"
-          }
-        }
-      }
-    },
     "TaskVersion": {
       "type": "object",
       "properties": {
@@ -2293,7 +2406,7 @@
         }
       }
     },
-    "Task": {
+    "TaskVersionSummary": {
       "type": "object",
       "properties": {
         "id": {
@@ -2308,7 +2421,7 @@
           "description": "URN of the resource",
           "type": "string"
         },
-        "name": {
+        "version": {
           "maxLength": 255,
           "minLength": 0,
           "type": "string"
@@ -2317,12 +2430,6 @@
           "maxLength": 4096,
           "minLength": 0,
           "type": "string"
-        },
-        "taskVersions": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/TaskVersion"
-          }
         },
         "acl": {
           "description": "Access Control List",
@@ -2353,171 +2460,6 @@
         "timeModified": {
           "format": "date-time",
           "description": "Date and Time (in UTC) when object was modified in TES",
-          "type": "string"
-        }
-      }
-    },
-    "UpdateTaskRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "User-defined name of the task",
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "description": {
-          "description": "User-defined description of the task",
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "acl": {
-          "description": "Access Control List",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "CreateTaskRunRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "User-defined name of the task run",
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "description": {
-          "description": "User-defined description of the task run",
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "acl": {
-          "description": "Access Control List",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "execution": {
-          "$ref": "#/definitions/Execution"
-        }
-      }
-    },
-    "ContainerStateWaiting": {
-      "type": "object",
-      "properties": {
-        "reason": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        }
-      }
-    },
-    "ContainerStateRunning": {
-      "type": "object",
-      "properties": {
-        "startedAt": {
-          "format": "date-time",
-          "type": "string"
-        }
-      }
-    },
-    "ContainerStateTerminated": {
-      "type": "object",
-      "properties": {
-        "exitCode": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "signal": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "reason": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
-        },
-        "startedAt": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "finishedAt": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "containerID": {
-          "type": "string"
-        }
-      }
-    },
-    "ContainerState": {
-      "type": "object",
-      "properties": {
-        "waiting": {
-          "$ref": "#/definitions/ContainerStateWaiting"
-        },
-        "running": {
-          "$ref": "#/definitions/ContainerStateRunning"
-        },
-        "terminated": {
-          "$ref": "#/definitions/ContainerStateTerminated"
-        }
-      }
-    },
-    "ContainerStatus": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "state": {
-          "$ref": "#/definitions/ContainerState"
-        }
-      }
-    },
-    "HeartbeatTaskRunRequest": {
-      "type": "object",
-      "properties": {
-        "lastHeartbeat": {
-          "description": "LastHeartbeat",
-          "type": "boolean"
-        },
-        "podName": {
-          "type": "string"
-        },
-        "podUID": {
-          "type": "string"
-        },
-        "podHardwareDetails": {
-          "type": "string"
-        },
-        "jobRetryCount": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "nonce": {
-          "type": "string"
-        },
-        "containerStatus": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/ContainerStatus"
-          }
-        }
-      }
-    },
-    "TaskRunHeartbeat": {
-      "type": "object",
-      "properties": {
-        "jwt": {
           "type": "string"
         }
       }
@@ -2557,6 +2499,94 @@
         }
       }
     },
+    "UpdateClusterRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "User-defined name of the cluster",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "svcAcctUId": {
+          "description": "Service account user id to be associated with the cluster",
+          "type": "string"
+        },
+        "status": {
+          "description": "User-defined status of the cluster",
+          "type": "string"
+        },
+        "type": {
+          "description": "User-defined type of the cluster",
+          "type": "string"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "UpdateTaskRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "User-defined name of the task",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "description": {
+          "description": "User-defined description of the task",
+          "maxLength": 4096,
+          "minLength": 0,
+          "type": "string"
+        },
+        "acl": {
+          "description": "Access Control List",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "UpdateTaskRunStateRequest": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "description": "New TaskRun status to be updated",
+          "enum": [
+            "CheckedOut",
+            "Runnable",
+            "Running",
+            "Finalizing",
+            "Completed",
+            "FailedRestartable",
+            "Failed",
+            "Aborted",
+            "TimedOut"
+          ],
+          "type": "string"
+        },
+        "statusDetails": {
+          "description": "Description of the event that triggered the state change",
+          "type": "string"
+        },
+        "startTime": {
+          "format": "date-time",
+          "description": "TaskRun execution start time",
+          "type": "string"
+        },
+        "completionTime": {
+          "format": "date-time",
+          "description": "TaskRun execution completion time",
+          "type": "string"
+        }
+      }
+    },
     "UpdateTaskVersionRequest": {
       "type": "object",
       "properties": {
@@ -2576,37 +2606,6 @@
           "$ref": "#/definitions/Execution"
         },
         "acl": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "LaunchTaskRequest": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "description": "User-defined name for the task run, if not specified version string of task version will be used",
-          "maxLength": 255,
-          "minLength": 0,
-          "type": "string"
-        },
-        "description": {
-          "description": "User-defined description for the task run, if not specified task version description will be used",
-          "maxLength": 4096,
-          "minLength": 0,
-          "type": "string"
-        },
-        "arguments": {
-          "description": "Arguments to launch a task run",
-          "type": "object",
-          "additionalProperties": {
-            "type": "string"
-          }
-        },
-        "acl": {
-          "description": "Access Control List",
           "type": "array",
           "items": {
             "type": "string"
