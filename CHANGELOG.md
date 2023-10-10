@@ -1,3 +1,10 @@
+2.3.0
+-----
+* Release date: 2023-10-10
+* Updated for upstream ICA v2 API Release -- [2023 October 3 - ICA v2.19.0](https://help.ica.illumina.com/reference/r-releasenotes#2023-october-3-ica-v2.19.0)
+* Updated for upstream ICA v1 API Release
+* See [milestone 2.3.0 for all related PRs](https://github.com/umccr-illumina/libica/milestone/9?closed=1)
+
 2.2.1
 -----
 * Release date: 2023-03-25
