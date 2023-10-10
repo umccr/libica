@@ -35,6 +35,7 @@ class FileResponse(object):
     openapi_types = {
         'volume_metadata': 'object',
         'copy_job_id': 'str',
+        'job_id': 'str',
         'id': 'str',
         'name': 'str',
         'volume_id': 'str',
@@ -62,6 +63,7 @@ class FileResponse(object):
         'format_edam': 'str',
         'status': 'FileStatus',
         'life_cycle': 'FileLifeCycleSettings',
+        'restore_expiration': 'datetime',
         'presigned_url': 'str',
         'object_store_access': 'ObjectStoreAccess'
     }
@@ -69,6 +71,7 @@ class FileResponse(object):
     attribute_map = {
         'volume_metadata': 'volumeMetadata',
         'copy_job_id': 'copyJobId',
+        'job_id': 'jobId',
         'id': 'id',
         'name': 'name',
         'volume_id': 'volumeId',
@@ -96,11 +99,12 @@ class FileResponse(object):
         'format_edam': 'formatEdam',
         'status': 'status',
         'life_cycle': 'lifeCycle',
+        'restore_expiration': 'restoreExpiration',
         'presigned_url': 'presignedUrl',
         'object_store_access': 'objectStoreAccess'
     }
 
-    def __init__(self, volume_metadata=None, copy_job_id=None, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, presigned_url=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, volume_metadata=None, copy_job_id=None, job_id=None, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, restore_expiration=None, presigned_url=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         """FileResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -108,6 +112,7 @@ class FileResponse(object):
 
         self._volume_metadata = None
         self._copy_job_id = None
+        self._job_id = None
         self._id = None
         self._name = None
         self._volume_id = None
@@ -135,6 +140,7 @@ class FileResponse(object):
         self._format_edam = None
         self._status = None
         self._life_cycle = None
+        self._restore_expiration = None
         self._presigned_url = None
         self._object_store_access = None
         self.discriminator = None
@@ -143,6 +149,8 @@ class FileResponse(object):
             self.volume_metadata = volume_metadata
         if copy_job_id is not None:
             self.copy_job_id = copy_job_id
+        if job_id is not None:
+            self.job_id = job_id
         if id is not None:
             self.id = id
         if name is not None:
@@ -197,6 +205,8 @@ class FileResponse(object):
             self.status = status
         if life_cycle is not None:
             self.life_cycle = life_cycle
+        if restore_expiration is not None:
+            self.restore_expiration = restore_expiration
         if presigned_url is not None:
             self.presigned_url = presigned_url
         if object_store_access is not None:
@@ -247,6 +257,29 @@ class FileResponse(object):
         """
 
         self._copy_job_id = copy_job_id
+
+    @property
+    def job_id(self):
+        """Gets the job_id of this FileResponse.  # noqa: E501
+
+        Job that performed operation on the file  # noqa: E501
+
+        :return: The job_id of this FileResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._job_id
+
+    @job_id.setter
+    def job_id(self, job_id):
+        """Sets the job_id of this FileResponse.
+
+        Job that performed operation on the file  # noqa: E501
+
+        :param job_id: The job_id of this FileResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._job_id = job_id
 
     @property
     def id(self):
@@ -858,6 +891,29 @@ class FileResponse(object):
         """
 
         self._life_cycle = life_cycle
+
+    @property
+    def restore_expiration(self):
+        """Gets the restore_expiration of this FileResponse.  # noqa: E501
+
+        Restore expiration time  # noqa: E501
+
+        :return: The restore_expiration of this FileResponse.  # noqa: E501
+        :rtype: datetime
+        """
+        return self._restore_expiration
+
+    @restore_expiration.setter
+    def restore_expiration(self, restore_expiration):
+        """Sets the restore_expiration of this FileResponse.
+
+        Restore expiration time  # noqa: E501
+
+        :param restore_expiration: The restore_expiration of this FileResponse.  # noqa: E501
+        :type: datetime
+        """
+
+        self._restore_expiration = restore_expiration
 
     @property
     def presigned_url(self):

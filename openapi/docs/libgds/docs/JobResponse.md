@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **created_by** | **str** | The creator of this Job | [optional] 
 **time_modified** | **datetime** | The date &amp; time this Job was updated, in GDS | [optional] 
 **time_completed** | **datetime** | The date &amp; time this Job was completed, in GDS | [optional] 
+**error_message** | **str** | Error message returned from the job | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

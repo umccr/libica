@@ -55,6 +55,7 @@ class FolderResponse(object):
         'archive_job_storage_tier': 'StorageTier',
         'migration_status': 'str',
         'active_job_ids': 'list[str]',
+        'copy_job_id': 'str',
         'object_store_access': 'ObjectStoreAccess'
     }
 
@@ -81,10 +82,11 @@ class FolderResponse(object):
         'archive_job_storage_tier': 'archiveJobStorageTier',
         'migration_status': 'migrationStatus',
         'active_job_ids': 'activeJobIds',
+        'copy_job_id': 'copyJobId',
         'object_store_access': 'objectStoreAccess'
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, volume_metadata=None, job_status=None, job_id=None, archive_job_storage_tier=None, migration_status=None, active_job_ids=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, tenant_id=None, sub_tenant_id=None, urn=None, path=None, acl=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, metadata=None, volume_metadata=None, job_status=None, job_id=None, archive_job_storage_tier=None, migration_status=None, active_job_ids=None, copy_job_id=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         """FolderResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -112,6 +114,7 @@ class FolderResponse(object):
         self._archive_job_storage_tier = None
         self._migration_status = None
         self._active_job_ids = None
+        self._copy_job_id = None
         self._object_store_access = None
         self.discriminator = None
 
@@ -159,6 +162,8 @@ class FolderResponse(object):
             self.migration_status = migration_status
         if active_job_ids is not None:
             self.active_job_ids = active_job_ids
+        if copy_job_id is not None:
+            self.copy_job_id = copy_job_id
         if object_store_access is not None:
             self.object_store_access = object_store_access
 
@@ -663,6 +668,29 @@ class FolderResponse(object):
         """
 
         self._active_job_ids = active_job_ids
+
+    @property
+    def copy_job_id(self):
+        """Gets the copy_job_id of this FolderResponse.  # noqa: E501
+
+        Job that copied the folder  # noqa: E501
+
+        :return: The copy_job_id of this FolderResponse.  # noqa: E501
+        :rtype: str
+        """
+        return self._copy_job_id
+
+    @copy_job_id.setter
+    def copy_job_id(self, copy_job_id):
+        """Sets the copy_job_id of this FolderResponse.
+
+        Job that copied the folder  # noqa: E501
+
+        :param copy_job_id: The copy_job_id of this FolderResponse.  # noqa: E501
+        :type: str
+        """
+
+        self._copy_job_id = copy_job_id
 
     @property
     def object_store_access(self):

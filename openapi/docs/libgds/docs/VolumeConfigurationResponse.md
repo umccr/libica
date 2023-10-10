@@ -4,6 +4,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Name for the volume configuration | [optional] 
+**storage_container_versioning_state** | [**StorageContainerVersioningState**](StorageContainerVersioningState.md) |  | [optional] 
 **tenant_id** | **str** | The unique identifier for this Volume Configuration&#39;s Tenant | [optional] 
 **sub_tenant_id** | **str** | The unique identifier for this Volume Configurations&#39;s Sub Tenant | [optional] 
 **urn** | **str** | The Universal Resource Name, unique to this Volume Configuration | [optional] 
@@ -15,7 +16,9 @@ Name | Type | Description | Notes
 **created_by** | **str** | The creator of this Volume | [optional] 
 **time_modified** | **datetime** | The date &amp; time this Volume was updated, in GDS | [optional] 
 **modified_by** | **str** | The updator of this Volume | [optional] 
+**provider_name** | [**ObjectStorageProviderNames**](ObjectStorageProviderNames.md) |  | [optional] 
 **object_store_settings** | [**ObjectStoreSettings**](ObjectStoreSettings.md) |  | [optional] 
+**restore_type** | [**RestoreType**](RestoreType.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

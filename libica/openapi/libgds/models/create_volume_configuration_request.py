@@ -34,26 +34,36 @@ class CreateVolumeConfigurationRequest(object):
     """
     openapi_types = {
         'name': 'str',
-        'object_store_settings': 'ObjectStoreSettings'
+        'provider_name': 'ObjectStorageProviderNames',
+        'object_store_settings': 'ObjectStoreSettings',
+        'restore_type': 'RestoreType'
     }
 
     attribute_map = {
         'name': 'name',
-        'object_store_settings': 'objectStoreSettings'
+        'provider_name': 'providerName',
+        'object_store_settings': 'objectStoreSettings',
+        'restore_type': 'restoreType'
     }
 
-    def __init__(self, name=None, object_store_settings=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, provider_name=None, object_store_settings=None, restore_type=None, local_vars_configuration=None):  # noqa: E501
         """CreateVolumeConfigurationRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
+        self._provider_name = None
         self._object_store_settings = None
+        self._restore_type = None
         self.discriminator = None
 
         self.name = name
+        if provider_name is not None:
+            self.provider_name = provider_name
         self.object_store_settings = object_store_settings
+        if restore_type is not None:
+            self.restore_type = restore_type
 
     @property
     def name(self):
@@ -81,6 +91,27 @@ class CreateVolumeConfigurationRequest(object):
         self._name = name
 
     @property
+    def provider_name(self):
+        """Gets the provider_name of this CreateVolumeConfigurationRequest.  # noqa: E501
+
+
+        :return: The provider_name of this CreateVolumeConfigurationRequest.  # noqa: E501
+        :rtype: ObjectStorageProviderNames
+        """
+        return self._provider_name
+
+    @provider_name.setter
+    def provider_name(self, provider_name):
+        """Sets the provider_name of this CreateVolumeConfigurationRequest.
+
+
+        :param provider_name: The provider_name of this CreateVolumeConfigurationRequest.  # noqa: E501
+        :type: ObjectStorageProviderNames
+        """
+
+        self._provider_name = provider_name
+
+    @property
     def object_store_settings(self):
         """Gets the object_store_settings of this CreateVolumeConfigurationRequest.  # noqa: E501
 
@@ -102,6 +133,27 @@ class CreateVolumeConfigurationRequest(object):
             raise ValueError("Invalid value for `object_store_settings`, must not be `None`")  # noqa: E501
 
         self._object_store_settings = object_store_settings
+
+    @property
+    def restore_type(self):
+        """Gets the restore_type of this CreateVolumeConfigurationRequest.  # noqa: E501
+
+
+        :return: The restore_type of this CreateVolumeConfigurationRequest.  # noqa: E501
+        :rtype: RestoreType
+        """
+        return self._restore_type
+
+    @restore_type.setter
+    def restore_type(self, restore_type):
+        """Sets the restore_type of this CreateVolumeConfigurationRequest.
+
+
+        :param restore_type: The restore_type of this CreateVolumeConfigurationRequest.  # noqa: E501
+        :type: RestoreType
+        """
+
+        self._restore_type = restore_type
 
     def to_dict(self):
         """Returns the model properties as a dict"""

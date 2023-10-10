@@ -37,7 +37,9 @@ class JobOperationParameters(object):
         'folder_delete': 'FolderDeleteOperationParameters',
         'volume_migration': 'VolumeMigrationOperationParameters',
         'file_copy': 'FileCopyOperationParameters',
-        'bulk_metadata_update': 'BulkMetadataUpdateOperationParameters'
+        'bulk_metadata_update': 'BulkMetadataUpdateOperationParameters',
+        'file_move': 'FileMoveOperationParameters',
+        'folder_move': 'FolderMoveOperationParameters'
     }
 
     attribute_map = {
@@ -45,10 +47,12 @@ class JobOperationParameters(object):
         'folder_delete': 'folderDelete',
         'volume_migration': 'volumeMigration',
         'file_copy': 'fileCopy',
-        'bulk_metadata_update': 'bulkMetadataUpdate'
+        'bulk_metadata_update': 'bulkMetadataUpdate',
+        'file_move': 'fileMove',
+        'folder_move': 'folderMove'
     }
 
-    def __init__(self, folder_copy=None, folder_delete=None, volume_migration=None, file_copy=None, bulk_metadata_update=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, folder_copy=None, folder_delete=None, volume_migration=None, file_copy=None, bulk_metadata_update=None, file_move=None, folder_move=None, local_vars_configuration=None):  # noqa: E501
         """JobOperationParameters - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -59,6 +63,8 @@ class JobOperationParameters(object):
         self._volume_migration = None
         self._file_copy = None
         self._bulk_metadata_update = None
+        self._file_move = None
+        self._folder_move = None
         self.discriminator = None
 
         if folder_copy is not None:
@@ -71,6 +77,10 @@ class JobOperationParameters(object):
             self.file_copy = file_copy
         if bulk_metadata_update is not None:
             self.bulk_metadata_update = bulk_metadata_update
+        if file_move is not None:
+            self.file_move = file_move
+        if folder_move is not None:
+            self.folder_move = folder_move
 
     @property
     def folder_copy(self):
@@ -176,6 +186,48 @@ class JobOperationParameters(object):
         """
 
         self._bulk_metadata_update = bulk_metadata_update
+
+    @property
+    def file_move(self):
+        """Gets the file_move of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The file_move of this JobOperationParameters.  # noqa: E501
+        :rtype: FileMoveOperationParameters
+        """
+        return self._file_move
+
+    @file_move.setter
+    def file_move(self, file_move):
+        """Sets the file_move of this JobOperationParameters.
+
+
+        :param file_move: The file_move of this JobOperationParameters.  # noqa: E501
+        :type: FileMoveOperationParameters
+        """
+
+        self._file_move = file_move
+
+    @property
+    def folder_move(self):
+        """Gets the folder_move of this JobOperationParameters.  # noqa: E501
+
+
+        :return: The folder_move of this JobOperationParameters.  # noqa: E501
+        :rtype: FolderMoveOperationParameters
+        """
+        return self._folder_move
+
+    @folder_move.setter
+    def folder_move(self, folder_move):
+        """Sets the folder_move of this JobOperationParameters.
+
+
+        :param folder_move: The folder_move of this JobOperationParameters.  # noqa: E501
+        :type: FolderMoveOperationParameters
+        """
+
+        self._folder_move = folder_move
 
     def to_dict(self):
         """Returns the model properties as a dict"""

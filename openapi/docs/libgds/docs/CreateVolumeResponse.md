@@ -3,6 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**import_session_id** | **str** | Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations. | [optional] 
+**object_store_access** | [**ObjectStoreAccess**](ObjectStoreAccess.md) |  | [optional] 
 **id** | **str** | A unique identifier for this Volume | [optional] 
 **name** | **str** | The name of this Volume | [optional] 
 **tenant_id** | **str** | The unique identifier for this Volume&#39;s Tenant | [optional] 
@@ -20,8 +22,6 @@ Name | Type | Description | Notes
 **metadata** | [**object**](.md) | Metadata about this Volume | [optional] 
 **life_cycle** | [**VolumeLifeCycleSettings**](VolumeLifeCycleSettings.md) |  | [optional] 
 **migration_status** | **str** | Status of the root folder migration status from v1 to v2 | [optional] 
-**import_session_id** | **str** | Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations. | [optional] 
-**object_store_access** | [**ObjectStoreAccess**](ObjectStoreAccess.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

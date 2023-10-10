@@ -34,6 +34,7 @@ class VolumeConfigurationResponse(object):
     """
     openapi_types = {
         'name': 'str',
+        'storage_container_versioning_state': 'StorageContainerVersioningState',
         'tenant_id': 'str',
         'sub_tenant_id': 'str',
         'urn': 'str',
@@ -45,11 +46,14 @@ class VolumeConfigurationResponse(object):
         'created_by': 'str',
         'time_modified': 'datetime',
         'modified_by': 'str',
-        'object_store_settings': 'ObjectStoreSettings'
+        'provider_name': 'ObjectStorageProviderNames',
+        'object_store_settings': 'ObjectStoreSettings',
+        'restore_type': 'RestoreType'
     }
 
     attribute_map = {
         'name': 'name',
+        'storage_container_versioning_state': 'storageContainerVersioningState',
         'tenant_id': 'tenantId',
         'sub_tenant_id': 'subTenantId',
         'urn': 'urn',
@@ -61,16 +65,19 @@ class VolumeConfigurationResponse(object):
         'created_by': 'createdBy',
         'time_modified': 'timeModified',
         'modified_by': 'modifiedBy',
-        'object_store_settings': 'objectStoreSettings'
+        'provider_name': 'providerName',
+        'object_store_settings': 'objectStoreSettings',
+        'restore_type': 'restoreType'
     }
 
-    def __init__(self, name=None, tenant_id=None, sub_tenant_id=None, urn=None, online_status=None, error_code=None, error_message=None, time_of_last_error=None, time_created=None, created_by=None, time_modified=None, modified_by=None, object_store_settings=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, storage_container_versioning_state=None, tenant_id=None, sub_tenant_id=None, urn=None, online_status=None, error_code=None, error_message=None, time_of_last_error=None, time_created=None, created_by=None, time_modified=None, modified_by=None, provider_name=None, object_store_settings=None, restore_type=None, local_vars_configuration=None):  # noqa: E501
         """VolumeConfigurationResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
+        self._storage_container_versioning_state = None
         self._tenant_id = None
         self._sub_tenant_id = None
         self._urn = None
@@ -82,11 +89,15 @@ class VolumeConfigurationResponse(object):
         self._created_by = None
         self._time_modified = None
         self._modified_by = None
+        self._provider_name = None
         self._object_store_settings = None
+        self._restore_type = None
         self.discriminator = None
 
         if name is not None:
             self.name = name
+        if storage_container_versioning_state is not None:
+            self.storage_container_versioning_state = storage_container_versioning_state
         if tenant_id is not None:
             self.tenant_id = tenant_id
         if sub_tenant_id is not None:
@@ -109,8 +120,12 @@ class VolumeConfigurationResponse(object):
             self.time_modified = time_modified
         if modified_by is not None:
             self.modified_by = modified_by
+        if provider_name is not None:
+            self.provider_name = provider_name
         if object_store_settings is not None:
             self.object_store_settings = object_store_settings
+        if restore_type is not None:
+            self.restore_type = restore_type
 
     @property
     def name(self):
@@ -134,6 +149,27 @@ class VolumeConfigurationResponse(object):
         """
 
         self._name = name
+
+    @property
+    def storage_container_versioning_state(self):
+        """Gets the storage_container_versioning_state of this VolumeConfigurationResponse.  # noqa: E501
+
+
+        :return: The storage_container_versioning_state of this VolumeConfigurationResponse.  # noqa: E501
+        :rtype: StorageContainerVersioningState
+        """
+        return self._storage_container_versioning_state
+
+    @storage_container_versioning_state.setter
+    def storage_container_versioning_state(self, storage_container_versioning_state):
+        """Sets the storage_container_versioning_state of this VolumeConfigurationResponse.
+
+
+        :param storage_container_versioning_state: The storage_container_versioning_state of this VolumeConfigurationResponse.  # noqa: E501
+        :type: StorageContainerVersioningState
+        """
+
+        self._storage_container_versioning_state = storage_container_versioning_state
 
     @property
     def tenant_id(self):
@@ -387,6 +423,27 @@ class VolumeConfigurationResponse(object):
         self._modified_by = modified_by
 
     @property
+    def provider_name(self):
+        """Gets the provider_name of this VolumeConfigurationResponse.  # noqa: E501
+
+
+        :return: The provider_name of this VolumeConfigurationResponse.  # noqa: E501
+        :rtype: ObjectStorageProviderNames
+        """
+        return self._provider_name
+
+    @provider_name.setter
+    def provider_name(self, provider_name):
+        """Sets the provider_name of this VolumeConfigurationResponse.
+
+
+        :param provider_name: The provider_name of this VolumeConfigurationResponse.  # noqa: E501
+        :type: ObjectStorageProviderNames
+        """
+
+        self._provider_name = provider_name
+
+    @property
     def object_store_settings(self):
         """Gets the object_store_settings of this VolumeConfigurationResponse.  # noqa: E501
 
@@ -406,6 +463,27 @@ class VolumeConfigurationResponse(object):
         """
 
         self._object_store_settings = object_store_settings
+
+    @property
+    def restore_type(self):
+        """Gets the restore_type of this VolumeConfigurationResponse.  # noqa: E501
+
+
+        :return: The restore_type of this VolumeConfigurationResponse.  # noqa: E501
+        :rtype: RestoreType
+        """
+        return self._restore_type
+
+    @restore_type.setter
+    def restore_type(self, restore_type):
+        """Sets the restore_type of this VolumeConfigurationResponse.
+
+
+        :param restore_type: The restore_type of this VolumeConfigurationResponse.  # noqa: E501
+        :type: RestoreType
+        """
+
+        self._restore_type = restore_type
 
     def to_dict(self):
         """Returns the model properties as a dict"""

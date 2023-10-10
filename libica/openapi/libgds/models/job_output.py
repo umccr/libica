@@ -36,17 +36,21 @@ class JobOutput(object):
         'folder_copy': 'FileCopyOutput',
         'file_copy': 'FileCopyOutput',
         'folder_metadata_update_output': 'MetadataUpdateOutput',
-        'file_metadata_update_output': 'MetadataUpdateOutput'
+        'file_metadata_update_output': 'MetadataUpdateOutput',
+        'file_move': 'FileMoveOutput',
+        'folder_move': 'FileMoveOutput'
     }
 
     attribute_map = {
         'folder_copy': 'folderCopy',
         'file_copy': 'fileCopy',
         'folder_metadata_update_output': 'folderMetadataUpdateOutput',
-        'file_metadata_update_output': 'fileMetadataUpdateOutput'
+        'file_metadata_update_output': 'fileMetadataUpdateOutput',
+        'file_move': 'fileMove',
+        'folder_move': 'folderMove'
     }
 
-    def __init__(self, folder_copy=None, file_copy=None, folder_metadata_update_output=None, file_metadata_update_output=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, folder_copy=None, file_copy=None, folder_metadata_update_output=None, file_metadata_update_output=None, file_move=None, folder_move=None, local_vars_configuration=None):  # noqa: E501
         """JobOutput - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -56,6 +60,8 @@ class JobOutput(object):
         self._file_copy = None
         self._folder_metadata_update_output = None
         self._file_metadata_update_output = None
+        self._file_move = None
+        self._folder_move = None
         self.discriminator = None
 
         if folder_copy is not None:
@@ -66,6 +72,10 @@ class JobOutput(object):
             self.folder_metadata_update_output = folder_metadata_update_output
         if file_metadata_update_output is not None:
             self.file_metadata_update_output = file_metadata_update_output
+        if file_move is not None:
+            self.file_move = file_move
+        if folder_move is not None:
+            self.folder_move = folder_move
 
     @property
     def folder_copy(self):
@@ -150,6 +160,48 @@ class JobOutput(object):
         """
 
         self._file_metadata_update_output = file_metadata_update_output
+
+    @property
+    def file_move(self):
+        """Gets the file_move of this JobOutput.  # noqa: E501
+
+
+        :return: The file_move of this JobOutput.  # noqa: E501
+        :rtype: FileMoveOutput
+        """
+        return self._file_move
+
+    @file_move.setter
+    def file_move(self, file_move):
+        """Sets the file_move of this JobOutput.
+
+
+        :param file_move: The file_move of this JobOutput.  # noqa: E501
+        :type: FileMoveOutput
+        """
+
+        self._file_move = file_move
+
+    @property
+    def folder_move(self):
+        """Gets the folder_move of this JobOutput.  # noqa: E501
+
+
+        :return: The folder_move of this JobOutput.  # noqa: E501
+        :rtype: FileMoveOutput
+        """
+        return self._folder_move
+
+    @folder_move.setter
+    def folder_move(self, folder_move):
+        """Sets the folder_move of this JobOutput.
+
+
+        :param folder_move: The folder_move of this JobOutput.  # noqa: E501
+        :type: FileMoveOutput
+        """
+
+        self._folder_move = folder_move
 
     def to_dict(self):
         """Returns the model properties as a dict"""
