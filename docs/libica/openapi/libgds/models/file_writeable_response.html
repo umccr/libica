@@ -93,6 +93,7 @@ class FileWriteableResponse(object):
         &#39;format_edam&#39;: &#39;str&#39;,
         &#39;status&#39;: &#39;FileStatus&#39;,
         &#39;life_cycle&#39;: &#39;FileLifeCycleSettings&#39;,
+        &#39;restore_expiration&#39;: &#39;datetime&#39;,
         &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;
     }
 
@@ -124,10 +125,11 @@ class FileWriteableResponse(object):
         &#39;format_edam&#39;: &#39;formatEdam&#39;,
         &#39;status&#39;: &#39;status&#39;,
         &#39;life_cycle&#39;: &#39;lifeCycle&#39;,
+        &#39;restore_expiration&#39;: &#39;restoreExpiration&#39;,
         &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, restore_expiration=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FileWriteableResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -160,6 +162,7 @@ class FileWriteableResponse(object):
         self._format_edam = None
         self._status = None
         self._life_cycle = None
+        self._restore_expiration = None
         self._object_store_access = None
         self.discriminator = None
 
@@ -217,6 +220,8 @@ class FileWriteableResponse(object):
             self.status = status
         if life_cycle is not None:
             self.life_cycle = life_cycle
+        if restore_expiration is not None:
+            self.restore_expiration = restore_expiration
         if object_store_access is not None:
             self.object_store_access = object_store_access
 
@@ -830,6 +835,29 @@ class FileWriteableResponse(object):
         &#34;&#34;&#34;
 
         self._life_cycle = life_cycle
+
+    @property
+    def restore_expiration(self):
+        &#34;&#34;&#34;Gets the restore_expiration of this FileWriteableResponse.  # noqa: E501
+
+        Restore expiration time  # noqa: E501
+
+        :return: The restore_expiration of this FileWriteableResponse.  # noqa: E501
+        :rtype: datetime
+        &#34;&#34;&#34;
+        return self._restore_expiration
+
+    @restore_expiration.setter
+    def restore_expiration(self, restore_expiration):
+        &#34;&#34;&#34;Sets the restore_expiration of this FileWriteableResponse.
+
+        Restore expiration time  # noqa: E501
+
+        :param restore_expiration: The restore_expiration of this FileWriteableResponse.  # noqa: E501
+        :type: datetime
+        &#34;&#34;&#34;
+
+        self._restore_expiration = restore_expiration
 
     @property
     def object_store_access(self):
@@ -910,7 +938,7 @@ class FileWriteableResponse(object):
 <dl>
 <dt id="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse"><code class="flex name class">
 <span>class <span class="ident">FileWriteableResponse</span></span>
-<span>(</span><span>id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, object_store_access=None, local_vars_configuration=None)</span>
+<span>(</span><span>id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, restore_expiration=None, object_store_access=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -963,6 +991,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;format_edam&#39;: &#39;str&#39;,
         &#39;status&#39;: &#39;FileStatus&#39;,
         &#39;life_cycle&#39;: &#39;FileLifeCycleSettings&#39;,
+        &#39;restore_expiration&#39;: &#39;datetime&#39;,
         &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;
     }
 
@@ -994,10 +1023,11 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;format_edam&#39;: &#39;formatEdam&#39;,
         &#39;status&#39;: &#39;status&#39;,
         &#39;life_cycle&#39;: &#39;lifeCycle&#39;,
+        &#39;restore_expiration&#39;: &#39;restoreExpiration&#39;,
         &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, volume_id=None, parent_folder_id=None, volume_name=None, volume_configuration_name=None, type=None, tenant_id=None, sub_tenant_id=None, path=None, time_created=None, created_by=None, time_modified=None, modified_by=None, inherited_acl=None, urn=None, size_in_bytes=None, metadata=None, is_uploaded=None, archive_status=None, time_archived=None, storage_tier=None, e_tag=None, format=None, format_edam=None, status=None, life_cycle=None, restore_expiration=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FileWriteableResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -1030,6 +1060,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._format_edam = None
         self._status = None
         self._life_cycle = None
+        self._restore_expiration = None
         self._object_store_access = None
         self.discriminator = None
 
@@ -1087,6 +1118,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.status = status
         if life_cycle is not None:
             self.life_cycle = life_cycle
+        if restore_expiration is not None:
+            self.restore_expiration = restore_expiration
         if object_store_access is not None:
             self.object_store_access = object_store_access
 
@@ -1700,6 +1733,29 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._life_cycle = life_cycle
+
+    @property
+    def restore_expiration(self):
+        &#34;&#34;&#34;Gets the restore_expiration of this FileWriteableResponse.  # noqa: E501
+
+        Restore expiration time  # noqa: E501
+
+        :return: The restore_expiration of this FileWriteableResponse.  # noqa: E501
+        :rtype: datetime
+        &#34;&#34;&#34;
+        return self._restore_expiration
+
+    @restore_expiration.setter
+    def restore_expiration(self, restore_expiration):
+        &#34;&#34;&#34;Sets the restore_expiration of this FileWriteableResponse.
+
+        Restore expiration time  # noqa: E501
+
+        :param restore_expiration: The restore_expiration of this FileWriteableResponse.  # noqa: E501
+        :type: datetime
+        &#34;&#34;&#34;
+
+        self._restore_expiration = restore_expiration
 
     @property
     def object_store_access(self):
@@ -2144,6 +2200,31 @@ def path(self):
     return self._path</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.restore_expiration"><code class="name">var <span class="ident">restore_expiration</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the restore_expiration of this FileWriteableResponse.
+# noqa: E501</p>
+<p>Restore expiration time
+# noqa: E501</p>
+<p>:return: The restore_expiration of this FileWriteableResponse.
+# noqa: E501
+:rtype: datetime</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def restore_expiration(self):
+    &#34;&#34;&#34;Gets the restore_expiration of this FileWriteableResponse.  # noqa: E501
+
+    Restore expiration time  # noqa: E501
+
+    :return: The restore_expiration of this FileWriteableResponse.  # noqa: E501
+    :rtype: datetime
+    &#34;&#34;&#34;
+    return self._restore_expiration</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.size_in_bytes"><code class="name">var <span class="ident">size_in_bytes</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the size_in_bytes of this FileWriteableResponse.
@@ -2552,6 +2633,7 @@ def volume_name(self):
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.openapi_types" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.openapi_types">openapi_types</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.parent_folder_id" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.parent_folder_id">parent_folder_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.path" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.path">path</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.restore_expiration" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.restore_expiration">restore_expiration</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.size_in_bytes" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.size_in_bytes">size_in_bytes</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.status" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.status">status</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.storage_tier" href="#libica.openapi.libgds.models.file_writeable_response.FileWriteableResponse.storage_tier">storage_tier</a></code></li>

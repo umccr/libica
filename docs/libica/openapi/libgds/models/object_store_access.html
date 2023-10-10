@@ -69,17 +69,21 @@ class ObjectStoreAccess(object):
         &#39;session_id&#39;: &#39;str&#39;,
         &#39;aws_s3_temporary_upload_credentials&#39;: &#39;AwsS3TemporaryUploadCredentials&#39;,
         &#39;aws_s3_presigned_url_for_upload&#39;: &#39;AwsS3PresignedUrlForUpload&#39;,
-        &#39;aws_s3_temporary_read_only_credentials&#39;: &#39;AwsS3TemporaryReadOnlyCredentials&#39;
+        &#39;azure_temporary_upload_credentials&#39;: &#39;AzureTemporaryUploadCredentials&#39;,
+        &#39;aws_s3_temporary_read_only_credentials&#39;: &#39;AwsS3TemporaryReadOnlyCredentials&#39;,
+        &#39;azure_temporary_read_only_credentials&#39;: &#39;AzureTemporaryReadOnlyCredentials&#39;
     }
 
     attribute_map = {
         &#39;session_id&#39;: &#39;sessionId&#39;,
         &#39;aws_s3_temporary_upload_credentials&#39;: &#39;awsS3TemporaryUploadCredentials&#39;,
         &#39;aws_s3_presigned_url_for_upload&#39;: &#39;awsS3PresignedUrlForUpload&#39;,
-        &#39;aws_s3_temporary_read_only_credentials&#39;: &#39;awsS3TemporaryReadOnlyCredentials&#39;
+        &#39;azure_temporary_upload_credentials&#39;: &#39;azureTemporaryUploadCredentials&#39;,
+        &#39;aws_s3_temporary_read_only_credentials&#39;: &#39;awsS3TemporaryReadOnlyCredentials&#39;,
+        &#39;azure_temporary_read_only_credentials&#39;: &#39;azureTemporaryReadOnlyCredentials&#39;
     }
 
-    def __init__(self, session_id=None, aws_s3_temporary_upload_credentials=None, aws_s3_presigned_url_for_upload=None, aws_s3_temporary_read_only_credentials=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, session_id=None, aws_s3_temporary_upload_credentials=None, aws_s3_presigned_url_for_upload=None, azure_temporary_upload_credentials=None, aws_s3_temporary_read_only_credentials=None, azure_temporary_read_only_credentials=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;ObjectStoreAccess - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -88,7 +92,9 @@ class ObjectStoreAccess(object):
         self._session_id = None
         self._aws_s3_temporary_upload_credentials = None
         self._aws_s3_presigned_url_for_upload = None
+        self._azure_temporary_upload_credentials = None
         self._aws_s3_temporary_read_only_credentials = None
+        self._azure_temporary_read_only_credentials = None
         self.discriminator = None
 
         if session_id is not None:
@@ -97,8 +103,12 @@ class ObjectStoreAccess(object):
             self.aws_s3_temporary_upload_credentials = aws_s3_temporary_upload_credentials
         if aws_s3_presigned_url_for_upload is not None:
             self.aws_s3_presigned_url_for_upload = aws_s3_presigned_url_for_upload
+        if azure_temporary_upload_credentials is not None:
+            self.azure_temporary_upload_credentials = azure_temporary_upload_credentials
         if aws_s3_temporary_read_only_credentials is not None:
             self.aws_s3_temporary_read_only_credentials = aws_s3_temporary_read_only_credentials
+        if azure_temporary_read_only_credentials is not None:
+            self.azure_temporary_read_only_credentials = azure_temporary_read_only_credentials
 
     @property
     def session_id(self):
@@ -164,6 +174,27 @@ class ObjectStoreAccess(object):
         self._aws_s3_presigned_url_for_upload = aws_s3_presigned_url_for_upload
 
     @property
+    def azure_temporary_upload_credentials(self):
+        &#34;&#34;&#34;Gets the azure_temporary_upload_credentials of this ObjectStoreAccess.  # noqa: E501
+
+
+        :return: The azure_temporary_upload_credentials of this ObjectStoreAccess.  # noqa: E501
+        :rtype: AzureTemporaryUploadCredentials
+        &#34;&#34;&#34;
+        return self._azure_temporary_upload_credentials
+
+    @azure_temporary_upload_credentials.setter
+    def azure_temporary_upload_credentials(self, azure_temporary_upload_credentials):
+        &#34;&#34;&#34;Sets the azure_temporary_upload_credentials of this ObjectStoreAccess.
+
+
+        :param azure_temporary_upload_credentials: The azure_temporary_upload_credentials of this ObjectStoreAccess.  # noqa: E501
+        :type: AzureTemporaryUploadCredentials
+        &#34;&#34;&#34;
+
+        self._azure_temporary_upload_credentials = azure_temporary_upload_credentials
+
+    @property
     def aws_s3_temporary_read_only_credentials(self):
         &#34;&#34;&#34;Gets the aws_s3_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
 
@@ -183,6 +214,27 @@ class ObjectStoreAccess(object):
         &#34;&#34;&#34;
 
         self._aws_s3_temporary_read_only_credentials = aws_s3_temporary_read_only_credentials
+
+    @property
+    def azure_temporary_read_only_credentials(self):
+        &#34;&#34;&#34;Gets the azure_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
+
+
+        :return: The azure_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
+        :rtype: AzureTemporaryReadOnlyCredentials
+        &#34;&#34;&#34;
+        return self._azure_temporary_read_only_credentials
+
+    @azure_temporary_read_only_credentials.setter
+    def azure_temporary_read_only_credentials(self, azure_temporary_read_only_credentials):
+        &#34;&#34;&#34;Sets the azure_temporary_read_only_credentials of this ObjectStoreAccess.
+
+
+        :param azure_temporary_read_only_credentials: The azure_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
+        :type: AzureTemporaryReadOnlyCredentials
+        &#34;&#34;&#34;
+
+        self._azure_temporary_read_only_credentials = azure_temporary_read_only_credentials
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -242,7 +294,7 @@ class ObjectStoreAccess(object):
 <dl>
 <dt id="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess"><code class="flex name class">
 <span>class <span class="ident">ObjectStoreAccess</span></span>
-<span>(</span><span>session_id=None, aws_s3_temporary_upload_credentials=None, aws_s3_presigned_url_for_upload=None, aws_s3_temporary_read_only_credentials=None, local_vars_configuration=None)</span>
+<span>(</span><span>session_id=None, aws_s3_temporary_upload_credentials=None, aws_s3_presigned_url_for_upload=None, azure_temporary_upload_credentials=None, aws_s3_temporary_read_only_credentials=None, azure_temporary_read_only_credentials=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -271,17 +323,21 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;session_id&#39;: &#39;str&#39;,
         &#39;aws_s3_temporary_upload_credentials&#39;: &#39;AwsS3TemporaryUploadCredentials&#39;,
         &#39;aws_s3_presigned_url_for_upload&#39;: &#39;AwsS3PresignedUrlForUpload&#39;,
-        &#39;aws_s3_temporary_read_only_credentials&#39;: &#39;AwsS3TemporaryReadOnlyCredentials&#39;
+        &#39;azure_temporary_upload_credentials&#39;: &#39;AzureTemporaryUploadCredentials&#39;,
+        &#39;aws_s3_temporary_read_only_credentials&#39;: &#39;AwsS3TemporaryReadOnlyCredentials&#39;,
+        &#39;azure_temporary_read_only_credentials&#39;: &#39;AzureTemporaryReadOnlyCredentials&#39;
     }
 
     attribute_map = {
         &#39;session_id&#39;: &#39;sessionId&#39;,
         &#39;aws_s3_temporary_upload_credentials&#39;: &#39;awsS3TemporaryUploadCredentials&#39;,
         &#39;aws_s3_presigned_url_for_upload&#39;: &#39;awsS3PresignedUrlForUpload&#39;,
-        &#39;aws_s3_temporary_read_only_credentials&#39;: &#39;awsS3TemporaryReadOnlyCredentials&#39;
+        &#39;azure_temporary_upload_credentials&#39;: &#39;azureTemporaryUploadCredentials&#39;,
+        &#39;aws_s3_temporary_read_only_credentials&#39;: &#39;awsS3TemporaryReadOnlyCredentials&#39;,
+        &#39;azure_temporary_read_only_credentials&#39;: &#39;azureTemporaryReadOnlyCredentials&#39;
     }
 
-    def __init__(self, session_id=None, aws_s3_temporary_upload_credentials=None, aws_s3_presigned_url_for_upload=None, aws_s3_temporary_read_only_credentials=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, session_id=None, aws_s3_temporary_upload_credentials=None, aws_s3_presigned_url_for_upload=None, azure_temporary_upload_credentials=None, aws_s3_temporary_read_only_credentials=None, azure_temporary_read_only_credentials=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;ObjectStoreAccess - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -290,7 +346,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._session_id = None
         self._aws_s3_temporary_upload_credentials = None
         self._aws_s3_presigned_url_for_upload = None
+        self._azure_temporary_upload_credentials = None
         self._aws_s3_temporary_read_only_credentials = None
+        self._azure_temporary_read_only_credentials = None
         self.discriminator = None
 
         if session_id is not None:
@@ -299,8 +357,12 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.aws_s3_temporary_upload_credentials = aws_s3_temporary_upload_credentials
         if aws_s3_presigned_url_for_upload is not None:
             self.aws_s3_presigned_url_for_upload = aws_s3_presigned_url_for_upload
+        if azure_temporary_upload_credentials is not None:
+            self.azure_temporary_upload_credentials = azure_temporary_upload_credentials
         if aws_s3_temporary_read_only_credentials is not None:
             self.aws_s3_temporary_read_only_credentials = aws_s3_temporary_read_only_credentials
+        if azure_temporary_read_only_credentials is not None:
+            self.azure_temporary_read_only_credentials = azure_temporary_read_only_credentials
 
     @property
     def session_id(self):
@@ -366,6 +428,27 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._aws_s3_presigned_url_for_upload = aws_s3_presigned_url_for_upload
 
     @property
+    def azure_temporary_upload_credentials(self):
+        &#34;&#34;&#34;Gets the azure_temporary_upload_credentials of this ObjectStoreAccess.  # noqa: E501
+
+
+        :return: The azure_temporary_upload_credentials of this ObjectStoreAccess.  # noqa: E501
+        :rtype: AzureTemporaryUploadCredentials
+        &#34;&#34;&#34;
+        return self._azure_temporary_upload_credentials
+
+    @azure_temporary_upload_credentials.setter
+    def azure_temporary_upload_credentials(self, azure_temporary_upload_credentials):
+        &#34;&#34;&#34;Sets the azure_temporary_upload_credentials of this ObjectStoreAccess.
+
+
+        :param azure_temporary_upload_credentials: The azure_temporary_upload_credentials of this ObjectStoreAccess.  # noqa: E501
+        :type: AzureTemporaryUploadCredentials
+        &#34;&#34;&#34;
+
+        self._azure_temporary_upload_credentials = azure_temporary_upload_credentials
+
+    @property
     def aws_s3_temporary_read_only_credentials(self):
         &#34;&#34;&#34;Gets the aws_s3_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
 
@@ -385,6 +468,27 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._aws_s3_temporary_read_only_credentials = aws_s3_temporary_read_only_credentials
+
+    @property
+    def azure_temporary_read_only_credentials(self):
+        &#34;&#34;&#34;Gets the azure_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
+
+
+        :return: The azure_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
+        :rtype: AzureTemporaryReadOnlyCredentials
+        &#34;&#34;&#34;
+        return self._azure_temporary_read_only_credentials
+
+    @azure_temporary_read_only_credentials.setter
+    def azure_temporary_read_only_credentials(self, azure_temporary_read_only_credentials):
+        &#34;&#34;&#34;Sets the azure_temporary_read_only_credentials of this ObjectStoreAccess.
+
+
+        :param azure_temporary_read_only_credentials: The azure_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
+        :type: AzureTemporaryReadOnlyCredentials
+        &#34;&#34;&#34;
+
+        self._azure_temporary_read_only_credentials = azure_temporary_read_only_credentials
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -511,6 +615,50 @@ def aws_s3_temporary_upload_credentials(self):
     return self._aws_s3_temporary_upload_credentials</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.azure_temporary_read_only_credentials"><code class="name">var <span class="ident">azure_temporary_read_only_credentials</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the azure_temporary_read_only_credentials of this ObjectStoreAccess.
+# noqa: E501</p>
+<p>:return: The azure_temporary_read_only_credentials of this ObjectStoreAccess.
+# noqa: E501
+:rtype: AzureTemporaryReadOnlyCredentials</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def azure_temporary_read_only_credentials(self):
+    &#34;&#34;&#34;Gets the azure_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
+
+
+    :return: The azure_temporary_read_only_credentials of this ObjectStoreAccess.  # noqa: E501
+    :rtype: AzureTemporaryReadOnlyCredentials
+    &#34;&#34;&#34;
+    return self._azure_temporary_read_only_credentials</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.azure_temporary_upload_credentials"><code class="name">var <span class="ident">azure_temporary_upload_credentials</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the azure_temporary_upload_credentials of this ObjectStoreAccess.
+# noqa: E501</p>
+<p>:return: The azure_temporary_upload_credentials of this ObjectStoreAccess.
+# noqa: E501
+:rtype: AzureTemporaryUploadCredentials</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def azure_temporary_upload_credentials(self):
+    &#34;&#34;&#34;Gets the azure_temporary_upload_credentials of this ObjectStoreAccess.  # noqa: E501
+
+
+    :return: The azure_temporary_upload_credentials of this ObjectStoreAccess.  # noqa: E501
+    :rtype: AzureTemporaryUploadCredentials
+    &#34;&#34;&#34;
+    return self._azure_temporary_upload_credentials</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.session_id"><code class="name">var <span class="ident">session_id</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the session_id of this ObjectStoreAccess.
@@ -609,6 +757,8 @@ def session_id(self):
 <li><code><a title="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.aws_s3_presigned_url_for_upload" href="#libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.aws_s3_presigned_url_for_upload">aws_s3_presigned_url_for_upload</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.aws_s3_temporary_read_only_credentials" href="#libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.aws_s3_temporary_read_only_credentials">aws_s3_temporary_read_only_credentials</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.aws_s3_temporary_upload_credentials" href="#libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.aws_s3_temporary_upload_credentials">aws_s3_temporary_upload_credentials</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.azure_temporary_read_only_credentials" href="#libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.azure_temporary_read_only_credentials">azure_temporary_read_only_credentials</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.azure_temporary_upload_credentials" href="#libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.azure_temporary_upload_credentials">azure_temporary_upload_credentials</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.openapi_types" href="#libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.openapi_types">openapi_types</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.session_id" href="#libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.session_id">session_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.to_dict" href="#libica.openapi.libgds.models.object_store_access.ObjectStoreAccess.to_dict">to_dict</a></code></li>

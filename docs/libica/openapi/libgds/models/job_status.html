@@ -65,8 +65,9 @@ class JobStatus(object):
     ARCHIVING = &#34;Archiving&#34;
     UNARCHIVING = &#34;Unarchiving&#34;
     DELETING = &#34;Deleting&#34;
+    MOVING = &#34;Moving&#34;
 
-    allowable_values = [NONE, ARCHIVING, UNARCHIVING, DELETING]  # noqa: E501
+    allowable_values = [NONE, ARCHIVING, UNARCHIVING, DELETING, MOVING]  # noqa: E501
 
     &#34;&#34;&#34;
     Attributes:
@@ -171,8 +172,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     ARCHIVING = &#34;Archiving&#34;
     UNARCHIVING = &#34;Unarchiving&#34;
     DELETING = &#34;Deleting&#34;
+    MOVING = &#34;Moving&#34;
 
-    allowable_values = [NONE, ARCHIVING, UNARCHIVING, DELETING]  # noqa: E501
+    allowable_values = [NONE, ARCHIVING, UNARCHIVING, DELETING, MOVING]  # noqa: E501
 
     &#34;&#34;&#34;
     Attributes:
@@ -247,6 +249,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 <div class="desc"></div>
 </dd>
 <dt id="libica.openapi.libgds.models.job_status.JobStatus.DELETING"><code class="name">var <span class="ident">DELETING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="libica.openapi.libgds.models.job_status.JobStatus.MOVING"><code class="name">var <span class="ident">MOVING</span></code></dt>
 <dd>
 <div class="desc"></div>
 </dd>
@@ -352,6 +358,7 @@ and the value is json key in definition.</dd>
 <ul class="two-column">
 <li><code><a title="libica.openapi.libgds.models.job_status.JobStatus.ARCHIVING" href="#libica.openapi.libgds.models.job_status.JobStatus.ARCHIVING">ARCHIVING</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_status.JobStatus.DELETING" href="#libica.openapi.libgds.models.job_status.JobStatus.DELETING">DELETING</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.job_status.JobStatus.MOVING" href="#libica.openapi.libgds.models.job_status.JobStatus.MOVING">MOVING</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_status.JobStatus.NONE" href="#libica.openapi.libgds.models.job_status.JobStatus.NONE">NONE</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_status.JobStatus.UNARCHIVING" href="#libica.openapi.libgds.models.job_status.JobStatus.UNARCHIVING">UNARCHIVING</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.job_status.JobStatus.allowable_values" href="#libica.openapi.libgds.models.job_status.JobStatus.allowable_values">allowable_values</a></code></li>

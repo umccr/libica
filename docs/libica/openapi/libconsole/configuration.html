@@ -116,7 +116,7 @@ conf = libica.openapi.libconsole.Configuration(
 
 conf = libica.openapi.libconsole.Configuration(
     username=&#39;the-user&#39;,
-    password=&#39;the-password&#39;,
+    password=&#39;the-password&#39;,  # pragma: allowlist secret
 )
 
     &#34;&#34;&#34;
@@ -532,6 +532,7 @@ Configure API client with HTTP basic authentication:
 <p>conf = libica.openapi.libconsole.Configuration(
 username='the-user',
 password='the-password',
+# pragma: allowlist secret
 )</p>
 <p>Constructor</p></div>
 <details class="source">
@@ -599,7 +600,7 @@ conf = libica.openapi.libconsole.Configuration(
 
 conf = libica.openapi.libconsole.Configuration(
     username=&#39;the-user&#39;,
-    password=&#39;the-password&#39;,
+    password=&#39;the-password&#39;,  # pragma: allowlist secret
 )
 
     &#34;&#34;&#34;
