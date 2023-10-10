@@ -434,7 +434,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_user**
-> User update_user(user_id)
+> User update_user(user_id, user)
 
 Update a user.
 
@@ -479,7 +479,6 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = user_api.UserApi(api_client)
     user_id = "userId_example" # str | 
-    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
     user = User(
         id="id_example",
         time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
@@ -517,12 +516,13 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         postal_code="postal_code_example",
         city="city_example",
         state="state_example",
-    ) # User |  (optional)
+    ) # User | 
+    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Update a user.
-        api_response = api_instance.update_user(user_id)
+        api_response = api_instance.update_user(user_id, user)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling UserApi->update_user: %s\n" % e)
@@ -531,7 +531,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Update a user.
-        api_response = api_instance.update_user(user_id, if_match=if_match, user=user)
+        api_response = api_instance.update_user(user_id, user, if_match=if_match)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling UserApi->update_user: %s\n" % e)
@@ -543,8 +543,8 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user_id** | **str**|  |
+ **user** | [**User**](User.md)|  |
  **if_match** | **str**| Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. | [optional]
- **user** | [**User**](User.md)|  | [optional]
 
 ### Return type
 

@@ -11,9 +11,11 @@ Method | HTTP request | Description
 
 
 # **create_project_permission**
-> ProjectPermission create_project_permission(project_id)
+> ProjectPermissionV4 create_project_permission(project_id, create_project_permission_v4)
 
 Create a project permission.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Added 'Administrator' role for Bench. The role attributes are strings instead of enums to support future additions in a backward compatible manner. 
 
 ### Example
 
@@ -24,7 +26,9 @@ Create a project permission.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_permission_api
+from libica.openapi.v2.model.project_permission_v4 import ProjectPermissionV4
 from libica.openapi.v2.model.create_project_permission import CreateProjectPermission
+from libica.openapi.v2.model.create_project_permission_v4 import CreateProjectPermissionV4
 from libica.openapi.v2.model.project_permission import ProjectPermission
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -55,32 +59,23 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_permission_api.ProjectPermissionApi(api_client)
     project_id = "projectId_example" # str | 
-    create_project_permission = CreateProjectPermission(
+    create_project_permission_v4 = CreateProjectPermissionV4(
         role_project="NONE",
-        role_flow="NONE",
-        role_base="NONE",
-        role_bench="NONE",
+        role_flow="CONTRIBUTO",
+        role_base="CONTRIBUTO",
+        role_bench="ADMINISTRATO",
         membership_type="USER",
         user_id="user_id_example",
         email_address="email_address_example",
         workgroup_id="workgroup_id_example",
         upload_allowed=True,
         download_allowed=True,
-    ) # CreateProjectPermission |  (optional)
+    ) # CreateProjectPermissionV4 | 
 
     # example passing only required values which don't have defaults set
     try:
         # Create a project permission.
-        api_response = api_instance.create_project_permission(project_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectPermissionApi->create_project_permission: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Create a project permission.
-        api_response = api_instance.create_project_permission(project_id, create_project_permission=create_project_permission)
+        api_response = api_instance.create_project_permission(project_id, create_project_permission_v4)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectPermissionApi->create_project_permission: %s\n" % e)
@@ -92,11 +87,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
- **create_project_permission** | [**CreateProjectPermission**](CreateProjectPermission.md)|  | [optional]
+ **create_project_permission_v4** | [**CreateProjectPermissionV4**](CreateProjectPermissionV4.md)|  |
 
 ### Return type
 
-[**ProjectPermission**](ProjectPermission.md)
+[**ProjectPermissionV4**](ProjectPermissionV4.md)
 
 ### Authorization
 
@@ -104,8 +99,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json, application/json
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v4+json, application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -118,9 +113,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_permission**
-> ProjectPermission get_project_permission(project_id, permission_id)
+> ProjectPermissionV4 get_project_permission(project_id, permission_id)
 
 Retrieve a project permission.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Added 'Administrator' role for Bench. The role attributes are strings instead of enums to support future additions in a backward compatible manner. 
 
 ### Example
 
@@ -131,6 +128,7 @@ Retrieve a project permission.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_permission_api
+from libica.openapi.v2.model.project_permission_v4 import ProjectPermissionV4
 from libica.openapi.v2.model.project_permission import ProjectPermission
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -182,7 +180,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProjectPermission**](ProjectPermission.md)
+[**ProjectPermissionV4**](ProjectPermissionV4.md)
 
 ### Authorization
 
@@ -191,7 +189,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -204,9 +202,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_permissions**
-> ProjectPermissionList get_project_permissions(project_id)
+> ProjectPermissionListV4 get_project_permissions(project_id)
 
 Retrieve a list of project permissions.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Added 'Administrator' role for Bench. The role attributes are strings instead of enums to support future additions in a backward compatible manner. 
 
 ### Example
 
@@ -217,6 +217,7 @@ Retrieve a list of project permissions.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_permission_api
+from libica.openapi.v2.model.project_permission_list_v4 import ProjectPermissionListV4
 from libica.openapi.v2.model.project_permission_list import ProjectPermissionList
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -266,7 +267,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProjectPermissionList**](ProjectPermissionList.md)
+[**ProjectPermissionListV4**](ProjectPermissionListV4.md)
 
 ### Authorization
 
@@ -275,7 +276,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -288,11 +289,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_project_permission**
-> ProjectPermission update_project_permission(project_id, permission_id)
+> ProjectPermissionV4 update_project_permission(project_id, permission_id, project_permission_v4)
 
 Update a project permission.
 
-Fields which can be updated: - uploadAllowed - downloadAllowed - roleProject - roleFlow - roleBase - roleBench
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Added 'Administrator' role for Bench. The role attributes are strings instead of enums to support future additions in a backward compatible manner. Fields which can be updated: - uploadAllowed - downloadAllowed - roleProject - roleFlow - roleBase - roleBench
 
 ### Example
 
@@ -303,6 +304,7 @@ Fields which can be updated: - uploadAllowed - downloadAllowed - roleProject - r
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_permission_api
+from libica.openapi.v2.model.project_permission_v4 import ProjectPermissionV4
 from libica.openapi.v2.model.project_permission import ProjectPermission
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -334,18 +336,17 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     api_instance = project_permission_api.ProjectPermissionApi(api_client)
     project_id = "projectId_example" # str | 
     permission_id = "permissionId_example" # str | 
-    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
-    project_permission = ProjectPermission(
+    project_permission_v4 = ProjectPermissionV4(
         id="id_example",
         time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
         time_modified=dateutil_parser('1970-01-01T00:00:00.00Z'),
         owner_id="owner_id_example",
         tenant_id="tenant_id_example",
         tenant_name="tenant_name_example",
-        role_project="NONE",
-        role_flow="NONE",
-        role_base="NONE",
-        role_bench="NONE",
+        role_project="role_project_example",
+        role_flow="role_flow_example",
+        role_base="role_base_example",
+        role_bench="role_bench_example",
         membership_type="USER",
         user=User(
             id="id_example",
@@ -395,12 +396,13 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         invitation_rejected=True,
         upload_allowed=True,
         download_allowed=True,
-    ) # ProjectPermission |  (optional)
+    ) # ProjectPermissionV4 | 
+    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Update a project permission.
-        api_response = api_instance.update_project_permission(project_id, permission_id)
+        api_response = api_instance.update_project_permission(project_id, permission_id, project_permission_v4)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectPermissionApi->update_project_permission: %s\n" % e)
@@ -409,7 +411,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Update a project permission.
-        api_response = api_instance.update_project_permission(project_id, permission_id, if_match=if_match, project_permission=project_permission)
+        api_response = api_instance.update_project_permission(project_id, permission_id, project_permission_v4, if_match=if_match)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectPermissionApi->update_project_permission: %s\n" % e)
@@ -422,12 +424,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
  **permission_id** | **str**|  |
+ **project_permission_v4** | [**ProjectPermissionV4**](ProjectPermissionV4.md)|  |
  **if_match** | **str**| Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. | [optional]
- **project_permission** | [**ProjectPermission**](ProjectPermission.md)|  | [optional]
 
 ### Return type
 
-[**ProjectPermission**](ProjectPermission.md)
+[**ProjectPermissionV4**](ProjectPermissionV4.md)
 
 ### Authorization
 
@@ -435,8 +437,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json, application/json
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v4+json, application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details

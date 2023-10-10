@@ -107,7 +107,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_connector**
-> Connector create_connector()
+> Connector create_connector(create_connector)
 
 Create a connector.
 
@@ -158,13 +158,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         max_bandwidth=0.01,
         max_concurrent_transfers=2,
         os="WINDOWS",
-    ) # CreateConnector | The connector to create. (optional)
+    ) # CreateConnector | The connector to create.
 
     # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create a connector.
-        api_response = api_instance.create_connector(create_connector=create_connector)
+        api_response = api_instance.create_connector(create_connector)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ConnectorApi->create_connector: %s\n" % e)
@@ -175,7 +174,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_connector** | [**CreateConnector**](CreateConnector.md)| The connector to create. | [optional]
+ **create_connector** | [**CreateConnector**](CreateConnector.md)| The connector to create. |
 
 ### Return type
 
@@ -201,7 +200,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_download_rule**
-> DownloadRule create_download_rule(connector_id)
+> DownloadRule create_download_rule(connector_id, create_download_rule)
 
 Create a download rule.
 
@@ -254,21 +253,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         project_name="project_name_example",
         target_local_folder="target_local_folder_example",
         file_name_expression="file_name_expression_example",
-    ) # CreateDownloadRule |  (optional)
+    ) # CreateDownloadRule | 
 
     # example passing only required values which don't have defaults set
     try:
         # Create a download rule.
-        api_response = api_instance.create_download_rule(connector_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ConnectorApi->create_download_rule: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Create a download rule.
-        api_response = api_instance.create_download_rule(connector_id, create_download_rule=create_download_rule)
+        api_response = api_instance.create_download_rule(connector_id, create_download_rule)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ConnectorApi->create_download_rule: %s\n" % e)
@@ -280,7 +270,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connector_id** | **str**|  |
- **create_download_rule** | [**CreateDownloadRule**](CreateDownloadRule.md)|  | [optional]
+ **create_download_rule** | [**CreateDownloadRule**](CreateDownloadRule.md)|  |
 
 ### Return type
 
@@ -306,7 +296,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_upload_rule**
-> UploadRule create_upload_rule(connector_id)
+> UploadRule create_upload_rule(connector_id, create_upload_rule)
 
 Create an upload rule.
 
@@ -358,21 +348,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         file_pattern="file_pattern_example",
         data_format_id="data_format_id_example",
         project_id="project_id_example",
-    ) # CreateUploadRule |  (optional)
+    ) # CreateUploadRule | 
 
     # example passing only required values which don't have defaults set
     try:
         # Create an upload rule.
-        api_response = api_instance.create_upload_rule(connector_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ConnectorApi->create_upload_rule: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Create an upload rule.
-        api_response = api_instance.create_upload_rule(connector_id, create_upload_rule=create_upload_rule)
+        api_response = api_instance.create_upload_rule(connector_id, create_upload_rule)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ConnectorApi->create_upload_rule: %s\n" % e)
@@ -384,7 +365,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connector_id** | **str**|  |
- **create_upload_rule** | [**CreateUploadRule**](CreateUploadRule.md)|  | [optional]
+ **create_upload_rule** | [**CreateUploadRule**](CreateUploadRule.md)|  |
 
 ### Return type
 
@@ -1255,7 +1236,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_download_rule**
-> DownloadRule update_download_rule(connector_id, download_rule_id)
+> DownloadRule update_download_rule(connector_id, download_rule_id, download_rule)
 
 Update a download rule.
 
@@ -1301,7 +1282,6 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     api_instance = connector_api.ConnectorApi(api_client)
     connector_id = "connectorId_example" # str | 
     download_rule_id = "downloadRuleId_example" # str | 
-    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
     download_rule = DownloadRule(
         id="id_example",
         time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
@@ -1317,12 +1297,13 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         project_name="project_name_example",
         target_local_folder="target_local_folder_example",
         file_name_expression="file_name_expression_example",
-    ) # DownloadRule |  (optional)
+    ) # DownloadRule | 
+    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Update a download rule.
-        api_response = api_instance.update_download_rule(connector_id, download_rule_id)
+        api_response = api_instance.update_download_rule(connector_id, download_rule_id, download_rule)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ConnectorApi->update_download_rule: %s\n" % e)
@@ -1331,7 +1312,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Update a download rule.
-        api_response = api_instance.update_download_rule(connector_id, download_rule_id, if_match=if_match, download_rule=download_rule)
+        api_response = api_instance.update_download_rule(connector_id, download_rule_id, download_rule, if_match=if_match)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ConnectorApi->update_download_rule: %s\n" % e)
@@ -1344,8 +1325,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connector_id** | **str**|  |
  **download_rule_id** | **str**|  |
+ **download_rule** | [**DownloadRule**](DownloadRule.md)|  |
  **if_match** | **str**| Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. | [optional]
- **download_rule** | [**DownloadRule**](DownloadRule.md)|  | [optional]
 
 ### Return type
 
@@ -1371,7 +1352,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_upload_rule**
-> UploadRule update_upload_rule(connector_id, upload_rule_id)
+> UploadRule update_upload_rule(connector_id, upload_rule_id, upload_rule)
 
 Update an upload rule.
 
@@ -1417,7 +1398,6 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     api_instance = connector_api.ConnectorApi(api_client)
     connector_id = "connectorId_example" # str | 
     upload_rule_id = "uploadRuleId_example" # str | 
-    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
     upload_rule = UploadRule(
         id="id_example",
         time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
@@ -1551,7 +1531,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
                 is_default=True,
             ),
-            analysis_priority="Low",
+            analysis_priority="LOW",
             metadata_model=MetadataModel(
                 id="id_example",
                 time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
@@ -1571,12 +1551,13 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 display_name="display_name_example",
             ),
         ),
-    ) # UploadRule |  (optional)
+    ) # UploadRule | 
+    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Update an upload rule.
-        api_response = api_instance.update_upload_rule(connector_id, upload_rule_id)
+        api_response = api_instance.update_upload_rule(connector_id, upload_rule_id, upload_rule)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ConnectorApi->update_upload_rule: %s\n" % e)
@@ -1585,7 +1566,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Update an upload rule.
-        api_response = api_instance.update_upload_rule(connector_id, upload_rule_id, if_match=if_match, upload_rule=upload_rule)
+        api_response = api_instance.update_upload_rule(connector_id, upload_rule_id, upload_rule, if_match=if_match)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ConnectorApi->update_upload_rule: %s\n" % e)
@@ -1598,8 +1579,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connector_id** | **str**|  |
  **upload_rule_id** | **str**|  |
+ **upload_rule** | [**UploadRule**](UploadRule.md)|  |
  **if_match** | **str**| Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. | [optional]
- **upload_rule** | [**UploadRule**](UploadRule.md)|  | [optional]
 
 ### Return type
 

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create_analysis_creation_batch**
-> AnalysisCreationBatch create_analysis_creation_batch(project_id)
+> AnalysisCreationBatch create_analysis_creation_batch(project_id, create_analysis_creation_batch)
 
 Create and start multiple analyses in batch.
 
@@ -55,7 +55,6 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi(api_client)
     project_id = "projectId_example" # str | 
-    idempotency_key = "Idempotency-Key_example" # str | The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to <a href=\"https://tools.ietf.org/id/draft-idempotency-header-01.html\">the IETF spec</a> and is allowed to be max 255 characters long. If the header is supplied, the response of the request will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response.</li><li>the request body is not the same as the previous request => 422 error response.</li></ul>This means that each time when executing an API request using the Idempotency-Key header, the request has to contain a new value that hasn't been used in the past 7 days for that specific API and by the specific user. (optional)
     create_analysis_creation_batch = CreateAnalysisCreationBatch(
         cwl_items=[
             CreateCwlAnalysis(
@@ -127,6 +126,16 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                                     mount_path="mount_path_example",
                                 ),
                             ],
+                            external_data=[
+                                AnalysisInputExternalData(
+                                    url="url_example",
+                                    type="htt",
+                                    mount_path="mount_path_example",
+                                    s3_details=AnalysisS3DataDetails(
+                                        storage_credentials_id="storage_credentials_id_example",
+                                    ),
+                                ),
+                            ],
                         ),
                     ],
                     parameters=[
@@ -147,12 +156,13 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
             ),
         ],
-    ) # CreateAnalysisCreationBatch |  (optional)
+    ) # CreateAnalysisCreationBatch | 
+    idempotency_key = "Idempotency-Key_example" # str | The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec and is allowed to be max 255 characters long. If the header is supplied, the response of the request will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response.</li><li>the request body is not the same as the previous request => 422 error response.</li></ul>This means that each time when executing an API request using the Idempotency-Key header, the request has to contain a new value that hasn't been used in the past 7 days for that specific API and by the specific user. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Create and start multiple analyses in batch.
-        api_response = api_instance.create_analysis_creation_batch(project_id)
+        api_response = api_instance.create_analysis_creation_batch(project_id, create_analysis_creation_batch)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectAnalysisCreationBatchApi->create_analysis_creation_batch: %s\n" % e)
@@ -161,7 +171,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Create and start multiple analyses in batch.
-        api_response = api_instance.create_analysis_creation_batch(project_id, idempotency_key=idempotency_key, create_analysis_creation_batch=create_analysis_creation_batch)
+        api_response = api_instance.create_analysis_creation_batch(project_id, create_analysis_creation_batch, idempotency_key=idempotency_key)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectAnalysisCreationBatchApi->create_analysis_creation_batch: %s\n" % e)
@@ -173,8 +183,8 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
- **idempotency_key** | **str**| The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to &lt;a href&#x3D;\&quot;https://tools.ietf.org/id/draft-idempotency-header-01.html\&quot;&gt;the IETF spec&lt;/a&gt; and is allowed to be max 255 characters long. If the header is supplied, the response of the request will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the request body is the same as the previous request and an answer is stored &#x3D;&gt; the stored response is returned without executing the request again.&lt;/li&gt;&lt;li&gt;the request body is the same as the previous request and no answer is stored because the previous request has not finished &#x3D;&gt; 409 error response.&lt;/li&gt;&lt;li&gt;the request body is not the same as the previous request &#x3D;&gt; 422 error response.&lt;/li&gt;&lt;/ul&gt;This means that each time when executing an API request using the Idempotency-Key header, the request has to contain a new value that hasn&#39;t been used in the past 7 days for that specific API and by the specific user. | [optional]
- **create_analysis_creation_batch** | [**CreateAnalysisCreationBatch**](CreateAnalysisCreationBatch.md)|  | [optional]
+ **create_analysis_creation_batch** | [**CreateAnalysisCreationBatch**](CreateAnalysisCreationBatch.md)|  |
+ **idempotency_key** | **str**| The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec and is allowed to be max 255 characters long. If the header is supplied, the response of the request will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the request body is the same as the previous request and an answer is stored &#x3D;&gt; the stored response is returned without executing the request again.&lt;/li&gt;&lt;li&gt;the request body is the same as the previous request and no answer is stored because the previous request has not finished &#x3D;&gt; 409 error response.&lt;/li&gt;&lt;li&gt;the request body is not the same as the previous request &#x3D;&gt; 422 error response.&lt;/li&gt;&lt;/ul&gt;This means that each time when executing an API request using the Idempotency-Key header, the request has to contain a new value that hasn&#39;t been used in the past 7 days for that specific API and by the specific user. | [optional]
 
 ### Return type
 

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_storage_configuration**
-> StorageConfiguration create_storage_configuration()
+> StorageConfiguration create_storage_configuration(create_storage_configuration)
 
 Create a new storage configuration
 
@@ -67,13 +67,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             server_side_encryption_key="server_side_encryption_key_example",
         ),
         region_id="region_id_example",
-    ) # CreateStorageConfiguration |  (optional)
+    ) # CreateStorageConfiguration | 
 
     # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create a new storage configuration
-        api_response = api_instance.create_storage_configuration(create_storage_configuration=create_storage_configuration)
+        api_response = api_instance.create_storage_configuration(create_storage_configuration)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling StorageConfigurationApi->create_storage_configuration: %s\n" % e)
@@ -84,7 +83,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_storage_configuration** | [**CreateStorageConfiguration**](CreateStorageConfiguration.md)|  | [optional]
+ **create_storage_configuration** | [**CreateStorageConfiguration**](CreateStorageConfiguration.md)|  |
 
 ### Return type
 

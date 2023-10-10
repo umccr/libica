@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_notification_subscription**
-> CustomNotificationSubscription create_notification_subscription(project_id)
+> CustomNotificationSubscription create_notification_subscription(project_id, create_custom_notification_subscription)
 
 Create a custom notification subscription
 
@@ -61,21 +61,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         filter_expression="filter_expression_example",
         enabled=True,
         notification_channel_id="notification_channel_id_example",
-    ) # CreateCustomNotificationSubscription | The new subscription (optional)
+    ) # CreateCustomNotificationSubscription | The new subscription
 
     # example passing only required values which don't have defaults set
     try:
         # Create a custom notification subscription
-        api_response = api_instance.create_notification_subscription(project_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectCustomNotificationSubscriptionsApi->create_notification_subscription: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Create a custom notification subscription
-        api_response = api_instance.create_notification_subscription(project_id, create_custom_notification_subscription=create_custom_notification_subscription)
+        api_response = api_instance.create_notification_subscription(project_id, create_custom_notification_subscription)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectCustomNotificationSubscriptionsApi->create_notification_subscription: %s\n" % e)
@@ -87,7 +78,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
- **create_custom_notification_subscription** | [**CreateCustomNotificationSubscription**](CreateCustomNotificationSubscription.md)| The new subscription | [optional]
+ **create_custom_notification_subscription** | [**CreateCustomNotificationSubscription**](CreateCustomNotificationSubscription.md)| The new subscription |
 
 ### Return type
 
@@ -367,7 +358,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_notification_subscription**
-> CustomNotificationSubscription update_notification_subscription(project_id, subscription_id)
+> CustomNotificationSubscription update_notification_subscription(project_id, subscription_id, custom_notification_subscription)
 
 Update a notification subscription
 
@@ -413,7 +404,6 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     api_instance = project_custom_notification_subscriptions_api.ProjectCustomNotificationSubscriptionsApi(api_client)
     project_id = "projectId_example" # str | The ID of the project
     subscription_id = "subscriptionId_example" # str | The ID of the custom notification subscription to update
-    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
     custom_notification_subscription = CustomNotificationSubscription(
         id="id_example",
         time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
@@ -435,12 +425,13 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             type="MAIL",
             address="address_example",
         ),
-    ) # CustomNotificationSubscription | The updated subscription (optional)
+    ) # CustomNotificationSubscription | The updated subscription
+    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Update a notification subscription
-        api_response = api_instance.update_notification_subscription(project_id, subscription_id)
+        api_response = api_instance.update_notification_subscription(project_id, subscription_id, custom_notification_subscription)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectCustomNotificationSubscriptionsApi->update_notification_subscription: %s\n" % e)
@@ -449,7 +440,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Update a notification subscription
-        api_response = api_instance.update_notification_subscription(project_id, subscription_id, if_match=if_match, custom_notification_subscription=custom_notification_subscription)
+        api_response = api_instance.update_notification_subscription(project_id, subscription_id, custom_notification_subscription, if_match=if_match)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectCustomNotificationSubscriptionsApi->update_notification_subscription: %s\n" % e)
@@ -462,8 +453,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**| The ID of the project |
  **subscription_id** | **str**| The ID of the custom notification subscription to update |
+ **custom_notification_subscription** | [**CustomNotificationSubscription**](CustomNotificationSubscription.md)| The updated subscription |
  **if_match** | **str**| Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. | [optional]
- **custom_notification_subscription** | [**CustomNotificationSubscription**](CustomNotificationSubscription.md)| The updated subscription | [optional]
 
 ### Return type
 

@@ -1,6 +1,5 @@
 # DataDetails
 
-The details of this data. This object is optional because it is possible that these details are deleted.
 
 ## Properties
 Name | Type | Description | Notes

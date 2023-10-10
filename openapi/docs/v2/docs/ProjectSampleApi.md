@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**delete_and_unlink_sample**](ProjectSampleApi.md#delete_and_unlink_sample) | **POST** /api/projects/{projectId}/samples/{sampleId}:deleteUnlink | Delete a sample and unlink its data.
 [**delete_sample_with_input**](ProjectSampleApi.md#delete_sample_with_input) | **POST** /api/projects/{projectId}/samples/{sampleId}:deleteWithInput | Delete a sample as well as its input data.
 [**get_project_sample**](ProjectSampleApi.md#get_project_sample) | **GET** /api/projects/{projectId}/samples/{sampleId} | Retrieve a project sample.
+[**get_project_sample_analyses**](ProjectSampleApi.md#get_project_sample_analyses) | **GET** /api/projects/{projectId}/samples/{sampleId}/analyses | Retrieve the list of analyses.
 [**get_project_samples**](ProjectSampleApi.md#get_project_samples) | **POST** /api/projects/{projectId}/samples:search | Retrieve project samples.
 [**get_projects_for_sample**](ProjectSampleApi.md#get_projects_for_sample) | **GET** /api/projects/{projectId}/samples/{sampleId}/projects | Retrieve a list of projects for this sample.
 [**get_sample_data_list**](ProjectSampleApi.md#get_sample_data_list) | **GET** /api/projects/{projectId}/samples/{sampleId}/data | Retrieve the list of sample data.
@@ -199,7 +200,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_sample_in_project**
-> ProjectSample create_sample_in_project(project_id)
+> ProjectSample create_sample_in_project(project_id, create_sample)
 
 Create a new sample in this project
 
@@ -260,21 +261,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 "run_in_tags_example",
             ],
         ),
-    ) # CreateSample |  (optional)
+    ) # CreateSample | 
 
     # example passing only required values which don't have defaults set
     try:
         # Create a new sample in this project
-        api_response = api_instance.create_sample_in_project(project_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectSampleApi->create_sample_in_project: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Create a new sample in this project
-        api_response = api_instance.create_sample_in_project(project_id, create_sample=create_sample)
+        api_response = api_instance.create_sample_in_project(project_id, create_sample)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectSampleApi->create_sample_in_project: %s\n" % e)
@@ -286,7 +278,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
- **create_sample** | [**CreateSample**](CreateSample.md)|  | [optional]
+ **create_sample** | [**CreateSample**](CreateSample.md)|  |
 
 ### Return type
 
@@ -655,8 +647,123 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_project_sample_analyses**
+> AnalysisPagedList get_project_sample_analyses(project_id, sample_id)
+
+Retrieve the list of analyses.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_sample_api
+from libica.openapi.v2.model.analysis_paged_list import AnalysisPagedList
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_sample_api.ProjectSampleApi(api_client)
+    project_id = "projectId_example" # str | 
+    sample_id = "sampleId_example" # str | The ID of the sample
+    reference = "reference_example" # str | The reference to filter on. (optional)
+    userreference = "userreference_example" # str | The user-reference to filter on. (optional)
+    status = "status_example" # str | The status to filter on. (optional)
+    usertag = "usertag_example" # str | The user-tags to filter on. (optional)
+    technicaltag = "technicaltag_example" # str | The technical-tags to filter on. (optional)
+    referencetag = "referencetag_example" # str | The reference-data-tags to filter on. (optional)
+    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
+    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
+    page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
+    sort = "sort_example" # str | Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary  (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Retrieve the list of analyses.
+        api_response = api_instance.get_project_sample_analyses(project_id, sample_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectSampleApi->get_project_sample_analyses: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Retrieve the list of analyses.
+        api_response = api_instance.get_project_sample_analyses(project_id, sample_id, reference=reference, userreference=userreference, status=status, usertag=usertag, technicaltag=technicaltag, referencetag=referencetag, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectSampleApi->get_project_sample_analyses: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **sample_id** | **str**| The ID of the sample |
+ **reference** | **str**| The reference to filter on. | [optional]
+ **userreference** | **str**| The user-reference to filter on. | [optional]
+ **status** | **str**| The status to filter on. | [optional]
+ **usertag** | **str**| The user-tags to filter on. | [optional]
+ **technicaltag** | **str**| The technical-tags to filter on. | [optional]
+ **referencetag** | **str**| The reference-data-tags to filter on. | [optional]
+ **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
+ **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
+ **page_size** | **str**| The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. | [optional]
+ **sort** | **str**| Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;dateCreated, lastName desc\&quot;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary  | [optional]
+
+### Return type
+
+[**AnalysisPagedList**](AnalysisPagedList.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of project analyses is successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_project_samples**
-> ProjectSamplePagedList get_project_samples(project_id)
+> ProjectSamplePagedList get_project_samples(project_id, find_project_samples)
 
 Retrieve project samples.
 
@@ -702,10 +809,6 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = project_sample_api.ProjectSampleApi(api_client)
     project_id = "projectId_example" # str | 
-    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
-    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
-    page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
-    sort = "sort_example" # str | Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\" The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status (optional)
     find_project_samples = FindProjectSamples(
         conditions=[
             FindSampleCondition(
@@ -781,12 +884,16 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         instrument_run_ids=[
             "instrument_run_ids_example",
         ],
-    ) # FindProjectSamples |  (optional)
+    ) # FindProjectSamples | 
+    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
+    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
+    page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
+    sort = "sort_example" # str | Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\" The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Retrieve project samples.
-        api_response = api_instance.get_project_samples(project_id)
+        api_response = api_instance.get_project_samples(project_id, find_project_samples)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectSampleApi->get_project_samples: %s\n" % e)
@@ -795,7 +902,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Retrieve project samples.
-        api_response = api_instance.get_project_samples(project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort, find_project_samples=find_project_samples)
+        api_response = api_instance.get_project_samples(project_id, find_project_samples, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectSampleApi->get_project_samples: %s\n" % e)
@@ -807,11 +914,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
+ **find_project_samples** | [**FindProjectSamples**](FindProjectSamples.md)|  |
  **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
  **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
  **page_size** | **str**| The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. | [optional]
  **sort** | **str**| Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;dateCreated, lastName desc\&quot; The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status | [optional]
- **find_project_samples** | [**FindProjectSamples**](FindProjectSamples.md)|  | [optional]
 
 ### Return type
 
@@ -1802,7 +1909,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_project_sample**
-> ProjectSample update_project_sample(project_id, sample_id)
+> ProjectSample update_project_sample(project_id, sample_id, project_sample)
 
 Update a project sample.
 
@@ -1848,7 +1955,6 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     api_instance = project_sample_api.ProjectSampleApi(api_client)
     project_id = "projectId_example" # str | 
     sample_id = "sampleId_example" # str | 
-    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
     project_sample = ProjectSample(
         sample=Sample(
             id="id_example",
@@ -1919,12 +2025,13 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             ],
         ),
         project_id="project_id_example",
-    ) # ProjectSample |  (optional)
+    ) # ProjectSample | 
+    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Update a project sample.
-        api_response = api_instance.update_project_sample(project_id, sample_id)
+        api_response = api_instance.update_project_sample(project_id, sample_id, project_sample)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectSampleApi->update_project_sample: %s\n" % e)
@@ -1933,7 +2040,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Update a project sample.
-        api_response = api_instance.update_project_sample(project_id, sample_id, if_match=if_match, project_sample=project_sample)
+        api_response = api_instance.update_project_sample(project_id, sample_id, project_sample, if_match=if_match)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectSampleApi->update_project_sample: %s\n" % e)
@@ -1946,8 +2053,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
  **sample_id** | **str**|  |
+ **project_sample** | [**ProjectSample**](ProjectSample.md)|  |
  **if_match** | **str**| Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. | [optional]
- **project_sample** | [**ProjectSample**](ProjectSample.md)|  | [optional]
 
 ### Return type
 
@@ -1973,7 +2080,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_sample_metadata_fields**
-> Sample update_sample_metadata_fields(project_id, sample_id)
+> Sample update_sample_metadata_fields(project_id, sample_id, update_metadata)
 
 Update metadata fields.
 
@@ -2052,21 +2159,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ],
             ),
         ],
-    ) # UpdateMetadata |  (optional)
+    ) # UpdateMetadata | 
 
     # example passing only required values which don't have defaults set
     try:
         # Update metadata fields.
-        api_response = api_instance.update_sample_metadata_fields(project_id, sample_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectSampleApi->update_sample_metadata_fields: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Update metadata fields.
-        api_response = api_instance.update_sample_metadata_fields(project_id, sample_id, update_metadata=update_metadata)
+        api_response = api_instance.update_sample_metadata_fields(project_id, sample_id, update_metadata)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectSampleApi->update_sample_metadata_fields: %s\n" % e)
@@ -2079,7 +2177,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
  **sample_id** | **str**|  |
- **update_metadata** | [**UpdateMetadata**](UpdateMetadata.md)|  | [optional]
+ **update_metadata** | [**UpdateMetadata**](UpdateMetadata.md)|  |
 
 ### Return type
 
