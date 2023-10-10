@@ -4,7 +4,7 @@ repos:
     rev: v4.4.0
     hooks:
       - id: check-added-large-files
-        exclude: ^(yarn.lock|.yarn/)
+        exclude: ^(yarn.lock|.yarn/|docs/)
 #      - id: check-json
 #      - id: check-yaml
 #      - id: detect-aws-credentials

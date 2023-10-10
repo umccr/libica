@@ -67,6 +67,7 @@ class VolumeConfigurationResponse(object):
     &#34;&#34;&#34;
     openapi_types = {
         &#39;name&#39;: &#39;str&#39;,
+        &#39;storage_container_versioning_state&#39;: &#39;StorageContainerVersioningState&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
         &#39;sub_tenant_id&#39;: &#39;str&#39;,
         &#39;urn&#39;: &#39;str&#39;,
@@ -78,11 +79,14 @@ class VolumeConfigurationResponse(object):
         &#39;created_by&#39;: &#39;str&#39;,
         &#39;time_modified&#39;: &#39;datetime&#39;,
         &#39;modified_by&#39;: &#39;str&#39;,
-        &#39;object_store_settings&#39;: &#39;ObjectStoreSettings&#39;
+        &#39;provider_name&#39;: &#39;ObjectStorageProviderNames&#39;,
+        &#39;object_store_settings&#39;: &#39;ObjectStoreSettings&#39;,
+        &#39;restore_type&#39;: &#39;RestoreType&#39;
     }
 
     attribute_map = {
         &#39;name&#39;: &#39;name&#39;,
+        &#39;storage_container_versioning_state&#39;: &#39;storageContainerVersioningState&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
         &#39;sub_tenant_id&#39;: &#39;subTenantId&#39;,
         &#39;urn&#39;: &#39;urn&#39;,
@@ -94,16 +98,19 @@ class VolumeConfigurationResponse(object):
         &#39;created_by&#39;: &#39;createdBy&#39;,
         &#39;time_modified&#39;: &#39;timeModified&#39;,
         &#39;modified_by&#39;: &#39;modifiedBy&#39;,
-        &#39;object_store_settings&#39;: &#39;objectStoreSettings&#39;
+        &#39;provider_name&#39;: &#39;providerName&#39;,
+        &#39;object_store_settings&#39;: &#39;objectStoreSettings&#39;,
+        &#39;restore_type&#39;: &#39;restoreType&#39;
     }
 
-    def __init__(self, name=None, tenant_id=None, sub_tenant_id=None, urn=None, online_status=None, error_code=None, error_message=None, time_of_last_error=None, time_created=None, created_by=None, time_modified=None, modified_by=None, object_store_settings=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, storage_container_versioning_state=None, tenant_id=None, sub_tenant_id=None, urn=None, online_status=None, error_code=None, error_message=None, time_of_last_error=None, time_created=None, created_by=None, time_modified=None, modified_by=None, provider_name=None, object_store_settings=None, restore_type=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;VolumeConfigurationResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
+        self._storage_container_versioning_state = None
         self._tenant_id = None
         self._sub_tenant_id = None
         self._urn = None
@@ -115,11 +122,15 @@ class VolumeConfigurationResponse(object):
         self._created_by = None
         self._time_modified = None
         self._modified_by = None
+        self._provider_name = None
         self._object_store_settings = None
+        self._restore_type = None
         self.discriminator = None
 
         if name is not None:
             self.name = name
+        if storage_container_versioning_state is not None:
+            self.storage_container_versioning_state = storage_container_versioning_state
         if tenant_id is not None:
             self.tenant_id = tenant_id
         if sub_tenant_id is not None:
@@ -142,8 +153,12 @@ class VolumeConfigurationResponse(object):
             self.time_modified = time_modified
         if modified_by is not None:
             self.modified_by = modified_by
+        if provider_name is not None:
+            self.provider_name = provider_name
         if object_store_settings is not None:
             self.object_store_settings = object_store_settings
+        if restore_type is not None:
+            self.restore_type = restore_type
 
     @property
     def name(self):
@@ -167,6 +182,27 @@ class VolumeConfigurationResponse(object):
         &#34;&#34;&#34;
 
         self._name = name
+
+    @property
+    def storage_container_versioning_state(self):
+        &#34;&#34;&#34;Gets the storage_container_versioning_state of this VolumeConfigurationResponse.  # noqa: E501
+
+
+        :return: The storage_container_versioning_state of this VolumeConfigurationResponse.  # noqa: E501
+        :rtype: StorageContainerVersioningState
+        &#34;&#34;&#34;
+        return self._storage_container_versioning_state
+
+    @storage_container_versioning_state.setter
+    def storage_container_versioning_state(self, storage_container_versioning_state):
+        &#34;&#34;&#34;Sets the storage_container_versioning_state of this VolumeConfigurationResponse.
+
+
+        :param storage_container_versioning_state: The storage_container_versioning_state of this VolumeConfigurationResponse.  # noqa: E501
+        :type: StorageContainerVersioningState
+        &#34;&#34;&#34;
+
+        self._storage_container_versioning_state = storage_container_versioning_state
 
     @property
     def tenant_id(self):
@@ -420,6 +456,27 @@ class VolumeConfigurationResponse(object):
         self._modified_by = modified_by
 
     @property
+    def provider_name(self):
+        &#34;&#34;&#34;Gets the provider_name of this VolumeConfigurationResponse.  # noqa: E501
+
+
+        :return: The provider_name of this VolumeConfigurationResponse.  # noqa: E501
+        :rtype: ObjectStorageProviderNames
+        &#34;&#34;&#34;
+        return self._provider_name
+
+    @provider_name.setter
+    def provider_name(self, provider_name):
+        &#34;&#34;&#34;Sets the provider_name of this VolumeConfigurationResponse.
+
+
+        :param provider_name: The provider_name of this VolumeConfigurationResponse.  # noqa: E501
+        :type: ObjectStorageProviderNames
+        &#34;&#34;&#34;
+
+        self._provider_name = provider_name
+
+    @property
     def object_store_settings(self):
         &#34;&#34;&#34;Gets the object_store_settings of this VolumeConfigurationResponse.  # noqa: E501
 
@@ -439,6 +496,27 @@ class VolumeConfigurationResponse(object):
         &#34;&#34;&#34;
 
         self._object_store_settings = object_store_settings
+
+    @property
+    def restore_type(self):
+        &#34;&#34;&#34;Gets the restore_type of this VolumeConfigurationResponse.  # noqa: E501
+
+
+        :return: The restore_type of this VolumeConfigurationResponse.  # noqa: E501
+        :rtype: RestoreType
+        &#34;&#34;&#34;
+        return self._restore_type
+
+    @restore_type.setter
+    def restore_type(self, restore_type):
+        &#34;&#34;&#34;Sets the restore_type of this VolumeConfigurationResponse.
+
+
+        :param restore_type: The restore_type of this VolumeConfigurationResponse.  # noqa: E501
+        :type: RestoreType
+        &#34;&#34;&#34;
+
+        self._restore_type = restore_type
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -498,7 +576,7 @@ class VolumeConfigurationResponse(object):
 <dl>
 <dt id="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse"><code class="flex name class">
 <span>class <span class="ident">VolumeConfigurationResponse</span></span>
-<span>(</span><span>name=None, tenant_id=None, sub_tenant_id=None, urn=None, online_status=None, error_code=None, error_message=None, time_of_last_error=None, time_created=None, created_by=None, time_modified=None, modified_by=None, object_store_settings=None, local_vars_configuration=None)</span>
+<span>(</span><span>name=None, storage_container_versioning_state=None, tenant_id=None, sub_tenant_id=None, urn=None, online_status=None, error_code=None, error_message=None, time_of_last_error=None, time_created=None, created_by=None, time_modified=None, modified_by=None, provider_name=None, object_store_settings=None, restore_type=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -525,6 +603,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     &#34;&#34;&#34;
     openapi_types = {
         &#39;name&#39;: &#39;str&#39;,
+        &#39;storage_container_versioning_state&#39;: &#39;StorageContainerVersioningState&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
         &#39;sub_tenant_id&#39;: &#39;str&#39;,
         &#39;urn&#39;: &#39;str&#39;,
@@ -536,11 +615,14 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;created_by&#39;: &#39;str&#39;,
         &#39;time_modified&#39;: &#39;datetime&#39;,
         &#39;modified_by&#39;: &#39;str&#39;,
-        &#39;object_store_settings&#39;: &#39;ObjectStoreSettings&#39;
+        &#39;provider_name&#39;: &#39;ObjectStorageProviderNames&#39;,
+        &#39;object_store_settings&#39;: &#39;ObjectStoreSettings&#39;,
+        &#39;restore_type&#39;: &#39;RestoreType&#39;
     }
 
     attribute_map = {
         &#39;name&#39;: &#39;name&#39;,
+        &#39;storage_container_versioning_state&#39;: &#39;storageContainerVersioningState&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
         &#39;sub_tenant_id&#39;: &#39;subTenantId&#39;,
         &#39;urn&#39;: &#39;urn&#39;,
@@ -552,16 +634,19 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;created_by&#39;: &#39;createdBy&#39;,
         &#39;time_modified&#39;: &#39;timeModified&#39;,
         &#39;modified_by&#39;: &#39;modifiedBy&#39;,
-        &#39;object_store_settings&#39;: &#39;objectStoreSettings&#39;
+        &#39;provider_name&#39;: &#39;providerName&#39;,
+        &#39;object_store_settings&#39;: &#39;objectStoreSettings&#39;,
+        &#39;restore_type&#39;: &#39;restoreType&#39;
     }
 
-    def __init__(self, name=None, tenant_id=None, sub_tenant_id=None, urn=None, online_status=None, error_code=None, error_message=None, time_of_last_error=None, time_created=None, created_by=None, time_modified=None, modified_by=None, object_store_settings=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, name=None, storage_container_versioning_state=None, tenant_id=None, sub_tenant_id=None, urn=None, online_status=None, error_code=None, error_message=None, time_of_last_error=None, time_created=None, created_by=None, time_modified=None, modified_by=None, provider_name=None, object_store_settings=None, restore_type=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;VolumeConfigurationResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
         self._name = None
+        self._storage_container_versioning_state = None
         self._tenant_id = None
         self._sub_tenant_id = None
         self._urn = None
@@ -573,11 +658,15 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._created_by = None
         self._time_modified = None
         self._modified_by = None
+        self._provider_name = None
         self._object_store_settings = None
+        self._restore_type = None
         self.discriminator = None
 
         if name is not None:
             self.name = name
+        if storage_container_versioning_state is not None:
+            self.storage_container_versioning_state = storage_container_versioning_state
         if tenant_id is not None:
             self.tenant_id = tenant_id
         if sub_tenant_id is not None:
@@ -600,8 +689,12 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.time_modified = time_modified
         if modified_by is not None:
             self.modified_by = modified_by
+        if provider_name is not None:
+            self.provider_name = provider_name
         if object_store_settings is not None:
             self.object_store_settings = object_store_settings
+        if restore_type is not None:
+            self.restore_type = restore_type
 
     @property
     def name(self):
@@ -625,6 +718,27 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._name = name
+
+    @property
+    def storage_container_versioning_state(self):
+        &#34;&#34;&#34;Gets the storage_container_versioning_state of this VolumeConfigurationResponse.  # noqa: E501
+
+
+        :return: The storage_container_versioning_state of this VolumeConfigurationResponse.  # noqa: E501
+        :rtype: StorageContainerVersioningState
+        &#34;&#34;&#34;
+        return self._storage_container_versioning_state
+
+    @storage_container_versioning_state.setter
+    def storage_container_versioning_state(self, storage_container_versioning_state):
+        &#34;&#34;&#34;Sets the storage_container_versioning_state of this VolumeConfigurationResponse.
+
+
+        :param storage_container_versioning_state: The storage_container_versioning_state of this VolumeConfigurationResponse.  # noqa: E501
+        :type: StorageContainerVersioningState
+        &#34;&#34;&#34;
+
+        self._storage_container_versioning_state = storage_container_versioning_state
 
     @property
     def tenant_id(self):
@@ -878,6 +992,27 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._modified_by = modified_by
 
     @property
+    def provider_name(self):
+        &#34;&#34;&#34;Gets the provider_name of this VolumeConfigurationResponse.  # noqa: E501
+
+
+        :return: The provider_name of this VolumeConfigurationResponse.  # noqa: E501
+        :rtype: ObjectStorageProviderNames
+        &#34;&#34;&#34;
+        return self._provider_name
+
+    @provider_name.setter
+    def provider_name(self, provider_name):
+        &#34;&#34;&#34;Sets the provider_name of this VolumeConfigurationResponse.
+
+
+        :param provider_name: The provider_name of this VolumeConfigurationResponse.  # noqa: E501
+        :type: ObjectStorageProviderNames
+        &#34;&#34;&#34;
+
+        self._provider_name = provider_name
+
+    @property
     def object_store_settings(self):
         &#34;&#34;&#34;Gets the object_store_settings of this VolumeConfigurationResponse.  # noqa: E501
 
@@ -897,6 +1032,27 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._object_store_settings = object_store_settings
+
+    @property
+    def restore_type(self):
+        &#34;&#34;&#34;Gets the restore_type of this VolumeConfigurationResponse.  # noqa: E501
+
+
+        :return: The restore_type of this VolumeConfigurationResponse.  # noqa: E501
+        :rtype: RestoreType
+        &#34;&#34;&#34;
+        return self._restore_type
+
+    @restore_type.setter
+    def restore_type(self, restore_type):
+        &#34;&#34;&#34;Sets the restore_type of this VolumeConfigurationResponse.
+
+
+        :param restore_type: The restore_type of this VolumeConfigurationResponse.  # noqa: E501
+        :type: RestoreType
+        &#34;&#34;&#34;
+
+        self._restore_type = restore_type
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -1124,6 +1280,72 @@ def online_status(self):
     :rtype: VolumeConfigurationOnlineStatus
     &#34;&#34;&#34;
     return self._online_status</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.provider_name"><code class="name">var <span class="ident">provider_name</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the provider_name of this VolumeConfigurationResponse.
+# noqa: E501</p>
+<p>:return: The provider_name of this VolumeConfigurationResponse.
+# noqa: E501
+:rtype: ObjectStorageProviderNames</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def provider_name(self):
+    &#34;&#34;&#34;Gets the provider_name of this VolumeConfigurationResponse.  # noqa: E501
+
+
+    :return: The provider_name of this VolumeConfigurationResponse.  # noqa: E501
+    :rtype: ObjectStorageProviderNames
+    &#34;&#34;&#34;
+    return self._provider_name</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.restore_type"><code class="name">var <span class="ident">restore_type</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the restore_type of this VolumeConfigurationResponse.
+# noqa: E501</p>
+<p>:return: The restore_type of this VolumeConfigurationResponse.
+# noqa: E501
+:rtype: RestoreType</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def restore_type(self):
+    &#34;&#34;&#34;Gets the restore_type of this VolumeConfigurationResponse.  # noqa: E501
+
+
+    :return: The restore_type of this VolumeConfigurationResponse.  # noqa: E501
+    :rtype: RestoreType
+    &#34;&#34;&#34;
+    return self._restore_type</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.storage_container_versioning_state"><code class="name">var <span class="ident">storage_container_versioning_state</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the storage_container_versioning_state of this VolumeConfigurationResponse.
+# noqa: E501</p>
+<p>:return: The storage_container_versioning_state of this VolumeConfigurationResponse.
+# noqa: E501
+:rtype: StorageContainerVersioningState</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def storage_container_versioning_state(self):
+    &#34;&#34;&#34;Gets the storage_container_versioning_state of this VolumeConfigurationResponse.  # noqa: E501
+
+
+    :return: The storage_container_versioning_state of this VolumeConfigurationResponse.  # noqa: E501
+    :rtype: StorageContainerVersioningState
+    &#34;&#34;&#34;
+    return self._storage_container_versioning_state</code></pre>
 </details>
 </dd>
 <dt id="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.sub_tenant_id"><code class="name">var <span class="ident">sub_tenant_id</span></code></dt>
@@ -1357,6 +1579,9 @@ def urn(self):
 <li><code><a title="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.object_store_settings" href="#libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.object_store_settings">object_store_settings</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.online_status" href="#libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.online_status">online_status</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.openapi_types" href="#libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.openapi_types">openapi_types</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.provider_name" href="#libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.provider_name">provider_name</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.restore_type" href="#libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.restore_type">restore_type</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.storage_container_versioning_state" href="#libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.storage_container_versioning_state">storage_container_versioning_state</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.sub_tenant_id" href="#libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.sub_tenant_id">sub_tenant_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.tenant_id" href="#libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.tenant_id">tenant_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.time_created" href="#libica.openapi.libgds.models.volume_configuration_response.VolumeConfigurationResponse.time_created">time_created</a></code></li>

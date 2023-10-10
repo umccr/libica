@@ -1617,6 +1617,133 @@ class FoldersApi(object):
             _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
             collection_formats=collection_formats)
 
+    def move_folder(self, folder_id, body, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Move a folder  # noqa: E501
+
+        Move a folder into a target parent folder  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.move_folder(folder_id, body, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str folder_id: Unique identifier for the folder to be copied. (required)
+        :param FolderMoveRequest body: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: JobResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;_return_http_data_only&#39;] = True
+        return self.move_folder_with_http_info(folder_id, body, **kwargs)  # noqa: E501
+
+    def move_folder_with_http_info(self, folder_id, body, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Move a folder  # noqa: E501
+
+        Move a folder into a target parent folder  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.move_folder_with_http_info(folder_id, body, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str folder_id: Unique identifier for the folder to be copied. (required)
+        :param FolderMoveRequest body: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+
+        local_var_params = locals()
+
+        all_params = [
+            &#39;folder_id&#39;,
+            &#39;body&#39;
+        ]
+        all_params.extend(
+            [
+                &#39;async_req&#39;,
+                &#39;_return_http_data_only&#39;,
+                &#39;_preload_content&#39;,
+                &#39;_request_timeout&#39;
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+            if key not in all_params:
+                raise ApiTypeError(
+                    &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                    &#34; to method move_folder&#34; % key
+                )
+            local_var_params[key] = val
+        del local_var_params[&#39;kwargs&#39;]
+        # verify the required parameter &#39;folder_id&#39; is set
+        if self.api_client.client_side_validation and (&#39;folder_id&#39; not in local_var_params or  # noqa: E501
+                                                        local_var_params[&#39;folder_id&#39;] is None):  # noqa: E501
+            raise ApiValueError(&#34;Missing the required parameter `folder_id` when calling `move_folder`&#34;)  # noqa: E501
+        # verify the required parameter &#39;body&#39; is set
+        if self.api_client.client_side_validation and (&#39;body&#39; not in local_var_params or  # noqa: E501
+                                                        local_var_params[&#39;body&#39;] is None):  # noqa: E501
+            raise ApiValueError(&#34;Missing the required parameter `body` when calling `move_folder`&#34;)  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if &#39;folder_id&#39; in local_var_params:
+            path_params[&#39;folderId&#39;] = local_var_params[&#39;folder_id&#39;]  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if &#39;body&#39; in local_var_params:
+            body_params = local_var_params[&#39;body&#39;]
+        # HTTP header `Accept`
+        header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+            [&#39;application/json&#39;])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+            [&#39;application/json-patch+json&#39;, &#39;application/json&#39;, &#39;text/json&#39;, &#39;application/*+json&#39;])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+        return self.api_client.call_api(
+            &#39;/v1/folders/{folderId}:move&#39;, &#39;POST&#39;,
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=&#39;JobResponse&#39;,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get(&#39;async_req&#39;),
+            _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+            _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+            _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+            collection_formats=collection_formats)
+
     def unarchive_folder(self, folder_id, body, **kwargs):  # noqa: E501
         &#34;&#34;&#34;Unarchive a folder  # noqa: E501
 
@@ -3447,6 +3574,133 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             post_params=form_params,
             files=local_var_files,
             response_type=&#39;FolderListResponse&#39;,  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=local_var_params.get(&#39;async_req&#39;),
+            _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+            _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+            _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+            collection_formats=collection_formats)
+
+    def move_folder(self, folder_id, body, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Move a folder  # noqa: E501
+
+        Move a folder into a target parent folder  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.move_folder(folder_id, body, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str folder_id: Unique identifier for the folder to be copied. (required)
+        :param FolderMoveRequest body: (required)
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: JobResponse
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;_return_http_data_only&#39;] = True
+        return self.move_folder_with_http_info(folder_id, body, **kwargs)  # noqa: E501
+
+    def move_folder_with_http_info(self, folder_id, body, **kwargs):  # noqa: E501
+        &#34;&#34;&#34;Move a folder  # noqa: E501
+
+        Move a folder into a target parent folder  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        &gt;&gt;&gt; thread = api.move_folder_with_http_info(folder_id, body, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        :param async_req bool: execute request asynchronously
+        :param str folder_id: Unique identifier for the folder to be copied. (required)
+        :param FolderMoveRequest body: (required)
+        :param _return_http_data_only: response data without head status code
+                                       and headers
+        :param _preload_content: if False, the urllib3.HTTPResponse object will
+                                 be returned without reading/decoding response
+                                 data. Default is True.
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+                 If the method is called asynchronously,
+                 returns the request thread.
+        &#34;&#34;&#34;
+
+        local_var_params = locals()
+
+        all_params = [
+            &#39;folder_id&#39;,
+            &#39;body&#39;
+        ]
+        all_params.extend(
+            [
+                &#39;async_req&#39;,
+                &#39;_return_http_data_only&#39;,
+                &#39;_preload_content&#39;,
+                &#39;_request_timeout&#39;
+            ]
+        )
+
+        for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+            if key not in all_params:
+                raise ApiTypeError(
+                    &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                    &#34; to method move_folder&#34; % key
+                )
+            local_var_params[key] = val
+        del local_var_params[&#39;kwargs&#39;]
+        # verify the required parameter &#39;folder_id&#39; is set
+        if self.api_client.client_side_validation and (&#39;folder_id&#39; not in local_var_params or  # noqa: E501
+                                                        local_var_params[&#39;folder_id&#39;] is None):  # noqa: E501
+            raise ApiValueError(&#34;Missing the required parameter `folder_id` when calling `move_folder`&#34;)  # noqa: E501
+        # verify the required parameter &#39;body&#39; is set
+        if self.api_client.client_side_validation and (&#39;body&#39; not in local_var_params or  # noqa: E501
+                                                        local_var_params[&#39;body&#39;] is None):  # noqa: E501
+            raise ApiValueError(&#34;Missing the required parameter `body` when calling `move_folder`&#34;)  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if &#39;folder_id&#39; in local_var_params:
+            path_params[&#39;folderId&#39;] = local_var_params[&#39;folder_id&#39;]  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if &#39;body&#39; in local_var_params:
+            body_params = local_var_params[&#39;body&#39;]
+        # HTTP header `Accept`
+        header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+            [&#39;application/json&#39;])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+            [&#39;application/json-patch+json&#39;, &#39;application/json&#39;, &#39;text/json&#39;, &#39;application/*+json&#39;])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+        return self.api_client.call_api(
+            &#39;/v1/folders/{folderId}:move&#39;, &#39;POST&#39;,
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=&#39;JobResponse&#39;,  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get(&#39;async_req&#39;),
             _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
@@ -6057,6 +6311,197 @@ returns the request thread.</p></div>
         collection_formats=collection_formats)</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.libgds.api.folders_api.FoldersApi.move_folder"><code class="name flex">
+<span>def <span class="ident">move_folder</span></span>(<span>self, folder_id, body, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Move a folder
+# noqa: E501</p>
+<p>Move a folder into a target parent folder
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.move_folder(folder_id, body, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<p>:param async_req bool: execute request asynchronously
+:param str folder_id: Unique identifier for the folder to be copied. (required)
+:param FolderMoveRequest body: (required)
+:param _preload_content: if False, the urllib3.HTTPResponse object will
+be returned without reading/decoding response
+data. Default is True.
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:return: JobResponse
+If the method is called asynchronously,
+returns the request thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def move_folder(self, folder_id, body, **kwargs):  # noqa: E501
+    &#34;&#34;&#34;Move a folder  # noqa: E501
+
+    Move a folder into a target parent folder  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    &gt;&gt;&gt; thread = api.move_folder(folder_id, body, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    :param async_req bool: execute request asynchronously
+    :param str folder_id: Unique identifier for the folder to be copied. (required)
+    :param FolderMoveRequest body: (required)
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                             be returned without reading/decoding response
+                             data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :return: JobResponse
+             If the method is called asynchronously,
+             returns the request thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;_return_http_data_only&#39;] = True
+    return self.move_folder_with_http_info(folder_id, body, **kwargs)  # noqa: E501</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.libgds.api.folders_api.FoldersApi.move_folder_with_http_info"><code class="name flex">
+<span>def <span class="ident">move_folder_with_http_info</span></span>(<span>self, folder_id, body, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Move a folder
+# noqa: E501</p>
+<p>Move a folder into a target parent folder
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.move_folder_with_http_info(folder_id, body, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<p>:param async_req bool: execute request asynchronously
+:param str folder_id: Unique identifier for the folder to be copied. (required)
+:param FolderMoveRequest body: (required)
+:param _return_http_data_only: response data without head status code
+and headers
+:param _preload_content: if False, the urllib3.HTTPResponse object will
+be returned without reading/decoding response
+data. Default is True.
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+If the method is called asynchronously,
+returns the request thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def move_folder_with_http_info(self, folder_id, body, **kwargs):  # noqa: E501
+    &#34;&#34;&#34;Move a folder  # noqa: E501
+
+    Move a folder into a target parent folder  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+    &gt;&gt;&gt; thread = api.move_folder_with_http_info(folder_id, body, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    :param async_req bool: execute request asynchronously
+    :param str folder_id: Unique identifier for the folder to be copied. (required)
+    :param FolderMoveRequest body: (required)
+    :param _return_http_data_only: response data without head status code
+                                   and headers
+    :param _preload_content: if False, the urllib3.HTTPResponse object will
+                             be returned without reading/decoding response
+                             data. Default is True.
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :return: tuple(JobResponse, status_code(int), headers(HTTPHeaderDict))
+             If the method is called asynchronously,
+             returns the request thread.
+    &#34;&#34;&#34;
+
+    local_var_params = locals()
+
+    all_params = [
+        &#39;folder_id&#39;,
+        &#39;body&#39;
+    ]
+    all_params.extend(
+        [
+            &#39;async_req&#39;,
+            &#39;_return_http_data_only&#39;,
+            &#39;_preload_content&#39;,
+            &#39;_request_timeout&#39;
+        ]
+    )
+
+    for key, val in six.iteritems(local_var_params[&#39;kwargs&#39;]):
+        if key not in all_params:
+            raise ApiTypeError(
+                &#34;Got an unexpected keyword argument &#39;%s&#39;&#34;
+                &#34; to method move_folder&#34; % key
+            )
+        local_var_params[key] = val
+    del local_var_params[&#39;kwargs&#39;]
+    # verify the required parameter &#39;folder_id&#39; is set
+    if self.api_client.client_side_validation and (&#39;folder_id&#39; not in local_var_params or  # noqa: E501
+                                                    local_var_params[&#39;folder_id&#39;] is None):  # noqa: E501
+        raise ApiValueError(&#34;Missing the required parameter `folder_id` when calling `move_folder`&#34;)  # noqa: E501
+    # verify the required parameter &#39;body&#39; is set
+    if self.api_client.client_side_validation and (&#39;body&#39; not in local_var_params or  # noqa: E501
+                                                    local_var_params[&#39;body&#39;] is None):  # noqa: E501
+        raise ApiValueError(&#34;Missing the required parameter `body` when calling `move_folder`&#34;)  # noqa: E501
+
+    collection_formats = {}
+
+    path_params = {}
+    if &#39;folder_id&#39; in local_var_params:
+        path_params[&#39;folderId&#39;] = local_var_params[&#39;folder_id&#39;]  # noqa: E501
+
+    query_params = []
+
+    header_params = {}
+
+    form_params = []
+    local_var_files = {}
+
+    body_params = None
+    if &#39;body&#39; in local_var_params:
+        body_params = local_var_params[&#39;body&#39;]
+    # HTTP header `Accept`
+    header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+        [&#39;application/json&#39;])  # noqa: E501
+
+    # HTTP header `Content-Type`
+    header_params[&#39;Content-Type&#39;] = self.api_client.select_header_content_type(  # noqa: E501
+        [&#39;application/json-patch+json&#39;, &#39;application/json&#39;, &#39;text/json&#39;, &#39;application/*+json&#39;])  # noqa: E501
+
+    # Authentication setting
+    auth_settings = [&#39;Bearer&#39;]  # noqa: E501
+
+    return self.api_client.call_api(
+        &#39;/v1/folders/{folderId}:move&#39;, &#39;POST&#39;,
+        path_params,
+        query_params,
+        header_params,
+        body=body_params,
+        post_params=form_params,
+        files=local_var_files,
+        response_type=&#39;JobResponse&#39;,  # noqa: E501
+        auth_settings=auth_settings,
+        async_req=local_var_params.get(&#39;async_req&#39;),
+        _return_http_data_only=local_var_params.get(&#39;_return_http_data_only&#39;),  # noqa: E501
+        _preload_content=local_var_params.get(&#39;_preload_content&#39;, True),
+        _request_timeout=local_var_params.get(&#39;_request_timeout&#39;),
+        collection_formats=collection_formats)</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libgds.api.folders_api.FoldersApi.unarchive_folder"><code class="name flex">
 <span>def <span class="ident">unarchive_folder</span></span>(<span>self, folder_id, body, **kwargs)</span>
 </code></dt>
@@ -6491,6 +6936,8 @@ returns the request thread.</p></div>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.get_folder_with_http_info" href="#libica.openapi.libgds.api.folders_api.FoldersApi.get_folder_with_http_info">get_folder_with_http_info</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.list_folders" href="#libica.openapi.libgds.api.folders_api.FoldersApi.list_folders">list_folders</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.list_folders_with_http_info" href="#libica.openapi.libgds.api.folders_api.FoldersApi.list_folders_with_http_info">list_folders_with_http_info</a></code></li>
+<li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.move_folder" href="#libica.openapi.libgds.api.folders_api.FoldersApi.move_folder">move_folder</a></code></li>
+<li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.move_folder_with_http_info" href="#libica.openapi.libgds.api.folders_api.FoldersApi.move_folder_with_http_info">move_folder_with_http_info</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.unarchive_folder" href="#libica.openapi.libgds.api.folders_api.FoldersApi.unarchive_folder">unarchive_folder</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.unarchive_folder_with_http_info" href="#libica.openapi.libgds.api.folders_api.FoldersApi.unarchive_folder_with_http_info">unarchive_folder_with_http_info</a></code></li>
 <li><code><a title="libica.openapi.libgds.api.folders_api.FoldersApi.update_folder" href="#libica.openapi.libgds.api.folders_api.FoldersApi.update_folder">update_folder</a></code></li>
