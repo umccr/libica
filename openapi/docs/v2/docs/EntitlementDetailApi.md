@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **find_all_matching_activation_codes_for_cwl**
-> ActivationCodeDetailList find_all_matching_activation_codes_for_cwl()
+> ActivationCodeDetailList find_all_matching_activation_codes_for_cwl(search_matching_activation_codes_for_cwl_analysis)
 
 Search all matching activation code details for a Cwl pipeline.
 
@@ -60,13 +60,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         project_id="project_id_example",
         pipeline_id="pipeline_id_example",
         analysis_input=CwlAnalysisInput(),
-    ) # SearchMatchingActivationCodesForCwlAnalysis |  (optional)
+    ) # SearchMatchingActivationCodesForCwlAnalysis | 
 
     # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Search all matching activation code details for a Cwl pipeline.
-        api_response = api_instance.find_all_matching_activation_codes_for_cwl(search_matching_activation_codes_for_cwl_analysis=search_matching_activation_codes_for_cwl_analysis)
+        api_response = api_instance.find_all_matching_activation_codes_for_cwl(search_matching_activation_codes_for_cwl_analysis)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling EntitlementDetailApi->find_all_matching_activation_codes_for_cwl: %s\n" % e)
@@ -77,7 +76,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **search_matching_activation_codes_for_cwl_analysis** | [**SearchMatchingActivationCodesForCwlAnalysis**](SearchMatchingActivationCodesForCwlAnalysis.md)|  | [optional]
+ **search_matching_activation_codes_for_cwl_analysis** | [**SearchMatchingActivationCodesForCwlAnalysis**](SearchMatchingActivationCodesForCwlAnalysis.md)|  |
 
 ### Return type
 
@@ -103,7 +102,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_all_matching_activation_codes_for_nextflow**
-> ActivationCodeDetailList find_all_matching_activation_codes_for_nextflow()
+> ActivationCodeDetailList find_all_matching_activation_codes_for_nextflow(search_matching_activation_codes_for_nextflow_analysis)
 
 Search all matching activation code details for a Nextflow pipeline.
 
@@ -164,6 +163,16 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                             mount_path="mount_path_example",
                         ),
                     ],
+                    external_data=[
+                        AnalysisInputExternalData(
+                            url="url_example",
+                            type="htt",
+                            mount_path="mount_path_example",
+                            s3_details=AnalysisS3DataDetails(
+                                storage_credentials_id="storage_credentials_id_example",
+                            ),
+                        ),
+                    ],
                 ),
             ],
             parameters=[
@@ -182,13 +191,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
             ],
         ),
-    ) # SearchMatchingActivationCodesForNextflowAnalysis |  (optional)
+    ) # SearchMatchingActivationCodesForNextflowAnalysis | 
 
     # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Search all matching activation code details for a Nextflow pipeline.
-        api_response = api_instance.find_all_matching_activation_codes_for_nextflow(search_matching_activation_codes_for_nextflow_analysis=search_matching_activation_codes_for_nextflow_analysis)
+        api_response = api_instance.find_all_matching_activation_codes_for_nextflow(search_matching_activation_codes_for_nextflow_analysis)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling EntitlementDetailApi->find_all_matching_activation_codes_for_nextflow: %s\n" % e)
@@ -199,7 +207,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **search_matching_activation_codes_for_nextflow_analysis** | [**SearchMatchingActivationCodesForNextflowAnalysis**](SearchMatchingActivationCodesForNextflowAnalysis.md)|  | [optional]
+ **search_matching_activation_codes_for_nextflow_analysis** | [**SearchMatchingActivationCodesForNextflowAnalysis**](SearchMatchingActivationCodesForNextflowAnalysis.md)|  |
 
 ### Return type
 
@@ -225,7 +233,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_best_matching_activation_code_for_cwl**
-> ActivationCodeDetail find_best_matching_activation_code_for_cwl()
+> ActivationCodeDetail find_best_matching_activation_code_for_cwl(search_matching_activation_codes_for_cwl_analysis)
 
 Search the best matching activation code detail for Cwl pipeline.
 
@@ -274,13 +282,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         project_id="project_id_example",
         pipeline_id="pipeline_id_example",
         analysis_input=CwlAnalysisInput(),
-    ) # SearchMatchingActivationCodesForCwlAnalysis |  (optional)
+    ) # SearchMatchingActivationCodesForCwlAnalysis | 
 
     # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Search the best matching activation code detail for Cwl pipeline.
-        api_response = api_instance.find_best_matching_activation_code_for_cwl(search_matching_activation_codes_for_cwl_analysis=search_matching_activation_codes_for_cwl_analysis)
+        api_response = api_instance.find_best_matching_activation_code_for_cwl(search_matching_activation_codes_for_cwl_analysis)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling EntitlementDetailApi->find_best_matching_activation_code_for_cwl: %s\n" % e)
@@ -291,7 +298,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **search_matching_activation_codes_for_cwl_analysis** | [**SearchMatchingActivationCodesForCwlAnalysis**](SearchMatchingActivationCodesForCwlAnalysis.md)|  | [optional]
+ **search_matching_activation_codes_for_cwl_analysis** | [**SearchMatchingActivationCodesForCwlAnalysis**](SearchMatchingActivationCodesForCwlAnalysis.md)|  |
 
 ### Return type
 
@@ -317,7 +324,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **find_best_matching_activation_codes_for_nextflow**
-> ActivationCodeDetail find_best_matching_activation_codes_for_nextflow()
+> ActivationCodeDetail find_best_matching_activation_codes_for_nextflow(search_matching_activation_codes_for_nextflow_analysis)
 
 Search the best matching activation code details for Nextflow pipeline.
 
@@ -378,6 +385,16 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                             mount_path="mount_path_example",
                         ),
                     ],
+                    external_data=[
+                        AnalysisInputExternalData(
+                            url="url_example",
+                            type="htt",
+                            mount_path="mount_path_example",
+                            s3_details=AnalysisS3DataDetails(
+                                storage_credentials_id="storage_credentials_id_example",
+                            ),
+                        ),
+                    ],
                 ),
             ],
             parameters=[
@@ -396,13 +413,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
             ],
         ),
-    ) # SearchMatchingActivationCodesForNextflowAnalysis |  (optional)
+    ) # SearchMatchingActivationCodesForNextflowAnalysis | 
 
     # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Search the best matching activation code details for Nextflow pipeline.
-        api_response = api_instance.find_best_matching_activation_codes_for_nextflow(search_matching_activation_codes_for_nextflow_analysis=search_matching_activation_codes_for_nextflow_analysis)
+        api_response = api_instance.find_best_matching_activation_codes_for_nextflow(search_matching_activation_codes_for_nextflow_analysis)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling EntitlementDetailApi->find_best_matching_activation_codes_for_nextflow: %s\n" % e)
@@ -413,7 +429,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **search_matching_activation_codes_for_nextflow_analysis** | [**SearchMatchingActivationCodesForNextflowAnalysis**](SearchMatchingActivationCodesForNextflowAnalysis.md)|  | [optional]
+ **search_matching_activation_codes_for_nextflow_analysis** | [**SearchMatchingActivationCodesForNextflowAnalysis**](SearchMatchingActivationCodesForNextflowAnalysis.md)|  |
 
 ### Return type
 

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_storage_credential**
-> StorageCredential create_storage_credential()
+> StorageCredential create_storage_credential(create_storage_credential)
 
 Create a new storage credential
 
@@ -62,13 +62,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             access_key_id="+",
             secret_access_key="+",
         ),
-    ) # CreateStorageCredential |  (optional)
+    ) # CreateStorageCredential | 
 
     # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create a new storage credential
-        api_response = api_instance.create_storage_credential(create_storage_credential=create_storage_credential)
+        api_response = api_instance.create_storage_credential(create_storage_credential)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling StorageCredentialsApi->create_storage_credential: %s\n" % e)
@@ -79,7 +78,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_storage_credential** | [**CreateStorageCredential**](CreateStorageCredential.md)|  | [optional]
+ **create_storage_credential** | [**CreateStorageCredential**](CreateStorageCredential.md)|  |
 
 ### Return type
 
@@ -353,7 +352,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_storage_credential_secrets**
-> update_storage_credential_secrets(storage_credential_id)
+> update_storage_credential_secrets(storage_credential_id, update_storage_credential_secrets)
 
 Update a storage credential's secrets.
 
@@ -403,20 +402,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             access_key_id="+",
             secret_access_key="+",
         ),
-    ) # UpdateStorageCredentialSecrets |  (optional)
+    ) # UpdateStorageCredentialSecrets | 
 
     # example passing only required values which don't have defaults set
     try:
         # Update a storage credential's secrets.
-        api_instance.update_storage_credential_secrets(storage_credential_id)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling StorageCredentialsApi->update_storage_credential_secrets: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Update a storage credential's secrets.
-        api_instance.update_storage_credential_secrets(storage_credential_id, update_storage_credential_secrets=update_storage_credential_secrets)
+        api_instance.update_storage_credential_secrets(storage_credential_id, update_storage_credential_secrets)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling StorageCredentialsApi->update_storage_credential_secrets: %s\n" % e)
 ```
@@ -427,7 +418,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **storage_credential_id** | **str**|  |
- **update_storage_credential_secrets** | [**UpdateStorageCredentialSecrets**](UpdateStorageCredentialSecrets.md)|  | [optional]
+ **update_storage_credential_secrets** | [**UpdateStorageCredentialSecrets**](UpdateStorageCredentialSecrets.md)|  |
 
 ### Return type
 

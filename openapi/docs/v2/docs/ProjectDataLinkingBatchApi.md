@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create_project_data_linking_batch**
-> ProjectDataLinkingBatch create_project_data_linking_batch(project_id)
+> ProjectDataLinkingBatch create_project_data_linking_batch(project_id, create_project_data_linking_batch)
 
 Create a project data linking batch.
 
@@ -61,21 +61,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 data_id="data_id_example",
             ),
         ],
-    ) # CreateProjectDataLinkingBatch |  (optional)
+    ) # CreateProjectDataLinkingBatch | 
 
     # example passing only required values which don't have defaults set
     try:
         # Create a project data linking batch.
-        api_response = api_instance.create_project_data_linking_batch(project_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectDataLinkingBatchApi->create_project_data_linking_batch: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Create a project data linking batch.
-        api_response = api_instance.create_project_data_linking_batch(project_id, create_project_data_linking_batch=create_project_data_linking_batch)
+        api_response = api_instance.create_project_data_linking_batch(project_id, create_project_data_linking_batch)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataLinkingBatchApi->create_project_data_linking_batch: %s\n" % e)
@@ -87,7 +78,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
- **create_project_data_linking_batch** | [**CreateProjectDataLinkingBatch**](CreateProjectDataLinkingBatch.md)|  | [optional]
+ **create_project_data_linking_batch** | [**CreateProjectDataLinkingBatch**](CreateProjectDataLinkingBatch.md)|  |
 
 ### Return type
 

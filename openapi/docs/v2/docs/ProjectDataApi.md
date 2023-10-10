@@ -204,7 +204,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **complete_folder_upload_session**
-> FolderUploadSession complete_folder_upload_session(project_id, data_id, folder_upload_session_id)
+> FolderUploadSession complete_folder_upload_session(project_id, data_id, folder_upload_session_id, complete_folder_upload_session)
 
 Complete a trackable folder upload session.
 
@@ -254,21 +254,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     folder_upload_session_id = "folderUploadSessionId_example" # str | 
     complete_folder_upload_session = CompleteFolderUploadSession(
         number_of_expected_uploaded_files=1,
-    ) # CompleteFolderUploadSession | The info required to complete the folder upload session. (optional)
+    ) # CompleteFolderUploadSession | The info required to complete the folder upload session.
 
     # example passing only required values which don't have defaults set
     try:
         # Complete a trackable folder upload session.
-        api_response = api_instance.complete_folder_upload_session(project_id, data_id, folder_upload_session_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectDataApi->complete_folder_upload_session: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Complete a trackable folder upload session.
-        api_response = api_instance.complete_folder_upload_session(project_id, data_id, folder_upload_session_id, complete_folder_upload_session=complete_folder_upload_session)
+        api_response = api_instance.complete_folder_upload_session(project_id, data_id, folder_upload_session_id, complete_folder_upload_session)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataApi->complete_folder_upload_session: %s\n" % e)
@@ -282,7 +273,7 @@ Name | Type | Description  | Notes
  **project_id** | **str**|  |
  **data_id** | **str**|  |
  **folder_upload_session_id** | **str**|  |
- **complete_folder_upload_session** | [**CompleteFolderUploadSession**](CompleteFolderUploadSession.md)| The info required to complete the folder upload session. | [optional]
+ **complete_folder_upload_session** | [**CompleteFolderUploadSession**](CompleteFolderUploadSession.md)| The info required to complete the folder upload session. |
 
 ### Return type
 
@@ -308,7 +299,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_data_in_project**
-> ProjectData create_data_in_project(project_id)
+> ProjectData create_data_in_project(project_id, create_data)
 
 Create data in this project.
 
@@ -358,21 +349,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         folder_path="jUR,rZ#UM/?R,Fp^l6$ARj",
         format_code="format_code_example",
         data_type="FILE",
-    ) # CreateData | The data to create. (optional)
+    ) # CreateData | The data to create.
 
     # example passing only required values which don't have defaults set
     try:
         # Create data in this project.
-        api_response = api_instance.create_data_in_project(project_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectDataApi->create_data_in_project: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Create data in this project.
-        api_response = api_instance.create_data_in_project(project_id, create_data=create_data)
+        api_response = api_instance.create_data_in_project(project_id, create_data)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataApi->create_data_in_project: %s\n" % e)
@@ -384,7 +366,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
- **create_data** | [**CreateData**](CreateData.md)| The data to create. | [optional]
+ **create_data** | [**CreateData**](CreateData.md)| The data to create. |
 
 ### Return type
 
@@ -498,7 +480,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_download_urls_for_data**
-> DataUrlWithPathList create_download_urls_for_data(project_id)
+> DataUrlWithPathList create_download_urls_for_data(project_id, data_id_or_path_list)
 
 Retrieve download URLs for the data.
 
@@ -551,21 +533,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         data_paths=[
             "data_paths_example",
         ],
-    ) # DataIdOrPathList |  (optional)
+    ) # DataIdOrPathList | 
 
     # example passing only required values which don't have defaults set
     try:
         # Retrieve download URLs for the data.
-        api_response = api_instance.create_download_urls_for_data(project_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectDataApi->create_download_urls_for_data: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Retrieve download URLs for the data.
-        api_response = api_instance.create_download_urls_for_data(project_id, data_id_or_path_list=data_id_or_path_list)
+        api_response = api_instance.create_download_urls_for_data(project_id, data_id_or_path_list)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataApi->create_download_urls_for_data: %s\n" % e)
@@ -577,7 +550,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
- **data_id_or_path_list** | [**DataIdOrPathList**](DataIdOrPathList.md)|  | [optional]
+ **data_id_or_path_list** | [**DataIdOrPathList**](DataIdOrPathList.md)|  |
 
 ### Return type
 
@@ -797,7 +770,7 @@ Name | Type | Description  | Notes
 
 Retrieve temporary credentials for this data.
 
-Can be used to upload or download a file directly from the region where it is located, no connector is needed.
+Can be used to upload or download a file directly from the region where it is located, no connector is needed. The returned credentials expire after 36 hours.
 
 ### Example
 
@@ -2439,7 +2412,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_project_data**
-> ProjectData update_project_data(project_id, data_id)
+> ProjectData update_project_data(project_id, data_id, project_data)
 
 Update this project data.
 
@@ -2566,21 +2539,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             ),
         ),
         project_id="project_id_example",
-    ) # ProjectData | The updated project data. (optional)
+    ) # ProjectData | The updated project data.
 
     # example passing only required values which don't have defaults set
     try:
         # Update this project data.
-        api_response = api_instance.update_project_data(project_id, data_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectDataApi->update_project_data: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Update this project data.
-        api_response = api_instance.update_project_data(project_id, data_id, project_data=project_data)
+        api_response = api_instance.update_project_data(project_id, data_id, project_data)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataApi->update_project_data: %s\n" % e)
@@ -2593,7 +2557,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
  **data_id** | **str**|  |
- **project_data** | [**ProjectData**](ProjectData.md)| The updated project data. | [optional]
+ **project_data** | [**ProjectData**](ProjectData.md)| The updated project data. |
 
 ### Return type
 

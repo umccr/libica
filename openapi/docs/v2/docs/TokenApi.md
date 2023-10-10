@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 
 Refresh a JWT using a not yet expired, still valid JWT.
 
-When still having a valid JWT, this endpoint can be used to extend the validity.
+When still having a valid JWT, this endpoint can be used to extend the validity.<br>Refreshing the JWT is not possible if it has been created using an API-key.
 
 ### Example
 

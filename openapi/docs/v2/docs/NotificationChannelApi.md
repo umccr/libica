@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_notification_channel**
-> NotificationChannel create_notification_channel()
+> NotificationChannel create_notification_channel(create_notification_channel)
 
 Create a notification channel
 
@@ -59,13 +59,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         enabled=True,
         type="MAIL",
         address="address_example",
-    ) # CreateNotificationChannel | The new channel (optional)
+    ) # CreateNotificationChannel | The new channel
 
     # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create a notification channel
-        api_response = api_instance.create_notification_channel(create_notification_channel=create_notification_channel)
+        api_response = api_instance.create_notification_channel(create_notification_channel)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling NotificationChannelApi->create_notification_channel: %s\n" % e)
@@ -76,7 +75,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_notification_channel** | [**CreateNotificationChannel**](CreateNotificationChannel.md)| The new channel | [optional]
+ **create_notification_channel** | [**CreateNotificationChannel**](CreateNotificationChannel.md)| The new channel |
 
 ### Return type
 
@@ -348,7 +347,7 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_notification_channel**
-> NotificationChannel update_notification_channel(channel_id)
+> NotificationChannel update_notification_channel(channel_id, notification_channel)
 
 Update a notification channel
 
@@ -393,7 +392,6 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = notification_channel_api.NotificationChannelApi(api_client)
     channel_id = "channelId_example" # str | The ID of the notification channel to update
-    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
     notification_channel = NotificationChannel(
         id="id_example",
         time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
@@ -404,12 +402,13 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         enabled=True,
         type="MAIL",
         address="address_example",
-    ) # NotificationChannel | The updated channel (optional)
+    ) # NotificationChannel | The updated channel
+    if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Update a notification channel
-        api_response = api_instance.update_notification_channel(channel_id)
+        api_response = api_instance.update_notification_channel(channel_id, notification_channel)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling NotificationChannelApi->update_notification_channel: %s\n" % e)
@@ -418,7 +417,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Update a notification channel
-        api_response = api_instance.update_notification_channel(channel_id, if_match=if_match, notification_channel=notification_channel)
+        api_response = api_instance.update_notification_channel(channel_id, notification_channel, if_match=if_match)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling NotificationChannelApi->update_notification_channel: %s\n" % e)
@@ -430,8 +429,8 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **channel_id** | **str**| The ID of the notification channel to update |
+ **notification_channel** | [**NotificationChannel**](NotificationChannel.md)| The updated channel |
  **if_match** | **str**| Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. | [optional]
- **notification_channel** | [**NotificationChannel**](NotificationChannel.md)| The updated channel | [optional]
 
 ### Return type
 

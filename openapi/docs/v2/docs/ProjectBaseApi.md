@@ -367,7 +367,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **load_data**
-> BaseJob load_data(project_id, table_id)
+> BaseJob load_data(project_id, table_id, load_data_in_base_request)
 
 Load data in a base table.
 
@@ -415,7 +415,6 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     project_id = "projectId_example" # str | 
     table_id = "tableId_example" # str | 
     load_data_in_base_request = LoadDataInBaseRequest(
-        allow_jagged_rows=False,
         allow_quoted_newlines=False,
         data_id="data_id_example",
         delimiter=",",
@@ -433,21 +432,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         number_of_errors_allowed=0,
         quote="quote_example",
         write_preference="APPENDTOTABLE",
-    ) # LoadDataInBaseRequest | Load data request (optional)
+    ) # LoadDataInBaseRequest | Load data request
 
     # example passing only required values which don't have defaults set
     try:
         # Load data in a base table.
-        api_response = api_instance.load_data(project_id, table_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectBaseApi->load_data: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Load data in a base table.
-        api_response = api_instance.load_data(project_id, table_id, load_data_in_base_request=load_data_in_base_request)
+        api_response = api_instance.load_data(project_id, table_id, load_data_in_base_request)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectBaseApi->load_data: %s\n" % e)
@@ -460,7 +450,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
  **table_id** | **str**|  |
- **load_data_in_base_request** | [**LoadDataInBaseRequest**](LoadDataInBaseRequest.md)| Load data request | [optional]
+ **load_data_in_base_request** | [**LoadDataInBaseRequest**](LoadDataInBaseRequest.md)| Load data request |
 
 ### Return type
 
