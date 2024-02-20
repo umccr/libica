@@ -78,6 +78,6 @@ chkepver() {
 validateapi() {
   # validate swagger openapi definitions
   for i in "${services[@]}"; do
-    npx swagger-cli validate swagger/"$i".json
+    REDOCLY_TELEMETRY=off npx @redocly/cli lint swagger/"$i".json
   done
 }
