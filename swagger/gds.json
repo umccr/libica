@@ -1115,6 +1115,11 @@
             "type": "string"
           },
           {
+            "in": "header",
+            "name": "folderListSecret",
+            "type": "string"
+          },
+          {
             "in": "body",
             "name": "body",
             "description": "",
@@ -1351,6 +1356,11 @@
             "in": "query",
             "name": "include",
             "description": "Optionally include additional fields in the response.\r\n            Possible values: ObjectStoreAccess",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "folderListSecret",
             "type": "string"
           },
           {
@@ -3685,13 +3695,6 @@
     "CreateVolumeResponse": {
       "type": "object",
       "properties": {
-        "importSessionId": {
-          "description": "Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom\r\nVolume configurations.",
-          "type": "string"
-        },
-        "objectStoreAccess": {
-          "$ref": "#/definitions/ObjectStoreAccess"
-        },
         "id": {
           "description": "A unique identifier for this Volume",
           "type": "string"
@@ -3761,6 +3764,13 @@
         "migrationStatus": {
           "description": "Status of the root folder migration status from v1 to v2",
           "type": "string"
+        },
+        "importSessionId": {
+          "description": "Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom\r\nVolume configurations.",
+          "type": "string"
+        },
+        "objectStoreAccess": {
+          "$ref": "#/definitions/ObjectStoreAccess"
         }
       }
     },
@@ -4174,8 +4184,7 @@
         "Partial",
         "Available",
         "Archived",
-        "Unarchiving",
-        "Moving"
+        "Unarchiving"
       ],
       "type": "string"
     },
@@ -4382,6 +4391,11 @@
           "type": "string"
         },
         "targetFolderId": {
+          "description": "The Id of the Target Parent Folder where the actual folder is copied",
+          "type": "string"
+        },
+        "destinationFolderId": {
+          "description": "The Id of the actual folder copied under the Target Folder",
           "type": "string"
         }
       }
@@ -4484,6 +4498,11 @@
           "type": "string"
         },
         "targetFolderId": {
+          "description": "The Id of the Target Parent Folder where the actual folder is moved",
+          "type": "string"
+        },
+        "destinationFolderId": {
+          "description": "The Id of the actual folder moved under the Target Folder",
           "type": "string"
         },
         "sourceVolumeId": {
@@ -4945,7 +4964,8 @@
         "Archiving",
         "Unarchiving",
         "Deleting",
-        "Moving"
+        "Moving",
+        "Copying"
       ],
       "type": "string"
     },
