@@ -37,6 +37,7 @@ class FolderMoveOperationParameters(object):
         'target_folder_urn': 'str',
         'source_folder_id': 'str',
         'target_folder_id': 'str',
+        'destination_folder_id': 'str',
         'source_volume_id': 'str',
         'original_source_object_store_location_prefix': 'str',
         'destination_object_store_location': 'str',
@@ -48,13 +49,14 @@ class FolderMoveOperationParameters(object):
         'target_folder_urn': 'targetFolderUrn',
         'source_folder_id': 'sourceFolderId',
         'target_folder_id': 'targetFolderId',
+        'destination_folder_id': 'destinationFolderId',
         'source_volume_id': 'sourceVolumeId',
         'original_source_object_store_location_prefix': 'originalSourceObjectStoreLocationPrefix',
         'destination_object_store_location': 'destinationObjectStoreLocation',
         'original_source_path': 'originalSourcePath'
     }
 
-    def __init__(self, source_folder_urn=None, target_folder_urn=None, source_folder_id=None, target_folder_id=None, source_volume_id=None, original_source_object_store_location_prefix=None, destination_object_store_location=None, original_source_path=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, source_folder_urn=None, target_folder_urn=None, source_folder_id=None, target_folder_id=None, destination_folder_id=None, source_volume_id=None, original_source_object_store_location_prefix=None, destination_object_store_location=None, original_source_path=None, local_vars_configuration=None):  # noqa: E501
         """FolderMoveOperationParameters - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -64,6 +66,7 @@ class FolderMoveOperationParameters(object):
         self._target_folder_urn = None
         self._source_folder_id = None
         self._target_folder_id = None
+        self._destination_folder_id = None
         self._source_volume_id = None
         self._original_source_object_store_location_prefix = None
         self._destination_object_store_location = None
@@ -78,6 +81,8 @@ class FolderMoveOperationParameters(object):
             self.source_folder_id = source_folder_id
         if target_folder_id is not None:
             self.target_folder_id = target_folder_id
+        if destination_folder_id is not None:
+            self.destination_folder_id = destination_folder_id
         if source_volume_id is not None:
             self.source_volume_id = source_volume_id
         if original_source_object_store_location_prefix is not None:
@@ -158,6 +163,7 @@ class FolderMoveOperationParameters(object):
     def target_folder_id(self):
         """Gets the target_folder_id of this FolderMoveOperationParameters.  # noqa: E501
 
+        The Id of the Target Parent Folder where the actual folder is moved  # noqa: E501
 
         :return: The target_folder_id of this FolderMoveOperationParameters.  # noqa: E501
         :rtype: str
@@ -168,12 +174,36 @@ class FolderMoveOperationParameters(object):
     def target_folder_id(self, target_folder_id):
         """Sets the target_folder_id of this FolderMoveOperationParameters.
 
+        The Id of the Target Parent Folder where the actual folder is moved  # noqa: E501
 
         :param target_folder_id: The target_folder_id of this FolderMoveOperationParameters.  # noqa: E501
         :type: str
         """
 
         self._target_folder_id = target_folder_id
+
+    @property
+    def destination_folder_id(self):
+        """Gets the destination_folder_id of this FolderMoveOperationParameters.  # noqa: E501
+
+        The Id of the actual folder moved under the Target Folder  # noqa: E501
+
+        :return: The destination_folder_id of this FolderMoveOperationParameters.  # noqa: E501
+        :rtype: str
+        """
+        return self._destination_folder_id
+
+    @destination_folder_id.setter
+    def destination_folder_id(self, destination_folder_id):
+        """Sets the destination_folder_id of this FolderMoveOperationParameters.
+
+        The Id of the actual folder moved under the Target Folder  # noqa: E501
+
+        :param destination_folder_id: The destination_folder_id of this FolderMoveOperationParameters.  # noqa: E501
+        :type: str
+        """
+
+        self._destination_folder_id = destination_folder_id
 
     @property
     def source_volume_id(self):
