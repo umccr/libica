@@ -80,31 +80,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- name\n\
-          - shortDescription"
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- name\n- shortDescription"
         schema:
           type: string
       responses:
@@ -563,30 +567,35 @@ paths:
             type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
         schema:
@@ -639,6 +648,8 @@ paths:
       tags:
       - Bundle Data
       summary: Unlink data from this bundle.
+      description: "Note that for folders, this only unlinks the folder itself, not\
+        \ the folder contents!  Use 'Bundle Data Unlinking Batch' for recursive unlinking."
       operationId: unlinkDataFromBundle
       parameters:
       - name: bundleId
@@ -660,6 +671,364 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data is successfully unlinked from this bundle.
+  /api/bundles/{bundleId}/dataLinkingBatch:
+    post:
+      tags:
+      - Bundle Data Linking Batch
+      summary: Create a bundle data linking batch.
+      operationId: createBundleDataLinkingBatch
+      parameters:
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateBundleDataLinkingBatch'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The bundle data linking batch is successfully created.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/BundleDataLinkingBatch'
+  /api/bundles/{bundleId}/dataLinkingBatch/{batchId}:
+    get:
+      tags:
+      - Bundle Data Linking Batch
+      summary: Retrieve a bundle data linking batch.
+      operationId: getBundleDataLinkingBatch
+      parameters:
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The bundle data linking batch is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/BundleDataLinkingBatch'
+  /api/bundles/{bundleId}/dataLinkingBatch/{batchId}/items:
+    get:
+      tags:
+      - Bundle Data Linking Batch
+      summary: Retrieve a list of bundle data linking batch items.
+      operationId: getBundleDataLinkingBatchItems
+      parameters:
+      - name: status
+        in: query
+        description: The statuses to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - INITIALISED
+            - WAITING_RESOURCES
+            - RUNNING
+            - LINKED
+            - ALREADY_LINKED
+            - FAILED
+            - PARTIALLY_LINKED
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
+        schema:
+          type: string
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of bundle data linking batch items is successfully
+            retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/BundleDataLinkingBatchItemPagedList'
+  /api/bundles/{bundleId}/dataLinkingBatch/{batchId}/items/{itemId}:
+    get:
+      tags:
+      - Bundle Data Linking Batch
+      summary: Retrieve a bundle data linking batch item.
+      operationId: getBundleDataLinkingBatchItem
+      parameters:
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The bundle data linking batch item is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/BundleDataLinkingBatchItem'
+  /api/bundles/{bundleId}/dataUnlinkingBatch:
+    post:
+      tags:
+      - Bundle Data Unlinking Batch
+      summary: Create a bundle data unlinking batch.
+      operationId: createBundleDataUnlinkingBatch
+      parameters:
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateBundleDataUnlinkingBatch'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The bundle data unlinking batch is successfully created.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/BundleDataUnlinkingBatch'
+  /api/bundles/{bundleId}/dataUnlinkingBatch/{batchId}:
+    get:
+      tags:
+      - Bundle Data Unlinking Batch
+      summary: Retrieve a bundle data unlinking batch.
+      operationId: getBundleDataUnlinkingBatch
+      parameters:
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The bundle data unlinking batch is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/BundleDataUnlinkingBatch'
+  /api/bundles/{bundleId}/dataUnlinkingBatch/{batchId}/items:
+    get:
+      tags:
+      - Bundle Data Unlinking Batch
+      summary: Retrieve a list of bundle data unlinking batch items.
+      operationId: getBundleDataUnlinkingBatchItems
+      parameters:
+      - name: status
+        in: query
+        description: The statuses to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - INITIALISED
+            - WAITING_RESOURCES
+            - RUNNING
+            - UNLINKED
+            - ALREADY_UNLINKED
+            - FAILED
+            - PARTIALLY_UNLINKED
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
+        schema:
+          type: string
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of bundle data unlinking batch items is successfully
+            retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/BundleDataUnlinkingBatchItemPagedList'
+  /api/bundles/{bundleId}/dataUnlinkingBatch/{batchId}/items/{itemId}:
+    get:
+      tags:
+      - Bundle Data Unlinking Batch
+      summary: Retrieve a bundle data unlinking batch item.
+      operationId: getBundleDataUnlinkingBatchItem
+      parameters:
+      - name: bundleId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The bundle data unlinking batch item is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/BundleDataUnlinkingBatchItem'
   /api/bundles/{bundleId}/pipelines:
     get:
       tags:
@@ -765,30 +1134,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- description\n- metadataValid\n- status"
         schema:
           type: string
@@ -1598,30 +1972,35 @@ paths:
       parameters:
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       responses:
@@ -1661,31 +2040,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- name\n\
-          - shortDescription"
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- name\n- shortDescription"
         schema:
           type: string
       responses:
@@ -1957,30 +2340,35 @@ paths:
             - FAILED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       responses:
@@ -2572,30 +2960,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
         schema:
           type: string
@@ -2989,7 +3382,7 @@ paths:
       tags:
       - Project Analysis Creation Batch
       summary: Retrieve a list of analysis creation batch items.
-      operationId: getAnalysisCreationBatchItem
+      operationId: getAnalysisCreationBatchItems
       parameters:
       - name: status
         in: query
@@ -3005,30 +3398,35 @@ paths:
             - FAILED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -3061,7 +3459,7 @@ paths:
       tags:
       - Project Analysis Creation Batch
       summary: Retrieve a analysis creation batch item.
-      operationId: getAnalysisCreationBatchItem_1
+      operationId: getAnalysisCreationBatchItem
       parameters:
       - name: projectId
         in: path
@@ -3254,31 +3652,36 @@ paths:
             type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- name\n\
-          - shortDescription\n- information"
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- name\n- shortDescription\n\
+          - information"
         schema:
           type: string
       responses:
@@ -3615,30 +4018,35 @@ paths:
       parameters:
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- description\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- description\n\
           - type"
         schema:
           type: string
@@ -3799,7 +4207,7 @@ paths:
       tags:
       - Project Custom Notification Subscriptions
       summary: Retrieve notification subscriptions
-      operationId: getNotificationSubscriptions
+      operationId: getCustomNotificationSubscriptions
       parameters:
       - name: projectId
         in: path
@@ -3824,7 +4232,7 @@ paths:
       tags:
       - Project Custom Notification Subscriptions
       summary: Create a custom notification subscription
-      operationId: createNotificationSubscription
+      operationId: createCustomNotificationSubscription
       parameters:
       - name: projectId
         in: path
@@ -3866,7 +4274,7 @@ paths:
       tags:
       - Project Custom Notification Subscriptions
       summary: Retrieve a notification subscription
-      operationId: getNotificationSubscription
+      operationId: getCustomNotificationSubscription
       parameters:
       - name: projectId
         in: path
@@ -3910,7 +4318,7 @@ paths:
          - eventCode
          - filterExpression
          - notificationChannel
-      operationId: updateNotificationSubscription
+      operationId: updateCustomNotificationSubscription
       parameters:
       - name: projectId
         in: path
@@ -3969,7 +4377,7 @@ paths:
       tags:
       - Project Custom Notification Subscriptions
       summary: Delete a custom notification subscription
-      operationId: deleteNotificationSubscription
+      operationId: deleteCustomNotificationSubscription
       parameters:
       - name: projectId
         in: path
@@ -4301,30 +4709,35 @@ paths:
             type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
         schema:
@@ -4353,6 +4766,26 @@ paths:
       summary: Create data in this project.
       operationId: createDataInProject
       parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec and is allowed to be max 255 characters long. If the header is supplied,\
+          \ the response of the request will be saved for 7 days for the specific\
+          \ API endpoint, header value and user reference. When the same user makes\
+          \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
+          \ header value, following use cases can occur:<br /><ul><li>the request\
+          \ body is the same as the previous request and an answer is stored => the\
+          \ stored response is returned without executing the request again.</li><li>the\
+          \ request body is the same as the previous request and no answer is stored\
+          \ because the previous request has not finished => 409 error response.</li><li>the\
+          \ request body is not the same as the previous request => 422 error response.</li></ul>This\
+          \ means that each time when executing an API request using the Idempotency-Key\
+          \ header, the request has to contain a new value that hasn't been used in\
+          \ the past 7 days for that specific API and by the specific user."
+        schema:
+          maxLength: 255
+          type: string
       - name: projectId
         in: path
         required: true
@@ -4634,30 +5067,35 @@ paths:
             type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
         schema:
@@ -4689,22 +5127,26 @@ paths:
       parameters:
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: projectId
@@ -4866,22 +5308,26 @@ paths:
       parameters:
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: projectId
@@ -5226,6 +5672,8 @@ paths:
       tags:
       - Project Data
       summary: Unlink data from this project.
+      description: "Note that for folders, this only unlinks the folder itself, not\
+        \ the folder contents!  Use 'Project Data Unlinking Batch' for recursive unlinking."
       operationId: unlinkDataFromProject
       parameters:
       - name: projectId
@@ -5548,30 +5996,35 @@ paths:
             - FAILED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -5640,6 +6093,12 @@ paths:
       tags:
       - Project Data Linking Batch
       summary: Create a project data linking batch.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\nInitial version deprecated.\nRecommended\
+        \ to use V4 for performance efficiency.\n## [V4]\nMore efficient, handles\
+        \ folder contents via the folder item, instead of creating separate items\
+        \ for all contents.\n"
       operationId: createProjectDataLinkingBatch
       parameters:
       - name: projectId
@@ -5649,6 +6108,9 @@ paths:
           type: string
       requestBody:
         content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDataLinkingBatch'
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/CreateProjectDataLinkingBatch'
@@ -5666,6 +6128,9 @@ paths:
         "201":
           description: The project data linking batch is successfully created.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataLinkingBatch'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectDataLinkingBatch'
@@ -5705,6 +6170,11 @@ paths:
       tags:
       - Project Data Linking Batch
       summary: Retrieve a list of project data linking batch items.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\nInitial version, deprecated, returns PARTIALLY_LINKED\
+        \ item processing status as FAILED.\n## [V4]\nSupports PARTIALLY_LINKED item\
+        \ processing status.\n"
       operationId: getProjectDataLinkingBatchItems
       parameters:
       - name: status
@@ -5721,32 +6191,38 @@ paths:
             - LINKED
             - ALREADY_LINKED
             - FAILED
+            - PARTIALLY_LINKED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -5771,6 +6247,9 @@ paths:
           description: The list of project data linking batch items is successfully
             retrieved.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataLinkingBatchItemPagedListV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectDataLinkingBatchItemPagedList'
@@ -5779,6 +6258,11 @@ paths:
       tags:
       - Project Data Linking Batch
       summary: Retrieve a project data linking batch item.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\nInitial version, deprecated, returns PARTIALLY_LINKED\
+        \ item processing status as FAILED.\n## [V4]\nSupports PARTIALLY_LINKED item\
+        \ processing status.\n"
       operationId: getProjectDataLinkingBatchItem
       parameters:
       - name: projectId
@@ -5808,6 +6292,9 @@ paths:
         "200":
           description: The project data linking batch item is successfully retrieved.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataLinkingBatchItemV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectDataLinkingBatchItem'
@@ -5837,30 +6324,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - direction\n- connector\n- protocol\n- dataTransferred\n- status\n- statusMessage\n\
           - duration\n"
         schema:
@@ -5948,6 +6440,185 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The data transfer is successfully aborted.
+  /api/projects/{projectId}/dataUnlinkingBatch:
+    post:
+      tags:
+      - Project Data Unlinking Batch
+      summary: Create a project data unlinking batch.
+      operationId: createProjectDataUnlinkingBatch
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDataUnlinkingBatch'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The project data unlinking batch is successfully created.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataUnlinkingBatch'
+  /api/projects/{projectId}/dataUnlinkingBatch/{batchId}:
+    get:
+      tags:
+      - Project Data Unlinking Batch
+      summary: Retrieve a project data unlinking batch.
+      operationId: getProjectDataUnlinkingBatch
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project data unlinking batch is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataUnlinkingBatch'
+  /api/projects/{projectId}/dataUnlinkingBatch/{batchId}/items:
+    get:
+      tags:
+      - Project Data Unlinking Batch
+      summary: Retrieve a list of project data unlinking batch items.
+      operationId: getProjectDataUnlinkingBatchItems
+      parameters:
+      - name: status
+        in: query
+        description: The statuses to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - INITIALISED
+            - WAITING_RESOURCES
+            - RUNNING
+            - UNLINKED
+            - ALREADY_UNLINKED
+            - FAILED
+            - PARTIALLY_UNLINKED
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project data unlinking batch items is successfully
+            retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataUnlinkingBatchItemPagedList'
+  /api/projects/{projectId}/dataUnlinkingBatch/{batchId}/items/{itemId}:
+    get:
+      tags:
+      - Project Data Unlinking Batch
+      summary: Retrieve a project data unlinking batch item.
+      operationId: getProjectDataUnlinkingBatchItem
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project data unlinking batch item is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataUnlinkingBatchItem'
   /api/projects/{projectId}/dataUpdateBatch:
     post:
       tags:
@@ -6036,30 +6707,35 @@ paths:
             - FAILED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -6129,7 +6805,7 @@ paths:
       tags:
       - Project Notification Subscriptions
       summary: Retrieve notification subscriptions
-      operationId: getNotificationSubscriptions_1
+      operationId: getNotificationSubscriptions
       parameters:
       - name: projectId
         in: path
@@ -6154,7 +6830,7 @@ paths:
       tags:
       - Project Notification Subscriptions
       summary: Create a notification subscription
-      operationId: createNotificationSubscription_1
+      operationId: createNotificationSubscription
       parameters:
       - name: projectId
         in: path
@@ -6197,7 +6873,7 @@ paths:
       tags:
       - Project Notification Subscriptions
       summary: Retrieve a notification subscription
-      operationId: getNotificationSubscription_1
+      operationId: getNotificationSubscription
       parameters:
       - name: projectId
         in: path
@@ -6241,7 +6917,7 @@ paths:
          - eventCode
          - filterExpression
          - notificationChannel
-      operationId: updateNotificationSubscription_1
+      operationId: updateNotificationSubscription
       parameters:
       - name: projectId
         in: path
@@ -6300,7 +6976,7 @@ paths:
       tags:
       - Project Notification Subscriptions
       summary: Delete a notification subscription
-      operationId: deleteNotificationSubscription_1
+      operationId: deleteNotificationSubscription
       parameters:
       - name: projectId
         in: path
@@ -6742,7 +7418,7 @@ paths:
       tags:
       - Project Pipeline
       summary: Release a pipeline.
-      operationId: releasePipeline
+      operationId: releaseProjectPipeline
       parameters:
       - name: projectId
         in: path
@@ -6803,7 +7479,7 @@ paths:
       tags:
       - Project Pipeline
       summary: Retrieve files for a project pipeline.
-      operationId: getPipelineFiles_1
+      operationId: getProjectPipelineFiles
       parameters:
       - name: projectId
         in: path
@@ -6833,7 +7509,7 @@ paths:
       tags:
       - Project Pipeline
       summary: Create a file for a pipeline.
-      operationId: createPipelineFile
+      operationId: createProjectPipelineFile
       parameters:
       - name: projectId
         in: path
@@ -6870,7 +7546,7 @@ paths:
       tags:
       - Project Pipeline
       summary: Download the contents of a pipeline file.
-      operationId: downloadPipelineFileContent_1
+      operationId: downloadProjectPipelineFileContent
       parameters:
       - name: projectId
         in: path
@@ -6914,7 +7590,7 @@ paths:
       tags:
       - Project Pipeline
       summary: Update the contents of a file for a pipeline.
-      operationId: updatePipelineFile
+      operationId: updateProjectPipelineFile
       parameters:
       - name: projectId
         in: path
@@ -6954,7 +7630,7 @@ paths:
       tags:
       - Project Pipeline
       summary: Delete a file for a pipeline.
-      operationId: deletePipelineFile
+      operationId: deleteProjectPipelineFile
       parameters:
       - name: projectId
         in: path
@@ -7378,30 +8054,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
         schema:
           type: string
@@ -7669,30 +8350,35 @@ paths:
             type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
         schema:
@@ -8179,30 +8865,35 @@ paths:
             - STOPPED
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\""
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -8303,30 +8994,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- workflow\n"
         schema:
           type: string
@@ -8533,30 +9229,35 @@ paths:
           type: string
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- description\n- metadataValid\n- status"
         schema:
           type: string
@@ -9266,30 +9967,35 @@ paths:
       parameters:
       - name: pageOffset
         in: query
-        description: The amount of rows to skip in the result. Ideally this is a multiple
-          of the size parameter. Offset-based pagination has a result limit of 200K
-          rows and does not guarantee unique results across pages
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
         schema:
           type: string
       - name: pageToken
         in: query
-        description: The cursor to get subsequent results. The value to use is returned
-          in the result when using cursor-based pagination. Cursor-based pagination
-          guarantees complete and unique results across all pages.
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
         schema:
           type: string
       - name: pageSize
         in: query
-        description: The amount of rows to return. Use in combination with the offset
-          or cursor parameter to get subsequent results.
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
         schema:
           type: string
       - name: sort
         in: query
-        description: "Which field to order the results by. The default order is ascending,\
-          \ suffix with ' desc' to sort descending (suffix ' asc' also works for ascending).\
-          \ Multiple values should be separated with commas. An example: \"?sort=dateCreated,\
-          \ lastName desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- description\n- metadataValid\n- status"
         schema:
           type: string
@@ -9487,6 +10193,7 @@ components:
             nullable: true
         links:
           $ref: '#/components/schemas/Links'
+      nullable: true
     BundlePagedList:
       required:
       - items
@@ -9569,7 +10276,7 @@ components:
           type: string
           description: The name of the link
         url:
-          maxLength: 100
+          maxLength: 2048
           minLength: 1
           type: string
           description: The url of the link
@@ -9801,6 +10508,7 @@ components:
         bundleId:
           type: string
           format: uuid
+      nullable: true
     BundleDataPagedList:
       required:
       - items
@@ -10044,6 +10752,611 @@ components:
           minLength: 0
           type: string
       nullable: true
+    Application:
+      required:
+      - id
+      - name
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: The unique name identifying the application
+        type:
+          type: string
+          description: The type of the application
+          enum:
+          - MAIN
+          - WEBSOLUTION
+          - EXTERNAL
+        displayName:
+          type: string
+          description: The display name of the application
+          nullable: true
+      nullable: true
+    BundleDataLinkingBatch:
+      required:
+      - id
+      - job
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        job:
+          $ref: '#/components/schemas/Job'
+    Job:
+      required:
+      - id
+      - owner
+      - status
+      - subjectId
+      - subjectType
+      - timeCreated
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - INITIALIZED
+          - WAITING_FOR_RESOURCES
+          - RUNNING
+          - STOPPED
+          - SUCCEEDED
+          - PARTIALLY_SUCCEEDED
+          - FAILED
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this job.
+          nullable: true
+        subjectType:
+          type: string
+          description: The type of the subject for which this job provides execution.
+          example: SampleCreationBatch
+        subjectId:
+          type: string
+          description: The id of the subject for which this job provides execution.
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeStarted:
+          type: string
+          format: date-time
+          nullable: true
+        timeFinished:
+          type: string
+          format: date-time
+          nullable: true
+        owner:
+          $ref: '#/components/schemas/User'
+        project:
+          $ref: '#/components/schemas/Project'
+        bundle:
+          $ref: '#/components/schemas/Bundle'
+      nullable: true
+    Project:
+      required:
+      - active
+      - billingMode
+      - id
+      - name
+      - ownerId
+      - region
+      - tags
+      - tenantId
+      - timeCreated
+      - timeModified
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        tenantName:
+          type: string
+          nullable: true
+        urn:
+          maxLength: 2000
+          minLength: 1
+          type: string
+          description: "The URN of the project. The format is urn:ilmn:ica:\\<type\
+            \ of the object\\>:\\<ID of the object\\>#\\<optional human readable hint\
+            \ representing the object\\>. The hint can be omitted, in that case the\
+            \ hashtag (#) must also be omitted."
+          nullable: true
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        active:
+          type: boolean
+          description: Indicates whether the project is active or hidden.
+        baseEnabled:
+          type: boolean
+          description: Indicates whether the project is base enabled.
+          nullable: true
+        shortDescription:
+          maxLength: 4000
+          minLength: 1
+          type: string
+          nullable: true
+        information:
+          type: string
+          description: Information about the project. Note that the value of this
+            field can be arbitrary large.
+          nullable: true
+        region:
+          $ref: '#/components/schemas/Region'
+        billingMode:
+          type: string
+          description: The billing mode of the project. It determines who pays for
+            the costs linked to the project.
+          enum:
+          - PROJECT
+          - TENANT
+        dataSharingEnabled:
+          type: boolean
+          description: Indicates whether the Data and Samples created in this Project
+            can be linked to other Projects.
+          nullable: true
+        tags:
+          $ref: '#/components/schemas/ProjectTag'
+        storageBundle:
+          $ref: '#/components/schemas/StorageBundle'
+        selfManagedStorageConfiguration:
+          $ref: '#/components/schemas/StorageConfiguration'
+        analysisPriority:
+          type: string
+          description: "Indicates the priority given to a project and its analyses\
+            \ within a single tenant. Note that for a PUT call, when not providing\
+            \ a value for this attribute (null value or absent attribute), the persisted\
+            \ value will not change."
+          nullable: true
+          enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+        metadataModel:
+          $ref: '#/components/schemas/MetadataModel'
+        application:
+          $ref: '#/components/schemas/Application'
+      nullable: true
+    ProjectTag:
+      required:
+      - technicalTags
+      - userTags
+      type: object
+      properties:
+        technicalTags:
+          type: array
+          items:
+            type: string
+        userTags:
+          type: array
+          items:
+            type: string
+    StorageBundle:
+      required:
+      - bundleName
+      - entitlementName
+      - id
+      - ownerId
+      - region
+      - tenantId
+      - timeCreated
+      - timeModified
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        tenantName:
+          type: string
+          nullable: true
+        bundleName:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The name of the storage bundle
+        entitlementName:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The name of the parent entitlement
+        region:
+          $ref: '#/components/schemas/Region'
+    StorageConfiguration:
+      required:
+      - id
+      - isDefault
+      - name
+      - ownerId
+      - region
+      - status
+      - tenantId
+      - timeCreated
+      - timeModified
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        tenantName:
+          type: string
+          nullable: true
+        name:
+          type: string
+          description: The name of the storage configuration
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          description: An optional description
+          nullable: true
+        type:
+          type: string
+          enum:
+          - AWS_S3
+        status:
+          type: string
+          enum:
+          - INITIALIZING
+          - OK
+          - ERROR
+        errorMessage:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          description: An optional error message when something went wrong with the
+            configuration
+          nullable: true
+        region:
+          $ref: '#/components/schemas/Region'
+        isDefault:
+          type: boolean
+          description: An indication if this is the default in region for new projects
+    User:
+      required:
+      - active
+      - email
+      - emailVerified
+      - id
+      - ownerId
+      - tenantAdministrator
+      - tenantId
+      - timeCreated
+      - timeModified
+      - twoFactorAuthentication
+      - username
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        tenantName:
+          type: string
+          nullable: true
+        username:
+          maxLength: 255
+          minLength: 1
+          type: string
+        email:
+          maxLength: 255
+          minLength: 1
+          type: string
+        firstname:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        lastname:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        active:
+          type: boolean
+        tenantAdministrator:
+          type: boolean
+        jobTitle:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        greeting:
+          type: string
+          nullable: true
+          enum:
+          - MR
+          - MRS
+          - MS
+          - MISS
+          - DR
+          - HR
+          - SR
+        mobilePhoneNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        phoneNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        faxNumber:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        emailVerified:
+          type: boolean
+        twoFactorAuthentication:
+          type: boolean
+        country:
+          $ref: '#/components/schemas/Country'
+        addressLine1:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        addressLine2:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        addressLine3:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        postalCode:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        city:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        state:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+    CreateBundleDataLinkingBatch:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateBundleDataLinkingBatchItem'
+    CreateBundleDataLinkingBatchItem:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+    BundleDataLinkingBatchItem:
+      required:
+      - id
+      - processing
+      - request
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        request:
+          $ref: '#/components/schemas/BundleDataLinkingBatchItemRequest'
+        processing:
+          $ref: '#/components/schemas/BundleDataLinkingBatchItemProcessing'
+        bundleData:
+          $ref: '#/components/schemas/BundleData'
+    BundleDataLinkingBatchItemPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BundleDataLinkingBatchItem'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    BundleDataLinkingBatchItemProcessing:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Possible values are: INITIALISED, WAITING_RESOURCES, RUNNING,\
+            \ LINKED, ALREADY_LINKED, FAILED, PARTIALLY_LINKED. More types could be\
+            \ added in a future release."
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this batch item.
+          nullable: true
+    BundleDataLinkingBatchItemRequest:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+    BundleDataUnlinkingBatch:
+      required:
+      - id
+      - job
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        job:
+          $ref: '#/components/schemas/Job'
+    CreateBundleDataUnlinkingBatch:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateBundleDataUnlinkingBatchItem'
+    CreateBundleDataUnlinkingBatchItem:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+    BundleDataUnlinkingBatchItem:
+      required:
+      - id
+      - processing
+      - request
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        request:
+          $ref: '#/components/schemas/BundleDataUnlinkingBatchItemRequest'
+        processing:
+          $ref: '#/components/schemas/BundleDataUnlinkingBatchItemProcessing'
+    BundleDataUnlinkingBatchItemPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/BundleDataUnlinkingBatchItem'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    BundleDataUnlinkingBatchItemProcessing:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Possible values are: INITIALISED, WAITING_RESOURCES, RUNNING,\
+            \ UNLINKED, ALREADY_UNLINKED, FAILED, PARTIALLY_UNLINKED. More types could\
+            \ be added in a future release."
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this batch item.
+          nullable: true
+    BundleDataUnlinkingBatchItemRequest:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
     BundlePipeline:
       required:
       - bundleId
@@ -10128,6 +11441,11 @@ components:
           $ref: '#/components/schemas/PipelineTag'
         analysisStorage:
           $ref: '#/components/schemas/AnalysisStorage'
+        proprietary:
+          type: boolean
+          description: A boolean which indicates if the code of this pipeline is proprietary
+          nullable: true
+          default: false
     PipelineLanguageVersion:
       required:
       - id
@@ -10578,248 +11896,6 @@ components:
           - WINDOWS
           - LINUX
           - OSX
-    Application:
-      required:
-      - id
-      - name
-      - type
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-          description: The unique name identifying the application
-        type:
-          type: string
-          description: The type of the application
-          enum:
-          - MAIN
-          - WEBSOLUTION
-          - EXTERNAL
-        displayName:
-          type: string
-          description: The display name of the application
-          nullable: true
-      nullable: true
-    Project:
-      required:
-      - active
-      - billingMode
-      - id
-      - name
-      - ownerId
-      - region
-      - tags
-      - tenantId
-      - timeCreated
-      - timeModified
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        timeCreated:
-          type: string
-          format: date-time
-        timeModified:
-          type: string
-          format: date-time
-        ownerId:
-          type: string
-          format: uuid
-        tenantId:
-          type: string
-          format: uuid
-        tenantName:
-          type: string
-          nullable: true
-        urn:
-          maxLength: 2000
-          minLength: 1
-          type: string
-          description: "The URN of the project. The format is urn:ilmn:ica:\\<type\
-            \ of the object\\>:\\<ID of the object\\>#\\<optional human readable hint\
-            \ representing the object\\>. The hint can be omitted, in that case the\
-            \ hashtag (#) must also be omitted."
-          nullable: true
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-        active:
-          type: boolean
-          description: Indicates whether the project is active or hidden.
-        baseEnabled:
-          type: boolean
-          description: Indicates whether the project is base enabled.
-          nullable: true
-        shortDescription:
-          maxLength: 4000
-          minLength: 1
-          type: string
-          nullable: true
-        information:
-          type: string
-          description: Information about the project. Note that the value of this
-            field can be arbitrary large.
-          nullable: true
-        region:
-          $ref: '#/components/schemas/Region'
-        billingMode:
-          type: string
-          description: The billing mode of the project. It determines who pays for
-            the costs linked to the project.
-          enum:
-          - PROJECT
-          - TENANT
-        dataSharingEnabled:
-          type: boolean
-          description: Indicates whether the Data and Samples created in this Project
-            can be linked to other Projects.
-          nullable: true
-        tags:
-          $ref: '#/components/schemas/ProjectTag'
-        storageBundle:
-          $ref: '#/components/schemas/StorageBundle'
-        selfManagedStorageConfiguration:
-          $ref: '#/components/schemas/StorageConfiguration'
-        analysisPriority:
-          type: string
-          description: "Indicates the priority given to a project and its analyses\
-            \ within a single tenant. Note that for a PUT call, when not providing\
-            \ a value for this attribute (null value or absent attribute), the persisted\
-            \ value will not change."
-          nullable: true
-          enum:
-          - LOW
-          - MEDIUM
-          - HIGH
-        metadataModel:
-          $ref: '#/components/schemas/MetadataModel'
-        application:
-          $ref: '#/components/schemas/Application'
-      nullable: true
-    ProjectTag:
-      required:
-      - technicalTags
-      - userTags
-      type: object
-      properties:
-        technicalTags:
-          type: array
-          items:
-            type: string
-        userTags:
-          type: array
-          items:
-            type: string
-    StorageBundle:
-      required:
-      - bundleName
-      - entitlementName
-      - id
-      - ownerId
-      - region
-      - tenantId
-      - timeCreated
-      - timeModified
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        timeCreated:
-          type: string
-          format: date-time
-        timeModified:
-          type: string
-          format: date-time
-        ownerId:
-          type: string
-          format: uuid
-        tenantId:
-          type: string
-          format: uuid
-        tenantName:
-          type: string
-          nullable: true
-        bundleName:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: The name of the storage bundle
-        entitlementName:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: The name of the parent entitlement
-        region:
-          $ref: '#/components/schemas/Region'
-    StorageConfiguration:
-      required:
-      - id
-      - isDefault
-      - name
-      - ownerId
-      - region
-      - status
-      - tenantId
-      - timeCreated
-      - timeModified
-      - type
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        timeCreated:
-          type: string
-          format: date-time
-        timeModified:
-          type: string
-          format: date-time
-        ownerId:
-          type: string
-          format: uuid
-        tenantId:
-          type: string
-          format: uuid
-        tenantName:
-          type: string
-          nullable: true
-        name:
-          type: string
-          description: The name of the storage configuration
-        description:
-          maxLength: 1000
-          minLength: 0
-          type: string
-          description: An optional description
-          nullable: true
-        type:
-          type: string
-          enum:
-          - AWS_S3
-        status:
-          type: string
-          enum:
-          - INITIALIZING
-          - OK
-          - ERROR
-        errorMessage:
-          maxLength: 1000
-          minLength: 0
-          type: string
-          description: An optional error message when something went wrong with the
-            configuration
-          nullable: true
-        region:
-          $ref: '#/components/schemas/Region'
-        isDefault:
-          type: boolean
-          description: An indication if this is the default in region for new projects
     UploadRule:
       required:
       - code
@@ -11205,6 +12281,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AnalysisStorage'
+    AnalysisBaseSpaceDataDetails:
+      type: object
+      properties:
+        workgroupId:
+          type: string
+          nullable: true
+        extensions:
+          type: string
+          nullable: true
+        pathPrefix:
+          type: string
+          nullable: true
     AnalysisDataInput:
       required:
       - parameterCode
@@ -11243,7 +12331,6 @@ components:
       nullable: true
     AnalysisInputExternalData:
       required:
-      - mountPath
       - type
       - url
       type: object
@@ -11251,7 +12338,7 @@ components:
         url:
           type: string
         type:
-          pattern: s3|http
+          pattern: s3|http|basespace
           type: string
         mountPath:
           type: string
@@ -11259,8 +12346,11 @@ components:
             \ located on the machine that is running the pipeline. The use of a relative\
             \ path is encouraged, but an absolute path is also allowed. The path should\
             \ end with the file name, which may differ from the original input data."
+          nullable: true
         s3Details:
           $ref: '#/components/schemas/AnalysisS3DataDetails'
+        basespaceDetails:
+          $ref: '#/components/schemas/AnalysisBaseSpaceDataDetails'
       nullable: true
     AnalysisParameterInput:
       type: object
@@ -11504,57 +12594,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventLog'
-    Job:
-      required:
-      - id
-      - owner
-      - status
-      - subjectId
-      - subjectType
-      - timeCreated
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        status:
-          type: string
-          enum:
-          - INITIALIZED
-          - WAITING_FOR_RESOURCES
-          - RUNNING
-          - STOPPED
-          - SUCCEEDED
-          - PARTIALLY_SUCCEEDED
-          - FAILED
-        additionalStatusInformation:
-          type: string
-          description: Additional information regarding the status of this job.
-          nullable: true
-        subjectType:
-          type: string
-          description: The type of the subject for which this job provides execution.
-          example: SampleCreationBatch
-        subjectId:
-          type: string
-          description: The id of the subject for which this job provides execution.
-          format: uuid
-        timeCreated:
-          type: string
-          format: date-time
-        timeStarted:
-          type: string
-          format: date-time
-          nullable: true
-        timeFinished:
-          type: string
-          format: date-time
-          nullable: true
-        owner:
-          $ref: '#/components/schemas/User'
-        project:
-          $ref: '#/components/schemas/Project'
-      nullable: true
     JobPagedList:
       required:
       - items
@@ -11585,128 +12624,6 @@ components:
           description: The total number of records matching the search criteria (used
             in offset based pagination)
           format: int64
-          nullable: true
-    User:
-      required:
-      - active
-      - email
-      - emailVerified
-      - id
-      - ownerId
-      - tenantAdministrator
-      - tenantId
-      - timeCreated
-      - timeModified
-      - twoFactorAuthentication
-      - username
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        timeCreated:
-          type: string
-          format: date-time
-        timeModified:
-          type: string
-          format: date-time
-        ownerId:
-          type: string
-          format: uuid
-        tenantId:
-          type: string
-          format: uuid
-        tenantName:
-          type: string
-          nullable: true
-        username:
-          maxLength: 255
-          minLength: 1
-          type: string
-        email:
-          maxLength: 255
-          minLength: 1
-          type: string
-        firstname:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        lastname:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        active:
-          type: boolean
-        tenantAdministrator:
-          type: boolean
-        jobTitle:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        greeting:
-          type: string
-          nullable: true
-          enum:
-          - MR
-          - MRS
-          - MS
-          - MISS
-          - DR
-          - HR
-          - SR
-        mobilePhoneNumber:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        phoneNumber:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        faxNumber:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        emailVerified:
-          type: boolean
-        twoFactorAuthentication:
-          type: boolean
-        country:
-          $ref: '#/components/schemas/Country'
-        addressLine1:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        addressLine2:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        addressLine3:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        postalCode:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        city:
-          maxLength: 255
-          minLength: 0
-          type: string
-          nullable: true
-        state:
-          maxLength: 255
-          minLength: 0
-          type: string
           nullable: true
     MetadataModelList:
       required:
@@ -12019,7 +12936,7 @@ components:
           type: string
           description: The version of the reference data
         typeList:
-          $ref: '#/components/schemas/TypeList'
+          $ref: '#/components/schemas/ReferenceDataTypeList'
     ReferenceDataList:
       required:
       - items
@@ -12029,6 +12946,48 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ReferenceData'
+    ReferenceDataType:
+      required:
+      - id
+      - name
+      - ownerId
+      - tenantId
+      - timeCreated
+      - timeModified
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        tenantName:
+          type: string
+          nullable: true
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The name of the reference data type
+    ReferenceDataTypeList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReferenceDataType'
     ReferenceSet:
       required:
       - id
@@ -12107,48 +13066,6 @@ components:
           minLength: 1
           type: string
           description: The name of the species
-    Type:
-      required:
-      - id
-      - name
-      - ownerId
-      - tenantId
-      - timeCreated
-      - timeModified
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        timeCreated:
-          type: string
-          format: date-time
-        timeModified:
-          type: string
-          format: date-time
-        ownerId:
-          type: string
-          format: uuid
-        tenantId:
-          type: string
-          format: uuid
-        tenantName:
-          type: string
-          nullable: true
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: The name of the reference data type
-    TypeList:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Type'
     PipelineHtmlDocumentation:
       required:
       - content
@@ -12564,8 +13481,8 @@ components:
           type: string
         type:
           type: string
-          description: "Possible values are: s3 & http. More types could be added\
-            \ in a future release."
+          description: "Possible values are: s3, http, basespace. More types could\
+            \ be added in a future release."
         mountPath:
           type: string
       description: The external data used as input by the analysis.
@@ -12727,6 +13644,7 @@ components:
           type: string
           description: Indicates under which activation code the pipeline is executed.
           format: uuid
+          nullable: true
         analysisStorageId:
           type: string
           description: The id of the storage to use for the analysis.
@@ -12768,6 +13686,7 @@ components:
           type: string
           description: Indicates under which activation code the pipeline is executed.
           format: uuid
+          nullable: true
         analysisStorageId:
           type: string
           description: The id of the storage to use for the analysis.
@@ -13843,6 +14762,7 @@ components:
         actionOnExist:
           pattern: OVERWRITE|SKIP|RENAME
           type: string
+          description: "only applicable on files, not on folders"
     CreateProjectDataCopyBatchItem:
       required:
       - dataId
@@ -13948,6 +14868,74 @@ components:
       properties:
         dataId:
           type: string
+    ProjectDataLinkingBatchItemPagedListV4:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDataLinkingBatchItemV4'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    ProjectDataLinkingBatchItemProcessingV4:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Possible values are: INITIALISED, WAITING_RESOURCES, RUNNING,\
+            \ LINKED, ALREADY_LINKED, FAILED, PARTIALLY_LINKED. More types could be\
+            \ added in a future release."
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this batch item.
+          nullable: true
+    ProjectDataLinkingBatchItemRequest:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+    ProjectDataLinkingBatchItemV4:
+      required:
+      - id
+      - processing
+      - request
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        request:
+          $ref: '#/components/schemas/ProjectDataLinkingBatchItemRequest'
+        processing:
+          $ref: '#/components/schemas/ProjectDataLinkingBatchItemProcessingV4'
+        createdProjectData:
+          $ref: '#/components/schemas/ProjectData'
     ProjectDataLinkingBatchItem:
       required:
       - id
@@ -14013,13 +15001,6 @@ components:
           type: string
           description: Additional information regarding the status of this batch item.
           nullable: true
-    ProjectDataLinkingBatchItemRequest:
-      required:
-      - dataId
-      type: object
-      properties:
-        dataId:
-          type: string
     DataTransferPagedList:
       required:
       - items
@@ -14051,6 +15032,99 @@ components:
             in offset based pagination)
           format: int64
           nullable: true
+    ProjectDataUnlinkingBatch:
+      required:
+      - id
+      - job
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        job:
+          $ref: '#/components/schemas/Job'
+    CreateProjectDataUnlinkingBatch:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateProjectDataUnlinkingBatchItem'
+    CreateProjectDataUnlinkingBatchItem:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+    ProjectDataUnlinkingBatchItem:
+      required:
+      - id
+      - processing
+      - request
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        request:
+          $ref: '#/components/schemas/ProjectDataUnlinkingBatchItemRequest'
+        processing:
+          $ref: '#/components/schemas/ProjectDataUnlinkingBatchItemProcessing'
+    ProjectDataUnlinkingBatchItemPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDataUnlinkingBatchItem'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    ProjectDataUnlinkingBatchItemProcessing:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: "Possible values are: INITIALISED, WAITING_RESOURCES, RUNNING,\
+            \ UNLINKED, ALREADY_UNLINKED, FAILED, PARTIALLY_UNLINKED. More types could\
+            \ be added in a future release."
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this batch item.
+          nullable: true
+    ProjectDataUnlinkingBatchItemRequest:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
     ProjectDataUpdateBatch:
       required:
       - id
@@ -14611,6 +15685,8 @@ components:
     InputPart:
       type: object
       properties:
+        bodyAsString:
+          type: string
         mediaType:
           type: object
           properties:
@@ -14634,8 +15710,6 @@ components:
             type: array
             items:
               type: string
-        bodyAsString:
-          type: string
     MultipartFormDataInput:
       type: object
       properties:
@@ -14723,6 +15797,11 @@ components:
           type: string
           description: The id of the storage to use for the pipeline.
           format: uuid
+        proprietary:
+          type: boolean
+          description: A boolean which indicates if the code of this pipeline is proprietary
+          nullable: true
+          default: false
     CreateCwlPipeline:
       required:
       - analysisStorageId
@@ -14782,6 +15861,11 @@ components:
           type: string
           description: The id of the storage to use for the pipeline.
           format: uuid
+        proprietary:
+          type: boolean
+          description: A boolean which indicates if the code of this pipeline is proprietary
+          nullable: true
+          default: false
     ProjectSample:
       required:
       - projectId
@@ -15138,6 +16222,23 @@ components:
             the machine that was running the workflow.
       description: The workflow-session-data used as input by the workflow session.
       nullable: true
+    WorkflowSessionExternalData:
+      required:
+      - mountPath
+      - type
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+        type:
+          type: string
+          description: "Possible values are: s3, http, basespace. More types could\
+            \ be added in a future release."
+        mountPath:
+          type: string
+      description: The external data used as input by the workflow session.
+      nullable: true
     WorkflowSessionInput:
       required:
       - code
@@ -15152,6 +16253,12 @@ components:
           nullable: true
           items:
             $ref: '#/components/schemas/WorkflowSessionData'
+        externalData:
+          type: array
+          description: The external data used as input by the workflow session.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/WorkflowSessionExternalData'
     WorkflowSessionInputList:
       required:
       - items
