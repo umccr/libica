@@ -447,7 +447,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_folder**
-> FolderWriteableResponse create_folder(body, include=include)
+> FolderWriteableResponse create_folder(body, include=include, folder_list_secret=folder_list_secret)
 
 Create a folder in GDS and receive credentials for upload
 
@@ -489,10 +489,11 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     api_instance = libica.openapi.libgds.FoldersApi(api_client)
     body = libica.openapi.libgds.CreateFolderRequest() # CreateFolderRequest | 
 include = 'include_example' # str | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (optional)
+folder_list_secret = 'folder_list_secret_example' # str |  (optional)
 
     try:
         # Create a folder in GDS and receive credentials for upload
-        api_response = api_instance.create_folder(body, include=include)
+        api_response = api_instance.create_folder(body, include=include, folder_list_secret=folder_list_secret)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FoldersApi->create_folder: %s\n" % e)
@@ -504,6 +505,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**CreateFolderRequest**](CreateFolderRequest.md)|  | 
  **include** | **str**| Optionally include additional fields in the response.              Possible values: ObjectStoreAccess | [optional] 
+ **folder_list_secret** | **str**|  | [optional] 
 
 ### Return type
 
@@ -1235,7 +1237,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_folder**
-> FolderWriteableResponse update_folder(folder_id, include=include, body=body)
+> FolderWriteableResponse update_folder(folder_id, include=include, folder_list_secret=folder_list_secret, body=body)
 
 Update a folder content or acl
 
@@ -1277,11 +1279,12 @@ with libica.openapi.libgds.ApiClient(configuration) as api_client:
     api_instance = libica.openapi.libgds.FoldersApi(api_client)
     folder_id = 'folder_id_example' # str | Unique identifier for the folder to be updated.
 include = 'include_example' # str | Optionally include additional fields in the response.              Possible values: ObjectStoreAccess (optional)
+folder_list_secret = 'folder_list_secret_example' # str |  (optional)
 body = libica.openapi.libgds.FolderUpdateRequest() # FolderUpdateRequest |  (optional)
 
     try:
         # Update a folder content or acl
-        api_response = api_instance.update_folder(folder_id, include=include, body=body)
+        api_response = api_instance.update_folder(folder_id, include=include, folder_list_secret=folder_list_secret, body=body)
         pprint(api_response)
     except ApiException as e:
         print("Exception when calling FoldersApi->update_folder: %s\n" % e)
@@ -1293,6 +1296,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **folder_id** | **str**| Unique identifier for the folder to be updated. | 
  **include** | **str**| Optionally include additional fields in the response.              Possible values: ObjectStoreAccess | [optional] 
+ **folder_list_secret** | **str**|  | [optional] 
  **body** | [**FolderUpdateRequest**](FolderUpdateRequest.md)|  | [optional] 
 
 ### Return type

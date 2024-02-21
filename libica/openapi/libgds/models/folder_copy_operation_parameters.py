@@ -40,7 +40,8 @@ class FolderCopyOperationParameters(object):
         'duplicate_file_action': 'str',
         'copy_uploaded_files_only': 'bool',
         'source_folder_id': 'str',
-        'target_folder_id': 'str'
+        'target_folder_id': 'str',
+        'destination_folder_id': 'str'
     }
 
     attribute_map = {
@@ -51,10 +52,11 @@ class FolderCopyOperationParameters(object):
         'duplicate_file_action': 'duplicateFileAction',
         'copy_uploaded_files_only': 'copyUploadedFilesOnly',
         'source_folder_id': 'sourceFolderId',
-        'target_folder_id': 'targetFolderId'
+        'target_folder_id': 'targetFolderId',
+        'destination_folder_id': 'destinationFolderId'
     }
 
-    def __init__(self, source_folder_urn=None, target_folder_urn=None, destination_folder_name=None, metadata_to_copy=None, duplicate_file_action=None, copy_uploaded_files_only=None, source_folder_id=None, target_folder_id=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, source_folder_urn=None, target_folder_urn=None, destination_folder_name=None, metadata_to_copy=None, duplicate_file_action=None, copy_uploaded_files_only=None, source_folder_id=None, target_folder_id=None, destination_folder_id=None, local_vars_configuration=None):  # noqa: E501
         """FolderCopyOperationParameters - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -68,6 +70,7 @@ class FolderCopyOperationParameters(object):
         self._copy_uploaded_files_only = None
         self._source_folder_id = None
         self._target_folder_id = None
+        self._destination_folder_id = None
         self.discriminator = None
 
         if source_folder_urn is not None:
@@ -86,6 +89,8 @@ class FolderCopyOperationParameters(object):
             self.source_folder_id = source_folder_id
         if target_folder_id is not None:
             self.target_folder_id = target_folder_id
+        if destination_folder_id is not None:
+            self.destination_folder_id = destination_folder_id
 
     @property
     def source_folder_urn(self):
@@ -244,6 +249,7 @@ class FolderCopyOperationParameters(object):
     def target_folder_id(self):
         """Gets the target_folder_id of this FolderCopyOperationParameters.  # noqa: E501
 
+        The Id of the Target Parent Folder where the actual folder is copied  # noqa: E501
 
         :return: The target_folder_id of this FolderCopyOperationParameters.  # noqa: E501
         :rtype: str
@@ -254,12 +260,36 @@ class FolderCopyOperationParameters(object):
     def target_folder_id(self, target_folder_id):
         """Sets the target_folder_id of this FolderCopyOperationParameters.
 
+        The Id of the Target Parent Folder where the actual folder is copied  # noqa: E501
 
         :param target_folder_id: The target_folder_id of this FolderCopyOperationParameters.  # noqa: E501
         :type: str
         """
 
         self._target_folder_id = target_folder_id
+
+    @property
+    def destination_folder_id(self):
+        """Gets the destination_folder_id of this FolderCopyOperationParameters.  # noqa: E501
+
+        The Id of the actual folder copied under the Target Folder  # noqa: E501
+
+        :return: The destination_folder_id of this FolderCopyOperationParameters.  # noqa: E501
+        :rtype: str
+        """
+        return self._destination_folder_id
+
+    @destination_folder_id.setter
+    def destination_folder_id(self, destination_folder_id):
+        """Sets the destination_folder_id of this FolderCopyOperationParameters.
+
+        The Id of the actual folder copied under the Target Folder  # noqa: E501
+
+        :param destination_folder_id: The destination_folder_id of this FolderCopyOperationParameters.  # noqa: E501
+        :type: str
+        """
+
+        self._destination_folder_id = destination_folder_id
 
     def to_dict(self):
         """Returns the model properties as a dict"""
