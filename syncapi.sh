@@ -66,7 +66,7 @@ _mvdoc() {
   if [ -f "$genreadme" ]; then
     mv -v "$genreadme" "$readme"
   fi
-  sed -i "" -e "s/libica\/openapi\/$libname\///g" "$readme"
+  sed -i -e "s/libica\/openapi\/$libname\///g" "$readme"
   echo
 }
 
