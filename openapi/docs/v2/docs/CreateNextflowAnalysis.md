@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **pipeline_id** | **str** | The pipeline for which an analysis will be created. | 
 **tags** | [**AnalysisTag**](AnalysisTag.md) |  | 
 **analysis_input** | [**NextflowAnalysisInput**](NextflowAnalysisInput.md) |  | 
-**activation_code_detail_id** | **str** | Indicates under which activation code the pipeline is executed. | [optional] 
+**activation_code_detail_id** | **str, none_type** | Indicates under which activation code the pipeline is executed. | [optional] 
 **analysis_storage_id** | **str, none_type** | The id of the storage to use for the analysis. | [optional] 
 **output_parent_folder_id** | **str, none_type** | The id or the urn of the folder in which the output folder should be created. | [optional] 
 **analysis_output** | [**[AnalysisOutputMapping], none_type**](AnalysisOutputMapping.md) |  | [optional] 

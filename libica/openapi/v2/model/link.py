@@ -63,7 +63,7 @@ class Link(ModelNormal):
             'min_length': 1,
         },
         ('url',): {
-            'max_length': 100,
+            'max_length': 2048,
             'min_length': 1,
         },
     }

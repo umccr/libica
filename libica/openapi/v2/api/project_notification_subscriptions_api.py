@@ -38,7 +38,7 @@ class ProjectNotificationSubscriptionsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_notification_subscription1_endpoint = _Endpoint(
+        self.create_notification_subscription_endpoint = _Endpoint(
             settings={
                 'response_type': (NotificationSubscription,),
                 'auth': [
@@ -46,7 +46,7 @@ class ProjectNotificationSubscriptionsApi(object):
                     'JwtAuth'
                 ],
                 'endpoint_path': '/api/projects/{projectId}/notificationSubscriptions',
-                'operation_id': 'create_notification_subscription1',
+                'operation_id': 'create_notification_subscription',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -99,7 +99,7 @@ class ProjectNotificationSubscriptionsApi(object):
             },
             api_client=api_client
         )
-        self.delete_notification_subscription1_endpoint = _Endpoint(
+        self.delete_notification_subscription_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -107,7 +107,7 @@ class ProjectNotificationSubscriptionsApi(object):
                     'JwtAuth'
                 ],
                 'endpoint_path': '/api/projects/{projectId}/notificationSubscriptions/{subscriptionId}',
-                'operation_id': 'delete_notification_subscription1',
+                'operation_id': 'delete_notification_subscription',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -157,7 +157,7 @@ class ProjectNotificationSubscriptionsApi(object):
             },
             api_client=api_client
         )
-        self.get_notification_subscription1_endpoint = _Endpoint(
+        self.get_notification_subscription_endpoint = _Endpoint(
             settings={
                 'response_type': (NotificationSubscription,),
                 'auth': [
@@ -165,7 +165,7 @@ class ProjectNotificationSubscriptionsApi(object):
                     'JwtAuth'
                 ],
                 'endpoint_path': '/api/projects/{projectId}/notificationSubscriptions/{subscriptionId}',
-                'operation_id': 'get_notification_subscription1',
+                'operation_id': 'get_notification_subscription',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -216,7 +216,7 @@ class ProjectNotificationSubscriptionsApi(object):
             },
             api_client=api_client
         )
-        self.get_notification_subscriptions1_endpoint = _Endpoint(
+        self.get_notification_subscriptions_endpoint = _Endpoint(
             settings={
                 'response_type': (NotificationSubscriptionList,),
                 'auth': [
@@ -224,7 +224,7 @@ class ProjectNotificationSubscriptionsApi(object):
                     'JwtAuth'
                 ],
                 'endpoint_path': '/api/projects/{projectId}/notificationSubscriptions',
-                'operation_id': 'get_notification_subscriptions1',
+                'operation_id': 'get_notification_subscriptions',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -269,7 +269,7 @@ class ProjectNotificationSubscriptionsApi(object):
             },
             api_client=api_client
         )
-        self.update_notification_subscription1_endpoint = _Endpoint(
+        self.update_notification_subscription_endpoint = _Endpoint(
             settings={
                 'response_type': (NotificationSubscription,),
                 'auth': [
@@ -277,7 +277,7 @@ class ProjectNotificationSubscriptionsApi(object):
                     'JwtAuth'
                 ],
                 'endpoint_path': '/api/projects/{projectId}/notificationSubscriptions/{subscriptionId}',
-                'operation_id': 'update_notification_subscription1',
+                'operation_id': 'update_notification_subscription',
                 'http_method': 'PUT',
                 'servers': None,
             },
@@ -342,7 +342,7 @@ class ProjectNotificationSubscriptionsApi(object):
             api_client=api_client
         )
 
-    def create_notification_subscription1(
+    def create_notification_subscription(
         self,
         project_id,
         create_notification_subscription,
@@ -353,7 +353,7 @@ class ProjectNotificationSubscriptionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_notification_subscription1(project_id, create_notification_subscription, async_req=True)
+        >>> thread = api.create_notification_subscription(project_id, create_notification_subscription, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -421,9 +421,9 @@ class ProjectNotificationSubscriptionsApi(object):
             project_id
         kwargs['create_notification_subscription'] = \
             create_notification_subscription
-        return self.create_notification_subscription1_endpoint.call_with_http_info(**kwargs)
+        return self.create_notification_subscription_endpoint.call_with_http_info(**kwargs)
 
-    def delete_notification_subscription1(
+    def delete_notification_subscription(
         self,
         project_id,
         subscription_id,
@@ -434,7 +434,7 @@ class ProjectNotificationSubscriptionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_notification_subscription1(project_id, subscription_id, async_req=True)
+        >>> thread = api.delete_notification_subscription(project_id, subscription_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -502,9 +502,9 @@ class ProjectNotificationSubscriptionsApi(object):
             project_id
         kwargs['subscription_id'] = \
             subscription_id
-        return self.delete_notification_subscription1_endpoint.call_with_http_info(**kwargs)
+        return self.delete_notification_subscription_endpoint.call_with_http_info(**kwargs)
 
-    def get_notification_subscription1(
+    def get_notification_subscription(
         self,
         project_id,
         subscription_id,
@@ -515,7 +515,7 @@ class ProjectNotificationSubscriptionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_notification_subscription1(project_id, subscription_id, async_req=True)
+        >>> thread = api.get_notification_subscription(project_id, subscription_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -583,9 +583,9 @@ class ProjectNotificationSubscriptionsApi(object):
             project_id
         kwargs['subscription_id'] = \
             subscription_id
-        return self.get_notification_subscription1_endpoint.call_with_http_info(**kwargs)
+        return self.get_notification_subscription_endpoint.call_with_http_info(**kwargs)
 
-    def get_notification_subscriptions1(
+    def get_notification_subscriptions(
         self,
         project_id,
         **kwargs
@@ -595,7 +595,7 @@ class ProjectNotificationSubscriptionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_notification_subscriptions1(project_id, async_req=True)
+        >>> thread = api.get_notification_subscriptions(project_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -660,9 +660,9 @@ class ProjectNotificationSubscriptionsApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['project_id'] = \
             project_id
-        return self.get_notification_subscriptions1_endpoint.call_with_http_info(**kwargs)
+        return self.get_notification_subscriptions_endpoint.call_with_http_info(**kwargs)
 
-    def update_notification_subscription1(
+    def update_notification_subscription(
         self,
         project_id,
         subscription_id,
@@ -675,7 +675,7 @@ class ProjectNotificationSubscriptionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_notification_subscription1(project_id, subscription_id, notification_subscription, async_req=True)
+        >>> thread = api.update_notification_subscription(project_id, subscription_id, notification_subscription, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -747,5 +747,5 @@ class ProjectNotificationSubscriptionsApi(object):
             subscription_id
         kwargs['notification_subscription'] = \
             notification_subscription
-        return self.update_notification_subscription1_endpoint.call_with_http_info(**kwargs)
+        return self.update_notification_subscription_endpoint.call_with_http_info(**kwargs)
 

@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **tenant_id** | **str** |  | 
 **name** | **str** | The name of the reference data | 
 **version** | **str** | The version of the reference data | 
-**type_list** | [**TypeList**](TypeList.md) |  | 
+**type_list** | [**ReferenceDataTypeList**](ReferenceDataTypeList.md) |  | 
 **tenant_name** | **str, none_type** |  | [optional] 
 **species** | [**Species**](Species.md) |  | [optional] 
 **data_format** | [**DataFormat**](DataFormat.md) |  | [optional] 

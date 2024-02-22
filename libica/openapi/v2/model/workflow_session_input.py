@@ -31,7 +31,9 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.workflow_session_data import WorkflowSessionData
+    from libica.openapi.v2.model.workflow_session_external_data import WorkflowSessionExternalData
     globals()['WorkflowSessionData'] = WorkflowSessionData
+    globals()['WorkflowSessionExternalData'] = WorkflowSessionExternalData
 
 
 class WorkflowSessionInput(ModelNormal):
@@ -89,6 +91,7 @@ class WorkflowSessionInput(ModelNormal):
         return {
             'code': (str,),  # noqa: E501
             'analysis_data': ([WorkflowSessionData], none_type,),  # noqa: E501
+            'external_data': ([WorkflowSessionExternalData], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -99,6 +102,7 @@ class WorkflowSessionInput(ModelNormal):
     attribute_map = {
         'code': 'code',  # noqa: E501
         'analysis_data': 'analysisData',  # noqa: E501
+        'external_data': 'externalData',  # noqa: E501
     }
 
     read_only_vars = {
@@ -146,6 +150,7 @@ class WorkflowSessionInput(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_data ([WorkflowSessionData], none_type): The workflow-session-data used as input by the workflow session.. [optional]  # noqa: E501
+            external_data ([WorkflowSessionExternalData], none_type): The external data used as input by the workflow session.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -232,6 +237,7 @@ class WorkflowSessionInput(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_data ([WorkflowSessionData], none_type): The workflow-session-data used as input by the workflow session.. [optional]  # noqa: E501
+            external_data ([WorkflowSessionExternalData], none_type): The external data used as input by the workflow session.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

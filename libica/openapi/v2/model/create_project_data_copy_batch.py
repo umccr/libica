@@ -129,7 +129,7 @@ class CreateProjectDataCopyBatch(ModelNormal):
             copy_user_tags (bool):
             copy_technical_tags (bool):
             copy_instrument_info (bool):
-            action_on_exist (str):
+            action_on_exist (str): only applicable on files, not on folders
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -223,7 +223,7 @@ class CreateProjectDataCopyBatch(ModelNormal):
             copy_user_tags (bool):
             copy_technical_tags (bool):
             copy_instrument_info (bool):
-            action_on_exist (str):
+            action_on_exist (str): only applicable on files, not on folders
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -15,6 +15,8 @@ Method | HTTP request | Description
 
 Create a project data linking batch.
 
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version deprecated. Recommended to use V4 for performance efficiency. ## [V4] More efficient, handles folder contents via the folder item, instead of creating separate items for all contents. 
+
 ### Example
 
 * Api Key Authentication (ApiKeyAuth):
@@ -90,8 +92,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json, application/json
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v4+json, application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -190,9 +192,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_data_linking_batch_item**
-> ProjectDataLinkingBatchItem get_project_data_linking_batch_item(project_id, batch_id, item_id)
+> ProjectDataLinkingBatchItemV4 get_project_data_linking_batch_item(project_id, batch_id, item_id)
 
 Retrieve a project data linking batch item.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version, deprecated, returns PARTIALLY_LINKED item processing status as FAILED. ## [V4] Supports PARTIALLY_LINKED item processing status. 
 
 ### Example
 
@@ -203,6 +207,7 @@ Retrieve a project data linking batch item.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_data_linking_batch_api
+from libica.openapi.v2.model.project_data_linking_batch_item_v4 import ProjectDataLinkingBatchItemV4
 from libica.openapi.v2.model.project_data_linking_batch_item import ProjectDataLinkingBatchItem
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -256,7 +261,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ProjectDataLinkingBatchItem**](ProjectDataLinkingBatchItem.md)
+[**ProjectDataLinkingBatchItemV4**](ProjectDataLinkingBatchItemV4.md)
 
 ### Authorization
 
@@ -265,7 +270,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -278,9 +283,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_data_linking_batch_items**
-> ProjectDataLinkingBatchItemPagedList get_project_data_linking_batch_items(project_id, batch_id)
+> ProjectDataLinkingBatchItemPagedListV4 get_project_data_linking_batch_items(project_id, batch_id)
 
 Retrieve a list of project data linking batch items.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version, deprecated, returns PARTIALLY_LINKED item processing status as FAILED. ## [V4] Supports PARTIALLY_LINKED item processing status. 
 
 ### Example
 
@@ -291,6 +298,7 @@ Retrieve a list of project data linking batch items.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_data_linking_batch_api
+from libica.openapi.v2.model.project_data_linking_batch_item_paged_list_v4 import ProjectDataLinkingBatchItemPagedListV4
 from libica.openapi.v2.model.project_data_linking_batch_item_paged_list import ProjectDataLinkingBatchItemPagedList
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -325,10 +333,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     status = [
         "INITIALISED",
     ] # [str] | The statuses to filter on. (optional)
-    page_offset = "pageOffset_example" # str | The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
-    page_token = "pageToken_example" # str | The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
-    page_size = "pageSize_example" # str | The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. (optional)
-    sort = "sort_example" # str | Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\" (optional)
+    page_offset = "pageOffset_example" # str | [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
+    page_token = "pageToken_example" # str | [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
+    page_size = "pageSize_example" # str | [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results (optional)
+    sort = "sort_example" # str | [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\" (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -356,14 +364,14 @@ Name | Type | Description  | Notes
  **project_id** | **str**|  |
  **batch_id** | **str**|  |
  **status** | **[str]**| The statuses to filter on. | [optional]
- **page_offset** | **str**| The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
- **page_token** | **str**| The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
- **page_size** | **str**| The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results. | [optional]
- **sort** | **str**| Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;dateCreated, lastName desc\&quot; | [optional]
+ **page_offset** | **str**| [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
+ **page_token** | **str**| [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
+ **page_size** | **str**| [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results | [optional]
+ **sort** | **str**| [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;dateCreated, lastName desc\&quot; | [optional]
 
 ### Return type
 
-[**ProjectDataLinkingBatchItemPagedList**](ProjectDataLinkingBatchItemPagedList.md)
+[**ProjectDataLinkingBatchItemPagedListV4**](ProjectDataLinkingBatchItemPagedListV4.md)
 
 ### Authorization
 
@@ -372,7 +380,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details

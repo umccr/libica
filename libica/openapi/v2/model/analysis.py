@@ -74,16 +74,12 @@ class Analysis(ModelNormal):
             'FAILEDFINAL': "FAILEDFINAL",
             'ABORTED': "ABORTED",
         },
-        # FIXME Their OpenAPI document says expected values should be 'Low', 'Medium', 'High' and nullable
-        #  But. On the actual server, it responses with capitalised 'MEDIUM'
-        #  curl -s -H "Accept: application/vnd.illumina.v3+json" -H "Authorization: Bearer $ICAV2_ACCESS_TOKEN" "https://ica.illumina.com/ica/rest/api/projects/<project_id>/analyses/<analysis_id>" | jq
-        #  So. There is discrepancy. Since we have to accept whatever value from server, commenting out this for now.
-        # ('analysis_priority',): {
-        #     'None': None,
-        #     'LOW': "Low",
-        #     'MEDIUM': "Medium",
-        #     'HIGH': "High",
-        # },
+        ('analysis_priority',): {
+            'None': None,
+            'LOW': "LOW",
+            'MEDIUM': "MEDIUM",
+            'HIGH': "HIGH",
+        },
     }
 
     validations = {

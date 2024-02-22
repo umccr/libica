@@ -70,6 +70,7 @@ class ProjectPipelineApi(object):
                     'version_comment',
                     'categories',
                     'html_documentation',
+                    'proprietary',
                 ],
                 'required': [
                     'project_id',
@@ -85,6 +86,7 @@ class ProjectPipelineApi(object):
                     'version_comment',
                     'categories',
                     'html_documentation',
+                    'proprietary',
                 ],
                 'enum': [
                 ],
@@ -140,6 +142,8 @@ class ProjectPipelineApi(object):
                         ([str, none_type], none_type,),
                     'html_documentation':
                         (str, none_type,),
+                    'proprietary':
+                        (bool, none_type,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -154,6 +158,7 @@ class ProjectPipelineApi(object):
                     'version_comment': 'versionComment',
                     'categories': 'categories',
                     'html_documentation': 'htmlDocumentation',
+                    'proprietary': 'proprietary',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -168,6 +173,7 @@ class ProjectPipelineApi(object):
                     'version_comment': 'form',
                     'categories': 'form',
                     'html_documentation': 'form',
+                    'proprietary': 'form',
                 },
                 'collection_format_map': {
                     'tool_cwl_files': 'csv',
@@ -213,6 +219,7 @@ class ProjectPipelineApi(object):
                     'version_comment',
                     'categories',
                     'html_documentation',
+                    'proprietary',
                 ],
                 'required': [
                     'project_id',
@@ -229,6 +236,7 @@ class ProjectPipelineApi(object):
                     'version_comment',
                     'categories',
                     'html_documentation',
+                    'proprietary',
                 ],
                 'enum': [
                 ],
@@ -288,6 +296,8 @@ class ProjectPipelineApi(object):
                         ([str, none_type], none_type,),
                     'html_documentation':
                         (str, none_type,),
+                    'proprietary':
+                        (bool, none_type,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -304,6 +314,7 @@ class ProjectPipelineApi(object):
                     'version_comment': 'versionComment',
                     'categories': 'categories',
                     'html_documentation': 'htmlDocumentation',
+                    'proprietary': 'proprietary',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -320,6 +331,7 @@ class ProjectPipelineApi(object):
                     'version_comment': 'form',
                     'categories': 'form',
                     'html_documentation': 'form',
+                    'proprietary': 'form',
                 },
                 'collection_format_map': {
                     'other_nextflow_files': 'csv',
@@ -337,7 +349,7 @@ class ProjectPipelineApi(object):
             },
             api_client=api_client
         )
-        self.create_pipeline_file_endpoint = _Endpoint(
+        self.create_project_pipeline_file_endpoint = _Endpoint(
             settings={
                 'response_type': (PipelineFile,),
                 'auth': [
@@ -345,7 +357,7 @@ class ProjectPipelineApi(object):
                     'JwtAuth'
                 ],
                 'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/files',
-                'operation_id': 'create_pipeline_file',
+                'operation_id': 'create_project_pipeline_file',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -404,7 +416,7 @@ class ProjectPipelineApi(object):
             },
             api_client=api_client
         )
-        self.delete_pipeline_file_endpoint = _Endpoint(
+        self.delete_project_pipeline_file_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -412,7 +424,7 @@ class ProjectPipelineApi(object):
                     'JwtAuth'
                 ],
                 'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}',
-                'operation_id': 'delete_pipeline_file',
+                'operation_id': 'delete_project_pipeline_file',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -468,7 +480,7 @@ class ProjectPipelineApi(object):
             },
             api_client=api_client
         )
-        self.download_pipeline_file_content1_endpoint = _Endpoint(
+        self.download_project_pipeline_file_content_endpoint = _Endpoint(
             settings={
                 'response_type': (file_type,),
                 'auth': [
@@ -476,7 +488,7 @@ class ProjectPipelineApi(object):
                     'JwtAuth'
                 ],
                 'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content',
-                'operation_id': 'download_pipeline_file_content1',
+                'operation_id': 'download_project_pipeline_file_content',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -528,65 +540,6 @@ class ProjectPipelineApi(object):
                 'accept': [
                     'application/problem+json',
                     'application/octet-stream'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client
-        )
-        self.get_pipeline_files1_endpoint = _Endpoint(
-            settings={
-                'response_type': (PipelineFileList,),
-                'auth': [
-                    'ApiKeyAuth',
-                    'JwtAuth'
-                ],
-                'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/files',
-                'operation_id': 'get_pipeline_files1',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'project_id',
-                    'pipeline_id',
-                ],
-                'required': [
-                    'project_id',
-                    'pipeline_id',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'project_id':
-                        (str,),
-                    'pipeline_id':
-                        (str,),
-                },
-                'attribute_map': {
-                    'project_id': 'projectId',
-                    'pipeline_id': 'pipelineId',
-                },
-                'location_map': {
-                    'project_id': 'path',
-                    'pipeline_id': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/problem+json',
-                    'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [],
             },
@@ -660,6 +613,65 @@ class ProjectPipelineApi(object):
                 ],
                 'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/configurationParameters',
                 'operation_id': 'get_project_pipeline_configuration_parameters',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'pipeline_id',
+                ],
+                'required': [
+                    'project_id',
+                    'pipeline_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'pipeline_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'pipeline_id': 'pipelineId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'pipeline_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_project_pipeline_files_endpoint = _Endpoint(
+            settings={
+                'response_type': (PipelineFileList,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/files',
+                'operation_id': 'get_project_pipeline_files',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -998,7 +1010,7 @@ class ProjectPipelineApi(object):
             },
             api_client=api_client
         )
-        self.release_pipeline_endpoint = _Endpoint(
+        self.release_project_pipeline_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -1006,7 +1018,7 @@ class ProjectPipelineApi(object):
                     'JwtAuth'
                 ],
                 'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}:release',
-                'operation_id': 'release_pipeline',
+                'operation_id': 'release_project_pipeline',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -1114,7 +1126,7 @@ class ProjectPipelineApi(object):
             },
             api_client=api_client
         )
-        self.update_pipeline_file_endpoint = _Endpoint(
+        self.update_project_pipeline_file_endpoint = _Endpoint(
             settings={
                 'response_type': None,
                 'auth': [
@@ -1122,7 +1134,7 @@ class ProjectPipelineApi(object):
                     'JwtAuth'
                 ],
                 'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content',
-                'operation_id': 'update_pipeline_file',
+                'operation_id': 'update_project_pipeline_file',
                 'http_method': 'PUT',
                 'servers': None,
             },
@@ -1220,6 +1232,7 @@ class ProjectPipelineApi(object):
             version_comment (str, none_type): [optional]
             categories ([str, none_type], none_type): [optional]
             html_documentation (str, none_type): [optional]
+            proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1325,6 +1338,7 @@ class ProjectPipelineApi(object):
             version_comment (str, none_type): [optional]
             categories ([str, none_type], none_type): [optional]
             html_documentation (str, none_type): [optional]
+            proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1395,7 +1409,7 @@ class ProjectPipelineApi(object):
             analysis_storage_id
         return self.create_nextflow_pipeline_endpoint.call_with_http_info(**kwargs)
 
-    def create_pipeline_file(
+    def create_project_pipeline_file(
         self,
         project_id,
         pipeline_id,
@@ -1407,7 +1421,7 @@ class ProjectPipelineApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_pipeline_file(project_id, pipeline_id, content, async_req=True)
+        >>> thread = api.create_project_pipeline_file(project_id, pipeline_id, content, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1478,9 +1492,9 @@ class ProjectPipelineApi(object):
             pipeline_id
         kwargs['content'] = \
             content
-        return self.create_pipeline_file_endpoint.call_with_http_info(**kwargs)
+        return self.create_project_pipeline_file_endpoint.call_with_http_info(**kwargs)
 
-    def delete_pipeline_file(
+    def delete_project_pipeline_file(
         self,
         project_id,
         pipeline_id,
@@ -1492,7 +1506,7 @@ class ProjectPipelineApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_pipeline_file(project_id, pipeline_id, file_id, async_req=True)
+        >>> thread = api.delete_project_pipeline_file(project_id, pipeline_id, file_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1563,9 +1577,9 @@ class ProjectPipelineApi(object):
             pipeline_id
         kwargs['file_id'] = \
             file_id
-        return self.delete_pipeline_file_endpoint.call_with_http_info(**kwargs)
+        return self.delete_project_pipeline_file_endpoint.call_with_http_info(**kwargs)
 
-    def download_pipeline_file_content1(
+    def download_project_pipeline_file_content(
         self,
         project_id,
         pipeline_id,
@@ -1577,7 +1591,7 @@ class ProjectPipelineApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.download_pipeline_file_content1(project_id, pipeline_id, file_id, async_req=True)
+        >>> thread = api.download_project_pipeline_file_content(project_id, pipeline_id, file_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -1648,88 +1662,7 @@ class ProjectPipelineApi(object):
             pipeline_id
         kwargs['file_id'] = \
             file_id
-        return self.download_pipeline_file_content1_endpoint.call_with_http_info(**kwargs)
-
-    def get_pipeline_files1(
-        self,
-        project_id,
-        pipeline_id,
-        **kwargs
-    ):
-        """Retrieve files for a project pipeline.  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        >>> thread = api.get_pipeline_files1(project_id, pipeline_id, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            project_id (str):
-            pipeline_id (str): The ID of the project pipeline to retrieve files for
-
-        Keyword Args:
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            PipelineFileList
-                If the method is called asynchronously, returns the request
-                thread.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['project_id'] = \
-            project_id
-        kwargs['pipeline_id'] = \
-            pipeline_id
-        return self.get_pipeline_files1_endpoint.call_with_http_info(**kwargs)
+        return self.download_project_pipeline_file_content_endpoint.call_with_http_info(**kwargs)
 
     def get_project_pipeline(
         self,
@@ -1894,6 +1827,87 @@ class ProjectPipelineApi(object):
         kwargs['pipeline_id'] = \
             pipeline_id
         return self.get_project_pipeline_configuration_parameters_endpoint.call_with_http_info(**kwargs)
+
+    def get_project_pipeline_files(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        """Retrieve files for a project pipeline.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_project_pipeline_files(project_id, pipeline_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            pipeline_id (str): The ID of the project pipeline to retrieve files for
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            PipelineFileList
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['pipeline_id'] = \
+            pipeline_id
+        return self.get_project_pipeline_files_endpoint.call_with_http_info(**kwargs)
 
     def get_project_pipeline_html_documentation(
         self,
@@ -2300,7 +2314,7 @@ class ProjectPipelineApi(object):
             pipeline_id
         return self.link_pipeline_to_project_endpoint.call_with_http_info(**kwargs)
 
-    def release_pipeline(
+    def release_project_pipeline(
         self,
         project_id,
         pipeline_id,
@@ -2311,7 +2325,7 @@ class ProjectPipelineApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.release_pipeline(project_id, pipeline_id, async_req=True)
+        >>> thread = api.release_project_pipeline(project_id, pipeline_id, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -2379,7 +2393,7 @@ class ProjectPipelineApi(object):
             project_id
         kwargs['pipeline_id'] = \
             pipeline_id
-        return self.release_pipeline_endpoint.call_with_http_info(**kwargs)
+        return self.release_project_pipeline_endpoint.call_with_http_info(**kwargs)
 
     def unlink_pipeline_from_project(
         self,
@@ -2462,7 +2476,7 @@ class ProjectPipelineApi(object):
             pipeline_id
         return self.unlink_pipeline_from_project_endpoint.call_with_http_info(**kwargs)
 
-    def update_pipeline_file(
+    def update_project_pipeline_file(
         self,
         project_id,
         pipeline_id,
@@ -2475,7 +2489,7 @@ class ProjectPipelineApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_pipeline_file(project_id, pipeline_id, file_id, content, async_req=True)
+        >>> thread = api.update_project_pipeline_file(project_id, pipeline_id, file_id, content, async_req=True)
         >>> result = thread.get()
 
         Args:
@@ -2549,5 +2563,5 @@ class ProjectPipelineApi(object):
             file_id
         kwargs['content'] = \
             content
-        return self.update_pipeline_file_endpoint.call_with_http_info(**kwargs)
+        return self.update_project_pipeline_file_endpoint.call_with_http_info(**kwargs)
 
