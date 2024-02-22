@@ -121,6 +121,7 @@ class Pipeline(ModelNormal):
             'tenant_name': (str, none_type,),  # noqa: E501
             'urn': (str, none_type,),  # noqa: E501
             'language_version': (PipelineLanguageVersion,),  # noqa: E501
+            'proprietary': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -142,6 +143,7 @@ class Pipeline(ModelNormal):
         'tenant_name': 'tenantName',  # noqa: E501
         'urn': 'urn',  # noqa: E501
         'language_version': 'languageVersion',  # noqa: E501
+        'proprietary': 'proprietary',  # noqa: E501
     }
 
     read_only_vars = {
@@ -200,6 +202,7 @@ class Pipeline(ModelNormal):
             tenant_name (str, none_type): [optional]  # noqa: E501
             urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\<type of the object\\>:\\<ID of the object\\>#\\<optional human readable hint representing the object\\>. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
+            proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -306,6 +309,7 @@ class Pipeline(ModelNormal):
             tenant_name (str, none_type): [optional]  # noqa: E501
             urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\<type of the object\\>:\\<ID of the object\\>#\\<optional human readable hint representing the object\\>. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
+            proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

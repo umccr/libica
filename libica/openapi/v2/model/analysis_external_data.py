@@ -109,7 +109,7 @@ class AnalysisExternalData(ModelNormal):
 
         Args:
             url (str):
-            type (str): Possible values are: s3 & http. More types could be added in a future release.
+            type (str): Possible values are: s3, http, basespace. More types could be added in a future release.
             mount_path (str):
 
         Keyword Args:
@@ -198,7 +198,7 @@ class AnalysisExternalData(ModelNormal):
 
         Args:
             url (str):
-            type (str): Possible values are: s3 & http. More types could be added in a future release.
+            type (str): Possible values are: s3, http, basespace. More types could be added in a future release.
             mount_path (str):
 
         Keyword Args:

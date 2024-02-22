@@ -26,6 +26,8 @@ from libica.openapi.v2.model.problem import Problem
 from libica.openapi.v2.model.project_data_linking_batch import ProjectDataLinkingBatch
 from libica.openapi.v2.model.project_data_linking_batch_item import ProjectDataLinkingBatchItem
 from libica.openapi.v2.model.project_data_linking_batch_item_paged_list import ProjectDataLinkingBatchItemPagedList
+from libica.openapi.v2.model.project_data_linking_batch_item_paged_list_v4 import ProjectDataLinkingBatchItemPagedListV4
+from libica.openapi.v2.model.project_data_linking_batch_item_v4 import ProjectDataLinkingBatchItemV4
 
 
 class ProjectDataLinkingBatchApi(object):
@@ -91,9 +93,11 @@ class ProjectDataLinkingBatchApi(object):
             headers_map={
                 'accept': [
                     'application/problem+json',
+                    'application/vnd.illumina.v4+json',
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [
+                    'application/vnd.illumina.v4+json',
                     'application/vnd.illumina.v3+json',
                     'application/json'
                 ]
@@ -161,7 +165,7 @@ class ProjectDataLinkingBatchApi(object):
         )
         self.get_project_data_linking_batch_item_endpoint = _Endpoint(
             settings={
-                'response_type': (ProjectDataLinkingBatchItem,),
+                'response_type': (ProjectDataLinkingBatchItemV4,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -218,6 +222,7 @@ class ProjectDataLinkingBatchApi(object):
             headers_map={
                 'accept': [
                     'application/problem+json',
+                    'application/vnd.illumina.v4+json',
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [],
@@ -226,7 +231,7 @@ class ProjectDataLinkingBatchApi(object):
         )
         self.get_project_data_linking_batch_items_endpoint = _Endpoint(
             settings={
-                'response_type': (ProjectDataLinkingBatchItemPagedList,),
+                'response_type': (ProjectDataLinkingBatchItemPagedListV4,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -269,7 +274,8 @@ class ProjectDataLinkingBatchApi(object):
                         "RUNNING": "RUNNING",
                         "LINKED": "LINKED",
                         "ALREADY_LINKED": "ALREADY_LINKED",
-                        "FAILED": "FAILED"
+                        "FAILED": "FAILED",
+                        "PARTIALLY_LINKED": "PARTIALLY_LINKED"
                     },
                 },
                 'openapi_types': {
@@ -313,6 +319,7 @@ class ProjectDataLinkingBatchApi(object):
             headers_map={
                 'accept': [
                     'application/problem+json',
+                    'application/vnd.illumina.v4+json',
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [],
@@ -328,6 +335,7 @@ class ProjectDataLinkingBatchApi(object):
     ):
         """Create a project data linking batch.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version deprecated. Recommended to use V4 for performance efficiency. ## [V4] More efficient, handles folder contents via the folder item, instead of creating separate items for all contents.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -491,6 +499,7 @@ class ProjectDataLinkingBatchApi(object):
     ):
         """Retrieve a project data linking batch item.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version, deprecated, returns PARTIALLY_LINKED item processing status as FAILED. ## [V4] Supports PARTIALLY_LINKED item processing status.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -531,7 +540,7 @@ class ProjectDataLinkingBatchApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            ProjectDataLinkingBatchItem
+            ProjectDataLinkingBatchItemV4
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -575,6 +584,7 @@ class ProjectDataLinkingBatchApi(object):
     ):
         """Retrieve a list of project data linking batch items.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version, deprecated, returns PARTIALLY_LINKED item processing status as FAILED. ## [V4] Supports PARTIALLY_LINKED item processing status.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -587,10 +597,10 @@ class ProjectDataLinkingBatchApi(object):
 
         Keyword Args:
             status ([str]): The statuses to filter on.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-            sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\". [optional]
+            page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\". [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -619,7 +629,7 @@ class ProjectDataLinkingBatchApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            ProjectDataLinkingBatchItemPagedList
+            ProjectDataLinkingBatchItemPagedListV4
                 If the method is called asynchronously, returns the request
                 thread.
         """

@@ -31,11 +31,11 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.data_format import DataFormat
+    from libica.openapi.v2.model.reference_data_type_list import ReferenceDataTypeList
     from libica.openapi.v2.model.species import Species
-    from libica.openapi.v2.model.type_list import TypeList
     globals()['DataFormat'] = DataFormat
+    globals()['ReferenceDataTypeList'] = ReferenceDataTypeList
     globals()['Species'] = Species
-    globals()['TypeList'] = TypeList
 
 
 class ReferenceData(ModelNormal):
@@ -106,7 +106,7 @@ class ReferenceData(ModelNormal):
             'tenant_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'version': (str,),  # noqa: E501
-            'type_list': (TypeList,),  # noqa: E501
+            'type_list': (ReferenceDataTypeList,),  # noqa: E501
             'tenant_name': (str, none_type,),  # noqa: E501
             'species': (Species,),  # noqa: E501
             'data_format': (DataFormat,),  # noqa: E501
@@ -149,7 +149,7 @@ class ReferenceData(ModelNormal):
             tenant_id (str):
             name (str): The name of the reference data
             version (str): The version of the reference data
-            type_list (TypeList):
+            type_list (ReferenceDataTypeList):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -251,7 +251,7 @@ class ReferenceData(ModelNormal):
             tenant_id (str):
             name (str): The name of the reference data
             version (str): The version of the reference data
-            type_list (TypeList):
+            type_list (ReferenceDataTypeList):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

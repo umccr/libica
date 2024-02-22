@@ -4,15 +4,15 @@ All URIs are relative to */ica/rest*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_notification_subscription1**](ProjectNotificationSubscriptionsApi.md#create_notification_subscription1) | **POST** /api/projects/{projectId}/notificationSubscriptions | Create a notification subscription
-[**delete_notification_subscription1**](ProjectNotificationSubscriptionsApi.md#delete_notification_subscription1) | **DELETE** /api/projects/{projectId}/notificationSubscriptions/{subscriptionId} | Delete a notification subscription
-[**get_notification_subscription1**](ProjectNotificationSubscriptionsApi.md#get_notification_subscription1) | **GET** /api/projects/{projectId}/notificationSubscriptions/{subscriptionId} | Retrieve a notification subscription
-[**get_notification_subscriptions1**](ProjectNotificationSubscriptionsApi.md#get_notification_subscriptions1) | **GET** /api/projects/{projectId}/notificationSubscriptions | Retrieve notification subscriptions
-[**update_notification_subscription1**](ProjectNotificationSubscriptionsApi.md#update_notification_subscription1) | **PUT** /api/projects/{projectId}/notificationSubscriptions/{subscriptionId} | Update a notification subscription
+[**create_notification_subscription**](ProjectNotificationSubscriptionsApi.md#create_notification_subscription) | **POST** /api/projects/{projectId}/notificationSubscriptions | Create a notification subscription
+[**delete_notification_subscription**](ProjectNotificationSubscriptionsApi.md#delete_notification_subscription) | **DELETE** /api/projects/{projectId}/notificationSubscriptions/{subscriptionId} | Delete a notification subscription
+[**get_notification_subscription**](ProjectNotificationSubscriptionsApi.md#get_notification_subscription) | **GET** /api/projects/{projectId}/notificationSubscriptions/{subscriptionId} | Retrieve a notification subscription
+[**get_notification_subscriptions**](ProjectNotificationSubscriptionsApi.md#get_notification_subscriptions) | **GET** /api/projects/{projectId}/notificationSubscriptions | Retrieve notification subscriptions
+[**update_notification_subscription**](ProjectNotificationSubscriptionsApi.md#update_notification_subscription) | **PUT** /api/projects/{projectId}/notificationSubscriptions/{subscriptionId} | Update a notification subscription
 
 
-# **create_notification_subscription1**
-> NotificationSubscription create_notification_subscription1(project_id, create_notification_subscription)
+# **create_notification_subscription**
+> NotificationSubscription create_notification_subscription(project_id, create_notification_subscription)
 
 Create a notification subscription
 
@@ -66,10 +66,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Create a notification subscription
-        api_response = api_instance.create_notification_subscription1(project_id, create_notification_subscription)
+        api_response = api_instance.create_notification_subscription(project_id, create_notification_subscription)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectNotificationSubscriptionsApi->create_notification_subscription1: %s\n" % e)
+        print("Exception when calling ProjectNotificationSubscriptionsApi->create_notification_subscription: %s\n" % e)
 ```
 
 
@@ -103,8 +103,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_notification_subscription1**
-> delete_notification_subscription1(project_id, subscription_id)
+# **delete_notification_subscription**
+> delete_notification_subscription(project_id, subscription_id)
 
 Delete a notification subscription
 
@@ -151,9 +151,9 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Delete a notification subscription
-        api_instance.delete_notification_subscription1(project_id, subscription_id)
+        api_instance.delete_notification_subscription(project_id, subscription_id)
     except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectNotificationSubscriptionsApi->delete_notification_subscription1: %s\n" % e)
+        print("Exception when calling ProjectNotificationSubscriptionsApi->delete_notification_subscription: %s\n" % e)
 ```
 
 
@@ -187,8 +187,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_notification_subscription1**
-> NotificationSubscription get_notification_subscription1(project_id, subscription_id)
+# **get_notification_subscription**
+> NotificationSubscription get_notification_subscription(project_id, subscription_id)
 
 Retrieve a notification subscription
 
@@ -236,10 +236,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Retrieve a notification subscription
-        api_response = api_instance.get_notification_subscription1(project_id, subscription_id)
+        api_response = api_instance.get_notification_subscription(project_id, subscription_id)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectNotificationSubscriptionsApi->get_notification_subscription1: %s\n" % e)
+        print("Exception when calling ProjectNotificationSubscriptionsApi->get_notification_subscription: %s\n" % e)
 ```
 
 
@@ -273,8 +273,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_notification_subscriptions1**
-> NotificationSubscriptionList get_notification_subscriptions1(project_id)
+# **get_notification_subscriptions**
+> NotificationSubscriptionList get_notification_subscriptions(project_id)
 
 Retrieve notification subscriptions
 
@@ -321,10 +321,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Retrieve notification subscriptions
-        api_response = api_instance.get_notification_subscriptions1(project_id)
+        api_response = api_instance.get_notification_subscriptions(project_id)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectNotificationSubscriptionsApi->get_notification_subscriptions1: %s\n" % e)
+        print("Exception when calling ProjectNotificationSubscriptionsApi->get_notification_subscriptions: %s\n" % e)
 ```
 
 
@@ -357,8 +357,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_notification_subscription1**
-> NotificationSubscription update_notification_subscription1(project_id, subscription_id, notification_subscription)
+# **update_notification_subscription**
+> NotificationSubscription update_notification_subscription(project_id, subscription_id, notification_subscription)
 
 Update a notification subscription
 
@@ -431,19 +431,19 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Update a notification subscription
-        api_response = api_instance.update_notification_subscription1(project_id, subscription_id, notification_subscription)
+        api_response = api_instance.update_notification_subscription(project_id, subscription_id, notification_subscription)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectNotificationSubscriptionsApi->update_notification_subscription1: %s\n" % e)
+        print("Exception when calling ProjectNotificationSubscriptionsApi->update_notification_subscription: %s\n" % e)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
         # Update a notification subscription
-        api_response = api_instance.update_notification_subscription1(project_id, subscription_id, notification_subscription, if_match=if_match)
+        api_response = api_instance.update_notification_subscription(project_id, subscription_id, notification_subscription, if_match=if_match)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectNotificationSubscriptionsApi->update_notification_subscription1: %s\n" % e)
+        print("Exception when calling ProjectNotificationSubscriptionsApi->update_notification_subscription: %s\n" % e)
 ```
 
 

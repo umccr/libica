@@ -6,20 +6,20 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_cwl_pipeline**](ProjectPipelineApi.md#create_cwl_pipeline) | **POST** /api/projects/{projectId}/pipelines:createCwlPipeline | Create a CWL pipeline within a project.
 [**create_nextflow_pipeline**](ProjectPipelineApi.md#create_nextflow_pipeline) | **POST** /api/projects/{projectId}/pipelines:createNextflowPipeline | Create a Nextflow pipeline within a project.
-[**create_pipeline_file**](ProjectPipelineApi.md#create_pipeline_file) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}/files | Create a file for a pipeline.
-[**delete_pipeline_file**](ProjectPipelineApi.md#delete_pipeline_file) | **DELETE** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId} | Delete a file for a pipeline.
-[**download_pipeline_file_content1**](ProjectPipelineApi.md#download_pipeline_file_content1) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content | Download the contents of a pipeline file.
-[**get_pipeline_files1**](ProjectPipelineApi.md#get_pipeline_files1) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/files | Retrieve files for a project pipeline.
+[**create_project_pipeline_file**](ProjectPipelineApi.md#create_project_pipeline_file) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}/files | Create a file for a pipeline.
+[**delete_project_pipeline_file**](ProjectPipelineApi.md#delete_project_pipeline_file) | **DELETE** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId} | Delete a file for a pipeline.
+[**download_project_pipeline_file_content**](ProjectPipelineApi.md#download_project_pipeline_file_content) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content | Download the contents of a pipeline file.
 [**get_project_pipeline**](ProjectPipelineApi.md#get_project_pipeline) | **GET** /api/projects/{projectId}/pipelines/{pipelineId} | Retrieve a project pipeline.
 [**get_project_pipeline_configuration_parameters**](ProjectPipelineApi.md#get_project_pipeline_configuration_parameters) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/configurationParameters | Retrieve configuration parameters for a project pipeline.
+[**get_project_pipeline_files**](ProjectPipelineApi.md#get_project_pipeline_files) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/files | Retrieve files for a project pipeline.
 [**get_project_pipeline_html_documentation**](ProjectPipelineApi.md#get_project_pipeline_html_documentation) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/documentation/HTML | Retrieve HTML documentation for a project pipeline.
 [**get_project_pipeline_input_parameters**](ProjectPipelineApi.md#get_project_pipeline_input_parameters) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/inputParameters | Retrieve input parameters for a project pipeline.
 [**get_project_pipeline_reference_sets**](ProjectPipelineApi.md#get_project_pipeline_reference_sets) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/referenceSets | Retrieve the reference sets of a project pipeline.
 [**get_project_pipelines**](ProjectPipelineApi.md#get_project_pipelines) | **GET** /api/projects/{projectId}/pipelines | Retrieve a list of project pipelines.
 [**link_pipeline_to_project**](ProjectPipelineApi.md#link_pipeline_to_project) | **POST** /api/projects/{projectId}/pipelines/{pipelineId} | Link a pipeline to a project.
-[**release_pipeline**](ProjectPipelineApi.md#release_pipeline) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}:release | Release a pipeline.
+[**release_project_pipeline**](ProjectPipelineApi.md#release_project_pipeline) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}:release | Release a pipeline.
 [**unlink_pipeline_from_project**](ProjectPipelineApi.md#unlink_pipeline_from_project) | **DELETE** /api/projects/{projectId}/pipelines/{pipelineId} | Unlink a pipeline from a project.
-[**update_pipeline_file**](ProjectPipelineApi.md#update_pipeline_file) | **PUT** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content | Update the contents of a file for a pipeline.
+[**update_project_pipeline_file**](ProjectPipelineApi.md#update_project_pipeline_file) | **PUT** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content | Update the contents of a file for a pipeline.
 
 
 # **create_cwl_pipeline**
@@ -107,6 +107,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         "categories_example",
     ] # [str, none_type], none_type |  (optional)
     html_documentation = "html_documentation_example" # str, none_type |  (optional)
+    proprietary = False # bool, none_type | A boolean which indicates if the code of this pipeline is proprietary (optional) if omitted the server will use the default value of False
 
     # example passing only required values which don't have defaults set
     try:
@@ -120,7 +121,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Create a CWL pipeline within a project.
-        api_response = api_instance.create_cwl_pipeline(project_id, code, description, workflow_cwl_file, parameters_xml_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation)
+        api_response = api_instance.create_cwl_pipeline(project_id, code, description, workflow_cwl_file, parameters_xml_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectPipelineApi->create_cwl_pipeline: %s\n" % e)
@@ -143,6 +144,7 @@ Name | Type | Description  | Notes
  **version_comment** | **str, none_type**|  | [optional]
  **categories** | [**[str, none_type], none_type**](str, none_type.md)|  | [optional]
  **html_documentation** | **str, none_type**|  | [optional]
+ **proprietary** | **bool, none_type**| A boolean which indicates if the code of this pipeline is proprietary | [optional] if omitted the server will use the default value of False
 
 ### Return type
 
@@ -254,6 +256,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         "categories_example",
     ] # [str, none_type], none_type |  (optional)
     html_documentation = "html_documentation_example" # str, none_type |  (optional)
+    proprietary = False # bool, none_type | A boolean which indicates if the code of this pipeline is proprietary (optional) if omitted the server will use the default value of False
 
     # example passing only required values which don't have defaults set
     try:
@@ -267,7 +270,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Create a Nextflow pipeline within a project.
-        api_response = api_instance.create_nextflow_pipeline(project_id, code, description, main_nextflow_file, parameters_xml_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation)
+        api_response = api_instance.create_nextflow_pipeline(project_id, code, description, main_nextflow_file, parameters_xml_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectPipelineApi->create_nextflow_pipeline: %s\n" % e)
@@ -292,6 +295,7 @@ Name | Type | Description  | Notes
  **version_comment** | **str, none_type**|  | [optional]
  **categories** | [**[str, none_type], none_type**](str, none_type.md)|  | [optional]
  **html_documentation** | **str, none_type**|  | [optional]
+ **proprietary** | **bool, none_type**| A boolean which indicates if the code of this pipeline is proprietary | [optional] if omitted the server will use the default value of False
 
 ### Return type
 
@@ -316,8 +320,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_pipeline_file**
-> PipelineFile create_pipeline_file(project_id, pipeline_id, content)
+# **create_project_pipeline_file**
+> PipelineFile create_project_pipeline_file(project_id, pipeline_id, content)
 
 Create a file for a pipeline.
 
@@ -366,10 +370,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Create a file for a pipeline.
-        api_response = api_instance.create_pipeline_file(project_id, pipeline_id, content)
+        api_response = api_instance.create_project_pipeline_file(project_id, pipeline_id, content)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectPipelineApi->create_pipeline_file: %s\n" % e)
+        print("Exception when calling ProjectPipelineApi->create_project_pipeline_file: %s\n" % e)
 ```
 
 
@@ -404,8 +408,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_pipeline_file**
-> delete_pipeline_file(project_id, pipeline_id, file_id)
+# **delete_project_pipeline_file**
+> delete_project_pipeline_file(project_id, pipeline_id, file_id)
 
 Delete a file for a pipeline.
 
@@ -453,9 +457,9 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Delete a file for a pipeline.
-        api_instance.delete_pipeline_file(project_id, pipeline_id, file_id)
+        api_instance.delete_project_pipeline_file(project_id, pipeline_id, file_id)
     except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectPipelineApi->delete_pipeline_file: %s\n" % e)
+        print("Exception when calling ProjectPipelineApi->delete_project_pipeline_file: %s\n" % e)
 ```
 
 
@@ -490,8 +494,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **download_pipeline_file_content1**
-> file_type download_pipeline_file_content1(project_id, pipeline_id, file_id)
+# **download_project_pipeline_file_content**
+> file_type download_project_pipeline_file_content(project_id, pipeline_id, file_id)
 
 Download the contents of a pipeline file.
 
@@ -539,10 +543,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Download the contents of a pipeline file.
-        api_response = api_instance.download_pipeline_file_content1(project_id, pipeline_id, file_id)
+        api_response = api_instance.download_project_pipeline_file_content(project_id, pipeline_id, file_id)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectPipelineApi->download_pipeline_file_content1: %s\n" % e)
+        print("Exception when calling ProjectPipelineApi->download_project_pipeline_file_content: %s\n" % e)
 ```
 
 
@@ -573,92 +577,6 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The pipeline file is successfully downloaded. |  * Content-Disposition - Contains name of the file to be downloaded. <br>  |
-**0** | A problem occurred. |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_pipeline_files1**
-> PipelineFileList get_pipeline_files1(project_id, pipeline_id)
-
-Retrieve files for a project pipeline.
-
-### Example
-
-* Api Key Authentication (ApiKeyAuth):
-* Bearer (JWT) Authentication (JwtAuth):
-
-```python
-import time
-import libica.openapi.v2
-from libica.openapi.v2.api import project_pipeline_api
-from libica.openapi.v2.model.pipeline_file_list import PipelineFileList
-from libica.openapi.v2.model.problem import Problem
-from pprint import pprint
-# Defining the host is optional and defaults to /ica/rest
-# See configuration.py for a list of all supported configuration parameters.
-configuration = libica.openapi.v2.Configuration(
-    host = "/ica/rest"
-)
-
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
-
-# Configure API key authorization: ApiKeyAuth
-configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
-
-# Configure Bearer authorization (JWT): JwtAuth
-configuration = libica.openapi.v2.Configuration(
-    access_token = 'YOUR_BEARER_TOKEN'
-)
-
-# Enter a context with an instance of the API client
-with libica.openapi.v2.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = project_pipeline_api.ProjectPipelineApi(api_client)
-    project_id = "projectId_example" # str | 
-    pipeline_id = "pipelineId_example" # str | The ID of the project pipeline to retrieve files for
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Retrieve files for a project pipeline.
-        api_response = api_instance.get_pipeline_files1(project_id, pipeline_id)
-        pprint(api_response)
-    except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectPipelineApi->get_pipeline_files1: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **project_id** | **str**|  |
- **pipeline_id** | **str**| The ID of the project pipeline to retrieve files for |
-
-### Return type
-
-[**PipelineFileList**](PipelineFileList.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | The files are successfully retrieved. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -835,6 +753,92 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The configuration parameters are successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_project_pipeline_files**
+> PipelineFileList get_project_pipeline_files(project_id, pipeline_id)
+
+Retrieve files for a project pipeline.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_pipeline_api
+from libica.openapi.v2.model.pipeline_file_list import PipelineFileList
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_pipeline_api.ProjectPipelineApi(api_client)
+    project_id = "projectId_example" # str | 
+    pipeline_id = "pipelineId_example" # str | The ID of the project pipeline to retrieve files for
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Retrieve files for a project pipeline.
+        api_response = api_instance.get_project_pipeline_files(project_id, pipeline_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectPipelineApi->get_project_pipeline_files: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **pipeline_id** | **str**| The ID of the project pipeline to retrieve files for |
+
+### Return type
+
+[**PipelineFileList**](PipelineFileList.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The files are successfully retrieved. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1273,8 +1277,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **release_pipeline**
-> release_pipeline(project_id, pipeline_id)
+# **release_project_pipeline**
+> release_project_pipeline(project_id, pipeline_id)
 
 Release a pipeline.
 
@@ -1321,9 +1325,9 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Release a pipeline.
-        api_instance.release_pipeline(project_id, pipeline_id)
+        api_instance.release_project_pipeline(project_id, pipeline_id)
     except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectPipelineApi->release_pipeline: %s\n" % e)
+        print("Exception when calling ProjectPipelineApi->release_project_pipeline: %s\n" % e)
 ```
 
 
@@ -1441,8 +1445,8 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_pipeline_file**
-> update_pipeline_file(project_id, pipeline_id, file_id, content)
+# **update_project_pipeline_file**
+> update_project_pipeline_file(project_id, pipeline_id, file_id, content)
 
 Update the contents of a file for a pipeline.
 
@@ -1491,9 +1495,9 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Update the contents of a file for a pipeline.
-        api_instance.update_pipeline_file(project_id, pipeline_id, file_id, content)
+        api_instance.update_project_pipeline_file(project_id, pipeline_id, file_id, content)
     except libica.openapi.v2.ApiException as e:
-        print("Exception when calling ProjectPipelineApi->update_pipeline_file: %s\n" % e)
+        print("Exception when calling ProjectPipelineApi->update_project_pipeline_file: %s\n" % e)
 ```
 
 

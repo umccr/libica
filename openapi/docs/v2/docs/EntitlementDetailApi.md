@@ -166,10 +166,15 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     external_data=[
                         AnalysisInputExternalData(
                             url="url_example",
-                            type="htt",
+                            type="basespac",
                             mount_path="mount_path_example",
                             s3_details=AnalysisS3DataDetails(
                                 storage_credentials_id="storage_credentials_id_example",
+                            ),
+                            basespace_details=AnalysisBaseSpaceDataDetails(
+                                workgroup_id="workgroup_id_example",
+                                extensions="extensions_example",
+                                path_prefix="path_prefix_example",
                             ),
                         ),
                     ],
@@ -388,10 +393,15 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     external_data=[
                         AnalysisInputExternalData(
                             url="url_example",
-                            type="htt",
+                            type="basespac",
                             mount_path="mount_path_example",
                             s3_details=AnalysisS3DataDetails(
                                 storage_credentials_id="storage_credentials_id_example",
+                            ),
+                            basespace_details=AnalysisBaseSpaceDataDetails(
+                                workgroup_id="workgroup_id_example",
+                                extensions="extensions_example",
+                                path_prefix="path_prefix_example",
                             ),
                         ),
                     ],
