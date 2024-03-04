@@ -1,6 +1,9 @@
 """
 Usage:
     export ICAV2_ACCESS_TOKEN=$(yq '.access-token' ~/.icav2/.session.ica.yaml)
+    (or)
+    export ICAV2_ACCESS_TOKEN=$(icav2 tokens create)
+
     cd examples
     python create_cwl_pipeline.py
 
