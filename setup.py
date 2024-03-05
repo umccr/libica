@@ -55,7 +55,6 @@ setup(
         "six",
         "urllib3",
         "certifi",
-        "libumccr",
         "PyYAML",
         "boto3",
         "botocore",

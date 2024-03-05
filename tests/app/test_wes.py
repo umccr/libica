@@ -56,3 +56,15 @@ class WesIntegrationTests(IcaIntegrationTests):
         self.assertIsNotNone(result['output'])
 
         logger.info("\n" + json.dumps(result['input']))
+
+    @skip
+    def test_get_run_to_json(self):
+        """
+        python -m unittest tests.app.test_wes.WesIntegrationTests.test_get_run_to_json
+        """
+        wfr_id = "wfr.81cf25d7226a4874be43e4b15c1f5687"  # in ICA v1, project context: development
+        result = wes.get_run(wfr_id, to_json=True)
+        self.assertIsInstance(result, str)
+        self.assertIn(wfr_id, result)
+
+        logger.info("\n" + json.dumps(result))
