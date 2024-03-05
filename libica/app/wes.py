@@ -5,9 +5,8 @@ ImplNote:
 Consider implementation here should be reusable application specific routines for WES common use cases.
 Consider not to re-do libwes SDK generality.
 """
+import json
 import logging
-
-from libumccr import libjson
 
 from libica.app import configuration
 from libica.openapi import libwes
@@ -30,12 +29,17 @@ def get_run(wfr_id, to_dict=False, to_json=False):
         try:
             logger.info(f"Getting '{wfr_id}' from WES RUN API endpoint")
             wfl_run: libwes.WorkflowRun = run_api.get_workflow_run(run_id=wfr_id)
+            wfl_run_d = wfl_run.to_dict()
 
             if to_dict:
-                return wfl_run.to_dict()
+                return wfl_run_d
 
             elif to_json:
-                return libjson.dumps(wfl_run.to_dict())
+                try:
+                    return json.dumps(wfl_run_d)
+                except TypeError as e:
+                    logger.warning(f"Forcing string serializer. Exception: {e}")
+                    return json.dumps(wfl_run_d, default=str)
 
             return wfl_run
         except libwes.ApiException as e:
