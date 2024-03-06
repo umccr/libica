@@ -58,6 +58,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     project_id = "projectId_example" # str | The ID of the project
     create_notification_subscription = CreateNotificationSubscription(
         event_code="event_code_example",
+        payload_version="payload_version_example",
         filter_expression="filter_expression_example",
         enabled=True,
         notification_channel_id="notification_channel_id_example",
@@ -412,6 +413,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         tenant_id="tenant_id_example",
         tenant_name="tenant_name_example",
         event_code="event_code_example",
+        payload_version="payload_version_example",
         filter_expression="filter_expression_example",
         enabled=True,
         notification_channel=NotificationChannel(

@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**get_cwl_input_json**](ProjectAnalysisApi.md#get_cwl_input_json) | **GET** /api/projects/{projectId}/analyses/{analysisId}/cwl/inputJson | Retrieve the input json of a CWL analysis.
 [**get_cwl_output_json**](ProjectAnalysisApi.md#get_cwl_output_json) | **GET** /api/projects/{projectId}/analyses/{analysisId}/cwl/outputJson | Retrieve the output json of a CWL analysis.
 [**get_raw_analysis_output**](ProjectAnalysisApi.md#get_raw_analysis_output) | **GET** /api/projects/{projectId}/analyses/{analysisId}/rawOutput | Retrieve the raw output of an analysis.
+[**search_analyses**](ProjectAnalysisApi.md#search_analyses) | **POST** /api/projects/{projectId}/analysis:search | Search analyses.
 [**update_analysis**](ProjectAnalysisApi.md#update_analysis) | **PUT** /api/projects/{projectId}/analyses/{analysisId} | Update an analysis.
 
 
@@ -106,9 +107,11 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_cwl_analysis**
-> Analysis create_cwl_analysis(project_id, create_cwl_analysis)
+> AnalysisV4 create_cwl_analysis(project_id, create_cwl_analysis)
 
 Create and start an analysis for a CWL pipeline.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects. 
 
 ### Example
 
@@ -119,8 +122,9 @@ Create and start an analysis for a CWL pipeline.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_analysis_api
+from libica.openapi.v2.model.analysis_v3 import AnalysisV3
 from libica.openapi.v2.model.create_cwl_analysis import CreateCwlAnalysis
-from libica.openapi.v2.model.analysis import Analysis
+from libica.openapi.v2.model.analysis_v4 import AnalysisV4
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -209,7 +213,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Analysis**](Analysis.md)
+[**AnalysisV4**](AnalysisV4.md)
 
 ### Authorization
 
@@ -217,8 +221,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v4+json, application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -231,9 +235,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_nextflow_analysis**
-> Analysis create_nextflow_analysis(project_id, create_nextflow_analysis)
+> AnalysisV4 create_nextflow_analysis(project_id, create_nextflow_analysis)
 
 Create and start an analysis for a Nextflow pipeline.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects. 
 
 ### Example
 
@@ -244,8 +250,9 @@ Create and start an analysis for a Nextflow pipeline.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_analysis_api
-from libica.openapi.v2.model.analysis import Analysis
+from libica.openapi.v2.model.analysis_v3 import AnalysisV3
 from libica.openapi.v2.model.create_nextflow_analysis import CreateNextflowAnalysis
+from libica.openapi.v2.model.analysis_v4 import AnalysisV4
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -379,7 +386,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Analysis**](Analysis.md)
+[**AnalysisV4**](AnalysisV4.md)
 
 ### Authorization
 
@@ -387,8 +394,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -401,9 +408,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_analyses**
-> AnalysisPagedList get_analyses(project_id)
+> AnalysisPagedListV3 get_analyses(project_id)
 
 Retrieve the list of analyses.
+
+This endpoint only returns V3 items. Use the search endpoint to get V4 items.
 
 ### Example
 
@@ -414,7 +423,7 @@ Retrieve the list of analyses.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_analysis_api
-from libica.openapi.v2.model.analysis_paged_list import AnalysisPagedList
+from libica.openapi.v2.model.analysis_paged_list_v3 import AnalysisPagedListV3
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -492,7 +501,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnalysisPagedList**](AnalysisPagedList.md)
+[**AnalysisPagedListV3**](AnalysisPagedListV3.md)
 
 ### Authorization
 
@@ -514,9 +523,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_analysis**
-> Analysis get_analysis(project_id, analysis_id)
+> AnalysisV4 get_analysis(project_id, analysis_id)
 
 Retrieve an analysis.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects. 
 
 ### Example
 
@@ -527,7 +538,8 @@ Retrieve an analysis.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_analysis_api
-from libica.openapi.v2.model.analysis import Analysis
+from libica.openapi.v2.model.analysis_v3 import AnalysisV3
+from libica.openapi.v2.model.analysis_v4 import AnalysisV4
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -578,7 +590,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Analysis**](Analysis.md)
+[**AnalysisV4**](AnalysisV4.md)
 
 ### Authorization
 
@@ -587,7 +599,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -1201,12 +1213,10 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_analysis**
-> Analysis update_analysis(project_id, analysis_id, analysis)
+# **search_analyses**
+> AnalysisPagedListV4 search_analyses(project_id)
 
-Update an analysis.
-
-Attributes which can be updated:    - tags
+Search analyses.
 
 ### Example
 
@@ -1217,7 +1227,129 @@ Attributes which can be updated:    - tags
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_analysis_api
-from libica.openapi.v2.model.analysis import Analysis
+from libica.openapi.v2.model.analysis_query_parameters import AnalysisQueryParameters
+from libica.openapi.v2.model.analysis_paged_list_v4 import AnalysisPagedListV4
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_analysis_api.ProjectAnalysisApi(api_client)
+    project_id = "projectId_example" # str | 
+    page_offset = "pageOffset_example" # str | [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
+    page_token = "pageToken_example" # str | [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
+    page_size = "pageSize_example" # str | [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results (optional)
+    sort = "sort_example" # str | [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary  (optional)
+    analysis_query_parameters = AnalysisQueryParameters(
+        reference="reference_example",
+        user_reference="user_reference_example",
+        status=[
+            "SUCCEEDED",
+        ],
+        user_tags=[
+            "user_tags_example",
+        ],
+        technical_tags=[
+            "technical_tags_example",
+        ],
+        reference_tags=[
+            "reference_tags_example",
+        ],
+    ) # AnalysisQueryParameters |  (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Search analyses.
+        api_response = api_instance.search_analyses(project_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectAnalysisApi->search_analyses: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Search analyses.
+        api_response = api_instance.search_analyses(project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort, analysis_query_parameters=analysis_query_parameters)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectAnalysisApi->search_analyses: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **page_offset** | **str**| [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
+ **page_token** | **str**| [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
+ **page_size** | **str**| [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results | [optional]
+ **sort** | **str**| [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;dateCreated, lastName desc\&quot;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary  | [optional]
+ **analysis_query_parameters** | [**AnalysisQueryParameters**](AnalysisQueryParameters.md)|  | [optional]
+
+### Return type
+
+[**AnalysisPagedListV4**](AnalysisPagedListV4.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The list of project analyses is successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_analysis**
+> AnalysisV4 update_analysis(project_id, analysis_id, analysis_v4)
+
+Update an analysis.
+
+# Attributes which can be updated:    - tags # Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects. 
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_analysis_api
+from libica.openapi.v2.model.analysis_v3 import AnalysisV3
+from libica.openapi.v2.model.analysis_v4 import AnalysisV4
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -1248,24 +1380,32 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     api_instance = project_analysis_api.ProjectAnalysisApi(api_client)
     project_id = "projectId_example" # str | 
     analysis_id = "analysisId_example" # str | 
-    analysis = Analysis(
+    analysis_v4 = AnalysisV4(
         id="id_example",
         time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
         time_modified=dateutil_parser('1970-01-01T00:00:00.00Z'),
-        owner_id="owner_id_example",
-        tenant_id="tenant_id_example",
-        tenant_name="tenant_name_example",
+        owner=UserIdentifier(
+            id="id_example",
+        ),
+        tenant=TenantIdentifier(
+            id="id_example",
+            name="name_example",
+        ),
         reference="reference_example",
         user_reference="user_reference_example",
-        pipeline=Pipeline(
+        pipeline=PipelineV4(
             id="id_example",
+            urn="urn_example",
             time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
             time_modified=dateutil_parser('1970-01-01T00:00:00.00Z'),
-            owner_id="owner_id_example",
-            tenant_id="tenant_id_example",
-            tenant_name="tenant_name_example",
+            owner=UserIdentifier(
+                id="id_example",
+            ),
+            tenant=TenantIdentifier(
+                id="id_example",
+                name="name_example",
+            ),
             code="code_example",
-            urn="urn_example",
             description="description_example",
             language="CWL",
             language_version=PipelineLanguageVersion(
@@ -1278,26 +1418,25 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     "technical_tags_example",
                 ],
             ),
-            analysis_storage=AnalysisStorage(
+            analysis_storage=AnalysisStorageV4(
                 id="id_example",
-                time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                time_modified=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                owner_id="owner_id_example",
-                tenant_id="tenant_id_example",
-                tenant_name="tenant_name_example",
                 name="name_example",
                 description="description_example",
             ),
             proprietary=False,
         ),
-        workflow_session=WorkflowSession(
+        workflow_session=WorkflowSessionV4(
             id="id_example",
             time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
-            owner_id="owner_id_example",
-            tenant_id="tenant_id_example",
-            tenant_name="tenant_name_example",
+            owner=UserIdentifier(
+                id="id_example",
+            ),
+            tenant=TenantIdentifier(
+                id="id_example",
+                name="name_example",
+            ),
             user_reference="user_reference_example",
-            workflow=Workflow(
+            workflow=WorkflowV4(
                 id="id_example",
                 code="code_example",
                 urn="urn_example",
@@ -1312,18 +1451,13 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                         "technical_tags_example",
                     ],
                 ),
-                analysis_storage=AnalysisStorage(
+                analysis_storage=AnalysisStorageV4(
                     id="id_example",
-                    time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                    time_modified=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                    owner_id="owner_id_example",
-                    tenant_id="tenant_id_example",
-                    tenant_name="tenant_name_example",
                     name="name_example",
                     description="description_example",
                 ),
             ),
-            status="REQUESTED",
+            status="SUCCEEDED",
             start_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
             end_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
             summary="summary_example",
@@ -1336,21 +1470,16 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ],
             ),
         ),
-        status="REQUESTED",
+        status="SUCCEEDED",
         start_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
         end_date=dateutil_parser('1970-01-01T00:00:00.00Z'),
         summary="summary_example",
-        analysis_storage=AnalysisStorage(
+        analysis_storage=AnalysisStorageV4(
             id="id_example",
-            time_created=dateutil_parser('1970-01-01T00:00:00.00Z'),
-            time_modified=dateutil_parser('1970-01-01T00:00:00.00Z'),
-            owner_id="owner_id_example",
-            tenant_id="tenant_id_example",
-            tenant_name="tenant_name_example",
             name="name_example",
             description="description_example",
         ),
-        analysis_priority="LOW",
+        analysis_priority="HIG",
         tags=AnalysisTag(
             technical_tags=[
                 "technical_tags_example",
@@ -1362,13 +1491,13 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 "reference_tags_example",
             ],
         ),
-    ) # Analysis | 
+    ) # AnalysisV4 | 
     if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 
     # example passing only required values which don't have defaults set
     try:
         # Update an analysis.
-        api_response = api_instance.update_analysis(project_id, analysis_id, analysis)
+        api_response = api_instance.update_analysis(project_id, analysis_id, analysis_v4)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectAnalysisApi->update_analysis: %s\n" % e)
@@ -1377,7 +1506,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Update an analysis.
-        api_response = api_instance.update_analysis(project_id, analysis_id, analysis, if_match=if_match)
+        api_response = api_instance.update_analysis(project_id, analysis_id, analysis_v4, if_match=if_match)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectAnalysisApi->update_analysis: %s\n" % e)
@@ -1390,12 +1519,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
  **analysis_id** | **str**|  |
- **analysis** | [**Analysis**](Analysis.md)|  |
+ **analysis_v4** | [**AnalysisV4**](AnalysisV4.md)|  |
  **if_match** | **str**| Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. | [optional]
 
 ### Return type
 
-[**Analysis**](Analysis.md)
+[**AnalysisV4**](AnalysisV4.md)
 
 ### Authorization
 
@@ -1403,8 +1532,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json, application/json
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v4+json, application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details

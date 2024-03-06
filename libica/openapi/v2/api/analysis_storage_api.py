@@ -21,7 +21,7 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from libica.openapi.v2.model.analysis_storage_list import AnalysisStorageList
+from libica.openapi.v2.model.analysis_storage_list_v3 import AnalysisStorageListV3
 from libica.openapi.v2.model.problem import Problem
 
 
@@ -38,7 +38,7 @@ class AnalysisStorageApi(object):
         self.api_client = api_client
         self.get_analysis_storage_options_endpoint = _Endpoint(
             settings={
-                'response_type': (AnalysisStorageList,),
+                'response_type': (AnalysisStorageListV3,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -125,7 +125,7 @@ class AnalysisStorageApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            AnalysisStorageList
+            AnalysisStorageListV3
                 If the method is called asynchronously, returns the request
                 thread.
         """

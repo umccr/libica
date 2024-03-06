@@ -30,11 +30,11 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from libica.openapi.v2.model.analysis_storage import AnalysisStorage
-    from libica.openapi.v2.model.pipeline import Pipeline
+    from libica.openapi.v2.model.analysis_storage_v3 import AnalysisStorageV3
+    from libica.openapi.v2.model.pipeline_v3 import PipelineV3
     from libica.openapi.v2.model.region import Region
-    globals()['AnalysisStorage'] = AnalysisStorage
-    globals()['Pipeline'] = Pipeline
+    globals()['AnalysisStorageV3'] = AnalysisStorageV3
+    globals()['PipelineV3'] = PipelineV3
     globals()['Region'] = Region
 
 
@@ -97,11 +97,11 @@ class PipelineBundle(ModelNormal):
             'id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'max_number_of_allowed_slots': (int,),  # noqa: E501
-            'active_pipelines': ([Pipeline],),  # noqa: E501
-            'canceled_pipelines': ([Pipeline],),  # noqa: E501
-            'retired_pipelines': ([Pipeline],),  # noqa: E501
+            'active_pipelines': ([PipelineV3],),  # noqa: E501
+            'canceled_pipelines': ([PipelineV3],),  # noqa: E501
+            'retired_pipelines': ([PipelineV3],),  # noqa: E501
             'regions': ([Region],),  # noqa: E501
-            'analysis_storages': ([AnalysisStorage],),  # noqa: E501
+            'analysis_storages': ([AnalysisStorageV3],),  # noqa: E501
         }
 
     @cached_property
@@ -134,11 +134,11 @@ class PipelineBundle(ModelNormal):
             id (str):
             name (str):
             max_number_of_allowed_slots (int):
-            active_pipelines ([Pipeline]):
-            canceled_pipelines ([Pipeline]):
-            retired_pipelines ([Pipeline]):
+            active_pipelines ([PipelineV3]):
+            canceled_pipelines ([PipelineV3]):
+            retired_pipelines ([PipelineV3]):
             regions ([Region]):
-            analysis_storages ([AnalysisStorage]):
+            analysis_storages ([AnalysisStorageV3]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -233,11 +233,11 @@ class PipelineBundle(ModelNormal):
             id (str):
             name (str):
             max_number_of_allowed_slots (int):
-            active_pipelines ([Pipeline]):
-            canceled_pipelines ([Pipeline]):
-            retired_pipelines ([Pipeline]):
+            active_pipelines ([PipelineV3]):
+            canceled_pipelines ([PipelineV3]):
+            retired_pipelines ([PipelineV3]):
             regions ([Region]):
-            analysis_storages ([AnalysisStorage]):
+            analysis_storages ([AnalysisStorageV3]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

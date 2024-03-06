@@ -22,11 +22,11 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from libica.openapi.v2.model.input_parameter_list import InputParameterList
-from libica.openapi.v2.model.pipeline import Pipeline
 from libica.openapi.v2.model.pipeline_configuration_parameter_list import PipelineConfigurationParameterList
 from libica.openapi.v2.model.pipeline_file_list import PipelineFileList
 from libica.openapi.v2.model.pipeline_html_documentation import PipelineHtmlDocumentation
 from libica.openapi.v2.model.pipeline_list import PipelineList
+from libica.openapi.v2.model.pipeline_v3 import PipelineV3
 from libica.openapi.v2.model.problem import Problem
 from libica.openapi.v2.model.reference_set_list import ReferenceSetList
 
@@ -103,7 +103,7 @@ class PipelineApi(object):
         )
         self.get_pipeline_endpoint = _Endpoint(
             settings={
-                'response_type': (Pipeline,),
+                'response_type': (PipelineV3,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -592,7 +592,7 @@ class PipelineApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            Pipeline
+            PipelineV3
                 If the method is called asynchronously, returns the request
                 thread.
         """

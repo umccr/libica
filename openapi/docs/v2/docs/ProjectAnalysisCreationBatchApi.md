@@ -301,9 +301,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_analysis_creation_batch_item**
-> AnalysisCreationBatchItem get_analysis_creation_batch_item(project_id, batch_id, item_id)
+> AnalysisCreationBatchItemV4 get_analysis_creation_batch_item(project_id, batch_id, item_id)
 
 Retrieve a analysis creation batch item.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Field 'createdAnalysis' changes:  * Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects. 
 
 ### Example
 
@@ -314,7 +316,8 @@ Retrieve a analysis creation batch item.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_analysis_creation_batch_api
-from libica.openapi.v2.model.analysis_creation_batch_item import AnalysisCreationBatchItem
+from libica.openapi.v2.model.analysis_creation_batch_item_v4 import AnalysisCreationBatchItemV4
+from libica.openapi.v2.model.analysis_creation_batch_item_v3 import AnalysisCreationBatchItemV3
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -367,7 +370,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnalysisCreationBatchItem**](AnalysisCreationBatchItem.md)
+[**AnalysisCreationBatchItemV4**](AnalysisCreationBatchItemV4.md)
 
 ### Authorization
 
@@ -376,7 +379,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -389,9 +392,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_analysis_creation_batch_items**
-> AnalysisCreationBatchItemPagedList get_analysis_creation_batch_items(project_id, batch_id)
+> AnalysisCreationBatchItemPagedListV4 get_analysis_creation_batch_items(project_id, batch_id)
 
 Retrieve a list of analysis creation batch items.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3]  * Initial version ## [V4] ## Item field 'createdAnalysis' changes:  * Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects. 
 
 ### Example
 
@@ -402,7 +407,8 @@ Retrieve a list of analysis creation batch items.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_analysis_creation_batch_api
-from libica.openapi.v2.model.analysis_creation_batch_item_paged_list import AnalysisCreationBatchItemPagedList
+from libica.openapi.v2.model.analysis_creation_batch_item_paged_list_v4 import AnalysisCreationBatchItemPagedListV4
+from libica.openapi.v2.model.analysis_creation_batch_item_paged_list_v3 import AnalysisCreationBatchItemPagedListV3
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -474,7 +480,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**AnalysisCreationBatchItemPagedList**](AnalysisCreationBatchItemPagedList.md)
+[**AnalysisCreationBatchItemPagedListV4**](AnalysisCreationBatchItemPagedListV4.md)
 
 ### Authorization
 
@@ -483,7 +489,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
