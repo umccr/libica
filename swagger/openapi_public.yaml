@@ -55,7 +55,7 @@ paths:
           content:
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/AnalysisStorageList'
+                $ref: '#/components/schemas/AnalysisStorageListV3'
   /api/bundles:
     get:
       tags:
@@ -2729,7 +2729,7 @@ paths:
           content:
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/Pipeline'
+                $ref: '#/components/schemas/PipelineV3'
   /api/pipelines/{pipelineId}/inputParameters:
     get:
       tags:
@@ -2926,6 +2926,8 @@ paths:
       tags:
       - Project Analysis
       summary: Retrieve the list of analyses.
+      description: This endpoint only returns V3 items. Use the search endpoint to
+        get V4 items.
       operationId: getAnalyses
       parameters:
       - name: reference
@@ -3009,12 +3011,20 @@ paths:
           content:
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/AnalysisPagedList'
+                $ref: '#/components/schemas/AnalysisPagedListV3'
+      deprecated: true
   /api/projects/{projectId}/analyses/{analysisId}:
     get:
       tags:
       - Project Analysis
       summary: Retrieve an analysis.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\n * Initial version\n## [V4]\n * Field type\
+        \ 'status' changed from enum to String. New statuses have been added: ['QUEUED',\
+        \ 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].\n\
+        \ * Field analysisPriority changed from enum to String.\n * The owner and\
+        \ tenant are now represented by Identifier objects.\n"
       operationId: getAnalysis
       parameters:
       - name: projectId
@@ -3045,14 +3055,24 @@ paths:
               schema:
                 type: string
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisV4'
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/Analysis'
+                $ref: '#/components/schemas/AnalysisV3'
     put:
       tags:
       - Project Analysis
       summary: Update an analysis.
-      description: "Attributes which can be updated: \n  - tags"
+      description: "# Attributes which can be updated: \n  - tags\n# Changelog\nFor\
+        \ this endpoint multiple versions exist. Note that the values for request\
+        \ headers 'Content-Type' and 'Accept' must contain a matching version.\n\n\
+        ## [V3]\n * Initial version\n## [V4]\n * Field type 'status' changed from\
+        \ enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING',\
+        \ 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].\n * Field analysisPriority\
+        \ changed from enum to String.\n * The owner and tenant are now represented\
+        \ by Identifier objects.\n"
       operationId: updateAnalysis
       parameters:
       - name: projectId
@@ -3078,12 +3098,15 @@ paths:
           type: string
       requestBody:
         content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/AnalysisV4'
           application/vnd.illumina.v3+json:
             schema:
-              $ref: '#/components/schemas/Analysis'
+              $ref: '#/components/schemas/AnalysisV3'
           application/json:
             schema:
-              $ref: '#/components/schemas/Analysis'
+              $ref: '#/components/schemas/AnalysisV3'
         required: true
       responses:
         default:
@@ -3102,9 +3125,12 @@ paths:
               schema:
                 type: string
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisV4'
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/Analysis'
+                $ref: '#/components/schemas/AnalysisV3'
   /api/projects/{projectId}/analyses/{analysisId}/steps:
     get:
       tags:
@@ -3382,6 +3408,14 @@ paths:
       tags:
       - Project Analysis Creation Batch
       summary: Retrieve a list of analysis creation batch items.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\n * Initial version\n## [V4]\n## Item field\
+        \ 'createdAnalysis' changes:\n * Field type 'status' changed from enum to\
+        \ String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS',\
+        \ 'GENERATING_OUTPUTS', 'ABORTING'].\n * Field analysisPriority changed from\
+        \ enum to String.\n * The owner and tenant are now represented by Identifier\
+        \ objects.\n"
       operationId: getAnalysisCreationBatchItems
       parameters:
       - name: status
@@ -3451,14 +3485,24 @@ paths:
         "200":
           description: The list of analysis creation batch items is successfully retrieved.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisCreationBatchItemPagedListV4'
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/AnalysisCreationBatchItemPagedList'
+                $ref: '#/components/schemas/AnalysisCreationBatchItemPagedListV3'
   /api/projects/{projectId}/analysisCreationBatch/{batchId}/items/{itemId}:
     get:
       tags:
       - Project Analysis Creation Batch
       summary: Retrieve a analysis creation batch item.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\nInitial version\n## [V4]\nField 'createdAnalysis'\
+        \ changes:\n * Field type 'status' changed from enum to String. New statuses\
+        \ have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS',\
+        \ 'ABORTING'].\n * Field analysisPriority changed from enum to String.\n *\
+        \ The owner and tenant are now represented by Identifier objects.\n"
       operationId: getAnalysisCreationBatchItem
       parameters:
       - name: projectId
@@ -3490,14 +3534,91 @@ paths:
         "200":
           description: The analysis creation batch item is successfully retrieved.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisCreationBatchItemV4'
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/AnalysisCreationBatchItem'
+                $ref: '#/components/schemas/AnalysisCreationBatchItemV3'
+  /api/projects/{projectId}/analysis:search:
+    post:
+      tags:
+      - Project Analysis
+      summary: Search analyses.
+      operationId: searchAnalyses
+      parameters:
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+          - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/AnalysisQueryParameters'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalysisQueryParameters'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project analyses is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisPagedListV4'
   /api/projects/{projectId}/analysis:cwl:
     post:
       tags:
       - Project Analysis
       summary: Create and start an analysis for a CWL pipeline.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\n * Initial version\n## [V4]\n * Field type\
+        \ 'status' changed from enum to String. New statuses have been added: ['QUEUED',\
+        \ 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].\n\
+        \ * Field analysisPriority changed from enum to String.\n * The owner and\
+        \ tenant are now represented by Identifier objects.\n"
       operationId: createCwlAnalysis
       parameters:
       - name: Idempotency-Key
@@ -3532,7 +3653,13 @@ paths:
           \ to the file name.</li><li>Skip: If a file with that name already exists,\
           \ the new file is not saved and the data is discarded.</li></ul>"
         content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateCwlAnalysis'
           application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateCwlAnalysis'
+          application/json:
             schema:
               $ref: '#/components/schemas/CreateCwlAnalysis'
         required: true
@@ -3546,14 +3673,24 @@ paths:
         "201":
           description: The analysis is successfully created and scheduled.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisV4'
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/Analysis'
+                $ref: '#/components/schemas/AnalysisV3'
   /api/projects/{projectId}/analysis:nextflow:
     post:
       tags:
       - Project Analysis
       summary: Create and start an analysis for a Nextflow pipeline.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3]\n * Initial version\n## [V4]\n * Field type\
+        \ 'status' changed from enum to String. New statuses have been added: ['QUEUED',\
+        \ 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].\n\
+        \ * Field analysisPriority changed from enum to String.\n * The owner and\
+        \ tenant are now represented by Identifier objects.\n"
       operationId: createNextflowAnalysis
       parameters:
       - name: Idempotency-Key
@@ -3588,6 +3725,9 @@ paths:
           \ to the file name.</li><li>Skip: If a file with that name already exists,\
           \ the new file is not saved and the data is discarded.</li></ul>"
         content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateNextflowAnalysis'
           application/vnd.illumina.v3+json:
             schema:
               $ref: '#/components/schemas/CreateNextflowAnalysis'
@@ -3602,9 +3742,12 @@ paths:
         "201":
           description: The analysis is successfully created and scheduled.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisV4'
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/Analysis'
+                $ref: '#/components/schemas/AnalysisV3'
   /api/projects:
     get:
       tags:
@@ -8020,6 +8163,8 @@ paths:
       tags:
       - Project Sample
       summary: Retrieve the list of analyses.
+      description: This endpoint only returns V3 items. Use the search endpoint to
+        get V4 items.
       operationId: getProjectSampleAnalyses
       parameters:
       - name: reference
@@ -8109,7 +8254,81 @@ paths:
           content:
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/AnalysisPagedList'
+                $ref: '#/components/schemas/AnalysisPagedListV3'
+      deprecated: true
+  /api/projects/{projectId}/samples/{sampleId}/analyses:search:
+    post:
+      tags:
+      - Project Sample
+      summary: Search analyses for sample.
+      operationId: searchProjectSampleAnalyses
+      parameters:
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+          - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: sampleId
+        in: path
+        description: The ID of the sample
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/AnalysisQueryParameters'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalysisQueryParameters'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project analyses is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisPagedListV4'
   /api/projects/{projectId}/samples/{sampleId}/data:
     get:
       tags:
@@ -8406,7 +8625,7 @@ paths:
           content:
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/DataList'
+                $ref: '#/components/schemas/DataPagedList'
   /api/projects/{projectId}/samples/{sampleId}/data/{dataId}:
     post:
       tags:
@@ -8965,6 +9184,8 @@ paths:
       tags:
       - Project Workflow Session
       summary: Retrieve the list of workflow sessions.
+      description: This endpoint only returns V3 items. Use the search endpoint to
+        get V4 items.
       operationId: getWorkflowSessions
       parameters:
       - name: reference
@@ -9043,7 +9264,8 @@ paths:
           content:
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/WorkflowSessionPagedList'
+                $ref: '#/components/schemas/WorkflowSessionPagedListV3'
+      deprecated: true
   /api/projects/{projectId}/workflowSessions/{workflowSessionId}/inputs:
     get:
       tags:
@@ -9108,6 +9330,73 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/WorkflowSessionConfigurationList'
+  /api/projects/{projectId}/workflowSessions:search:
+    post:
+      tags:
+      - Project Workflow Session
+      summary: Search workflow sessions.
+      operationId: searchWorkflowSessions
+      parameters:
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+          - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- workflow\n"
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/AnalysisQueryParameters'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalysisQueryParameters'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project workflow sessions is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/WorkflowSessionPagedListV4'
   /api/referenceSets:
     get:
       tags:
@@ -9462,6 +9751,29 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The storage configuration is successfully shared.
+  /api/storageConfigurations/{storageConfigurationId}:validate:
+    post:
+      tags:
+      - Storage Configuration
+      summary: Start validation of your storage configuration.
+      description: Here you start the validation of your storage configuration.
+      operationId: validateStorageConfiguration
+      parameters:
+      - name: storageConfigurationId
+        in: path
+        description: The ID of the storage configuration to validate
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The storage configuration validation is successfully started.
   /api/storageCredentials:
     get:
       tags:
@@ -10078,7 +10390,7 @@ components:
           type: string
           format: date-time
       description: RFC 7807 Problem object (https://tools.ietf.org/html/rfc7807)
-    AnalysisStorage:
+    AnalysisStorageV3:
       required:
       - id
       - name
@@ -10115,7 +10427,7 @@ components:
           type: string
           description: The description about the storage option
           nullable: true
-    AnalysisStorageList:
+    AnalysisStorageListV3:
       required:
       - items
       type: object
@@ -10123,7 +10435,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/AnalysisStorage'
+            $ref: '#/components/schemas/AnalysisStorageV3'
     Bundle:
       required:
       - id
@@ -11364,7 +11676,7 @@ components:
       type: object
       properties:
         pipeline:
-          $ref: '#/components/schemas/Pipeline'
+          $ref: '#/components/schemas/PipelineV3'
         bundleId:
           type: string
           format: uuid
@@ -11377,7 +11689,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BundlePipeline'
-    Pipeline:
+    PipelineV3:
       required:
       - analysisStorage
       - code
@@ -11440,7 +11752,7 @@ components:
         pipelineTags:
           $ref: '#/components/schemas/PipelineTag'
         analysisStorage:
-          $ref: '#/components/schemas/AnalysisStorage'
+          $ref: '#/components/schemas/AnalysisStorageV3'
         proprietary:
           type: boolean
           description: A boolean which indicates if the code of this pipeline is proprietary
@@ -12264,15 +12576,15 @@ components:
         activePipelines:
           type: array
           items:
-            $ref: '#/components/schemas/Pipeline'
+            $ref: '#/components/schemas/PipelineV3'
         canceledPipelines:
           type: array
           items:
-            $ref: '#/components/schemas/Pipeline'
+            $ref: '#/components/schemas/PipelineV3'
         retiredPipelines:
           type: array
           items:
-            $ref: '#/components/schemas/Pipeline'
+            $ref: '#/components/schemas/PipelineV3'
         regions:
           type: array
           items:
@@ -12280,7 +12592,7 @@ components:
         analysisStorages:
           type: array
           items:
-            $ref: '#/components/schemas/AnalysisStorage'
+            $ref: '#/components/schemas/AnalysisStorageV3'
     AnalysisBaseSpaceDataDetails:
       type: object
       properties:
@@ -12791,7 +13103,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Pipeline'
+            $ref: '#/components/schemas/PipelineV3'
     InputParameter:
       required:
       - code
@@ -13103,7 +13415,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PipelineLanguageVersion'
-    Analysis:
+    AnalysisV3:
       required:
       - id
       - ownerId
@@ -13146,9 +13458,9 @@ components:
           type: string
           description: The user reference of the analysis
         pipeline:
-          $ref: '#/components/schemas/Pipeline'
+          $ref: '#/components/schemas/PipelineV3'
         workflowSession:
-          $ref: '#/components/schemas/WorkflowSession'
+          $ref: '#/components/schemas/WorkflowSessionV3'
         status:
           type: string
           description: The status of the analysis
@@ -13175,7 +13487,7 @@ components:
           description: The summary of the analysis
           nullable: true
         analysisStorage:
-          $ref: '#/components/schemas/AnalysisStorage'
+          $ref: '#/components/schemas/AnalysisStorageV3'
         analysisPriority:
           type: string
           description: The priority of the analysis
@@ -13186,7 +13498,7 @@ components:
           - HIGH
         tags:
           $ref: '#/components/schemas/AnalysisTag'
-    AnalysisPagedList:
+    AnalysisPagedListV3:
       required:
       - items
       type: object
@@ -13194,7 +13506,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Analysis'
+            $ref: '#/components/schemas/AnalysisV3'
         nextPageToken:
           x-faker:
             helpers.arrayElement: [[ "page1", "" ]]
@@ -13242,7 +13554,7 @@ components:
           items:
             type: string
             description: Reference tags
-    Workflow:
+    WorkflowV3:
       required:
       - analysisStorage
       - code
@@ -13277,8 +13589,8 @@ components:
         workflowTags:
           $ref: '#/components/schemas/PipelineTag'
         analysisStorage:
-          $ref: '#/components/schemas/AnalysisStorage'
-    WorkflowSession:
+          $ref: '#/components/schemas/AnalysisStorageV3'
+    WorkflowSessionV3:
       required:
       - id
       - ownerId
@@ -13311,7 +13623,7 @@ components:
           type: string
           description: The user reference of the workflow session
         workflow:
-          $ref: '#/components/schemas/Workflow'
+          $ref: '#/components/schemas/WorkflowV3'
         status:
           type: string
           description: The status of the workflow session
@@ -13358,6 +13670,260 @@ components:
             type: string
             description: User tags
             nullable: true
+    AnalysisV4:
+      required:
+      - id
+      - owner
+      - pipeline
+      - reference
+      - status
+      - tags
+      - tenant
+      - timeCreated
+      - timeModified
+      - userReference
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        owner:
+          $ref: '#/components/schemas/UserIdentifier'
+        tenant:
+          $ref: '#/components/schemas/TenantIdentifier'
+        reference:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The unique reference of the analysis
+        userReference:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The user reference of the analysis
+        pipeline:
+          $ref: '#/components/schemas/PipelineV4'
+        workflowSession:
+          $ref: '#/components/schemas/WorkflowSessionV4'
+        status:
+          pattern: REQUESTED|QUEUED|INITIALIZING|PREPARING_INPUTS|IN_PROGRESS|GENERATING_OUTPUTS|AWAITING_INPUT|ABORTING|SUCCEEDED|FAILED|FAILED_FINAL|ABORTED
+          type: string
+          description: The status of the analysis
+        startDate:
+          type: string
+          description: When the analysis was started
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          description: When the analysis was finished
+          format: date-time
+          nullable: true
+        summary:
+          type: string
+          description: The summary of the analysis
+          nullable: true
+        analysisStorage:
+          $ref: '#/components/schemas/AnalysisStorageV4'
+        analysisPriority:
+          pattern: LOW|MEDIUM|HIGH
+          type: string
+          description: The priority of the analysis
+          nullable: true
+        tags:
+          $ref: '#/components/schemas/AnalysisTag'
+    AnalysisStorageV4:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The name of the storage option
+        description:
+          type: string
+          description: The description about the storage option
+          nullable: true
+    PipelineV4:
+      required:
+      - analysisStorage
+      - code
+      - description
+      - id
+      - language
+      - owner
+      - pipelineTags
+      - tenant
+      - timeCreated
+      - timeModified
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        urn:
+          maxLength: 2000
+          minLength: 1
+          type: string
+          description: "The URN of the pipeline. The format is urn:ilmn:ica:\\<type\
+            \ of the object\\>:\\<ID of the object\\>#\\<optional human readable hint\
+            \ representing the object\\>. The hint can be omitted, in that case the\
+            \ hashtag (#) must also be omitted."
+          nullable: true
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        owner:
+          $ref: '#/components/schemas/UserIdentifier'
+        tenant:
+          $ref: '#/components/schemas/TenantIdentifier'
+        code:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The code of the pipeline
+        description:
+          maxLength: 4000
+          minLength: 1
+          type: string
+          description: The description of the pipeline
+        language:
+          type: string
+          description: The language that is used by the pipeline
+          enum:
+          - CWL
+          - NEXTFLOW
+          - UNKNOWN
+        languageVersion:
+          $ref: '#/components/schemas/PipelineLanguageVersion'
+        pipelineTags:
+          $ref: '#/components/schemas/PipelineTag'
+        analysisStorage:
+          $ref: '#/components/schemas/AnalysisStorageV4'
+        proprietary:
+          type: boolean
+          description: A boolean which indicates if the code of this pipeline is proprietary
+          nullable: true
+          default: false
+    TenantIdentifier:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: The unique name of the tenant.
+    UserIdentifier:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    WorkflowV4:
+      required:
+      - analysisStorage
+      - code
+      - description
+      - id
+      - urn
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The code of the workflow
+        urn:
+          maxLength: 2000
+          minLength: 1
+          type: string
+          description: "The URN of the workflow. The format is urn:ilmn:ica:\\<type\
+            \ of the object\\>:\\<ID of the object\\>#\\<optional human readable hint\
+            \ representing the object\\>. The hint can be omitted, in that case the\
+            \ hashtag (#) must also be omitted."
+        description:
+          maxLength: 4000
+          minLength: 1
+          type: string
+          description: The description of the workflow
+        languageVersion:
+          $ref: '#/components/schemas/PipelineLanguageVersion'
+        workflowTags:
+          $ref: '#/components/schemas/PipelineTag'
+        analysisStorage:
+          $ref: '#/components/schemas/AnalysisStorageV4'
+    WorkflowSessionV4:
+      required:
+      - id
+      - owner
+      - status
+      - tags
+      - tenant
+      - timeCreated
+      - userReference
+      - workflow
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        owner:
+          $ref: '#/components/schemas/UserIdentifier'
+        tenant:
+          $ref: '#/components/schemas/TenantIdentifier'
+        userReference:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The user reference of the workflow session
+        workflow:
+          $ref: '#/components/schemas/WorkflowV4'
+        status:
+          pattern: REQUESTED|QUEUED|INITIALIZING|PREPARING_INPUTS|IN_PROGRESS|GENERATING_OUTPUTS|AWAITING_INPUT|ABORTING|SUCCEEDED|FAILED|FAILED_FINAL|ABORTED
+          type: string
+          description: The status of the workflow session
+        startDate:
+          type: string
+          description: When the workflow session was started
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          description: When the workflow session was finished
+          format: date-time
+          nullable: true
+        summary:
+          type: string
+          description: The summary of the workflow session
+          nullable: true
+        tags:
+          $ref: '#/components/schemas/WorkflowSessionTag'
     AnalysisStep:
       required:
       - id
@@ -13704,7 +14270,7 @@ components:
             $ref: '#/components/schemas/AnalysisOutputMapping'
         analysisInput:
           $ref: '#/components/schemas/NextflowAnalysisInput'
-    AnalysisCreationBatchItem:
+    AnalysisCreationBatchItemV4:
       required:
       - id
       - processing
@@ -13719,8 +14285,8 @@ components:
         processing:
           $ref: '#/components/schemas/AnalysisCreationBatchItemProcessing'
         createdAnalysis:
-          $ref: '#/components/schemas/Analysis'
-    AnalysisCreationBatchItemPagedList:
+          $ref: '#/components/schemas/AnalysisV4'
+    AnalysisCreationBatchItemPagedListV4:
       required:
       - items
       type: object
@@ -13728,7 +14294,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/AnalysisCreationBatchItem'
+            $ref: '#/components/schemas/AnalysisCreationBatchItemV4'
         nextPageToken:
           x-faker:
             helpers.arrayElement: [[ "page1", "" ]]
@@ -13781,6 +14347,126 @@ components:
           description: The pipeline for which an analysis will be created.
         tags:
           $ref: '#/components/schemas/AnalysisTag'
+    AnalysisCreationBatchItemV3:
+      required:
+      - id
+      - processing
+      - request
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        request:
+          $ref: '#/components/schemas/AnalysisCreationBatchItemRequest'
+        processing:
+          $ref: '#/components/schemas/AnalysisCreationBatchItemProcessing'
+        createdAnalysis:
+          $ref: '#/components/schemas/AnalysisV3'
+    AnalysisCreationBatchItemPagedListV3:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalysisCreationBatchItemV3'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    AnalysisPagedListV4:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalysisV4'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    AnalysisQueryParameters:
+      type: object
+      properties:
+        reference:
+          type: string
+          description: The reference to filter on.
+          nullable: true
+        userReference:
+          type: string
+          description: The user-reference to filter on.
+          nullable: true
+        status:
+          type: array
+          items:
+            pattern: REQUESTED|QUEUED|INITIALIZING|PREPARING_INPUTS|IN_PROGRESS|GENERATING_OUTPUTS|AWAITING_INPUT|ABORTING|SUCCEEDED|FAILED|FAILED_FINAL|ABORTED
+            type: string
+            description: The status to filter on.
+            nullable: true
+        userTags:
+          type: array
+          description: The user-tags to filter on.
+          nullable: true
+          items:
+            type: string
+            description: The user-tags to filter on.
+            nullable: true
+        technicalTags:
+          type: array
+          description: The technical-tags to filter on.
+          nullable: true
+          items:
+            type: string
+            description: The technical-tags to filter on.
+            nullable: true
+        referenceTags:
+          type: array
+          description: The reference-data-tags to filter on.
+          nullable: true
+          items:
+            type: string
+            description: The reference-data-tags to filter on.
+            nullable: true
     ProjectPagedList:
       required:
       - items
@@ -15281,6 +15967,11 @@ components:
           minLength: 1
           type: string
           description: The event code to subscribe to
+        payloadVersion:
+          type: string
+          description: "The version of the notification event payload in case multiple\
+            \ versions exist. For analysis events possible values are [V3,V4]"
+          nullable: true
         filterExpression:
           maxLength: 2000
           minLength: 1
@@ -15304,6 +15995,11 @@ components:
           minLength: 1
           type: string
           description: The event code to subscribe to
+        payloadVersion:
+          type: string
+          description: "The version of the notification event payload in case multiple\
+            \ versions exist. For analysis events possible values are [V3,V4]"
+          nullable: true
         filterExpression:
           maxLength: 2000
           minLength: 1
@@ -15659,7 +16355,7 @@ components:
       type: object
       properties:
         pipeline:
-          $ref: '#/components/schemas/Pipeline'
+          $ref: '#/components/schemas/PipelineV3'
         projectId:
           type: string
           format: uuid
@@ -15685,8 +16381,6 @@ components:
     InputPart:
       type: object
       properties:
-        bodyAsString:
-          type: string
         mediaType:
           type: object
           properties:
@@ -15702,14 +16396,16 @@ components:
               type: boolean
             wildcardSubtype:
               type: boolean
-        contentTypeFromMessage:
-          type: boolean
         headers:
           type: object
           additionalProperties:
             type: array
             items:
               type: string
+        bodyAsString:
+          type: string
+        contentTypeFromMessage:
+          type: boolean
     MultipartFormDataInput:
       type: object
       properties:
@@ -16161,7 +16857,7 @@ components:
           $ref: '#/components/schemas/SampleCreationBatchItemProcessing'
         createdSample:
           $ref: '#/components/schemas/Sample'
-    WorkflowSessionPagedList:
+    WorkflowSessionPagedListV3:
       required:
       - items
       type: object
@@ -16169,7 +16865,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/WorkflowSession'
+            $ref: '#/components/schemas/WorkflowSessionV3'
         nextPageToken:
           x-faker:
             helpers.arrayElement: [[ "page1", "" ]]
@@ -16296,6 +16992,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WorkflowSessionConfiguration'
+    WorkflowSessionPagedListV4:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowSessionV4'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
     SpeciesList:
       required:
       - items
