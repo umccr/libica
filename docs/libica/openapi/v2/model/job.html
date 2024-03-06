@@ -65,8 +65,10 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.bundle import Bundle
     from libica.openapi.v2.model.project import Project
     from libica.openapi.v2.model.user import User
+    globals()[&#39;Bundle&#39;] = Bundle
     globals()[&#39;Project&#39;] = Project
     globals()[&#39;User&#39;] = User
 
@@ -143,6 +145,7 @@ class Job(ModelNormal):
             &#39;time_started&#39;: (datetime, none_type,),  # noqa: E501
             &#39;time_finished&#39;: (datetime, none_type,),  # noqa: E501
             &#39;project&#39;: (Project,),  # noqa: E501
+            &#39;bundle&#39;: (Bundle,),  # noqa: E501
         }
 
     @cached_property
@@ -161,6 +164,7 @@ class Job(ModelNormal):
         &#39;time_started&#39;: &#39;timeStarted&#39;,  # noqa: E501
         &#39;time_finished&#39;: &#39;timeFinished&#39;,  # noqa: E501
         &#39;project&#39;: &#39;project&#39;,  # noqa: E501
+        &#39;bundle&#39;: &#39;bundle&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -216,6 +220,7 @@ class Job(ModelNormal):
             time_started (datetime, none_type): [optional]  # noqa: E501
             time_finished (datetime, none_type): [optional]  # noqa: E501
             project (Project): [optional]  # noqa: E501
+            bundle (Bundle): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -315,6 +320,7 @@ class Job(ModelNormal):
             time_started (datetime, none_type): [optional]  # noqa: E501
             time_finished (datetime, none_type): [optional]  # noqa: E501
             project (Project): [optional]  # noqa: E501
+            bundle (Bundle): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -376,8 +382,10 @@ class Job(ModelNormal):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def lazy_import():
+    from libica.openapi.v2.model.bundle import Bundle
     from libica.openapi.v2.model.project import Project
     from libica.openapi.v2.model.user import User
+    globals()[&#39;Bundle&#39;] = Bundle
     globals()[&#39;Project&#39;] = Project
     globals()[&#39;User&#39;] = User</code></pre>
 </details>
@@ -468,6 +476,8 @@ time_started (datetime, none_type): [optional]
 time_finished (datetime, none_type): [optional]
 # noqa: E501
 project (Project): [optional]
+# noqa: E501
+bundle (Bundle): [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -545,6 +555,7 @@ project (Project): [optional]
             &#39;time_started&#39;: (datetime, none_type,),  # noqa: E501
             &#39;time_finished&#39;: (datetime, none_type,),  # noqa: E501
             &#39;project&#39;: (Project,),  # noqa: E501
+            &#39;bundle&#39;: (Bundle,),  # noqa: E501
         }
 
     @cached_property
@@ -563,6 +574,7 @@ project (Project): [optional]
         &#39;time_started&#39;: &#39;timeStarted&#39;,  # noqa: E501
         &#39;time_finished&#39;: &#39;timeFinished&#39;,  # noqa: E501
         &#39;project&#39;: &#39;project&#39;,  # noqa: E501
+        &#39;bundle&#39;: &#39;bundle&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -618,6 +630,7 @@ project (Project): [optional]
             time_started (datetime, none_type): [optional]  # noqa: E501
             time_finished (datetime, none_type): [optional]  # noqa: E501
             project (Project): [optional]  # noqa: E501
+            bundle (Bundle): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -717,6 +730,7 @@ project (Project): [optional]
             time_started (datetime, none_type): [optional]  # noqa: E501
             time_finished (datetime, none_type): [optional]  # noqa: E501
             project (Project): [optional]  # noqa: E501
+            bundle (Bundle): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

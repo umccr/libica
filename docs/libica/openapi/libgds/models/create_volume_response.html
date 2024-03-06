@@ -66,8 +66,6 @@ class CreateVolumeResponse(object):
                             and the value is json key in definition.
     &#34;&#34;&#34;
     openapi_types = {
-        &#39;import_session_id&#39;: &#39;str&#39;,
-        &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;,
         &#39;id&#39;: &#39;str&#39;,
         &#39;name&#39;: &#39;str&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
@@ -84,12 +82,12 @@ class CreateVolumeResponse(object):
         &#39;job_status&#39;: &#39;JobStatus&#39;,
         &#39;metadata&#39;: &#39;object&#39;,
         &#39;life_cycle&#39;: &#39;VolumeLifeCycleSettings&#39;,
-        &#39;migration_status&#39;: &#39;str&#39;
+        &#39;migration_status&#39;: &#39;str&#39;,
+        &#39;import_session_id&#39;: &#39;str&#39;,
+        &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;
     }
 
     attribute_map = {
-        &#39;import_session_id&#39;: &#39;importSessionId&#39;,
-        &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;,
         &#39;id&#39;: &#39;id&#39;,
         &#39;name&#39;: &#39;name&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
@@ -106,17 +104,17 @@ class CreateVolumeResponse(object):
         &#39;job_status&#39;: &#39;jobStatus&#39;,
         &#39;metadata&#39;: &#39;metadata&#39;,
         &#39;life_cycle&#39;: &#39;lifeCycle&#39;,
-        &#39;migration_status&#39;: &#39;migrationStatus&#39;
+        &#39;migration_status&#39;: &#39;migrationStatus&#39;,
+        &#39;import_session_id&#39;: &#39;importSessionId&#39;,
+        &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, import_session_id=None, object_store_access=None, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, migration_status=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, migration_status=None, import_session_id=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;CreateVolumeResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._import_session_id = None
-        self._object_store_access = None
         self._id = None
         self._name = None
         self._tenant_id = None
@@ -134,12 +132,10 @@ class CreateVolumeResponse(object):
         self._metadata = None
         self._life_cycle = None
         self._migration_status = None
+        self._import_session_id = None
+        self._object_store_access = None
         self.discriminator = None
 
-        if import_session_id is not None:
-            self.import_session_id = import_session_id
-        if object_store_access is not None:
-            self.object_store_access = object_store_access
         if id is not None:
             self.id = id
         if name is not None:
@@ -174,50 +170,10 @@ class CreateVolumeResponse(object):
             self.life_cycle = life_cycle
         if migration_status is not None:
             self.migration_status = migration_status
-
-    @property
-    def import_session_id(self):
-        &#34;&#34;&#34;Gets the import_session_id of this CreateVolumeResponse.  # noqa: E501
-
-        Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations.  # noqa: E501
-
-        :return: The import_session_id of this CreateVolumeResponse.  # noqa: E501
-        :rtype: str
-        &#34;&#34;&#34;
-        return self._import_session_id
-
-    @import_session_id.setter
-    def import_session_id(self, import_session_id):
-        &#34;&#34;&#34;Sets the import_session_id of this CreateVolumeResponse.
-
-        Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations.  # noqa: E501
-
-        :param import_session_id: The import_session_id of this CreateVolumeResponse.  # noqa: E501
-        :type: str
-        &#34;&#34;&#34;
-
-        self._import_session_id = import_session_id
-
-    @property
-    def object_store_access(self):
-        &#34;&#34;&#34;Gets the object_store_access of this CreateVolumeResponse.  # noqa: E501
-
-
-        :return: The object_store_access of this CreateVolumeResponse.  # noqa: E501
-        :rtype: ObjectStoreAccess
-        &#34;&#34;&#34;
-        return self._object_store_access
-
-    @object_store_access.setter
-    def object_store_access(self, object_store_access):
-        &#34;&#34;&#34;Sets the object_store_access of this CreateVolumeResponse.
-
-
-        :param object_store_access: The object_store_access of this CreateVolumeResponse.  # noqa: E501
-        :type: ObjectStoreAccess
-        &#34;&#34;&#34;
-
-        self._object_store_access = object_store_access
+        if import_session_id is not None:
+            self.import_session_id = import_session_id
+        if object_store_access is not None:
+            self.object_store_access = object_store_access
 
     @property
     def id(self):
@@ -605,6 +561,50 @@ class CreateVolumeResponse(object):
         &#34;&#34;&#34;
 
         self._migration_status = migration_status
+
+    @property
+    def import_session_id(self):
+        &#34;&#34;&#34;Gets the import_session_id of this CreateVolumeResponse.  # noqa: E501
+
+        Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations.  # noqa: E501
+
+        :return: The import_session_id of this CreateVolumeResponse.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._import_session_id
+
+    @import_session_id.setter
+    def import_session_id(self, import_session_id):
+        &#34;&#34;&#34;Sets the import_session_id of this CreateVolumeResponse.
+
+        Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations.  # noqa: E501
+
+        :param import_session_id: The import_session_id of this CreateVolumeResponse.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._import_session_id = import_session_id
+
+    @property
+    def object_store_access(self):
+        &#34;&#34;&#34;Gets the object_store_access of this CreateVolumeResponse.  # noqa: E501
+
+
+        :return: The object_store_access of this CreateVolumeResponse.  # noqa: E501
+        :rtype: ObjectStoreAccess
+        &#34;&#34;&#34;
+        return self._object_store_access
+
+    @object_store_access.setter
+    def object_store_access(self, object_store_access):
+        &#34;&#34;&#34;Sets the object_store_access of this CreateVolumeResponse.
+
+
+        :param object_store_access: The object_store_access of this CreateVolumeResponse.  # noqa: E501
+        :type: ObjectStoreAccess
+        &#34;&#34;&#34;
+
+        self._object_store_access = object_store_access
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;
@@ -664,7 +664,7 @@ class CreateVolumeResponse(object):
 <dl>
 <dt id="libica.openapi.libgds.models.create_volume_response.CreateVolumeResponse"><code class="flex name class">
 <span>class <span class="ident">CreateVolumeResponse</span></span>
-<span>(</span><span>import_session_id=None, object_store_access=None, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, migration_status=None, local_vars_configuration=None)</span>
+<span>(</span><span>id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, migration_status=None, import_session_id=None, object_store_access=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -690,8 +690,6 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                             and the value is json key in definition.
     &#34;&#34;&#34;
     openapi_types = {
-        &#39;import_session_id&#39;: &#39;str&#39;,
-        &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;,
         &#39;id&#39;: &#39;str&#39;,
         &#39;name&#39;: &#39;str&#39;,
         &#39;tenant_id&#39;: &#39;str&#39;,
@@ -708,12 +706,12 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;job_status&#39;: &#39;JobStatus&#39;,
         &#39;metadata&#39;: &#39;object&#39;,
         &#39;life_cycle&#39;: &#39;VolumeLifeCycleSettings&#39;,
-        &#39;migration_status&#39;: &#39;str&#39;
+        &#39;migration_status&#39;: &#39;str&#39;,
+        &#39;import_session_id&#39;: &#39;str&#39;,
+        &#39;object_store_access&#39;: &#39;ObjectStoreAccess&#39;
     }
 
     attribute_map = {
-        &#39;import_session_id&#39;: &#39;importSessionId&#39;,
-        &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;,
         &#39;id&#39;: &#39;id&#39;,
         &#39;name&#39;: &#39;name&#39;,
         &#39;tenant_id&#39;: &#39;tenantId&#39;,
@@ -730,17 +728,17 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;job_status&#39;: &#39;jobStatus&#39;,
         &#39;metadata&#39;: &#39;metadata&#39;,
         &#39;life_cycle&#39;: &#39;lifeCycle&#39;,
-        &#39;migration_status&#39;: &#39;migrationStatus&#39;
+        &#39;migration_status&#39;: &#39;migrationStatus&#39;,
+        &#39;import_session_id&#39;: &#39;importSessionId&#39;,
+        &#39;object_store_access&#39;: &#39;objectStoreAccess&#39;
     }
 
-    def __init__(self, import_session_id=None, object_store_access=None, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, migration_status=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, id=None, name=None, tenant_id=None, sub_tenant_id=None, urn=None, root_folder_id=None, root_key_prefix=None, volume_configuration_name=None, inherited_acl=None, time_created=None, created_by=None, time_modified=None, modified_by=None, job_status=None, metadata=None, life_cycle=None, migration_status=None, import_session_id=None, object_store_access=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;CreateVolumeResponse - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
         self.local_vars_configuration = local_vars_configuration
 
-        self._import_session_id = None
-        self._object_store_access = None
         self._id = None
         self._name = None
         self._tenant_id = None
@@ -758,12 +756,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._metadata = None
         self._life_cycle = None
         self._migration_status = None
+        self._import_session_id = None
+        self._object_store_access = None
         self.discriminator = None
 
-        if import_session_id is not None:
-            self.import_session_id = import_session_id
-        if object_store_access is not None:
-            self.object_store_access = object_store_access
         if id is not None:
             self.id = id
         if name is not None:
@@ -798,50 +794,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.life_cycle = life_cycle
         if migration_status is not None:
             self.migration_status = migration_status
-
-    @property
-    def import_session_id(self):
-        &#34;&#34;&#34;Gets the import_session_id of this CreateVolumeResponse.  # noqa: E501
-
-        Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations.  # noqa: E501
-
-        :return: The import_session_id of this CreateVolumeResponse.  # noqa: E501
-        :rtype: str
-        &#34;&#34;&#34;
-        return self._import_session_id
-
-    @import_session_id.setter
-    def import_session_id(self, import_session_id):
-        &#34;&#34;&#34;Sets the import_session_id of this CreateVolumeResponse.
-
-        Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations.  # noqa: E501
-
-        :param import_session_id: The import_session_id of this CreateVolumeResponse.  # noqa: E501
-        :type: str
-        &#34;&#34;&#34;
-
-        self._import_session_id = import_session_id
-
-    @property
-    def object_store_access(self):
-        &#34;&#34;&#34;Gets the object_store_access of this CreateVolumeResponse.  # noqa: E501
-
-
-        :return: The object_store_access of this CreateVolumeResponse.  # noqa: E501
-        :rtype: ObjectStoreAccess
-        &#34;&#34;&#34;
-        return self._object_store_access
-
-    @object_store_access.setter
-    def object_store_access(self, object_store_access):
-        &#34;&#34;&#34;Sets the object_store_access of this CreateVolumeResponse.
-
-
-        :param object_store_access: The object_store_access of this CreateVolumeResponse.  # noqa: E501
-        :type: ObjectStoreAccess
-        &#34;&#34;&#34;
-
-        self._object_store_access = object_store_access
+        if import_session_id is not None:
+            self.import_session_id = import_session_id
+        if object_store_access is not None:
+            self.object_store_access = object_store_access
 
     @property
     def id(self):
@@ -1229,6 +1185,50 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#34;&#34;&#34;
 
         self._migration_status = migration_status
+
+    @property
+    def import_session_id(self):
+        &#34;&#34;&#34;Gets the import_session_id of this CreateVolumeResponse.  # noqa: E501
+
+        Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations.  # noqa: E501
+
+        :return: The import_session_id of this CreateVolumeResponse.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._import_session_id
+
+    @import_session_id.setter
+    def import_session_id(self, import_session_id):
+        &#34;&#34;&#34;Sets the import_session_id of this CreateVolumeResponse.
+
+        Unique identifier of the import Session for this Volume. This only applies to Volumes created from custom  Volume configurations.  # noqa: E501
+
+        :param import_session_id: The import_session_id of this CreateVolumeResponse.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._import_session_id = import_session_id
+
+    @property
+    def object_store_access(self):
+        &#34;&#34;&#34;Gets the object_store_access of this CreateVolumeResponse.  # noqa: E501
+
+
+        :return: The object_store_access of this CreateVolumeResponse.  # noqa: E501
+        :rtype: ObjectStoreAccess
+        &#34;&#34;&#34;
+        return self._object_store_access
+
+    @object_store_access.setter
+    def object_store_access(self, object_store_access):
+        &#34;&#34;&#34;Sets the object_store_access of this CreateVolumeResponse.
+
+
+        :param object_store_access: The object_store_access of this CreateVolumeResponse.  # noqa: E501
+        :type: ObjectStoreAccess
+        &#34;&#34;&#34;
+
+        self._object_store_access = object_store_access
 
     def to_dict(self):
         &#34;&#34;&#34;Returns the model properties as a dict&#34;&#34;&#34;

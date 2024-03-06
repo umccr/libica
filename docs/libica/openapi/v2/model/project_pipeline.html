@@ -66,9 +66,9 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.bundle_list import BundleList
-    from libica.openapi.v2.model.pipeline import Pipeline
+    from libica.openapi.v2.model.pipeline_v3 import PipelineV3
     globals()[&#39;BundleList&#39;] = BundleList
-    globals()[&#39;Pipeline&#39;] = Pipeline
+    globals()[&#39;PipelineV3&#39;] = PipelineV3
 
 
 class ProjectPipeline(ModelNormal):
@@ -124,7 +124,7 @@ class ProjectPipeline(ModelNormal):
         &#34;&#34;&#34;
         lazy_import()
         return {
-            &#39;pipeline&#39;: (Pipeline,),  # noqa: E501
+            &#39;pipeline&#39;: (PipelineV3,),  # noqa: E501
             &#39;project_id&#39;: (str,),  # noqa: E501
             &#39;bundle_links&#39;: (BundleList,),  # noqa: E501
         }
@@ -151,7 +151,7 @@ class ProjectPipeline(ModelNormal):
         &#34;&#34;&#34;ProjectPipeline - a model defined in OpenAPI
 
         Args:
-            pipeline (Pipeline):
+            pipeline (PipelineV3):
             project_id (str):
             bundle_links (BundleList):
 
@@ -240,7 +240,7 @@ class ProjectPipeline(ModelNormal):
         &#34;&#34;&#34;ProjectPipeline - a model defined in OpenAPI
 
         Args:
-            pipeline (Pipeline):
+            pipeline (PipelineV3):
             project_id (str):
             bundle_links (BundleList):
 
@@ -334,9 +334,9 @@ class ProjectPipeline(ModelNormal):
 </summary>
 <pre><code class="python">def lazy_import():
     from libica.openapi.v2.model.bundle_list import BundleList
-    from libica.openapi.v2.model.pipeline import Pipeline
+    from libica.openapi.v2.model.pipeline_v3 import PipelineV3
     globals()[&#39;BundleList&#39;] = BundleList
-    globals()[&#39;Pipeline&#39;] = Pipeline</code></pre>
+    globals()[&#39;PipelineV3&#39;] = PipelineV3</code></pre>
 </details>
 </dd>
 </dl>
@@ -377,7 +377,7 @@ as additional properties values.</dd>
 </dl>
 <p>ProjectPipeline - a model defined in OpenAPI</p>
 <h2 id="args">Args</h2>
-<p>pipeline (Pipeline):
+<p>pipeline (PipelineV3):
 project_id (str):
 bundle_links (BundleList):
 Keyword Args:
@@ -468,7 +468,7 @@ _visited_composed_classes = (Animal,)</p></div>
         &#34;&#34;&#34;
         lazy_import()
         return {
-            &#39;pipeline&#39;: (Pipeline,),  # noqa: E501
+            &#39;pipeline&#39;: (PipelineV3,),  # noqa: E501
             &#39;project_id&#39;: (str,),  # noqa: E501
             &#39;bundle_links&#39;: (BundleList,),  # noqa: E501
         }
@@ -495,7 +495,7 @@ _visited_composed_classes = (Animal,)</p></div>
         &#34;&#34;&#34;ProjectPipeline - a model defined in OpenAPI
 
         Args:
-            pipeline (Pipeline):
+            pipeline (PipelineV3):
             project_id (str):
             bundle_links (BundleList):
 
@@ -584,7 +584,7 @@ _visited_composed_classes = (Animal,)</p></div>
         &#34;&#34;&#34;ProjectPipeline - a model defined in OpenAPI
 
         Args:
-            pipeline (Pipeline):
+            pipeline (PipelineV3):
             project_id (str):
             bundle_links (BundleList):
 

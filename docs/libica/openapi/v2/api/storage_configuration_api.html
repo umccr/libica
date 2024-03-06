@@ -333,637 +333,15 @@ class StorageConfigurationApi(object):
             },
             api_client=api_client
         )
-
-    def create_storage_configuration(
-        self,
-        create_storage_configuration,
-        **kwargs
-    ):
-        &#34;&#34;&#34;Create a new storage configuration  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        &gt;&gt;&gt; thread = api.create_storage_configuration(create_storage_configuration, async_req=True)
-        &gt;&gt;&gt; result = thread.get()
-
-        Args:
-            create_storage_configuration (CreateStorageConfiguration):
-
-        Keyword Args:
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            StorageConfiguration
-                If the method is called asynchronously, returns the request
-                thread.
-        &#34;&#34;&#34;
-        kwargs[&#39;async_req&#39;] = kwargs.get(
-            &#39;async_req&#39;, False
-        )
-        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
-            &#39;_return_http_data_only&#39;, True
-        )
-        kwargs[&#39;_preload_content&#39;] = kwargs.get(
-            &#39;_preload_content&#39;, True
-        )
-        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
-            &#39;_request_timeout&#39;, None
-        )
-        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
-            &#39;_check_input_type&#39;, True
-        )
-        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
-            &#39;_check_return_type&#39;, True
-        )
-        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
-            &#39;_spec_property_naming&#39;, False
-        )
-        kwargs[&#39;_content_type&#39;] = kwargs.get(
-            &#39;_content_type&#39;)
-        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
-        kwargs[&#39;create_storage_configuration&#39;] = \
-            create_storage_configuration
-        return self.create_storage_configuration_endpoint.call_with_http_info(**kwargs)
-
-    def get_storage_configuration(
-        self,
-        storage_configuration_id,
-        **kwargs
-    ):
-        &#34;&#34;&#34;Retrieve a storage configuration.  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        &gt;&gt;&gt; thread = api.get_storage_configuration(storage_configuration_id, async_req=True)
-        &gt;&gt;&gt; result = thread.get()
-
-        Args:
-            storage_configuration_id (str): The ID of the storage configuration to retrieve
-
-        Keyword Args:
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            StorageConfiguration
-                If the method is called asynchronously, returns the request
-                thread.
-        &#34;&#34;&#34;
-        kwargs[&#39;async_req&#39;] = kwargs.get(
-            &#39;async_req&#39;, False
-        )
-        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
-            &#39;_return_http_data_only&#39;, True
-        )
-        kwargs[&#39;_preload_content&#39;] = kwargs.get(
-            &#39;_preload_content&#39;, True
-        )
-        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
-            &#39;_request_timeout&#39;, None
-        )
-        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
-            &#39;_check_input_type&#39;, True
-        )
-        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
-            &#39;_check_return_type&#39;, True
-        )
-        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
-            &#39;_spec_property_naming&#39;, False
-        )
-        kwargs[&#39;_content_type&#39;] = kwargs.get(
-            &#39;_content_type&#39;)
-        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
-        kwargs[&#39;storage_configuration_id&#39;] = \
-            storage_configuration_id
-        return self.get_storage_configuration_endpoint.call_with_http_info(**kwargs)
-
-    def get_storage_configuration_details(
-        self,
-        storage_configuration_id,
-        **kwargs
-    ):
-        &#34;&#34;&#34;Retrieve a storage configuration detail.  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        &gt;&gt;&gt; thread = api.get_storage_configuration_details(storage_configuration_id, async_req=True)
-        &gt;&gt;&gt; result = thread.get()
-
-        Args:
-            storage_configuration_id (str): The ID of the storage configuration to retrieve
-
-        Keyword Args:
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            StorageConfigurationDetails
-                If the method is called asynchronously, returns the request
-                thread.
-        &#34;&#34;&#34;
-        kwargs[&#39;async_req&#39;] = kwargs.get(
-            &#39;async_req&#39;, False
-        )
-        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
-            &#39;_return_http_data_only&#39;, True
-        )
-        kwargs[&#39;_preload_content&#39;] = kwargs.get(
-            &#39;_preload_content&#39;, True
-        )
-        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
-            &#39;_request_timeout&#39;, None
-        )
-        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
-            &#39;_check_input_type&#39;, True
-        )
-        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
-            &#39;_check_return_type&#39;, True
-        )
-        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
-            &#39;_spec_property_naming&#39;, False
-        )
-        kwargs[&#39;_content_type&#39;] = kwargs.get(
-            &#39;_content_type&#39;)
-        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
-        kwargs[&#39;storage_configuration_id&#39;] = \
-            storage_configuration_id
-        return self.get_storage_configuration_details_endpoint.call_with_http_info(**kwargs)
-
-    def get_storage_configurations(
-        self,
-        **kwargs
-    ):
-        &#34;&#34;&#34;Retrieve a list of storage configurations.  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        &gt;&gt;&gt; thread = api.get_storage_configurations(async_req=True)
-        &gt;&gt;&gt; result = thread.get()
-
-
-        Keyword Args:
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            StorageConfigurationWithDetailsList
-                If the method is called asynchronously, returns the request
-                thread.
-        &#34;&#34;&#34;
-        kwargs[&#39;async_req&#39;] = kwargs.get(
-            &#39;async_req&#39;, False
-        )
-        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
-            &#39;_return_http_data_only&#39;, True
-        )
-        kwargs[&#39;_preload_content&#39;] = kwargs.get(
-            &#39;_preload_content&#39;, True
-        )
-        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
-            &#39;_request_timeout&#39;, None
-        )
-        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
-            &#39;_check_input_type&#39;, True
-        )
-        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
-            &#39;_check_return_type&#39;, True
-        )
-        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
-            &#39;_spec_property_naming&#39;, False
-        )
-        kwargs[&#39;_content_type&#39;] = kwargs.get(
-            &#39;_content_type&#39;)
-        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
-        return self.get_storage_configurations_endpoint.call_with_http_info(**kwargs)
-
-    def share_storage_configuration(
-        self,
-        storage_configuration_id,
-        **kwargs
-    ):
-        &#34;&#34;&#34;Share your own storage configuration with tenant.  # noqa: E501
-
-        Here you share your own storage configuration with all the other users in your tenant.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        &gt;&gt;&gt; thread = api.share_storage_configuration(storage_configuration_id, async_req=True)
-        &gt;&gt;&gt; result = thread.get()
-
-        Args:
-            storage_configuration_id (str): The ID of the storage configuration to share
-
-        Keyword Args:
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            None
-                If the method is called asynchronously, returns the request
-                thread.
-        &#34;&#34;&#34;
-        kwargs[&#39;async_req&#39;] = kwargs.get(
-            &#39;async_req&#39;, False
-        )
-        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
-            &#39;_return_http_data_only&#39;, True
-        )
-        kwargs[&#39;_preload_content&#39;] = kwargs.get(
-            &#39;_preload_content&#39;, True
-        )
-        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
-            &#39;_request_timeout&#39;, None
-        )
-        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
-            &#39;_check_input_type&#39;, True
-        )
-        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
-            &#39;_check_return_type&#39;, True
-        )
-        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
-            &#39;_spec_property_naming&#39;, False
-        )
-        kwargs[&#39;_content_type&#39;] = kwargs.get(
-            &#39;_content_type&#39;)
-        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
-        kwargs[&#39;storage_configuration_id&#39;] = \
-            storage_configuration_id
-        return self.share_storage_configuration_endpoint.call_with_http_info(**kwargs)</code></pre>
-</details>
-</section>
-<section>
-</section>
-<section>
-</section>
-<section>
-</section>
-<section>
-<h2 class="section-title" id="header-classes">Classes</h2>
-<dl>
-<dt id="libica.openapi.v2.api.storage_configuration_api.StorageConfigurationApi"><code class="flex name class">
-<span>class <span class="ident">StorageConfigurationApi</span></span>
-<span>(</span><span>api_client=None)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator
-Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a></p>
-<p>Do not edit the class manually.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class StorageConfigurationApi(object):
-    &#34;&#34;&#34;NOTE: This class is auto generated by OpenAPI Generator
-    Ref: https://openapi-generator.tech
-
-    Do not edit the class manually.
-    &#34;&#34;&#34;
-
-    def __init__(self, api_client=None):
-        if api_client is None:
-            api_client = ApiClient()
-        self.api_client = api_client
-        self.create_storage_configuration_endpoint = _Endpoint(
-            settings={
-                &#39;response_type&#39;: (StorageConfiguration,),
-                &#39;auth&#39;: [
-                    &#39;ApiKeyAuth&#39;,
-                    &#39;JwtAuth&#39;
-                ],
-                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations&#39;,
-                &#39;operation_id&#39;: &#39;create_storage_configuration&#39;,
-                &#39;http_method&#39;: &#39;POST&#39;,
-                &#39;servers&#39;: None,
-            },
-            params_map={
-                &#39;all&#39;: [
-                    &#39;create_storage_configuration&#39;,
-                ],
-                &#39;required&#39;: [
-                    &#39;create_storage_configuration&#39;,
-                ],
-                &#39;nullable&#39;: [
-                ],
-                &#39;enum&#39;: [
-                ],
-                &#39;validation&#39;: [
-                ]
-            },
-            root_map={
-                &#39;validations&#39;: {
-                },
-                &#39;allowed_values&#39;: {
-                },
-                &#39;openapi_types&#39;: {
-                    &#39;create_storage_configuration&#39;:
-                        (CreateStorageConfiguration,),
-                },
-                &#39;attribute_map&#39;: {
-                },
-                &#39;location_map&#39;: {
-                    &#39;create_storage_configuration&#39;: &#39;body&#39;,
-                },
-                &#39;collection_format_map&#39;: {
-                }
-            },
-            headers_map={
-                &#39;accept&#39;: [
-                    &#39;application/problem+json&#39;,
-                    &#39;application/vnd.illumina.v3+json&#39;
-                ],
-                &#39;content_type&#39;: [
-                    &#39;application/vnd.illumina.v3+json&#39;,
-                    &#39;application/json&#39;
-                ]
-            },
-            api_client=api_client
-        )
-        self.get_storage_configuration_endpoint = _Endpoint(
-            settings={
-                &#39;response_type&#39;: (StorageConfiguration,),
-                &#39;auth&#39;: [
-                    &#39;ApiKeyAuth&#39;,
-                    &#39;JwtAuth&#39;
-                ],
-                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations/{storageConfigurationId}&#39;,
-                &#39;operation_id&#39;: &#39;get_storage_configuration&#39;,
-                &#39;http_method&#39;: &#39;GET&#39;,
-                &#39;servers&#39;: None,
-            },
-            params_map={
-                &#39;all&#39;: [
-                    &#39;storage_configuration_id&#39;,
-                ],
-                &#39;required&#39;: [
-                    &#39;storage_configuration_id&#39;,
-                ],
-                &#39;nullable&#39;: [
-                ],
-                &#39;enum&#39;: [
-                ],
-                &#39;validation&#39;: [
-                ]
-            },
-            root_map={
-                &#39;validations&#39;: {
-                },
-                &#39;allowed_values&#39;: {
-                },
-                &#39;openapi_types&#39;: {
-                    &#39;storage_configuration_id&#39;:
-                        (str,),
-                },
-                &#39;attribute_map&#39;: {
-                    &#39;storage_configuration_id&#39;: &#39;storageConfigurationId&#39;,
-                },
-                &#39;location_map&#39;: {
-                    &#39;storage_configuration_id&#39;: &#39;path&#39;,
-                },
-                &#39;collection_format_map&#39;: {
-                }
-            },
-            headers_map={
-                &#39;accept&#39;: [
-                    &#39;application/problem+json&#39;,
-                    &#39;application/vnd.illumina.v3+json&#39;
-                ],
-                &#39;content_type&#39;: [],
-            },
-            api_client=api_client
-        )
-        self.get_storage_configuration_details_endpoint = _Endpoint(
-            settings={
-                &#39;response_type&#39;: (StorageConfigurationDetails,),
-                &#39;auth&#39;: [
-                    &#39;ApiKeyAuth&#39;,
-                    &#39;JwtAuth&#39;
-                ],
-                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations/{storageConfigurationId}/details&#39;,
-                &#39;operation_id&#39;: &#39;get_storage_configuration_details&#39;,
-                &#39;http_method&#39;: &#39;GET&#39;,
-                &#39;servers&#39;: None,
-            },
-            params_map={
-                &#39;all&#39;: [
-                    &#39;storage_configuration_id&#39;,
-                ],
-                &#39;required&#39;: [
-                    &#39;storage_configuration_id&#39;,
-                ],
-                &#39;nullable&#39;: [
-                ],
-                &#39;enum&#39;: [
-                ],
-                &#39;validation&#39;: [
-                ]
-            },
-            root_map={
-                &#39;validations&#39;: {
-                },
-                &#39;allowed_values&#39;: {
-                },
-                &#39;openapi_types&#39;: {
-                    &#39;storage_configuration_id&#39;:
-                        (str,),
-                },
-                &#39;attribute_map&#39;: {
-                    &#39;storage_configuration_id&#39;: &#39;storageConfigurationId&#39;,
-                },
-                &#39;location_map&#39;: {
-                    &#39;storage_configuration_id&#39;: &#39;path&#39;,
-                },
-                &#39;collection_format_map&#39;: {
-                }
-            },
-            headers_map={
-                &#39;accept&#39;: [
-                    &#39;application/problem+json&#39;,
-                    &#39;application/vnd.illumina.v3+json&#39;
-                ],
-                &#39;content_type&#39;: [],
-            },
-            api_client=api_client
-        )
-        self.get_storage_configurations_endpoint = _Endpoint(
-            settings={
-                &#39;response_type&#39;: (StorageConfigurationWithDetailsList,),
-                &#39;auth&#39;: [
-                    &#39;ApiKeyAuth&#39;,
-                    &#39;JwtAuth&#39;
-                ],
-                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations&#39;,
-                &#39;operation_id&#39;: &#39;get_storage_configurations&#39;,
-                &#39;http_method&#39;: &#39;GET&#39;,
-                &#39;servers&#39;: None,
-            },
-            params_map={
-                &#39;all&#39;: [
-                ],
-                &#39;required&#39;: [],
-                &#39;nullable&#39;: [
-                ],
-                &#39;enum&#39;: [
-                ],
-                &#39;validation&#39;: [
-                ]
-            },
-            root_map={
-                &#39;validations&#39;: {
-                },
-                &#39;allowed_values&#39;: {
-                },
-                &#39;openapi_types&#39;: {
-                },
-                &#39;attribute_map&#39;: {
-                },
-                &#39;location_map&#39;: {
-                },
-                &#39;collection_format_map&#39;: {
-                }
-            },
-            headers_map={
-                &#39;accept&#39;: [
-                    &#39;application/problem+json&#39;,
-                    &#39;application/vnd.illumina.v3+json&#39;
-                ],
-                &#39;content_type&#39;: [],
-            },
-            api_client=api_client
-        )
-        self.share_storage_configuration_endpoint = _Endpoint(
+        self.validate_storage_configuration_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: None,
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
                 ],
-                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations/{storageConfigurationId}:share&#39;,
-                &#39;operation_id&#39;: &#39;share_storage_configuration&#39;,
+                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations/{storageConfigurationId}:validate&#39;,
+                &#39;operation_id&#39;: &#39;validate_storage_configuration&#39;,
                 &#39;http_method&#39;: &#39;POST&#39;,
                 &#39;servers&#39;: None,
             },
@@ -1387,7 +765,889 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
         kwargs[&#39;storage_configuration_id&#39;] = \
             storage_configuration_id
-        return self.share_storage_configuration_endpoint.call_with_http_info(**kwargs)</code></pre>
+        return self.share_storage_configuration_endpoint.call_with_http_info(**kwargs)
+
+    def validate_storage_configuration(
+        self,
+        storage_configuration_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Start validation of your storage configuration.  # noqa: E501
+
+        Here you start the validation of your storage configuration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.validate_storage_configuration(storage_configuration_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            storage_configuration_id (str): The ID of the storage configuration to validate
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;storage_configuration_id&#39;] = \
+            storage_configuration_id
+        return self.validate_storage_configuration_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="libica.openapi.v2.api.storage_configuration_api.StorageConfigurationApi"><code class="flex name class">
+<span>class <span class="ident">StorageConfigurationApi</span></span>
+<span>(</span><span>api_client=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator
+Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a></p>
+<p>Do not edit the class manually.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class StorageConfigurationApi(object):
+    &#34;&#34;&#34;NOTE: This class is auto generated by OpenAPI Generator
+    Ref: https://openapi-generator.tech
+
+    Do not edit the class manually.
+    &#34;&#34;&#34;
+
+    def __init__(self, api_client=None):
+        if api_client is None:
+            api_client = ApiClient()
+        self.api_client = api_client
+        self.create_storage_configuration_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (StorageConfiguration,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations&#39;,
+                &#39;operation_id&#39;: &#39;create_storage_configuration&#39;,
+                &#39;http_method&#39;: &#39;POST&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;create_storage_configuration&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;create_storage_configuration&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;create_storage_configuration&#39;:
+                        (CreateStorageConfiguration,),
+                },
+                &#39;attribute_map&#39;: {
+                },
+                &#39;location_map&#39;: {
+                    &#39;create_storage_configuration&#39;: &#39;body&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
+                ]
+            },
+            api_client=api_client
+        )
+        self.get_storage_configuration_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (StorageConfiguration,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations/{storageConfigurationId}&#39;,
+                &#39;operation_id&#39;: &#39;get_storage_configuration&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;storage_configuration_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;storage_configuration_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;storage_configuration_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;storage_configuration_id&#39;: &#39;storageConfigurationId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;storage_configuration_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.get_storage_configuration_details_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (StorageConfigurationDetails,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations/{storageConfigurationId}/details&#39;,
+                &#39;operation_id&#39;: &#39;get_storage_configuration_details&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;storage_configuration_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;storage_configuration_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;storage_configuration_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;storage_configuration_id&#39;: &#39;storageConfigurationId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;storage_configuration_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.get_storage_configurations_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (StorageConfigurationWithDetailsList,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations&#39;,
+                &#39;operation_id&#39;: &#39;get_storage_configurations&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                ],
+                &#39;required&#39;: [],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                },
+                &#39;attribute_map&#39;: {
+                },
+                &#39;location_map&#39;: {
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.share_storage_configuration_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: None,
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations/{storageConfigurationId}:share&#39;,
+                &#39;operation_id&#39;: &#39;share_storage_configuration&#39;,
+                &#39;http_method&#39;: &#39;POST&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;storage_configuration_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;storage_configuration_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;storage_configuration_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;storage_configuration_id&#39;: &#39;storageConfigurationId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;storage_configuration_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.validate_storage_configuration_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: None,
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/storageConfigurations/{storageConfigurationId}:validate&#39;,
+                &#39;operation_id&#39;: &#39;validate_storage_configuration&#39;,
+                &#39;http_method&#39;: &#39;POST&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;storage_configuration_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;storage_configuration_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;storage_configuration_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;storage_configuration_id&#39;: &#39;storageConfigurationId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;storage_configuration_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+
+    def create_storage_configuration(
+        self,
+        create_storage_configuration,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Create a new storage configuration  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.create_storage_configuration(create_storage_configuration, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            create_storage_configuration (CreateStorageConfiguration):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            StorageConfiguration
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;create_storage_configuration&#39;] = \
+            create_storage_configuration
+        return self.create_storage_configuration_endpoint.call_with_http_info(**kwargs)
+
+    def get_storage_configuration(
+        self,
+        storage_configuration_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve a storage configuration.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_storage_configuration(storage_configuration_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            storage_configuration_id (str): The ID of the storage configuration to retrieve
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            StorageConfiguration
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;storage_configuration_id&#39;] = \
+            storage_configuration_id
+        return self.get_storage_configuration_endpoint.call_with_http_info(**kwargs)
+
+    def get_storage_configuration_details(
+        self,
+        storage_configuration_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve a storage configuration detail.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_storage_configuration_details(storage_configuration_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            storage_configuration_id (str): The ID of the storage configuration to retrieve
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            StorageConfigurationDetails
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;storage_configuration_id&#39;] = \
+            storage_configuration_id
+        return self.get_storage_configuration_details_endpoint.call_with_http_info(**kwargs)
+
+    def get_storage_configurations(
+        self,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve a list of storage configurations.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_storage_configurations(async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            StorageConfigurationWithDetailsList
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        return self.get_storage_configurations_endpoint.call_with_http_info(**kwargs)
+
+    def share_storage_configuration(
+        self,
+        storage_configuration_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Share your own storage configuration with tenant.  # noqa: E501
+
+        Here you share your own storage configuration with all the other users in your tenant.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.share_storage_configuration(storage_configuration_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            storage_configuration_id (str): The ID of the storage configuration to share
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;storage_configuration_id&#39;] = \
+            storage_configuration_id
+        return self.share_storage_configuration_endpoint.call_with_http_info(**kwargs)
+
+    def validate_storage_configuration(
+        self,
+        storage_configuration_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Start validation of your storage configuration.  # noqa: E501
+
+        Here you start the validation of your storage configuration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.validate_storage_configuration(storage_configuration_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            storage_configuration_id (str): The ID of the storage configuration to validate
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;storage_configuration_id&#39;] = \
+            storage_configuration_id
+        return self.validate_storage_configuration_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 <h3>Methods</h3>
 <dl>
@@ -2026,6 +2286,138 @@ thread.</p></div>
     return self.share_storage_configuration_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.v2.api.storage_configuration_api.StorageConfigurationApi.validate_storage_configuration"><code class="name flex">
+<span>def <span class="ident">validate_storage_configuration</span></span>(<span>self, storage_configuration_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Start validation of your storage configuration.
+# noqa: E501</p>
+<p>Here you start the validation of your storage configuration.
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.validate_storage_configuration(storage_configuration_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>storage_configuration_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the storage configuration to validate</dd>
+</dl>
+<p>Keyword Args:
+_return_http_data_only (bool): response data without head status
+code and headers. Default is True.
+_preload_content (bool): if False, the urllib3.HTTPResponse object
+will be returned without reading/decoding response data.
+Default is True.
+_request_timeout (int/float/tuple): timeout setting for this request. If
+one number provided, it will be total request timeout. It can also
+be a pair (tuple) of (connection, read) timeouts.
+Default is None.
+_check_input_type (bool): specifies if type checking
+should be done one the data sent to the server.
+Default is True.
+_check_return_type (bool): specifies if type checking
+should be done one the data received from the server.
+Default is True.
+_spec_property_naming (bool): True if the variable names in the input data
+are serialized names, as specified in the OpenAPI document.
+False if the variable names in the input data
+are pythonic names, e.g. snake case (default)
+_content_type (str/None): force body content-type.
+Default is None and content-type will be predicted by allowed
+content-types and body.
+_host_index (int/None): specifies the index of the server
+that we want to use.
+Default is read from the configuration.
+async_req (bool): execute request asynchronously</p>
+<h2 id="returns">Returns</h2>
+<p>None
+If the method is called asynchronously, returns the request
+thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def validate_storage_configuration(
+    self,
+    storage_configuration_id,
+    **kwargs
+):
+    &#34;&#34;&#34;Start validation of your storage configuration.  # noqa: E501
+
+    Here you start the validation of your storage configuration.  # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    &gt;&gt;&gt; thread = api.validate_storage_configuration(storage_configuration_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    Args:
+        storage_configuration_id (str): The ID of the storage configuration to validate
+
+    Keyword Args:
+        _return_http_data_only (bool): response data without head status
+            code and headers. Default is True.
+        _preload_content (bool): if False, the urllib3.HTTPResponse object
+            will be returned without reading/decoding response data.
+            Default is True.
+        _request_timeout (int/float/tuple): timeout setting for this request. If
+            one number provided, it will be total request timeout. It can also
+            be a pair (tuple) of (connection, read) timeouts.
+            Default is None.
+        _check_input_type (bool): specifies if type checking
+            should be done one the data sent to the server.
+            Default is True.
+        _check_return_type (bool): specifies if type checking
+            should be done one the data received from the server.
+            Default is True.
+        _spec_property_naming (bool): True if the variable names in the input data
+            are serialized names, as specified in the OpenAPI document.
+            False if the variable names in the input data
+            are pythonic names, e.g. snake case (default)
+        _content_type (str/None): force body content-type.
+            Default is None and content-type will be predicted by allowed
+            content-types and body.
+        _host_index (int/None): specifies the index of the server
+            that we want to use.
+            Default is read from the configuration.
+        async_req (bool): execute request asynchronously
+
+    Returns:
+        None
+            If the method is called asynchronously, returns the request
+            thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;async_req&#39;] = kwargs.get(
+        &#39;async_req&#39;, False
+    )
+    kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+        &#39;_return_http_data_only&#39;, True
+    )
+    kwargs[&#39;_preload_content&#39;] = kwargs.get(
+        &#39;_preload_content&#39;, True
+    )
+    kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+        &#39;_request_timeout&#39;, None
+    )
+    kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+        &#39;_check_input_type&#39;, True
+    )
+    kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+        &#39;_check_return_type&#39;, True
+    )
+    kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+        &#39;_spec_property_naming&#39;, False
+    )
+    kwargs[&#39;_content_type&#39;] = kwargs.get(
+        &#39;_content_type&#39;)
+    kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+    kwargs[&#39;storage_configuration_id&#39;] = \
+        storage_configuration_id
+    return self.validate_storage_configuration_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -2052,6 +2444,7 @@ thread.</p></div>
 <li><code><a title="libica.openapi.v2.api.storage_configuration_api.StorageConfigurationApi.get_storage_configuration_details" href="#libica.openapi.v2.api.storage_configuration_api.StorageConfigurationApi.get_storage_configuration_details">get_storage_configuration_details</a></code></li>
 <li><code><a title="libica.openapi.v2.api.storage_configuration_api.StorageConfigurationApi.get_storage_configurations" href="#libica.openapi.v2.api.storage_configuration_api.StorageConfigurationApi.get_storage_configurations">get_storage_configurations</a></code></li>
 <li><code><a title="libica.openapi.v2.api.storage_configuration_api.StorageConfigurationApi.share_storage_configuration" href="#libica.openapi.v2.api.storage_configuration_api.StorageConfigurationApi.share_storage_configuration">share_storage_configuration</a></code></li>
+<li><code><a title="libica.openapi.v2.api.storage_configuration_api.StorageConfigurationApi.validate_storage_configuration" href="#libica.openapi.v2.api.storage_configuration_api.StorageConfigurationApi.validate_storage_configuration">validate_storage_configuration</a></code></li>
 </ul>
 </li>
 </ul>

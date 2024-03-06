@@ -56,9 +56,11 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from libica.openapi.v2.model.analysis_paged_list import AnalysisPagedList
+from libica.openapi.v2.model.analysis_paged_list_v3 import AnalysisPagedListV3
+from libica.openapi.v2.model.analysis_paged_list_v4 import AnalysisPagedListV4
+from libica.openapi.v2.model.analysis_query_parameters import AnalysisQueryParameters
 from libica.openapi.v2.model.create_sample import CreateSample
-from libica.openapi.v2.model.data_list import DataList
+from libica.openapi.v2.model.data_paged_list import DataPagedList
 from libica.openapi.v2.model.field import Field
 from libica.openapi.v2.model.find_project_samples import FindProjectSamples
 from libica.openapi.v2.model.problem import Problem
@@ -499,7 +501,7 @@ class ProjectSampleApi(object):
         )
         self.get_project_sample_analyses_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (AnalysisPagedList,),
+                &#39;response_type&#39;: (AnalysisPagedListV3,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -748,7 +750,7 @@ class ProjectSampleApi(object):
         )
         self.get_sample_data_list_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (DataList,),
+                &#39;response_type&#39;: (DataPagedList,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -1409,6 +1411,92 @@ class ProjectSampleApi(object):
                     &#39;application/problem+json&#39;
                 ],
                 &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.search_project_sample_analyses_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (AnalysisPagedListV4,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/samples/{sampleId}/analyses:search&#39;,
+                &#39;operation_id&#39;: &#39;search_project_sample_analyses&#39;,
+                &#39;http_method&#39;: &#39;POST&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;sample_id&#39;,
+                    &#39;page_offset&#39;,
+                    &#39;page_token&#39;,
+                    &#39;page_size&#39;,
+                    &#39;sort&#39;,
+                    &#39;analysis_query_parameters&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;sample_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;sample_id&#39;:
+                        (str,),
+                    &#39;page_offset&#39;:
+                        (str,),
+                    &#39;page_token&#39;:
+                        (str,),
+                    &#39;page_size&#39;:
+                        (str,),
+                    &#39;sort&#39;:
+                        (str,),
+                    &#39;analysis_query_parameters&#39;:
+                        (AnalysisQueryParameters,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;sample_id&#39;: &#39;sampleId&#39;,
+                    &#39;page_offset&#39;: &#39;pageOffset&#39;,
+                    &#39;page_token&#39;: &#39;pageToken&#39;,
+                    &#39;page_size&#39;: &#39;pageSize&#39;,
+                    &#39;sort&#39;: &#39;sort&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;sample_id&#39;: &#39;path&#39;,
+                    &#39;page_offset&#39;: &#39;query&#39;,
+                    &#39;page_token&#39;: &#39;query&#39;,
+                    &#39;page_size&#39;: &#39;query&#39;,
+                    &#39;sort&#39;: &#39;query&#39;,
+                    &#39;analysis_query_parameters&#39;: &#39;body&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
+                ]
             },
             api_client=api_client
         )
@@ -2257,6 +2345,7 @@ class ProjectSampleApi(object):
     ):
         &#34;&#34;&#34;Retrieve the list of analyses.  # noqa: E501
 
+        This endpoint only returns V3 items. Use the search endpoint to get V4 items.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2274,10 +2363,10 @@ class ProjectSampleApi(object):
             usertag (str): The user-tags to filter on.. [optional]
             technicaltag (str): The technical-tags to filter on.. [optional]
             referencetag (str): The reference-data-tags to filter on.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2306,7 +2395,7 @@ class ProjectSampleApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            AnalysisPagedList
+            AnalysisPagedListV3
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -2360,10 +2449,10 @@ class ProjectSampleApi(object):
             find_project_samples (FindProjectSamples):
 
         Keyword Args:
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34; The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34; The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2554,10 +2643,10 @@ class ProjectSampleApi(object):
             technical_tag_match_mode (str): How the technicalTags are filtered. . [optional]
             not_in_run (bool): When set to true, the data will be filtered on data which is not used in a run.. [optional]
             instrument_run_id ([str]): The instrument run IDs of the sequencing runs to filter on.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt. [optional]
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2586,7 +2675,7 @@ class ProjectSampleApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            DataList
+            DataPagedList
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -3120,6 +3209,92 @@ class ProjectSampleApi(object):
         kwargs[&#39;sample_id&#39;] = \
             sample_id
         return self.mark_sample_deleted_endpoint.call_with_http_info(**kwargs)
+
+    def search_project_sample_analyses(
+        self,
+        project_id,
+        sample_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Search analyses for sample.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.search_project_sample_analyses(project_id, sample_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str):
+            sample_id (str): The ID of the sample
+
+        Keyword Args:
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+            analysis_query_parameters (AnalysisQueryParameters): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisPagedListV4
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        kwargs[&#39;sample_id&#39;] = \
+            sample_id
+        return self.search_project_sample_analyses_endpoint.call_with_http_info(**kwargs)
 
     def unlink_data_from_sample(
         self,
@@ -3911,7 +4086,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         )
         self.get_project_sample_analyses_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (AnalysisPagedList,),
+                &#39;response_type&#39;: (AnalysisPagedListV3,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -4160,7 +4335,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         )
         self.get_sample_data_list_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (DataList,),
+                &#39;response_type&#39;: (DataPagedList,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -4821,6 +4996,92 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                     &#39;application/problem+json&#39;
                 ],
                 &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.search_project_sample_analyses_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (AnalysisPagedListV4,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/samples/{sampleId}/analyses:search&#39;,
+                &#39;operation_id&#39;: &#39;search_project_sample_analyses&#39;,
+                &#39;http_method&#39;: &#39;POST&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;sample_id&#39;,
+                    &#39;page_offset&#39;,
+                    &#39;page_token&#39;,
+                    &#39;page_size&#39;,
+                    &#39;sort&#39;,
+                    &#39;analysis_query_parameters&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;sample_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;sample_id&#39;:
+                        (str,),
+                    &#39;page_offset&#39;:
+                        (str,),
+                    &#39;page_token&#39;:
+                        (str,),
+                    &#39;page_size&#39;:
+                        (str,),
+                    &#39;sort&#39;:
+                        (str,),
+                    &#39;analysis_query_parameters&#39;:
+                        (AnalysisQueryParameters,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;sample_id&#39;: &#39;sampleId&#39;,
+                    &#39;page_offset&#39;: &#39;pageOffset&#39;,
+                    &#39;page_token&#39;: &#39;pageToken&#39;,
+                    &#39;page_size&#39;: &#39;pageSize&#39;,
+                    &#39;sort&#39;: &#39;sort&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;sample_id&#39;: &#39;path&#39;,
+                    &#39;page_offset&#39;: &#39;query&#39;,
+                    &#39;page_token&#39;: &#39;query&#39;,
+                    &#39;page_size&#39;: &#39;query&#39;,
+                    &#39;sort&#39;: &#39;query&#39;,
+                    &#39;analysis_query_parameters&#39;: &#39;body&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
+                ]
             },
             api_client=api_client
         )
@@ -5669,6 +5930,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     ):
         &#34;&#34;&#34;Retrieve the list of analyses.  # noqa: E501
 
+        This endpoint only returns V3 items. Use the search endpoint to get V4 items.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -5686,10 +5948,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             usertag (str): The user-tags to filter on.. [optional]
             technicaltag (str): The technical-tags to filter on.. [optional]
             referencetag (str): The reference-data-tags to filter on.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -5718,7 +5980,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             async_req (bool): execute request asynchronously
 
         Returns:
-            AnalysisPagedList
+            AnalysisPagedListV3
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -5772,10 +6034,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             find_project_samples (FindProjectSamples):
 
         Keyword Args:
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34; The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34; The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -5966,10 +6228,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             technical_tag_match_mode (str): How the technicalTags are filtered. . [optional]
             not_in_run (bool): When set to true, the data will be filtered on data which is not used in a run.. [optional]
             instrument_run_id ([str]): The instrument run IDs of the sequencing runs to filter on.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt. [optional]
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -5998,7 +6260,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             async_req (bool): execute request asynchronously
 
         Returns:
-            DataList
+            DataPagedList
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -6532,6 +6794,92 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         kwargs[&#39;sample_id&#39;] = \
             sample_id
         return self.mark_sample_deleted_endpoint.call_with_http_info(**kwargs)
+
+    def search_project_sample_analyses(
+        self,
+        project_id,
+        sample_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Search analyses for sample.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.search_project_sample_analyses(project_id, sample_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str):
+            sample_id (str): The ID of the sample
+
+        Keyword Args:
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+            analysis_query_parameters (AnalysisQueryParameters): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisPagedListV4
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        kwargs[&#39;sample_id&#39;] = \
+            sample_id
+        return self.search_project_sample_analyses_endpoint.call_with_http_info(**kwargs)
 
     def unlink_data_from_sample(
         self,
@@ -7830,7 +8178,9 @@ thread.</p></div>
 <dd>
 <div class="desc"><p>Retrieve the list of analyses.
 # noqa: E501</p>
-<p>This method makes a synchronous HTTP request by default. To make an
+<p>This endpoint only returns V3 items. Use the search endpoint to get V4 items.
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_project_sample_analyses(project_id, sample_id, async_req=True)
 &gt;&gt;&gt; result = thread.get()
@@ -7848,10 +8198,10 @@ status (str): The status to filter on.. [optional]
 usertag (str): The user-tags to filter on.. [optional]
 technicaltag (str): The technical-tags to filter on.. [optional]
 referencetag (str): The reference-data-tags to filter on.. [optional]
-page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc"
+page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc"
 The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
 _return_http_data_only (bool): response data without head status
 code and headers. Default is True.
@@ -7880,7 +8230,7 @@ that we want to use.
 Default is read from the configuration.
 async_req (bool): execute request asynchronously</p>
 <h2 id="returns">Returns</h2>
-<p>AnalysisPagedList
+<p>AnalysisPagedListV3
 If the method is called asynchronously, returns the request
 thread.</p></div>
 <details class="source">
@@ -7895,6 +8245,7 @@ thread.</p></div>
 ):
     &#34;&#34;&#34;Retrieve the list of analyses.  # noqa: E501
 
+    This endpoint only returns V3 items. Use the search endpoint to get V4 items.  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
@@ -7912,10 +8263,10 @@ thread.</p></div>
         usertag (str): The user-tags to filter on.. [optional]
         technicaltag (str): The technical-tags to filter on.. [optional]
         referencetag (str): The reference-data-tags to filter on.. [optional]
-        page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-        page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-        page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-        sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+        page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+        page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+        page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+        sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
         _return_http_data_only (bool): response data without head status
             code and headers. Default is True.
         _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -7944,7 +8295,7 @@ thread.</p></div>
         async_req (bool): execute request asynchronously
 
     Returns:
-        AnalysisPagedList
+        AnalysisPagedListV3
             If the method is called asynchronously, returns the request
             thread.
     &#34;&#34;&#34;
@@ -7996,10 +8347,10 @@ asynchronous HTTP request, please pass async_req=True</p>
 <p>project_id (str):
 find_project_samples (FindProjectSamples):
 Keyword Args:
-page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc" The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
+page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc" The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
 _return_http_data_only (bool): response data without head status
 code and headers. Default is True.
 _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -8054,10 +8405,10 @@ thread.</p></div>
         find_project_samples (FindProjectSamples):
 
     Keyword Args:
-        page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-        page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-        page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-        sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34; The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
+        page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+        page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+        page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+        sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34; The attributes for which sorting is supported: - timeCreated - timeModified - name - description - metadataValid - status. [optional]
         _return_http_data_only (bool): response data without head status
             code and headers. Default is True.
         _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -8303,10 +8654,10 @@ technical_tag ([str]): The technicalTags to filter on. The techTagMatchMode-para
 technical_tag_match_mode (str): How the technicalTags are filtered. . [optional]
 not_in_run (bool): When set to true, the data will be filtered on data which is not used in a run.. [optional]
 instrument_run_id ([str]): The instrument run IDs of the sequencing runs to filter on.. [optional]
-page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc"
+page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc"
 The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt. [optional]
 _return_http_data_only (bool): response data without head status
 code and headers. Default is True.
@@ -8335,7 +8686,7 @@ that we want to use.
 Default is read from the configuration.
 async_req (bool): execute request asynchronously</p>
 <h2 id="returns">Returns</h2>
-<p>DataList
+<p>DataPagedList
 If the method is called asynchronously, returns the request
 thread.</p></div>
 <details class="source">
@@ -8389,10 +8740,10 @@ thread.</p></div>
         technical_tag_match_mode (str): How the technicalTags are filtered. . [optional]
         not_in_run (bool): When set to true, the data will be filtered on data which is not used in a run.. [optional]
         instrument_run_id ([str]): The instrument run IDs of the sequencing runs to filter on.. [optional]
-        page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-        page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-        page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-        sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt. [optional]
+        page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+        page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+        page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+        sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - timeCreated - timeModified - name - path - fileSizeInBytes - status - format - dataType - willBeArchivedAt - willBeDeletedAt. [optional]
         _return_http_data_only (bool): response data without head status
             code and headers. Default is True.
         _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -8421,7 +8772,7 @@ thread.</p></div>
         async_req (bool): execute request asynchronously
 
     Returns:
-        DataList
+        DataPagedList
             If the method is called asynchronously, returns the request
             thread.
     &#34;&#34;&#34;
@@ -9284,6 +9635,151 @@ thread.</p></div>
     return self.mark_sample_deleted_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.v2.api.project_sample_api.ProjectSampleApi.search_project_sample_analyses"><code class="name flex">
+<span>def <span class="ident">search_project_sample_analyses</span></span>(<span>self, project_id, sample_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Search analyses for sample.
+# noqa: E501</p>
+<p>This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.search_project_sample_analyses(project_id, sample_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<h2 id="args">Args</h2>
+<dl>
+<dt>project_id (str):</dt>
+<dt><strong><code>sample_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the sample</dd>
+</dl>
+<p>Keyword Args:
+page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc"
+The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+analysis_query_parameters (AnalysisQueryParameters): [optional]
+_return_http_data_only (bool): response data without head status
+code and headers. Default is True.
+_preload_content (bool): if False, the urllib3.HTTPResponse object
+will be returned without reading/decoding response data.
+Default is True.
+_request_timeout (int/float/tuple): timeout setting for this request. If
+one number provided, it will be total request timeout. It can also
+be a pair (tuple) of (connection, read) timeouts.
+Default is None.
+_check_input_type (bool): specifies if type checking
+should be done one the data sent to the server.
+Default is True.
+_check_return_type (bool): specifies if type checking
+should be done one the data received from the server.
+Default is True.
+_spec_property_naming (bool): True if the variable names in the input data
+are serialized names, as specified in the OpenAPI document.
+False if the variable names in the input data
+are pythonic names, e.g. snake case (default)
+_content_type (str/None): force body content-type.
+Default is None and content-type will be predicted by allowed
+content-types and body.
+_host_index (int/None): specifies the index of the server
+that we want to use.
+Default is read from the configuration.
+async_req (bool): execute request asynchronously</p>
+<h2 id="returns">Returns</h2>
+<p>AnalysisPagedListV4
+If the method is called asynchronously, returns the request
+thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def search_project_sample_analyses(
+    self,
+    project_id,
+    sample_id,
+    **kwargs
+):
+    &#34;&#34;&#34;Search analyses for sample.  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    &gt;&gt;&gt; thread = api.search_project_sample_analyses(project_id, sample_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    Args:
+        project_id (str):
+        sample_id (str): The ID of the sample
+
+    Keyword Args:
+        page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+        page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+        page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+        sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+        analysis_query_parameters (AnalysisQueryParameters): [optional]
+        _return_http_data_only (bool): response data without head status
+            code and headers. Default is True.
+        _preload_content (bool): if False, the urllib3.HTTPResponse object
+            will be returned without reading/decoding response data.
+            Default is True.
+        _request_timeout (int/float/tuple): timeout setting for this request. If
+            one number provided, it will be total request timeout. It can also
+            be a pair (tuple) of (connection, read) timeouts.
+            Default is None.
+        _check_input_type (bool): specifies if type checking
+            should be done one the data sent to the server.
+            Default is True.
+        _check_return_type (bool): specifies if type checking
+            should be done one the data received from the server.
+            Default is True.
+        _spec_property_naming (bool): True if the variable names in the input data
+            are serialized names, as specified in the OpenAPI document.
+            False if the variable names in the input data
+            are pythonic names, e.g. snake case (default)
+        _content_type (str/None): force body content-type.
+            Default is None and content-type will be predicted by allowed
+            content-types and body.
+        _host_index (int/None): specifies the index of the server
+            that we want to use.
+            Default is read from the configuration.
+        async_req (bool): execute request asynchronously
+
+    Returns:
+        AnalysisPagedListV4
+            If the method is called asynchronously, returns the request
+            thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;async_req&#39;] = kwargs.get(
+        &#39;async_req&#39;, False
+    )
+    kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+        &#39;_return_http_data_only&#39;, True
+    )
+    kwargs[&#39;_preload_content&#39;] = kwargs.get(
+        &#39;_preload_content&#39;, True
+    )
+    kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+        &#39;_request_timeout&#39;, None
+    )
+    kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+        &#39;_check_input_type&#39;, True
+    )
+    kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+        &#39;_check_return_type&#39;, True
+    )
+    kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+        &#39;_spec_property_naming&#39;, False
+    )
+    kwargs[&#39;_content_type&#39;] = kwargs.get(
+        &#39;_content_type&#39;)
+    kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+    kwargs[&#39;project_id&#39;] = \
+        project_id
+    kwargs[&#39;sample_id&#39;] = \
+        sample_id
+    return self.search_project_sample_analyses_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.v2.api.project_sample_api.ProjectSampleApi.unlink_data_from_sample"><code class="name flex">
 <span>def <span class="ident">unlink_data_from_sample</span></span>(<span>self, project_id, sample_id, data_id, **kwargs)</span>
 </code></dt>
@@ -9873,6 +10369,7 @@ thread.</p></div>
 <li><code><a title="libica.openapi.v2.api.project_sample_api.ProjectSampleApi.link_data_to_sample" href="#libica.openapi.v2.api.project_sample_api.ProjectSampleApi.link_data_to_sample">link_data_to_sample</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_sample_api.ProjectSampleApi.link_sample_to_project" href="#libica.openapi.v2.api.project_sample_api.ProjectSampleApi.link_sample_to_project">link_sample_to_project</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_sample_api.ProjectSampleApi.mark_sample_deleted" href="#libica.openapi.v2.api.project_sample_api.ProjectSampleApi.mark_sample_deleted">mark_sample_deleted</a></code></li>
+<li><code><a title="libica.openapi.v2.api.project_sample_api.ProjectSampleApi.search_project_sample_analyses" href="#libica.openapi.v2.api.project_sample_api.ProjectSampleApi.search_project_sample_analyses">search_project_sample_analyses</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_sample_api.ProjectSampleApi.unlink_data_from_sample" href="#libica.openapi.v2.api.project_sample_api.ProjectSampleApi.unlink_data_from_sample">unlink_data_from_sample</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_sample_api.ProjectSampleApi.unlink_sample_from_project" href="#libica.openapi.v2.api.project_sample_api.ProjectSampleApi.unlink_sample_from_project">unlink_sample_from_project</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_sample_api.ProjectSampleApi.update_project_sample" href="#libica.openapi.v2.api.project_sample_api.ProjectSampleApi.update_project_sample">update_project_sample</a></code></li>

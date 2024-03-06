@@ -66,7 +66,9 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.workflow_session_data import WorkflowSessionData
+    from libica.openapi.v2.model.workflow_session_external_data import WorkflowSessionExternalData
     globals()[&#39;WorkflowSessionData&#39;] = WorkflowSessionData
+    globals()[&#39;WorkflowSessionExternalData&#39;] = WorkflowSessionExternalData
 
 
 class WorkflowSessionInput(ModelNormal):
@@ -124,6 +126,7 @@ class WorkflowSessionInput(ModelNormal):
         return {
             &#39;code&#39;: (str,),  # noqa: E501
             &#39;analysis_data&#39;: ([WorkflowSessionData], none_type,),  # noqa: E501
+            &#39;external_data&#39;: ([WorkflowSessionExternalData], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -134,6 +137,7 @@ class WorkflowSessionInput(ModelNormal):
     attribute_map = {
         &#39;code&#39;: &#39;code&#39;,  # noqa: E501
         &#39;analysis_data&#39;: &#39;analysisData&#39;,  # noqa: E501
+        &#39;external_data&#39;: &#39;externalData&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -181,6 +185,7 @@ class WorkflowSessionInput(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_data ([WorkflowSessionData], none_type): The workflow-session-data used as input by the workflow session.. [optional]  # noqa: E501
+            external_data ([WorkflowSessionExternalData], none_type): The external data used as input by the workflow session.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -267,6 +272,7 @@ class WorkflowSessionInput(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_data ([WorkflowSessionData], none_type): The workflow-session-data used as input by the workflow session.. [optional]  # noqa: E501
+            external_data ([WorkflowSessionExternalData], none_type): The external data used as input by the workflow session.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -324,7 +330,9 @@ class WorkflowSessionInput(ModelNormal):
 </summary>
 <pre><code class="python">def lazy_import():
     from libica.openapi.v2.model.workflow_session_data import WorkflowSessionData
-    globals()[&#39;WorkflowSessionData&#39;] = WorkflowSessionData</code></pre>
+    from libica.openapi.v2.model.workflow_session_external_data import WorkflowSessionExternalData
+    globals()[&#39;WorkflowSessionData&#39;] = WorkflowSessionData
+    globals()[&#39;WorkflowSessionExternalData&#39;] = WorkflowSessionExternalData</code></pre>
 </details>
 </dd>
 </dl>
@@ -401,6 +409,8 @@ Animal class but this time we won't travel
 through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
 analysis_data ([WorkflowSessionData], none_type): The workflow-session-data used as input by the workflow session.. [optional]
+# noqa: E501
+external_data ([WorkflowSessionExternalData], none_type): The external data used as input by the workflow session.. [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -461,6 +471,7 @@ analysis_data ([WorkflowSessionData], none_type): The workflow-session-data used
         return {
             &#39;code&#39;: (str,),  # noqa: E501
             &#39;analysis_data&#39;: ([WorkflowSessionData], none_type,),  # noqa: E501
+            &#39;external_data&#39;: ([WorkflowSessionExternalData], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -471,6 +482,7 @@ analysis_data ([WorkflowSessionData], none_type): The workflow-session-data used
     attribute_map = {
         &#39;code&#39;: &#39;code&#39;,  # noqa: E501
         &#39;analysis_data&#39;: &#39;analysisData&#39;,  # noqa: E501
+        &#39;external_data&#39;: &#39;externalData&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -518,6 +530,7 @@ analysis_data ([WorkflowSessionData], none_type): The workflow-session-data used
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_data ([WorkflowSessionData], none_type): The workflow-session-data used as input by the workflow session.. [optional]  # noqa: E501
+            external_data ([WorkflowSessionExternalData], none_type): The external data used as input by the workflow session.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -604,6 +617,7 @@ analysis_data ([WorkflowSessionData], none_type): The workflow-session-data used
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             analysis_data ([WorkflowSessionData], none_type): The workflow-session-data used as input by the workflow session.. [optional]  # noqa: E501
+            external_data ([WorkflowSessionExternalData], none_type): The external data used as input by the workflow session.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

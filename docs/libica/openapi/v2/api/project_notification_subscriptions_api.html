@@ -73,7 +73,7 @@ class ProjectNotificationSubscriptionsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_notification_subscription1_endpoint = _Endpoint(
+        self.create_notification_subscription_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: (NotificationSubscription,),
                 &#39;auth&#39;: [
@@ -81,7 +81,7 @@ class ProjectNotificationSubscriptionsApi(object):
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/notificationSubscriptions&#39;,
-                &#39;operation_id&#39;: &#39;create_notification_subscription1&#39;,
+                &#39;operation_id&#39;: &#39;create_notification_subscription&#39;,
                 &#39;http_method&#39;: &#39;POST&#39;,
                 &#39;servers&#39;: None,
             },
@@ -134,7 +134,7 @@ class ProjectNotificationSubscriptionsApi(object):
             },
             api_client=api_client
         )
-        self.delete_notification_subscription1_endpoint = _Endpoint(
+        self.delete_notification_subscription_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: None,
                 &#39;auth&#39;: [
@@ -142,7 +142,7 @@ class ProjectNotificationSubscriptionsApi(object):
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/notificationSubscriptions/{subscriptionId}&#39;,
-                &#39;operation_id&#39;: &#39;delete_notification_subscription1&#39;,
+                &#39;operation_id&#39;: &#39;delete_notification_subscription&#39;,
                 &#39;http_method&#39;: &#39;DELETE&#39;,
                 &#39;servers&#39;: None,
             },
@@ -192,7 +192,7 @@ class ProjectNotificationSubscriptionsApi(object):
             },
             api_client=api_client
         )
-        self.get_notification_subscription1_endpoint = _Endpoint(
+        self.get_notification_subscription_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: (NotificationSubscription,),
                 &#39;auth&#39;: [
@@ -200,7 +200,7 @@ class ProjectNotificationSubscriptionsApi(object):
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/notificationSubscriptions/{subscriptionId}&#39;,
-                &#39;operation_id&#39;: &#39;get_notification_subscription1&#39;,
+                &#39;operation_id&#39;: &#39;get_notification_subscription&#39;,
                 &#39;http_method&#39;: &#39;GET&#39;,
                 &#39;servers&#39;: None,
             },
@@ -251,7 +251,7 @@ class ProjectNotificationSubscriptionsApi(object):
             },
             api_client=api_client
         )
-        self.get_notification_subscriptions1_endpoint = _Endpoint(
+        self.get_notification_subscriptions_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: (NotificationSubscriptionList,),
                 &#39;auth&#39;: [
@@ -259,7 +259,7 @@ class ProjectNotificationSubscriptionsApi(object):
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/notificationSubscriptions&#39;,
-                &#39;operation_id&#39;: &#39;get_notification_subscriptions1&#39;,
+                &#39;operation_id&#39;: &#39;get_notification_subscriptions&#39;,
                 &#39;http_method&#39;: &#39;GET&#39;,
                 &#39;servers&#39;: None,
             },
@@ -304,7 +304,7 @@ class ProjectNotificationSubscriptionsApi(object):
             },
             api_client=api_client
         )
-        self.update_notification_subscription1_endpoint = _Endpoint(
+        self.update_notification_subscription_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: (NotificationSubscription,),
                 &#39;auth&#39;: [
@@ -312,7 +312,7 @@ class ProjectNotificationSubscriptionsApi(object):
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/notificationSubscriptions/{subscriptionId}&#39;,
-                &#39;operation_id&#39;: &#39;update_notification_subscription1&#39;,
+                &#39;operation_id&#39;: &#39;update_notification_subscription&#39;,
                 &#39;http_method&#39;: &#39;PUT&#39;,
                 &#39;servers&#39;: None,
             },
@@ -377,7 +377,7 @@ class ProjectNotificationSubscriptionsApi(object):
             api_client=api_client
         )
 
-    def create_notification_subscription1(
+    def create_notification_subscription(
         self,
         project_id,
         create_notification_subscription,
@@ -388,7 +388,7 @@ class ProjectNotificationSubscriptionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.create_notification_subscription1(project_id, create_notification_subscription, async_req=True)
+        &gt;&gt;&gt; thread = api.create_notification_subscription(project_id, create_notification_subscription, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -456,9 +456,9 @@ class ProjectNotificationSubscriptionsApi(object):
             project_id
         kwargs[&#39;create_notification_subscription&#39;] = \
             create_notification_subscription
-        return self.create_notification_subscription1_endpoint.call_with_http_info(**kwargs)
+        return self.create_notification_subscription_endpoint.call_with_http_info(**kwargs)
 
-    def delete_notification_subscription1(
+    def delete_notification_subscription(
         self,
         project_id,
         subscription_id,
@@ -469,7 +469,7 @@ class ProjectNotificationSubscriptionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.delete_notification_subscription1(project_id, subscription_id, async_req=True)
+        &gt;&gt;&gt; thread = api.delete_notification_subscription(project_id, subscription_id, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -537,9 +537,9 @@ class ProjectNotificationSubscriptionsApi(object):
             project_id
         kwargs[&#39;subscription_id&#39;] = \
             subscription_id
-        return self.delete_notification_subscription1_endpoint.call_with_http_info(**kwargs)
+        return self.delete_notification_subscription_endpoint.call_with_http_info(**kwargs)
 
-    def get_notification_subscription1(
+    def get_notification_subscription(
         self,
         project_id,
         subscription_id,
@@ -550,7 +550,7 @@ class ProjectNotificationSubscriptionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.get_notification_subscription1(project_id, subscription_id, async_req=True)
+        &gt;&gt;&gt; thread = api.get_notification_subscription(project_id, subscription_id, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -618,9 +618,9 @@ class ProjectNotificationSubscriptionsApi(object):
             project_id
         kwargs[&#39;subscription_id&#39;] = \
             subscription_id
-        return self.get_notification_subscription1_endpoint.call_with_http_info(**kwargs)
+        return self.get_notification_subscription_endpoint.call_with_http_info(**kwargs)
 
-    def get_notification_subscriptions1(
+    def get_notification_subscriptions(
         self,
         project_id,
         **kwargs
@@ -630,7 +630,7 @@ class ProjectNotificationSubscriptionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.get_notification_subscriptions1(project_id, async_req=True)
+        &gt;&gt;&gt; thread = api.get_notification_subscriptions(project_id, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -695,9 +695,9 @@ class ProjectNotificationSubscriptionsApi(object):
         kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
         kwargs[&#39;project_id&#39;] = \
             project_id
-        return self.get_notification_subscriptions1_endpoint.call_with_http_info(**kwargs)
+        return self.get_notification_subscriptions_endpoint.call_with_http_info(**kwargs)
 
-    def update_notification_subscription1(
+    def update_notification_subscription(
         self,
         project_id,
         subscription_id,
@@ -710,7 +710,7 @@ class ProjectNotificationSubscriptionsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.update_notification_subscription1(project_id, subscription_id, notification_subscription, async_req=True)
+        &gt;&gt;&gt; thread = api.update_notification_subscription(project_id, subscription_id, notification_subscription, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -782,7 +782,7 @@ class ProjectNotificationSubscriptionsApi(object):
             subscription_id
         kwargs[&#39;notification_subscription&#39;] = \
             notification_subscription
-        return self.update_notification_subscription1_endpoint.call_with_http_info(**kwargs)</code></pre>
+        return self.update_notification_subscription_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </section>
 <section>
@@ -817,7 +817,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_notification_subscription1_endpoint = _Endpoint(
+        self.create_notification_subscription_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: (NotificationSubscription,),
                 &#39;auth&#39;: [
@@ -825,7 +825,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/notificationSubscriptions&#39;,
-                &#39;operation_id&#39;: &#39;create_notification_subscription1&#39;,
+                &#39;operation_id&#39;: &#39;create_notification_subscription&#39;,
                 &#39;http_method&#39;: &#39;POST&#39;,
                 &#39;servers&#39;: None,
             },
@@ -878,7 +878,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             },
             api_client=api_client
         )
-        self.delete_notification_subscription1_endpoint = _Endpoint(
+        self.delete_notification_subscription_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: None,
                 &#39;auth&#39;: [
@@ -886,7 +886,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/notificationSubscriptions/{subscriptionId}&#39;,
-                &#39;operation_id&#39;: &#39;delete_notification_subscription1&#39;,
+                &#39;operation_id&#39;: &#39;delete_notification_subscription&#39;,
                 &#39;http_method&#39;: &#39;DELETE&#39;,
                 &#39;servers&#39;: None,
             },
@@ -936,7 +936,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             },
             api_client=api_client
         )
-        self.get_notification_subscription1_endpoint = _Endpoint(
+        self.get_notification_subscription_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: (NotificationSubscription,),
                 &#39;auth&#39;: [
@@ -944,7 +944,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/notificationSubscriptions/{subscriptionId}&#39;,
-                &#39;operation_id&#39;: &#39;get_notification_subscription1&#39;,
+                &#39;operation_id&#39;: &#39;get_notification_subscription&#39;,
                 &#39;http_method&#39;: &#39;GET&#39;,
                 &#39;servers&#39;: None,
             },
@@ -995,7 +995,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             },
             api_client=api_client
         )
-        self.get_notification_subscriptions1_endpoint = _Endpoint(
+        self.get_notification_subscriptions_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: (NotificationSubscriptionList,),
                 &#39;auth&#39;: [
@@ -1003,7 +1003,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/notificationSubscriptions&#39;,
-                &#39;operation_id&#39;: &#39;get_notification_subscriptions1&#39;,
+                &#39;operation_id&#39;: &#39;get_notification_subscriptions&#39;,
                 &#39;http_method&#39;: &#39;GET&#39;,
                 &#39;servers&#39;: None,
             },
@@ -1048,7 +1048,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             },
             api_client=api_client
         )
-        self.update_notification_subscription1_endpoint = _Endpoint(
+        self.update_notification_subscription_endpoint = _Endpoint(
             settings={
                 &#39;response_type&#39;: (NotificationSubscription,),
                 &#39;auth&#39;: [
@@ -1056,7 +1056,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/notificationSubscriptions/{subscriptionId}&#39;,
-                &#39;operation_id&#39;: &#39;update_notification_subscription1&#39;,
+                &#39;operation_id&#39;: &#39;update_notification_subscription&#39;,
                 &#39;http_method&#39;: &#39;PUT&#39;,
                 &#39;servers&#39;: None,
             },
@@ -1121,7 +1121,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             api_client=api_client
         )
 
-    def create_notification_subscription1(
+    def create_notification_subscription(
         self,
         project_id,
         create_notification_subscription,
@@ -1132,7 +1132,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.create_notification_subscription1(project_id, create_notification_subscription, async_req=True)
+        &gt;&gt;&gt; thread = api.create_notification_subscription(project_id, create_notification_subscription, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -1200,9 +1200,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             project_id
         kwargs[&#39;create_notification_subscription&#39;] = \
             create_notification_subscription
-        return self.create_notification_subscription1_endpoint.call_with_http_info(**kwargs)
+        return self.create_notification_subscription_endpoint.call_with_http_info(**kwargs)
 
-    def delete_notification_subscription1(
+    def delete_notification_subscription(
         self,
         project_id,
         subscription_id,
@@ -1213,7 +1213,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.delete_notification_subscription1(project_id, subscription_id, async_req=True)
+        &gt;&gt;&gt; thread = api.delete_notification_subscription(project_id, subscription_id, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -1281,9 +1281,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             project_id
         kwargs[&#39;subscription_id&#39;] = \
             subscription_id
-        return self.delete_notification_subscription1_endpoint.call_with_http_info(**kwargs)
+        return self.delete_notification_subscription_endpoint.call_with_http_info(**kwargs)
 
-    def get_notification_subscription1(
+    def get_notification_subscription(
         self,
         project_id,
         subscription_id,
@@ -1294,7 +1294,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.get_notification_subscription1(project_id, subscription_id, async_req=True)
+        &gt;&gt;&gt; thread = api.get_notification_subscription(project_id, subscription_id, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -1362,9 +1362,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             project_id
         kwargs[&#39;subscription_id&#39;] = \
             subscription_id
-        return self.get_notification_subscription1_endpoint.call_with_http_info(**kwargs)
+        return self.get_notification_subscription_endpoint.call_with_http_info(**kwargs)
 
-    def get_notification_subscriptions1(
+    def get_notification_subscriptions(
         self,
         project_id,
         **kwargs
@@ -1374,7 +1374,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.get_notification_subscriptions1(project_id, async_req=True)
+        &gt;&gt;&gt; thread = api.get_notification_subscriptions(project_id, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -1439,9 +1439,9 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
         kwargs[&#39;project_id&#39;] = \
             project_id
-        return self.get_notification_subscriptions1_endpoint.call_with_http_info(**kwargs)
+        return self.get_notification_subscriptions_endpoint.call_with_http_info(**kwargs)
 
-    def update_notification_subscription1(
+    def update_notification_subscription(
         self,
         project_id,
         subscription_id,
@@ -1454,7 +1454,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.update_notification_subscription1(project_id, subscription_id, notification_subscription, async_req=True)
+        &gt;&gt;&gt; thread = api.update_notification_subscription(project_id, subscription_id, notification_subscription, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -1526,19 +1526,19 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             subscription_id
         kwargs[&#39;notification_subscription&#39;] = \
             notification_subscription
-        return self.update_notification_subscription1_endpoint.call_with_http_info(**kwargs)</code></pre>
+        return self.update_notification_subscription_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 <h3>Methods</h3>
 <dl>
-<dt id="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.create_notification_subscription1"><code class="name flex">
-<span>def <span class="ident">create_notification_subscription1</span></span>(<span>self, project_id, create_notification_subscription, **kwargs)</span>
+<dt id="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.create_notification_subscription"><code class="name flex">
+<span>def <span class="ident">create_notification_subscription</span></span>(<span>self, project_id, create_notification_subscription, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Create a notification subscription
 # noqa: E501</p>
 <p>This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.create_notification_subscription1(project_id, create_notification_subscription, async_req=True)
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.create_notification_subscription(project_id, create_notification_subscription, async_req=True)
 &gt;&gt;&gt; result = thread.get()
 </code></pre>
 <h2 id="args">Args</h2>
@@ -1583,7 +1583,7 @@ thread.</p></div>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def create_notification_subscription1(
+<pre><code class="python">def create_notification_subscription(
     self,
     project_id,
     create_notification_subscription,
@@ -1594,7 +1594,7 @@ thread.</p></div>
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
-    &gt;&gt;&gt; thread = api.create_notification_subscription1(project_id, create_notification_subscription, async_req=True)
+    &gt;&gt;&gt; thread = api.create_notification_subscription(project_id, create_notification_subscription, async_req=True)
     &gt;&gt;&gt; result = thread.get()
 
     Args:
@@ -1662,18 +1662,18 @@ thread.</p></div>
         project_id
     kwargs[&#39;create_notification_subscription&#39;] = \
         create_notification_subscription
-    return self.create_notification_subscription1_endpoint.call_with_http_info(**kwargs)</code></pre>
+    return self.create_notification_subscription_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </dd>
-<dt id="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.delete_notification_subscription1"><code class="name flex">
-<span>def <span class="ident">delete_notification_subscription1</span></span>(<span>self, project_id, subscription_id, **kwargs)</span>
+<dt id="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.delete_notification_subscription"><code class="name flex">
+<span>def <span class="ident">delete_notification_subscription</span></span>(<span>self, project_id, subscription_id, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Delete a notification subscription
 # noqa: E501</p>
 <p>This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.delete_notification_subscription1(project_id, subscription_id, async_req=True)
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.delete_notification_subscription(project_id, subscription_id, async_req=True)
 &gt;&gt;&gt; result = thread.get()
 </code></pre>
 <h2 id="args">Args</h2>
@@ -1718,7 +1718,7 @@ thread.</p></div>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def delete_notification_subscription1(
+<pre><code class="python">def delete_notification_subscription(
     self,
     project_id,
     subscription_id,
@@ -1729,7 +1729,7 @@ thread.</p></div>
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
-    &gt;&gt;&gt; thread = api.delete_notification_subscription1(project_id, subscription_id, async_req=True)
+    &gt;&gt;&gt; thread = api.delete_notification_subscription(project_id, subscription_id, async_req=True)
     &gt;&gt;&gt; result = thread.get()
 
     Args:
@@ -1797,18 +1797,18 @@ thread.</p></div>
         project_id
     kwargs[&#39;subscription_id&#39;] = \
         subscription_id
-    return self.delete_notification_subscription1_endpoint.call_with_http_info(**kwargs)</code></pre>
+    return self.delete_notification_subscription_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </dd>
-<dt id="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscription1"><code class="name flex">
-<span>def <span class="ident">get_notification_subscription1</span></span>(<span>self, project_id, subscription_id, **kwargs)</span>
+<dt id="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscription"><code class="name flex">
+<span>def <span class="ident">get_notification_subscription</span></span>(<span>self, project_id, subscription_id, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Retrieve a notification subscription
 # noqa: E501</p>
 <p>This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_notification_subscription1(project_id, subscription_id, async_req=True)
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_notification_subscription(project_id, subscription_id, async_req=True)
 &gt;&gt;&gt; result = thread.get()
 </code></pre>
 <h2 id="args">Args</h2>
@@ -1853,7 +1853,7 @@ thread.</p></div>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_notification_subscription1(
+<pre><code class="python">def get_notification_subscription(
     self,
     project_id,
     subscription_id,
@@ -1864,7 +1864,7 @@ thread.</p></div>
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
-    &gt;&gt;&gt; thread = api.get_notification_subscription1(project_id, subscription_id, async_req=True)
+    &gt;&gt;&gt; thread = api.get_notification_subscription(project_id, subscription_id, async_req=True)
     &gt;&gt;&gt; result = thread.get()
 
     Args:
@@ -1932,18 +1932,18 @@ thread.</p></div>
         project_id
     kwargs[&#39;subscription_id&#39;] = \
         subscription_id
-    return self.get_notification_subscription1_endpoint.call_with_http_info(**kwargs)</code></pre>
+    return self.get_notification_subscription_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </dd>
-<dt id="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscriptions1"><code class="name flex">
-<span>def <span class="ident">get_notification_subscriptions1</span></span>(<span>self, project_id, **kwargs)</span>
+<dt id="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscriptions"><code class="name flex">
+<span>def <span class="ident">get_notification_subscriptions</span></span>(<span>self, project_id, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Retrieve notification subscriptions
 # noqa: E501</p>
 <p>This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_notification_subscriptions1(project_id, async_req=True)
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_notification_subscriptions(project_id, async_req=True)
 &gt;&gt;&gt; result = thread.get()
 </code></pre>
 <h2 id="args">Args</h2>
@@ -1986,7 +1986,7 @@ thread.</p></div>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_notification_subscriptions1(
+<pre><code class="python">def get_notification_subscriptions(
     self,
     project_id,
     **kwargs
@@ -1996,7 +1996,7 @@ thread.</p></div>
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
-    &gt;&gt;&gt; thread = api.get_notification_subscriptions1(project_id, async_req=True)
+    &gt;&gt;&gt; thread = api.get_notification_subscriptions(project_id, async_req=True)
     &gt;&gt;&gt; result = thread.get()
 
     Args:
@@ -2061,11 +2061,11 @@ thread.</p></div>
     kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
     kwargs[&#39;project_id&#39;] = \
         project_id
-    return self.get_notification_subscriptions1_endpoint.call_with_http_info(**kwargs)</code></pre>
+    return self.get_notification_subscriptions_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </dd>
-<dt id="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.update_notification_subscription1"><code class="name flex">
-<span>def <span class="ident">update_notification_subscription1</span></span>(<span>self, project_id, subscription_id, notification_subscription, **kwargs)</span>
+<dt id="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.update_notification_subscription"><code class="name flex">
+<span>def <span class="ident">update_notification_subscription</span></span>(<span>self, project_id, subscription_id, notification_subscription, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Update a notification subscription
@@ -2078,7 +2078,7 @@ thread.</p></div>
 # noqa: E501
 This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.update_notification_subscription1(project_id, subscription_id, notification_subscription, async_req=True)
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.update_notification_subscription(project_id, subscription_id, notification_subscription, async_req=True)
 &gt;&gt;&gt; result = thread.get()
 </code></pre>
 <h2 id="args">Args</h2>
@@ -2126,7 +2126,7 @@ thread.</p></div>
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def update_notification_subscription1(
+<pre><code class="python">def update_notification_subscription(
     self,
     project_id,
     subscription_id,
@@ -2139,7 +2139,7 @@ thread.</p></div>
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
-    &gt;&gt;&gt; thread = api.update_notification_subscription1(project_id, subscription_id, notification_subscription, async_req=True)
+    &gt;&gt;&gt; thread = api.update_notification_subscription(project_id, subscription_id, notification_subscription, async_req=True)
     &gt;&gt;&gt; result = thread.get()
 
     Args:
@@ -2211,7 +2211,7 @@ thread.</p></div>
         subscription_id
     kwargs[&#39;notification_subscription&#39;] = \
         notification_subscription
-    return self.update_notification_subscription1_endpoint.call_with_http_info(**kwargs)</code></pre>
+    return self.update_notification_subscription_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </dd>
 </dl>
@@ -2235,11 +2235,11 @@ thread.</p></div>
 <li>
 <h4><code><a title="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi" href="#libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi">ProjectNotificationSubscriptionsApi</a></code></h4>
 <ul class="">
-<li><code><a title="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.create_notification_subscription1" href="#libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.create_notification_subscription1">create_notification_subscription1</a></code></li>
-<li><code><a title="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.delete_notification_subscription1" href="#libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.delete_notification_subscription1">delete_notification_subscription1</a></code></li>
-<li><code><a title="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscription1" href="#libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscription1">get_notification_subscription1</a></code></li>
-<li><code><a title="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscriptions1" href="#libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscriptions1">get_notification_subscriptions1</a></code></li>
-<li><code><a title="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.update_notification_subscription1" href="#libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.update_notification_subscription1">update_notification_subscription1</a></code></li>
+<li><code><a title="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.create_notification_subscription" href="#libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.create_notification_subscription">create_notification_subscription</a></code></li>
+<li><code><a title="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.delete_notification_subscription" href="#libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.delete_notification_subscription">delete_notification_subscription</a></code></li>
+<li><code><a title="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscription" href="#libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscription">get_notification_subscription</a></code></li>
+<li><code><a title="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscriptions" href="#libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.get_notification_subscriptions">get_notification_subscriptions</a></code></li>
+<li><code><a title="libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.update_notification_subscription" href="#libica.openapi.v2.api.project_notification_subscriptions_api.ProjectNotificationSubscriptionsApi.update_notification_subscription">update_notification_subscription</a></code></li>
 </ul>
 </li>
 </ul>

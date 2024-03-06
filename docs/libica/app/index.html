@@ -44,7 +44,8 @@ from enum import Enum
 from os.path import expanduser
 
 import yaml
-from libumccr.aws import libsm
+
+from libica.app.utils import aws
 
 logger = logging.getLogger(__name__)
 
@@ -95,9 +96,9 @@ class GDSFilesEventType(Enum):
 def configuration(lib, secret_name=None, base_url=None, debug=False):
     ica_access_token = os.getenv(&#34;ICA_ACCESS_TOKEN&#34;, None)
     if ica_access_token is None and secret_name:
-        ica_access_token = libsm.get_secret(secret_name=secret_name)
+        ica_access_token = aws.get_secret(secret_name=secret_name)
     elif ica_access_token is None:
-        ica_access_token = libsm.get_secret(secret_name=ICA_TOKEN_SECRET_NAME)
+        ica_access_token = aws.get_secret(secret_name=ICA_TOKEN_SECRET_NAME)
 
     ica_base_url = os.getenv(&#34;ICA_BASE_URL&#34;, None)
     if ica_base_url is None and base_url:
@@ -116,7 +117,7 @@ def configuration(lib, secret_name=None, base_url=None, debug=False):
     )
 
     # WARNING:
-    # it print stdout all libica.openapi http calls activity including JWT token in http header
+    # it prints stdout all libica.openapi http calls activity including JWT token in http header
     config.debug = debug
 
     return config
@@ -168,9 +169,9 @@ class AppHelper:
 
         _icav2_access_token = os.getenv(&#34;ICAV2_ACCESS_TOKEN&#34;, None)
         if _icav2_access_token is None and self.secret_name:
-            _icav2_access_token = libsm.get_secret(secret_name=self.secret_name)
+            _icav2_access_token = aws.get_secret(secret_name=self.secret_name)
         elif _icav2_access_token is None:
-            _icav2_access_token = libsm.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
+            _icav2_access_token = aws.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
 
         _ica_url = os.getenv(&#34;ICA_URL&#34;, None)
         if _ica_url is None and self.ica_url:
@@ -192,9 +193,9 @@ class AppHelper:
 
         _icav2_access_token = os.getenv(&#34;ICAV2_ACCESS_TOKEN&#34;, self.get_icav2_cli_session()[&#39;access_token&#39;])
         if _icav2_access_token is None and self.secret_name:
-            _icav2_access_token = libsm.get_secret(secret_name=self.secret_name)
+            _icav2_access_token = aws.get_secret(secret_name=self.secret_name)
         elif _icav2_access_token is None:
-            _icav2_access_token = libsm.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
+            _icav2_access_token = aws.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
 
         _ica_url = os.getenv(&#34;ICA_URL&#34;, None)
         if _ica_url is None and self.ica_url:
@@ -216,9 +217,9 @@ class AppHelper:
 
         _icav2_api_key = os.getenv(&#34;ICAV2_API_KEY&#34;, None)
         if _icav2_api_key is None and self.secret_name:
-            _icav2_api_key = libsm.get_secret(secret_name=self.secret_name)
+            _icav2_api_key = aws.get_secret(secret_name=self.secret_name)
         elif _icav2_api_key is None:
-            _icav2_api_key = libsm.get_secret(secret_name=ICAV2_API_KEY_SECRET_NAME)
+            _icav2_api_key = aws.get_secret(secret_name=ICAV2_API_KEY_SECRET_NAME)
 
         _ica_url = os.getenv(&#34;ICA_URL&#34;, None)
         if _ica_url is None and self.ica_url:
@@ -275,6 +276,10 @@ class AppOps:
 <dd>
 <div class="desc"></div>
 </dd>
+<dt><code class="name"><a title="libica.app.utils" href="utils/index.html">libica.app.utils</a></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
 <dt><code class="name"><a title="libica.app.wes" href="wes.html">libica.app.wes</a></code></dt>
 <dd>
 <div class="desc"><p>wes module …</p></div>
@@ -298,9 +303,9 @@ class AppOps:
 <pre><code class="python">def configuration(lib, secret_name=None, base_url=None, debug=False):
     ica_access_token = os.getenv(&#34;ICA_ACCESS_TOKEN&#34;, None)
     if ica_access_token is None and secret_name:
-        ica_access_token = libsm.get_secret(secret_name=secret_name)
+        ica_access_token = aws.get_secret(secret_name=secret_name)
     elif ica_access_token is None:
-        ica_access_token = libsm.get_secret(secret_name=ICA_TOKEN_SECRET_NAME)
+        ica_access_token = aws.get_secret(secret_name=ICA_TOKEN_SECRET_NAME)
 
     ica_base_url = os.getenv(&#34;ICA_BASE_URL&#34;, None)
     if ica_base_url is None and base_url:
@@ -319,7 +324,7 @@ class AppOps:
     )
 
     # WARNING:
-    # it print stdout all libica.openapi http calls activity including JWT token in http header
+    # it prints stdout all libica.openapi http calls activity including JWT token in http header
     config.debug = debug
 
     return config</code></pre>
@@ -372,9 +377,9 @@ class AppOps:
 
         _icav2_access_token = os.getenv(&#34;ICAV2_ACCESS_TOKEN&#34;, None)
         if _icav2_access_token is None and self.secret_name:
-            _icav2_access_token = libsm.get_secret(secret_name=self.secret_name)
+            _icav2_access_token = aws.get_secret(secret_name=self.secret_name)
         elif _icav2_access_token is None:
-            _icav2_access_token = libsm.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
+            _icav2_access_token = aws.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
 
         _ica_url = os.getenv(&#34;ICA_URL&#34;, None)
         if _ica_url is None and self.ica_url:
@@ -396,9 +401,9 @@ class AppOps:
 
         _icav2_access_token = os.getenv(&#34;ICAV2_ACCESS_TOKEN&#34;, self.get_icav2_cli_session()[&#39;access_token&#39;])
         if _icav2_access_token is None and self.secret_name:
-            _icav2_access_token = libsm.get_secret(secret_name=self.secret_name)
+            _icav2_access_token = aws.get_secret(secret_name=self.secret_name)
         elif _icav2_access_token is None:
-            _icav2_access_token = libsm.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
+            _icav2_access_token = aws.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
 
         _ica_url = os.getenv(&#34;ICA_URL&#34;, None)
         if _ica_url is None and self.ica_url:
@@ -420,9 +425,9 @@ class AppOps:
 
         _icav2_api_key = os.getenv(&#34;ICAV2_API_KEY&#34;, None)
         if _icav2_api_key is None and self.secret_name:
-            _icav2_api_key = libsm.get_secret(secret_name=self.secret_name)
+            _icav2_api_key = aws.get_secret(secret_name=self.secret_name)
         elif _icav2_api_key is None:
-            _icav2_api_key = libsm.get_secret(secret_name=ICAV2_API_KEY_SECRET_NAME)
+            _icav2_api_key = aws.get_secret(secret_name=ICAV2_API_KEY_SECRET_NAME)
 
         _ica_url = os.getenv(&#34;ICA_URL&#34;, None)
         if _ica_url is None and self.ica_url:
@@ -468,9 +473,9 @@ class AppOps:
 
     _icav2_access_token = os.getenv(&#34;ICAV2_ACCESS_TOKEN&#34;, None)
     if _icav2_access_token is None and self.secret_name:
-        _icav2_access_token = libsm.get_secret(secret_name=self.secret_name)
+        _icav2_access_token = aws.get_secret(secret_name=self.secret_name)
     elif _icav2_access_token is None:
-        _icav2_access_token = libsm.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
+        _icav2_access_token = aws.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
 
     _ica_url = os.getenv(&#34;ICA_URL&#34;, None)
     if _ica_url is None and self.ica_url:
@@ -502,9 +507,9 @@ class AppOps:
 
     _icav2_api_key = os.getenv(&#34;ICAV2_API_KEY&#34;, None)
     if _icav2_api_key is None and self.secret_name:
-        _icav2_api_key = libsm.get_secret(secret_name=self.secret_name)
+        _icav2_api_key = aws.get_secret(secret_name=self.secret_name)
     elif _icav2_api_key is None:
-        _icav2_api_key = libsm.get_secret(secret_name=ICAV2_API_KEY_SECRET_NAME)
+        _icav2_api_key = aws.get_secret(secret_name=ICAV2_API_KEY_SECRET_NAME)
 
     _ica_url = os.getenv(&#34;ICA_URL&#34;, None)
     if _ica_url is None and self.ica_url:
@@ -541,9 +546,9 @@ class AppOps:
 
     _icav2_access_token = os.getenv(&#34;ICAV2_ACCESS_TOKEN&#34;, self.get_icav2_cli_session()[&#39;access_token&#39;])
     if _icav2_access_token is None and self.secret_name:
-        _icav2_access_token = libsm.get_secret(secret_name=self.secret_name)
+        _icav2_access_token = aws.get_secret(secret_name=self.secret_name)
     elif _icav2_access_token is None:
-        _icav2_access_token = libsm.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
+        _icav2_access_token = aws.get_secret(secret_name=ICAV2_TOKEN_SECRET_NAME)
 
     _ica_url = os.getenv(&#34;ICA_URL&#34;, None)
     if _ica_url is None and self.ica_url:
@@ -802,23 +807,38 @@ def from_value(cls, value):
 </code></pre>
 <p>Access them by:</p>
 <ul>
-<li>attribute access::</li>
+<li>attribute access:</li>
 </ul>
-<pre><code class="language-python-repl">&gt;&gt;&gt; Color.RED
-&lt;Color.RED: 1&gt;
-</code></pre>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Color.RED
+<Color.RED: 1></p>
+</blockquote>
+</blockquote>
+</blockquote>
 <ul>
 <li>value lookup:</li>
 </ul>
-<pre><code class="language-python-repl">&gt;&gt;&gt; Color(1)
-&lt;Color.RED: 1&gt;
-</code></pre>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Color(1)
+<Color.RED: 1></p>
+</blockquote>
+</blockquote>
+</blockquote>
 <ul>
 <li>name lookup:</li>
 </ul>
-<pre><code class="language-python-repl">&gt;&gt;&gt; Color['RED']
-&lt;Color.RED: 1&gt;
-</code></pre>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>Color['RED']
+<Color.RED: 1></p>
+</blockquote>
+</blockquote>
+</blockquote>
 <p>Enumerations can be iterated over, and know how many members they have:</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; len(Color)
 3
@@ -902,6 +922,7 @@ def from_value(cls, value):
 <li><code><a title="libica.app.dataops" href="dataops.html">libica.app.dataops</a></code></li>
 <li><code><a title="libica.app.gds" href="gds.html">libica.app.gds</a></code></li>
 <li><code><a title="libica.app.projectops" href="projectops.html">libica.app.projectops</a></code></li>
+<li><code><a title="libica.app.utils" href="utils/index.html">libica.app.utils</a></code></li>
 <li><code><a title="libica.app.wes" href="wes.html">libica.app.wes</a></code></li>
 </ul>
 </li>

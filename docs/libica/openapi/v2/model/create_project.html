@@ -98,16 +98,12 @@ class CreateProject(ModelNormal):
             &#39;PROJECT&#39;: &#34;PROJECT&#34;,
             &#39;TENANT&#39;: &#34;TENANT&#34;,
         },
-        # FIXME Their OpenAPI document says expected values should be &#39;Low&#39;, &#39;Medium&#39;, &#39;High&#39; and nullable
-        #  But. On the actual server, it responses with capitalised &#39;MEDIUM&#39;
-        #  curl -s -H &#34;Accept: application/vnd.illumina.v3+json&#34; -H &#34;Authorization: Bearer $ICAV2_ACCESS_TOKEN&#34; &#34;https://ica.illumina.com/ica/rest/api/projects&#34; | jq
-        #  So. There is discrepancy. Since we have to accept whatever value from server, commenting out this for now.
-        # (&#39;analysis_priority&#39;,): {
-        #     &#39;None&#39;: None,
-        #     &#39;LOW&#39;: &#34;Low&#34;,
-        #     &#39;MEDIUM&#39;: &#34;Medium&#34;,
-        #     &#39;HIGH&#39;: &#34;High&#34;,
-        # },
+        (&#39;analysis_priority&#39;,): {
+            &#39;None&#39;: None,
+            &#39;LOW&#39;: &#34;LOW&#34;,
+            &#39;MEDIUM&#39;: &#34;MEDIUM&#34;,
+            &#39;HIGH&#39;: &#34;HIGH&#34;,
+        },
     }
 
     validations = {
@@ -533,16 +529,12 @@ analysis_priority (str, none_type): Indicates the priority given to a project an
             &#39;PROJECT&#39;: &#34;PROJECT&#34;,
             &#39;TENANT&#39;: &#34;TENANT&#34;,
         },
-        # FIXME Their OpenAPI document says expected values should be &#39;Low&#39;, &#39;Medium&#39;, &#39;High&#39; and nullable
-        #  But. On the actual server, it responses with capitalised &#39;MEDIUM&#39;
-        #  curl -s -H &#34;Accept: application/vnd.illumina.v3+json&#34; -H &#34;Authorization: Bearer $ICAV2_ACCESS_TOKEN&#34; &#34;https://ica.illumina.com/ica/rest/api/projects&#34; | jq
-        #  So. There is discrepancy. Since we have to accept whatever value from server, commenting out this for now.
-        # (&#39;analysis_priority&#39;,): {
-        #     &#39;None&#39;: None,
-        #     &#39;LOW&#39;: &#34;Low&#34;,
-        #     &#39;MEDIUM&#39;: &#34;Medium&#34;,
-        #     &#39;HIGH&#39;: &#34;High&#34;,
-        # },
+        (&#39;analysis_priority&#39;,): {
+            &#39;None&#39;: None,
+            &#39;LOW&#39;: &#34;LOW&#34;,
+            &#39;MEDIUM&#39;: &#34;MEDIUM&#34;,
+            &#39;HIGH&#39;: &#34;HIGH&#34;,
+        },
     }
 
     validations = {
