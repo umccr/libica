@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**pipeline** | [**Pipeline**](Pipeline.md) |  | 
+**pipeline** | [**PipelineV3**](PipelineV3.md) |  | 
 **project_id** | **str** |  | 
 **bundle_links** | [**BundleList**](BundleList.md) |  | 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]

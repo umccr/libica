@@ -31,9 +31,9 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.bundle_list import BundleList
-    from libica.openapi.v2.model.pipeline import Pipeline
+    from libica.openapi.v2.model.pipeline_v3 import PipelineV3
     globals()['BundleList'] = BundleList
-    globals()['Pipeline'] = Pipeline
+    globals()['PipelineV3'] = PipelineV3
 
 
 class ProjectPipeline(ModelNormal):
@@ -89,7 +89,7 @@ class ProjectPipeline(ModelNormal):
         """
         lazy_import()
         return {
-            'pipeline': (Pipeline,),  # noqa: E501
+            'pipeline': (PipelineV3,),  # noqa: E501
             'project_id': (str,),  # noqa: E501
             'bundle_links': (BundleList,),  # noqa: E501
         }
@@ -116,7 +116,7 @@ class ProjectPipeline(ModelNormal):
         """ProjectPipeline - a model defined in OpenAPI
 
         Args:
-            pipeline (Pipeline):
+            pipeline (PipelineV3):
             project_id (str):
             bundle_links (BundleList):
 
@@ -205,7 +205,7 @@ class ProjectPipeline(ModelNormal):
         """ProjectPipeline - a model defined in OpenAPI
 
         Args:
-            pipeline (Pipeline):
+            pipeline (PipelineV3):
             project_id (str):
             bundle_links (BundleList):
 

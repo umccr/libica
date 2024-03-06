@@ -22,8 +22,10 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from libica.openapi.v2.model.analysis_creation_batch import AnalysisCreationBatch
-from libica.openapi.v2.model.analysis_creation_batch_item import AnalysisCreationBatchItem
-from libica.openapi.v2.model.analysis_creation_batch_item_paged_list import AnalysisCreationBatchItemPagedList
+from libica.openapi.v2.model.analysis_creation_batch_item_paged_list_v3 import AnalysisCreationBatchItemPagedListV3
+from libica.openapi.v2.model.analysis_creation_batch_item_paged_list_v4 import AnalysisCreationBatchItemPagedListV4
+from libica.openapi.v2.model.analysis_creation_batch_item_v3 import AnalysisCreationBatchItemV3
+from libica.openapi.v2.model.analysis_creation_batch_item_v4 import AnalysisCreationBatchItemV4
 from libica.openapi.v2.model.create_analysis_creation_batch import CreateAnalysisCreationBatch
 from libica.openapi.v2.model.problem import Problem
 
@@ -169,7 +171,7 @@ class ProjectAnalysisCreationBatchApi(object):
         )
         self.get_analysis_creation_batch_item_endpoint = _Endpoint(
             settings={
-                'response_type': (AnalysisCreationBatchItem,),
+                'response_type': (AnalysisCreationBatchItemV4,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -226,6 +228,7 @@ class ProjectAnalysisCreationBatchApi(object):
             headers_map={
                 'accept': [
                     'application/problem+json',
+                    'application/vnd.illumina.v4+json',
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [],
@@ -234,7 +237,7 @@ class ProjectAnalysisCreationBatchApi(object):
         )
         self.get_analysis_creation_batch_items_endpoint = _Endpoint(
             settings={
-                'response_type': (AnalysisCreationBatchItemPagedList,),
+                'response_type': (AnalysisCreationBatchItemPagedListV4,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -319,6 +322,7 @@ class ProjectAnalysisCreationBatchApi(object):
             headers_map={
                 'accept': [
                     'application/problem+json',
+                    'application/vnd.illumina.v4+json',
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [],
@@ -498,6 +502,7 @@ class ProjectAnalysisCreationBatchApi(object):
     ):
         """Retrieve a analysis creation batch item.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Field 'createdAnalysis' changes:  * Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -538,7 +543,7 @@ class ProjectAnalysisCreationBatchApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            AnalysisCreationBatchItem
+            AnalysisCreationBatchItemV4
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -582,6 +587,7 @@ class ProjectAnalysisCreationBatchApi(object):
     ):
         """Retrieve a list of analysis creation batch items.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3]  * Initial version ## [V4] ## Item field 'createdAnalysis' changes:  * Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -626,7 +632,7 @@ class ProjectAnalysisCreationBatchApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            AnalysisCreationBatchItemPagedList
+            AnalysisCreationBatchItemPagedListV4
                 If the method is called asynchronously, returns the request
                 thread.
         """

@@ -21,9 +21,11 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from libica.openapi.v2.model.analysis_paged_list import AnalysisPagedList
+from libica.openapi.v2.model.analysis_paged_list_v3 import AnalysisPagedListV3
+from libica.openapi.v2.model.analysis_paged_list_v4 import AnalysisPagedListV4
+from libica.openapi.v2.model.analysis_query_parameters import AnalysisQueryParameters
 from libica.openapi.v2.model.create_sample import CreateSample
-from libica.openapi.v2.model.data_list import DataList
+from libica.openapi.v2.model.data_paged_list import DataPagedList
 from libica.openapi.v2.model.field import Field
 from libica.openapi.v2.model.find_project_samples import FindProjectSamples
 from libica.openapi.v2.model.problem import Problem
@@ -464,7 +466,7 @@ class ProjectSampleApi(object):
         )
         self.get_project_sample_analyses_endpoint = _Endpoint(
             settings={
-                'response_type': (AnalysisPagedList,),
+                'response_type': (AnalysisPagedListV3,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -713,7 +715,7 @@ class ProjectSampleApi(object):
         )
         self.get_sample_data_list_endpoint = _Endpoint(
             settings={
-                'response_type': (DataList,),
+                'response_type': (DataPagedList,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -1374,6 +1376,92 @@ class ProjectSampleApi(object):
                     'application/problem+json'
                 ],
                 'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.search_project_sample_analyses_endpoint = _Endpoint(
+            settings={
+                'response_type': (AnalysisPagedListV4,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/samples/{sampleId}/analyses:search',
+                'operation_id': 'search_project_sample_analyses',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'sample_id',
+                    'page_offset',
+                    'page_token',
+                    'page_size',
+                    'sort',
+                    'analysis_query_parameters',
+                ],
+                'required': [
+                    'project_id',
+                    'sample_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'sample_id':
+                        (str,),
+                    'page_offset':
+                        (str,),
+                    'page_token':
+                        (str,),
+                    'page_size':
+                        (str,),
+                    'sort':
+                        (str,),
+                    'analysis_query_parameters':
+                        (AnalysisQueryParameters,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'sample_id': 'sampleId',
+                    'page_offset': 'pageOffset',
+                    'page_token': 'pageToken',
+                    'page_size': 'pageSize',
+                    'sort': 'sort',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'sample_id': 'path',
+                    'page_offset': 'query',
+                    'page_token': 'query',
+                    'page_size': 'query',
+                    'sort': 'query',
+                    'analysis_query_parameters': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
+                ]
             },
             api_client=api_client
         )
@@ -2222,6 +2310,7 @@ class ProjectSampleApi(object):
     ):
         """Retrieve the list of analyses.  # noqa: E501
 
+        This endpoint only returns V3 items. Use the search endpoint to get V4 items.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -2271,7 +2360,7 @@ class ProjectSampleApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            AnalysisPagedList
+            AnalysisPagedListV3
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -2551,7 +2640,7 @@ class ProjectSampleApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            DataList
+            DataPagedList
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -3085,6 +3174,92 @@ class ProjectSampleApi(object):
         kwargs['sample_id'] = \
             sample_id
         return self.mark_sample_deleted_endpoint.call_with_http_info(**kwargs)
+
+    def search_project_sample_analyses(
+        self,
+        project_id,
+        sample_id,
+        **kwargs
+    ):
+        """Search analyses for sample.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.search_project_sample_analyses(project_id, sample_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            sample_id (str): The ID of the sample
+
+        Keyword Args:
+            page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\"  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+            analysis_query_parameters (AnalysisQueryParameters): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisPagedListV4
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['sample_id'] = \
+            sample_id
+        return self.search_project_sample_analyses_endpoint.call_with_http_info(**kwargs)
 
     def unlink_data_from_sample(
         self,

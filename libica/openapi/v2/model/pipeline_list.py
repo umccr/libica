@@ -30,8 +30,8 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from libica.openapi.v2.model.pipeline import Pipeline
-    globals()['Pipeline'] = Pipeline
+    from libica.openapi.v2.model.pipeline_v3 import PipelineV3
+    globals()['PipelineV3'] = PipelineV3
 
 
 class PipelineList(ModelNormal):
@@ -87,7 +87,7 @@ class PipelineList(ModelNormal):
         """
         lazy_import()
         return {
-            'items': ([Pipeline],),  # noqa: E501
+            'items': ([PipelineV3],),  # noqa: E501
         }
 
     @cached_property
@@ -110,7 +110,7 @@ class PipelineList(ModelNormal):
         """PipelineList - a model defined in OpenAPI
 
         Args:
-            items ([Pipeline]):
+            items ([PipelineV3]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -195,7 +195,7 @@ class PipelineList(ModelNormal):
         """PipelineList - a model defined in OpenAPI
 
         Args:
-            items ([Pipeline]):
+            items ([PipelineV3]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -92,6 +92,7 @@ class CreateNotificationSubscription(ModelNormal):
             'event_code': (str,),  # noqa: E501
             'enabled': (bool,),  # noqa: E501
             'notification_channel_id': (str,),  # noqa: E501
+            'payload_version': (str, none_type,),  # noqa: E501
             'filter_expression': (str, none_type,),  # noqa: E501
         }
 
@@ -104,6 +105,7 @@ class CreateNotificationSubscription(ModelNormal):
         'event_code': 'eventCode',  # noqa: E501
         'enabled': 'enabled',  # noqa: E501
         'notification_channel_id': 'notificationChannelId',  # noqa: E501
+        'payload_version': 'payloadVersion',  # noqa: E501
         'filter_expression': 'filterExpression',  # noqa: E501
     }
 
@@ -153,6 +155,7 @@ class CreateNotificationSubscription(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            payload_version (str, none_type): The version of the notification event payload in case multiple versions exist. For analysis events possible values are [V3,V4]. [optional]  # noqa: E501
             filter_expression (str, none_type): To be used when a notification applies to specific conditions.. [optional]  # noqa: E501
         """
 
@@ -243,6 +246,7 @@ class CreateNotificationSubscription(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            payload_version (str, none_type): The version of the notification event payload in case multiple versions exist. For analysis events possible values are [V3,V4]. [optional]  # noqa: E501
             filter_expression (str, none_type): To be used when a notification applies to specific conditions.. [optional]  # noqa: E501
         """
 

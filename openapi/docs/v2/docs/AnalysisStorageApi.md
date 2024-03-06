@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **get_analysis_storage_options**
-> AnalysisStorageList get_analysis_storage_options()
+> AnalysisStorageListV3 get_analysis_storage_options()
 
 Retrieve the list of analysis storage options.
 
@@ -21,7 +21,7 @@ Retrieve the list of analysis storage options.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import analysis_storage_api
-from libica.openapi.v2.model.analysis_storage_list import AnalysisStorageList
+from libica.openapi.v2.model.analysis_storage_list_v3 import AnalysisStorageListV3
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -66,7 +66,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**AnalysisStorageList**](AnalysisStorageList.md)
+[**AnalysisStorageListV3**](AnalysisStorageListV3.md)
 
 ### Authorization
 
