@@ -13192,7 +13192,8 @@ components:
       description: "This object contains a \"oneOf\" construct. Depending on which\
         \ type, you will receive a StringSettings-, IntegerSettings or OptionsSettings\
         \ object."
-      oneOf:
+      # FIXME originally `oneOf` fixing it to `anyOf` due to https://github.com/umccr-illumina/libica/issues/129
+      anyOf:
       - $ref: '#/components/schemas/StringSettings'
       - $ref: '#/components/schemas/IntegerSettings'
       - $ref: '#/components/schemas/OptionSettings'

@@ -308,14 +308,15 @@ class Settings(ModelComposed):
         # classes don't exist yet because their module has not finished
         # loading
         lazy_import()
+        # FIXME originally `oneOf` fixing it to `anyOf` due to https://github.com/umccr-illumina/libica/issues/129
         return {
           'anyOf': [
+              IntegerSettings,
+              OptionSettings,
+              StringSettings,
           ],
           'allOf': [
           ],
           'oneOf': [
-              IntegerSettings,
-              OptionSettings,
-              StringSettings,
           ],
         }
