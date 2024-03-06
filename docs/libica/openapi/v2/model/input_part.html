@@ -123,9 +123,9 @@ class InputPart(ModelNormal):
         lazy_import()
         return {
             &#39;media_type&#39;: (InputPartMediaType,),  # noqa: E501
-            &#39;content_type_from_message&#39;: (bool,),  # noqa: E501
             &#39;headers&#39;: ({str: ([str],)},),  # noqa: E501
             &#39;body_as_string&#39;: (str,),  # noqa: E501
+            &#39;content_type_from_message&#39;: (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -135,9 +135,9 @@ class InputPart(ModelNormal):
 
     attribute_map = {
         &#39;media_type&#39;: &#39;mediaType&#39;,  # noqa: E501
-        &#39;content_type_from_message&#39;: &#39;contentTypeFromMessage&#39;,  # noqa: E501
         &#39;headers&#39;: &#39;headers&#39;,  # noqa: E501
         &#39;body_as_string&#39;: &#39;bodyAsString&#39;,  # noqa: E501
+        &#39;content_type_from_message&#39;: &#39;contentTypeFromMessage&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -182,9 +182,9 @@ class InputPart(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             media_type (InputPartMediaType): [optional]  # noqa: E501
-            content_type_from_message (bool): [optional]  # noqa: E501
             headers ({str: ([str],)}): [optional]  # noqa: E501
             body_as_string (str): [optional]  # noqa: E501
+            content_type_from_message (bool): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -267,9 +267,9 @@ class InputPart(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             media_type (InputPartMediaType): [optional]  # noqa: E501
-            content_type_from_message (bool): [optional]  # noqa: E501
             headers ({str: ([str],)}): [optional]  # noqa: E501
             body_as_string (str): [optional]  # noqa: E501
+            content_type_from_message (bool): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -399,11 +399,11 @@ through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
 media_type (InputPartMediaType): [optional]
 # noqa: E501
-content_type_from_message (bool): [optional]
-# noqa: E501
 headers ({str: ([str],)}): [optional]
 # noqa: E501
 body_as_string (str): [optional]
+# noqa: E501
+content_type_from_message (bool): [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -463,9 +463,9 @@ body_as_string (str): [optional]
         lazy_import()
         return {
             &#39;media_type&#39;: (InputPartMediaType,),  # noqa: E501
-            &#39;content_type_from_message&#39;: (bool,),  # noqa: E501
             &#39;headers&#39;: ({str: ([str],)},),  # noqa: E501
             &#39;body_as_string&#39;: (str,),  # noqa: E501
+            &#39;content_type_from_message&#39;: (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -475,9 +475,9 @@ body_as_string (str): [optional]
 
     attribute_map = {
         &#39;media_type&#39;: &#39;mediaType&#39;,  # noqa: E501
-        &#39;content_type_from_message&#39;: &#39;contentTypeFromMessage&#39;,  # noqa: E501
         &#39;headers&#39;: &#39;headers&#39;,  # noqa: E501
         &#39;body_as_string&#39;: &#39;bodyAsString&#39;,  # noqa: E501
+        &#39;content_type_from_message&#39;: &#39;contentTypeFromMessage&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -522,9 +522,9 @@ body_as_string (str): [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             media_type (InputPartMediaType): [optional]  # noqa: E501
-            content_type_from_message (bool): [optional]  # noqa: E501
             headers ({str: ([str],)}): [optional]  # noqa: E501
             body_as_string (str): [optional]  # noqa: E501
+            content_type_from_message (bool): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -607,9 +607,9 @@ body_as_string (str): [optional]
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             media_type (InputPartMediaType): [optional]  # noqa: E501
-            content_type_from_message (bool): [optional]  # noqa: E501
             headers ({str: ([str],)}): [optional]  # noqa: E501
             body_as_string (str): [optional]  # noqa: E501
+            content_type_from_message (bool): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

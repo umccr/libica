@@ -70,6 +70,7 @@ class FolderMoveOperationParameters(object):
         &#39;target_folder_urn&#39;: &#39;str&#39;,
         &#39;source_folder_id&#39;: &#39;str&#39;,
         &#39;target_folder_id&#39;: &#39;str&#39;,
+        &#39;destination_folder_id&#39;: &#39;str&#39;,
         &#39;source_volume_id&#39;: &#39;str&#39;,
         &#39;original_source_object_store_location_prefix&#39;: &#39;str&#39;,
         &#39;destination_object_store_location&#39;: &#39;str&#39;,
@@ -81,13 +82,14 @@ class FolderMoveOperationParameters(object):
         &#39;target_folder_urn&#39;: &#39;targetFolderUrn&#39;,
         &#39;source_folder_id&#39;: &#39;sourceFolderId&#39;,
         &#39;target_folder_id&#39;: &#39;targetFolderId&#39;,
+        &#39;destination_folder_id&#39;: &#39;destinationFolderId&#39;,
         &#39;source_volume_id&#39;: &#39;sourceVolumeId&#39;,
         &#39;original_source_object_store_location_prefix&#39;: &#39;originalSourceObjectStoreLocationPrefix&#39;,
         &#39;destination_object_store_location&#39;: &#39;destinationObjectStoreLocation&#39;,
         &#39;original_source_path&#39;: &#39;originalSourcePath&#39;
     }
 
-    def __init__(self, source_folder_urn=None, target_folder_urn=None, source_folder_id=None, target_folder_id=None, source_volume_id=None, original_source_object_store_location_prefix=None, destination_object_store_location=None, original_source_path=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, source_folder_urn=None, target_folder_urn=None, source_folder_id=None, target_folder_id=None, destination_folder_id=None, source_volume_id=None, original_source_object_store_location_prefix=None, destination_object_store_location=None, original_source_path=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FolderMoveOperationParameters - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -97,6 +99,7 @@ class FolderMoveOperationParameters(object):
         self._target_folder_urn = None
         self._source_folder_id = None
         self._target_folder_id = None
+        self._destination_folder_id = None
         self._source_volume_id = None
         self._original_source_object_store_location_prefix = None
         self._destination_object_store_location = None
@@ -111,6 +114,8 @@ class FolderMoveOperationParameters(object):
             self.source_folder_id = source_folder_id
         if target_folder_id is not None:
             self.target_folder_id = target_folder_id
+        if destination_folder_id is not None:
+            self.destination_folder_id = destination_folder_id
         if source_volume_id is not None:
             self.source_volume_id = source_volume_id
         if original_source_object_store_location_prefix is not None:
@@ -191,6 +196,7 @@ class FolderMoveOperationParameters(object):
     def target_folder_id(self):
         &#34;&#34;&#34;Gets the target_folder_id of this FolderMoveOperationParameters.  # noqa: E501
 
+        The Id of the Target Parent Folder where the actual folder is moved  # noqa: E501
 
         :return: The target_folder_id of this FolderMoveOperationParameters.  # noqa: E501
         :rtype: str
@@ -201,12 +207,36 @@ class FolderMoveOperationParameters(object):
     def target_folder_id(self, target_folder_id):
         &#34;&#34;&#34;Sets the target_folder_id of this FolderMoveOperationParameters.
 
+        The Id of the Target Parent Folder where the actual folder is moved  # noqa: E501
 
         :param target_folder_id: The target_folder_id of this FolderMoveOperationParameters.  # noqa: E501
         :type: str
         &#34;&#34;&#34;
 
         self._target_folder_id = target_folder_id
+
+    @property
+    def destination_folder_id(self):
+        &#34;&#34;&#34;Gets the destination_folder_id of this FolderMoveOperationParameters.  # noqa: E501
+
+        The Id of the actual folder moved under the Target Folder  # noqa: E501
+
+        :return: The destination_folder_id of this FolderMoveOperationParameters.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._destination_folder_id
+
+    @destination_folder_id.setter
+    def destination_folder_id(self, destination_folder_id):
+        &#34;&#34;&#34;Sets the destination_folder_id of this FolderMoveOperationParameters.
+
+        The Id of the actual folder moved under the Target Folder  # noqa: E501
+
+        :param destination_folder_id: The destination_folder_id of this FolderMoveOperationParameters.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._destination_folder_id = destination_folder_id
 
     @property
     def source_volume_id(self):
@@ -350,7 +380,7 @@ class FolderMoveOperationParameters(object):
 <dl>
 <dt id="libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters"><code class="flex name class">
 <span>class <span class="ident">FolderMoveOperationParameters</span></span>
-<span>(</span><span>source_folder_urn=None, target_folder_urn=None, source_folder_id=None, target_folder_id=None, source_volume_id=None, original_source_object_store_location_prefix=None, destination_object_store_location=None, original_source_path=None, local_vars_configuration=None)</span>
+<span>(</span><span>source_folder_urn=None, target_folder_urn=None, source_folder_id=None, target_folder_id=None, destination_folder_id=None, source_volume_id=None, original_source_object_store_location_prefix=None, destination_object_store_location=None, original_source_path=None, local_vars_configuration=None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -380,6 +410,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;target_folder_urn&#39;: &#39;str&#39;,
         &#39;source_folder_id&#39;: &#39;str&#39;,
         &#39;target_folder_id&#39;: &#39;str&#39;,
+        &#39;destination_folder_id&#39;: &#39;str&#39;,
         &#39;source_volume_id&#39;: &#39;str&#39;,
         &#39;original_source_object_store_location_prefix&#39;: &#39;str&#39;,
         &#39;destination_object_store_location&#39;: &#39;str&#39;,
@@ -391,13 +422,14 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         &#39;target_folder_urn&#39;: &#39;targetFolderUrn&#39;,
         &#39;source_folder_id&#39;: &#39;sourceFolderId&#39;,
         &#39;target_folder_id&#39;: &#39;targetFolderId&#39;,
+        &#39;destination_folder_id&#39;: &#39;destinationFolderId&#39;,
         &#39;source_volume_id&#39;: &#39;sourceVolumeId&#39;,
         &#39;original_source_object_store_location_prefix&#39;: &#39;originalSourceObjectStoreLocationPrefix&#39;,
         &#39;destination_object_store_location&#39;: &#39;destinationObjectStoreLocation&#39;,
         &#39;original_source_path&#39;: &#39;originalSourcePath&#39;
     }
 
-    def __init__(self, source_folder_urn=None, target_folder_urn=None, source_folder_id=None, target_folder_id=None, source_volume_id=None, original_source_object_store_location_prefix=None, destination_object_store_location=None, original_source_path=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, source_folder_urn=None, target_folder_urn=None, source_folder_id=None, target_folder_id=None, destination_folder_id=None, source_volume_id=None, original_source_object_store_location_prefix=None, destination_object_store_location=None, original_source_path=None, local_vars_configuration=None):  # noqa: E501
         &#34;&#34;&#34;FolderMoveOperationParameters - a model defined in OpenAPI&#34;&#34;&#34;  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -407,6 +439,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self._target_folder_urn = None
         self._source_folder_id = None
         self._target_folder_id = None
+        self._destination_folder_id = None
         self._source_volume_id = None
         self._original_source_object_store_location_prefix = None
         self._destination_object_store_location = None
@@ -421,6 +454,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             self.source_folder_id = source_folder_id
         if target_folder_id is not None:
             self.target_folder_id = target_folder_id
+        if destination_folder_id is not None:
+            self.destination_folder_id = destination_folder_id
         if source_volume_id is not None:
             self.source_volume_id = source_volume_id
         if original_source_object_store_location_prefix is not None:
@@ -501,6 +536,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     def target_folder_id(self):
         &#34;&#34;&#34;Gets the target_folder_id of this FolderMoveOperationParameters.  # noqa: E501
 
+        The Id of the Target Parent Folder where the actual folder is moved  # noqa: E501
 
         :return: The target_folder_id of this FolderMoveOperationParameters.  # noqa: E501
         :rtype: str
@@ -511,12 +547,36 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     def target_folder_id(self, target_folder_id):
         &#34;&#34;&#34;Sets the target_folder_id of this FolderMoveOperationParameters.
 
+        The Id of the Target Parent Folder where the actual folder is moved  # noqa: E501
 
         :param target_folder_id: The target_folder_id of this FolderMoveOperationParameters.  # noqa: E501
         :type: str
         &#34;&#34;&#34;
 
         self._target_folder_id = target_folder_id
+
+    @property
+    def destination_folder_id(self):
+        &#34;&#34;&#34;Gets the destination_folder_id of this FolderMoveOperationParameters.  # noqa: E501
+
+        The Id of the actual folder moved under the Target Folder  # noqa: E501
+
+        :return: The destination_folder_id of this FolderMoveOperationParameters.  # noqa: E501
+        :rtype: str
+        &#34;&#34;&#34;
+        return self._destination_folder_id
+
+    @destination_folder_id.setter
+    def destination_folder_id(self, destination_folder_id):
+        &#34;&#34;&#34;Sets the destination_folder_id of this FolderMoveOperationParameters.
+
+        The Id of the actual folder moved under the Target Folder  # noqa: E501
+
+        :param destination_folder_id: The destination_folder_id of this FolderMoveOperationParameters.  # noqa: E501
+        :type: str
+        &#34;&#34;&#34;
+
+        self._destination_folder_id = destination_folder_id
 
     @property
     def source_volume_id(self):
@@ -661,6 +721,31 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 </dl>
 <h3>Instance variables</h3>
 <dl>
+<dt id="libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.destination_folder_id"><code class="name">var <span class="ident">destination_folder_id</span></code></dt>
+<dd>
+<div class="desc"><p>Gets the destination_folder_id of this FolderMoveOperationParameters.
+# noqa: E501</p>
+<p>The Id of the actual folder moved under the Target Folder
+# noqa: E501</p>
+<p>:return: The destination_folder_id of this FolderMoveOperationParameters.
+# noqa: E501
+:rtype: str</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def destination_folder_id(self):
+    &#34;&#34;&#34;Gets the destination_folder_id of this FolderMoveOperationParameters.  # noqa: E501
+
+    The Id of the actual folder moved under the Target Folder  # noqa: E501
+
+    :return: The destination_folder_id of this FolderMoveOperationParameters.  # noqa: E501
+    :rtype: str
+    &#34;&#34;&#34;
+    return self._destination_folder_id</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.destination_object_store_location"><code class="name">var <span class="ident">destination_object_store_location</span></code></dt>
 <dd>
 <div class="desc"><p>Gets the destination_object_store_location of this FolderMoveOperationParameters.
@@ -800,6 +885,8 @@ def source_volume_id(self):
 <dd>
 <div class="desc"><p>Gets the target_folder_id of this FolderMoveOperationParameters.
 # noqa: E501</p>
+<p>The Id of the Target Parent Folder where the actual folder is moved
+# noqa: E501</p>
 <p>:return: The target_folder_id of this FolderMoveOperationParameters.
 # noqa: E501
 :rtype: str</p></div>
@@ -811,6 +898,7 @@ def source_volume_id(self):
 def target_folder_id(self):
     &#34;&#34;&#34;Gets the target_folder_id of this FolderMoveOperationParameters.  # noqa: E501
 
+    The Id of the Target Parent Folder where the actual folder is moved  # noqa: E501
 
     :return: The target_folder_id of this FolderMoveOperationParameters.  # noqa: E501
     :rtype: str
@@ -916,6 +1004,7 @@ def target_folder_urn(self):
 <h4><code><a title="libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters" href="#libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters">FolderMoveOperationParameters</a></code></h4>
 <ul class="">
 <li><code><a title="libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.attribute_map" href="#libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.attribute_map">attribute_map</a></code></li>
+<li><code><a title="libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.destination_folder_id" href="#libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.destination_folder_id">destination_folder_id</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.destination_object_store_location" href="#libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.destination_object_store_location">destination_object_store_location</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.openapi_types" href="#libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.openapi_types">openapi_types</a></code></li>
 <li><code><a title="libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.original_source_object_store_location_prefix" href="#libica.openapi.libgds.models.folder_move_operation_parameters.FolderMoveOperationParameters.original_source_object_store_location_prefix">original_source_object_store_location_prefix</a></code></li>

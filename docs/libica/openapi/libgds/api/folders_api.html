@@ -704,6 +704,7 @@ class FoldersApi(object):
         :param async_req bool: execute request asynchronously
         :param CreateFolderRequest body: (required)
         :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param str folder_list_secret:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -730,6 +731,7 @@ class FoldersApi(object):
         :param async_req bool: execute request asynchronously
         :param CreateFolderRequest body: (required)
         :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param str folder_list_secret:
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -748,7 +750,8 @@ class FoldersApi(object):
 
         all_params = [
             &#39;body&#39;,
-            &#39;include&#39;
+            &#39;include&#39;,
+            &#39;folder_list_secret&#39;
         ]
         all_params.extend(
             [
@@ -781,6 +784,8 @@ class FoldersApi(object):
             query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
         header_params = {}
+        if &#39;folder_list_secret&#39; in local_var_params:
+            header_params[&#39;folderListSecret&#39;] = local_var_params[&#39;folder_list_secret&#39;]  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -1883,6 +1888,7 @@ class FoldersApi(object):
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to be updated. (required)
         :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param str folder_list_secret:
         :param FolderUpdateRequest body:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
@@ -1910,6 +1916,7 @@ class FoldersApi(object):
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to be updated. (required)
         :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param str folder_list_secret:
         :param FolderUpdateRequest body:
         :param _return_http_data_only: response data without head status code
                                        and headers
@@ -1930,6 +1937,7 @@ class FoldersApi(object):
         all_params = [
             &#39;folder_id&#39;,
             &#39;include&#39;,
+            &#39;folder_list_secret&#39;,
             &#39;body&#39;
         ]
         all_params.extend(
@@ -1965,6 +1973,8 @@ class FoldersApi(object):
             query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
         header_params = {}
+        if &#39;folder_list_secret&#39; in local_var_params:
+            header_params[&#39;folderListSecret&#39;] = local_var_params[&#39;folder_list_secret&#39;]  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -2668,6 +2678,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param async_req bool: execute request asynchronously
         :param CreateFolderRequest body: (required)
         :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param str folder_list_secret:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
                                  data. Default is True.
@@ -2694,6 +2705,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param async_req bool: execute request asynchronously
         :param CreateFolderRequest body: (required)
         :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param str folder_list_secret:
         :param _return_http_data_only: response data without head status code
                                        and headers
         :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -2712,7 +2724,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
 
         all_params = [
             &#39;body&#39;,
-            &#39;include&#39;
+            &#39;include&#39;,
+            &#39;folder_list_secret&#39;
         ]
         all_params.extend(
             [
@@ -2745,6 +2758,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
         header_params = {}
+        if &#39;folder_list_secret&#39; in local_var_params:
+            header_params[&#39;folderListSecret&#39;] = local_var_params[&#39;folder_list_secret&#39;]  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -3847,6 +3862,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to be updated. (required)
         :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param str folder_list_secret:
         :param FolderUpdateRequest body:
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
@@ -3874,6 +3890,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         :param async_req bool: execute request asynchronously
         :param str folder_id: Unique identifier for the folder to be updated. (required)
         :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+        :param str folder_list_secret:
         :param FolderUpdateRequest body:
         :param _return_http_data_only: response data without head status code
                                        and headers
@@ -3894,6 +3911,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         all_params = [
             &#39;folder_id&#39;,
             &#39;include&#39;,
+            &#39;folder_list_secret&#39;,
             &#39;body&#39;
         ]
         all_params.extend(
@@ -3929,6 +3947,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
         header_params = {}
+        if &#39;folder_list_secret&#39; in local_var_params:
+            header_params[&#39;folderListSecret&#39;] = local_var_params[&#39;folder_list_secret&#39;]  # noqa: E501
 
         form_params = []
         local_var_files = {}
@@ -4925,6 +4945,7 @@ asynchronous HTTP request, please pass async_req=True</p>
 :param CreateFolderRequest body: (required)
 :param str include: Optionally include additional fields in the response.
 Possible values: ObjectStoreAccess
+:param str folder_list_secret:
 :param _preload_content: if False, the urllib3.HTTPResponse object will
 be returned without reading/decoding response
 data. Default is True.
@@ -4951,6 +4972,7 @@ returns the request thread.</p></div>
     :param async_req bool: execute request asynchronously
     :param CreateFolderRequest body: (required)
     :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+    :param str folder_list_secret:
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                              be returned without reading/decoding response
                              data. Default is True.
@@ -5174,6 +5196,7 @@ asynchronous HTTP request, please pass async_req=True</p>
 :param CreateFolderRequest body: (required)
 :param str include: Optionally include additional fields in the response.
 Possible values: ObjectStoreAccess
+:param str folder_list_secret:
 :param _return_http_data_only: response data without head status code
 and headers
 :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -5202,6 +5225,7 @@ returns the request thread.</p></div>
     :param async_req bool: execute request asynchronously
     :param CreateFolderRequest body: (required)
     :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+    :param str folder_list_secret:
     :param _return_http_data_only: response data without head status code
                                    and headers
     :param _preload_content: if False, the urllib3.HTTPResponse object will
@@ -5220,7 +5244,8 @@ returns the request thread.</p></div>
 
     all_params = [
         &#39;body&#39;,
-        &#39;include&#39;
+        &#39;include&#39;,
+        &#39;folder_list_secret&#39;
     ]
     all_params.extend(
         [
@@ -5253,6 +5278,8 @@ returns the request thread.</p></div>
         query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
     header_params = {}
+    if &#39;folder_list_secret&#39; in local_var_params:
+        header_params[&#39;folderListSecret&#39;] = local_var_params[&#39;folder_list_secret&#39;]  # noqa: E501
 
     form_params = []
     local_var_files = {}
@@ -6711,6 +6738,7 @@ asynchronous HTTP request, please pass async_req=True</p>
 :param str folder_id: Unique identifier for the folder to be updated. (required)
 :param str include: Optionally include additional fields in the response.
 Possible values: ObjectStoreAccess
+:param str folder_list_secret:
 :param FolderUpdateRequest body:
 :param _preload_content: if False, the urllib3.HTTPResponse object will
 be returned without reading/decoding response
@@ -6738,6 +6766,7 @@ returns the request thread.</p></div>
     :param async_req bool: execute request asynchronously
     :param str folder_id: Unique identifier for the folder to be updated. (required)
     :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+    :param str folder_list_secret:
     :param FolderUpdateRequest body:
     :param _preload_content: if False, the urllib3.HTTPResponse object will
                              be returned without reading/decoding response
@@ -6772,6 +6801,7 @@ asynchronous HTTP request, please pass async_req=True</p>
 :param str folder_id: Unique identifier for the folder to be updated. (required)
 :param str include: Optionally include additional fields in the response.
 Possible values: ObjectStoreAccess
+:param str folder_list_secret:
 :param FolderUpdateRequest body:
 :param _return_http_data_only: response data without head status code
 and headers
@@ -6801,6 +6831,7 @@ returns the request thread.</p></div>
     :param async_req bool: execute request asynchronously
     :param str folder_id: Unique identifier for the folder to be updated. (required)
     :param str include: Optionally include additional fields in the response.              Possible values: ObjectStoreAccess
+    :param str folder_list_secret:
     :param FolderUpdateRequest body:
     :param _return_http_data_only: response data without head status code
                                    and headers
@@ -6821,6 +6852,7 @@ returns the request thread.</p></div>
     all_params = [
         &#39;folder_id&#39;,
         &#39;include&#39;,
+        &#39;folder_list_secret&#39;,
         &#39;body&#39;
     ]
     all_params.extend(
@@ -6856,6 +6888,8 @@ returns the request thread.</p></div>
         query_params.append((&#39;include&#39;, local_var_params[&#39;include&#39;]))  # noqa: E501
 
     header_params = {}
+    if &#39;folder_list_secret&#39; in local_var_params:
+        header_params[&#39;folderListSecret&#39;] = local_var_params[&#39;folder_list_secret&#39;]  # noqa: E501
 
     form_params = []
     local_var_files = {}

@@ -57,8 +57,10 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from libica.openapi.v2.model.analysis_creation_batch import AnalysisCreationBatch
-from libica.openapi.v2.model.analysis_creation_batch_item import AnalysisCreationBatchItem
-from libica.openapi.v2.model.analysis_creation_batch_item_paged_list import AnalysisCreationBatchItemPagedList
+from libica.openapi.v2.model.analysis_creation_batch_item_paged_list_v3 import AnalysisCreationBatchItemPagedListV3
+from libica.openapi.v2.model.analysis_creation_batch_item_paged_list_v4 import AnalysisCreationBatchItemPagedListV4
+from libica.openapi.v2.model.analysis_creation_batch_item_v3 import AnalysisCreationBatchItemV3
+from libica.openapi.v2.model.analysis_creation_batch_item_v4 import AnalysisCreationBatchItemV4
 from libica.openapi.v2.model.create_analysis_creation_batch import CreateAnalysisCreationBatch
 from libica.openapi.v2.model.problem import Problem
 
@@ -204,13 +206,79 @@ class ProjectAnalysisCreationBatchApi(object):
         )
         self.get_analysis_creation_batch_item_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (AnalysisCreationBatchItemPagedList,),
+                &#39;response_type&#39;: (AnalysisCreationBatchItemV4,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/analysisCreationBatch/{batchId}/items/{itemId}&#39;,
+                &#39;operation_id&#39;: &#39;get_analysis_creation_batch_item&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;batch_id&#39;,
+                    &#39;item_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;batch_id&#39;,
+                    &#39;item_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;batch_id&#39;:
+                        (str,),
+                    &#39;item_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;batch_id&#39;: &#39;batchId&#39;,
+                    &#39;item_id&#39;: &#39;itemId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;batch_id&#39;: &#39;path&#39;,
+                    &#39;item_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.get_analysis_creation_batch_items_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (AnalysisCreationBatchItemPagedListV4,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/analysisCreationBatch/{batchId}/items&#39;,
-                &#39;operation_id&#39;: &#39;get_analysis_creation_batch_item&#39;,
+                &#39;operation_id&#39;: &#39;get_analysis_creation_batch_items&#39;,
                 &#39;http_method&#39;: &#39;GET&#39;,
                 &#39;servers&#39;: None,
             },
@@ -289,71 +357,7 @@ class ProjectAnalysisCreationBatchApi(object):
             headers_map={
                 &#39;accept&#39;: [
                     &#39;application/problem+json&#39;,
-                    &#39;application/vnd.illumina.v3+json&#39;
-                ],
-                &#39;content_type&#39;: [],
-            },
-            api_client=api_client
-        )
-        self.get_analysis_creation_batch_item1_endpoint = _Endpoint(
-            settings={
-                &#39;response_type&#39;: (AnalysisCreationBatchItem,),
-                &#39;auth&#39;: [
-                    &#39;ApiKeyAuth&#39;,
-                    &#39;JwtAuth&#39;
-                ],
-                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/analysisCreationBatch/{batchId}/items/{itemId}&#39;,
-                &#39;operation_id&#39;: &#39;get_analysis_creation_batch_item1&#39;,
-                &#39;http_method&#39;: &#39;GET&#39;,
-                &#39;servers&#39;: None,
-            },
-            params_map={
-                &#39;all&#39;: [
-                    &#39;project_id&#39;,
-                    &#39;batch_id&#39;,
-                    &#39;item_id&#39;,
-                ],
-                &#39;required&#39;: [
-                    &#39;project_id&#39;,
-                    &#39;batch_id&#39;,
-                    &#39;item_id&#39;,
-                ],
-                &#39;nullable&#39;: [
-                ],
-                &#39;enum&#39;: [
-                ],
-                &#39;validation&#39;: [
-                ]
-            },
-            root_map={
-                &#39;validations&#39;: {
-                },
-                &#39;allowed_values&#39;: {
-                },
-                &#39;openapi_types&#39;: {
-                    &#39;project_id&#39;:
-                        (str,),
-                    &#39;batch_id&#39;:
-                        (str,),
-                    &#39;item_id&#39;:
-                        (str,),
-                },
-                &#39;attribute_map&#39;: {
-                    &#39;project_id&#39;: &#39;projectId&#39;,
-                    &#39;batch_id&#39;: &#39;batchId&#39;,
-                    &#39;item_id&#39;: &#39;itemId&#39;,
-                },
-                &#39;location_map&#39;: {
-                    &#39;project_id&#39;: &#39;path&#39;,
-                    &#39;batch_id&#39;: &#39;path&#39;,
-                    &#39;item_id&#39;: &#39;path&#39;,
-                },
-                &#39;collection_format_map&#39;: {
-                }
-            },
-            headers_map={
-                &#39;accept&#39;: [
-                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [],
@@ -528,101 +532,16 @@ class ProjectAnalysisCreationBatchApi(object):
         self,
         project_id,
         batch_id,
-        **kwargs
-    ):
-        &#34;&#34;&#34;Retrieve a list of analysis creation batch items.  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        &gt;&gt;&gt; thread = api.get_analysis_creation_batch_item(project_id, batch_id, async_req=True)
-        &gt;&gt;&gt; result = thread.get()
-
-        Args:
-            project_id (str):
-            batch_id (str): The ID of the analysis creation batch
-
-        Keyword Args:
-            status ([str]): The statuses to filter on.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;. [optional]
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            AnalysisCreationBatchItemPagedList
-                If the method is called asynchronously, returns the request
-                thread.
-        &#34;&#34;&#34;
-        kwargs[&#39;async_req&#39;] = kwargs.get(
-            &#39;async_req&#39;, False
-        )
-        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
-            &#39;_return_http_data_only&#39;, True
-        )
-        kwargs[&#39;_preload_content&#39;] = kwargs.get(
-            &#39;_preload_content&#39;, True
-        )
-        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
-            &#39;_request_timeout&#39;, None
-        )
-        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
-            &#39;_check_input_type&#39;, True
-        )
-        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
-            &#39;_check_return_type&#39;, True
-        )
-        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
-            &#39;_spec_property_naming&#39;, False
-        )
-        kwargs[&#39;_content_type&#39;] = kwargs.get(
-            &#39;_content_type&#39;)
-        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
-        kwargs[&#39;project_id&#39;] = \
-            project_id
-        kwargs[&#39;batch_id&#39;] = \
-            batch_id
-        return self.get_analysis_creation_batch_item_endpoint.call_with_http_info(**kwargs)
-
-    def get_analysis_creation_batch_item1(
-        self,
-        project_id,
-        batch_id,
         item_id,
         **kwargs
     ):
         &#34;&#34;&#34;Retrieve a analysis creation batch item.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3] Initial version ## [V4] Field &#39;createdAnalysis&#39; changes:  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.get_analysis_creation_batch_item1(project_id, batch_id, item_id, async_req=True)
+        &gt;&gt;&gt; thread = api.get_analysis_creation_batch_item(project_id, batch_id, item_id, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -659,7 +578,7 @@ class ProjectAnalysisCreationBatchApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            AnalysisCreationBatchItem
+            AnalysisCreationBatchItemV4
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -693,7 +612,94 @@ class ProjectAnalysisCreationBatchApi(object):
             batch_id
         kwargs[&#39;item_id&#39;] = \
             item_id
-        return self.get_analysis_creation_batch_item1_endpoint.call_with_http_info(**kwargs)</code></pre>
+        return self.get_analysis_creation_batch_item_endpoint.call_with_http_info(**kwargs)
+
+    def get_analysis_creation_batch_items(
+        self,
+        project_id,
+        batch_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve a list of analysis creation batch items.  # noqa: E501
+
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4] ## Item field &#39;createdAnalysis&#39; changes:  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_analysis_creation_batch_items(project_id, batch_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str):
+            batch_id (str): The ID of the analysis creation batch
+
+        Keyword Args:
+            status ([str]): The statuses to filter on.. [optional]
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisCreationBatchItemPagedListV4
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        kwargs[&#39;batch_id&#39;] = \
+            batch_id
+        return self.get_analysis_creation_batch_items_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </section>
 <section>
@@ -858,13 +864,79 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         )
         self.get_analysis_creation_batch_item_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (AnalysisCreationBatchItemPagedList,),
+                &#39;response_type&#39;: (AnalysisCreationBatchItemV4,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/analysisCreationBatch/{batchId}/items/{itemId}&#39;,
+                &#39;operation_id&#39;: &#39;get_analysis_creation_batch_item&#39;,
+                &#39;http_method&#39;: &#39;GET&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;batch_id&#39;,
+                    &#39;item_id&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;batch_id&#39;,
+                    &#39;item_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;batch_id&#39;:
+                        (str,),
+                    &#39;item_id&#39;:
+                        (str,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;batch_id&#39;: &#39;batchId&#39;,
+                    &#39;item_id&#39;: &#39;itemId&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;batch_id&#39;: &#39;path&#39;,
+                    &#39;item_id&#39;: &#39;path&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [],
+            },
+            api_client=api_client
+        )
+        self.get_analysis_creation_batch_items_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (AnalysisCreationBatchItemPagedListV4,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
                 ],
                 &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/analysisCreationBatch/{batchId}/items&#39;,
-                &#39;operation_id&#39;: &#39;get_analysis_creation_batch_item&#39;,
+                &#39;operation_id&#39;: &#39;get_analysis_creation_batch_items&#39;,
                 &#39;http_method&#39;: &#39;GET&#39;,
                 &#39;servers&#39;: None,
             },
@@ -943,71 +1015,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             headers_map={
                 &#39;accept&#39;: [
                     &#39;application/problem+json&#39;,
-                    &#39;application/vnd.illumina.v3+json&#39;
-                ],
-                &#39;content_type&#39;: [],
-            },
-            api_client=api_client
-        )
-        self.get_analysis_creation_batch_item1_endpoint = _Endpoint(
-            settings={
-                &#39;response_type&#39;: (AnalysisCreationBatchItem,),
-                &#39;auth&#39;: [
-                    &#39;ApiKeyAuth&#39;,
-                    &#39;JwtAuth&#39;
-                ],
-                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/analysisCreationBatch/{batchId}/items/{itemId}&#39;,
-                &#39;operation_id&#39;: &#39;get_analysis_creation_batch_item1&#39;,
-                &#39;http_method&#39;: &#39;GET&#39;,
-                &#39;servers&#39;: None,
-            },
-            params_map={
-                &#39;all&#39;: [
-                    &#39;project_id&#39;,
-                    &#39;batch_id&#39;,
-                    &#39;item_id&#39;,
-                ],
-                &#39;required&#39;: [
-                    &#39;project_id&#39;,
-                    &#39;batch_id&#39;,
-                    &#39;item_id&#39;,
-                ],
-                &#39;nullable&#39;: [
-                ],
-                &#39;enum&#39;: [
-                ],
-                &#39;validation&#39;: [
-                ]
-            },
-            root_map={
-                &#39;validations&#39;: {
-                },
-                &#39;allowed_values&#39;: {
-                },
-                &#39;openapi_types&#39;: {
-                    &#39;project_id&#39;:
-                        (str,),
-                    &#39;batch_id&#39;:
-                        (str,),
-                    &#39;item_id&#39;:
-                        (str,),
-                },
-                &#39;attribute_map&#39;: {
-                    &#39;project_id&#39;: &#39;projectId&#39;,
-                    &#39;batch_id&#39;: &#39;batchId&#39;,
-                    &#39;item_id&#39;: &#39;itemId&#39;,
-                },
-                &#39;location_map&#39;: {
-                    &#39;project_id&#39;: &#39;path&#39;,
-                    &#39;batch_id&#39;: &#39;path&#39;,
-                    &#39;item_id&#39;: &#39;path&#39;,
-                },
-                &#39;collection_format_map&#39;: {
-                }
-            },
-            headers_map={
-                &#39;accept&#39;: [
-                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [],
@@ -1182,101 +1190,16 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         self,
         project_id,
         batch_id,
-        **kwargs
-    ):
-        &#34;&#34;&#34;Retrieve a list of analysis creation batch items.  # noqa: E501
-
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        &gt;&gt;&gt; thread = api.get_analysis_creation_batch_item(project_id, batch_id, async_req=True)
-        &gt;&gt;&gt; result = thread.get()
-
-        Args:
-            project_id (str):
-            batch_id (str): The ID of the analysis creation batch
-
-        Keyword Args:
-            status ([str]): The statuses to filter on.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;. [optional]
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            AnalysisCreationBatchItemPagedList
-                If the method is called asynchronously, returns the request
-                thread.
-        &#34;&#34;&#34;
-        kwargs[&#39;async_req&#39;] = kwargs.get(
-            &#39;async_req&#39;, False
-        )
-        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
-            &#39;_return_http_data_only&#39;, True
-        )
-        kwargs[&#39;_preload_content&#39;] = kwargs.get(
-            &#39;_preload_content&#39;, True
-        )
-        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
-            &#39;_request_timeout&#39;, None
-        )
-        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
-            &#39;_check_input_type&#39;, True
-        )
-        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
-            &#39;_check_return_type&#39;, True
-        )
-        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
-            &#39;_spec_property_naming&#39;, False
-        )
-        kwargs[&#39;_content_type&#39;] = kwargs.get(
-            &#39;_content_type&#39;)
-        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
-        kwargs[&#39;project_id&#39;] = \
-            project_id
-        kwargs[&#39;batch_id&#39;] = \
-            batch_id
-        return self.get_analysis_creation_batch_item_endpoint.call_with_http_info(**kwargs)
-
-    def get_analysis_creation_batch_item1(
-        self,
-        project_id,
-        batch_id,
         item_id,
         **kwargs
     ):
         &#34;&#34;&#34;Retrieve a analysis creation batch item.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3] Initial version ## [V4] Field &#39;createdAnalysis&#39; changes:  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.get_analysis_creation_batch_item1(project_id, batch_id, item_id, async_req=True)
+        &gt;&gt;&gt; thread = api.get_analysis_creation_batch_item(project_id, batch_id, item_id, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
@@ -1313,7 +1236,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             async_req (bool): execute request asynchronously
 
         Returns:
-            AnalysisCreationBatchItem
+            AnalysisCreationBatchItemV4
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -1347,7 +1270,94 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             batch_id
         kwargs[&#39;item_id&#39;] = \
             item_id
-        return self.get_analysis_creation_batch_item1_endpoint.call_with_http_info(**kwargs)</code></pre>
+        return self.get_analysis_creation_batch_item_endpoint.call_with_http_info(**kwargs)
+
+    def get_analysis_creation_batch_items(
+        self,
+        project_id,
+        batch_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Retrieve a list of analysis creation batch items.  # noqa: E501
+
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4] ## Item field &#39;createdAnalysis&#39; changes:  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.get_analysis_creation_batch_items(project_id, batch_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str):
+            batch_id (str): The ID of the analysis creation batch
+
+        Keyword Args:
+            status ([str]): The statuses to filter on.. [optional]
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisCreationBatchItemPagedListV4
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        kwargs[&#39;batch_id&#39;] = \
+            batch_id
+        return self.get_analysis_creation_batch_items_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 <h3>Methods</h3>
 <dl>
@@ -1619,158 +1629,20 @@ thread.</p></div>
 </details>
 </dd>
 <dt id="libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.get_analysis_creation_batch_item"><code class="name flex">
-<span>def <span class="ident">get_analysis_creation_batch_item</span></span>(<span>self, project_id, batch_id, **kwargs)</span>
-</code></dt>
-<dd>
-<div class="desc"><p>Retrieve a list of analysis creation batch items.
-# noqa: E501</p>
-<p>This method makes a synchronous HTTP request by default. To make an
-asynchronous HTTP request, please pass async_req=True</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_analysis_creation_batch_item(project_id, batch_id, async_req=True)
-&gt;&gt;&gt; result = thread.get()
-</code></pre>
-<h2 id="args">Args</h2>
-<dl>
-<dt>project_id (str):</dt>
-<dt><strong><code>batch_id</code></strong> :&ensp;<code>str</code></dt>
-<dd>The ID of the analysis creation batch</dd>
-</dl>
-<p>Keyword Args:
-status ([str]): The statuses to filter on.. [optional]
-page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc". [optional]
-_return_http_data_only (bool): response data without head status
-code and headers. Default is True.
-_preload_content (bool): if False, the urllib3.HTTPResponse object
-will be returned without reading/decoding response data.
-Default is True.
-_request_timeout (int/float/tuple): timeout setting for this request. If
-one number provided, it will be total request timeout. It can also
-be a pair (tuple) of (connection, read) timeouts.
-Default is None.
-_check_input_type (bool): specifies if type checking
-should be done one the data sent to the server.
-Default is True.
-_check_return_type (bool): specifies if type checking
-should be done one the data received from the server.
-Default is True.
-_spec_property_naming (bool): True if the variable names in the input data
-are serialized names, as specified in the OpenAPI document.
-False if the variable names in the input data
-are pythonic names, e.g. snake case (default)
-_content_type (str/None): force body content-type.
-Default is None and content-type will be predicted by allowed
-content-types and body.
-_host_index (int/None): specifies the index of the server
-that we want to use.
-Default is read from the configuration.
-async_req (bool): execute request asynchronously</p>
-<h2 id="returns">Returns</h2>
-<p>AnalysisCreationBatchItemPagedList
-If the method is called asynchronously, returns the request
-thread.</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def get_analysis_creation_batch_item(
-    self,
-    project_id,
-    batch_id,
-    **kwargs
-):
-    &#34;&#34;&#34;Retrieve a list of analysis creation batch items.  # noqa: E501
-
-    This method makes a synchronous HTTP request by default. To make an
-    asynchronous HTTP request, please pass async_req=True
-
-    &gt;&gt;&gt; thread = api.get_analysis_creation_batch_item(project_id, batch_id, async_req=True)
-    &gt;&gt;&gt; result = thread.get()
-
-    Args:
-        project_id (str):
-        batch_id (str): The ID of the analysis creation batch
-
-    Keyword Args:
-        status ([str]): The statuses to filter on.. [optional]
-        page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-        page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-        page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-        sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;. [optional]
-        _return_http_data_only (bool): response data without head status
-            code and headers. Default is True.
-        _preload_content (bool): if False, the urllib3.HTTPResponse object
-            will be returned without reading/decoding response data.
-            Default is True.
-        _request_timeout (int/float/tuple): timeout setting for this request. If
-            one number provided, it will be total request timeout. It can also
-            be a pair (tuple) of (connection, read) timeouts.
-            Default is None.
-        _check_input_type (bool): specifies if type checking
-            should be done one the data sent to the server.
-            Default is True.
-        _check_return_type (bool): specifies if type checking
-            should be done one the data received from the server.
-            Default is True.
-        _spec_property_naming (bool): True if the variable names in the input data
-            are serialized names, as specified in the OpenAPI document.
-            False if the variable names in the input data
-            are pythonic names, e.g. snake case (default)
-        _content_type (str/None): force body content-type.
-            Default is None and content-type will be predicted by allowed
-            content-types and body.
-        _host_index (int/None): specifies the index of the server
-            that we want to use.
-            Default is read from the configuration.
-        async_req (bool): execute request asynchronously
-
-    Returns:
-        AnalysisCreationBatchItemPagedList
-            If the method is called asynchronously, returns the request
-            thread.
-    &#34;&#34;&#34;
-    kwargs[&#39;async_req&#39;] = kwargs.get(
-        &#39;async_req&#39;, False
-    )
-    kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
-        &#39;_return_http_data_only&#39;, True
-    )
-    kwargs[&#39;_preload_content&#39;] = kwargs.get(
-        &#39;_preload_content&#39;, True
-    )
-    kwargs[&#39;_request_timeout&#39;] = kwargs.get(
-        &#39;_request_timeout&#39;, None
-    )
-    kwargs[&#39;_check_input_type&#39;] = kwargs.get(
-        &#39;_check_input_type&#39;, True
-    )
-    kwargs[&#39;_check_return_type&#39;] = kwargs.get(
-        &#39;_check_return_type&#39;, True
-    )
-    kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
-        &#39;_spec_property_naming&#39;, False
-    )
-    kwargs[&#39;_content_type&#39;] = kwargs.get(
-        &#39;_content_type&#39;)
-    kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
-    kwargs[&#39;project_id&#39;] = \
-        project_id
-    kwargs[&#39;batch_id&#39;] = \
-        batch_id
-    return self.get_analysis_creation_batch_item_endpoint.call_with_http_info(**kwargs)</code></pre>
-</details>
-</dd>
-<dt id="libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.get_analysis_creation_batch_item1"><code class="name flex">
-<span>def <span class="ident">get_analysis_creation_batch_item1</span></span>(<span>self, project_id, batch_id, item_id, **kwargs)</span>
+<span>def <span class="ident">get_analysis_creation_batch_item</span></span>(<span>self, project_id, batch_id, item_id, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Retrieve a analysis creation batch item.
 # noqa: E501</p>
+<h1 id="changelog-for-this-endpoint-multiple-versions-exist-note-that-the-values-for-request-headers-content-type-and-accept-must-contain-a-matching-version-v3-initial-version-v4-field-createdanalysis-changes-field-type-status-changed-from-enum-to-string-new-statuses-have-been-added-queued-initializing-preparing_inputs-generating_outputs-aborting-field-analysispriority-changed-from-enum-to-string-the-owner-and-tenant-are-now-represented-by-identifier-objects-noqa-e501">Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.
+## [V3] Initial version ## [V4] Field 'createdAnalysis' changes:
+* Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].
+* Field analysisPriority changed from enum to String.
+* The owner and tenant are now represented by Identifier objects.
+# noqa: E501</h1>
 <p>This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_analysis_creation_batch_item1(project_id, batch_id, item_id, async_req=True)
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_analysis_creation_batch_item(project_id, batch_id, item_id, async_req=True)
 &gt;&gt;&gt; result = thread.get()
 </code></pre>
 <h2 id="args">Args</h2>
@@ -1809,14 +1681,14 @@ that we want to use.
 Default is read from the configuration.
 async_req (bool): execute request asynchronously</p>
 <h2 id="returns">Returns</h2>
-<p>AnalysisCreationBatchItem
+<p>AnalysisCreationBatchItemV4
 If the method is called asynchronously, returns the request
 thread.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def get_analysis_creation_batch_item1(
+<pre><code class="python">def get_analysis_creation_batch_item(
     self,
     project_id,
     batch_id,
@@ -1825,10 +1697,11 @@ thread.</p></div>
 ):
     &#34;&#34;&#34;Retrieve a analysis creation batch item.  # noqa: E501
 
+    # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3] Initial version ## [V4] Field &#39;createdAnalysis&#39; changes:  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
-    &gt;&gt;&gt; thread = api.get_analysis_creation_batch_item1(project_id, batch_id, item_id, async_req=True)
+    &gt;&gt;&gt; thread = api.get_analysis_creation_batch_item(project_id, batch_id, item_id, async_req=True)
     &gt;&gt;&gt; result = thread.get()
 
     Args:
@@ -1865,7 +1738,7 @@ thread.</p></div>
         async_req (bool): execute request asynchronously
 
     Returns:
-        AnalysisCreationBatchItem
+        AnalysisCreationBatchItemV4
             If the method is called asynchronously, returns the request
             thread.
     &#34;&#34;&#34;
@@ -1899,7 +1772,159 @@ thread.</p></div>
         batch_id
     kwargs[&#39;item_id&#39;] = \
         item_id
-    return self.get_analysis_creation_batch_item1_endpoint.call_with_http_info(**kwargs)</code></pre>
+    return self.get_analysis_creation_batch_item_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</dd>
+<dt id="libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.get_analysis_creation_batch_items"><code class="name flex">
+<span>def <span class="ident">get_analysis_creation_batch_items</span></span>(<span>self, project_id, batch_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve a list of analysis creation batch items.
+# noqa: E501</p>
+<h1 id="changelog-for-this-endpoint-multiple-versions-exist-note-that-the-values-for-request-headers-content-type-and-accept-must-contain-a-matching-version-v3-initial-version-v4-item-field-createdanalysis-changes-field-type-status-changed-from-enum-to-string-new-statuses-have-been-added-queued-initializing-preparing_inputs-generating_outputs-aborting-field-analysispriority-changed-from-enum-to-string-the-owner-and-tenant-are-now-represented-by-identifier-objects-noqa-e501">Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.
+## [V3]
+* Initial version ## [V4] ## Item field 'createdAnalysis' changes:
+* Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].
+* Field analysisPriority changed from enum to String.
+* The owner and tenant are now represented by Identifier objects.
+# noqa: E501</h1>
+<p>This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_analysis_creation_batch_items(project_id, batch_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<h2 id="args">Args</h2>
+<dl>
+<dt>project_id (str):</dt>
+<dt><strong><code>batch_id</code></strong> :&ensp;<code>str</code></dt>
+<dd>The ID of the analysis creation batch</dd>
+</dl>
+<p>Keyword Args:
+status ([str]): The statuses to filter on.. [optional]
+page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc". [optional]
+_return_http_data_only (bool): response data without head status
+code and headers. Default is True.
+_preload_content (bool): if False, the urllib3.HTTPResponse object
+will be returned without reading/decoding response data.
+Default is True.
+_request_timeout (int/float/tuple): timeout setting for this request. If
+one number provided, it will be total request timeout. It can also
+be a pair (tuple) of (connection, read) timeouts.
+Default is None.
+_check_input_type (bool): specifies if type checking
+should be done one the data sent to the server.
+Default is True.
+_check_return_type (bool): specifies if type checking
+should be done one the data received from the server.
+Default is True.
+_spec_property_naming (bool): True if the variable names in the input data
+are serialized names, as specified in the OpenAPI document.
+False if the variable names in the input data
+are pythonic names, e.g. snake case (default)
+_content_type (str/None): force body content-type.
+Default is None and content-type will be predicted by allowed
+content-types and body.
+_host_index (int/None): specifies the index of the server
+that we want to use.
+Default is read from the configuration.
+async_req (bool): execute request asynchronously</p>
+<h2 id="returns">Returns</h2>
+<p>AnalysisCreationBatchItemPagedListV4
+If the method is called asynchronously, returns the request
+thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_analysis_creation_batch_items(
+    self,
+    project_id,
+    batch_id,
+    **kwargs
+):
+    &#34;&#34;&#34;Retrieve a list of analysis creation batch items.  # noqa: E501
+
+    # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4] ## Item field &#39;createdAnalysis&#39; changes:  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    &gt;&gt;&gt; thread = api.get_analysis_creation_batch_items(project_id, batch_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    Args:
+        project_id (str):
+        batch_id (str): The ID of the analysis creation batch
+
+    Keyword Args:
+        status ([str]): The statuses to filter on.. [optional]
+        page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+        page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+        page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+        sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;. [optional]
+        _return_http_data_only (bool): response data without head status
+            code and headers. Default is True.
+        _preload_content (bool): if False, the urllib3.HTTPResponse object
+            will be returned without reading/decoding response data.
+            Default is True.
+        _request_timeout (int/float/tuple): timeout setting for this request. If
+            one number provided, it will be total request timeout. It can also
+            be a pair (tuple) of (connection, read) timeouts.
+            Default is None.
+        _check_input_type (bool): specifies if type checking
+            should be done one the data sent to the server.
+            Default is True.
+        _check_return_type (bool): specifies if type checking
+            should be done one the data received from the server.
+            Default is True.
+        _spec_property_naming (bool): True if the variable names in the input data
+            are serialized names, as specified in the OpenAPI document.
+            False if the variable names in the input data
+            are pythonic names, e.g. snake case (default)
+        _content_type (str/None): force body content-type.
+            Default is None and content-type will be predicted by allowed
+            content-types and body.
+        _host_index (int/None): specifies the index of the server
+            that we want to use.
+            Default is read from the configuration.
+        async_req (bool): execute request asynchronously
+
+    Returns:
+        AnalysisCreationBatchItemPagedListV4
+            If the method is called asynchronously, returns the request
+            thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;async_req&#39;] = kwargs.get(
+        &#39;async_req&#39;, False
+    )
+    kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+        &#39;_return_http_data_only&#39;, True
+    )
+    kwargs[&#39;_preload_content&#39;] = kwargs.get(
+        &#39;_preload_content&#39;, True
+    )
+    kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+        &#39;_request_timeout&#39;, None
+    )
+    kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+        &#39;_check_input_type&#39;, True
+    )
+    kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+        &#39;_check_return_type&#39;, True
+    )
+    kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+        &#39;_spec_property_naming&#39;, False
+    )
+    kwargs[&#39;_content_type&#39;] = kwargs.get(
+        &#39;_content_type&#39;)
+    kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+    kwargs[&#39;project_id&#39;] = \
+        project_id
+    kwargs[&#39;batch_id&#39;] = \
+        batch_id
+    return self.get_analysis_creation_batch_items_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </dd>
 </dl>
@@ -1926,7 +1951,7 @@ thread.</p></div>
 <li><code><a title="libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.create_analysis_creation_batch" href="#libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.create_analysis_creation_batch">create_analysis_creation_batch</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.get_analysis_creation_batch" href="#libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.get_analysis_creation_batch">get_analysis_creation_batch</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.get_analysis_creation_batch_item" href="#libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.get_analysis_creation_batch_item">get_analysis_creation_batch_item</a></code></li>
-<li><code><a title="libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.get_analysis_creation_batch_item1" href="#libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.get_analysis_creation_batch_item1">get_analysis_creation_batch_item1</a></code></li>
+<li><code><a title="libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.get_analysis_creation_batch_items" href="#libica.openapi.v2.api.project_analysis_creation_batch_api.ProjectAnalysisCreationBatchApi.get_analysis_creation_batch_items">get_analysis_creation_batch_items</a></code></li>
 </ul>
 </li>
 </ul>

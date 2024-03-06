@@ -164,7 +164,7 @@ class CreateProjectDataCopyBatch(ModelNormal):
             copy_user_tags (bool):
             copy_technical_tags (bool):
             copy_instrument_info (bool):
-            action_on_exist (str):
+            action_on_exist (str): only applicable on files, not on folders
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -258,7 +258,7 @@ class CreateProjectDataCopyBatch(ModelNormal):
             copy_user_tags (bool):
             copy_technical_tags (bool):
             copy_instrument_info (bool):
-            action_on_exist (str):
+            action_on_exist (str): only applicable on files, not on folders
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -394,12 +394,15 @@ as additional properties values.</dd>
 </dl>
 <p>CreateProjectDataCopyBatch - a model defined in OpenAPI</p>
 <h2 id="args">Args</h2>
-<p>items ([CreateProjectDataCopyBatchItem]):
-copy_user_tags (bool):
-copy_technical_tags (bool):
-copy_instrument_info (bool):
-action_on_exist (str):
-Keyword Args:
+<dl>
+<dt>items ([CreateProjectDataCopyBatchItem]):</dt>
+<dt>copy_user_tags (bool):</dt>
+<dt>copy_technical_tags (bool):</dt>
+<dt>copy_instrument_info (bool):</dt>
+<dt><strong><code>action_on_exist</code></strong> :&ensp;<code>str</code></dt>
+<dd>only applicable on files, not on folders</dd>
+</dl>
+<p>Keyword Args:
 _check_type (bool): if True, values for parameters in openapi_types
 will be type checked and a TypeError will be
 raised if the wrong type is input.
@@ -531,7 +534,7 @@ destination_folder_id (str): [optional]
             copy_user_tags (bool):
             copy_technical_tags (bool):
             copy_instrument_info (bool):
-            action_on_exist (str):
+            action_on_exist (str): only applicable on files, not on folders
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -625,7 +628,7 @@ destination_folder_id (str): [optional]
             copy_user_tags (bool):
             copy_technical_tags (bool):
             copy_instrument_info (bool):
-            action_on_exist (str):
+            action_on_exist (str): only applicable on files, not on folders
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

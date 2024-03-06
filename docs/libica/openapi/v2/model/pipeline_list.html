@@ -65,8 +65,8 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from libica.openapi.v2.model.pipeline import Pipeline
-    globals()[&#39;Pipeline&#39;] = Pipeline
+    from libica.openapi.v2.model.pipeline_v3 import PipelineV3
+    globals()[&#39;PipelineV3&#39;] = PipelineV3
 
 
 class PipelineList(ModelNormal):
@@ -122,7 +122,7 @@ class PipelineList(ModelNormal):
         &#34;&#34;&#34;
         lazy_import()
         return {
-            &#39;items&#39;: ([Pipeline],),  # noqa: E501
+            &#39;items&#39;: ([PipelineV3],),  # noqa: E501
         }
 
     @cached_property
@@ -145,7 +145,7 @@ class PipelineList(ModelNormal):
         &#34;&#34;&#34;PipelineList - a model defined in OpenAPI
 
         Args:
-            items ([Pipeline]):
+            items ([PipelineV3]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -230,7 +230,7 @@ class PipelineList(ModelNormal):
         &#34;&#34;&#34;PipelineList - a model defined in OpenAPI
 
         Args:
-            items ([Pipeline]):
+            items ([PipelineV3]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -319,8 +319,8 @@ class PipelineList(ModelNormal):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def lazy_import():
-    from libica.openapi.v2.model.pipeline import Pipeline
-    globals()[&#39;Pipeline&#39;] = Pipeline</code></pre>
+    from libica.openapi.v2.model.pipeline_v3 import PipelineV3
+    globals()[&#39;PipelineV3&#39;] = PipelineV3</code></pre>
 </details>
 </dd>
 </dl>
@@ -361,7 +361,7 @@ as additional properties values.</dd>
 </dl>
 <p>PipelineList - a model defined in OpenAPI</p>
 <h2 id="args">Args</h2>
-<p>items ([Pipeline]):
+<p>items ([PipelineV3]):
 Keyword Args:
 _check_type (bool): if True, values for parameters in openapi_types
 will be type checked and a TypeError will be
@@ -450,7 +450,7 @@ _visited_composed_classes = (Animal,)</p></div>
         &#34;&#34;&#34;
         lazy_import()
         return {
-            &#39;items&#39;: ([Pipeline],),  # noqa: E501
+            &#39;items&#39;: ([PipelineV3],),  # noqa: E501
         }
 
     @cached_property
@@ -473,7 +473,7 @@ _visited_composed_classes = (Animal,)</p></div>
         &#34;&#34;&#34;PipelineList - a model defined in OpenAPI
 
         Args:
-            items ([Pipeline]):
+            items ([PipelineV3]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -558,7 +558,7 @@ _visited_composed_classes = (Animal,)</p></div>
         &#34;&#34;&#34;PipelineList - a model defined in OpenAPI
 
         Args:
-            items ([Pipeline]):
+            items ([PipelineV3]):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

@@ -66,11 +66,11 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.data_format import DataFormat
+    from libica.openapi.v2.model.reference_data_type_list import ReferenceDataTypeList
     from libica.openapi.v2.model.species import Species
-    from libica.openapi.v2.model.type_list import TypeList
     globals()[&#39;DataFormat&#39;] = DataFormat
+    globals()[&#39;ReferenceDataTypeList&#39;] = ReferenceDataTypeList
     globals()[&#39;Species&#39;] = Species
-    globals()[&#39;TypeList&#39;] = TypeList
 
 
 class ReferenceData(ModelNormal):
@@ -141,7 +141,7 @@ class ReferenceData(ModelNormal):
             &#39;tenant_id&#39;: (str,),  # noqa: E501
             &#39;name&#39;: (str,),  # noqa: E501
             &#39;version&#39;: (str,),  # noqa: E501
-            &#39;type_list&#39;: (TypeList,),  # noqa: E501
+            &#39;type_list&#39;: (ReferenceDataTypeList,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
             &#39;species&#39;: (Species,),  # noqa: E501
             &#39;data_format&#39;: (DataFormat,),  # noqa: E501
@@ -184,7 +184,7 @@ class ReferenceData(ModelNormal):
             tenant_id (str):
             name (str): The name of the reference data
             version (str): The version of the reference data
-            type_list (TypeList):
+            type_list (ReferenceDataTypeList):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -286,7 +286,7 @@ class ReferenceData(ModelNormal):
             tenant_id (str):
             name (str): The name of the reference data
             version (str): The version of the reference data
-            type_list (TypeList):
+            type_list (ReferenceDataTypeList):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -386,11 +386,11 @@ class ReferenceData(ModelNormal):
 </summary>
 <pre><code class="python">def lazy_import():
     from libica.openapi.v2.model.data_format import DataFormat
+    from libica.openapi.v2.model.reference_data_type_list import ReferenceDataTypeList
     from libica.openapi.v2.model.species import Species
-    from libica.openapi.v2.model.type_list import TypeList
     globals()[&#39;DataFormat&#39;] = DataFormat
-    globals()[&#39;Species&#39;] = Species
-    globals()[&#39;TypeList&#39;] = TypeList</code></pre>
+    globals()[&#39;ReferenceDataTypeList&#39;] = ReferenceDataTypeList
+    globals()[&#39;Species&#39;] = Species</code></pre>
 </details>
 </dd>
 </dl>
@@ -442,7 +442,7 @@ as additional properties values.</dd>
 <dt><strong><code>version</code></strong> :&ensp;<code>str</code></dt>
 <dd>The version of the reference data</dd>
 </dl>
-<p>type_list (TypeList):
+<p>type_list (ReferenceDataTypeList):
 Keyword Args:
 _check_type (bool): if True, values for parameters in openapi_types
 will be type checked and a TypeError will be
@@ -552,7 +552,7 @@ data_format (DataFormat): [optional]
             &#39;tenant_id&#39;: (str,),  # noqa: E501
             &#39;name&#39;: (str,),  # noqa: E501
             &#39;version&#39;: (str,),  # noqa: E501
-            &#39;type_list&#39;: (TypeList,),  # noqa: E501
+            &#39;type_list&#39;: (ReferenceDataTypeList,),  # noqa: E501
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
             &#39;species&#39;: (Species,),  # noqa: E501
             &#39;data_format&#39;: (DataFormat,),  # noqa: E501
@@ -595,7 +595,7 @@ data_format (DataFormat): [optional]
             tenant_id (str):
             name (str): The name of the reference data
             version (str): The version of the reference data
-            type_list (TypeList):
+            type_list (ReferenceDataTypeList):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -697,7 +697,7 @@ data_format (DataFormat): [optional]
             tenant_id (str):
             name (str): The name of the reference data
             version (str): The version of the reference data
-            type_list (TypeList):
+            type_list (ReferenceDataTypeList):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types

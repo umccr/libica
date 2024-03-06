@@ -56,12 +56,15 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from libica.openapi.v2.model.analysis import Analysis
 from libica.openapi.v2.model.analysis_input_list import AnalysisInputList
 from libica.openapi.v2.model.analysis_output_list import AnalysisOutputList
-from libica.openapi.v2.model.analysis_paged_list import AnalysisPagedList
+from libica.openapi.v2.model.analysis_paged_list_v3 import AnalysisPagedListV3
+from libica.openapi.v2.model.analysis_paged_list_v4 import AnalysisPagedListV4
+from libica.openapi.v2.model.analysis_query_parameters import AnalysisQueryParameters
 from libica.openapi.v2.model.analysis_raw_output import AnalysisRawOutput
 from libica.openapi.v2.model.analysis_step_list import AnalysisStepList
+from libica.openapi.v2.model.analysis_v3 import AnalysisV3
+from libica.openapi.v2.model.analysis_v4 import AnalysisV4
 from libica.openapi.v2.model.create_cwl_analysis import CreateCwlAnalysis
 from libica.openapi.v2.model.create_nextflow_analysis import CreateNextflowAnalysis
 from libica.openapi.v2.model.cwl_analysis_input_json import CwlAnalysisInputJson
@@ -141,7 +144,7 @@ class ProjectAnalysisApi(object):
         )
         self.create_cwl_analysis_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (Analysis,),
+                &#39;response_type&#39;: (AnalysisV4,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -200,17 +203,20 @@ class ProjectAnalysisApi(object):
             headers_map={
                 &#39;accept&#39;: [
                     &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/vnd.illumina.v4+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
                 ]
             },
             api_client=api_client
         )
         self.create_nextflow_analysis_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (Analysis,),
+                &#39;response_type&#39;: (AnalysisV4,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -269,9 +275,11 @@ class ProjectAnalysisApi(object):
             headers_map={
                 &#39;accept&#39;: [
                     &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ]
             },
@@ -279,7 +287,7 @@ class ProjectAnalysisApi(object):
         )
         self.get_analyses_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (AnalysisPagedList,),
+                &#39;response_type&#39;: (AnalysisPagedListV3,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -382,7 +390,7 @@ class ProjectAnalysisApi(object):
         )
         self.get_analysis_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (Analysis,),
+                &#39;response_type&#39;: (AnalysisV4,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -433,6 +441,7 @@ class ProjectAnalysisApi(object):
             headers_map={
                 &#39;accept&#39;: [
                     &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [],
@@ -852,9 +861,89 @@ class ProjectAnalysisApi(object):
             },
             api_client=api_client
         )
+        self.search_analyses_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (AnalysisPagedListV4,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/analysis:search&#39;,
+                &#39;operation_id&#39;: &#39;search_analyses&#39;,
+                &#39;http_method&#39;: &#39;POST&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;page_offset&#39;,
+                    &#39;page_token&#39;,
+                    &#39;page_size&#39;,
+                    &#39;sort&#39;,
+                    &#39;analysis_query_parameters&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;page_offset&#39;:
+                        (str,),
+                    &#39;page_token&#39;:
+                        (str,),
+                    &#39;page_size&#39;:
+                        (str,),
+                    &#39;sort&#39;:
+                        (str,),
+                    &#39;analysis_query_parameters&#39;:
+                        (AnalysisQueryParameters,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;page_offset&#39;: &#39;pageOffset&#39;,
+                    &#39;page_token&#39;: &#39;pageToken&#39;,
+                    &#39;page_size&#39;: &#39;pageSize&#39;,
+                    &#39;sort&#39;: &#39;sort&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;page_offset&#39;: &#39;query&#39;,
+                    &#39;page_token&#39;: &#39;query&#39;,
+                    &#39;page_size&#39;: &#39;query&#39;,
+                    &#39;sort&#39;: &#39;query&#39;,
+                    &#39;analysis_query_parameters&#39;: &#39;body&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
+                ]
+            },
+            api_client=api_client
+        )
         self.update_analysis_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (Analysis,),
+                &#39;response_type&#39;: (AnalysisV4,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -868,13 +957,13 @@ class ProjectAnalysisApi(object):
                 &#39;all&#39;: [
                     &#39;project_id&#39;,
                     &#39;analysis_id&#39;,
-                    &#39;analysis&#39;,
+                    &#39;analysis_v4&#39;,
                     &#39;if_match&#39;,
                 ],
                 &#39;required&#39;: [
                     &#39;project_id&#39;,
                     &#39;analysis_id&#39;,
-                    &#39;analysis&#39;,
+                    &#39;analysis_v4&#39;,
                 ],
                 &#39;nullable&#39;: [
                 ],
@@ -893,8 +982,8 @@ class ProjectAnalysisApi(object):
                         (str,),
                     &#39;analysis_id&#39;:
                         (str,),
-                    &#39;analysis&#39;:
-                        (Analysis,),
+                    &#39;analysis_v4&#39;:
+                        (AnalysisV4,),
                     &#39;if_match&#39;:
                         (str,),
                 },
@@ -906,7 +995,7 @@ class ProjectAnalysisApi(object):
                 &#39;location_map&#39;: {
                     &#39;project_id&#39;: &#39;path&#39;,
                     &#39;analysis_id&#39;: &#39;path&#39;,
-                    &#39;analysis&#39;: &#39;body&#39;,
+                    &#39;analysis_v4&#39;: &#39;body&#39;,
                     &#39;if_match&#39;: &#39;header&#39;,
                 },
                 &#39;collection_format_map&#39;: {
@@ -915,9 +1004,11 @@ class ProjectAnalysisApi(object):
             headers_map={
                 &#39;accept&#39;: [
                     &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;,
                     &#39;application/json&#39;
                 ]
@@ -1015,6 +1106,7 @@ class ProjectAnalysisApi(object):
     ):
         &#34;&#34;&#34;Create and start an analysis for a CWL pipeline.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1055,7 +1147,7 @@ class ProjectAnalysisApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            Analysis
+            AnalysisV4
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -1097,6 +1189,7 @@ class ProjectAnalysisApi(object):
     ):
         &#34;&#34;&#34;Create and start an analysis for a Nextflow pipeline.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1137,7 +1230,7 @@ class ProjectAnalysisApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            Analysis
+            AnalysisV4
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -1178,6 +1271,7 @@ class ProjectAnalysisApi(object):
     ):
         &#34;&#34;&#34;Retrieve the list of analyses.  # noqa: E501
 
+        This endpoint only returns V3 items. Use the search endpoint to get V4 items.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1194,10 +1288,10 @@ class ProjectAnalysisApi(object):
             usertag (str): The user-tags to filter on.. [optional]
             technicaltag (str): The technical-tags to filter on.. [optional]
             referencetag (str): The reference-data-tags to filter on.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1226,7 +1320,7 @@ class ProjectAnalysisApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            AnalysisPagedList
+            AnalysisPagedListV3
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -1266,6 +1360,7 @@ class ProjectAnalysisApi(object):
     ):
         &#34;&#34;&#34;Retrieve an analysis.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1305,7 +1400,7 @@ class ProjectAnalysisApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            Analysis
+            AnalysisV4
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -1906,26 +2001,108 @@ class ProjectAnalysisApi(object):
             analysis_id
         return self.get_raw_analysis_output_endpoint.call_with_http_info(**kwargs)
 
+    def search_analyses(
+        self,
+        project_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Search analyses.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.search_analyses(project_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str):
+
+        Keyword Args:
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+            analysis_query_parameters (AnalysisQueryParameters): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisPagedListV4
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        return self.search_analyses_endpoint.call_with_http_info(**kwargs)
+
     def update_analysis(
         self,
         project_id,
         analysis_id,
-        analysis,
+        analysis_v4,
         **kwargs
     ):
         &#34;&#34;&#34;Update an analysis.  # noqa: E501
 
-        Attributes which can be updated:    - tags  # noqa: E501
+        # Attributes which can be updated:    - tags # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.update_analysis(project_id, analysis_id, analysis, async_req=True)
+        &gt;&gt;&gt; thread = api.update_analysis(project_id, analysis_id, analysis_v4, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
             project_id (str):
             analysis_id (str):
-            analysis (Analysis):
+            analysis_v4 (AnalysisV4):
 
         Keyword Args:
             if_match (str): Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version.. [optional]
@@ -1957,7 +2134,7 @@ class ProjectAnalysisApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            Analysis
+            AnalysisV4
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -1989,8 +2166,8 @@ class ProjectAnalysisApi(object):
             project_id
         kwargs[&#39;analysis_id&#39;] = \
             analysis_id
-        kwargs[&#39;analysis&#39;] = \
-            analysis
+        kwargs[&#39;analysis_v4&#39;] = \
+            analysis_v4
         return self.update_analysis_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </section>
@@ -2086,7 +2263,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         )
         self.create_cwl_analysis_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (Analysis,),
+                &#39;response_type&#39;: (AnalysisV4,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -2145,17 +2322,20 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             headers_map={
                 &#39;accept&#39;: [
                     &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
-                    &#39;application/vnd.illumina.v3+json&#39;
+                    &#39;application/vnd.illumina.v4+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
                 ]
             },
             api_client=api_client
         )
         self.create_nextflow_analysis_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (Analysis,),
+                &#39;response_type&#39;: (AnalysisV4,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -2214,9 +2394,11 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             headers_map={
                 &#39;accept&#39;: [
                     &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ]
             },
@@ -2224,7 +2406,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         )
         self.get_analyses_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (AnalysisPagedList,),
+                &#39;response_type&#39;: (AnalysisPagedListV3,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -2327,7 +2509,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
         )
         self.get_analysis_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (Analysis,),
+                &#39;response_type&#39;: (AnalysisV4,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -2378,6 +2560,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             headers_map={
                 &#39;accept&#39;: [
                     &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [],
@@ -2797,9 +2980,89 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             },
             api_client=api_client
         )
+        self.search_analyses_endpoint = _Endpoint(
+            settings={
+                &#39;response_type&#39;: (AnalysisPagedListV4,),
+                &#39;auth&#39;: [
+                    &#39;ApiKeyAuth&#39;,
+                    &#39;JwtAuth&#39;
+                ],
+                &#39;endpoint_path&#39;: &#39;/api/projects/{projectId}/analysis:search&#39;,
+                &#39;operation_id&#39;: &#39;search_analyses&#39;,
+                &#39;http_method&#39;: &#39;POST&#39;,
+                &#39;servers&#39;: None,
+            },
+            params_map={
+                &#39;all&#39;: [
+                    &#39;project_id&#39;,
+                    &#39;page_offset&#39;,
+                    &#39;page_token&#39;,
+                    &#39;page_size&#39;,
+                    &#39;sort&#39;,
+                    &#39;analysis_query_parameters&#39;,
+                ],
+                &#39;required&#39;: [
+                    &#39;project_id&#39;,
+                ],
+                &#39;nullable&#39;: [
+                ],
+                &#39;enum&#39;: [
+                ],
+                &#39;validation&#39;: [
+                ]
+            },
+            root_map={
+                &#39;validations&#39;: {
+                },
+                &#39;allowed_values&#39;: {
+                },
+                &#39;openapi_types&#39;: {
+                    &#39;project_id&#39;:
+                        (str,),
+                    &#39;page_offset&#39;:
+                        (str,),
+                    &#39;page_token&#39;:
+                        (str,),
+                    &#39;page_size&#39;:
+                        (str,),
+                    &#39;sort&#39;:
+                        (str,),
+                    &#39;analysis_query_parameters&#39;:
+                        (AnalysisQueryParameters,),
+                },
+                &#39;attribute_map&#39;: {
+                    &#39;project_id&#39;: &#39;projectId&#39;,
+                    &#39;page_offset&#39;: &#39;pageOffset&#39;,
+                    &#39;page_token&#39;: &#39;pageToken&#39;,
+                    &#39;page_size&#39;: &#39;pageSize&#39;,
+                    &#39;sort&#39;: &#39;sort&#39;,
+                },
+                &#39;location_map&#39;: {
+                    &#39;project_id&#39;: &#39;path&#39;,
+                    &#39;page_offset&#39;: &#39;query&#39;,
+                    &#39;page_token&#39;: &#39;query&#39;,
+                    &#39;page_size&#39;: &#39;query&#39;,
+                    &#39;sort&#39;: &#39;query&#39;,
+                    &#39;analysis_query_parameters&#39;: &#39;body&#39;,
+                },
+                &#39;collection_format_map&#39;: {
+                }
+            },
+            headers_map={
+                &#39;accept&#39;: [
+                    &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ],
+                &#39;content_type&#39;: [
+                    &#39;application/vnd.illumina.v3+json&#39;,
+                    &#39;application/json&#39;
+                ]
+            },
+            api_client=api_client
+        )
         self.update_analysis_endpoint = _Endpoint(
             settings={
-                &#39;response_type&#39;: (Analysis,),
+                &#39;response_type&#39;: (AnalysisV4,),
                 &#39;auth&#39;: [
                     &#39;ApiKeyAuth&#39;,
                     &#39;JwtAuth&#39;
@@ -2813,13 +3076,13 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                 &#39;all&#39;: [
                     &#39;project_id&#39;,
                     &#39;analysis_id&#39;,
-                    &#39;analysis&#39;,
+                    &#39;analysis_v4&#39;,
                     &#39;if_match&#39;,
                 ],
                 &#39;required&#39;: [
                     &#39;project_id&#39;,
                     &#39;analysis_id&#39;,
-                    &#39;analysis&#39;,
+                    &#39;analysis_v4&#39;,
                 ],
                 &#39;nullable&#39;: [
                 ],
@@ -2838,8 +3101,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                         (str,),
                     &#39;analysis_id&#39;:
                         (str,),
-                    &#39;analysis&#39;:
-                        (Analysis,),
+                    &#39;analysis_v4&#39;:
+                        (AnalysisV4,),
                     &#39;if_match&#39;:
                         (str,),
                 },
@@ -2851,7 +3114,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
                 &#39;location_map&#39;: {
                     &#39;project_id&#39;: &#39;path&#39;,
                     &#39;analysis_id&#39;: &#39;path&#39;,
-                    &#39;analysis&#39;: &#39;body&#39;,
+                    &#39;analysis_v4&#39;: &#39;body&#39;,
                     &#39;if_match&#39;: &#39;header&#39;,
                 },
                 &#39;collection_format_map&#39;: {
@@ -2860,9 +3123,11 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             headers_map={
                 &#39;accept&#39;: [
                     &#39;application/problem+json&#39;,
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;
                 ],
                 &#39;content_type&#39;: [
+                    &#39;application/vnd.illumina.v4+json&#39;,
                     &#39;application/vnd.illumina.v3+json&#39;,
                     &#39;application/json&#39;
                 ]
@@ -2960,6 +3225,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     ):
         &#34;&#34;&#34;Create and start an analysis for a CWL pipeline.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3000,7 +3266,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             async_req (bool): execute request asynchronously
 
         Returns:
-            Analysis
+            AnalysisV4
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -3042,6 +3308,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     ):
         &#34;&#34;&#34;Create and start an analysis for a Nextflow pipeline.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3082,7 +3349,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             async_req (bool): execute request asynchronously
 
         Returns:
-            Analysis
+            AnalysisV4
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -3123,6 +3390,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     ):
         &#34;&#34;&#34;Retrieve the list of analyses.  # noqa: E501
 
+        This endpoint only returns V3 items. Use the search endpoint to get V4 items.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3139,10 +3407,10 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             usertag (str): The user-tags to filter on.. [optional]
             technicaltag (str): The technical-tags to filter on.. [optional]
             referencetag (str): The reference-data-tags to filter on.. [optional]
-            page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-            page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-            page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-            sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3171,7 +3439,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             async_req (bool): execute request asynchronously
 
         Returns:
-            AnalysisPagedList
+            AnalysisPagedListV3
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -3211,6 +3479,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
     ):
         &#34;&#34;&#34;Retrieve an analysis.  # noqa: E501
 
+        # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3250,7 +3519,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             async_req (bool): execute request asynchronously
 
         Returns:
-            Analysis
+            AnalysisV4
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -3851,26 +4120,108 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             analysis_id
         return self.get_raw_analysis_output_endpoint.call_with_http_info(**kwargs)
 
+    def search_analyses(
+        self,
+        project_id,
+        **kwargs
+    ):
+        &#34;&#34;&#34;Search analyses.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        &gt;&gt;&gt; thread = api.search_analyses(project_id, async_req=True)
+        &gt;&gt;&gt; result = thread.get()
+
+        Args:
+            project_id (str):
+
+        Keyword Args:
+            page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+            analysis_query_parameters (AnalysisQueryParameters): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisPagedListV4
+                If the method is called asynchronously, returns the request
+                thread.
+        &#34;&#34;&#34;
+        kwargs[&#39;async_req&#39;] = kwargs.get(
+            &#39;async_req&#39;, False
+        )
+        kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+            &#39;_return_http_data_only&#39;, True
+        )
+        kwargs[&#39;_preload_content&#39;] = kwargs.get(
+            &#39;_preload_content&#39;, True
+        )
+        kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+            &#39;_request_timeout&#39;, None
+        )
+        kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+            &#39;_check_input_type&#39;, True
+        )
+        kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+            &#39;_check_return_type&#39;, True
+        )
+        kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+            &#39;_spec_property_naming&#39;, False
+        )
+        kwargs[&#39;_content_type&#39;] = kwargs.get(
+            &#39;_content_type&#39;)
+        kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+        kwargs[&#39;project_id&#39;] = \
+            project_id
+        return self.search_analyses_endpoint.call_with_http_info(**kwargs)
+
     def update_analysis(
         self,
         project_id,
         analysis_id,
-        analysis,
+        analysis_v4,
         **kwargs
     ):
         &#34;&#34;&#34;Update an analysis.  # noqa: E501
 
-        Attributes which can be updated:    - tags  # noqa: E501
+        # Attributes which can be updated:    - tags # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        &gt;&gt;&gt; thread = api.update_analysis(project_id, analysis_id, analysis, async_req=True)
+        &gt;&gt;&gt; thread = api.update_analysis(project_id, analysis_id, analysis_v4, async_req=True)
         &gt;&gt;&gt; result = thread.get()
 
         Args:
             project_id (str):
             analysis_id (str):
-            analysis (Analysis):
+            analysis_v4 (AnalysisV4):
 
         Keyword Args:
             if_match (str): Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version.. [optional]
@@ -3902,7 +4253,7 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             async_req (bool): execute request asynchronously
 
         Returns:
-            Analysis
+            AnalysisV4
                 If the method is called asynchronously, returns the request
                 thread.
         &#34;&#34;&#34;
@@ -3934,8 +4285,8 @@ Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a>
             project_id
         kwargs[&#39;analysis_id&#39;] = \
             analysis_id
-        kwargs[&#39;analysis&#39;] = \
-            analysis
+        kwargs[&#39;analysis_v4&#39;] = \
+            analysis_v4
         return self.update_analysis_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 <h3>Methods</h3>
@@ -4083,6 +4434,13 @@ thread.</p></div>
 <dd>
 <div class="desc"><p>Create and start an analysis for a CWL pipeline.
 # noqa: E501</p>
+<h1 id="changelog-for-this-endpoint-multiple-versions-exist-note-that-the-values-for-request-headers-content-type-and-accept-must-contain-a-matching-version-v3-initial-version-v4-field-type-status-changed-from-enum-to-string-new-statuses-have-been-added-queued-initializing-preparing_inputs-generating_outputs-aborting-field-analysispriority-changed-from-enum-to-string-the-owner-and-tenant-are-now-represented-by-identifier-objects-noqa-e501">Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.
+## [V3]
+* Initial version ## [V4]
+* Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].
+* Field analysisPriority changed from enum to String.
+* The owner and tenant are now represented by Identifier objects.
+# noqa: E501</h1>
 <p>This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.create_cwl_analysis(project_id, create_cwl_analysis, async_req=True)
@@ -4123,7 +4481,7 @@ that we want to use.
 Default is read from the configuration.
 async_req (bool): execute request asynchronously</p>
 <h2 id="returns">Returns</h2>
-<p>Analysis
+<p>AnalysisV4
 If the method is called asynchronously, returns the request
 thread.</p></div>
 <details class="source">
@@ -4138,6 +4496,7 @@ thread.</p></div>
 ):
     &#34;&#34;&#34;Create and start an analysis for a CWL pipeline.  # noqa: E501
 
+    # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
@@ -4178,7 +4537,7 @@ thread.</p></div>
         async_req (bool): execute request asynchronously
 
     Returns:
-        Analysis
+        AnalysisV4
             If the method is called asynchronously, returns the request
             thread.
     &#34;&#34;&#34;
@@ -4219,6 +4578,13 @@ thread.</p></div>
 <dd>
 <div class="desc"><p>Create and start an analysis for a Nextflow pipeline.
 # noqa: E501</p>
+<h1 id="changelog-for-this-endpoint-multiple-versions-exist-note-that-the-values-for-request-headers-content-type-and-accept-must-contain-a-matching-version-v3-initial-version-v4-field-type-status-changed-from-enum-to-string-new-statuses-have-been-added-queued-initializing-preparing_inputs-generating_outputs-aborting-field-analysispriority-changed-from-enum-to-string-the-owner-and-tenant-are-now-represented-by-identifier-objects-noqa-e501">Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.
+## [V3]
+* Initial version ## [V4]
+* Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].
+* Field analysisPriority changed from enum to String.
+* The owner and tenant are now represented by Identifier objects.
+# noqa: E501</h1>
 <p>This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.create_nextflow_analysis(project_id, create_nextflow_analysis, async_req=True)
@@ -4259,7 +4625,7 @@ that we want to use.
 Default is read from the configuration.
 async_req (bool): execute request asynchronously</p>
 <h2 id="returns">Returns</h2>
-<p>Analysis
+<p>AnalysisV4
 If the method is called asynchronously, returns the request
 thread.</p></div>
 <details class="source">
@@ -4274,6 +4640,7 @@ thread.</p></div>
 ):
     &#34;&#34;&#34;Create and start an analysis for a Nextflow pipeline.  # noqa: E501
 
+    # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
@@ -4314,7 +4681,7 @@ thread.</p></div>
         async_req (bool): execute request asynchronously
 
     Returns:
-        Analysis
+        AnalysisV4
             If the method is called asynchronously, returns the request
             thread.
     &#34;&#34;&#34;
@@ -4355,7 +4722,9 @@ thread.</p></div>
 <dd>
 <div class="desc"><p>Retrieve the list of analyses.
 # noqa: E501</p>
-<p>This method makes a synchronous HTTP request by default. To make an
+<p>This endpoint only returns V3 items. Use the search endpoint to get V4 items.
+# noqa: E501
+This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_analyses(project_id, async_req=True)
 &gt;&gt;&gt; result = thread.get()
@@ -4369,10 +4738,10 @@ status (str): The status to filter on.. [optional]
 usertag (str): The user-tags to filter on.. [optional]
 technicaltag (str): The technical-tags to filter on.. [optional]
 referencetag (str): The reference-data-tags to filter on.. [optional]
-page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-sort (str): Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc"
+page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc"
 The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
 _return_http_data_only (bool): response data without head status
 code and headers. Default is True.
@@ -4401,7 +4770,7 @@ that we want to use.
 Default is read from the configuration.
 async_req (bool): execute request asynchronously</p>
 <h2 id="returns">Returns</h2>
-<p>AnalysisPagedList
+<p>AnalysisPagedListV3
 If the method is called asynchronously, returns the request
 thread.</p></div>
 <details class="source">
@@ -4415,6 +4784,7 @@ thread.</p></div>
 ):
     &#34;&#34;&#34;Retrieve the list of analyses.  # noqa: E501
 
+    This endpoint only returns V3 items. Use the search endpoint to get V4 items.  # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
@@ -4431,10 +4801,10 @@ thread.</p></div>
         usertag (str): The user-tags to filter on.. [optional]
         technicaltag (str): The technical-tags to filter on.. [optional]
         referencetag (str): The reference-data-tags to filter on.. [optional]
-        page_offset (str): The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
-        page_token (str): The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
-        page_size (str): The amount of rows to return. Use in combination with the offset or cursor parameter to get subsequent results.. [optional]
-        sort (str): Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+        page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+        page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+        page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+        sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
         _return_http_data_only (bool): response data without head status
             code and headers. Default is True.
         _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -4463,7 +4833,7 @@ thread.</p></div>
         async_req (bool): execute request asynchronously
 
     Returns:
-        AnalysisPagedList
+        AnalysisPagedListV3
             If the method is called asynchronously, returns the request
             thread.
     &#34;&#34;&#34;
@@ -4502,6 +4872,13 @@ thread.</p></div>
 <dd>
 <div class="desc"><p>Retrieve an analysis.
 # noqa: E501</p>
+<h1 id="changelog-for-this-endpoint-multiple-versions-exist-note-that-the-values-for-request-headers-content-type-and-accept-must-contain-a-matching-version-v3-initial-version-v4-field-type-status-changed-from-enum-to-string-new-statuses-have-been-added-queued-initializing-preparing_inputs-generating_outputs-aborting-field-analysispriority-changed-from-enum-to-string-the-owner-and-tenant-are-now-represented-by-identifier-objects-noqa-e501">Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.
+## [V3]
+* Initial version ## [V4]
+* Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].
+* Field analysisPriority changed from enum to String.
+* The owner and tenant are now represented by Identifier objects.
+# noqa: E501</h1>
 <p>This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
 <pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.get_analysis(project_id, analysis_id, async_req=True)
@@ -4541,7 +4918,7 @@ that we want to use.
 Default is read from the configuration.
 async_req (bool): execute request asynchronously</p>
 <h2 id="returns">Returns</h2>
-<p>Analysis
+<p>AnalysisV4
 If the method is called asynchronously, returns the request
 thread.</p></div>
 <details class="source">
@@ -4556,6 +4933,7 @@ thread.</p></div>
 ):
     &#34;&#34;&#34;Retrieve an analysis.  # noqa: E501
 
+    # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
@@ -4595,7 +4973,7 @@ thread.</p></div>
         async_req (bool): execute request asynchronously
 
     Returns:
-        Analysis
+        AnalysisV4
             If the method is called asynchronously, returns the request
             thread.
     &#34;&#34;&#34;
@@ -5568,24 +5946,166 @@ thread.</p></div>
     return self.get_raw_analysis_output_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </dd>
+<dt id="libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.search_analyses"><code class="name flex">
+<span>def <span class="ident">search_analyses</span></span>(<span>self, project_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Search analyses.
+# noqa: E501</p>
+<p>This method makes a synchronous HTTP request by default. To make an
+asynchronous HTTP request, please pass async_req=True</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.search_analyses(project_id, async_req=True)
+&gt;&gt;&gt; result = thread.get()
+</code></pre>
+<h2 id="args">Args</h2>
+<p>project_id (str):
+Keyword Args:
+page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: "?sort=dateCreated, lastName desc"
+The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+analysis_query_parameters (AnalysisQueryParameters): [optional]
+_return_http_data_only (bool): response data without head status
+code and headers. Default is True.
+_preload_content (bool): if False, the urllib3.HTTPResponse object
+will be returned without reading/decoding response data.
+Default is True.
+_request_timeout (int/float/tuple): timeout setting for this request. If
+one number provided, it will be total request timeout. It can also
+be a pair (tuple) of (connection, read) timeouts.
+Default is None.
+_check_input_type (bool): specifies if type checking
+should be done one the data sent to the server.
+Default is True.
+_check_return_type (bool): specifies if type checking
+should be done one the data received from the server.
+Default is True.
+_spec_property_naming (bool): True if the variable names in the input data
+are serialized names, as specified in the OpenAPI document.
+False if the variable names in the input data
+are pythonic names, e.g. snake case (default)
+_content_type (str/None): force body content-type.
+Default is None and content-type will be predicted by allowed
+content-types and body.
+_host_index (int/None): specifies the index of the server
+that we want to use.
+Default is read from the configuration.
+async_req (bool): execute request asynchronously</p>
+<h2 id="returns">Returns</h2>
+<p>AnalysisPagedListV4
+If the method is called asynchronously, returns the request
+thread.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def search_analyses(
+    self,
+    project_id,
+    **kwargs
+):
+    &#34;&#34;&#34;Search analyses.  # noqa: E501
+
+    This method makes a synchronous HTTP request by default. To make an
+    asynchronous HTTP request, please pass async_req=True
+
+    &gt;&gt;&gt; thread = api.search_analyses(project_id, async_req=True)
+    &gt;&gt;&gt; result = thread.get()
+
+    Args:
+        project_id (str):
+
+    Keyword Args:
+        page_offset (str): [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+        page_token (str): [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+        page_size (str): [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+        sort (str): [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&#34;?sort=dateCreated, lastName desc\&#34;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary . [optional]
+        analysis_query_parameters (AnalysisQueryParameters): [optional]
+        _return_http_data_only (bool): response data without head status
+            code and headers. Default is True.
+        _preload_content (bool): if False, the urllib3.HTTPResponse object
+            will be returned without reading/decoding response data.
+            Default is True.
+        _request_timeout (int/float/tuple): timeout setting for this request. If
+            one number provided, it will be total request timeout. It can also
+            be a pair (tuple) of (connection, read) timeouts.
+            Default is None.
+        _check_input_type (bool): specifies if type checking
+            should be done one the data sent to the server.
+            Default is True.
+        _check_return_type (bool): specifies if type checking
+            should be done one the data received from the server.
+            Default is True.
+        _spec_property_naming (bool): True if the variable names in the input data
+            are serialized names, as specified in the OpenAPI document.
+            False if the variable names in the input data
+            are pythonic names, e.g. snake case (default)
+        _content_type (str/None): force body content-type.
+            Default is None and content-type will be predicted by allowed
+            content-types and body.
+        _host_index (int/None): specifies the index of the server
+            that we want to use.
+            Default is read from the configuration.
+        async_req (bool): execute request asynchronously
+
+    Returns:
+        AnalysisPagedListV4
+            If the method is called asynchronously, returns the request
+            thread.
+    &#34;&#34;&#34;
+    kwargs[&#39;async_req&#39;] = kwargs.get(
+        &#39;async_req&#39;, False
+    )
+    kwargs[&#39;_return_http_data_only&#39;] = kwargs.get(
+        &#39;_return_http_data_only&#39;, True
+    )
+    kwargs[&#39;_preload_content&#39;] = kwargs.get(
+        &#39;_preload_content&#39;, True
+    )
+    kwargs[&#39;_request_timeout&#39;] = kwargs.get(
+        &#39;_request_timeout&#39;, None
+    )
+    kwargs[&#39;_check_input_type&#39;] = kwargs.get(
+        &#39;_check_input_type&#39;, True
+    )
+    kwargs[&#39;_check_return_type&#39;] = kwargs.get(
+        &#39;_check_return_type&#39;, True
+    )
+    kwargs[&#39;_spec_property_naming&#39;] = kwargs.get(
+        &#39;_spec_property_naming&#39;, False
+    )
+    kwargs[&#39;_content_type&#39;] = kwargs.get(
+        &#39;_content_type&#39;)
+    kwargs[&#39;_host_index&#39;] = kwargs.get(&#39;_host_index&#39;)
+    kwargs[&#39;project_id&#39;] = \
+        project_id
+    return self.search_analyses_endpoint.call_with_http_info(**kwargs)</code></pre>
+</details>
+</dd>
 <dt id="libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.update_analysis"><code class="name flex">
-<span>def <span class="ident">update_analysis</span></span>(<span>self, project_id, analysis_id, analysis, **kwargs)</span>
+<span>def <span class="ident">update_analysis</span></span>(<span>self, project_id, analysis_id, analysis_v4, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Update an analysis.
 # noqa: E501</p>
-<p>Attributes which can be updated:
-- tags
-# noqa: E501
-This method makes a synchronous HTTP request by default. To make an
+<h1 id="attributes-which-can-be-updated-tags-changelog-for-this-endpoint-multiple-versions-exist-note-that-the-values-for-request-headers-content-type-and-accept-must-contain-a-matching-version-v3-initial-version-v4-field-type-status-changed-from-enum-to-string-new-statuses-have-been-added-queued-initializing-preparing_inputs-generating_outputs-aborting-field-analysispriority-changed-from-enum-to-string-the-owner-and-tenant-are-now-represented-by-identifier-objects-noqa-e501">Attributes which can be updated:
+- tags # Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.
+## [V3]
+* Initial version ## [V4]
+* Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].
+* Field analysisPriority changed from enum to String.
+* The owner and tenant are now represented by Identifier objects.
+# noqa: E501</h1>
+<p>This method makes a synchronous HTTP request by default. To make an
 asynchronous HTTP request, please pass async_req=True</p>
-<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.update_analysis(project_id, analysis_id, analysis, async_req=True)
+<pre><code class="language-python-repl">&gt;&gt;&gt; thread = api.update_analysis(project_id, analysis_id, analysis_v4, async_req=True)
 &gt;&gt;&gt; result = thread.get()
 </code></pre>
 <h2 id="args">Args</h2>
 <p>project_id (str):
 analysis_id (str):
-analysis (Analysis):
+analysis_v4 (AnalysisV4):
 Keyword Args:
 if_match (str): Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version.. [optional]
 _return_http_data_only (bool): response data without head status
@@ -5615,7 +6135,7 @@ that we want to use.
 Default is read from the configuration.
 async_req (bool): execute request asynchronously</p>
 <h2 id="returns">Returns</h2>
-<p>Analysis
+<p>AnalysisV4
 If the method is called asynchronously, returns the request
 thread.</p></div>
 <details class="source">
@@ -5626,22 +6146,22 @@ thread.</p></div>
     self,
     project_id,
     analysis_id,
-    analysis,
+    analysis_v4,
     **kwargs
 ):
     &#34;&#34;&#34;Update an analysis.  # noqa: E501
 
-    Attributes which can be updated:    - tags  # noqa: E501
+    # Attributes which can be updated:    - tags # Changelog For this endpoint multiple versions exist. Note that the values for request headers &#39;Content-Type&#39; and &#39;Accept&#39; must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type &#39;status&#39; changed from enum to String. New statuses have been added: [&#39;QUEUED&#39;, &#39;INITIALIZING&#39;, &#39;PREPARING_INPUTS&#39;, &#39;GENERATING_OUTPUTS&#39;, &#39;ABORTING&#39;].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.   # noqa: E501
     This method makes a synchronous HTTP request by default. To make an
     asynchronous HTTP request, please pass async_req=True
 
-    &gt;&gt;&gt; thread = api.update_analysis(project_id, analysis_id, analysis, async_req=True)
+    &gt;&gt;&gt; thread = api.update_analysis(project_id, analysis_id, analysis_v4, async_req=True)
     &gt;&gt;&gt; result = thread.get()
 
     Args:
         project_id (str):
         analysis_id (str):
-        analysis (Analysis):
+        analysis_v4 (AnalysisV4):
 
     Keyword Args:
         if_match (str): Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version.. [optional]
@@ -5673,7 +6193,7 @@ thread.</p></div>
         async_req (bool): execute request asynchronously
 
     Returns:
-        Analysis
+        AnalysisV4
             If the method is called asynchronously, returns the request
             thread.
     &#34;&#34;&#34;
@@ -5705,8 +6225,8 @@ thread.</p></div>
         project_id
     kwargs[&#39;analysis_id&#39;] = \
         analysis_id
-    kwargs[&#39;analysis&#39;] = \
-        analysis
+    kwargs[&#39;analysis_v4&#39;] = \
+        analysis_v4
     return self.update_analysis_endpoint.call_with_http_info(**kwargs)</code></pre>
 </details>
 </dd>
@@ -5743,6 +6263,7 @@ thread.</p></div>
 <li><code><a title="libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.get_cwl_input_json" href="#libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.get_cwl_input_json">get_cwl_input_json</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.get_cwl_output_json" href="#libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.get_cwl_output_json">get_cwl_output_json</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.get_raw_analysis_output" href="#libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.get_raw_analysis_output">get_raw_analysis_output</a></code></li>
+<li><code><a title="libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.search_analyses" href="#libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.search_analyses">search_analyses</a></code></li>
 <li><code><a title="libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.update_analysis" href="#libica.openapi.v2.api.project_analysis_api.ProjectAnalysisApi.update_analysis">update_analysis</a></code></li>
 </ul>
 </li>

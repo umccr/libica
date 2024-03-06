@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Coverage for libica/openapi/libgds/models/file_response.py: 98%</title>
+    <title>Coverage for libica/openapi/libgds/models/file_response.py: 97%</title>
     <link rel="icon" sizes="32x32" href="favicon_32.png">
     <link rel="stylesheet" href="style.css" type="text/css">
     <script type="text/javascript" src="coverage_html.js" defer></script>
@@ -12,7 +12,7 @@
     <div class="content">
         <h1>
             <span class="text">Coverage for </span><b>libica/openapi/libgds/models/file_response.py</b>:
-            <span class="pc_cov">98%</span>
+            <span class="pc_cov">97%</span>
         </h1>
         <aside id="help_panel_wrapper">
             <input id="help_panel_state" type="checkbox">
@@ -55,8 +55,8 @@
         </aside>
         <h2>
             <span class="text">335 statements &nbsp;</span>
-            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">329<span class="text"> run</span></button>
-            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">6<span class="text"> missing</span></button>
+            <button type="button" class="run button_toggle_run" value="run" data-shortcut="r" title="Toggle lines run">326<span class="text"> run</span></button>
+            <button type="button" class="mis show_mis button_toggle_mis" value="mis" data-shortcut="m" title="Toggle lines missing">9<span class="text"> missing</span></button>
             <button type="button" class="exc show_exc button_toggle_exc" value="exc" data-shortcut="x" title="Toggle lines excluded">0<span class="text"> excluded</span></button>
         </h2>
         <p class="text">
@@ -64,8 +64,8 @@
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="d_37666b0c38bea9cb_file_status_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.3.2">coverage.py v7.3.2</a>,
-            created at 2023-10-10 22:18 +1100
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.4.3">coverage.py v7.4.3</a>,
+            created at 2024-03-06 19:04 +1100
         </p>
         <aside class="hidden">
             <button type="button" class="button_next_chunk" data-shortcut="j"/>
@@ -1048,14 +1048,14 @@
     <p class="run"><span class="n"><a id="t966" href="#t966">966</a></span><span class="t">        <span class="key">for</span> <span class="nam">attr</span><span class="op">,</span> <span class="nam">_</span> <span class="key">in</span> <span class="nam">six</span><span class="op">.</span><span class="nam">iteritems</span><span class="op">(</span><span class="nam">self</span><span class="op">.</span><span class="nam">openapi_types</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t967" href="#t967">967</a></span><span class="t">            <span class="nam">value</span> <span class="op">=</span> <span class="nam">getattr</span><span class="op">(</span><span class="nam">self</span><span class="op">,</span> <span class="nam">attr</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t968" href="#t968">968</a></span><span class="t">            <span class="key">if</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">value</span><span class="op">,</span> <span class="nam">list</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t969" href="#t969">969</a></span><span class="t">                <span class="nam">result</span><span class="op">[</span><span class="nam">attr</span><span class="op">]</span> <span class="op">=</span> <span class="nam">list</span><span class="op">(</span><span class="nam">map</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t969" href="#t969">969</a></span><span class="t">                <span class="nam">result</span><span class="op">[</span><span class="nam">attr</span><span class="op">]</span> <span class="op">=</span> <span class="nam">list</span><span class="op">(</span><span class="nam">map</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t970" href="#t970">970</a></span><span class="t">                    <span class="key">lambda</span> <span class="nam">x</span><span class="op">:</span> <span class="nam">x</span><span class="op">.</span><span class="nam">to_dict</span><span class="op">(</span><span class="op">)</span> <span class="key">if</span> <span class="nam">hasattr</span><span class="op">(</span><span class="nam">x</span><span class="op">,</span> <span class="str">"to_dict"</span><span class="op">)</span> <span class="key">else</span> <span class="nam">x</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t971" href="#t971">971</a></span><span class="t">                    <span class="nam">value</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t972" href="#t972">972</a></span><span class="t">                <span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t973" href="#t973">973</a></span><span class="t">            <span class="key">elif</span> <span class="nam">hasattr</span><span class="op">(</span><span class="nam">value</span><span class="op">,</span> <span class="str">"to_dict"</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t974" href="#t974">974</a></span><span class="t">                <span class="nam">result</span><span class="op">[</span><span class="nam">attr</span><span class="op">]</span> <span class="op">=</span> <span class="nam">value</span><span class="op">.</span><span class="nam">to_dict</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t974" href="#t974">974</a></span><span class="t">                <span class="nam">result</span><span class="op">[</span><span class="nam">attr</span><span class="op">]</span> <span class="op">=</span> <span class="nam">value</span><span class="op">.</span><span class="nam">to_dict</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="run"><span class="n"><a id="t975" href="#t975">975</a></span><span class="t">            <span class="key">elif</span> <span class="nam">isinstance</span><span class="op">(</span><span class="nam">value</span><span class="op">,</span> <span class="nam">dict</span><span class="op">)</span><span class="op">:</span>&nbsp;</span><span class="r"></span></p>
-    <p class="run"><span class="n"><a id="t976" href="#t976">976</a></span><span class="t">                <span class="nam">result</span><span class="op">[</span><span class="nam">attr</span><span class="op">]</span> <span class="op">=</span> <span class="nam">dict</span><span class="op">(</span><span class="nam">map</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
+    <p class="mis show_mis"><span class="n"><a id="t976" href="#t976">976</a></span><span class="t">                <span class="nam">result</span><span class="op">[</span><span class="nam">attr</span><span class="op">]</span> <span class="op">=</span> <span class="nam">dict</span><span class="op">(</span><span class="nam">map</span><span class="op">(</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t977" href="#t977">977</a></span><span class="t">                    <span class="key">lambda</span> <span class="nam">item</span><span class="op">:</span> <span class="op">(</span><span class="nam">item</span><span class="op">[</span><span class="num">0</span><span class="op">]</span><span class="op">,</span> <span class="nam">item</span><span class="op">[</span><span class="num">1</span><span class="op">]</span><span class="op">.</span><span class="nam">to_dict</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t978" href="#t978">978</a></span><span class="t">                    <span class="key">if</span> <span class="nam">hasattr</span><span class="op">(</span><span class="nam">item</span><span class="op">[</span><span class="num">1</span><span class="op">]</span><span class="op">,</span> <span class="str">"to_dict"</span><span class="op">)</span> <span class="key">else</span> <span class="nam">item</span><span class="op">,</span>&nbsp;</span><span class="r"></span></p>
     <p class="pln"><span class="n"><a id="t979" href="#t979">979</a></span><span class="t">                    <span class="nam">value</span><span class="op">.</span><span class="nam">items</span><span class="op">(</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
@@ -1094,8 +1094,8 @@
             <a id="indexLink" class="nav" href="index.html">&Hat; index</a> &nbsp; &nbsp;
             <a id="nextFileLink" class="nav" href="d_37666b0c38bea9cb_file_status_py.html">&#xbb; next</a>
             &nbsp; &nbsp; &nbsp;
-            <a class="nav" href="https://coverage.readthedocs.io/en/7.3.2">coverage.py v7.3.2</a>,
-            created at 2023-10-10 22:18 +1100
+            <a class="nav" href="https://coverage.readthedocs.io/en/7.4.3">coverage.py v7.4.3</a>,
+            created at 2024-03-06 19:04 +1100
         </p>
     </div>
 </footer>

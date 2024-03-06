@@ -65,7 +65,9 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.analysis_base_space_data_details import AnalysisBaseSpaceDataDetails
     from libica.openapi.v2.model.analysis_s3_data_details import AnalysisS3DataDetails
+    globals()[&#39;AnalysisBaseSpaceDataDetails&#39;] = AnalysisBaseSpaceDataDetails
     globals()[&#39;AnalysisS3DataDetails&#39;] = AnalysisS3DataDetails
 
 
@@ -99,7 +101,7 @@ class AnalysisInputExternalData(ModelNormal):
     validations = {
         (&#39;type&#39;,): {
             &#39;regex&#39;: {
-                &#39;pattern&#39;: r&#39;s3|http&#39;,  # noqa: E501
+                &#39;pattern&#39;: r&#39;s3|http|basespace&#39;,  # noqa: E501
             },
         },
     }
@@ -129,8 +131,9 @@ class AnalysisInputExternalData(ModelNormal):
         return {
             &#39;url&#39;: (str,),  # noqa: E501
             &#39;type&#39;: (str,),  # noqa: E501
-            &#39;mount_path&#39;: (str,),  # noqa: E501
+            &#39;mount_path&#39;: (str, none_type,),  # noqa: E501
             &#39;s3_details&#39;: (AnalysisS3DataDetails,),  # noqa: E501
+            &#39;basespace_details&#39;: (AnalysisBaseSpaceDataDetails,),  # noqa: E501
         }
 
     @cached_property
@@ -143,6 +146,7 @@ class AnalysisInputExternalData(ModelNormal):
         &#39;type&#39;: &#39;type&#39;,  # noqa: E501
         &#39;mount_path&#39;: &#39;mountPath&#39;,  # noqa: E501
         &#39;s3_details&#39;: &#39;s3Details&#39;,  # noqa: E501
+        &#39;basespace_details&#39;: &#39;basespaceDetails&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -152,13 +156,12 @@ class AnalysisInputExternalData(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, url, type, mount_path, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, url, type, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;AnalysisInputExternalData - a model defined in OpenAPI
 
         Args:
             url (str):
             type (str):
-            mount_path (str): The mount path is the location where the input file will be located on the machine that is running the pipeline. The use of a relative path is encouraged, but an absolute path is also allowed. The path should end with the file name, which may differ from the original input data.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -191,7 +194,9 @@ class AnalysisInputExternalData(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            mount_path (str, none_type): The mount path is the location where the input file will be located on the machine that is running the pipeline. The use of a relative path is encouraged, but an absolute path is also allowed. The path should end with the file name, which may differ from the original input data.. [optional]  # noqa: E501
             s3_details (AnalysisS3DataDetails): [optional]  # noqa: E501
+            basespace_details (AnalysisBaseSpaceDataDetails): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -221,7 +226,6 @@ class AnalysisInputExternalData(ModelNormal):
 
         self.url = url
         self.type = type
-        self.mount_path = mount_path
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -242,13 +246,12 @@ class AnalysisInputExternalData(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, url, type, mount_path, *args, **kwargs):  # noqa: E501
+    def __init__(self, url, type, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;AnalysisInputExternalData - a model defined in OpenAPI
 
         Args:
             url (str):
             type (str):
-            mount_path (str): The mount path is the location where the input file will be located on the machine that is running the pipeline. The use of a relative path is encouraged, but an absolute path is also allowed. The path should end with the file name, which may differ from the original input data.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -281,7 +284,9 @@ class AnalysisInputExternalData(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            mount_path (str, none_type): The mount path is the location where the input file will be located on the machine that is running the pipeline. The use of a relative path is encouraged, but an absolute path is also allowed. The path should end with the file name, which may differ from the original input data.. [optional]  # noqa: E501
             s3_details (AnalysisS3DataDetails): [optional]  # noqa: E501
+            basespace_details (AnalysisBaseSpaceDataDetails): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -309,7 +314,6 @@ class AnalysisInputExternalData(ModelNormal):
 
         self.url = url
         self.type = type
-        self.mount_path = mount_path
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -340,7 +344,9 @@ class AnalysisInputExternalData(ModelNormal):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def lazy_import():
+    from libica.openapi.v2.model.analysis_base_space_data_details import AnalysisBaseSpaceDataDetails
     from libica.openapi.v2.model.analysis_s3_data_details import AnalysisS3DataDetails
+    globals()[&#39;AnalysisBaseSpaceDataDetails&#39;] = AnalysisBaseSpaceDataDetails
     globals()[&#39;AnalysisS3DataDetails&#39;] = AnalysisS3DataDetails</code></pre>
 </details>
 </dd>
@@ -351,7 +357,7 @@ class AnalysisInputExternalData(ModelNormal):
 <dl>
 <dt id="libica.openapi.v2.model.analysis_input_external_data.AnalysisInputExternalData"><code class="flex name class">
 <span>class <span class="ident">AnalysisInputExternalData</span></span>
-<span>(</span><span>url, type, mount_path, *args, **kwargs)</span>
+<span>(</span><span>url, type, *args, **kwargs)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator.
@@ -382,13 +388,9 @@ as additional properties values.</dd>
 </dl>
 <p>AnalysisInputExternalData - a model defined in OpenAPI</p>
 <h2 id="args">Args</h2>
-<dl>
-<dt>url (str):</dt>
-<dt>type (str):</dt>
-<dt><strong><code>mount_path</code></strong> :&ensp;<code>str</code></dt>
-<dd>The mount path is the location where the input file will be located on the machine that is running the pipeline. The use of a relative path is encouraged, but an absolute path is also allowed. The path should end with the file name, which may differ from the original input data.</dd>
-</dl>
-<p>Keyword Args:
+<p>url (str):
+type (str):
+Keyword Args:
 _check_type (bool): if True, values for parameters in openapi_types
 will be type checked and a TypeError will be
 raised if the wrong type is input.
@@ -419,7 +421,11 @@ Then in Dog, we will make an instance of the
 Animal class but this time we won't travel
 through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
+mount_path (str, none_type): The mount path is the location where the input file will be located on the machine that is running the pipeline. The use of a relative path is encouraged, but an absolute path is also allowed. The path should end with the file name, which may differ from the original input data.. [optional]
+# noqa: E501
 s3_details (AnalysisS3DataDetails): [optional]
+# noqa: E501
+basespace_details (AnalysisBaseSpaceDataDetails): [optional]
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -455,7 +461,7 @@ s3_details (AnalysisS3DataDetails): [optional]
     validations = {
         (&#39;type&#39;,): {
             &#39;regex&#39;: {
-                &#39;pattern&#39;: r&#39;s3|http&#39;,  # noqa: E501
+                &#39;pattern&#39;: r&#39;s3|http|basespace&#39;,  # noqa: E501
             },
         },
     }
@@ -485,8 +491,9 @@ s3_details (AnalysisS3DataDetails): [optional]
         return {
             &#39;url&#39;: (str,),  # noqa: E501
             &#39;type&#39;: (str,),  # noqa: E501
-            &#39;mount_path&#39;: (str,),  # noqa: E501
+            &#39;mount_path&#39;: (str, none_type,),  # noqa: E501
             &#39;s3_details&#39;: (AnalysisS3DataDetails,),  # noqa: E501
+            &#39;basespace_details&#39;: (AnalysisBaseSpaceDataDetails,),  # noqa: E501
         }
 
     @cached_property
@@ -499,6 +506,7 @@ s3_details (AnalysisS3DataDetails): [optional]
         &#39;type&#39;: &#39;type&#39;,  # noqa: E501
         &#39;mount_path&#39;: &#39;mountPath&#39;,  # noqa: E501
         &#39;s3_details&#39;: &#39;s3Details&#39;,  # noqa: E501
+        &#39;basespace_details&#39;: &#39;basespaceDetails&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -508,13 +516,12 @@ s3_details (AnalysisS3DataDetails): [optional]
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, url, type, mount_path, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, url, type, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;AnalysisInputExternalData - a model defined in OpenAPI
 
         Args:
             url (str):
             type (str):
-            mount_path (str): The mount path is the location where the input file will be located on the machine that is running the pipeline. The use of a relative path is encouraged, but an absolute path is also allowed. The path should end with the file name, which may differ from the original input data.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -547,7 +554,9 @@ s3_details (AnalysisS3DataDetails): [optional]
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            mount_path (str, none_type): The mount path is the location where the input file will be located on the machine that is running the pipeline. The use of a relative path is encouraged, but an absolute path is also allowed. The path should end with the file name, which may differ from the original input data.. [optional]  # noqa: E501
             s3_details (AnalysisS3DataDetails): [optional]  # noqa: E501
+            basespace_details (AnalysisBaseSpaceDataDetails): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -577,7 +586,6 @@ s3_details (AnalysisS3DataDetails): [optional]
 
         self.url = url
         self.type = type
-        self.mount_path = mount_path
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -598,13 +606,12 @@ s3_details (AnalysisS3DataDetails): [optional]
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, url, type, mount_path, *args, **kwargs):  # noqa: E501
+    def __init__(self, url, type, *args, **kwargs):  # noqa: E501
         &#34;&#34;&#34;AnalysisInputExternalData - a model defined in OpenAPI
 
         Args:
             url (str):
             type (str):
-            mount_path (str): The mount path is the location where the input file will be located on the machine that is running the pipeline. The use of a relative path is encouraged, but an absolute path is also allowed. The path should end with the file name, which may differ from the original input data.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -637,7 +644,9 @@ s3_details (AnalysisS3DataDetails): [optional]
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            mount_path (str, none_type): The mount path is the location where the input file will be located on the machine that is running the pipeline. The use of a relative path is encouraged, but an absolute path is also allowed. The path should end with the file name, which may differ from the original input data.. [optional]  # noqa: E501
             s3_details (AnalysisS3DataDetails): [optional]  # noqa: E501
+            basespace_details (AnalysisBaseSpaceDataDetails): [optional]  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -665,7 +674,6 @@ s3_details (AnalysisS3DataDetails): [optional]
 
         self.url = url
         self.type = type
-        self.mount_path = mount_path
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

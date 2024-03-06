@@ -156,6 +156,7 @@ class Pipeline(ModelNormal):
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
             &#39;urn&#39;: (str, none_type,),  # noqa: E501
             &#39;language_version&#39;: (PipelineLanguageVersion,),  # noqa: E501
+            &#39;proprietary&#39;: (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -177,6 +178,7 @@ class Pipeline(ModelNormal):
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
         &#39;urn&#39;: &#39;urn&#39;,  # noqa: E501
         &#39;language_version&#39;: &#39;languageVersion&#39;,  # noqa: E501
+        &#39;proprietary&#39;: &#39;proprietary&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -235,6 +237,7 @@ class Pipeline(ModelNormal):
             tenant_name (str, none_type): [optional]  # noqa: E501
             urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
+            proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -341,6 +344,7 @@ class Pipeline(ModelNormal):
             tenant_name (str, none_type): [optional]  # noqa: E501
             urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
+            proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -503,6 +507,8 @@ tenant_name (str, none_type): [optional]
 urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\&lt;type of the object&gt;:\&lt;ID of the object&gt;#\&lt;optional human readable hint representing the object&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]
 # noqa: E501
 language_version (PipelineLanguageVersion): [optional]
+# noqa: E501
+proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
 # noqa: E501</p></div>
 <details class="source">
 <summary>
@@ -591,6 +597,7 @@ language_version (PipelineLanguageVersion): [optional]
             &#39;tenant_name&#39;: (str, none_type,),  # noqa: E501
             &#39;urn&#39;: (str, none_type,),  # noqa: E501
             &#39;language_version&#39;: (PipelineLanguageVersion,),  # noqa: E501
+            &#39;proprietary&#39;: (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -612,6 +619,7 @@ language_version (PipelineLanguageVersion): [optional]
         &#39;tenant_name&#39;: &#39;tenantName&#39;,  # noqa: E501
         &#39;urn&#39;: &#39;urn&#39;,  # noqa: E501
         &#39;language_version&#39;: &#39;languageVersion&#39;,  # noqa: E501
+        &#39;proprietary&#39;: &#39;proprietary&#39;,  # noqa: E501
     }
 
     read_only_vars = {
@@ -670,6 +678,7 @@ language_version (PipelineLanguageVersion): [optional]
             tenant_name (str, none_type): [optional]  # noqa: E501
             urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
+            proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)
@@ -776,6 +785,7 @@ language_version (PipelineLanguageVersion): [optional]
             tenant_name (str, none_type): [optional]  # noqa: E501
             urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
+            proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
         &#34;&#34;&#34;
 
         _check_type = kwargs.pop(&#39;_check_type&#39;, True)

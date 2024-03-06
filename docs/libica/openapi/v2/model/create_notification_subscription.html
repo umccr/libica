@@ -127,6 +127,7 @@ class CreateNotificationSubscription(ModelNormal):
             &#39;event_code&#39;: (str,),  # noqa: E501
             &#39;enabled&#39;: (bool,),  # noqa: E501
             &#39;notification_channel_id&#39;: (str,),  # noqa: E501
+            &#39;payload_version&#39;: (str, none_type,),  # noqa: E501
             &#39;filter_expression&#39;: (str, none_type,),  # noqa: E501
         }
 
@@ -139,6 +140,7 @@ class CreateNotificationSubscription(ModelNormal):
         &#39;event_code&#39;: &#39;eventCode&#39;,  # noqa: E501
         &#39;enabled&#39;: &#39;enabled&#39;,  # noqa: E501
         &#39;notification_channel_id&#39;: &#39;notificationChannelId&#39;,  # noqa: E501
+        &#39;payload_version&#39;: &#39;payloadVersion&#39;,  # noqa: E501
         &#39;filter_expression&#39;: &#39;filterExpression&#39;,  # noqa: E501
     }
 
@@ -188,6 +190,7 @@ class CreateNotificationSubscription(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            payload_version (str, none_type): The version of the notification event payload in case multiple versions exist. For analysis events possible values are [V3,V4]. [optional]  # noqa: E501
             filter_expression (str, none_type): To be used when a notification applies to specific conditions.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -278,6 +281,7 @@ class CreateNotificationSubscription(ModelNormal):
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            payload_version (str, none_type): The version of the notification event payload in case multiple versions exist. For analysis events possible values are [V3,V4]. [optional]  # noqa: E501
             filter_expression (str, none_type): To be used when a notification applies to specific conditions.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -401,6 +405,8 @@ Then in Dog, we will make an instance of the
 Animal class but this time we won't travel
 through its discriminator because we passed in
 _visited_composed_classes = (Animal,)
+payload_version (str, none_type): The version of the notification event payload in case multiple versions exist. For analysis events possible values are [V3,V4]. [optional]
+# noqa: E501
 filter_expression (str, none_type): To be used when a notification applies to specific conditions.. [optional]
 # noqa: E501</p></div>
 <details class="source">
@@ -469,6 +475,7 @@ filter_expression (str, none_type): To be used when a notification applies to sp
             &#39;event_code&#39;: (str,),  # noqa: E501
             &#39;enabled&#39;: (bool,),  # noqa: E501
             &#39;notification_channel_id&#39;: (str,),  # noqa: E501
+            &#39;payload_version&#39;: (str, none_type,),  # noqa: E501
             &#39;filter_expression&#39;: (str, none_type,),  # noqa: E501
         }
 
@@ -481,6 +488,7 @@ filter_expression (str, none_type): To be used when a notification applies to sp
         &#39;event_code&#39;: &#39;eventCode&#39;,  # noqa: E501
         &#39;enabled&#39;: &#39;enabled&#39;,  # noqa: E501
         &#39;notification_channel_id&#39;: &#39;notificationChannelId&#39;,  # noqa: E501
+        &#39;payload_version&#39;: &#39;payloadVersion&#39;,  # noqa: E501
         &#39;filter_expression&#39;: &#39;filterExpression&#39;,  # noqa: E501
     }
 
@@ -530,6 +538,7 @@ filter_expression (str, none_type): To be used when a notification applies to sp
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            payload_version (str, none_type): The version of the notification event payload in case multiple versions exist. For analysis events possible values are [V3,V4]. [optional]  # noqa: E501
             filter_expression (str, none_type): To be used when a notification applies to specific conditions.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
@@ -620,6 +629,7 @@ filter_expression (str, none_type): To be used when a notification applies to sp
                                 Animal class but this time we won&#39;t travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            payload_version (str, none_type): The version of the notification event payload in case multiple versions exist. For analysis events possible values are [V3,V4]. [optional]  # noqa: E501
             filter_expression (str, none_type): To be used when a notification applies to specific conditions.. [optional]  # noqa: E501
         &#34;&#34;&#34;
 
