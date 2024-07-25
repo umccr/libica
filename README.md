@@ -271,11 +271,11 @@ make test
 - These tools are Node.js app, hence, required build tools `node`, `npm`, `npx` and `yarn` as follows.
 ```commandline
 node -v
-v18.19.1
+v20.15.1
 
 npm i -g yarn
 yarn -v
-4.1.0
+4.3.1
 
 yarn install
 

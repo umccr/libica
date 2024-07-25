@@ -3,8 +3,13 @@
     "audit": "yarn npm audit"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.10.0",
-    "@redocly/cli": "^1.10.1"
+    "@openapitools/openapi-generator-cli": "^2.13.4",
+    "@redocly/cli": "^1.18.1"
+  },
+  "resolutions": {
+    "braces": "^3.0.3",
+    "tar": "^6.2.1",
+    "ws": "^7.5.10"
   },
   "packageManager": "yarn@4.3.1"
 }
