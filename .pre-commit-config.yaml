@@ -28,4 +28,4 @@ repos:
       - id: detect-secrets
         name: detect secrets
         args: [ '--baseline', '.secrets.baseline' ]
-        exclude: ^(yarn.lock|.yarn/|.local/|docs/|openapi/|swagger/)
+        exclude: ^(yarn.lock|.yarn/|.yarnrc.yml|.local/|docs/|openapi/|swagger/)
