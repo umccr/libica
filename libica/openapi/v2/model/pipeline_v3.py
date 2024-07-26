@@ -68,6 +68,11 @@ class PipelineV3(ModelNormal):
             'NEXTFLOW': "NEXTFLOW",
             'UNKNOWN': "UNKNOWN",
         },
+        ('status',): {
+            'None': None,
+            'DRAFT': "DRAFT",
+            'RELEASED': "RELEASED",
+        },
     }
 
     validations = {
@@ -120,6 +125,7 @@ class PipelineV3(ModelNormal):
             'analysis_storage': (AnalysisStorageV3,),  # noqa: E501
             'tenant_name': (str, none_type,),  # noqa: E501
             'urn': (str, none_type,),  # noqa: E501
+            'status': (str, none_type,),  # noqa: E501
             'language_version': (PipelineLanguageVersion,),  # noqa: E501
             'proprietary': (bool, none_type,),  # noqa: E501
         }
@@ -142,6 +148,7 @@ class PipelineV3(ModelNormal):
         'analysis_storage': 'analysisStorage',  # noqa: E501
         'tenant_name': 'tenantName',  # noqa: E501
         'urn': 'urn',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'language_version': 'languageVersion',  # noqa: E501
         'proprietary': 'proprietary',  # noqa: E501
     }
@@ -201,6 +208,7 @@ class PipelineV3(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\<type of the object\\>:\\<ID of the object\\>#\\<optional human readable hint representing the object\\>. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
+            status (str, none_type): The status of the pipeline. [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
@@ -308,6 +316,7 @@ class PipelineV3(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\<type of the object\\>:\\<ID of the object\\>#\\<optional human readable hint representing the object\\>. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
+            status (str, none_type): The status of the pipeline. [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
         """

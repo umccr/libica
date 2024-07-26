@@ -244,7 +244,6 @@ class ProjectDataCopyBatchApi(object):
                     'page_offset',
                     'page_token',
                     'page_size',
-                    'sort',
                 ],
                 'required': [
                     'project_id',
@@ -284,8 +283,6 @@ class ProjectDataCopyBatchApi(object):
                         (str,),
                     'page_size':
                         (str,),
-                    'sort':
-                        (str,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -294,7 +291,6 @@ class ProjectDataCopyBatchApi(object):
                     'page_offset': 'pageOffset',
                     'page_token': 'pageToken',
                     'page_size': 'pageSize',
-                    'sort': 'sort',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -303,7 +299,6 @@ class ProjectDataCopyBatchApi(object):
                     'page_offset': 'query',
                     'page_token': 'query',
                     'page_size': 'query',
-                    'sort': 'query',
                 },
                 'collection_format_map': {
                     'status': 'multi',
@@ -334,7 +329,7 @@ class ProjectDataCopyBatchApi(object):
         >>> result = thread.get()
 
         Args:
-            project_id (str):
+            project_id (str): The ID of the project to which the data will be copied
             create_project_data_copy_batch (CreateProjectDataCopyBatch):
 
         Keyword Args:
@@ -589,7 +584,6 @@ class ProjectDataCopyBatchApi(object):
             page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
             page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
             page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
-            sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\". [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

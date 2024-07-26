@@ -42,6 +42,7 @@ from libica.openapi.v2.model.analysis_step import AnalysisStep
 from libica.openapi.v2.model.analysis_step_list import AnalysisStepList
 from libica.openapi.v2.model.analysis_step_logs import AnalysisStepLogs
 from libica.openapi.v2.model.analysis_storage_list_v3 import AnalysisStorageListV3
+from libica.openapi.v2.model.analysis_storage_list_v4 import AnalysisStorageListV4
 from libica.openapi.v2.model.analysis_storage_v3 import AnalysisStorageV3
 from libica.openapi.v2.model.analysis_storage_v4 import AnalysisStorageV4
 from libica.openapi.v2.model.analysis_tag import AnalysisTag
@@ -81,6 +82,7 @@ from libica.openapi.v2.model.connector import Connector
 from libica.openapi.v2.model.connector_list import ConnectorList
 from libica.openapi.v2.model.country import Country
 from libica.openapi.v2.model.create_analysis_creation_batch import CreateAnalysisCreationBatch
+from libica.openapi.v2.model.create_analysis_tag import CreateAnalysisTag
 from libica.openapi.v2.model.create_bundle import CreateBundle
 from libica.openapi.v2.model.create_bundle_data_linking_batch import CreateBundleDataLinkingBatch
 from libica.openapi.v2.model.create_bundle_data_linking_batch_item import CreateBundleDataLinkingBatchItem
@@ -100,6 +102,8 @@ from libica.openapi.v2.model.create_project_data_copy_batch import CreateProject
 from libica.openapi.v2.model.create_project_data_copy_batch_item import CreateProjectDataCopyBatchItem
 from libica.openapi.v2.model.create_project_data_linking_batch import CreateProjectDataLinkingBatch
 from libica.openapi.v2.model.create_project_data_linking_batch_item import CreateProjectDataLinkingBatchItem
+from libica.openapi.v2.model.create_project_data_move_batch import CreateProjectDataMoveBatch
+from libica.openapi.v2.model.create_project_data_move_batch_item import CreateProjectDataMoveBatchItem
 from libica.openapi.v2.model.create_project_data_unlinking_batch import CreateProjectDataUnlinkingBatch
 from libica.openapi.v2.model.create_project_data_unlinking_batch_item import CreateProjectDataUnlinkingBatchItem
 from libica.openapi.v2.model.create_project_data_update_batch import CreateProjectDataUpdateBatch
@@ -140,8 +144,11 @@ from libica.openapi.v2.model.download_rule import DownloadRule
 from libica.openapi.v2.model.download_rule_list import DownloadRuleList
 from libica.openapi.v2.model.event_code import EventCode
 from libica.openapi.v2.model.event_code_list import EventCodeList
-from libica.openapi.v2.model.event_log import EventLog
-from libica.openapi.v2.model.event_log_list import EventLogList
+from libica.openapi.v2.model.event_log_list_v3 import EventLogListV3
+from libica.openapi.v2.model.event_log_paged_list_v4 import EventLogPagedListV4
+from libica.openapi.v2.model.event_log_query_parameters_v4 import EventLogQueryParametersV4
+from libica.openapi.v2.model.event_log_v3 import EventLogV3
+from libica.openapi.v2.model.event_log_v4 import EventLogV4
 from libica.openapi.v2.model.execution_configuration import ExecutionConfiguration
 from libica.openapi.v2.model.execution_configuration_list import ExecutionConfigurationList
 from libica.openapi.v2.model.field import Field
@@ -208,6 +215,12 @@ from libica.openapi.v2.model.project_data_linking_batch_item_processing import P
 from libica.openapi.v2.model.project_data_linking_batch_item_processing_v4 import ProjectDataLinkingBatchItemProcessingV4
 from libica.openapi.v2.model.project_data_linking_batch_item_request import ProjectDataLinkingBatchItemRequest
 from libica.openapi.v2.model.project_data_linking_batch_item_v4 import ProjectDataLinkingBatchItemV4
+from libica.openapi.v2.model.project_data_move_batch import ProjectDataMoveBatch
+from libica.openapi.v2.model.project_data_move_batch_item import ProjectDataMoveBatchItem
+from libica.openapi.v2.model.project_data_move_batch_item_paged_list import ProjectDataMoveBatchItemPagedList
+from libica.openapi.v2.model.project_data_move_batch_item_processing import ProjectDataMoveBatchItemProcessing
+from libica.openapi.v2.model.project_data_move_batch_item_query_parameters import ProjectDataMoveBatchItemQueryParameters
+from libica.openapi.v2.model.project_data_move_batch_item_request import ProjectDataMoveBatchItemRequest
 from libica.openapi.v2.model.project_data_paged_list import ProjectDataPagedList
 from libica.openapi.v2.model.project_data_unlinking_batch import ProjectDataUnlinkingBatch
 from libica.openapi.v2.model.project_data_unlinking_batch_item import ProjectDataUnlinkingBatchItem
@@ -282,6 +295,8 @@ from libica.openapi.v2.model.upload_rule_list import UploadRuleList
 from libica.openapi.v2.model.user import User
 from libica.openapi.v2.model.user_identifier import UserIdentifier
 from libica.openapi.v2.model.user_list import UserList
+from libica.openapi.v2.model.workflow_session_analysis_paged_list_v4 import WorkflowSessionAnalysisPagedListV4
+from libica.openapi.v2.model.workflow_session_analysis_v4 import WorkflowSessionAnalysisV4
 from libica.openapi.v2.model.workflow_session_configuration import WorkflowSessionConfiguration
 from libica.openapi.v2.model.workflow_session_configuration_list import WorkflowSessionConfigurationList
 from libica.openapi.v2.model.workflow_session_data import WorkflowSessionData

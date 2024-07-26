@@ -7,7 +7,7 @@ from libica.openapi.v2.api.project_analysis_api import ProjectAnalysisApi
 from libica.openapi.v2.model.analysis_data_input import AnalysisDataInput
 from libica.openapi.v2.model.analysis_output_mapping import AnalysisOutputMapping
 from libica.openapi.v2.model.analysis_parameter_input import AnalysisParameterInput
-from libica.openapi.v2.model.analysis_tag import AnalysisTag
+from libica.openapi.v2.model.create_analysis_tag import CreateAnalysisTag
 from libica.openapi.v2.model.analysis_v3 import AnalysisV3
 from libica.openapi.v2.model.analysis_v4 import AnalysisV4
 from libica.openapi.v2.model.create_nextflow_analysis import CreateNextflowAnalysis
@@ -19,7 +19,7 @@ project_id = str(uuid.uuid4())
 nextflow_analysis = CreateNextflowAnalysis(
     user_reference='PTC-ctTSO-v2-launch-test-mock',
     pipeline_id=str(uuid.uuid4()),
-    tags=AnalysisTag(
+    tags=CreateAnalysisTag(
         reference_tags=[],
         technical_tags=[
             'portal_run_id=20240308abcd6789'

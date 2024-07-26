@@ -68,6 +68,10 @@ class CreateNotificationChannel(ModelNormal):
             'max_length': 100,
             'min_length': 1,
         },
+        ('aws_region',): {
+            'max_length': 255,
+            'min_length': 1,
+        },
     }
 
     @cached_property
@@ -94,6 +98,7 @@ class CreateNotificationChannel(ModelNormal):
             'enabled': (bool,),  # noqa: E501
             'type': (str,),  # noqa: E501
             'address': (str,),  # noqa: E501
+            'aws_region': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,6 +110,7 @@ class CreateNotificationChannel(ModelNormal):
         'enabled': 'enabled',  # noqa: E501
         'type': 'type',  # noqa: E501
         'address': 'address',  # noqa: E501
+        'aws_region': 'awsRegion',  # noqa: E501
     }
 
     read_only_vars = {
@@ -153,6 +159,7 @@ class CreateNotificationChannel(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            aws_region (str, none_type): The AWS region of the SNS notification channel. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -242,6 +249,7 @@ class CreateNotificationChannel(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            aws_region (str, none_type): The AWS region of the SNS notification channel. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

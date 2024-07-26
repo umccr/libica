@@ -89,7 +89,7 @@ if __name__ == '__main__':
     app_helper = AppHelper(debug=False)
 
     cli_session_api_client: ApiClient = app_helper \
-        .build_icav2_configuration_with_cli_session() \
+        .build_icav2_configuration() \
         .get_icav2_api_client()
 
     use_case1()

@@ -37,12 +37,14 @@ from libica.openapi.v2.api.pipeline_language_api import PipelineLanguageApi
 from libica.openapi.v2.api.project_api import ProjectApi
 from libica.openapi.v2.api.project_analysis_api import ProjectAnalysisApi
 from libica.openapi.v2.api.project_analysis_creation_batch_api import ProjectAnalysisCreationBatchApi
+from libica.openapi.v2.api.project_analysis_storage_api import ProjectAnalysisStorageApi
 from libica.openapi.v2.api.project_base_api import ProjectBaseApi
 from libica.openapi.v2.api.project_custom_events_api import ProjectCustomEventsApi
 from libica.openapi.v2.api.project_custom_notification_subscriptions_api import ProjectCustomNotificationSubscriptionsApi
 from libica.openapi.v2.api.project_data_api import ProjectDataApi
 from libica.openapi.v2.api.project_data_copy_batch_api import ProjectDataCopyBatchApi
 from libica.openapi.v2.api.project_data_linking_batch_api import ProjectDataLinkingBatchApi
+from libica.openapi.v2.api.project_data_move_batch_api import ProjectDataMoveBatchApi
 from libica.openapi.v2.api.project_data_transfer_api import ProjectDataTransferApi
 from libica.openapi.v2.api.project_data_unlinking_batch_api import ProjectDataUnlinkingBatchApi
 from libica.openapi.v2.api.project_data_update_batch_api import ProjectDataUpdateBatchApi

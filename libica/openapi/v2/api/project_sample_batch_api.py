@@ -254,7 +254,6 @@ class ProjectSampleBatchApi(object):
                     'page_offset',
                     'page_token',
                     'page_size',
-                    'sort',
                 ],
                 'required': [
                     'project_id',
@@ -296,8 +295,6 @@ class ProjectSampleBatchApi(object):
                         (str,),
                     'page_size':
                         (str,),
-                    'sort':
-                        (str,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -306,7 +303,6 @@ class ProjectSampleBatchApi(object):
                     'page_offset': 'pageOffset',
                     'page_token': 'pageToken',
                     'page_size': 'pageSize',
-                    'sort': 'sort',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -315,7 +311,6 @@ class ProjectSampleBatchApi(object):
                     'page_offset': 'query',
                     'page_token': 'query',
                     'page_size': 'query',
-                    'sort': 'query',
                 },
                 'collection_format_map': {
                     'status': 'multi',
@@ -350,7 +345,7 @@ class ProjectSampleBatchApi(object):
             create_sample_creation_batch (CreateSampleCreationBatch):
 
         Keyword Args:
-            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec and is allowed to be max 255 characters long. If the header is supplied, the response of the request will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response.</li><li>the request body is not the same as the previous request => 422 error response.</li></ul>This means that each time when executing an API request using the Idempotency-Key header, the request has to contain a new value that hasn't been used in the past 7 days for that specific API and by the specific user.. [optional]
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -602,7 +597,6 @@ class ProjectSampleBatchApi(object):
             page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
             page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
             page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
-            sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=dateCreated, lastName desc\". [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

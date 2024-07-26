@@ -89,6 +89,7 @@ class AnalysisStorageApi(object):
     ):
         """Retrieve the list of analysis storage options.  # noqa: E501
 
+        This endpoint only returns V3 items. Use the search project analysis storage endpoint to get V4 items.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
