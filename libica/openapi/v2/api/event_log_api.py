@@ -21,7 +21,9 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from libica.openapi.v2.model.event_log_list import EventLogList
+from libica.openapi.v2.model.event_log_list_v3 import EventLogListV3
+from libica.openapi.v2.model.event_log_paged_list_v4 import EventLogPagedListV4
+from libica.openapi.v2.model.event_log_query_parameters_v4 import EventLogQueryParametersV4
 from libica.openapi.v2.model.problem import Problem
 
 
@@ -38,7 +40,7 @@ class EventLogApi(object):
         self.api_client = api_client
         self.get_event_logs_endpoint = _Endpoint(
             settings={
-                'response_type': (EventLogList,),
+                'response_type': (EventLogListV3,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -126,6 +128,79 @@ class EventLogApi(object):
             },
             api_client=api_client
         )
+        self.search_event_logs_endpoint = _Endpoint(
+            settings={
+                'response_type': (EventLogPagedListV4,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/eventLog:search',
+                'operation_id': 'search_event_logs',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'page_offset',
+                    'page_token',
+                    'page_size',
+                    'sort',
+                    'event_log_query_parameters_v4',
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'page_offset':
+                        (str,),
+                    'page_token':
+                        (str,),
+                    'page_size':
+                        (str,),
+                    'sort':
+                        (str,),
+                    'event_log_query_parameters_v4':
+                        (EventLogQueryParametersV4,),
+                },
+                'attribute_map': {
+                    'page_offset': 'pageOffset',
+                    'page_token': 'pageToken',
+                    'page_size': 'pageSize',
+                    'sort': 'sort',
+                },
+                'location_map': {
+                    'page_offset': 'query',
+                    'page_token': 'query',
+                    'page_size': 'query',
+                    'sort': 'query',
+                    'event_log_query_parameters_v4': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v4+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v4+json',
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
 
     def get_event_logs(
         self,
@@ -146,7 +221,7 @@ class EventLogApi(object):
             category (str): Category. [optional]
             date_from (str): Date from. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z. [optional]
             date_until (str): Date until. Format: yyyy-MM-dd'T'HH:mm:ss.SSS'Z' eg: 2017-01-10T10:47:56.039Z. [optional]
-            rows (int): Amount of rows to fetch. Maximum 250. Defaults to 250. [optional] if omitted the server will use the default value of 250
+            rows (int): Amount of rows to fetch (chronologically oldest first). Maximum 250. Defaults to 250. [optional] if omitted the server will use the default value of 250
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -175,7 +250,7 @@ class EventLogApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            EventLogList
+            EventLogListV3
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -204,4 +279,81 @@ class EventLogApi(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.get_event_logs_endpoint.call_with_http_info(**kwargs)
+
+    def search_event_logs(
+        self,
+        **kwargs
+    ):
+        """Search event logs.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.search_event_logs(async_req=True)
+        >>> result = thread.get()
+
+
+        Keyword Args:
+            page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
+            page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
+            page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
+            sort (str): [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2 desc\"  The attributes for which sorting is supported: - timeCreated . [optional]
+            event_log_query_parameters_v4 (EventLogQueryParametersV4): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            EventLogPagedListV4
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        return self.search_event_logs_endpoint.call_with_http_info(**kwargs)
 

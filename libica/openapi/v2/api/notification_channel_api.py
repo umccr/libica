@@ -622,7 +622,7 @@ class NotificationChannelApi(object):
     ):
         """Update a notification channel  # noqa: E501
 
-        This will affect all subscriptions which use this address!Fields which can be updated:  - enabled  - address   # noqa: E501
+        This will affect all subscriptions which use this address!Fields which can be updated:  - enabled  - address  - awsRegion   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

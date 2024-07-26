@@ -12,6 +12,8 @@ Method | HTTP request | Description
 
 Retrieve the list of analysis storage options.
 
+This endpoint only returns V3 items. Use the search project analysis storage endpoint to get V4 items.
+
 ### Example
 
 * Api Key Authentication (ApiKeyAuth):

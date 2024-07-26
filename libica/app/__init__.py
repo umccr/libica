@@ -121,15 +121,20 @@ class AppHelper:
         return self.configuration
 
     def get_icav2_cli_session(self) -> dict:
-        with open(self.session_file, 'r') as f:
-            session = yaml.safe_load(f)
-            session['access_token'] = session.pop('access-token') if 'access-token' in session.keys() else None
-            session['project_id'] = session.pop('project-id') if 'project-id' in session.keys() else None
-            return copy.deepcopy(session)
+        try:
+            with open(self.session_file, 'r') as f:
+                session = yaml.safe_load(f)
+                session['access_token'] = session.pop('access-token') if 'access-token' in session.keys() else None
+                session['project_id'] = session.pop('project-id') if 'project-id' in session.keys() else None
+                return copy.deepcopy(session)
+        except FileNotFoundError as fnf:
+            logger.info("Session file not found")
+            logger.debug(fnf)
+            return {}
 
     def get_icav2_cli_session_project_id(self):
         session = self.get_icav2_cli_session()
-        project_id = os.getenv("ICAV2_PROJECT_ID", session['project_id'])
+        project_id = os.getenv("ICAV2_PROJECT_ID", session.get('project_id'))
         return project_id
 
     def build_icav2_configuration(self):

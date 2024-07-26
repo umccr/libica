@@ -1137,7 +1137,7 @@ class ConnectorApi(object):
 
         Args:
             connector_id (str):
-            create_download_rule (CreateDownloadRule):
+            create_download_rule (CreateDownloadRule): The target local folder where to write the data. Leading or trailing spaces are not accepted.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -1218,7 +1218,7 @@ class ConnectorApi(object):
 
         Args:
             connector_id (str):
-            create_upload_rule (CreateUploadRule):
+            create_upload_rule (CreateUploadRule): The local folder where to write the data. Leading or trailing spaces are not accepted.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -2086,7 +2086,7 @@ class ConnectorApi(object):
         Args:
             connector_id (str):
             download_rule_id (str):
-            download_rule (DownloadRule):
+            download_rule (DownloadRule): The target local folder where to write the data. Leading or trailing spaces are not accepted.
 
         Keyword Args:
             if_match (str): Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version.. [optional]
@@ -2173,7 +2173,7 @@ class ConnectorApi(object):
         Args:
             connector_id (str):
             upload_rule_id (str):
-            upload_rule (UploadRule):
+            upload_rule (UploadRule): The local folder where to write the data. Leading or trailing spaces are not accepted.
 
         Keyword Args:
             if_match (str): Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version.. [optional]

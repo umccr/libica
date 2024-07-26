@@ -31,10 +31,10 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.analysis_output_mapping import AnalysisOutputMapping
-    from libica.openapi.v2.model.analysis_tag import AnalysisTag
+    from libica.openapi.v2.model.create_analysis_tag import CreateAnalysisTag
     from libica.openapi.v2.model.cwl_analysis_input import CwlAnalysisInput
     globals()['AnalysisOutputMapping'] = AnalysisOutputMapping
-    globals()['AnalysisTag'] = AnalysisTag
+    globals()['CreateAnalysisTag'] = CreateAnalysisTag
     globals()['CwlAnalysisInput'] = CwlAnalysisInput
 
 
@@ -100,8 +100,8 @@ class CreateCwlAnalysis(ModelNormal):
         return {
             'user_reference': (str,),  # noqa: E501
             'pipeline_id': (str,),  # noqa: E501
-            'tags': (AnalysisTag,),  # noqa: E501
             'analysis_input': (CwlAnalysisInput,),  # noqa: E501
+            'tags': (CreateAnalysisTag,),  # noqa: E501
             'activation_code_detail_id': (str, none_type,),  # noqa: E501
             'analysis_storage_id': (str, none_type,),  # noqa: E501
             'output_parent_folder_id': (str, none_type,),  # noqa: E501
@@ -116,8 +116,8 @@ class CreateCwlAnalysis(ModelNormal):
     attribute_map = {
         'user_reference': 'userReference',  # noqa: E501
         'pipeline_id': 'pipelineId',  # noqa: E501
-        'tags': 'tags',  # noqa: E501
         'analysis_input': 'analysisInput',  # noqa: E501
+        'tags': 'tags',  # noqa: E501
         'activation_code_detail_id': 'activationCodeDetailId',  # noqa: E501
         'analysis_storage_id': 'analysisStorageId',  # noqa: E501
         'output_parent_folder_id': 'outputParentFolderId',  # noqa: E501
@@ -131,13 +131,12 @@ class CreateCwlAnalysis(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, user_reference, pipeline_id, tags, analysis_input, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, user_reference, pipeline_id, analysis_input, *args, **kwargs):  # noqa: E501
         """CreateCwlAnalysis - a model defined in OpenAPI
 
         Args:
             user_reference (str): The user-reference of the analysis. This should be something meaningful for the user.
             pipeline_id (str): The pipeline for which an analysis will be created.
-            tags (AnalysisTag):
             analysis_input (CwlAnalysisInput):
 
         Keyword Args:
@@ -171,6 +170,7 @@ class CreateCwlAnalysis(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            tags (CreateAnalysisTag): [optional]  # noqa: E501
             activation_code_detail_id (str, none_type): Indicates under which activation code the pipeline is executed.. [optional]  # noqa: E501
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id or the urn of the folder in which the output folder should be created.. [optional]  # noqa: E501
@@ -204,7 +204,6 @@ class CreateCwlAnalysis(ModelNormal):
 
         self.user_reference = user_reference
         self.pipeline_id = pipeline_id
-        self.tags = tags
         self.analysis_input = analysis_input
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
@@ -226,13 +225,12 @@ class CreateCwlAnalysis(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, user_reference, pipeline_id, tags, analysis_input, *args, **kwargs):  # noqa: E501
+    def __init__(self, user_reference, pipeline_id, analysis_input, *args, **kwargs):  # noqa: E501
         """CreateCwlAnalysis - a model defined in OpenAPI
 
         Args:
             user_reference (str): The user-reference of the analysis. This should be something meaningful for the user.
             pipeline_id (str): The pipeline for which an analysis will be created.
-            tags (AnalysisTag):
             analysis_input (CwlAnalysisInput):
 
         Keyword Args:
@@ -266,6 +264,7 @@ class CreateCwlAnalysis(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            tags (CreateAnalysisTag): [optional]  # noqa: E501
             activation_code_detail_id (str, none_type): Indicates under which activation code the pipeline is executed.. [optional]  # noqa: E501
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id or the urn of the folder in which the output folder should be created.. [optional]  # noqa: E501
@@ -297,7 +296,6 @@ class CreateCwlAnalysis(ModelNormal):
 
         self.user_reference = user_reference
         self.pipeline_id = pipeline_id
-        self.tags = tags
         self.analysis_input = analysis_input
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

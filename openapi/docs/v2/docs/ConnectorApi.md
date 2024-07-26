@@ -253,7 +253,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         project_name="project_name_example",
         target_local_folder="target_local_folder_example",
         file_name_expression="file_name_expression_example",
-    ) # CreateDownloadRule | 
+    ) # CreateDownloadRule | The target local folder where to write the data. Leading or trailing spaces are not accepted.
 
     # example passing only required values which don't have defaults set
     try:
@@ -270,7 +270,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connector_id** | **str**|  |
- **create_download_rule** | [**CreateDownloadRule**](CreateDownloadRule.md)|  |
+ **create_download_rule** | [**CreateDownloadRule**](CreateDownloadRule.md)| The target local folder where to write the data. Leading or trailing spaces are not accepted. |
 
 ### Return type
 
@@ -348,7 +348,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         file_pattern="file_pattern_example",
         data_format_id="data_format_id_example",
         project_id="project_id_example",
-    ) # CreateUploadRule | 
+    ) # CreateUploadRule | The local folder where to write the data. Leading or trailing spaces are not accepted.
 
     # example passing only required values which don't have defaults set
     try:
@@ -365,7 +365,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connector_id** | **str**|  |
- **create_upload_rule** | [**CreateUploadRule**](CreateUploadRule.md)|  |
+ **create_upload_rule** | [**CreateUploadRule**](CreateUploadRule.md)| The local folder where to write the data. Leading or trailing spaces are not accepted. |
 
 ### Return type
 
@@ -1297,7 +1297,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         project_name="project_name_example",
         target_local_folder="target_local_folder_example",
         file_name_expression="file_name_expression_example",
-    ) # DownloadRule | 
+    ) # DownloadRule | The target local folder where to write the data. Leading or trailing spaces are not accepted.
     if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 
     # example passing only required values which don't have defaults set
@@ -1325,7 +1325,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connector_id** | **str**|  |
  **download_rule_id** | **str**|  |
- **download_rule** | [**DownloadRule**](DownloadRule.md)|  |
+ **download_rule** | [**DownloadRule**](DownloadRule.md)| The target local folder where to write the data. Leading or trailing spaces are not accepted. |
  **if_match** | **str**| Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. | [optional]
 
 ### Return type
@@ -1551,7 +1551,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 display_name="display_name_example",
             ),
         ),
-    ) # UploadRule | 
+    ) # UploadRule | The local folder where to write the data. Leading or trailing spaces are not accepted.
     if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 
     # example passing only required values which don't have defaults set
@@ -1579,7 +1579,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **connector_id** | **str**|  |
  **upload_rule_id** | **str**|  |
- **upload_rule** | [**UploadRule**](UploadRule.md)|  |
+ **upload_rule** | [**UploadRule**](UploadRule.md)| The local folder where to write the data. Leading or trailing spaces are not accepted. |
  **if_match** | **str**| Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client&#39;s most recent value of the &#39;ETag&#39; response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. | [optional]
 
 ### Return type
