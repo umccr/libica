@@ -13,6 +13,10 @@ Name | Type | Description | Notes
 **original_source_object_store_location_prefix** | **str** |  | [optional] 
 **destination_object_store_location** | **str** |  | [optional] 
 **original_source_path** | **str** |  | [optional] 
+**metadata_to_copy** | **list[str]** |  | [optional] 
+**metadata_to_update** | [**object**](.md) |  | [optional] 
+**metadata_items_to_add** | [**object**](.md) |  | [optional] 
+**metadata_items_to_delete** | [**object**](.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -13,6 +13,9 @@ Name | Type | Description | Notes
 **source_folder_id** | **str** |  | [optional] 
 **target_folder_id** | **str** | The Id of the Target Parent Folder where the actual folder is copied | [optional] 
 **destination_folder_id** | **str** | The Id of the actual folder copied under the Target Folder | [optional] 
+**metadata_to_update** | [**object**](.md) |  | [optional] 
+**metadata_items_to_add** | [**object**](.md) |  | [optional] 
+**metadata_items_to_delete** | [**object**](.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

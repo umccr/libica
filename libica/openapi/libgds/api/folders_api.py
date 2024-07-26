@@ -1599,7 +1599,7 @@ class FoldersApi(object):
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param str folder_id: Unique identifier for the folder to be copied. (required)
+        :param str folder_id: Unique identifier for the folder to be moved. (required)
         :param FolderMoveRequest body: (required)
         :param _preload_content: if False, the urllib3.HTTPResponse object will
                                  be returned without reading/decoding response
@@ -1625,7 +1625,7 @@ class FoldersApi(object):
         >>> result = thread.get()
 
         :param async_req bool: execute request asynchronously
-        :param str folder_id: Unique identifier for the folder to be copied. (required)
+        :param str folder_id: Unique identifier for the folder to be moved. (required)
         :param FolderMoveRequest body: (required)
         :param _return_http_data_only: response data without head status code
                                        and headers
