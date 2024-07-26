@@ -1105,7 +1105,7 @@ configuration = libica.openapi.libgds.Configuration(
 with libica.openapi.libgds.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = libica.openapi.libgds.FoldersApi(api_client)
-    folder_id = 'folder_id_example' # str | Unique identifier for the folder to be copied.
+    folder_id = 'folder_id_example' # str | Unique identifier for the folder to be moved.
 body = libica.openapi.libgds.FolderMoveRequest() # FolderMoveRequest | 
 
     try:
@@ -1120,7 +1120,7 @@ body = libica.openapi.libgds.FolderMoveRequest() # FolderMoveRequest |
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **folder_id** | **str**| Unique identifier for the folder to be copied. | 
+ **folder_id** | **str**| Unique identifier for the folder to be moved. | 
  **body** | [**FolderMoveRequest**](FolderMoveRequest.md)|  | 
 
 ### Return type

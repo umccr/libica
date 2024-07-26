@@ -37,6 +37,9 @@ class FileCopyOperationParameters(object):
         'source_file_ids': 'list[str]',
         'target_folder_id': 'str',
         'metadata_to_copy': 'list[str]',
+        'metadata_to_update': 'object',
+        'metadata_items_to_add': 'object',
+        'metadata_items_to_delete': 'object',
         'duplicate_file_action': 'str'
     }
 
@@ -45,10 +48,13 @@ class FileCopyOperationParameters(object):
         'source_file_ids': 'sourceFileIds',
         'target_folder_id': 'targetFolderId',
         'metadata_to_copy': 'metadataToCopy',
+        'metadata_to_update': 'metadataToUpdate',
+        'metadata_items_to_add': 'metadataItemsToAdd',
+        'metadata_items_to_delete': 'metadataItemsToDelete',
         'duplicate_file_action': 'duplicateFileAction'
     }
 
-    def __init__(self, source_volume_id=None, source_file_ids=None, target_folder_id=None, metadata_to_copy=None, duplicate_file_action=None, local_vars_configuration=None):  # noqa: E501
+    def __init__(self, source_volume_id=None, source_file_ids=None, target_folder_id=None, metadata_to_copy=None, metadata_to_update=None, metadata_items_to_add=None, metadata_items_to_delete=None, duplicate_file_action=None, local_vars_configuration=None):  # noqa: E501
         """FileCopyOperationParameters - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration()
@@ -58,6 +64,9 @@ class FileCopyOperationParameters(object):
         self._source_file_ids = None
         self._target_folder_id = None
         self._metadata_to_copy = None
+        self._metadata_to_update = None
+        self._metadata_items_to_add = None
+        self._metadata_items_to_delete = None
         self._duplicate_file_action = None
         self.discriminator = None
 
@@ -69,6 +78,12 @@ class FileCopyOperationParameters(object):
             self.target_folder_id = target_folder_id
         if metadata_to_copy is not None:
             self.metadata_to_copy = metadata_to_copy
+        if metadata_to_update is not None:
+            self.metadata_to_update = metadata_to_update
+        if metadata_items_to_add is not None:
+            self.metadata_items_to_add = metadata_items_to_add
+        if metadata_items_to_delete is not None:
+            self.metadata_items_to_delete = metadata_items_to_delete
         if duplicate_file_action is not None:
             self.duplicate_file_action = duplicate_file_action
 
@@ -157,6 +172,69 @@ class FileCopyOperationParameters(object):
         """
 
         self._metadata_to_copy = metadata_to_copy
+
+    @property
+    def metadata_to_update(self):
+        """Gets the metadata_to_update of this FileCopyOperationParameters.  # noqa: E501
+
+
+        :return: The metadata_to_update of this FileCopyOperationParameters.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata_to_update
+
+    @metadata_to_update.setter
+    def metadata_to_update(self, metadata_to_update):
+        """Sets the metadata_to_update of this FileCopyOperationParameters.
+
+
+        :param metadata_to_update: The metadata_to_update of this FileCopyOperationParameters.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata_to_update = metadata_to_update
+
+    @property
+    def metadata_items_to_add(self):
+        """Gets the metadata_items_to_add of this FileCopyOperationParameters.  # noqa: E501
+
+
+        :return: The metadata_items_to_add of this FileCopyOperationParameters.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata_items_to_add
+
+    @metadata_items_to_add.setter
+    def metadata_items_to_add(self, metadata_items_to_add):
+        """Sets the metadata_items_to_add of this FileCopyOperationParameters.
+
+
+        :param metadata_items_to_add: The metadata_items_to_add of this FileCopyOperationParameters.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata_items_to_add = metadata_items_to_add
+
+    @property
+    def metadata_items_to_delete(self):
+        """Gets the metadata_items_to_delete of this FileCopyOperationParameters.  # noqa: E501
+
+
+        :return: The metadata_items_to_delete of this FileCopyOperationParameters.  # noqa: E501
+        :rtype: object
+        """
+        return self._metadata_items_to_delete
+
+    @metadata_items_to_delete.setter
+    def metadata_items_to_delete(self, metadata_items_to_delete):
+        """Sets the metadata_items_to_delete of this FileCopyOperationParameters.
+
+
+        :param metadata_items_to_delete: The metadata_items_to_delete of this FileCopyOperationParameters.  # noqa: E501
+        :type: object
+        """
+
+        self._metadata_items_to_delete = metadata_items_to_delete
 
     @property
     def duplicate_file_action(self):
