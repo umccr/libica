@@ -42,6 +42,8 @@ paths:
       tags:
       - Analysis Storage
       summary: Retrieve the list of analysis storage options.
+      description: This endpoint only returns V3 items. Use the search project analysis
+        storage endpoint to get V4 items.
       operationId: getAnalysisStorageOptions
       responses:
         default:
@@ -56,6 +58,7 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/AnalysisStorageListV3'
+      deprecated: true
   /api/bundles:
     get:
       tags:
@@ -107,7 +110,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- name\n- shortDescription"
         schema:
           type: string
@@ -594,7 +597,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
@@ -779,15 +782,6 @@ paths:
           \ parameter to get subsequent results"
         schema:
           type: string
-      - name: sort
-        in: query
-        description: "[only use with offset-based paging]<br>Which field to order\
-          \ the results by. The default order is ascending, suffix with ' desc' to\
-          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
-          \ desc\""
-        schema:
-          type: string
       - name: bundleId
         in: path
         required: true
@@ -963,7 +957,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\""
         schema:
           type: string
@@ -1161,7 +1155,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- description\n- metadataValid\n- status"
         schema:
@@ -1457,6 +1451,8 @@ paths:
         schema:
           type: string
       requestBody:
+        description: The local folder where to write the data. Leading or trailing
+          spaces are not accepted.
         content:
           application/vnd.illumina.v3+json:
             schema:
@@ -1558,6 +1554,8 @@ paths:
         schema:
           type: string
       requestBody:
+        description: The local folder where to write the data. Leading or trailing
+          spaces are not accepted.
         content:
           application/vnd.illumina.v3+json:
             schema:
@@ -1648,6 +1646,8 @@ paths:
         schema:
           type: string
       requestBody:
+        description: The target local folder where to write the data. Leading or trailing
+          spaces are not accepted.
         content:
           application/vnd.illumina.v3+json:
             schema:
@@ -1746,6 +1746,8 @@ paths:
         schema:
           type: string
       requestBody:
+        description: The target local folder where to write the data. Leading or trailing
+          spaces are not accepted.
         content:
           application/vnd.illumina.v3+json:
             schema:
@@ -1999,8 +2001,8 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
-          \ desc\""
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- code"
         schema:
           type: string
       responses:
@@ -2067,7 +2069,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- name\n- shortDescription"
         schema:
           type: string
@@ -2097,7 +2099,6 @@ paths:
         required: true
         schema:
           type: string
-          format: uuid
       responses:
         default:
           description: A problem occurred.
@@ -2111,6 +2112,83 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/Bundle'
+  /api/entitledbundles/{entitledBundleId}/termsOfUse:accept:
+    post:
+      tags:
+      - Entitled Bundle
+      summary: Accept terms of use for an entitled bundle
+      operationId: acceptTermsOfUseEntitledBundle
+      parameters:
+      - name: entitledBundleId
+        in: path
+        description: The ID of the entitled bundle where the terms of use are accepted
+          of.
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The terms of use of the entitled bundle is accepted
+  /api/entitledbundles/{entitledBundleId}/termsOfUse:
+    get:
+      tags:
+      - Entitled Bundle
+      summary: Retrieve the last version of terms of use for an entitled bundle.
+      operationId: getEntitledBundleTermsOfUse
+      parameters:
+      - name: entitledBundleId
+        in: path
+        description: The ID of the entitled bundle of the terms of use to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: Terms of use are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/TermsOfUse'
+  /api/entitledbundles/{entitledBundleId}/termsOfUse/userAcceptance/currentUser:
+    get:
+      tags:
+      - Entitled Bundle
+      summary: Retrieve the acceptance record for an entitled bundle for the current
+        user.
+      operationId: getEntitledBundleTermsOfUseAcceptance
+      parameters:
+      - name: entitledBundleId
+        in: path
+        description: The ID of the entitled bundle of the terms of use acceptance
+          records.
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: Terms of use acceptance is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/TermsOfUseAcceptance'
   /api/activationCodes:findBestMatchingForCwl:
     post:
       tags:
@@ -2298,7 +2376,8 @@ paths:
           type: string
       - name: rows
         in: query
-        description: Amount of rows to fetch. Maximum 250. Defaults to 250
+        description: Amount of rows to fetch (chronologically oldest first). Maximum
+          250. Defaults to 250
         schema:
           type: integer
           format: int32
@@ -2315,7 +2394,8 @@ paths:
           content:
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/EventLogList'
+                $ref: '#/components/schemas/EventLogListV3'
+      deprecated: true
   /api/jobs:
     get:
       tags:
@@ -2367,8 +2447,9 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
-          \ desc\""
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
+          - timeStarted\n- timeFinished"
         schema:
           type: string
       responses:
@@ -2606,6 +2687,7 @@ paths:
         This will affect all subscriptions which use this address!Fields which can be updated:
          - enabled
          - address
+         - awsRegion
       operationId: updateNotificationChannel
       parameters:
       - name: channelId
@@ -2989,7 +3071,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
         schema:
@@ -3331,19 +3413,25 @@ paths:
         in: header
         description: "The Idempotency-Key header can be used to prevent duplicate\
           \ requests and support retries. It is implemented according to the IETF\
-          \ spec and is allowed to be max 255 characters long. If the header is supplied,\
-          \ the response of the request will be saved for 7 days for the specific\
-          \ API endpoint, header value and user reference. When the same user makes\
-          \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
-          \ header value, following use cases can occur:<br /><ul><li>the request\
-          \ body is the same as the previous request and an answer is stored => the\
-          \ stored response is returned without executing the request again.</li><li>the\
-          \ request body is the same as the previous request and no answer is stored\
-          \ because the previous request has not finished => 409 error response.</li><li>the\
-          \ request body is not the same as the previous request => 422 error response.</li></ul>This\
-          \ means that each time when executing an API request using the Idempotency-Key\
-          \ header, the request has to contain a new value that hasn't been used in\
-          \ the past 7 days for that specific API and by the specific user."
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
         schema:
           maxLength: 255
           type: string
@@ -3452,15 +3540,6 @@ paths:
           \ amount of rows to return. Use in combination with the offset (when using\
           \ offset-based pagination) or cursor (when using cursor-based pagination)\
           \ parameter to get subsequent results"
-        schema:
-          type: string
-      - name: sort
-        in: query
-        description: "[only use with offset-based paging]<br>Which field to order\
-          \ the results by. The default order is ascending, suffix with ' desc' to\
-          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
-          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -3576,7 +3655,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
         schema:
@@ -3625,19 +3704,25 @@ paths:
         in: header
         description: "The Idempotency-Key header can be used to prevent duplicate\
           \ requests and support retries. It is implemented according to the IETF\
-          \ spec and is allowed to be max 255 characters long. If the header is supplied,\
-          \ the response of the request will be saved for 7 days for the specific\
-          \ API endpoint, header value and user reference. When the same user makes\
-          \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
-          \ header value, following use cases can occur:<br /><ul><li>the request\
-          \ body is the same as the previous request and an answer is stored => the\
-          \ stored response is returned without executing the request again.</li><li>the\
-          \ request body is the same as the previous request and no answer is stored\
-          \ because the previous request has not finished => 409 error response.</li><li>the\
-          \ request body is not the same as the previous request => 422 error response.</li></ul>This\
-          \ means that each time when executing an API request using the Idempotency-Key\
-          \ header, the request has to contain a new value that hasn't been used in\
-          \ the past 7 days for that specific API and by the specific user."
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
         schema:
           maxLength: 255
           type: string
@@ -3697,19 +3782,25 @@ paths:
         in: header
         description: "The Idempotency-Key header can be used to prevent duplicate\
           \ requests and support retries. It is implemented according to the IETF\
-          \ spec and is allowed to be max 255 characters long. If the header is supplied,\
-          \ the response of the request will be saved for 7 days for the specific\
-          \ API endpoint, header value and user reference. When the same user makes\
-          \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
-          \ header value, following use cases can occur:<br /><ul><li>the request\
-          \ body is the same as the previous request and an answer is stored => the\
-          \ stored response is returned without executing the request again.</li><li>the\
-          \ request body is the same as the previous request and no answer is stored\
-          \ because the previous request has not finished => 409 error response.</li><li>the\
-          \ request body is not the same as the previous request => 422 error response.</li></ul>This\
-          \ means that each time when executing an API request using the Idempotency-Key\
-          \ header, the request has to contain a new value that hasn't been used in\
-          \ the past 7 days for that specific API and by the specific user."
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
         schema:
           maxLength: 255
           type: string
@@ -3748,6 +3839,32 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/AnalysisV3'
+  /api/projects/{projectId}/analysisStorages:
+    get:
+      tags:
+      - Project Analysis Storage
+      summary: Retrieve the list of project analysis storage options.
+      operationId: getProjectAnalysisStorageOptions
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project analysis storage options is successfully
+            retrieved.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisStorageListV4'
   /api/projects:
     get:
       tags:
@@ -3822,7 +3939,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- name\n- shortDescription\n\
           - information"
         schema:
@@ -4188,7 +4305,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- description\n\
           - type"
         schema:
@@ -4879,7 +4996,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
@@ -4913,19 +5030,25 @@ paths:
         in: header
         description: "The Idempotency-Key header can be used to prevent duplicate\
           \ requests and support retries. It is implemented according to the IETF\
-          \ spec and is allowed to be max 255 characters long. If the header is supplied,\
-          \ the response of the request will be saved for 7 days for the specific\
-          \ API endpoint, header value and user reference. When the same user makes\
-          \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
-          \ header value, following use cases can occur:<br /><ul><li>the request\
-          \ body is the same as the previous request and an answer is stored => the\
-          \ stored response is returned without executing the request again.</li><li>the\
-          \ request body is the same as the previous request and no answer is stored\
-          \ because the previous request has not finished => 409 error response.</li><li>the\
-          \ request body is not the same as the previous request => 422 error response.</li></ul>This\
-          \ means that each time when executing an API request using the Idempotency-Key\
-          \ header, the request has to contain a new value that hasn't been used in\
-          \ the past 7 days for that specific API and by the specific user."
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
         schema:
           maxLength: 255
           type: string
@@ -5237,7 +5360,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
@@ -6061,6 +6184,7 @@ paths:
       parameters:
       - name: projectId
         in: path
+        description: The ID of the project to which the data will be copied
         required: true
         schema:
           type: string
@@ -6159,15 +6283,6 @@ paths:
           \ amount of rows to return. Use in combination with the offset (when using\
           \ offset-based pagination) or cursor (when using cursor-based pagination)\
           \ parameter to get subsequent results"
-        schema:
-          type: string
-      - name: sort
-        in: query
-        description: "[only use with offset-based paging]<br>Which field to order\
-          \ the results by. The default order is ascending, suffix with ' desc' to\
-          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
-          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -6359,15 +6474,6 @@ paths:
           \ parameter to get subsequent results"
         schema:
           type: string
-      - name: sort
-        in: query
-        description: "[only use with offset-based paging]<br>Which field to order\
-          \ the results by. The default order is ascending, suffix with ' desc' to\
-          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
-          \ desc\""
-        schema:
-          type: string
       - name: projectId
         in: path
         required: true
@@ -6441,6 +6547,172 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectDataLinkingBatchItem'
+  /api/projects/{projectId}/dataMoveBatch:
+    post:
+      tags:
+      - Project Data Move Batch
+      summary: Create a project data move batch.
+      operationId: createProjectDataMoveBatch
+      parameters:
+      - name: projectId
+        in: path
+        description: The ID of the project to which the data will be moved
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDataMoveBatch'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectDataMoveBatch'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The project data move batch is successfully created.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataMoveBatch'
+  /api/projects/{projectId}/dataMoveBatch/{batchId}:
+    get:
+      tags:
+      - Project Data Move Batch
+      summary: Retrieve a project data move batch.
+      operationId: getProjectDataMoveBatch
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project data move batch is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataMoveBatch'
+  /api/projects/{projectId}/dataMoveBatch/{batchId}/items:search:
+    post:
+      tags:
+      - Project Data Move Batch
+      summary: Retrieve a list of project data move batch items.
+      operationId: getProjectDataMoveBatchItems
+      parameters:
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/ProjectDataMoveBatchItemQueryParameters'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectDataMoveBatchItemQueryParameters'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project data move batch items is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataMoveBatchItemPagedList'
+  /api/projects/{projectId}/dataMoveBatch/{batchId}/items/{itemId}:
+    get:
+      tags:
+      - Project Data Move Batch
+      summary: Retrieve a project data move batch item.
+      operationId: getProjectDataMoveBatchItem
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: batchId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: itemId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The project data move batch item is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataMoveBatchItem'
   /api/projects/{projectId}/dataTransfers:
     get:
       tags:
@@ -6494,7 +6766,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - direction\n- connector\n- protocol\n- dataTransferred\n- status\n- statusMessage\n\
           - duration\n"
@@ -6691,15 +6963,6 @@ paths:
           \ parameter to get subsequent results"
         schema:
           type: string
-      - name: sort
-        in: query
-        description: "[only use with offset-based paging]<br>Which field to order\
-          \ the results by. The default order is ascending, suffix with ' desc' to\
-          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
-          \ desc\""
-        schema:
-          type: string
       - name: projectId
         in: path
         required: true
@@ -6870,15 +7133,6 @@ paths:
           \ amount of rows to return. Use in combination with the offset (when using\
           \ offset-based pagination) or cursor (when using cursor-based pagination)\
           \ parameter to get subsequent results"
-        schema:
-          type: string
-      - name: sort
-        in: query
-        description: "[only use with offset-based paging]<br>Which field to order\
-          \ the results by. The default order is ascending, suffix with ' desc' to\
-          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
-          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -8226,7 +8480,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
         schema:
@@ -8292,7 +8546,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
         schema:
@@ -8596,7 +8850,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- path\n- fileSizeInBytes\n- status\n- format\n\
           - dataType\n- willBeArchivedAt\n- willBeDeletedAt"
@@ -8982,19 +9236,25 @@ paths:
         in: header
         description: "The Idempotency-Key header can be used to prevent duplicate\
           \ requests and support retries. It is implemented according to the IETF\
-          \ spec and is allowed to be max 255 characters long. If the header is supplied,\
-          \ the response of the request will be saved for 7 days for the specific\
-          \ API endpoint, header value and user reference. When the same user makes\
-          \ a new request within 7 days to the same API endpoint with the same Idempotency-Key\
-          \ header value, following use cases can occur:<br /><ul><li>the request\
-          \ body is the same as the previous request and an answer is stored => the\
-          \ stored response is returned without executing the request again.</li><li>the\
-          \ request body is the same as the previous request and no answer is stored\
-          \ because the previous request has not finished => 409 error response.</li><li>the\
-          \ request body is not the same as the previous request => 422 error response.</li></ul>This\
-          \ means that each time when executing an API request using the Idempotency-Key\
-          \ header, the request has to contain a new value that hasn't been used in\
-          \ the past 7 days for that specific API and by the specific user."
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
         schema:
           maxLength: 255
           type: string
@@ -9104,15 +9364,6 @@ paths:
           \ amount of rows to return. Use in combination with the offset (when using\
           \ offset-based pagination) or cursor (when using cursor-based pagination)\
           \ parameter to get subsequent results"
-        schema:
-          type: string
-      - name: sort
-        in: query
-        description: "[only use with offset-based paging]<br>Which field to order\
-          \ the results by. The default order is ascending, suffix with ' desc' to\
-          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
-          \ desc\""
         schema:
           type: string
       - name: projectId
@@ -9242,7 +9493,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- workflow\n"
         schema:
@@ -9330,6 +9581,79 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/WorkflowSessionConfigurationList'
+  /api/projects/{projectId}/workflowSessions/{workflowSessionId}/analyses:search:
+    post:
+      tags:
+      - Project Workflow Session
+      summary: Search analyses orchestrated by the workflow session.
+      operationId: searchOrchestratedAnalyses
+      parameters:
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
+          - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- summary\n"
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: workflowSessionId
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/AnalysisQueryParameters'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnalysisQueryParameters'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of orchestrated analyses is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/WorkflowSessionAnalysisPagedListV4'
   /api/projects/{projectId}/workflowSessions:search:
     post:
       tags:
@@ -9366,7 +9690,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- reference\n\
           - userReference\n- pipeline\n- status\n- startDate\n- endDate\n- workflow\n"
         schema:
@@ -9545,7 +9869,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- description\n- metadataValid\n- status"
         schema:
@@ -10235,6 +10559,67 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/Workgroup'
+  /api/eventLog:search:
+    post:
+      tags:
+      - Event Log
+      summary: Search event logs.
+      operationId: searchEventLogs
+      parameters:
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: "[only use with offset-based paging]<br>Which field to order\
+          \ the results by. The default order is ascending, suffix with ' desc' to\
+          \ sort descending (suffix ' asc' also works for ascending). Multiple values\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
+          \ desc\"\n\nThe attributes for which sorting is supported:\n- timeCreated\n"
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/EventLogQueryParametersV4'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventLogQueryParametersV4'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of event logs is successfully retrieved.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/EventLogPagedListV4'
   /api/projects/{projectId}/data:createDownloadUrls:
     post:
       tags:
@@ -10306,7 +10691,7 @@ paths:
         description: "[only use with offset-based paging]<br>Which field to order\
           \ the results by. The default order is ascending, suffix with ' desc' to\
           \ sort descending (suffix ' asc' also works for ascending). Multiple values\
-          \ should be separated with commas. An example: \"?sort=dateCreated, lastName\
+          \ should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2\
           \ desc\"\nThe attributes for which sorting is supported:\n- timeCreated\n\
           - timeModified\n- name\n- description\n- metadataValid\n- status"
         schema:
@@ -11250,7 +11635,6 @@ components:
           $ref: '#/components/schemas/MetadataModel'
         application:
           $ref: '#/components/schemas/Application'
-      nullable: true
     ProjectTag:
       required:
       - technicalTags
@@ -11740,6 +12124,13 @@ components:
           minLength: 1
           type: string
           description: The description of the pipeline
+        status:
+          type: string
+          description: The status of the pipeline
+          nullable: true
+          enum:
+          - DRAFT
+          - RELEASED
         language:
           type: string
           description: The language that is used by the pipeline
@@ -12846,7 +13237,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventCode'
-    EventLog:
+    EventLogV3:
       required:
       - code
       - description
@@ -12897,7 +13288,7 @@ components:
         userId:
           type: string
           format: uuid
-    EventLogList:
+    EventLogListV3:
       required:
       - items
       type: object
@@ -12905,7 +13296,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/EventLog'
+            $ref: '#/components/schemas/EventLogV3'
     JobPagedList:
       required:
       - items
@@ -13062,6 +13453,12 @@ components:
           type: string
           description: "The address where to send a notification to (email address,\
             \ url, ...)"
+        awsRegion:
+          maxLength: 255
+          minLength: 0
+          type: string
+          description: The AWS region of the SNS notification channel
+          nullable: true
     CreateNotificationChannel:
       required:
       - address
@@ -13086,6 +13483,12 @@ components:
           type: string
           description: "The address where to send a notification to (email address,\
             \ url, ...)"
+        awsRegion:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The AWS region of the SNS notification channel
+          nullable: true
     NotificationChannelList:
       required:
       - items
@@ -13192,8 +13595,7 @@ components:
       description: "This object contains a \"oneOf\" construct. Depending on which\
         \ type, you will receive a StringSettings-, IntegerSettings or OptionsSettings\
         \ object."
-      # FIXME originally `oneOf` fixing it to `anyOf` due to https://github.com/umccr-illumina/libica/issues/129
-      anyOf:
+      oneOf:
       - $ref: '#/components/schemas/StringSettings'
       - $ref: '#/components/schemas/IntegerSettings'
       - $ref: '#/components/schemas/OptionSettings'
@@ -13803,6 +14205,13 @@ components:
           minLength: 1
           type: string
           description: The description of the pipeline
+        status:
+          type: string
+          description: The status of the pipeline
+          nullable: true
+          enum:
+          - DRAFT
+          - RELEASED
         language:
           type: string
           description: The language that is used by the pipeline
@@ -14187,11 +14596,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CreateNextflowAnalysis'
+    CreateAnalysisTag:
+      type: object
+      properties:
+        technicalTags:
+          type: array
+          description: Technical tags
+          nullable: true
+          items:
+            type: string
+            description: Technical tags
+            nullable: true
+        userTags:
+          type: array
+          description: User tags
+          nullable: true
+          items:
+            type: string
+            description: User tags
+            nullable: true
+        referenceTags:
+          type: array
+          description: Reference tags
+          nullable: true
+          items:
+            type: string
+            description: Reference tags
+            nullable: true
     CreateCwlAnalysis:
       required:
       - analysisInput
       - pipelineId
-      - tags
       - userReference
       type: object
       properties:
@@ -14206,7 +14641,7 @@ components:
           type: string
           description: The pipeline for which an analysis will be created.
         tags:
-          $ref: '#/components/schemas/AnalysisTag'
+          $ref: '#/components/schemas/CreateAnalysisTag'
         activationCodeDetailId:
           type: string
           description: Indicates under which activation code the pipeline is executed.
@@ -14233,7 +14668,6 @@ components:
       required:
       - analysisInput
       - pipelineId
-      - tags
       - userReference
       type: object
       properties:
@@ -14248,7 +14682,7 @@ components:
           type: string
           description: The pipeline for which an analysis will be created.
         tags:
-          $ref: '#/components/schemas/AnalysisTag'
+          $ref: '#/components/schemas/CreateAnalysisTag'
         activationCodeDetailId:
           type: string
           description: Indicates under which activation code the pipeline is executed.
@@ -14468,6 +14902,15 @@ components:
             type: string
             description: The reference-data-tags to filter on.
             nullable: true
+    AnalysisStorageListV4:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalysisStorageV4'
     ProjectPagedList:
       required:
       - items
@@ -15688,6 +16131,115 @@ components:
           type: string
           description: Additional information regarding the status of this batch item.
           nullable: true
+    ProjectDataMoveBatch:
+      required:
+      - id
+      - job
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        job:
+          $ref: '#/components/schemas/Job'
+        destinationFolderId:
+          type: string
+    CreateProjectDataMoveBatch:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateProjectDataMoveBatchItem'
+        destinationFolderId:
+          type: string
+    CreateProjectDataMoveBatchItem:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+    ProjectDataMoveBatchItem:
+      required:
+      - id
+      - processing
+      - request
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        request:
+          $ref: '#/components/schemas/ProjectDataMoveBatchItemRequest'
+        processing:
+          $ref: '#/components/schemas/ProjectDataMoveBatchItemProcessing'
+        createdProjectData:
+          $ref: '#/components/schemas/ProjectData'
+    ProjectDataMoveBatchItemPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDataMoveBatchItem'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    ProjectDataMoveBatchItemProcessing:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: "The status of the batch item. Possible values are: QUEUED,\
+            \ MOVING, MOVED, PARTIALLY_MOVED, FAILED. More statuses could be added\
+            \ in a future release."
+        additionalStatusInformation:
+          type: string
+          description: Additional information regarding the status of this batch item.
+          nullable: true
+    ProjectDataMoveBatchItemRequest:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+    ProjectDataMoveBatchItemQueryParameters:
+      type: object
+      properties:
+        status:
+          type: array
+          items:
+            pattern: QUEUED|MOVING|MOVED|PARTIALLY_MOVED|FAILED
+            type: string
+            description: The status to filter on.
+            nullable: true
     DataTransferPagedList:
       required:
       - items
@@ -16382,6 +16934,8 @@ components:
     InputPart:
       type: object
       properties:
+        contentTypeFromMessage:
+          type: boolean
         mediaType:
           type: object
           properties:
@@ -16397,29 +16951,27 @@ components:
               type: boolean
             wildcardSubtype:
               type: boolean
+        bodyAsString:
+          type: string
         headers:
           type: object
           additionalProperties:
             type: array
             items:
               type: string
-        bodyAsString:
-          type: string
-        contentTypeFromMessage:
-          type: boolean
     MultipartFormDataInput:
       type: object
       properties:
-        formData:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/InputPart'
         formDataMap:
           type: object
           additionalProperties:
             type: array
             items:
               $ref: '#/components/schemas/InputPart'
+        formData:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/InputPart'
         parts:
           type: array
           items:
@@ -16993,6 +17545,51 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WorkflowSessionConfiguration'
+    WorkflowSessionAnalysisV4:
+      required:
+      - analysis
+      - project
+      - workflowSessionId
+      type: object
+      properties:
+        analysis:
+          $ref: '#/components/schemas/AnalysisV4'
+        project:
+          $ref: '#/components/schemas/Project'
+        workflowSessionId:
+          type: string
+          format: uuid
+    WorkflowSessionAnalysisPagedListV4:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowSessionAnalysisV4'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
     WorkflowSessionPagedListV4:
       required:
       - items
@@ -17354,6 +17951,94 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Workgroup'
+    EventLogV4:
+      required:
+      - code
+      - description
+      - eventTypeCategory
+      - id
+      - owner
+      - tenant
+      - timeCreated
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        owner:
+          $ref: '#/components/schemas/UserIdentifier'
+        tenant:
+          $ref: '#/components/schemas/TenantIdentifier'
+        code:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The code of the event
+        description:
+          maxLength: 1000
+          minLength: 1
+          type: string
+          description: The details of the event
+        eventTypeCategory:
+          pattern: ERROR|WARN|INFO
+          type: string
+          description: The type of the event
+    EventLogPagedListV4:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventLogV4'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    EventLogQueryParametersV4:
+      type: object
+      properties:
+        code:
+          type: string
+          description: The code to filter on.
+          nullable: true
+        category:
+          pattern: ERROR|WARN|INFO
+          type: string
+          description: The category to filter on
+          nullable: true
+        dateFrom:
+          type: string
+          description: The date from to search in.
+          format: date-time
+          nullable: true
+        dateUntil:
+          type: string
+          description: The date until to search in.
+          format: date-time
+          nullable: true
     DataUrlWithPath:
       required:
       - dataId
