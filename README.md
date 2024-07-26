@@ -283,6 +283,12 @@ npx openapi-generator-cli help
 npx redocly lint --help
 ```
 - API mock server `prism` is set up through docker compose as follows.
+
+```
+docker --version
+Docker version 27.0.3, build 7d4bcd8
+```
+
 ```
 make up
 make ps
