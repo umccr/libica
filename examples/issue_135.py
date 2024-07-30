@@ -14,11 +14,12 @@ from libica.openapi.v2.model.analysis_v4 import AnalysisV4
 from libica.openapi.v2.model.create_nextflow_analysis import CreateNextflowAnalysis
 from libica.openapi.v2.model.nextflow_analysis_input import NextflowAnalysisInput
 
-project_id = "7595e8f2-32d3-4c76-a324-c6a85dae87b5"
+project_id = "7595e8f2-32d3-4c76-a324-c6a85dae87b5"  # trial project
+pipeline_id = "fdef5902-3f50-4ee7-ae17-15d38d4b489c"
 
 nextflow_analysis = CreateNextflowAnalysis(
     user_reference='PTC-ctTSO-v2-launch-test-vickie',
-    pipeline_id='fdef5902-3f50-4ee7-ae17-15d38d4b489c',
+    pipeline_id=pipeline_id,
     tags=AnalysisTag(
         reference_tags=[],
         technical_tags=[
@@ -160,14 +161,14 @@ if __name__ == '__main__':
     print(f"libica-{version('libica')}")
     print("-" * 64)
 
-    # Comment / Uncomment to switch the test cases
+    # See https://github.com/umccr-illumina/libica/issues/135
+    # Usage:
+    #   cd examples
+    #   python issue_135.py 2>&1 | tee issue_135.v3.1.log
+    #   python issue_135.py 2>&1 | tee issue_135.v4.1.log
+    #   python issue_135.py 2>&1 | tee issue_135.v4.2.log
 
+    # Comment / Uncomment to switch the test cases
     create_nextflow_analysis_with_v3()
     # create_nextflow_analysis_with_v4()
     # create_nextflow_analysis()
-
-# Usage:
-#   cd examples
-#   python issue_135.py 2>&1 | tee issue_135.v3.1.log
-#   python issue_135.py 2>&1 | tee issue_135.v4.1.log
-#   python issue_135.py 2>&1 | tee issue_135.v4.2.log
