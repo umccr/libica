@@ -31,6 +31,12 @@ project_id = "ea19a3f5-ec7c-4940-a474-c31cd91dbad4"
 
 if __name__ == '__main__':
 
+    # See https://github.com/umccr-illumina/libica/issues/129
+    # Usage:
+    #   icav2 tenants enter umccr-prod
+    #   icav2 projects enter 'development'
+    #   python issue_129.py
+
     for pipeline_id in pipeline_ids:
 
         # Enter a context with an instance of the API client
@@ -48,5 +54,3 @@ if __name__ == '__main__':
                     "Exception when calling ProjectPipelineApi->get_project_pipeline_input_parameters: %s\n" % e)
 
         print(api_response.items)
-
-# See https://github.com/umccr-illumina/libica/issues/129
