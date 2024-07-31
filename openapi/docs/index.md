@@ -2,7 +2,7 @@
 
 Python SDK for Illumina Connected Analytics (ICA) -- https://umccr-illumina.github.io/libica/
 
-- Tested for Python 3.7, 3.8, 3.9, 3.10, 3.11
+- Tested for Python 3.8, 3.9, 3.10, 3.11, 3.12
 - [Test Coverage](https://umccr-illumina.github.io/libica/coverage/)
 - [PyDoc](https://umccr-illumina.github.io/libica/libica/)
 - [Wiki](https://github.com/umccr-illumina/libica/wiki)
