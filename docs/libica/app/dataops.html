@@ -2,18 +2,21 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.10.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
 <title>libica.app.dataops API documentation</title>
-<meta name="description" content="" />
-<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
-<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
-<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
-<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
-<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
 <style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
-<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
-<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
 </head>
 <body>
 <main>
@@ -22,283 +25,6 @@
 <h1 class="title">Module <code>libica.app.dataops</code></h1>
 </header>
 <section id="section-intro">
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">import gzip
-import logging
-from contextlib import closing
-from tempfile import NamedTemporaryFile
-from typing import List
-from urllib.parse import urlparse, urlunsplit, quote_plus, unquote_plus
-
-import requests
-
-from libica.app.projectops import ProjectOps
-from libica.openapi.v2 import ApiException, ApiClient
-from libica.openapi.v2.api.project_data_api import ProjectDataApi
-from libica.openapi.v2.model.download import Download
-from libica.openapi.v2.model.project import Project
-from libica.openapi.v2.model.project_data import ProjectData
-from libica.openapi.v2.model.project_data_paged_list import ProjectDataPagedList
-
-logger = logging.getLogger(__name__)
-
-URI_SCHEME = &#34;icav2&#34;
-
-
-def to_uri(project_name: str, file_path: str) -&gt; str:
-    &#34;&#34;&#34;Warning Experimental
-    NOTE: this is still experimental and early adopter of the following proposal in discussion
-    https://github.com/umccr-illumina/ica_v2/issues/96
-
-    It mimics the GDS scheme as follows:
-        THEN
-            gds://volume_name/path/to/folder/file.txt
-        NOW
-            icav2://owning-project-name/path/to/folder/
-            icav2://owning-project-name/path/to/file.txt
-    &#34;&#34;&#34;
-    netloc = quote_plus(project_name, safe=&#34;/&#34;)
-    path_ = quote_plus(file_path, safe=&#34;/&#34;)
-    return urlunsplit((URI_SCHEME, netloc, path_, &#34;&#34;, &#34;&#34;))
-
-
-def from_uri(icav2_uri: str) -&gt; tuple:
-    &#34;&#34;&#34;
-    Inverse of to_uri()
-    &#34;&#34;&#34;
-    if not icav2_uri.startswith(URI_SCHEME):
-        raise ValueError(f&#34;Unrecognised protocol scheme: {icav2_uri}&#34;)
-
-    icav2_url_obj = urlparse(icav2_uri)
-    return unquote_plus(icav2_url_obj.netloc), unquote_plus(icav2_url_obj.path)
-
-
-class ProjectDataOpsFactory(ProjectOps):
-
-    def __init__(self, api_client: ApiClient = None):
-        super(ProjectDataOpsFactory, self).__init__(api_client=api_client)
-
-    def from_uri(self, icav2_uri: str):
-        project_name, path_ = from_uri(icav2_uri=icav2_uri)
-        project = self.get_project_by_name(project_name=project_name)
-        return ProjectDataOps(project_id=project.id, file_path=path_, api_client=self.api_client)
-
-
-class ProjectDataOps(ProjectOps):
-    &#34;&#34;&#34;Usage:
-    Create ProjectDataOps either using constructor or through available ProjectDataOpsFactory methods.
-
-    Domain model UML class diagram is as follows:
-        ProjectDataOps
-            - private project: Project
-            - private file_path: Any(str | List[str])
-
-    The project property is bind at construction time that can&#39;t be changed after instantiated.
-    The file_path property, however, is allowed to mutate throughout ProjectDataOps object life cycle.
-    &#34;&#34;&#34;
-
-    def __init__(self, project_id: str, file_path=None, api_client: ApiClient = None):
-        super(ProjectDataOps, self).__init__(api_client=api_client)
-        self._project = self.get_project_by_id(project_id=project_id)
-        self.__set_path(file_path=file_path)
-
-    def __set_path(self, file_path):
-        if file_path is None:
-            self._file_path = []  # everything underneath of this project
-        elif isinstance(file_path, str):
-            self._file_path = [file_path]  # wrap str into list
-
-    @property
-    def project(self) -&gt; Project:
-        return self._project
-
-    @property
-    def file_path(self) -&gt; List[str]:
-        return self._file_path
-
-    @file_path.setter
-    def file_path(self, file_path):
-        self.__set_path(file_path=file_path)
-
-    def cd(self, file_path):
-        self.__set_path(file_path=file_path)
-
-    def check_path(self) -&gt; list:
-        &#34;&#34;&#34;Use cases
-        This behaves like UNIX `ls` command whereas you can check an absolute path to file or a directory.
-        You can use it to check whether a file exist in ProjectData because it raises FileNotFoundError.
-        Otherwise, it returns file(s) found.
-
-        NOTE: This wrap list_files but more strict to raise FileNotFoundError if zero match.
-
-        :return: List of ProjectData objects
-        :rtype: list[ProjectData]
-        &#34;&#34;&#34;
-
-        files = self.list_files()
-        if len(files) == 0:
-            raise FileNotFoundError(f&#34;No file(s) found in project {self.project.name} at {self.file_path}&#34;)
-        return files
-
-    def get_file_to_bytes(self) -&gt; bytes:
-        &#34;&#34;&#34;
-        get_object_to_bytes API, with on-the-fly gzip detection and decompression
-
-        :return bytes: bytes from the decompressed File body
-        &#34;&#34;&#34;
-        file_path = self.file_path[0]
-        try:
-            ntf = self.download_file()
-            if file_path.endswith(&#34;.gz&#34;):
-                obj_bytes = gzip.decompress(ntf.read())
-            else:
-                obj_bytes = ntf.read()
-            ntf.close()
-            return obj_bytes
-        except Exception as e:
-            message = f&#34;Failed on reading the specified file in project {self.project.name} at {file_path}&#34;
-            raise FileNotFoundError(f&#34;{message} Exception: {e}&#34;)
-
-    def yield_data(self, page_size=1000):
-        &#34;&#34;&#34;Use cases
-        Generator-based data lister for given project and paths.
-        It will yield data by paginated chunks. Default page size chunk is 1000.
-        If paths are not specified, it will return listing of all data under given project.
-        Listing is recursive in nature for the path.
-        The path can also be an absolute path for a data object.
-
-        :param page_size:
-        &#34;&#34;&#34;
-
-        with closing(self.api_client) as ctx_api_client:
-            project_data_api: ProjectDataApi = ProjectDataApi(api_client=ctx_api_client)
-
-            try:
-                page_token = &#34;&#34;
-                while True:
-                    project_data_paged_list: ProjectDataPagedList = project_data_api.get_project_data_list(
-                        project_id=self.project.id,
-                        file_path=self.file_path,
-                        page_size=str(page_size),
-                        page_token=page_token,
-                    )
-
-                    yield project_data_paged_list.items
-
-                    page_token = project_data_paged_list.next_page_token
-                    if not project_data_paged_list.next_page_token:
-                        break
-
-            except ApiException as e:
-                logger.error(e)
-
-    def list_files(self, page_size=1000, suffix: str = &#34;&#34;) -&gt; list:
-        &#34;&#34;&#34;Use cases
-        Get file listing for given project and paths.
-        If paths are not specified, it will return listing of all files under given project.
-        Listing is recursive in nature for folder path.
-        You can still specify an absolute path for a file.
-
-        :param page_size:
-        :param suffix:
-        :return: List of ProjectData objects
-        :rtype: list[ProjectData]
-        &#34;&#34;&#34;
-        items = []
-
-        if suffix:
-            for chunks in self.yield_data(page_size=page_size):
-                for chunk in chunks:
-                    project_data: ProjectData = chunk
-                    if project_data.data.details is not None:
-                        if str(project_data.data.details.path).endswith(suffix):
-                            items.append(project_data)
-        else:
-            for chunks in self.yield_data(page_size=page_size):
-                items.extend(chunks)
-
-        return items
-
-    def get_download_by_file_id(self, file_id) -&gt; Download:
-        with closing(self.api_client) as ctx_api_client:
-            project_data_api: ProjectDataApi = ProjectDataApi(api_client=ctx_api_client)
-            dl: Download = project_data_api.create_download_url_for_data(
-                project_id=self.project.id,
-                data_id=file_id,
-            )
-            return dl
-
-    def get_download(self) -&gt; (Download, None):
-        file_path = self.file_path[0]
-
-        logger.info(f&#34;Downloading file from project {self.project.name} at {file_path}&#34;)
-
-        file_list = self.list_files()
-
-        if not len(file_list) == 1:
-            logger.warning(f&#34;Please specify a single file. &#34;
-                           f&#34;Found {len(file_list)} files in project {self.project.name} at {file_path}&#34;)
-            return None
-
-        if len(file_list) == 0:
-            logger.warning(f&#34;File not found in in project {self.project.name} at {file_path}&#34;)
-            return None
-
-        prj_data: ProjectData = file_list[0]
-
-        return self.get_download_by_file_id(prj_data.data.id)
-
-    def create_presigned_url(self) -&gt; str:
-        return self.get_download().url
-
-    def crete_presigned_url_by_file_id(self, file_id: str) -&gt; (bool, str):
-        try:
-            dl = self.get_download_by_file_id(file_id)
-            return True, dl.url
-        except ApiException as e:
-            message = f&#34;Failed to sign the specified file {file_id} in project {self.project.name}. Exception - {e}&#34;
-            logger.error(message)
-            return False, message
-
-    def download_file(self) -&gt; (NamedTemporaryFile, None):
-        &#34;&#34;&#34;Retrieve _single_ Project data file
-
-        It collects matching path (one exact file) through list_files().
-        Hence, there should only be one item in the list.
-        Then, we use requests library to download the file from presigned URL to temporary storage.
-        The downloaded file is back by NamedTemporaryFile and, therefore will be deleted once it goes &#39;out of scope&#39;.
-
-        NOTE:
-        If multiple files are found, it warns and return None.
-
-        It is recommended to close NamedTemporaryFile after use.
-        For example, work within closing context manager like so.
-            with closing(ntf) as f:
-                with open(f.name, newline=&#39;&#39;) as csv_file:
-                    csv_reader = csv.reader(csv_file, delimiter=&#39;,&#39;)
-                    ...
-                    ...
-
-        :return NamedTemporaryFile: or None if file is not found or multiple files are found
-        &#34;&#34;&#34;
-        presigned_url = self.create_presigned_url()
-
-        req = requests.get(presigned_url)
-
-        ntf = NamedTemporaryFile()
-        with open(ntf.name, &#39;wb&#39;) as f:
-            f.write(req.content)
-
-        return ntf
-
-
-class BundleDataOps:
-    # TODO
-    pass</code></pre>
-</details>
 </section>
 <section>
 </section>
@@ -312,20 +38,6 @@ class BundleDataOps:
 </code></dt>
 <dd>
 <div class="desc"><p>Inverse of to_uri()</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def from_uri(icav2_uri: str) -&gt; tuple:
-    &#34;&#34;&#34;
-    Inverse of to_uri()
-    &#34;&#34;&#34;
-    if not icav2_uri.startswith(URI_SCHEME):
-        raise ValueError(f&#34;Unrecognised protocol scheme: {icav2_uri}&#34;)
-
-    icav2_url_obj = urlparse(icav2_uri)
-    return unquote_plus(icav2_url_obj.netloc), unquote_plus(icav2_url_obj.path)</code></pre>
-</details>
 </dd>
 <dt id="libica.app.dataops.to_uri"><code class="name flex">
 <span>def <span class="ident">to_uri</span></span>(<span>project_name: str, file_path: str) ‑> str</span>
@@ -340,26 +52,6 @@ gds://volume_name/path/to/folder/file.txt
 NOW
 icav2://owning-project-name/path/to/folder/
 icav2://owning-project-name/path/to/file.txt</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def to_uri(project_name: str, file_path: str) -&gt; str:
-    &#34;&#34;&#34;Warning Experimental
-    NOTE: this is still experimental and early adopter of the following proposal in discussion
-    https://github.com/umccr-illumina/ica_v2/issues/96
-
-    It mimics the GDS scheme as follows:
-        THEN
-            gds://volume_name/path/to/folder/file.txt
-        NOW
-            icav2://owning-project-name/path/to/folder/
-            icav2://owning-project-name/path/to/file.txt
-    &#34;&#34;&#34;
-    netloc = quote_plus(project_name, safe=&#34;/&#34;)
-    path_ = quote_plus(file_path, safe=&#34;/&#34;)
-    return urlunsplit((URI_SCHEME, netloc, path_, &#34;&#34;, &#34;&#34;))</code></pre>
-</details>
 </dd>
 </dl>
 </section>
@@ -611,7 +303,7 @@ The file_path property, however, is allowed to mutate throughout ProjectDataOps 
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="libica.app.dataops.ProjectDataOps.file_path"><code class="name">var <span class="ident">file_path</span> : List[str]</code></dt>
+<dt id="libica.app.dataops.ProjectDataOps.file_path"><code class="name">prop <span class="ident">file_path</span> : List[str]</code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -623,7 +315,7 @@ def file_path(self) -&gt; List[str]:
     return self._file_path</code></pre>
 </details>
 </dd>
-<dt id="libica.app.dataops.ProjectDataOps.project"><code class="name">var <span class="ident">project</span> : <a title="libica.openapi.v2.model.project.Project" href="../openapi/v2/model/project.html#libica.openapi.v2.model.project.Project">Project</a></code></dt>
+<dt id="libica.app.dataops.ProjectDataOps.project"><code class="name">prop <span class="ident">project</span> : <a title="libica.openapi.v2.model.project.Project" href="../openapi/v2/model/project.html#libica.openapi.v2.model.project.Project">Project</a></code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -643,13 +335,6 @@ def project(self) -&gt; Project:
 </code></dt>
 <dd>
 <div class="desc"></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def cd(self, file_path):
-    self.__set_path(file_path=file_path)</code></pre>
-</details>
 </dd>
 <dt id="libica.app.dataops.ProjectDataOps.check_path"><code class="name flex">
 <span>def <span class="ident">check_path</span></span>(<span>self) ‑> list</span>
@@ -662,62 +347,21 @@ Otherwise, it returns file(s) found.</p>
 <p>NOTE: This wrap list_files but more strict to raise FileNotFoundError if zero match.</p>
 <p>:return: List of ProjectData objects
 :rtype: list[ProjectData]</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def check_path(self) -&gt; list:
-    &#34;&#34;&#34;Use cases
-    This behaves like UNIX `ls` command whereas you can check an absolute path to file or a directory.
-    You can use it to check whether a file exist in ProjectData because it raises FileNotFoundError.
-    Otherwise, it returns file(s) found.
-
-    NOTE: This wrap list_files but more strict to raise FileNotFoundError if zero match.
-
-    :return: List of ProjectData objects
-    :rtype: list[ProjectData]
-    &#34;&#34;&#34;
-
-    files = self.list_files()
-    if len(files) == 0:
-        raise FileNotFoundError(f&#34;No file(s) found in project {self.project.name} at {self.file_path}&#34;)
-    return files</code></pre>
-</details>
 </dd>
 <dt id="libica.app.dataops.ProjectDataOps.create_presigned_url"><code class="name flex">
 <span>def <span class="ident">create_presigned_url</span></span>(<span>self) ‑> str</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def create_presigned_url(self) -&gt; str:
-    return self.get_download().url</code></pre>
-</details>
 </dd>
 <dt id="libica.app.dataops.ProjectDataOps.crete_presigned_url_by_file_id"><code class="name flex">
 <span>def <span class="ident">crete_presigned_url_by_file_id</span></span>(<span>self, file_id: str) ‑> (<class 'bool'>, <class 'str'>)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def crete_presigned_url_by_file_id(self, file_id: str) -&gt; (bool, str):
-    try:
-        dl = self.get_download_by_file_id(file_id)
-        return True, dl.url
-    except ApiException as e:
-        message = f&#34;Failed to sign the specified file {file_id} in project {self.project.name}. Exception - {e}&#34;
-        logger.error(message)
-        return False, message</code></pre>
-</details>
 </dd>
 <dt id="libica.app.dataops.ProjectDataOps.download_file"><code class="name flex">
-<span>def <span class="ident">download_file</span></span>(<span>self) ‑> (<function NamedTemporaryFile at 0x1037dcea0>, None)</span>
+<span>def <span class="ident">download_file</span></span>(<span>self) ‑> (<function NamedTemporaryFile at 0x106a57880>, None)</span>
 </code></dt>
 <dd>
 <div class="desc"><p>Retrieve <em>single</em> Project data file</p>
@@ -735,90 +379,18 @@ csv_reader = csv.reader(csv_file, delimiter=',')
 &hellip;
 &hellip;</p>
 <p>:return NamedTemporaryFile: or None if file is not found or multiple files are found</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def download_file(self) -&gt; (NamedTemporaryFile, None):
-    &#34;&#34;&#34;Retrieve _single_ Project data file
-
-    It collects matching path (one exact file) through list_files().
-    Hence, there should only be one item in the list.
-    Then, we use requests library to download the file from presigned URL to temporary storage.
-    The downloaded file is back by NamedTemporaryFile and, therefore will be deleted once it goes &#39;out of scope&#39;.
-
-    NOTE:
-    If multiple files are found, it warns and return None.
-
-    It is recommended to close NamedTemporaryFile after use.
-    For example, work within closing context manager like so.
-        with closing(ntf) as f:
-            with open(f.name, newline=&#39;&#39;) as csv_file:
-                csv_reader = csv.reader(csv_file, delimiter=&#39;,&#39;)
-                ...
-                ...
-
-    :return NamedTemporaryFile: or None if file is not found or multiple files are found
-    &#34;&#34;&#34;
-    presigned_url = self.create_presigned_url()
-
-    req = requests.get(presigned_url)
-
-    ntf = NamedTemporaryFile()
-    with open(ntf.name, &#39;wb&#39;) as f:
-        f.write(req.content)
-
-    return ntf</code></pre>
-</details>
 </dd>
 <dt id="libica.app.dataops.ProjectDataOps.get_download"><code class="name flex">
 <span>def <span class="ident">get_download</span></span>(<span>self) ‑> (<class '<a title="libica.openapi.v2.model.download.Download" href="../openapi/v2/model/download.html#libica.openapi.v2.model.download.Download">Download</a>'>, None)</span>
 </code></dt>
 <dd>
 <div class="desc"></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def get_download(self) -&gt; (Download, None):
-    file_path = self.file_path[0]
-
-    logger.info(f&#34;Downloading file from project {self.project.name} at {file_path}&#34;)
-
-    file_list = self.list_files()
-
-    if not len(file_list) == 1:
-        logger.warning(f&#34;Please specify a single file. &#34;
-                       f&#34;Found {len(file_list)} files in project {self.project.name} at {file_path}&#34;)
-        return None
-
-    if len(file_list) == 0:
-        logger.warning(f&#34;File not found in in project {self.project.name} at {file_path}&#34;)
-        return None
-
-    prj_data: ProjectData = file_list[0]
-
-    return self.get_download_by_file_id(prj_data.data.id)</code></pre>
-</details>
 </dd>
 <dt id="libica.app.dataops.ProjectDataOps.get_download_by_file_id"><code class="name flex">
 <span>def <span class="ident">get_download_by_file_id</span></span>(<span>self, file_id) ‑> <a title="libica.openapi.v2.model.download.Download" href="../openapi/v2/model/download.html#libica.openapi.v2.model.download.Download">Download</a></span>
 </code></dt>
 <dd>
 <div class="desc"></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def get_download_by_file_id(self, file_id) -&gt; Download:
-    with closing(self.api_client) as ctx_api_client:
-        project_data_api: ProjectDataApi = ProjectDataApi(api_client=ctx_api_client)
-        dl: Download = project_data_api.create_download_url_for_data(
-            project_id=self.project.id,
-            data_id=file_id,
-        )
-        return dl</code></pre>
-</details>
 </dd>
 <dt id="libica.app.dataops.ProjectDataOps.get_file_to_bytes"><code class="name flex">
 <span>def <span class="ident">get_file_to_bytes</span></span>(<span>self) ‑> bytes</span>
@@ -826,29 +398,6 @@ csv_reader = csv.reader(csv_file, delimiter=',')
 <dd>
 <div class="desc"><p>get_object_to_bytes API, with on-the-fly gzip detection and decompression</p>
 <p>:return bytes: bytes from the decompressed File body</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def get_file_to_bytes(self) -&gt; bytes:
-    &#34;&#34;&#34;
-    get_object_to_bytes API, with on-the-fly gzip detection and decompression
-
-    :return bytes: bytes from the decompressed File body
-    &#34;&#34;&#34;
-    file_path = self.file_path[0]
-    try:
-        ntf = self.download_file()
-        if file_path.endswith(&#34;.gz&#34;):
-            obj_bytes = gzip.decompress(ntf.read())
-        else:
-            obj_bytes = ntf.read()
-        ntf.close()
-        return obj_bytes
-    except Exception as e:
-        message = f&#34;Failed on reading the specified file in project {self.project.name} at {file_path}&#34;
-        raise FileNotFoundError(f&#34;{message} Exception: {e}&#34;)</code></pre>
-</details>
 </dd>
 <dt id="libica.app.dataops.ProjectDataOps.list_files"><code class="name flex">
 <span>def <span class="ident">list_files</span></span>(<span>self, page_size=1000, suffix: str = '') ‑> list</span>
@@ -863,37 +412,6 @@ You can still specify an absolute path for a file.</p>
 :param suffix:
 :return: List of ProjectData objects
 :rtype: list[ProjectData]</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def list_files(self, page_size=1000, suffix: str = &#34;&#34;) -&gt; list:
-    &#34;&#34;&#34;Use cases
-    Get file listing for given project and paths.
-    If paths are not specified, it will return listing of all files under given project.
-    Listing is recursive in nature for folder path.
-    You can still specify an absolute path for a file.
-
-    :param page_size:
-    :param suffix:
-    :return: List of ProjectData objects
-    :rtype: list[ProjectData]
-    &#34;&#34;&#34;
-    items = []
-
-    if suffix:
-        for chunks in self.yield_data(page_size=page_size):
-            for chunk in chunks:
-                project_data: ProjectData = chunk
-                if project_data.data.details is not None:
-                    if str(project_data.data.details.path).endswith(suffix):
-                        items.append(project_data)
-    else:
-        for chunks in self.yield_data(page_size=page_size):
-            items.extend(chunks)
-
-    return items</code></pre>
-</details>
 </dd>
 <dt id="libica.app.dataops.ProjectDataOps.yield_data"><code class="name flex">
 <span>def <span class="ident">yield_data</span></span>(<span>self, page_size=1000)</span>
@@ -906,43 +424,6 @@ If paths are not specified, it will return listing of all data under given proje
 Listing is recursive in nature for the path.
 The path can also be an absolute path for a data object.</p>
 <p>:param page_size:</p></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def yield_data(self, page_size=1000):
-    &#34;&#34;&#34;Use cases
-    Generator-based data lister for given project and paths.
-    It will yield data by paginated chunks. Default page size chunk is 1000.
-    If paths are not specified, it will return listing of all data under given project.
-    Listing is recursive in nature for the path.
-    The path can also be an absolute path for a data object.
-
-    :param page_size:
-    &#34;&#34;&#34;
-
-    with closing(self.api_client) as ctx_api_client:
-        project_data_api: ProjectDataApi = ProjectDataApi(api_client=ctx_api_client)
-
-        try:
-            page_token = &#34;&#34;
-            while True:
-                project_data_paged_list: ProjectDataPagedList = project_data_api.get_project_data_list(
-                    project_id=self.project.id,
-                    file_path=self.file_path,
-                    page_size=str(page_size),
-                    page_token=page_token,
-                )
-
-                yield project_data_paged_list.items
-
-                page_token = project_data_paged_list.next_page_token
-                if not project_data_paged_list.next_page_token:
-                    break
-
-        except ApiException as e:
-            logger.error(e)</code></pre>
-</details>
 </dd>
 </dl>
 </dd>
@@ -978,15 +459,6 @@ The path can also be an absolute path for a data object.</p>
 </code></dt>
 <dd>
 <div class="desc"></div>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def from_uri(self, icav2_uri: str):
-    project_name, path_ = from_uri(icav2_uri=icav2_uri)
-    project = self.get_project_by_name(project_name=project_name)
-    return ProjectDataOps(project_id=project.id, file_path=path_, api_client=self.api_client)</code></pre>
-</details>
 </dd>
 </dl>
 </dd>
@@ -994,7 +466,6 @@ The path can also be an absolute path for a data object.</p>
 </section>
 </article>
 <nav id="sidebar">
-<h1>Index</h1>
 <div class="toc">
 <ul></ul>
 </div>
@@ -1044,7 +515,7 @@ The path can also be an absolute path for a data object.</p>
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
 </footer>
 </body>
 </html>
