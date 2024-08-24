@@ -1,15 +1,12 @@
 {
   "scripts": {
-    "audit": "yarn npm audit"
+    "audit": "yarn npm audit",
+    "openapi-generator-cli": "openapi-generator-cli",
+    "redocly": "redocly"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.13.4",
-    "@redocly/cli": "^1.18.1"
+    "@openapitools/openapi-generator-cli": "^2.13.5",
+    "@redocly/cli": "^1.21.0"
   },
-  "resolutions": {
-    "braces": "^3.0.3",
-    "tar": "^6.2.1",
-    "ws": "^7.5.10"
-  },
-  "packageManager": "yarn@4.3.1"
+  "packageManager": "yarn@4.4.0"
 }
