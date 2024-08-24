@@ -1,6 +1,6 @@
 from os import environ
 
-from importlib_metadata import version
+from importlib.metadata import version
 
 from libica.openapi.v2 import ApiClient, Configuration, ApiException
 from libica.openapi.v2.api.project_pipeline_api import ProjectPipelineApi

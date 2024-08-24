@@ -6,10 +6,9 @@
 [![PyPI](https://img.shields.io/pypi/v/libica?style=flat)](https://pypi.org/project/libica) 
 [![PyPI - License](https://img.shields.io/pypi/l/libica?style=flat)](https://opensource.org/licenses/MIT)
 
-Python SDK to programmatically call Illumina Connected Analytics (ICA) Genomic (multi-omics) data platform and BioInformatics web services. This SDK supports both ICA v1 and v2 APIs:
+Python SDK to programmatically call Illumina Connected Analytics (ICA) Genomic (multi-omics) data platform and BioInformatics web services. This SDK supports ICA v2 API.
 
-- ICAv1 API: https://illumina.gitbook.io/ica-v1/reference/r-api
-- ICAv2 API: https://help.ica.illumina.com/reference/r-api
+- ICA v2 API: https://help.ica.illumina.com/reference/r-api
 - Install through ``pip`` like so:
 ```commandline
 pip install libica
@@ -18,11 +17,20 @@ pip install libica
 ## Overview
 
 - Tested for Python 3.8, 3.9, 3.10, 3.11, 3.12
-- See [ChangeLog](https://github.com/umccr-illumina/libica/blob/main/CHANGELOG.md) and [Milestones](https://github.com/umccr-illumina/libica/milestones?state=closed)
+- See [changelog](https://github.com/umccr-illumina/libica/blob/main/CHANGELOG.md) and [closed milestones](https://github.com/umccr-illumina/libica/milestones?state=closed)
 - [Test Coverage](https://umccr-illumina.github.io/libica/coverage/)
 - [Wiki](https://github.com/umccr-illumina/libica/wiki)
 - SDK Guide: [PyDoc](https://umccr-illumina.github.io/libica/libica/)
 - User Guide: https://umccr-illumina.github.io/libica/
+
+## Roadmap
+
+- See opening [milestones](https://github.com/umccr-illumina/libica/milestones) for current planning and next SDK release
+
+## Example
+
+- See [examples](examples) directory for some example scripts
+- See [wrapica](https://github.com/umccr/wrapica) and [icav2-cli-plugins](https://github.com/umccr/icav2-cli-plugins) for client application that build on top of SDK
 
 ## Getting started with SDK for ICA v2
 
@@ -85,156 +93,6 @@ if __name__ == '__main__':
 
         except ApiException as e:
             print(e)
-```
-
-You may consider **Using App Package** (see below).
-
-## Getting started with SDK for ICA v1
-
-- Export ICA base URL and JWT Bearer token:
-```
-export ICA_BASE_URL=<baseUrl>
-export ICA_ACCESS_TOKEN=<tok>
-```
-
-- Generate Bearer JWT token using [ICA CLI](https://sapac.support.illumina.com/sequencing/sequencing_software/illumina-connected-analytics.html) like so:
-```commandline
-ica tokens create --help
-```
-
-- Somewhere in your Python code:
-```python
-import os
-from libica.openapi import libwes
-from libica.openapi.libwes import WorkflowList, WorkflowCompact
-
-ica_base_url = os.getenv("ICA_BASE_URL")
-ica_access_token = os.getenv("ICA_ACCESS_TOKEN")
-
-configuration = libwes.Configuration(
-    host=ica_base_url,
-    api_key={
-        'Authorization': ica_access_token
-    },
-    api_key_prefix={
-        'Authorization': "Bearer"
-    },
-)
-
-with libwes.ApiClient(configuration) as api_client:
-
-    wfl_api: libwes.WorkflowsApi = libwes.WorkflowsApi(api_client)
-    try:
-        page_token = None
-        while True:
-            wfl_list: WorkflowList = wfl_api.list_workflows(page_size=100, page_token=page_token)
-            # print(wfl_list)
-            for item in wfl_list.items:
-                wfl: WorkflowCompact = item
-                print(wfl.id)
-                print(wfl.name)
-            page_token = wfl_list.next_page_token
-            if not wfl_list.next_page_token:
-                break
-    except libwes.ApiException as e:
-        print(e)
-```
-
-## Using [App Package](https://umccr-illumina.github.io/libica/libica/app/index.html)
-
-> NOTE: `libica.app` package contains reusable modules that are based on use cases around UMCCR [Data Portal backend](https://github.com/umccr/data-portal-apis), [Workflows automation and orchestration](https://github.com/umccr/data-portal-apis/tree/dev/docs/pipeline) implementations. Hence, it may be a specific domain logic implementation. However, it may still be reusable for your use cases. Starter examples are as follows.
-
-### App for ICA v2
-
-See [pilotapp.py](https://github.com/umccr-illumina/libica/blob/main/examples/pilotapp.py)
-
-Example: `ProjectDataOps` app to list project files, download a file, etc...
-
-```python
-from contextlib import closing
-
-from libica.app import AppHelper
-from libica.app.dataops import ProjectDataOps
-from libica.openapi.v2 import ApiClient
-from libica.openapi.v2.model.project_data import ProjectData
-
-# --- Use AppHelper to build SDK API client
-
-app_helper = AppHelper(debug=False)
-project_id = app_helper.get_icav2_cli_session_project_id()
-
-cli_session_api_client: ApiClient = app_helper \
-    .build_icav2_configuration_with_cli_session() \
-    .get_icav2_api_client()
-
-# --- Construct ProjectDataOps from dataops module
-
-project_dataops = ProjectDataOps(project_id=project_id, api_client=cli_session_api_client)
-
-# --- List all files under given project's folder
-
-# If you do not cd into the folder, it will list all files under the project
-project_dataops.cd("/test_folder/")
-
-for item in project_dataops.list_files():
-    project_data: ProjectData = item
-    print((
-        project_data.data.id,  # fil.<ID> (or) fol.<ID>
-        project_data.data.details.path,
-        project_data.data.details.data_type,
-        project_data.data.details.name,
-        project_data.data.details.status,
-        project_data.data.details.file_size_in_bytes,
-        project_data.data.details.time_created,
-    ))
-
-# --- Download csv file from given project and file path
-
-file_path = "/test_folder/SampleSheet.csv"
-print(f"Downloading {file_path} from project_id {project_id}")
-project_dataops.cd(file_path=file_path)
-ntf = project_dataops.download_file()
-with closing(ntf) as cf:
-    with open(cf.name, 'r') as f:
-        for line in f.readlines():
-            print(line)
-```
-
-For more, see PyDoc: 
-- https://umccr-illumina.github.io/libica/libica/app/dataops.html
-
-### App for ICA v1
-
-Example: Configuration Object Builder
-
-```python
-from libica.app import configuration
-from libica.openapi import libgds
-
-gds_config = configuration(
-  lib=libgds,  # pass in library of interest e.g. libwes, libtes, etc 
-  secret_name=["FROM_AWS_SECRET_MANAGER_THAT_STORE_ICA_ACCESS_TOKEN"],
-  base_url="https://use1.platform.illumina.com",  # overwrite if not https://aps2.platform.illumina.com
-  debug=False,  # True if you like to debug API calls, False by default anyway, just for demo
-)
-
-with libgds.ApiClient(gds_config) as api_client:
-    ...
-```
-
-Example: Listing Files from GDS
-
-```python
-from typing import List
-
-from libica.app import gds
-from libica.openapi import libgds
-
-vol, path = gds.parse_path("gds://development/some/folder/path/")
-files: List[libgds.FileResponse] = gds.get_file_list(volume_name=vol, path=path)
-
-for file in files:
-  print(f"{file.name}, {file.volume_name}, {file.path}, {file.presigned_url}")
 ```
 
 ## Development
