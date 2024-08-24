@@ -10,7 +10,7 @@ PYTHON_GEN_PROP=generateSourceCodeOnly=true,hideGenerationTimestamp=false
 declare docsrc="openapi/docs"
 
 _deps() {
-  cmds="wget rsync sed curl npx"
+  cmds="wget rsync sed curl yarn"
   for i in $cmds; do
     if command -v "$i" >/dev/null; then
       continue
@@ -28,7 +28,7 @@ getapi() {
 }
 
 genapi() {
-  npx openapi-generator-cli generate -i swagger/$OPENAPI_YAML -g python -o . \
+  yarn openapi-generator-cli generate -i swagger/$OPENAPI_YAML -g python -o . \
     --global-property=apiDocs=true,apiTests=true,modelDocs=true,modelTests=true \
     --additional-properties="$PYTHON_GEN_PROP",packageName=libica.openapi.v2
 }
@@ -66,6 +66,6 @@ chkepver() {
 
 validateapi() {
   # validate openapi definitions
-  npx openapi-generator-cli validate -i swagger/$OPENAPI_YAML
+  yarn openapi-generator-cli validate -i swagger/$OPENAPI_YAML
   openapi-spec-validator swagger/$OPENAPI_YAML
 }
