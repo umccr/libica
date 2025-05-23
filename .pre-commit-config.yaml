@@ -1,10 +1,10 @@
 repos:
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v5.0.0
     hooks:
       - id: check-added-large-files
-        exclude: ^(yarn.lock|.yarn/|docs/)
+        exclude: ^(package-lock.json|docs/)
 #      - id: check-json
 #      - id: check-yaml
 #      - id: detect-aws-credentials
@@ -23,9 +23,9 @@ repos:
 #        exclude: ^(skel/)
 
   - repo: https://github.com/Yelp/detect-secrets
-    rev: v1.4.0
+    rev: v1.5.0
     hooks:
       - id: detect-secrets
         name: detect secrets
         args: [ '--baseline', '.secrets.baseline' ]
-        exclude: ^(yarn.lock|.yarn/|.yarnrc.yml|.local/|docs/|openapi/|swagger/)
+        exclude: ^(package-lock.json|.local/|docs/|openapi/|swagger/)

@@ -10,6 +10,9 @@ deep: scan
 pre-commit:
 	@pre-commit run --all-files
 
+baseline:
+	@detect-secrets scan --exclude-files '^(package-lock.json|.local/|docs/|openapi/|swagger/)' > .secrets.baseline
+
 .PHONY: doc
 doc:
 	@pdoc --force --html libica -o docs/
@@ -39,7 +42,7 @@ test_icav2_mock:
 
 install:
 	@pip install '.[test,dev]'
-	@yarn install
+	@npm install
 	@pre-commit install
 
 unit:
