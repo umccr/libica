@@ -129,22 +129,18 @@ make test
 - Toolchains are as follows.
 ```commandline
 node -v
-v20.17.0
+v20.19.2
 
-npm i -g yarn
-yarn -v
-4.4.0
+npm install
 
-yarn install
-
-yarn openapi-generator-cli help
-yarn redocly lint --help
+npx openapi-generator-cli help
+npx redocly lint --help
 ```
 - API mock server `prism` is set up through docker compose as follows.
 
 ```
 docker --version
-Docker version 27.1.1, build 6312585
+Docker version 28.1.1, build 4eba377
 ```
 
 ```
@@ -162,7 +158,7 @@ docker compose logs
 - Select generator version as follows:
 
 ```
-yarn openapi-generator-cli version-manager list
+npx openapi-generator-cli version-manager list
 ```
 
 ## Notice

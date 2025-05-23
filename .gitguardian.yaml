@@ -25,7 +25,6 @@ secret:
     - 'LICENSE'
     - 'docs/*'
     - 'openapi/*'
-    - '.yarn/*'
 
   # Ignore security incidents with the SHA256 of the occurrence obtained at output or the secret itself
 #  ignored-matches:

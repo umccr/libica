@@ -1,12 +1,10 @@
 {
   "scripts": {
-    "audit": "yarn npm audit",
     "openapi-generator-cli": "openapi-generator-cli",
     "redocly": "redocly"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.13.5",
-    "@redocly/cli": "^1.21.0"
-  },
-  "packageManager": "yarn@4.4.0"
+    "@openapitools/openapi-generator-cli": "^2.20.2",
+    "@redocly/cli": "^1.34.3"
+  }
 }
