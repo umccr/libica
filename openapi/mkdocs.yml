@@ -1,10 +1,5 @@
 site_name: libica
 nav:
-  - libwes: libwes/README.md
-  - libtes: libtes/README.md
-  - libgds: libgds/README.md
-  - libens: libens/README.md
-  - libconsole: libconsole/README.md
   - v2: v2/README.md
   - app: app/README.md
 
