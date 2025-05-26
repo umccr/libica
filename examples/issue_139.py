@@ -65,7 +65,7 @@ if __name__ == '__main__':
     print(f"libica-{version('libica')}")
     print("-" * 64)
 
-    # See https://github.com/umccr-illumina/libica/issues/139
+    # See https://github.com/umccr/libica/issues/139
     # Usage:
     #   export ICAV2_BASE_URL=https://ica.illumina.com/ica/rest
     #   export ICAV2_ACCESS_TOKEN=<token>

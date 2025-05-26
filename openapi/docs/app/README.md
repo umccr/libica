@@ -1,12 +1,12 @@
 # libica.app
 
-## Using [App Package](https://umccr-illumina.github.io/libica/libica/app/index.html)
+## Using [App Package](https://umccr.github.io/libica/libica/app/index.html)
 
 > NOTE: `libica.app` package contains reusable modules that are based on use cases around UMCCR [Data Portal backend](https://github.com/umccr/data-portal-apis), [Workflows automation and orchestration](https://github.com/umccr/data-portal-apis/tree/dev/docs/pipeline) implementations. Hence, it may be a specific domain logic implementation. However, it may still be reusable for your use cases. Starter examples are as follows.
 
 ### App for ICA v2
 
-See [pilotapp.py](https://github.com/umccr-illumina/libica/blob/main/examples/pilotapp.py)
+See [pilotapp.py](https://github.com/umccr/libica/blob/main/examples/pilotapp.py)
 
 Example: `ProjectDataOps` app to list project files, download a file, etc...
 
@@ -61,7 +61,7 @@ with closing(ntf) as cf:
 ```
 
 For more, see PyDoc: 
-- https://umccr-illumina.github.io/libica/libica/app/dataops.html
+- https://umccr.github.io/libica/libica/app/dataops.html
 
 ### App for ICA v1
 

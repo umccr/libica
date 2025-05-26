@@ -33,7 +33,7 @@ ica_url = "https://ica.illumina.com/ica/rest"
 configuration = Configuration(
     host=ica_url,
     access_token=icav2_access_token,
-    form_filename_basename=False,  # See use case https://github.com/umccr-illumina/libica/issues/74
+    form_filename_basename=False,  # See use case https://github.com/umccr/libica/issues/74
 )
 # configuration.debug = True  # uncomment to debug API call logging
 

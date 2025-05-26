@@ -21,13 +21,13 @@ theme:
         icon: material/toggle-switch
         name: Switch to light mode
 
-repo_name: umccr-illumina/libica
-repo_url: https://github.com/umccr-illumina/libica
+repo_name: umccr/libica
+repo_url: https://github.com/umccr/libica
 
 extra:
   social:
     - icon: fontawesome/brands/github-alt
-      link: https://github.com/umccr-illumina/libica
+      link: https://github.com/umccr/libica
     - icon: fontawesome/brands/twitter
       link: https://twitter.com/umccr
 

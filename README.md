@@ -1,7 +1,7 @@
 # libica
 
 [//]: # (FIXME commented out PR Build status as it don't get run for some reason...)
-[//]: # ([![Pull Request Build Status]&#40;https://github.com/umccr-illumina/libica/workflows/Pull%20Request%20Build/badge.svg&#41;]&#40;https://github.com/umccr-illumina/libica/actions&#41; )
+[//]: # ([![Pull Request Build Status]&#40;https://github.com/umccr/libica/workflows/Pull%20Request%20Build/badge.svg&#41;]&#40;https://github.com/umccr/libica/actions&#41; )
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/libica?style=flat)](https://pypistats.org/packages/libica) 
 [![PyPI](https://img.shields.io/pypi/v/libica?style=flat)](https://pypi.org/project/libica) 
 [![PyPI - License](https://img.shields.io/pypi/l/libica?style=flat)](https://opensource.org/licenses/MIT)
@@ -17,24 +17,24 @@ pip install libica
 ## Overview
 
 - Tested for Python 3.8, 3.9, 3.10, 3.11, 3.12
-- See [changelog](https://github.com/umccr-illumina/libica/blob/main/CHANGELOG.md) and [closed milestones](https://github.com/umccr-illumina/libica/milestones?state=closed)
-- [Test Coverage](https://umccr-illumina.github.io/libica/coverage/)
-- [Wiki](https://github.com/umccr-illumina/libica/wiki)
-- SDK Guide: [PyDoc](https://umccr-illumina.github.io/libica/libica/)
-- User Guide: https://umccr-illumina.github.io/libica/
+- See [changelog](https://github.com/umccr/libica/blob/main/CHANGELOG.md) and [closed milestones](https://github.com/umccr/libica/milestones?state=closed)
+- [Test Coverage](https://umccr.github.io/libica/coverage/)
+- [Wiki](https://github.com/umccr/libica/wiki)
+- SDK Guide: [PyDoc](https://umccr.github.io/libica/libica/)
+- User Guide: https://umccr.github.io/libica/
 
 ## Roadmap
 
-- See opening [milestones](https://github.com/umccr-illumina/libica/milestones) for current planning and next SDK release
+- See opening [milestones](https://github.com/umccr/libica/milestones) for current planning and next SDK release
 
 ## Example
 
-- See [examples](https://github.com/umccr-illumina/libica/tree/main/examples) directory for some example scripts
+- See [examples](https://github.com/umccr/libica/tree/main/examples) directory for some example scripts
 - See [wrapica](https://github.com/umccr/wrapica) and [icav2-cli-plugins](https://github.com/umccr/icav2-cli-plugins) for client application that build on top of SDK
 
 ## Getting started with SDK for ICA v2
 
-See [pilot.py](https://github.com/umccr-illumina/libica/blob/main/examples/pilot.py)
+See [pilot.py](https://github.com/umccr/libica/blob/main/examples/pilot.py)
 
 ```python
 # List all data in a project
@@ -150,7 +150,7 @@ make test_ica_mock
 make test_icav2_mock
 docker compose logs
 ```
-- All the autogen config and arrangement refer to [`syncapi.sh`](https://github.com/umccr-illumina/libica/blob/main/syncapi.sh) and [`syncapi2.sh`](https://github.com/umccr-illumina/libica/blob/main/syncapi2.sh) which is called through [`Makefile`](https://github.com/umccr-illumina/libica/blob/main/Makefile) targets.
+- All the autogen config and arrangement refer to [`syncapi.sh`](https://github.com/umccr/libica/blob/main/syncapi.sh) and [`syncapi2.sh`](https://github.com/umccr/libica/blob/main/syncapi2.sh) which is called through [`Makefile`](https://github.com/umccr/libica/blob/main/Makefile) targets.
 
 #### Generator Version
 

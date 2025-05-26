@@ -10,8 +10,8 @@ from tests import MOCK_EP
 
 class Issue74IntegrationTests(TestCase):
     """
-    dedicated test cases for request in https://github.com/umccr-illumina/libica/issues/74
-    the modification patch made is with this PR https://github.com/umccr-illumina/libica/pull/90
+    dedicated test cases for request in https://github.com/umccr/libica/issues/74
+    the modification patch made is with this PR https://github.com/umccr/libica/pull/90
     """
 
     def setUp(self) -> None:

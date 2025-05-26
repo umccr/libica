@@ -15,7 +15,7 @@ if __name__ == '__main__':
     print(f"libica-{version('libica')}")
     print("-" * 64)
 
-    # See https://github.com/umccr-illumina/libica/issues/137
+    # See https://github.com/umccr/libica/issues/137
 
     # curl -s -H "Authorization: Bearer $ICAV2_ACCESS_TOKEN" "https://ica.illumina.com/ica/rest/api/pipelines/a10cad1d-b3c6-4a6e-8f44-0605fbe269d5/files" | jq
     # curl -vvv -s -H "Authorization: Bearer $ICAV2_ACCESS_TOKEN" "https://ica.illumina.com/ica/rest/api/pipelines/a10cad1d-b3c6-4a6e-8f44-0605fbe269d5/files/31a36b7a-f034-4bbc-ba3e-229d6ab866f4/content" | jq
