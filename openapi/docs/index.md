@@ -7,14 +7,6 @@ Python SDK for Illumina Connected Analytics (ICA) -- https://umccr.github.io/lib
 - [PyDoc](https://umccr.github.io/libica/libica/)
 - [Wiki](https://github.com/umccr/libica/wiki)
 
-#### SDK for ICA v1
-
-- [libwes](libwes)
-- [libtes](libtes)
-- [libgds](libgds)
-- [libens](libens)
-- [libconsole](libconsole)
-
 #### SDK for ICA v2
 
 - [v2](v2)
