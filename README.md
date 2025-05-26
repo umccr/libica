@@ -8,7 +8,7 @@
 
 Python SDK to programmatically call Illumina Connected Analytics (ICA) Genomic (multi-omics) data platform and BioInformatics web services.
 
-- ICA v2 API: https://help.ica.illumina.com/reference/r-api
+- ICA API: https://help.ica.illumina.com/reference/r-api
 - Install through ``pip`` like so:
 ```commandline
 pip install libica
@@ -17,13 +17,13 @@ pip install libica
 ## Overview
 
 - Tested for Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13
-- See [changelog](https://github.com/umccr/libica/blob/main/CHANGELOG.md) and [closed milestones](https://github.com/umccr/libica/milestones?state=closed)
 - [Test Coverage](https://umccr.github.io/libica/coverage/)
 - SDK Guide: [PyDoc](https://umccr.github.io/libica/libica/)
 - User Guide: https://umccr.github.io/libica/
 
 ## Roadmap
 
+- See [changelog](https://github.com/umccr/libica/blob/main/CHANGELOG.md) and [closed milestones](https://github.com/umccr/libica/milestones?state=closed)
 - See opening [milestones](https://github.com/umccr/libica/milestones) for current planning and next SDK release
 
 ## Example
@@ -31,7 +31,7 @@ pip install libica
 - See [examples](https://github.com/umccr/libica/tree/main/examples) directory for some example scripts
 - See [wrapica](https://github.com/umccr/wrapica) and [icav2-cli-plugins](https://github.com/umccr/icav2-cli-plugins) for client application that build on top of SDK
 
-## Getting started with SDK for ICA v2
+## Getting started with SDK for ICA
 
 See [pilot.py](https://github.com/umccr/libica/blob/main/examples/pilot.py)
 
@@ -103,7 +103,7 @@ if __name__ == '__main__':
 make install
 ```
 
-- To bring up _mock_ API _μ_-services
+- To bring up _mock_ API
 ```commandline
 make up
 ```
@@ -148,7 +148,7 @@ make ps
 make test_icav2_mock
 docker compose logs
 ```
-- All the autogen config and arrangement refer to [`syncapi.sh`](https://github.com/umccr/libica/blob/main/syncapi.sh) and [`syncapi2.sh`](https://github.com/umccr/libica/blob/main/syncapi2.sh) which is called through [`Makefile`](https://github.com/umccr/libica/blob/main/Makefile) targets.
+- All the autogen config and arrangement refer to [`syncapi2.sh`](https://github.com/umccr/libica/blob/main/syncapi2.sh) which is called through [`Makefile`](https://github.com/umccr/libica/blob/main/Makefile) targets.
 
 #### Generator Version
 
