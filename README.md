@@ -6,7 +6,7 @@
 [![PyPI](https://img.shields.io/pypi/v/libica?style=flat)](https://pypi.org/project/libica) 
 [![PyPI - License](https://img.shields.io/pypi/l/libica?style=flat)](https://opensource.org/licenses/MIT)
 
-Python SDK to programmatically call Illumina Connected Analytics (ICA) Genomic (multi-omics) data platform and BioInformatics web services. This SDK supports ICA v2 API.
+Python SDK to programmatically call Illumina Connected Analytics (ICA) Genomic (multi-omics) data platform and BioInformatics web services.
 
 - ICA v2 API: https://help.ica.illumina.com/reference/r-api
 - Install through ``pip`` like so:
@@ -16,10 +16,9 @@ pip install libica
 
 ## Overview
 
-- Tested for Python 3.8, 3.9, 3.10, 3.11, 3.12
+- Tested for Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13
 - See [changelog](https://github.com/umccr/libica/blob/main/CHANGELOG.md) and [closed milestones](https://github.com/umccr/libica/milestones?state=closed)
 - [Test Coverage](https://umccr.github.io/libica/coverage/)
-- [Wiki](https://github.com/umccr/libica/wiki)
 - SDK Guide: [PyDoc](https://umccr.github.io/libica/libica/)
 - User Guide: https://umccr.github.io/libica/
 
@@ -146,7 +145,6 @@ Docker version 28.1.1, build 4eba377
 ```
 make up
 make ps
-make test_ica_mock
 make test_icav2_mock
 docker compose logs
 ```
