@@ -50,13 +50,7 @@ setup(
         ],
     },
     install_requires=[
-        "requests",
         "python-dateutil",
-        "six",
         "urllib3",
-        "certifi",
-        "PyYAML",
-        "boto3",
-        "botocore",
     ],
 )
