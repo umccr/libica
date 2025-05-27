@@ -1,7 +1,6 @@
 site_name: libica
 nav:
   - v2: v2/README.md
-  - app: app/README.md
 
 theme:
   name:
