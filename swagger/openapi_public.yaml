@@ -447,7 +447,8 @@ paths:
           \ a '/'. Lists all files and folders within the folder for the given path,\
           \ non-recursively. This can be used to browse through the hierarchical tree\
           \ of folders, e.g. traversing one level up can be done by removing the last\
-          \ part of the path."
+          \ part of the path. This does not work for contents from a linked folder\
+          \ apposed to individual linked files."
         schema:
           type: string
       - name: creationDateAfter
@@ -2018,6 +2019,156 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/DataFormatPagedList'
+  /api/dockerImages:
+    get:
+      tags:
+      - Docker Image
+      summary: Retrieve a list of Docker images. Only the Docker images the user has
+        access to are returned.
+      operationId: getDockerImages
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of Docker images is successfully retrieved.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/DockerImageList'
+  /api/dockerImages/{imageId}:
+    get:
+      tags:
+      - Docker Image
+      summary: Retrieve a Docker image. Only the Docker image the user has access
+        to can be retrieved.
+      operationId: getDockerImage
+      parameters:
+      - name: imageId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The Docker image is successfully retrieved.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/DockerImage'
+  /api/dockerImages:createExternal:
+    post:
+      tags:
+      - Docker Image
+      summary: Create an external Docker image.
+      operationId: createExternalDockerImage
+      requestBody:
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateExternalDockerImage'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The Docker image is successfully created.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/DockerImage'
+  /api/dockerImages:createInternal:
+    post:
+      tags:
+      - Docker Image
+      summary: Create an internal Docker image.
+      operationId: createInternalDockerImage
+      requestBody:
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateInternalDockerImage'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The Docker image is successfully created.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/DockerImage'
+  /api/dockerImages/{imageId}:addRegions:
+    post:
+      tags:
+      - Docker Image
+      summary: Add regions to an existing Docker image.
+      operationId: addRegions
+      parameters:
+      - name: imageId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/DockerImageRegionList'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The regions are successfully added.
+  /api/dockerImages/{imageId}:removeRegions:
+    post:
+      tags:
+      - Docker Image
+      summary: Remove regions to an existing Docker image.
+      operationId: removeRegions
+      parameters:
+      - name: imageId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/DockerImageRegionList'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The regions are successfully removed.
   /api/entitledbundles:
     get:
       tags:
@@ -3371,6 +3522,74 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ExecutionConfigurationList'
+  /api/projects/{projectId}/analyses/{analysisId}/inputFormValues:
+    get:
+      tags:
+      - Project Analysis
+      summary: Retrieve the values from an input form.
+      description: Retrieve the values from an input form of a JSON based pipeline
+        used to start an analysis.
+      operationId: getProjectAnalysisInputFormValues
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: analysisId
+        in: path
+        description: The ID of the analysis to retrieve the input form values from
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The input form values are successfully retrieved.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/InputFormFieldList'
+  /api/projects/{projectId}/analyses/{analysisId}/usage:
+    get:
+      tags:
+      - Project Analysis
+      summary: Retrieve the analysis usage details.
+      description: The usage details can be retrieved once the analysis has completed
+        with status SUCCEEDED or FAILED. It may take several minutes for the information
+        to become available. A 404 status indicates that the system is busy processing
+        the information.
+      operationId: getAnalysisUsageDetails
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: analysisId
+        in: path
+        description: The ID of the analysis to retrieve the usage details for
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The analysis usage details are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisUsageDetails'
   /api/projects/{projectId}/analyses/{analysisId}:abort:
     post:
       tags:
@@ -3686,6 +3905,68 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/AnalysisPagedListV4'
+  /api/projects/{projectId}/analysis:cwlJson:
+    post:
+      tags:
+      - Project Analysis
+      summary: Create and start an analysis for a JSON based CWL pipeline.
+      operationId: createCwlJsonAnalysis
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: "The following options can be used for actionOnExist:<br /><ul><li>Overwrite\
+          \ (default): If a file with that name already exists, it is overwritten.</li><li>Rename:\
+          \ If a file with that name already exists, an incremental counter is appended\
+          \ to the file name.</li><li>Skip: If a file with that name already exists,\
+          \ the new file is not saved and the data is discarded.</li></ul>"
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateCwlJsonAnalysis'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The analysis is successfully created and scheduled.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisV4'
   /api/projects/{projectId}/analysis:cwl:
     post:
       tags:
@@ -3764,6 +4045,196 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/AnalysisV3'
+      deprecated: true
+  /api/projects/{projectId}/analysis:cwlWithJsonInput:
+    post:
+      tags:
+      - Project Analysis
+      summary: Create and start an analysis for a CWL pipeline with an input.json.
+      description: This endpoint is intended to be used with an input.json and will
+        bypass the input form. The combination of using this endpoint with an input.json
+        for a json-form based pipeline with sensitive fields defined is not possible.
+      operationId: createCwlAnalysisWithJsonInput
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: "The following options can be used for actionOnExist:<br /><ul><li>Overwrite\
+          \ (default): If a file with that name already exists, it is overwritten.</li><li>Rename:\
+          \ If a file with that name already exists, an incremental counter is appended\
+          \ to the file name.</li><li>Skip: If a file with that name already exists,\
+          \ the new file is not saved and the data is discarded.</li></ul>"
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateCwlWithJsonInputAnalysis'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The analysis is successfully created and scheduled.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisV4'
+  /api/projects/{projectId}/analysis:cwlWithStructuredInput:
+    post:
+      tags:
+      - Project Analysis
+      summary: Create and start an analysis for a CWL pipeline with a structured input.
+      operationId: createCwlAnalysisWithStructuredInput
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: "The following options can be used for actionOnExist:<br /><ul><li>Overwrite\
+          \ (default): If a file with that name already exists, it is overwritten.</li><li>Rename:\
+          \ If a file with that name already exists, an incremental counter is appended\
+          \ to the file name.</li><li>Skip: If a file with that name already exists,\
+          \ the new file is not saved and the data is discarded.</li></ul>"
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateCwlWithStructuredInputAnalysis'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The analysis is successfully created and scheduled.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisV4'
+  /api/projects/{projectId}/analysis:nextflowJson:
+    post:
+      tags:
+      - Project Analysis
+      summary: Create and start an analysis for a JSON based Nextflow pipeline.
+      operationId: createNextflowJsonAnalysis
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: "The following options can be used for actionOnExist:<br /><ul><li>Overwrite\
+          \ (default): If a file with that name already exists, it is overwritten.</li><li>Rename:\
+          \ If a file with that name already exists, an incremental counter is appended\
+          \ to the file name.</li><li>Skip: If a file with that name already exists,\
+          \ the new file is not saved and the data is discarded.</li></ul>"
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateNextflowJsonAnalysis'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The analysis is successfully created and scheduled.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisV4'
   /api/projects/{projectId}/analysis:nextflow:
     post:
       tags:
@@ -3839,6 +4310,73 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/AnalysisV3'
+  /api/projects/{projectId}/analysis:nextflowWithCustomInput:
+    post:
+      tags:
+      - Project Analysis
+      summary: "Create and initiate an analysis for a Nextflow pipeline using a custom\
+        \ input, provided in either YAML format or an escaped JSON string."
+      description: This endpoint is intended to be used with a custom input and will
+        bypass the input form. The combination of using this endpoint with a custom
+        input for a json-form based pipeline with sensitive fields defined is not
+        possible.
+      operationId: createNextflowAnalysisWithCustomInput
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: "The following options can be used for actionOnExist:<br /><ul><li>Overwrite\
+          \ (default): If a file with that name already exists, it is overwritten.</li><li>Rename:\
+          \ If a file with that name already exists, an incremental counter is appended\
+          \ to the file name.</li><li>Skip: If a file with that name already exists,\
+          \ the new file is not saved and the data is discarded.</li></ul>"
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateNextflowWithCustomInputAnalysis'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The analysis is successfully created and scheduled.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisV4'
   /api/projects/{projectId}/analysisStorages:
     get:
       tags:
@@ -4818,6 +5356,11 @@ paths:
           enum:
           - FILE
           - FOLDER
+      - name: nonIndexedFolders
+        in: query
+        description: To filter on non-indexed folders.
+        schema:
+          type: boolean
       - name: parentFolderId
         in: query
         description: "The IDs of parents folders to filter on. Lists all files and\
@@ -4832,7 +5375,8 @@ paths:
           \ a '/'. Lists all files and folders within the folder for the given path,\
           \ non-recursively. This can be used to browse through the hierarchical tree\
           \ of folders, e.g. traversing one level up can be done by removing the last\
-          \ part of the path."
+          \ part of the path. This does not work for contents from a linked folder\
+          \ apposed to individual linked files."
         schema:
           type: string
       - name: creationDateAfter
@@ -4967,6 +5511,13 @@ paths:
           type: array
           items:
             type: string
+      - name: owningProjectId
+        in: query
+        description: The owning project ID to filter on.
+        schema:
+          type: array
+          items:
+            type: string
       - name: pageOffset
         in: query
         description: "[only use with offset-based paging]<br>The amount of rows to\
@@ -5087,6 +5638,7 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectData'
+      deprecated: true
   /api/projects/{projectId}/data/eligibleForLinking:
     get:
       tags:
@@ -5196,7 +5748,8 @@ paths:
           \ a '/'. Lists all files and folders within the folder for the given path,\
           \ non-recursively. This can be used to browse through the hierarchical tree\
           \ of folders, e.g. traversing one level up can be done by removing the last\
-          \ part of the path."
+          \ part of the path. This does not work for contents from a linked folder\
+          \ apposed to individual linked files."
         schema:
           type: string
       - name: creationDateAfter
@@ -5572,6 +6125,203 @@ paths:
         \ a matching version.\n\n## [V3]\nInitial version\n## [V4]\nAdded pagination\n"
       operationId: getProjectDataChildren
       parameters:
+      - name: fullText
+        in: query
+        description: To search through multiple fields of data.
+        schema:
+          type: string
+      - name: id
+        in: query
+        description: The ids to filter on. This will always match exact.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filename
+        in: query
+        description: The filenames to filter on. The filenameMatchMode-parameter determines
+          how the filtering is done.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: filenameMatchMode
+        in: query
+        description: 'How the filenames are filtered. '
+        schema:
+          type: string
+          enum:
+          - EXACT
+          - EXCLUDE
+          - FUZZY
+      - name: status
+        in: query
+        description: The statuses to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - PARTIAL
+            - AVAILABLE
+            - ARCHIVING
+            - ARCHIVED
+            - UNARCHIVING
+            - DELETING
+      - name: formatId
+        in: query
+        description: The IDs of the formats to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: formatCode
+        in: query
+        description: The codes of the formats to filter on.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: type
+        in: query
+        description: The type to filter on.
+        schema:
+          type: string
+          enum:
+          - FILE
+          - FOLDER
+      - name: creationDateAfter
+        in: query
+        description: "The date after which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z'\
+          \ eg: 2021-01-30T08:30:00Z"
+        schema:
+          type: string
+          format: date-time
+      - name: creationDateBefore
+        in: query
+        description: "The date before which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z'\
+          \ eg: 2021-01-30T08:30:00Z"
+        schema:
+          type: string
+          format: date-time
+      - name: statusDateAfter
+        in: query
+        description: "The date after which the status has been updated. Format: yyyy-MM-dd'T'HH:mm:ss'Z'\
+          \ eg: 2021-01-30T08:30:00Z"
+        schema:
+          type: string
+          format: date-time
+      - name: statusDateBefore
+        in: query
+        description: "The date before which the status has been updated. Format: yyyy-MM-dd'T'HH:mm:ss'Z'\
+          \ eg: 2021-01-30T08:30:00Z"
+        schema:
+          type: string
+          format: date-time
+      - name: userTag
+        in: query
+        description: The usertags to filter on. The userTagMatchMode-parameter determines
+          how the filtering is done.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: userTagMatchMode
+        in: query
+        description: 'How the usertags are filtered. '
+        schema:
+          type: string
+          enum:
+          - EXACT
+          - EXCLUDE
+          - FUZZY
+      - name: runInputTag
+        in: query
+        description: The runInputTags to filter on. The runInputTagMatchMode-parameter
+          determines how the filtering is done.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: runInputTagMatchMode
+        in: query
+        description: 'How the runInputTags are filtered. '
+        schema:
+          type: string
+          enum:
+          - EXACT
+          - EXCLUDE
+          - FUZZY
+      - name: runOutputTag
+        in: query
+        description: The runOutputTags to filter on. The runOutputTagMatchMode-parameter
+          determines how the filtering is done.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: runOutputTagMatchMode
+        in: query
+        description: 'How the runOutputTags are filtered. '
+        schema:
+          type: string
+          enum:
+          - EXACT
+          - EXCLUDE
+          - FUZZY
+      - name: connectorTag
+        in: query
+        description: The connectorTags to filter on. The connectorTagMatchMode-parameter
+          determines how the filtering is done.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: connectorTagMatchMode
+        in: query
+        description: 'How the connectorTags are filtered. '
+        schema:
+          type: string
+          enum:
+          - EXACT
+          - EXCLUDE
+          - FUZZY
+      - name: technicalTag
+        in: query
+        description: The technicalTags to filter on. The techTagMatchMode-parameter
+          determines how the filtering is done.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: technicalTagMatchMode
+        in: query
+        description: 'How the technicalTags are filtered. '
+        schema:
+          type: string
+          enum:
+          - EXACT
+          - EXCLUDE
+          - FUZZY
+      - name: notInRun
+        in: query
+        description: "When set to true, the data will be filtered on data which is\
+          \ not used in a run."
+        schema:
+          type: boolean
+      - name: notLinkedToSample
+        in: query
+        description: When set to true only data that is unlinked to a sample will
+          be returned.  This filter implies a filter of type File.
+        schema:
+          type: boolean
+      - name: instrumentRunId
+        in: query
+        description: The instrument run IDs of the sequencing runs to filter on.
+        schema:
+          type: array
+          items:
+            type: string
       - name: pageOffset
         in: query
         description: "[only use with offset-based paging]<br>The amount of rows to\
@@ -5813,7 +6563,9 @@ paths:
       - Project Data
       summary: Retrieve an upload URL for this data.
       description: "Can be used to upload a file directly from the region where it\
-        \ is located, no connector is needed."
+        \ is located, no connector is needed. The project identifier must match the\
+        \ project which owns the data. You can create both new files and overwrite\
+        \ files in status 'partial'."
       operationId: createUploadUrlForData
       parameters:
       - name: projectId
@@ -5896,6 +6648,8 @@ paths:
       summary: Schedule a download.
       description: "Endpoint for scheduling a download for the data specified by the\
         \ ID to a connector. This download will only start when the connector is running.\
+        \ Data transfers for folder contents are created asynchronously, meaning that\
+        \ they will not be immediately visible in the project data transfers end point.\
         \ This is a non-RESTful endpoint, as the path of this endpoint is not representing\
         \ a REST resource."
       operationId: scheduleDownloadForData
@@ -6353,10 +7107,10 @@ paths:
       summary: Create a project data linking batch.
       description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
         \ the values for request headers 'Content-Type' and 'Accept' must contain\
-        \ a matching version.\n\n## [V3]\nInitial version deprecated.\nRecommended\
-        \ to use V4 for performance efficiency.\n## [V4]\nMore efficient, handles\
-        \ folder contents via the folder item, instead of creating separate items\
-        \ for all contents.\n"
+        \ a matching version.\n\n## [V3]\nInitial version deprecated.  It's recommended\
+        \ to limit the amount of links per batch to 25.000.\nRecommended to use V4\
+        \ for performance efficiency.\n## [V4]\nMore efficient, handles folder contents\
+        \ via the folder item, instead of creating separate items for all contents.\n"
       operationId: createProjectDataLinkingBatch
       parameters:
       - name: projectId
@@ -7029,7 +7783,10 @@ paths:
     post:
       tags:
       - Project Data Update Batch
-      summary: Create a project data update batch.
+      summary: Create a project data update batch.  Folder contents will be updated
+        recursively.  Time archive/delete cannot be defined for folders.
+      description: Avoid specifying more than 5000 total dataIds per call if possible
+        (specifying more than 100000 is not allowed).
       operationId: createProjectDataUpdateBatch
       parameters:
       - name: projectId
@@ -8056,6 +8813,437 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline file is successfully deleted.
+  /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/inputFormFile:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Download the contents of the input form file.
+      operationId: downloadInputFormFileContent
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve the input form file
+          for
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The input form file is successfully downloaded.
+          headers:
+            Content-Disposition:
+              description: Contains name of the file to be downloaded.
+              style: simple
+              schema:
+                type: string
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+    put:
+      tags:
+      - Project Pipeline
+      summary: Update the contents of the input form file for a pipeline.
+      operationId: updateInputFormFile
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to update a file for
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PipelineFileContentSpec'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The input  form file is successfully updated.
+  /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/onSubmitFile:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Download the contents of the onSubmit file.
+      operationId: downloadOnSubmitFileContent
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve the onSubmit file
+          for
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The onSubmit file is successfully downloaded.
+          headers:
+            Content-Disposition:
+              description: Contains name of the onSubmit file to be downloaded.
+              style: simple
+              schema:
+                type: string
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+    put:
+      tags:
+      - Project Pipeline
+      summary: Update the contents of the onSubmit file for a pipeline.
+      operationId: updateOnSubmitFile
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to update the onSubmit file for
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PipelineFileContentSpec'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The onSubmit file is successfully updated.
+  /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/onRenderFile:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Download the contents of the onRender file.
+      operationId: downloadOnRenderFileContent
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve the onRender file
+          for
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The onRender file is successfully downloaded.
+          headers:
+            Content-Disposition:
+              description: Contains name of the onRender file to be downloaded.
+              style: simple
+              schema:
+                type: string
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+    put:
+      tags:
+      - Project Pipeline
+      summary: Update the contents of the onRender file for a pipeline.
+      operationId: updateOnRenderFile
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to update the onRender file for
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PipelineFileContentSpec'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The onRender file is successfully updated.
+  /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Retrieve additional input form files for a project pipeline.
+      operationId: getProjectPipelineAdditionalFiles
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve files for
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The files are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelineFileList'
+    post:
+      tags:
+      - Project Pipeline
+      summary: Create an additional input form file for a pipeline.
+      operationId: createAdditionalProjectPipelineFile
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to create a file for
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PipelineFileContentSpec'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The pipeline file is successfully created.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelineFile'
+  /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles/{fileId}/content:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Download the contents of an additional input form file.
+      operationId: downloadAdditionalFileContent
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to retrieve the additional file
+          for
+        required: true
+        schema:
+          type: string
+      - name: fileId
+        in: path
+        description: The ID of the additional file
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The file is successfully downloaded.
+          headers:
+            Content-Disposition:
+              description: Contains name of the additional file to be downloaded.
+              style: simple
+              schema:
+                type: string
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+    put:
+      tags:
+      - Project Pipeline
+      summary: Update the contents of an additional input form file.
+      operationId: updateAdditionalFile
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to update the additional file
+          for
+        required: true
+        schema:
+          type: string
+      - name: fileId
+        in: path
+        description: The ID of the additional file
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PipelineFileContentSpec'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The file is successfully updated.
+  /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles/{fileId}:
+    delete:
+      tags:
+      - Project Pipeline
+      summary: Delete an additional input form file for a pipeline.
+      operationId: deleteAdditionalProjectPipelineFile
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to delete an additional file for
+        required: true
+        schema:
+          type: string
+      - name: fileId
+        in: path
+        description: The ID of the pipeline file
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The pipeline file is successfully deleted.
+  /api/projects/{projectId}/pipelines:createNextflowJsonPipeline:
+    post:
+      tags:
+      - Project Pipeline
+      summary: Create a JSON based Nextflow pipeline within a project.
+      operationId: createNextflowJsonPipeline
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateNextflowJsonPipeline'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The Nextflow pipeline is successfully created.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/PipelineV4'
   /api/projects/{projectId}/pipelines:createNextflowPipeline:
     post:
       tags:
@@ -8087,6 +9275,37 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectPipeline'
+  /api/projects/{projectId}/pipelines:createCwlJsonPipeline:
+    post:
+      tags:
+      - Project Pipeline
+      summary: Create a JSON based CWL pipeline within a project.
+      operationId: createCwlJsonPipeline
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateCwlJsonPipeline'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The CWL pipeline is successfully created.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectPipelineV4'
   /api/projects/{projectId}/pipelines:createCwlPipeline:
     post:
       tags:
@@ -8692,7 +9911,8 @@ paths:
           \ a '/'. Lists all files and folders within the folder for the given path,\
           \ non-recursively. This can be used to browse through the hierarchical tree\
           \ of folders, e.g. traversing one level up can be done by removing the last\
-          \ part of the path."
+          \ part of the path. This does not work for contents from a linked folder\
+          \ apposed to individual linked files."
         schema:
           type: string
       - name: creationDateAfter
@@ -10620,6 +11840,441 @@ paths:
             application/vnd.illumina.v4+json:
               schema:
                 $ref: '#/components/schemas/EventLogPagedListV4'
+  /api/projects/{projectId}/data:createFile:
+    post:
+      tags:
+      - Project Data
+      summary: Create a file in this project.
+      operationId: createFile
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The file to create.
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateFileData'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileData'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The file is successfully created in this project.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectData'
+  /api/projects/{projectId}/data:createFileWithTemporaryCredentials:
+    post:
+      tags:
+      - Project Data
+      summary: "Create a file in this project, and retrieve temporary credentials\
+        \ for it."
+      operationId: createFileWithTemporaryCredentials
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The data to create.
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateFileAndTemporaryCredentials'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileAndTemporaryCredentials'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: "The data is successfully created in this project, and the\
+            \ temporary credentials are successfully retrieved."
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataAndTemporaryCredentials'
+  /api/projects/{projectId}/data:createFileWithUploadUrl:
+    post:
+      tags:
+      - Project Data
+      summary: "Create a file in this project, and retrieve an upload url for it."
+      operationId: createFileWithUploadUrl
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The data to create.
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateFileAndUploadUrl'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFileAndUploadUrl'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: "The data is successfully created in this project, and the\
+            \ upload URL is successfully retrieved."
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectFileAndUploadUrl'
+  /api/projects/{projectId}/data:createFolder:
+    post:
+      tags:
+      - Project Data
+      summary: Create a folder in this project.
+      operationId: createFolder
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The folder to create.
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateFolder'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFolder'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The folder is successfully created in this project.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectData'
+  /api/projects/{projectId}/data:createFolderWithTemporaryCredentials:
+    post:
+      tags:
+      - Project Data
+      summary: "Create a folder in this project, and and retrieve temporary credentials\
+        \ for it."
+      operationId: createFolderWithTemporaryCredentials
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The data to create.
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateFolderAndTemporaryCredentials'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFolderAndTemporaryCredentials'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: "The data is successfully created in this project, and the\
+            \ temporary credentials are successfully retrieved."
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectDataAndTemporaryCredentials'
+  /api/projects/{projectId}/data:createFolderWithUploadSession:
+    post:
+      tags:
+      - Project Data
+      summary: "Create a folder in this project, and create a trackable folder upload\
+        \ session."
+      operationId: createFolderWithUploadSession
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The data to create.
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateFolderAndTemporaryCredentials'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateFolderAndTemporaryCredentials'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: "The data is successfully created in this project, and the\
+            \ folder upload session is successfully created."
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectFolderAndUploadSession'
+  /api/projects/{projectId}/data:createNonIndexedFolder:
+    post:
+      tags:
+      - Project Data
+      summary: Create a non indexed folder in this project. The folder will be created
+        as a top-level folder.
+      operationId: createNonIndexedFolder
+      parameters:
+      - name: Idempotency-Key
+        in: header
+        description: "The Idempotency-Key header can be used to prevent duplicate\
+          \ requests and support retries. It is implemented according to the IETF\
+          \ spec, with one exception (see below). The header value is allowed to be\
+          \ max 255 characters long. If the header is supplied for a successful response\
+          \ (HTTP status code < 400) then the response \nwill be saved for 7 days\
+          \ for the specific API endpoint, header value and user reference. When the\
+          \ same user makes \na new request within 7 days to the same API endpoint\
+          \ with the same Idempotency-Key header value, following use cases can occur:<br\
+          \ /><ul><li>the request body is the same as the previous request and an\
+          \ answer is stored => the stored response is returned without executing\
+          \ the request again.</li><li>the request body is the same as the previous\
+          \ request and no answer is stored because the previous request has not finished\
+          \ => 409 error response, which indicates that the original call is still\
+          \ in progress.</li><li>the request body is not the same as the previous\
+          \ request => 422 error response, as this is not allowed.</li></ul>This means\
+          \ that each time when executing a new API request using the Idempotency-Key\
+          \ header, the request has to contain a\nnew header value that hasn't been\
+          \ used (successfully) in the past 7 days for that specific API endpoint\
+          \ and by the specific user.\nFor error responses (HTTP status code >= 400)\
+          \ we allow clients to retry the call. This is where we don't follow the\
+          \ IETF specification."
+        schema:
+          maxLength: 255
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The non indexed folder to create.
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/CreateNonIndexedFolder'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateNonIndexedFolder'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The non indexed folder is successfully created in this project.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectData'
   /api/projects/{projectId}/data:createDownloadUrls:
     post:
       tags:
@@ -11194,6 +12849,18 @@ components:
         resetAcceptanceRecords:
           type: boolean
           description: Do you want to reset the acceptance records.
+    ApplicationV4:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+      nullable: true
     BundleData:
       required:
       - bundleId
@@ -11313,6 +12980,8 @@ components:
           nullable: true
         region:
           $ref: '#/components/schemas/Region'
+        application:
+          $ref: '#/components/schemas/ApplicationV4'
         willBeArchivedAt:
           type: string
           description: Specifies when the data object will be archived.
@@ -11347,6 +13016,8 @@ components:
           nullable: true
         details:
           $ref: '#/components/schemas/DataDetails'
+        folderDetails:
+          $ref: '#/components/schemas/FolderDetails'
     DataFormat:
       required:
       - code
@@ -11430,6 +13101,15 @@ components:
           items:
             type: string
             nullable: true
+    FolderDetails:
+      required:
+      - nonIndexed
+      type: object
+      properties:
+        nonIndexed:
+          type: boolean
+          description: Indicates this is a non-indexed folder
+      nullable: true
     SequencingRun:
       required:
       - id
@@ -12149,6 +13829,12 @@ components:
           description: A boolean which indicates if the code of this pipeline is proprietary
           nullable: true
           default: false
+        inputFormType:
+          type: string
+          description: The type of the inputform used.
+          enum:
+          - XML
+          - JSON
     PipelineLanguageVersion:
       required:
       - id
@@ -12302,6 +13988,8 @@ components:
           $ref: '#/components/schemas/SampleTag'
         region:
           $ref: '#/components/schemas/Region'
+        application:
+          $ref: '#/components/schemas/ApplicationV4'
         status:
           type: string
           enum:
@@ -12881,6 +14569,229 @@ components:
             in offset based pagination)
           format: int64
           nullable: true
+    BenchSettings:
+      required:
+      - access
+      - clusterCompatible
+      type: object
+      properties:
+        clusterCompatible:
+          type: boolean
+        access:
+          $ref: '#/components/schemas/DockerImageAccess'
+      nullable: true
+    DockerImageAccess:
+      required:
+      - console
+      - web
+      type: object
+      properties:
+        web:
+          type: boolean
+        console:
+          type: boolean
+    DockerImage:
+      required:
+      - id
+      - name
+      - owner
+      - status
+      - tenant
+      - timeCreated
+      - timeModified
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        owner:
+          $ref: '#/components/schemas/UserIdentifier'
+        tenant:
+          $ref: '#/components/schemas/TenantIdentifier'
+        name:
+          type: string
+        version:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        status:
+          type: string
+          enum:
+          - PARTIAL
+          - AVAILABLE
+          - DELETED
+          - BUILDFAILED
+          - DELETING
+        type:
+          type: string
+          enum:
+          - TOOL
+          - BENCH
+        internalDockerImageSettings:
+          $ref: '#/components/schemas/InternalDockerImageSettings'
+        externalDockerImageSettings:
+          $ref: '#/components/schemas/ExternalDockerImageSettings'
+        benchSettings:
+          $ref: '#/components/schemas/BenchSettings'
+    DockerImageList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DockerImage'
+    DockerImageRegion:
+      type: object
+      properties:
+        region:
+          $ref: '#/components/schemas/RegionV4'
+        url:
+          type: string
+          nullable: true
+      nullable: true
+    ExternalDockerImageSettings:
+      required:
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+      nullable: true
+    InternalDockerImageSettings:
+      type: object
+      properties:
+        regions:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/DockerImageRegion'
+      nullable: true
+    RegionV4:
+      required:
+      - code
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        code:
+          maxLength: 255
+          minLength: 1
+          type: string
+      nullable: true
+    TenantIdentifier:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+          description: The unique name of the tenant.
+    UserIdentifier:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    CreateExternalDockerImage:
+      required:
+      - name
+      - type
+      - url
+      - version
+      type: object
+      properties:
+        url:
+          type: string
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        version:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        type:
+          type: string
+          enum:
+          - TOOL
+          - BENCH
+    CreateInternalDockerImage:
+      required:
+      - dockerDataId
+      - dockerDataProjectId
+      - name
+      - regions
+      - type
+      - version
+      type: object
+      properties:
+        dockerDataId:
+          type: string
+          description: The id of the data for which an Docker image will be created.
+        dockerDataProjectId:
+          type: string
+          description: The id of the project where the Docker data resides.
+          format: uuid
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        version:
+          maxLength: 255
+          minLength: 1
+          type: string
+        description:
+          maxLength: 255
+          minLength: 0
+          type: string
+          nullable: true
+        type:
+          type: string
+          enum:
+          - TOOL
+          - BENCH
+        regions:
+          type: array
+          description: The UUID of the regions where the Docker image will be made
+            available.
+          items:
+            type: string
+            description: The UUID of the regions where the Docker image will be made
+              available.
+            format: uuid
+    DockerImageRegionList:
+      required:
+      - regionIds
+      type: object
+      properties:
+        regionIds:
+          type: array
+          items:
+            type: string
+            format: uuid
     ActivationCodeDetail:
       required:
       - allowedSlots
@@ -13459,6 +15370,8 @@ components:
           type: string
           description: The AWS region of the SNS notification channel
           nullable: true
+        application:
+          $ref: '#/components/schemas/ApplicationV4'
     CreateNotificationChannel:
       required:
       - address
@@ -13799,6 +15712,8 @@ components:
           type: string
           format: uuid
         name:
+          maxLength: 255
+          minLength: 1
           type: string
     PipelineFileList:
       required:
@@ -13901,6 +15816,8 @@ components:
           - HIGH
         tags:
           $ref: '#/components/schemas/AnalysisTag'
+        application:
+          $ref: '#/components/schemas/ApplicationV4'
     AnalysisPagedListV3:
       required:
       - items
@@ -14141,6 +16058,8 @@ components:
           nullable: true
         tags:
           $ref: '#/components/schemas/AnalysisTag'
+        application:
+          $ref: '#/components/schemas/ApplicationV4'
     AnalysisStorageV4:
       required:
       - id
@@ -14230,25 +16149,12 @@ components:
           description: A boolean which indicates if the code of this pipeline is proprietary
           nullable: true
           default: false
-    TenantIdentifier:
-      required:
-      - id
-      type: object
-      properties:
-        id:
+        inputFormType:
           type: string
-          format: uuid
-        name:
-          type: string
-          description: The unique name of the tenant.
-    UserIdentifier:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
+          description: The type of the inputform used.
+          enum:
+          - XML
+          - JSON
     WorkflowV4:
       required:
       - analysisStorage
@@ -14554,6 +16460,271 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExecutionConfiguration'
+    InputFormBaseSpaceDataDetails:
+      type: object
+      properties:
+        workgroupId:
+          type: string
+          nullable: true
+        extensions:
+          type: string
+          nullable: true
+        pathPrefix:
+          type: string
+          nullable: true
+    InputFormData:
+      required:
+      - dataId
+      type: object
+      properties:
+        dataId:
+          type: string
+        mountPath:
+          type: string
+      description: Use 'dataValues' for data fields.
+      nullable: true
+    InputFormExternalData:
+      required:
+      - type
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+        type:
+          pattern: s3|http|basespace
+          type: string
+        s3Details:
+          $ref: '#/components/schemas/InputFormS3DataDetails'
+        basespaceDetails:
+          $ref: '#/components/schemas/InputFormBaseSpaceDataDetails'
+    InputFormFieldChoice:
+      type: object
+      properties:
+        value:
+          type: string
+        text:
+          type: string
+        selected:
+          type: boolean
+        disabled:
+          type: boolean
+    InputFormFieldDataFilter:
+      type: object
+      properties:
+        nameFilter:
+          type: string
+        dataFormat:
+          type: array
+          items:
+            type: string
+        dataType:
+          type: string
+          enum:
+          - FILE
+          - DIRECTORY
+    InputFormField:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        label:
+          type: string
+        minValues:
+          type: integer
+          format: int32
+        maxValues:
+          type: integer
+          format: int32
+        minMaxValuesMessage:
+          type: string
+        helpText:
+          type: string
+        placeHolderText:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+        dataValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormWithExternalData'
+        groupValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormGroupFieldValues'
+        minLength:
+          type: integer
+          format: int32
+        maxLength:
+          type: integer
+          format: int32
+        min:
+          type: number
+        max:
+          type: number
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormFieldChoice'
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormGroupField'
+        dataFilter:
+          $ref: '#/components/schemas/InputFormFieldDataFilter'
+        regex:
+          type: string
+        regexErrorMessage:
+          type: string
+        hidden:
+          type: boolean
+        disabled:
+          type: boolean
+        emptyValuesAllowed:
+          type: boolean
+        updateRenderOnChange:
+          type: boolean
+        sensitive:
+          type: boolean
+    InputFormFieldList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormField'
+    InputFormFieldValues:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+        values:
+          type: array
+          description: Use 'values' for all fields except data fields. Use string
+            values to avoid rounding of numbers with a high precision.
+          nullable: true
+          items:
+            type: string
+            description: Use 'values' for all fields except data fields. Use string
+              values to avoid rounding of numbers with a high precision.
+            nullable: true
+        dataValues:
+          type: array
+          description: Use 'dataValues' for data fields.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/InputFormData'
+        externalDataValues:
+          type: array
+          description: Use 'externalDataValues' for external data
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisInputExternalData'
+    InputFormGroupField:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        label:
+          type: string
+        minValues:
+          type: integer
+          format: int32
+        maxValues:
+          type: integer
+          format: int32
+        minMaxValuesMessage:
+          type: string
+        helpText:
+          type: string
+        placeHolderText:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+        dataValues:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormWithExternalData'
+        minLength:
+          type: integer
+          format: int32
+        maxLength:
+          type: integer
+          format: int32
+        min:
+          type: number
+        max:
+          type: number
+        choices:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormFieldChoice'
+        dataFilter:
+          $ref: '#/components/schemas/InputFormFieldDataFilter'
+        regex:
+          type: string
+        regexErrorMessage:
+          type: string
+        hidden:
+          type: boolean
+        disabled:
+          type: boolean
+        emptyValuesAllowed:
+          type: boolean
+        updateRenderOnChange:
+          type: boolean
+    InputFormGroupFieldValues:
+      type: object
+      properties:
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormFieldValues'
+    InputFormS3DataDetails:
+      type: object
+      properties:
+        storageCredentialsId:
+          type: string
+          description: The storage credentials with the S3 access key.
+          format: uuid
+          nullable: true
+    InputFormWithExternalData:
+      type: object
+      properties:
+        dataId:
+          type: string
+        externalData:
+          $ref: '#/components/schemas/InputFormExternalData'
+        mountPath:
+          type: string
+    AnalysisPrice:
+      type: object
+      properties:
+        amount:
+          type: number
+          description: The amount of the analysis price
+        currency:
+          type: string
+          description: The currency of the analysis price
+          default: iCredit
+      nullable: true
+    AnalysisUsageDetails:
+      type: object
+      properties:
+        price:
+          $ref: '#/components/schemas/AnalysisPrice'
     AnalysisCreationBatch:
       required:
       - id
@@ -14596,6 +16767,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CreateNextflowAnalysis'
+        nextflowJsonItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/CreateNextflowJsonAnalysis'
     CreateAnalysisTag:
       type: object
       properties:
@@ -14642,11 +16817,6 @@ components:
           description: The pipeline for which an analysis will be created.
         tags:
           $ref: '#/components/schemas/CreateAnalysisTag'
-        activationCodeDetailId:
-          type: string
-          description: Indicates under which activation code the pipeline is executed.
-          format: uuid
-          nullable: true
         analysisStorageId:
           type: string
           description: The id of the storage to use for the analysis.
@@ -14664,6 +16834,11 @@ components:
             $ref: '#/components/schemas/AnalysisOutputMapping'
         analysisInput:
           $ref: '#/components/schemas/CwlAnalysisInput'
+        activationCodeDetailId:
+          type: string
+          description: Indicates under which activation code the pipeline is executed.
+          format: uuid
+          nullable: true
     CreateNextflowAnalysis:
       required:
       - analysisInput
@@ -14683,11 +16858,6 @@ components:
           description: The pipeline for which an analysis will be created.
         tags:
           $ref: '#/components/schemas/CreateAnalysisTag'
-        activationCodeDetailId:
-          type: string
-          description: Indicates under which activation code the pipeline is executed.
-          format: uuid
-          nullable: true
         analysisStorageId:
           type: string
           description: The id of the storage to use for the analysis.
@@ -14705,6 +16875,69 @@ components:
             $ref: '#/components/schemas/AnalysisOutputMapping'
         analysisInput:
           $ref: '#/components/schemas/NextflowAnalysisInput'
+        activationCodeDetailId:
+          type: string
+          description: Indicates under which activation code the pipeline is executed.
+          format: uuid
+          nullable: true
+    CreateNextflowJsonAnalysis:
+      required:
+      - inputFormValues
+      - pipelineId
+      - userReference
+      type: object
+      properties:
+        userReference:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
+          type: string
+          description: The user-reference of the analysis. This should be something
+            meaningful for the user.
+        pipelineId:
+          type: string
+          description: The pipeline for which an analysis will be created.
+        tags:
+          $ref: '#/components/schemas/CreateAnalysisTag'
+        analysisStorageId:
+          type: string
+          description: The id of the storage to use for the analysis.
+          format: uuid
+          nullable: true
+        outputParentFolderId:
+          type: string
+          description: The id or the urn of the folder in which the output folder
+            should be created.
+          nullable: true
+        analysisOutput:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisOutputMapping'
+        inputFormValues:
+          $ref: '#/components/schemas/NextflowJsonAnalysisInput'
+    InputFormGroup:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormGroupFieldValues'
+    NextflowJsonAnalysisInput:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormFieldValues'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormGroup'
     AnalysisCreationBatchItemV4:
       required:
       - id
@@ -14902,6 +17135,225 @@ components:
             type: string
             description: The reference-data-tags to filter on.
             nullable: true
+    CreateCwlJsonAnalysis:
+      required:
+      - inputFormValues
+      - pipelineId
+      - userReference
+      type: object
+      properties:
+        userReference:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
+          type: string
+          description: The user-reference of the analysis. This should be something
+            meaningful for the user.
+        pipelineId:
+          type: string
+          description: The pipeline for which an analysis will be created.
+        tags:
+          $ref: '#/components/schemas/CreateAnalysisTag'
+        analysisStorageId:
+          type: string
+          description: The id of the storage to use for the analysis.
+          format: uuid
+          nullable: true
+        outputParentFolderId:
+          type: string
+          description: The id or the urn of the folder in which the output folder
+            should be created.
+          nullable: true
+        analysisOutput:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisOutputMapping'
+        inputFormValues:
+          $ref: '#/components/schemas/CwlJsonAnalysisInput'
+    CwlJsonAnalysisInput:
+      type: object
+      properties:
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormFieldValues'
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/InputFormGroup'
+    CreateCwlWithJsonInputAnalysis:
+      required:
+      - analysisInput
+      - pipelineId
+      - userReference
+      type: object
+      properties:
+        userReference:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
+          type: string
+          description: The user-reference of the analysis. This should be something
+            meaningful for the user.
+        pipelineId:
+          type: string
+          description: The pipeline for which an analysis will be created.
+        tags:
+          $ref: '#/components/schemas/CreateAnalysisTag'
+        analysisStorageId:
+          type: string
+          description: The id of the storage to use for the analysis.
+          format: uuid
+          nullable: true
+        outputParentFolderId:
+          type: string
+          description: The id or the urn of the folder in which the output folder
+            should be created.
+          nullable: true
+        analysisOutput:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisOutputMapping'
+        analysisInput:
+          $ref: '#/components/schemas/CwlAnalysisWithJsonInput'
+    CwlAnalysisWithJsonInput:
+      required:
+      - inputJson
+      type: object
+      properties:
+        inputJson:
+          type: string
+          description: "Contains the input JSON, as an escaped JSON String."
+        dataIds:
+          type: array
+          items:
+            type: string
+        mounts:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisInputDataMount'
+        externalData:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisInputExternalData'
+    CreateCwlWithStructuredInputAnalysis:
+      required:
+      - analysisInput
+      - pipelineId
+      - userReference
+      type: object
+      properties:
+        userReference:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
+          type: string
+          description: The user-reference of the analysis. This should be something
+            meaningful for the user.
+        pipelineId:
+          type: string
+          description: The pipeline for which an analysis will be created.
+        tags:
+          $ref: '#/components/schemas/CreateAnalysisTag'
+        analysisStorageId:
+          type: string
+          description: The id of the storage to use for the analysis.
+          format: uuid
+          nullable: true
+        outputParentFolderId:
+          type: string
+          description: The id or the urn of the folder in which the output folder
+            should be created.
+          nullable: true
+        analysisOutput:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisOutputMapping'
+        analysisInput:
+          $ref: '#/components/schemas/CwlAnalysisWithStructuredInput'
+    CwlAnalysisWithStructuredInput:
+      required:
+      - inputs
+      type: object
+      properties:
+        inputs:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalysisDataInput'
+        parameters:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisParameterInput'
+        referenceDataParameters:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisReferenceDataParameter'
+    CreateNextflowWithCustomInputAnalysis:
+      required:
+      - analysisInput
+      - pipelineId
+      - userReference
+      type: object
+      properties:
+        userReference:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
+          type: string
+          description: The user-reference of the analysis. This should be something
+            meaningful for the user.
+        pipelineId:
+          type: string
+          description: The pipeline for which an analysis will be created.
+        tags:
+          $ref: '#/components/schemas/CreateAnalysisTag'
+        analysisStorageId:
+          type: string
+          description: The id of the storage to use for the analysis.
+          format: uuid
+          nullable: true
+        outputParentFolderId:
+          type: string
+          description: The id or the urn of the folder in which the output folder
+            should be created.
+          nullable: true
+        analysisOutput:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisOutputMapping'
+        analysisInput:
+          $ref: '#/components/schemas/NextflowAnalysisWithCustomInput'
+    NextflowAnalysisWithCustomInput:
+      required:
+      - customInput
+      type: object
+      properties:
+        customInput:
+          type: string
+          description: "Contains the custom input, in YAML format or as an escaped\
+            \ JSON string."
+        dataIds:
+          type: array
+          items:
+            type: string
+        mounts:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisInputDataMount'
+        externalData:
+          type: array
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisInputExternalData'
     AnalysisStorageListV4:
       required:
       - items
@@ -15028,6 +17480,8 @@ components:
         projectId:
           type: string
           format: uuid
+        application:
+          $ref: '#/components/schemas/ApplicationV4'
     ProjectBundleList:
       required:
       - items
@@ -15422,6 +17876,8 @@ components:
           description: Should this subscription be enabled or not?
         notificationChannel:
           $ref: '#/components/schemas/NotificationChannel'
+        application:
+          $ref: '#/components/schemas/ApplicationV4'
     CreateCustomNotificationSubscription:
       required:
       - customEventCode
@@ -15483,7 +17939,6 @@ components:
         projectId:
           type: string
           format: uuid
-      nullable: true
     ProjectDataPagedList:
       required:
       - items
@@ -15700,6 +18155,11 @@ components:
           nullable: true
           enum:
           - RCLONE
+        readOnlyCredentials:
+          type: boolean
+          description: The temporary credentials will be read-only.
+          nullable: true
+      nullable: true
     DataTransfer:
       required:
       - data
@@ -16397,6 +18857,14 @@ components:
           $ref: '#/components/schemas/TagUpdate'
         technicalTags:
           $ref: '#/components/schemas/TagUpdate'
+        willBeArchivedAt:
+          type: string
+          description: The timestamp when the data should be archived.
+          format: date-time
+        willBeDeletedAt:
+          type: string
+          description: The timestamp when the data should be deleted.
+          format: date-time
       description: Updates to apply.
     TagUpdate:
       type: object
@@ -16485,6 +18953,14 @@ components:
           $ref: '#/components/schemas/TagUpdate'
         technicalTags:
           $ref: '#/components/schemas/TagUpdate'
+        willBeArchivedAt:
+          type: string
+          description: The timestamp when the data should be archived.
+          format: date-time
+        willBeDeletedAt:
+          type: string
+          description: The timestamp when the data should be deleted.
+          format: date-time
     NotificationSubscription:
       required:
       - enabled
@@ -16536,6 +19012,8 @@ components:
           description: Should this subscription be enabled or not?
         notificationChannel:
           $ref: '#/components/schemas/NotificationChannel'
+        application:
+          $ref: '#/components/schemas/ApplicationV4'
     CreateNotificationSubscription:
       required:
       - enabled
@@ -16660,6 +19138,8 @@ components:
           type: boolean
         downloadAllowed:
           type: boolean
+        application:
+          $ref: '#/components/schemas/ApplicationV4'
     Workgroup:
       required:
       - description
@@ -16763,6 +19243,8 @@ components:
           type: boolean
         downloadAllowed:
           type: boolean
+        application:
+          $ref: '#/components/schemas/ApplicationV4'
     ProjectPermissionList:
       required:
       - items
@@ -16934,8 +19416,6 @@ components:
     InputPart:
       type: object
       properties:
-        contentTypeFromMessage:
-          type: boolean
         mediaType:
           type: object
           properties:
@@ -16951,6 +19431,8 @@ components:
               type: boolean
             wildcardSubtype:
               type: boolean
+        contentTypeFromMessage:
+          type: boolean
         bodyAsString:
           type: string
         headers:
@@ -16962,22 +19444,111 @@ components:
     MultipartFormDataInput:
       type: object
       properties:
+        formData:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/InputPart'
         formDataMap:
           type: object
           additionalProperties:
             type: array
             items:
               $ref: '#/components/schemas/InputPart'
-        formData:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/InputPart'
         parts:
           type: array
           items:
             $ref: '#/components/schemas/InputPart'
         preamble:
           type: string
+    CreateNextflowJsonPipeline:
+      required:
+      - analysisStorageId
+      - code
+      - description
+      - inputFormFile
+      - mainNextflowFile
+      type: object
+      properties:
+        code:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
+          type: string
+          description: The code of the pipeline
+        pipelineLanguageVersionId:
+          type: string
+          description: The id of the Nextflow version to use for the pipeline.
+          format: uuid
+          nullable: true
+        description:
+          maxLength: 4000
+          minLength: 1
+          type: string
+          description: The description of the pipeline
+        mainNextflowFile:
+          type: string
+          description: The main Nextflow file.
+          format: binary
+        nextflowConfigFile:
+          type: string
+          description: The Nextflow config file.
+          format: binary
+        otherNextflowFiles:
+          type: array
+          items:
+            type: string
+            description: Other Nextflow files referenced from the main Nextflow file.
+            format: binary
+        inputFormFile:
+          type: string
+          description: The JSON based input form.
+          format: binary
+        onRenderFile:
+          type: string
+          description: A file that will render the current state of the input form.
+          format: binary
+        onSubmitFile:
+          type: string
+          description: A file that will submit the current state of the input form.
+          format: binary
+        otherInputFormFiles:
+          type: array
+          items:
+            type: string
+            description: Other input form files referenced from the main input form
+              file.
+            format: binary
+        metadataModelFile:
+          type: string
+          description: The metadata model json file(contents can be retrieved from
+            the controlplane).
+          format: binary
+          nullable: true
+        links:
+          $ref: '#/components/schemas/Links'
+        versionComment:
+          type: string
+          nullable: true
+        categories:
+          maxItems: 4000
+          minItems: 1
+          type: array
+          nullable: true
+          items:
+            type: string
+            nullable: true
+        htmlDocumentation:
+          type: string
+          nullable: true
+        analysisStorageId:
+          type: string
+          description: The id of the storage to use for the pipeline.
+          format: uuid
+        proprietary:
+          type: boolean
+          description: A boolean which indicates if the code of this pipeline is proprietary
+          nullable: true
+          default: false
     CreateNextflowPipeline:
       required:
       - analysisStorageId
@@ -17020,6 +19591,100 @@ components:
         parametersXmlFile:
           type: string
           format: binary
+        metadataModelFile:
+          type: string
+          description: The metadata model json file(contents can be retrieved from
+            the controlplane).
+          format: binary
+          nullable: true
+        links:
+          $ref: '#/components/schemas/Links'
+        versionComment:
+          type: string
+          nullable: true
+        categories:
+          maxItems: 4000
+          minItems: 1
+          type: array
+          nullable: true
+          items:
+            type: string
+            nullable: true
+        htmlDocumentation:
+          type: string
+          nullable: true
+        analysisStorageId:
+          type: string
+          description: The id of the storage to use for the pipeline.
+          format: uuid
+        proprietary:
+          type: boolean
+          description: A boolean which indicates if the code of this pipeline is proprietary
+          nullable: true
+          default: false
+    ProjectPipelineV4:
+      required:
+      - bundleLinks
+      - pipeline
+      - projectId
+      type: object
+      properties:
+        pipeline:
+          $ref: '#/components/schemas/PipelineV4'
+        projectId:
+          type: string
+          format: uuid
+        bundleLinks:
+          $ref: '#/components/schemas/BundleList'
+    CreateCwlJsonPipeline:
+      required:
+      - analysisStorageId
+      - code
+      - description
+      - inputFormFile
+      - workflowCwlFile
+      type: object
+      properties:
+        code:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
+          type: string
+          description: The code of the CWL pipeline
+        description:
+          maxLength: 4000
+          minLength: 1
+          type: string
+          description: The description of the CWL pipeline
+        workflowCwlFile:
+          type: string
+          description: The CWL workflow file.
+          format: binary
+        toolCwlFiles:
+          type: array
+          items:
+            type: string
+            description: The CWL tool files referenced from the workflow file.
+            format: binary
+        inputFormFile:
+          type: string
+          description: The JSON based input form.
+          format: binary
+        onRenderFile:
+          type: string
+          description: A file that will render the current state of the input form.
+          format: binary
+        onSubmitFile:
+          type: string
+          description: A file that will submit the current state of the input form.
+          format: binary
+        otherInputFormFiles:
+          type: array
+          items:
+            type: string
+            description: Other input form files referenced from the main input form
+              file.
+            format: binary
         metadataModelFile:
           type: string
           description: The metadata model json file(contents can be retrieved from
@@ -17859,7 +20524,7 @@ components:
           type: string
           nullable: true
         name:
-          maxLength: 60
+          maxLength: 150
           minLength: 1
           type: string
         type:
@@ -17892,7 +20557,7 @@ components:
       type: object
       properties:
         name:
-          maxLength: 60
+          maxLength: 150
           minLength: 1
           pattern: "^[a-zA-Z0-9_-]*$"
           type: string
@@ -18039,6 +20704,199 @@ components:
           description: The date until to search in.
           format: date-time
           nullable: true
+    CreateFileData:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the file as how it will be created.
+        folderId:
+          type: string
+          description: "The id of the folder you want to create this new file in.\
+            \ Alternatively, the folderPath attribute could be used as well for this."
+          nullable: true
+        folderPath:
+          pattern: .*/$
+          type: string
+          description: "The absolute path of the folder you want to create this new\
+            \ file in which must end with '/'. Alternatively, the folderId attribute\
+            \ could be used as well for this. In case the folder path does not yet\
+            \ exist, it will be automatically created."
+          nullable: true
+        formatCode:
+          type: string
+          description: "The code of the format you would like to assign at creation\
+            \ time. If not specified, auto format assignment will be done."
+          nullable: true
+    ProjectDataAndTemporaryCredentials:
+      required:
+      - data
+      - projectId
+      - tempCredentials
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        projectId:
+          type: string
+          format: uuid
+        tempCredentials:
+          $ref: '#/components/schemas/TempCredentials'
+    CreateFileAndTemporaryCredentials:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the file as how it will be created.
+        folderId:
+          type: string
+          description: "The id of the folder you want to create this new file in.\
+            \ Alternatively, the folderPath attribute could be used as well for this."
+          nullable: true
+        folderPath:
+          pattern: .*/$
+          type: string
+          description: "The absolute path of the folder you want to create this new\
+            \ file in which must end with '/'. Alternatively, the folderId attribute\
+            \ could be used as well for this. In case the folder path does not yet\
+            \ exist, it will be automatically created."
+          nullable: true
+        formatCode:
+          type: string
+          description: "The code of the format you would like to assign at creation\
+            \ time. If not specified, auto format assignment will be done."
+          nullable: true
+        temporaryCredentials:
+          $ref: '#/components/schemas/CreateTemporaryCredentials'
+    ProjectFileAndUploadUrl:
+      required:
+      - data
+      - projectId
+      - uploadUrl
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        projectId:
+          type: string
+          format: uuid
+        uploadUrl:
+          type: string
+          description: A pre-signed url which is temporarily available for uploading
+            the data.
+    CreateFileAndUploadUrl:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the file as how it will be created.
+        folderId:
+          type: string
+          description: "The id of the folder you want to create this new file in.\
+            \ Alternatively, the folderPath attribute could be used as well for this."
+          nullable: true
+        folderPath:
+          pattern: .*/$
+          type: string
+          description: "The absolute path of the folder you want to create this new\
+            \ file in which must end with '/'. Alternatively, the folderId attribute\
+            \ could be used as well for this. In case the folder path does not yet\
+            \ exist, it will be automatically created."
+          nullable: true
+        formatCode:
+          type: string
+          description: "The code of the format you would like to assign at creation\
+            \ time. If not specified, auto format assignment will be done."
+          nullable: true
+        fileType:
+          type: string
+          description: "The expected content type for the upload, to include in the\
+            \ upload url."
+          nullable: true
+        hash:
+          type: string
+          description: "The expected md5 hash for the upload content, to include in\
+            \ the upload url."
+          nullable: true
+    CreateFolder:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the folder as how it will be created.
+        folderId:
+          type: string
+          description: "The id of the folder you want to create this new folder in.\
+            \ Alternatively, the folderPath attribute could be used as well for this."
+          nullable: true
+        folderPath:
+          pattern: .*/$
+          type: string
+          description: "The absolute path of the folder you want to create this new\
+            \ folder in which must end with '/'. Alternatively, the folderId attribute\
+            \ could be used as well for this. In case the folder path does not yet\
+            \ exist, it will be automatically created."
+          nullable: true
+    CreateFolderAndTemporaryCredentials:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the folder as how it will be created.
+        folderId:
+          type: string
+          description: "The id of the folder you want to create this new folder in.\
+            \ Alternatively, the folderPath attribute could be used as well for this."
+          nullable: true
+        folderPath:
+          pattern: .*/$
+          type: string
+          description: "The absolute path of the folder you want to create this new\
+            \ folder in which must end with '/'. Alternatively, the folderId attribute\
+            \ could be used as well for this. In case the folder path does not yet\
+            \ exist, it will be automatically created."
+          nullable: true
+        nonIndexed:
+          type: boolean
+          description: "If you want to create a non-indexed folder. Only possible\
+            \ as a top-level folder, which means the folderId and folderPath attributes\
+            \ are not allowed."
+          nullable: true
+          default: false
+        temporaryCredentials:
+          $ref: '#/components/schemas/CreateTemporaryCredentials'
+    ProjectFolderAndUploadSession:
+      required:
+      - data
+      - projectId
+      - uploadSession
+      type: object
+      properties:
+        data:
+          $ref: '#/components/schemas/Data'
+        projectId:
+          type: string
+          format: uuid
+        uploadSession:
+          $ref: '#/components/schemas/FolderUploadSession'
+    CreateNonIndexedFolder:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the non indexed folder.
     DataUrlWithPath:
       required:
       - dataId

@@ -1,17 +1,7 @@
 YAML_FILE = "swagger/openapi_public.yaml"
 
-if __name__ == '__main__':
-    """
-    You don't return anything if HTTP 204! Blank object {} is not appropriate here as the respective backing model; SDK
-    generation will throw exception on non-nullable properties. So definition-wise, we simply need not to say anything. 
-    So sweep these definitions if found.
-    
-    See https://github.com/OpenAPITools/openapi-generator/issues/476
-    """
 
-    pattern = "application/vnd.illumina.v3+json: {}"
-    pattern2 = "content:"
-
+def strip(pattern):
     with open(YAML_FILE, "r") as f:
         lines = f.readlines()
 
@@ -31,3 +21,18 @@ if __name__ == '__main__':
         f.writelines(mod_lines)
 
     print("Total found: %s" % total)
+
+
+if __name__ == '__main__':
+    """
+    You don't return anything if HTTP 204! Blank object {} is not appropriate here as the respective backing model; SDK
+    generation will throw exception on non-nullable properties. So definition-wise, we simply need not to say anything. 
+    So sweep these definitions if found.
+    
+    See https://github.com/OpenAPITools/openapi-generator/issues/476
+    """
+
+    pattern2 = "content:"
+
+    strip(pattern="application/vnd.illumina.v3+json: {}")
+    strip(pattern="application/vnd.illumina.v4+json: {}")
