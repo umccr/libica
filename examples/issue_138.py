@@ -11,7 +11,7 @@ if __name__ == '__main__':
     print(f"libica-{version('libica')}")
     print("-" * 64)
 
-    # See https://github.com/umccr-illumina/libica/issues/138
+    # See https://github.com/umccr/libica/issues/138
     # Usage:
     #   icav2 tenants enter umccr-beta
     #   icav2 projects enter 'ega-upload-test'

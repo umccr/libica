@@ -70,7 +70,7 @@ nextflow_analysis = CreateNextflowAnalysis(
 class Issue135IntegrationTests(TestCase):
     """
     Dedicated test cases for request and response type version switching from API endpoint.
-    See https://github.com/umccr-illumina/libica/issues/135
+    See https://github.com/umccr/libica/issues/135
 
     How to run these tests:
     1. `make up` from the project root to spin up ICAv2 mock endpoints (see README)

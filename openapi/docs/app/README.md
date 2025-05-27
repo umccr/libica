@@ -1,12 +1,12 @@
 # libica.app
 
-## Using [App Package](https://umccr-illumina.github.io/libica/libica/app/index.html)
+## Using [App Package](https://umccr.github.io/libica/libica/app/index.html)
 
 > NOTE: `libica.app` package contains reusable modules that are based on use cases around UMCCR [Data Portal backend](https://github.com/umccr/data-portal-apis), [Workflows automation and orchestration](https://github.com/umccr/data-portal-apis/tree/dev/docs/pipeline) implementations. Hence, it may be a specific domain logic implementation. However, it may still be reusable for your use cases. Starter examples are as follows.
 
 ### App for ICA v2
 
-See [pilotapp.py](https://github.com/umccr-illumina/libica/blob/main/examples/pilotapp.py)
+See [pilotapp.py](https://github.com/umccr/libica/blob/main/examples/pilotapp.py)
 
 Example: `ProjectDataOps` app to list project files, download a file, etc...
 
@@ -61,38 +61,4 @@ with closing(ntf) as cf:
 ```
 
 For more, see PyDoc: 
-- https://umccr-illumina.github.io/libica/libica/app/dataops.html
-
-### App for ICA v1
-
-Example: Configuration Object Builder
-
-```python
-from libica.app import configuration
-from libica.openapi import libgds
-
-gds_config = configuration(
-  lib=libgds,  # pass in library of interest e.g. libwes, libtes, etc 
-  secret_name=["FROM_AWS_SECRET_MANAGER_THAT_STORE_ICA_ACCESS_TOKEN"],
-  base_url="https://use1.platform.illumina.com",  # overwrite if not https://aps2.platform.illumina.com
-  debug=False,  # True if you like to debug API calls, False by default anyway, just for demo
-)
-
-with libgds.ApiClient(gds_config) as api_client:
-    ...
-```
-
-Example: Listing Files from GDS
-
-```python
-from typing import List
-
-from libica.app import gds
-from libica.openapi import libgds
-
-vol, path = gds.parse_path("gds://development/some/folder/path/")
-files: List[libgds.FileResponse] = gds.get_file_list(volume_name=vol, path=path)
-
-for file in files:
-  print(f"{file.name}, {file.volume_name}, {file.path}, {file.presigned_url}")
-```
+- https://umccr.github.io/libica/libica/app/dataops.html

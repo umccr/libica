@@ -31,7 +31,7 @@ project_id = "ea19a3f5-ec7c-4940-a474-c31cd91dbad4"
 
 if __name__ == '__main__':
 
-    # See https://github.com/umccr-illumina/libica/issues/129
+    # See https://github.com/umccr/libica/issues/129
     # Usage:
     #   icav2 tenants enter umccr-prod
     #   icav2 projects enter 'development'

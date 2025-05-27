@@ -161,7 +161,7 @@ if __name__ == '__main__':
     print(f"libica-{version('libica')}")
     print("-" * 64)
 
-    # See https://github.com/umccr-illumina/libica/issues/135
+    # See https://github.com/umccr/libica/issues/135
     # Usage:
     #   cd examples
     #   python issue_135.py 2>&1 | tee issue_135.v3.1.log

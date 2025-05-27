@@ -34,9 +34,6 @@ down:
 ps:
 	@docker compose ps
 
-test_ica_mock:
-	@curl -s -H "Authorization: Bearer Test" -X GET http://localhost/v1/workflows/runs/wfr.anything_work | jq
-
 test_icav2_mock:
 	@curl -s -H "Authorization: Bearer Test" -X GET http://localhost/api/projects/1 | jq
 
@@ -74,29 +71,6 @@ testpypi: dist/libica-$(version).tar.gz
 
 pypi: dist/libica-$(version).tar.gz
 	@python3 -m twine upload --sign dist/libica-$(version)*
-
-########
-# ICA v1
-
-.PHONY: getapi genapi mvapidoc rmapi
-getapi:
-	@. syncapi.sh; getapi
-
-genapi:
-	@. syncapi.sh; genapi; mvapidoc
-
-mvapidoc:
-	@. syncapi.sh; mvapidoc
-
-check: chkepver validate
-
-# check endpoint version
-chkepver:
-	@. syncapi.sh; chkepver
-
-# validate swagger openapi definitions
-validate:
-	@. syncapi.sh; validateapi
 
 ########
 # ICA v2

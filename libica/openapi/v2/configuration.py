@@ -234,7 +234,7 @@ conf = libica.openapi.v2.Configuration(
         self.socket_options = None
 
         # FIXME form filename basename wrapping or not
-        #  See use case https://github.com/umccr-illumina/libica/issues/74
+        #  See use case https://github.com/umccr/libica/issues/74
         self.form_filename_basename = form_filename_basename
 
     def __deepcopy__(self, memo):
