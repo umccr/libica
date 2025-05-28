@@ -1102,7 +1102,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     parent_folder_id = [
         "parentFolderId_example",
     ] # [str] | The IDs of parents folders to filter on. Lists all files and folders within the folder for the given ID, non-recursively. (optional)
-    parent_folder_path = "parentFolderPath_example" # str | The full path of the parent folder. Should start and end with a '/'. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. (optional)
+    parent_folder_path = "parentFolderPath_example" # str | The full path of the parent folder. Should start and end with a '/'. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. This does not work for contents from a linked folder apposed to individual linked files. (optional)
     creation_date_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date after which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
     creation_date_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date before which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
     status_date_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date after which the status has been updated. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
@@ -1172,7 +1172,7 @@ Name | Type | Description  | Notes
  **format_code** | **[str]**| The codes of the formats to filter on. | [optional]
  **type** | **str**| The type to filter on. | [optional]
  **parent_folder_id** | **[str]**| The IDs of parents folders to filter on. Lists all files and folders within the folder for the given ID, non-recursively. | [optional]
- **parent_folder_path** | **str**| The full path of the parent folder. Should start and end with a &#39;/&#39;. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. | [optional]
+ **parent_folder_path** | **str**| The full path of the parent folder. Should start and end with a &#39;/&#39;. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. This does not work for contents from a linked folder apposed to individual linked files. | [optional]
  **creation_date_after** | **datetime**| The date after which the data is created. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
  **creation_date_before** | **datetime**| The date before which the data is created. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
  **status_date_after** | **datetime**| The date after which the status has been updated. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
@@ -2123,6 +2123,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     region="region_example",
                 ),
                 city_name="city_name_example",
+            ),
+            application=ApplicationV4(
+                id="id_example",
+                name="name_example",
             ),
             status="DELETED",
             metadata_valid=True,

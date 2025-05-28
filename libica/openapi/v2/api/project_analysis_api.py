@@ -28,13 +28,20 @@ from libica.openapi.v2.model.analysis_paged_list_v4 import AnalysisPagedListV4
 from libica.openapi.v2.model.analysis_query_parameters import AnalysisQueryParameters
 from libica.openapi.v2.model.analysis_raw_output import AnalysisRawOutput
 from libica.openapi.v2.model.analysis_step_list import AnalysisStepList
+from libica.openapi.v2.model.analysis_usage_details import AnalysisUsageDetails
 from libica.openapi.v2.model.analysis_v3 import AnalysisV3
 from libica.openapi.v2.model.analysis_v4 import AnalysisV4
 from libica.openapi.v2.model.create_cwl_analysis import CreateCwlAnalysis
+from libica.openapi.v2.model.create_cwl_json_analysis import CreateCwlJsonAnalysis
+from libica.openapi.v2.model.create_cwl_with_json_input_analysis import CreateCwlWithJsonInputAnalysis
+from libica.openapi.v2.model.create_cwl_with_structured_input_analysis import CreateCwlWithStructuredInputAnalysis
 from libica.openapi.v2.model.create_nextflow_analysis import CreateNextflowAnalysis
+from libica.openapi.v2.model.create_nextflow_json_analysis import CreateNextflowJsonAnalysis
+from libica.openapi.v2.model.create_nextflow_with_custom_input_analysis import CreateNextflowWithCustomInputAnalysis
 from libica.openapi.v2.model.cwl_analysis_input_json import CwlAnalysisInputJson
 from libica.openapi.v2.model.cwl_analysis_output_json import CwlAnalysisOutputJson
 from libica.openapi.v2.model.execution_configuration_list import ExecutionConfigurationList
+from libica.openapi.v2.model.input_form_field_list import InputFormFieldList
 from libica.openapi.v2.model.problem import Problem
 
 
@@ -179,6 +186,213 @@ class ProjectAnalysisApi(object):
             },
             api_client=api_client
         )
+        self.create_cwl_analysis_with_json_input_endpoint = _Endpoint(
+            settings={
+                'response_type': (AnalysisV4,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/analysis:cwlWithJsonInput',
+                'operation_id': 'create_cwl_analysis_with_json_input',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_cwl_with_json_input_analysis',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_cwl_with_json_input_analysis',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_cwl_with_json_input_analysis':
+                        (CreateCwlWithJsonInputAnalysis,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_cwl_with_json_input_analysis': 'body',
+                    'idempotency_key': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v4+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v4+json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_cwl_analysis_with_structured_input_endpoint = _Endpoint(
+            settings={
+                'response_type': (AnalysisV4,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/analysis:cwlWithStructuredInput',
+                'operation_id': 'create_cwl_analysis_with_structured_input',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_cwl_with_structured_input_analysis',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_cwl_with_structured_input_analysis',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_cwl_with_structured_input_analysis':
+                        (CreateCwlWithStructuredInputAnalysis,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_cwl_with_structured_input_analysis': 'body',
+                    'idempotency_key': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v4+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v4+json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_cwl_json_analysis_endpoint = _Endpoint(
+            settings={
+                'response_type': (AnalysisV4,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/analysis:cwlJson',
+                'operation_id': 'create_cwl_json_analysis',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_cwl_json_analysis',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_cwl_json_analysis',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_cwl_json_analysis':
+                        (CreateCwlJsonAnalysis,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_cwl_json_analysis': 'body',
+                    'idempotency_key': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v4+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v4+json'
+                ]
+            },
+            api_client=api_client
+        )
         self.create_nextflow_analysis_endpoint = _Endpoint(
             settings={
                 'response_type': (AnalysisV4,),
@@ -246,6 +460,144 @@ class ProjectAnalysisApi(object):
                 'content_type': [
                     'application/vnd.illumina.v4+json',
                     'application/vnd.illumina.v3+json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_nextflow_analysis_with_custom_input_endpoint = _Endpoint(
+            settings={
+                'response_type': (AnalysisV4,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/analysis:nextflowWithCustomInput',
+                'operation_id': 'create_nextflow_analysis_with_custom_input',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_nextflow_with_custom_input_analysis',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_nextflow_with_custom_input_analysis',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_nextflow_with_custom_input_analysis':
+                        (CreateNextflowWithCustomInputAnalysis,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_nextflow_with_custom_input_analysis': 'body',
+                    'idempotency_key': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v4+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v4+json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_nextflow_json_analysis_endpoint = _Endpoint(
+            settings={
+                'response_type': (AnalysisV4,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/analysis:nextflowJson',
+                'operation_id': 'create_nextflow_json_analysis',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_nextflow_json_analysis',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_nextflow_json_analysis',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_nextflow_json_analysis':
+                        (CreateNextflowJsonAnalysis,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_nextflow_json_analysis': 'body',
+                    'idempotency_key': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v4+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v4+json'
                 ]
             },
             api_client=api_client
@@ -649,6 +1001,65 @@ class ProjectAnalysisApi(object):
             },
             api_client=api_client
         )
+        self.get_analysis_usage_details_endpoint = _Endpoint(
+            settings={
+                'response_type': (AnalysisUsageDetails,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/analyses/{analysisId}/usage',
+                'operation_id': 'get_analysis_usage_details',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'analysis_id',
+                ],
+                'required': [
+                    'project_id',
+                    'analysis_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'analysis_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'analysis_id': 'analysisId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'analysis_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.get_cwl_input_json_endpoint = _Endpoint(
             settings={
                 'response_type': (CwlAnalysisInputJson,),
@@ -762,6 +1173,65 @@ class ProjectAnalysisApi(object):
                 'accept': [
                     'application/problem+json',
                     'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_project_analysis_input_form_values_endpoint = _Endpoint(
+            settings={
+                'response_type': (InputFormFieldList,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/analyses/{analysisId}/inputFormValues',
+                'operation_id': 'get_project_analysis_input_form_values',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'analysis_id',
+                ],
+                'required': [
+                    'project_id',
+                    'analysis_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'analysis_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'analysis_id': 'analysisId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'analysis_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v4+json'
                 ],
                 'content_type': [],
             },
@@ -1146,6 +1616,253 @@ class ProjectAnalysisApi(object):
             create_cwl_analysis
         return self.create_cwl_analysis_endpoint.call_with_http_info(**kwargs)
 
+    def create_cwl_analysis_with_json_input(
+        self,
+        project_id,
+        create_cwl_with_json_input_analysis,
+        **kwargs
+    ):
+        """Create and start an analysis for a CWL pipeline with an input.json.  # noqa: E501
+
+        This endpoint is intended to be used with an input.json and will bypass the input form. The combination of using this endpoint with an input.json for a json-form based pipeline with sensitive fields defined is not possible.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_cwl_analysis_with_json_input(project_id, create_cwl_with_json_input_analysis, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_cwl_with_json_input_analysis (CreateCwlWithJsonInputAnalysis): The following options can be used for actionOnExist:<br /><ul><li>Overwrite (default): If a file with that name already exists, it is overwritten.</li><li>Rename: If a file with that name already exists, an incremental counter is appended to the file name.</li><li>Skip: If a file with that name already exists, the new file is not saved and the data is discarded.</li></ul>
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisV4
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_cwl_with_json_input_analysis'] = \
+            create_cwl_with_json_input_analysis
+        return self.create_cwl_analysis_with_json_input_endpoint.call_with_http_info(**kwargs)
+
+    def create_cwl_analysis_with_structured_input(
+        self,
+        project_id,
+        create_cwl_with_structured_input_analysis,
+        **kwargs
+    ):
+        """Create and start an analysis for a CWL pipeline with a structured input.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_cwl_analysis_with_structured_input(project_id, create_cwl_with_structured_input_analysis, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_cwl_with_structured_input_analysis (CreateCwlWithStructuredInputAnalysis): The following options can be used for actionOnExist:<br /><ul><li>Overwrite (default): If a file with that name already exists, it is overwritten.</li><li>Rename: If a file with that name already exists, an incremental counter is appended to the file name.</li><li>Skip: If a file with that name already exists, the new file is not saved and the data is discarded.</li></ul>
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisV4
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_cwl_with_structured_input_analysis'] = \
+            create_cwl_with_structured_input_analysis
+        return self.create_cwl_analysis_with_structured_input_endpoint.call_with_http_info(**kwargs)
+
+    def create_cwl_json_analysis(
+        self,
+        project_id,
+        create_cwl_json_analysis,
+        **kwargs
+    ):
+        """Create and start an analysis for a JSON based CWL pipeline.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_cwl_json_analysis(project_id, create_cwl_json_analysis, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_cwl_json_analysis (CreateCwlJsonAnalysis): The following options can be used for actionOnExist:<br /><ul><li>Overwrite (default): If a file with that name already exists, it is overwritten.</li><li>Rename: If a file with that name already exists, an incremental counter is appended to the file name.</li><li>Skip: If a file with that name already exists, the new file is not saved and the data is discarded.</li></ul>
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisV4
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_cwl_json_analysis'] = \
+            create_cwl_json_analysis
+        return self.create_cwl_json_analysis_endpoint.call_with_http_info(**kwargs)
+
     def create_nextflow_analysis(
         self,
         project_id,
@@ -1228,6 +1945,171 @@ class ProjectAnalysisApi(object):
         kwargs['create_nextflow_analysis'] = \
             create_nextflow_analysis
         return self.create_nextflow_analysis_endpoint.call_with_http_info(**kwargs)
+
+    def create_nextflow_analysis_with_custom_input(
+        self,
+        project_id,
+        create_nextflow_with_custom_input_analysis,
+        **kwargs
+    ):
+        """Create and initiate an analysis for a Nextflow pipeline using a custom input, provided in either YAML format or an escaped JSON string.  # noqa: E501
+
+        This endpoint is intended to be used with a custom input and will bypass the input form. The combination of using this endpoint with a custom input for a json-form based pipeline with sensitive fields defined is not possible.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_nextflow_analysis_with_custom_input(project_id, create_nextflow_with_custom_input_analysis, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_nextflow_with_custom_input_analysis (CreateNextflowWithCustomInputAnalysis): The following options can be used for actionOnExist:<br /><ul><li>Overwrite (default): If a file with that name already exists, it is overwritten.</li><li>Rename: If a file with that name already exists, an incremental counter is appended to the file name.</li><li>Skip: If a file with that name already exists, the new file is not saved and the data is discarded.</li></ul>
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisV4
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_nextflow_with_custom_input_analysis'] = \
+            create_nextflow_with_custom_input_analysis
+        return self.create_nextflow_analysis_with_custom_input_endpoint.call_with_http_info(**kwargs)
+
+    def create_nextflow_json_analysis(
+        self,
+        project_id,
+        create_nextflow_json_analysis,
+        **kwargs
+    ):
+        """Create and start an analysis for a JSON based Nextflow pipeline.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_nextflow_json_analysis(project_id, create_nextflow_json_analysis, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_nextflow_json_analysis (CreateNextflowJsonAnalysis): The following options can be used for actionOnExist:<br /><ul><li>Overwrite (default): If a file with that name already exists, it is overwritten.</li><li>Rename: If a file with that name already exists, an incremental counter is appended to the file name.</li><li>Skip: If a file with that name already exists, the new file is not saved and the data is discarded.</li></ul>
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisV4
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_nextflow_json_analysis'] = \
+            create_nextflow_json_analysis
+        return self.create_nextflow_json_analysis_endpoint.call_with_http_info(**kwargs)
 
     def get_analyses(
         self,
@@ -1723,6 +2605,88 @@ class ProjectAnalysisApi(object):
             analysis_id
         return self.get_analysis_steps_endpoint.call_with_http_info(**kwargs)
 
+    def get_analysis_usage_details(
+        self,
+        project_id,
+        analysis_id,
+        **kwargs
+    ):
+        """Retrieve the analysis usage details.  # noqa: E501
+
+        The usage details can be retrieved once the analysis has completed with status SUCCEEDED or FAILED. It may take several minutes for the information to become available. A 404 status indicates that the system is busy processing the information.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_analysis_usage_details(project_id, analysis_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            analysis_id (str): The ID of the analysis to retrieve the usage details for
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisUsageDetails
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['analysis_id'] = \
+            analysis_id
+        return self.get_analysis_usage_details_endpoint.call_with_http_info(**kwargs)
+
     def get_cwl_input_json(
         self,
         project_id,
@@ -1884,6 +2848,88 @@ class ProjectAnalysisApi(object):
         kwargs['analysis_id'] = \
             analysis_id
         return self.get_cwl_output_json_endpoint.call_with_http_info(**kwargs)
+
+    def get_project_analysis_input_form_values(
+        self,
+        project_id,
+        analysis_id,
+        **kwargs
+    ):
+        """Retrieve the values from an input form.  # noqa: E501
+
+        Retrieve the values from an input form of a JSON based pipeline used to start an analysis.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_project_analysis_input_form_values(project_id, analysis_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            analysis_id (str): The ID of the analysis to retrieve the input form values from
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            InputFormFieldList
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['analysis_id'] = \
+            analysis_id
+        return self.get_project_analysis_input_form_values_endpoint.call_with_http_info(**kwargs)
 
     def get_raw_analysis_output(
         self,

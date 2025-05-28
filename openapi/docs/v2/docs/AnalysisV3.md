@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **summary** | **str, none_type** | The summary of the analysis | [optional] 
 **analysis_storage** | [**AnalysisStorageV3**](AnalysisStorageV3.md) |  | [optional] 
 **analysis_priority** | **str, none_type** | The priority of the analysis | [optional] 
+**application** | [**ApplicationV4**](ApplicationV4.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

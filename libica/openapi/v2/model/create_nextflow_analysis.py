@@ -102,10 +102,10 @@ class CreateNextflowAnalysis(ModelNormal):
             'pipeline_id': (str,),  # noqa: E501
             'analysis_input': (NextflowAnalysisInput,),  # noqa: E501
             'tags': (CreateAnalysisTag,),  # noqa: E501
-            'activation_code_detail_id': (str, none_type,),  # noqa: E501
             'analysis_storage_id': (str, none_type,),  # noqa: E501
             'output_parent_folder_id': (str, none_type,),  # noqa: E501
             'analysis_output': ([AnalysisOutputMapping], none_type,),  # noqa: E501
+            'activation_code_detail_id': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -118,10 +118,10 @@ class CreateNextflowAnalysis(ModelNormal):
         'pipeline_id': 'pipelineId',  # noqa: E501
         'analysis_input': 'analysisInput',  # noqa: E501
         'tags': 'tags',  # noqa: E501
-        'activation_code_detail_id': 'activationCodeDetailId',  # noqa: E501
         'analysis_storage_id': 'analysisStorageId',  # noqa: E501
         'output_parent_folder_id': 'outputParentFolderId',  # noqa: E501
         'analysis_output': 'analysisOutput',  # noqa: E501
+        'activation_code_detail_id': 'activationCodeDetailId',  # noqa: E501
     }
 
     read_only_vars = {
@@ -171,10 +171,10 @@ class CreateNextflowAnalysis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tags (CreateAnalysisTag): [optional]  # noqa: E501
-            activation_code_detail_id (str, none_type): Indicates under which activation code the pipeline is executed.. [optional]  # noqa: E501
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id or the urn of the folder in which the output folder should be created.. [optional]  # noqa: E501
             analysis_output ([AnalysisOutputMapping], none_type): [optional]  # noqa: E501
+            activation_code_detail_id (str, none_type): Indicates under which activation code the pipeline is executed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -265,10 +265,10 @@ class CreateNextflowAnalysis(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             tags (CreateAnalysisTag): [optional]  # noqa: E501
-            activation_code_detail_id (str, none_type): Indicates under which activation code the pipeline is executed.. [optional]  # noqa: E501
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id or the urn of the folder in which the output folder should be created.. [optional]  # noqa: E501
             analysis_output ([AnalysisOutputMapping], none_type): [optional]  # noqa: E501
+            activation_code_detail_id (str, none_type): Indicates under which activation code the pipeline is executed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

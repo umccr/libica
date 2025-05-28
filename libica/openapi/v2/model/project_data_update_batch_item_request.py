@@ -90,6 +90,8 @@ class ProjectDataUpdateBatchItemRequest(ModelNormal):
             'data_id': (str,),  # noqa: E501
             'user_tags': (TagUpdate,),  # noqa: E501
             'technical_tags': (TagUpdate,),  # noqa: E501
+            'will_be_archived_at': (datetime,),  # noqa: E501
+            'will_be_deleted_at': (datetime,),  # noqa: E501
         }
 
     @cached_property
@@ -101,6 +103,8 @@ class ProjectDataUpdateBatchItemRequest(ModelNormal):
         'data_id': 'dataId',  # noqa: E501
         'user_tags': 'userTags',  # noqa: E501
         'technical_tags': 'technicalTags',  # noqa: E501
+        'will_be_archived_at': 'willBeArchivedAt',  # noqa: E501
+        'will_be_deleted_at': 'willBeDeletedAt',  # noqa: E501
     }
 
     read_only_vars = {
@@ -149,6 +153,8 @@ class ProjectDataUpdateBatchItemRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             user_tags (TagUpdate): [optional]  # noqa: E501
             technical_tags (TagUpdate): [optional]  # noqa: E501
+            will_be_archived_at (datetime): The timestamp when the data should be archived.. [optional]  # noqa: E501
+            will_be_deleted_at (datetime): The timestamp when the data should be deleted.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -236,6 +242,8 @@ class ProjectDataUpdateBatchItemRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             user_tags (TagUpdate): [optional]  # noqa: E501
             technical_tags (TagUpdate): [optional]  # noqa: E501
+            will_be_archived_at (datetime): The timestamp when the data should be archived.. [optional]  # noqa: E501
+            will_be_deleted_at (datetime): The timestamp when the data should be deleted.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

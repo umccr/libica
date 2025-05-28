@@ -30,10 +30,12 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.application_v4 import ApplicationV4
     from libica.openapi.v2.model.data_format import DataFormat
     from libica.openapi.v2.model.data_tag import DataTag
     from libica.openapi.v2.model.region import Region
     from libica.openapi.v2.model.sequencing_run import SequencingRun
+    globals()['ApplicationV4'] = ApplicationV4
     globals()['DataFormat'] = DataFormat
     globals()['DataTag'] = DataTag
     globals()['Region'] = Region
@@ -122,6 +124,7 @@ class DataDetails(ModelNormal):
             'object_e_tag': (str, none_type,),  # noqa: E501
             'stored_for_the_first_time_at': (datetime, none_type,),  # noqa: E501
             'region': (Region,),  # noqa: E501
+            'application': (ApplicationV4,),  # noqa: E501
             'will_be_archived_at': (datetime, none_type,),  # noqa: E501
             'will_be_deleted_at': (datetime, none_type,),  # noqa: E501
             'sequencing_run': (SequencingRun,),  # noqa: E501
@@ -150,6 +153,7 @@ class DataDetails(ModelNormal):
         'object_e_tag': 'objectETag',  # noqa: E501
         'stored_for_the_first_time_at': 'storedForTheFirstTimeAt',  # noqa: E501
         'region': 'region',  # noqa: E501
+        'application': 'application',  # noqa: E501
         'will_be_archived_at': 'willBeArchivedAt',  # noqa: E501
         'will_be_deleted_at': 'willBeDeletedAt',  # noqa: E501
         'sequencing_run': 'sequencingRun',  # noqa: E501
@@ -215,6 +219,7 @@ class DataDetails(ModelNormal):
             object_e_tag (str, none_type): The file's ETag, as received from the cloud provider. Not to be confused with the ETag reponse header of this API.. [optional]  # noqa: E501
             stored_for_the_first_time_at (datetime, none_type): Specifies when the data object was stored for the first time. [optional]  # noqa: E501
             region (Region): [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
             will_be_archived_at (datetime, none_type): Specifies when the data object will be archived.. [optional]  # noqa: E501
             will_be_deleted_at (datetime, none_type): Specifies when the data object will be deleted.. [optional]  # noqa: E501
             sequencing_run (SequencingRun): [optional]  # noqa: E501
@@ -326,6 +331,7 @@ class DataDetails(ModelNormal):
             object_e_tag (str, none_type): The file's ETag, as received from the cloud provider. Not to be confused with the ETag reponse header of this API.. [optional]  # noqa: E501
             stored_for_the_first_time_at (datetime, none_type): Specifies when the data object was stored for the first time. [optional]  # noqa: E501
             region (Region): [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
             will_be_archived_at (datetime, none_type): Specifies when the data object will be archived.. [optional]  # noqa: E501
             will_be_deleted_at (datetime, none_type): Specifies when the data object will be deleted.. [optional]  # noqa: E501
             sequencing_run (SequencingRun): [optional]  # noqa: E501

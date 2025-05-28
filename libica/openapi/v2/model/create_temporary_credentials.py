@@ -72,7 +72,7 @@ class CreateTemporaryCredentials(ModelNormal):
         """
         return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
-    _nullable = False
+    _nullable = True
 
     @cached_property
     def openapi_types():
@@ -86,6 +86,7 @@ class CreateTemporaryCredentials(ModelNormal):
         """
         return {
             'credentials_format': (str, none_type,),  # noqa: E501
+            'read_only_credentials': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -95,6 +96,7 @@ class CreateTemporaryCredentials(ModelNormal):
 
     attribute_map = {
         'credentials_format': 'credentialsFormat',  # noqa: E501
+        'read_only_credentials': 'readOnlyCredentials',  # noqa: E501
     }
 
     read_only_vars = {
@@ -139,6 +141,7 @@ class CreateTemporaryCredentials(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             credentials_format (str, none_type): The format in which temporary credentials have to be returned. If not provided, temporary credentials will be returned in a cloud specific format.. [optional] if omitted the server will use the default value of "RCLONE"  # noqa: E501
+            read_only_credentials (bool, none_type): The temporary credentials will be read-only.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -221,6 +224,7 @@ class CreateTemporaryCredentials(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             credentials_format (str, none_type): The format in which temporary credentials have to be returned. If not provided, temporary credentials will be returned in a cloud specific format.. [optional] if omitted the server will use the default value of "RCLONE"  # noqa: E501
+            read_only_credentials (bool, none_type): The temporary credentials will be read-only.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

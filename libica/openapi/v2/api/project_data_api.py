@@ -23,6 +23,12 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
 )
 from libica.openapi.v2.model.complete_folder_upload_session import CompleteFolderUploadSession
 from libica.openapi.v2.model.create_data import CreateData
+from libica.openapi.v2.model.create_file_and_temporary_credentials import CreateFileAndTemporaryCredentials
+from libica.openapi.v2.model.create_file_and_upload_url import CreateFileAndUploadUrl
+from libica.openapi.v2.model.create_file_data import CreateFileData
+from libica.openapi.v2.model.create_folder import CreateFolder
+from libica.openapi.v2.model.create_folder_and_temporary_credentials import CreateFolderAndTemporaryCredentials
+from libica.openapi.v2.model.create_non_indexed_folder import CreateNonIndexedFolder
 from libica.openapi.v2.model.create_temporary_credentials import CreateTemporaryCredentials
 from libica.openapi.v2.model.data_id_or_path_list import DataIdOrPathList
 from libica.openapi.v2.model.data_list import DataList
@@ -34,7 +40,10 @@ from libica.openapi.v2.model.folder_upload_session import FolderUploadSession
 from libica.openapi.v2.model.inline_view import InlineView
 from libica.openapi.v2.model.problem import Problem
 from libica.openapi.v2.model.project_data import ProjectData
+from libica.openapi.v2.model.project_data_and_temporary_credentials import ProjectDataAndTemporaryCredentials
 from libica.openapi.v2.model.project_data_paged_list import ProjectDataPagedList
+from libica.openapi.v2.model.project_file_and_upload_url import ProjectFileAndUploadUrl
+from libica.openapi.v2.model.project_folder_and_upload_session import ProjectFolderAndUploadSession
 from libica.openapi.v2.model.project_list import ProjectList
 from libica.openapi.v2.model.schedule_download import ScheduleDownload
 from libica.openapi.v2.model.temp_credentials import TempCredentials
@@ -436,6 +445,286 @@ class ProjectDataApi(object):
             },
             api_client=api_client
         )
+        self.create_file_endpoint = _Endpoint(
+            settings={
+                'response_type': (ProjectData,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/data:createFile',
+                'operation_id': 'create_file',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_file_data',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_file_data',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_file_data':
+                        (CreateFileData,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_file_data': 'body',
+                    'idempotency_key': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_file_with_temporary_credentials_endpoint = _Endpoint(
+            settings={
+                'response_type': (ProjectDataAndTemporaryCredentials,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/data:createFileWithTemporaryCredentials',
+                'operation_id': 'create_file_with_temporary_credentials',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_file_and_temporary_credentials',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_file_and_temporary_credentials',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_file_and_temporary_credentials':
+                        (CreateFileAndTemporaryCredentials,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_file_and_temporary_credentials': 'body',
+                    'idempotency_key': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_file_with_upload_url_endpoint = _Endpoint(
+            settings={
+                'response_type': (ProjectFileAndUploadUrl,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/data:createFileWithUploadUrl',
+                'operation_id': 'create_file_with_upload_url',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_file_and_upload_url',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_file_and_upload_url',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_file_and_upload_url':
+                        (CreateFileAndUploadUrl,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_file_and_upload_url': 'body',
+                    'idempotency_key': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_folder_endpoint = _Endpoint(
+            settings={
+                'response_type': (ProjectData,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/data:createFolder',
+                'operation_id': 'create_folder',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_folder',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_folder',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_folder':
+                        (CreateFolder,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_folder': 'body',
+                    'idempotency_key': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
         self.create_folder_upload_session_endpoint = _Endpoint(
             settings={
                 'response_type': (FolderUploadSession,),
@@ -459,6 +748,7 @@ class ProjectDataApi(object):
                     'data_id',
                 ],
                 'nullable': [
+                    'create_temporary_credentials',
                 ],
                 'enum': [
                 ],
@@ -486,6 +776,146 @@ class ProjectDataApi(object):
                     'project_id': 'path',
                     'data_id': 'path',
                     'create_temporary_credentials': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_folder_with_temporary_credentials_endpoint = _Endpoint(
+            settings={
+                'response_type': (ProjectDataAndTemporaryCredentials,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/data:createFolderWithTemporaryCredentials',
+                'operation_id': 'create_folder_with_temporary_credentials',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_folder_and_temporary_credentials',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_folder_and_temporary_credentials',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_folder_and_temporary_credentials':
+                        (CreateFolderAndTemporaryCredentials,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_folder_and_temporary_credentials': 'body',
+                    'idempotency_key': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_folder_with_upload_session_endpoint = _Endpoint(
+            settings={
+                'response_type': (ProjectFolderAndUploadSession,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/data:createFolderWithUploadSession',
+                'operation_id': 'create_folder_with_upload_session',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_folder_and_temporary_credentials',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_folder_and_temporary_credentials',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_folder_and_temporary_credentials':
+                        (CreateFolderAndTemporaryCredentials,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_folder_and_temporary_credentials': 'body',
+                    'idempotency_key': 'header',
                 },
                 'collection_format_map': {
                 }
@@ -561,6 +991,76 @@ class ProjectDataApi(object):
             },
             api_client=api_client
         )
+        self.create_non_indexed_folder_endpoint = _Endpoint(
+            settings={
+                'response_type': (ProjectData,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/data:createNonIndexedFolder',
+                'operation_id': 'create_non_indexed_folder',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'create_non_indexed_folder',
+                    'idempotency_key',
+                ],
+                'required': [
+                    'project_id',
+                    'create_non_indexed_folder',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'idempotency_key',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('idempotency_key',): {
+                        'max_length': 255,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'create_non_indexed_folder':
+                        (CreateNonIndexedFolder,),
+                    'idempotency_key':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'idempotency_key': 'Idempotency-Key',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'create_non_indexed_folder': 'body',
+                    'idempotency_key': 'header',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
         self.create_temporary_credentials_for_data_endpoint = _Endpoint(
             settings={
                 'response_type': (TempCredentials,),
@@ -584,6 +1084,7 @@ class ProjectDataApi(object):
                     'data_id',
                 ],
                 'nullable': [
+                    'create_temporary_credentials',
                 ],
                 'enum': [
                 ],
@@ -1257,6 +1758,31 @@ class ProjectDataApi(object):
                 'all': [
                     'project_id',
                     'data_id',
+                    'full_text',
+                    'id',
+                    'filename',
+                    'filename_match_mode',
+                    'status',
+                    'format_id',
+                    'format_code',
+                    'type',
+                    'creation_date_after',
+                    'creation_date_before',
+                    'status_date_after',
+                    'status_date_before',
+                    'user_tag',
+                    'user_tag_match_mode',
+                    'run_input_tag',
+                    'run_input_tag_match_mode',
+                    'run_output_tag',
+                    'run_output_tag_match_mode',
+                    'connector_tag',
+                    'connector_tag_match_mode',
+                    'technical_tag',
+                    'technical_tag_match_mode',
+                    'not_in_run',
+                    'not_linked_to_sample',
+                    'instrument_run_id',
                     'page_offset',
                     'page_token',
                     'page_size',
@@ -1268,6 +1794,14 @@ class ProjectDataApi(object):
                 'nullable': [
                 ],
                 'enum': [
+                    'filename_match_mode',
+                    'status',
+                    'type',
+                    'user_tag_match_mode',
+                    'run_input_tag_match_mode',
+                    'run_output_tag_match_mode',
+                    'connector_tag_match_mode',
+                    'technical_tag_match_mode',
                 ],
                 'validation': [
                 ]
@@ -1276,12 +1810,112 @@ class ProjectDataApi(object):
                 'validations': {
                 },
                 'allowed_values': {
+                    ('filename_match_mode',): {
+
+                        "EXACT": "EXACT",
+                        "EXCLUDE": "EXCLUDE",
+                        "FUZZY": "FUZZY"
+                    },
+                    ('status',): {
+
+                        "PARTIAL": "PARTIAL",
+                        "AVAILABLE": "AVAILABLE",
+                        "ARCHIVING": "ARCHIVING",
+                        "ARCHIVED": "ARCHIVED",
+                        "UNARCHIVING": "UNARCHIVING",
+                        "DELETING": "DELETING"
+                    },
+                    ('type',): {
+
+                        "FILE": "FILE",
+                        "FOLDER": "FOLDER"
+                    },
+                    ('user_tag_match_mode',): {
+
+                        "EXACT": "EXACT",
+                        "EXCLUDE": "EXCLUDE",
+                        "FUZZY": "FUZZY"
+                    },
+                    ('run_input_tag_match_mode',): {
+
+                        "EXACT": "EXACT",
+                        "EXCLUDE": "EXCLUDE",
+                        "FUZZY": "FUZZY"
+                    },
+                    ('run_output_tag_match_mode',): {
+
+                        "EXACT": "EXACT",
+                        "EXCLUDE": "EXCLUDE",
+                        "FUZZY": "FUZZY"
+                    },
+                    ('connector_tag_match_mode',): {
+
+                        "EXACT": "EXACT",
+                        "EXCLUDE": "EXCLUDE",
+                        "FUZZY": "FUZZY"
+                    },
+                    ('technical_tag_match_mode',): {
+
+                        "EXACT": "EXACT",
+                        "EXCLUDE": "EXCLUDE",
+                        "FUZZY": "FUZZY"
+                    },
                 },
                 'openapi_types': {
                     'project_id':
                         (str,),
                     'data_id':
                         (str,),
+                    'full_text':
+                        (str,),
+                    'id':
+                        ([str],),
+                    'filename':
+                        ([str],),
+                    'filename_match_mode':
+                        (str,),
+                    'status':
+                        ([str],),
+                    'format_id':
+                        ([str],),
+                    'format_code':
+                        ([str],),
+                    'type':
+                        (str,),
+                    'creation_date_after':
+                        (datetime,),
+                    'creation_date_before':
+                        (datetime,),
+                    'status_date_after':
+                        (datetime,),
+                    'status_date_before':
+                        (datetime,),
+                    'user_tag':
+                        ([str],),
+                    'user_tag_match_mode':
+                        (str,),
+                    'run_input_tag':
+                        ([str],),
+                    'run_input_tag_match_mode':
+                        (str,),
+                    'run_output_tag':
+                        ([str],),
+                    'run_output_tag_match_mode':
+                        (str,),
+                    'connector_tag':
+                        ([str],),
+                    'connector_tag_match_mode':
+                        (str,),
+                    'technical_tag':
+                        ([str],),
+                    'technical_tag_match_mode':
+                        (str,),
+                    'not_in_run':
+                        (bool,),
+                    'not_linked_to_sample':
+                        (bool,),
+                    'instrument_run_id':
+                        ([str],),
                     'page_offset':
                         (str,),
                     'page_token':
@@ -1292,6 +1926,31 @@ class ProjectDataApi(object):
                 'attribute_map': {
                     'project_id': 'projectId',
                     'data_id': 'dataId',
+                    'full_text': 'fullText',
+                    'id': 'id',
+                    'filename': 'filename',
+                    'filename_match_mode': 'filenameMatchMode',
+                    'status': 'status',
+                    'format_id': 'formatId',
+                    'format_code': 'formatCode',
+                    'type': 'type',
+                    'creation_date_after': 'creationDateAfter',
+                    'creation_date_before': 'creationDateBefore',
+                    'status_date_after': 'statusDateAfter',
+                    'status_date_before': 'statusDateBefore',
+                    'user_tag': 'userTag',
+                    'user_tag_match_mode': 'userTagMatchMode',
+                    'run_input_tag': 'runInputTag',
+                    'run_input_tag_match_mode': 'runInputTagMatchMode',
+                    'run_output_tag': 'runOutputTag',
+                    'run_output_tag_match_mode': 'runOutputTagMatchMode',
+                    'connector_tag': 'connectorTag',
+                    'connector_tag_match_mode': 'connectorTagMatchMode',
+                    'technical_tag': 'technicalTag',
+                    'technical_tag_match_mode': 'technicalTagMatchMode',
+                    'not_in_run': 'notInRun',
+                    'not_linked_to_sample': 'notLinkedToSample',
+                    'instrument_run_id': 'instrumentRunId',
                     'page_offset': 'pageOffset',
                     'page_token': 'pageToken',
                     'page_size': 'pageSize',
@@ -1299,11 +1958,47 @@ class ProjectDataApi(object):
                 'location_map': {
                     'project_id': 'path',
                     'data_id': 'path',
+                    'full_text': 'query',
+                    'id': 'query',
+                    'filename': 'query',
+                    'filename_match_mode': 'query',
+                    'status': 'query',
+                    'format_id': 'query',
+                    'format_code': 'query',
+                    'type': 'query',
+                    'creation_date_after': 'query',
+                    'creation_date_before': 'query',
+                    'status_date_after': 'query',
+                    'status_date_before': 'query',
+                    'user_tag': 'query',
+                    'user_tag_match_mode': 'query',
+                    'run_input_tag': 'query',
+                    'run_input_tag_match_mode': 'query',
+                    'run_output_tag': 'query',
+                    'run_output_tag_match_mode': 'query',
+                    'connector_tag': 'query',
+                    'connector_tag_match_mode': 'query',
+                    'technical_tag': 'query',
+                    'technical_tag_match_mode': 'query',
+                    'not_in_run': 'query',
+                    'not_linked_to_sample': 'query',
+                    'instrument_run_id': 'query',
                     'page_offset': 'query',
                     'page_token': 'query',
                     'page_size': 'query',
                 },
                 'collection_format_map': {
+                    'id': 'multi',
+                    'filename': 'multi',
+                    'status': 'multi',
+                    'format_id': 'multi',
+                    'format_code': 'multi',
+                    'user_tag': 'multi',
+                    'run_input_tag': 'multi',
+                    'run_output_tag': 'multi',
+                    'connector_tag': 'multi',
+                    'technical_tag': 'multi',
+                    'instrument_run_id': 'multi',
                 }
             },
             headers_map={
@@ -1341,6 +2036,7 @@ class ProjectDataApi(object):
                     'format_id',
                     'format_code',
                     'type',
+                    'non_indexed_folders',
                     'parent_folder_id',
                     'parent_folder_path',
                     'creation_date_after',
@@ -1360,6 +2056,7 @@ class ProjectDataApi(object):
                     'not_in_run',
                     'not_linked_to_sample',
                     'instrument_run_id',
+                    'owning_project_id',
                     'page_offset',
                     'page_token',
                     'page_size',
@@ -1467,6 +2164,8 @@ class ProjectDataApi(object):
                         ([str],),
                     'type':
                         (str,),
+                    'non_indexed_folders':
+                        (bool,),
                     'parent_folder_id':
                         ([str],),
                     'parent_folder_path':
@@ -1505,6 +2204,8 @@ class ProjectDataApi(object):
                         (bool,),
                     'instrument_run_id':
                         ([str],),
+                    'owning_project_id':
+                        ([str],),
                     'page_offset':
                         (str,),
                     'page_token':
@@ -1526,6 +2227,7 @@ class ProjectDataApi(object):
                     'format_id': 'formatId',
                     'format_code': 'formatCode',
                     'type': 'type',
+                    'non_indexed_folders': 'nonIndexedFolders',
                     'parent_folder_id': 'parentFolderId',
                     'parent_folder_path': 'parentFolderPath',
                     'creation_date_after': 'creationDateAfter',
@@ -1545,6 +2247,7 @@ class ProjectDataApi(object):
                     'not_in_run': 'notInRun',
                     'not_linked_to_sample': 'notLinkedToSample',
                     'instrument_run_id': 'instrumentRunId',
+                    'owning_project_id': 'owningProjectId',
                     'page_offset': 'pageOffset',
                     'page_token': 'pageToken',
                     'page_size': 'pageSize',
@@ -1562,6 +2265,7 @@ class ProjectDataApi(object):
                     'format_id': 'query',
                     'format_code': 'query',
                     'type': 'query',
+                    'non_indexed_folders': 'query',
                     'parent_folder_id': 'query',
                     'parent_folder_path': 'query',
                     'creation_date_after': 'query',
@@ -1581,6 +2285,7 @@ class ProjectDataApi(object):
                     'not_in_run': 'query',
                     'not_linked_to_sample': 'query',
                     'instrument_run_id': 'query',
+                    'owning_project_id': 'query',
                     'page_offset': 'query',
                     'page_token': 'query',
                     'page_size': 'query',
@@ -1600,6 +2305,7 @@ class ProjectDataApi(object):
                     'connector_tag': 'multi',
                     'technical_tag': 'multi',
                     'instrument_run_id': 'multi',
+                    'owning_project_id': 'multi',
                 }
             },
             headers_map={
@@ -2058,7 +2764,6 @@ class ProjectDataApi(object):
                     'project_data',
                 ],
                 'nullable': [
-                    'project_data',
                 ],
                 'enum': [
                 ],
@@ -2606,6 +3311,334 @@ class ProjectDataApi(object):
             data_id_or_path_list
         return self.create_download_urls_for_data_endpoint.call_with_http_info(**kwargs)
 
+    def create_file(
+        self,
+        project_id,
+        create_file_data,
+        **kwargs
+    ):
+        """Create a file in this project.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_file(project_id, create_file_data, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_file_data (CreateFileData): The file to create.
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ProjectData
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_file_data'] = \
+            create_file_data
+        return self.create_file_endpoint.call_with_http_info(**kwargs)
+
+    def create_file_with_temporary_credentials(
+        self,
+        project_id,
+        create_file_and_temporary_credentials,
+        **kwargs
+    ):
+        """Create a file in this project, and retrieve temporary credentials for it.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_file_with_temporary_credentials(project_id, create_file_and_temporary_credentials, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_file_and_temporary_credentials (CreateFileAndTemporaryCredentials): The data to create.
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ProjectDataAndTemporaryCredentials
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_file_and_temporary_credentials'] = \
+            create_file_and_temporary_credentials
+        return self.create_file_with_temporary_credentials_endpoint.call_with_http_info(**kwargs)
+
+    def create_file_with_upload_url(
+        self,
+        project_id,
+        create_file_and_upload_url,
+        **kwargs
+    ):
+        """Create a file in this project, and retrieve an upload url for it.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_file_with_upload_url(project_id, create_file_and_upload_url, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_file_and_upload_url (CreateFileAndUploadUrl): The data to create.
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ProjectFileAndUploadUrl
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_file_and_upload_url'] = \
+            create_file_and_upload_url
+        return self.create_file_with_upload_url_endpoint.call_with_http_info(**kwargs)
+
+    def create_folder(
+        self,
+        project_id,
+        create_folder,
+        **kwargs
+    ):
+        """Create a folder in this project.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_folder(project_id, create_folder, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_folder (CreateFolder): The folder to create.
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ProjectData
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_folder'] = \
+            create_folder
+        return self.create_folder_endpoint.call_with_http_info(**kwargs)
+
     def create_folder_upload_session(
         self,
         project_id,
@@ -2689,6 +3722,170 @@ class ProjectDataApi(object):
             data_id
         return self.create_folder_upload_session_endpoint.call_with_http_info(**kwargs)
 
+    def create_folder_with_temporary_credentials(
+        self,
+        project_id,
+        create_folder_and_temporary_credentials,
+        **kwargs
+    ):
+        """Create a folder in this project, and and retrieve temporary credentials for it.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_folder_with_temporary_credentials(project_id, create_folder_and_temporary_credentials, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_folder_and_temporary_credentials (CreateFolderAndTemporaryCredentials): The data to create.
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ProjectDataAndTemporaryCredentials
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_folder_and_temporary_credentials'] = \
+            create_folder_and_temporary_credentials
+        return self.create_folder_with_temporary_credentials_endpoint.call_with_http_info(**kwargs)
+
+    def create_folder_with_upload_session(
+        self,
+        project_id,
+        create_folder_and_temporary_credentials,
+        **kwargs
+    ):
+        """Create a folder in this project, and create a trackable folder upload session.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_folder_with_upload_session(project_id, create_folder_and_temporary_credentials, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_folder_and_temporary_credentials (CreateFolderAndTemporaryCredentials): The data to create.
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ProjectFolderAndUploadSession
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_folder_and_temporary_credentials'] = \
+            create_folder_and_temporary_credentials
+        return self.create_folder_with_upload_session_endpoint.call_with_http_info(**kwargs)
+
     def create_inline_view_url_for_data(
         self,
         project_id,
@@ -2770,6 +3967,88 @@ class ProjectDataApi(object):
         kwargs['data_id'] = \
             data_id
         return self.create_inline_view_url_for_data_endpoint.call_with_http_info(**kwargs)
+
+    def create_non_indexed_folder(
+        self,
+        project_id,
+        create_non_indexed_folder,
+        **kwargs
+    ):
+        """Create a non indexed folder in this project. The folder will be created as a top-level folder.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_non_indexed_folder(project_id, create_non_indexed_folder, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            create_non_indexed_folder (CreateNonIndexedFolder): The non indexed folder to create.
+
+        Keyword Args:
+            idempotency_key (str): The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ProjectData
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['create_non_indexed_folder'] = \
+            create_non_indexed_folder
+        return self.create_non_indexed_folder_endpoint.call_with_http_info(**kwargs)
 
     def create_temporary_credentials_for_data(
         self,
@@ -2862,7 +4141,7 @@ class ProjectDataApi(object):
     ):
         """Retrieve an upload URL for this data.  # noqa: E501
 
-        Can be used to upload a file directly from the region where it is located, no connector is needed.  # noqa: E501
+        Can be used to upload a file directly from the region where it is located, no connector is needed. The project identifier must match the project which owns the data. You can create both new files and overwrite files in status 'partial'.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -3048,7 +4327,7 @@ class ProjectDataApi(object):
             format_code ([str]): The codes of the formats to filter on.. [optional]
             type (str): The type to filter on.. [optional]
             parent_folder_id ([str]): The IDs of parents folders to filter on. Lists all files and folders within the folder for the given ID, non-recursively.. [optional]
-            parent_folder_path (str): The full path of the parent folder. Should start and end with a '/'. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path.. [optional]
+            parent_folder_path (str): The full path of the parent folder. Should start and end with a '/'. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. This does not work for contents from a linked folder apposed to individual linked files.. [optional]
             creation_date_after (datetime): The date after which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]
             creation_date_before (datetime): The date before which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]
             status_date_after (datetime): The date after which the status has been updated. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]
@@ -3397,6 +4676,31 @@ class ProjectDataApi(object):
             data_id (str):
 
         Keyword Args:
+            full_text (str): To search through multiple fields of data.. [optional]
+            id ([str]): The ids to filter on. This will always match exact.. [optional]
+            filename ([str]): The filenames to filter on. The filenameMatchMode-parameter determines how the filtering is done.. [optional]
+            filename_match_mode (str): How the filenames are filtered. . [optional]
+            status ([str]): The statuses to filter on.. [optional]
+            format_id ([str]): The IDs of the formats to filter on.. [optional]
+            format_code ([str]): The codes of the formats to filter on.. [optional]
+            type (str): The type to filter on.. [optional]
+            creation_date_after (datetime): The date after which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]
+            creation_date_before (datetime): The date before which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]
+            status_date_after (datetime): The date after which the status has been updated. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]
+            status_date_before (datetime): The date before which the status has been updated. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]
+            user_tag ([str]): The usertags to filter on. The userTagMatchMode-parameter determines how the filtering is done.. [optional]
+            user_tag_match_mode (str): How the usertags are filtered. . [optional]
+            run_input_tag ([str]): The runInputTags to filter on. The runInputTagMatchMode-parameter determines how the filtering is done.. [optional]
+            run_input_tag_match_mode (str): How the runInputTags are filtered. . [optional]
+            run_output_tag ([str]): The runOutputTags to filter on. The runOutputTagMatchMode-parameter determines how the filtering is done.. [optional]
+            run_output_tag_match_mode (str): How the runOutputTags are filtered. . [optional]
+            connector_tag ([str]): The connectorTags to filter on. The connectorTagMatchMode-parameter determines how the filtering is done.. [optional]
+            connector_tag_match_mode (str): How the connectorTags are filtered. . [optional]
+            technical_tag ([str]): The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done.. [optional]
+            technical_tag_match_mode (str): How the technicalTags are filtered. . [optional]
+            not_in_run (bool): When set to true, the data will be filtered on data which is not used in a run.. [optional]
+            not_linked_to_sample (bool): When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File.. [optional]
+            instrument_run_id ([str]): The instrument run IDs of the sequencing runs to filter on.. [optional]
             page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
             page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
             page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
@@ -3489,8 +4793,9 @@ class ProjectDataApi(object):
             format_id ([str]): The IDs of the formats to filter on.. [optional]
             format_code ([str]): The codes of the formats to filter on.. [optional]
             type (str): The type to filter on.. [optional]
+            non_indexed_folders (bool): To filter on non-indexed folders.. [optional]
             parent_folder_id ([str]): The IDs of parents folders to filter on. Lists all files and folders within the folder for the given ID, non-recursively.. [optional]
-            parent_folder_path (str): The full path of the parent folder. Should start and end with a '/'. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path.. [optional]
+            parent_folder_path (str): The full path of the parent folder. Should start and end with a '/'. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. This does not work for contents from a linked folder apposed to individual linked files.. [optional]
             creation_date_after (datetime): The date after which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]
             creation_date_before (datetime): The date before which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]
             status_date_after (datetime): The date after which the status has been updated. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]
@@ -3508,6 +4813,7 @@ class ProjectDataApi(object):
             not_in_run (bool): When set to true, the data will be filtered on data which is not used in a run.. [optional]
             not_linked_to_sample (bool): When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File.. [optional]
             instrument_run_id ([str]): The instrument run IDs of the sequencing runs to filter on.. [optional]
+            owning_project_id ([str]): The owning project ID to filter on.. [optional]
             page_offset (str): [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages. [optional]
             page_token (str): [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.. [optional]
             page_size (str): [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results. [optional]
@@ -3909,7 +5215,7 @@ class ProjectDataApi(object):
     ):
         """Schedule a download.  # noqa: E501
 
-        Endpoint for scheduling a download for the data specified by the ID to a connector. This download will only start when the connector is running. This is a non-RESTful endpoint, as the path of this endpoint is not representing a REST resource.  # noqa: E501
+        Endpoint for scheduling a download for the data specified by the ID to a connector. This download will only start when the connector is running. Data transfers for folder contents are created asynchronously, meaning that they will not be immediately visible in the project data transfers end point. This is a non-RESTful endpoint, as the path of this endpoint is not representing a REST resource.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

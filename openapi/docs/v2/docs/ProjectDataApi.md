@@ -10,8 +10,15 @@ Method | HTTP request | Description
 [**create_data_in_project**](ProjectDataApi.md#create_data_in_project) | **POST** /api/projects/{projectId}/data | Create data in this project.
 [**create_download_url_for_data**](ProjectDataApi.md#create_download_url_for_data) | **POST** /api/projects/{projectId}/data/{dataId}:createDownloadUrl | Retrieve a download URL for this data.
 [**create_download_urls_for_data**](ProjectDataApi.md#create_download_urls_for_data) | **POST** /api/projects/{projectId}/data:createDownloadUrls | Retrieve download URLs for the data.
+[**create_file**](ProjectDataApi.md#create_file) | **POST** /api/projects/{projectId}/data:createFile | Create a file in this project.
+[**create_file_with_temporary_credentials**](ProjectDataApi.md#create_file_with_temporary_credentials) | **POST** /api/projects/{projectId}/data:createFileWithTemporaryCredentials | Create a file in this project, and retrieve temporary credentials for it.
+[**create_file_with_upload_url**](ProjectDataApi.md#create_file_with_upload_url) | **POST** /api/projects/{projectId}/data:createFileWithUploadUrl | Create a file in this project, and retrieve an upload url for it.
+[**create_folder**](ProjectDataApi.md#create_folder) | **POST** /api/projects/{projectId}/data:createFolder | Create a folder in this project.
 [**create_folder_upload_session**](ProjectDataApi.md#create_folder_upload_session) | **POST** /api/projects/{projectId}/data/{dataId}/folderUploadSessions | Create a trackable folder upload session.
+[**create_folder_with_temporary_credentials**](ProjectDataApi.md#create_folder_with_temporary_credentials) | **POST** /api/projects/{projectId}/data:createFolderWithTemporaryCredentials | Create a folder in this project, and and retrieve temporary credentials for it.
+[**create_folder_with_upload_session**](ProjectDataApi.md#create_folder_with_upload_session) | **POST** /api/projects/{projectId}/data:createFolderWithUploadSession | Create a folder in this project, and create a trackable folder upload session.
 [**create_inline_view_url_for_data**](ProjectDataApi.md#create_inline_view_url_for_data) | **POST** /api/projects/{projectId}/data/{dataId}:createInlineViewUrl | Retrieve an URL for this data to use for inline view in a browser.
+[**create_non_indexed_folder**](ProjectDataApi.md#create_non_indexed_folder) | **POST** /api/projects/{projectId}/data:createNonIndexedFolder | Create a non indexed folder in this project. The folder will be created as a top-level folder.
 [**create_temporary_credentials_for_data**](ProjectDataApi.md#create_temporary_credentials_for_data) | **POST** /api/projects/{projectId}/data/{dataId}:createTemporaryCredentials | Retrieve temporary credentials for this data.
 [**create_upload_url_for_data**](ProjectDataApi.md#create_upload_url_for_data) | **POST** /api/projects/{projectId}/data/{dataId}:createUploadUrl | Retrieve an upload URL for this data.
 [**delete_data**](ProjectDataApi.md#delete_data) | **POST** /api/projects/{projectId}/data/{dataId}:delete | Schedule this data for deletion.
@@ -586,6 +593,423 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_file**
+> ProjectData create_file(project_id, create_file_data)
+
+Create a file in this project.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_data_api
+from libica.openapi.v2.model.project_data import ProjectData
+from libica.openapi.v2.model.create_file_data import CreateFileData
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_data_api.ProjectDataApi(api_client)
+    project_id = "projectId_example" # str | 
+    create_file_data = CreateFileData(
+        name="name_example",
+        folder_id="folder_id_example",
+        folder_path="jUR,rZ#UM/?R,Fp^l6$ARj",
+        format_code="format_code_example",
+    ) # CreateFileData | The file to create.
+    idempotency_key = "Idempotency-Key_example" # str | The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create a file in this project.
+        api_response = api_instance.create_file(project_id, create_file_data)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_file: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Create a file in this project.
+        api_response = api_instance.create_file(project_id, create_file_data, idempotency_key=idempotency_key)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_file: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **create_file_data** | [**CreateFileData**](CreateFileData.md)| The file to create. |
+ **idempotency_key** | **str**| The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code &lt; 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the request body is the same as the previous request and an answer is stored &#x3D;&gt; the stored response is returned without executing the request again.&lt;/li&gt;&lt;li&gt;the request body is the same as the previous request and no answer is stored because the previous request has not finished &#x3D;&gt; 409 error response, which indicates that the original call is still in progress.&lt;/li&gt;&lt;li&gt;the request body is not the same as the previous request &#x3D;&gt; 422 error response, as this is not allowed.&lt;/li&gt;&lt;/ul&gt;This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn&#39;t been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code &gt;&#x3D; 400) we allow clients to retry the call. This is where we don&#39;t follow the IETF specification. | [optional]
+
+### Return type
+
+[**ProjectData**](ProjectData.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The file is successfully created in this project. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_file_with_temporary_credentials**
+> ProjectDataAndTemporaryCredentials create_file_with_temporary_credentials(project_id, create_file_and_temporary_credentials)
+
+Create a file in this project, and retrieve temporary credentials for it.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_data_api
+from libica.openapi.v2.model.create_file_and_temporary_credentials import CreateFileAndTemporaryCredentials
+from libica.openapi.v2.model.project_data_and_temporary_credentials import ProjectDataAndTemporaryCredentials
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_data_api.ProjectDataApi(api_client)
+    project_id = "projectId_example" # str | 
+    create_file_and_temporary_credentials = CreateFileAndTemporaryCredentials(
+        name="name_example",
+        folder_id="folder_id_example",
+        folder_path="jUR,rZ#UM/?R,Fp^l6$ARj",
+        format_code="format_code_example",
+        temporary_credentials=CreateTemporaryCredentials(
+            credentials_format="RCLONE",
+            read_only_credentials=True,
+        ),
+    ) # CreateFileAndTemporaryCredentials | The data to create.
+    idempotency_key = "Idempotency-Key_example" # str | The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create a file in this project, and retrieve temporary credentials for it.
+        api_response = api_instance.create_file_with_temporary_credentials(project_id, create_file_and_temporary_credentials)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_file_with_temporary_credentials: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Create a file in this project, and retrieve temporary credentials for it.
+        api_response = api_instance.create_file_with_temporary_credentials(project_id, create_file_and_temporary_credentials, idempotency_key=idempotency_key)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_file_with_temporary_credentials: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **create_file_and_temporary_credentials** | [**CreateFileAndTemporaryCredentials**](CreateFileAndTemporaryCredentials.md)| The data to create. |
+ **idempotency_key** | **str**| The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code &lt; 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the request body is the same as the previous request and an answer is stored &#x3D;&gt; the stored response is returned without executing the request again.&lt;/li&gt;&lt;li&gt;the request body is the same as the previous request and no answer is stored because the previous request has not finished &#x3D;&gt; 409 error response, which indicates that the original call is still in progress.&lt;/li&gt;&lt;li&gt;the request body is not the same as the previous request &#x3D;&gt; 422 error response, as this is not allowed.&lt;/li&gt;&lt;/ul&gt;This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn&#39;t been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code &gt;&#x3D; 400) we allow clients to retry the call. This is where we don&#39;t follow the IETF specification. | [optional]
+
+### Return type
+
+[**ProjectDataAndTemporaryCredentials**](ProjectDataAndTemporaryCredentials.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The data is successfully created in this project, and the temporary credentials are successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_file_with_upload_url**
+> ProjectFileAndUploadUrl create_file_with_upload_url(project_id, create_file_and_upload_url)
+
+Create a file in this project, and retrieve an upload url for it.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_data_api
+from libica.openapi.v2.model.create_file_and_upload_url import CreateFileAndUploadUrl
+from libica.openapi.v2.model.project_file_and_upload_url import ProjectFileAndUploadUrl
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_data_api.ProjectDataApi(api_client)
+    project_id = "projectId_example" # str | 
+    create_file_and_upload_url = CreateFileAndUploadUrl(
+        name="name_example",
+        folder_id="folder_id_example",
+        folder_path="jUR,rZ#UM/?R,Fp^l6$ARj",
+        format_code="format_code_example",
+        file_type="file_type_example",
+        hash="hash_example",
+    ) # CreateFileAndUploadUrl | The data to create.
+    idempotency_key = "Idempotency-Key_example" # str | The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create a file in this project, and retrieve an upload url for it.
+        api_response = api_instance.create_file_with_upload_url(project_id, create_file_and_upload_url)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_file_with_upload_url: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Create a file in this project, and retrieve an upload url for it.
+        api_response = api_instance.create_file_with_upload_url(project_id, create_file_and_upload_url, idempotency_key=idempotency_key)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_file_with_upload_url: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **create_file_and_upload_url** | [**CreateFileAndUploadUrl**](CreateFileAndUploadUrl.md)| The data to create. |
+ **idempotency_key** | **str**| The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code &lt; 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the request body is the same as the previous request and an answer is stored &#x3D;&gt; the stored response is returned without executing the request again.&lt;/li&gt;&lt;li&gt;the request body is the same as the previous request and no answer is stored because the previous request has not finished &#x3D;&gt; 409 error response, which indicates that the original call is still in progress.&lt;/li&gt;&lt;li&gt;the request body is not the same as the previous request &#x3D;&gt; 422 error response, as this is not allowed.&lt;/li&gt;&lt;/ul&gt;This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn&#39;t been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code &gt;&#x3D; 400) we allow clients to retry the call. This is where we don&#39;t follow the IETF specification. | [optional]
+
+### Return type
+
+[**ProjectFileAndUploadUrl**](ProjectFileAndUploadUrl.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The data is successfully created in this project, and the upload URL is successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_folder**
+> ProjectData create_folder(project_id, create_folder)
+
+Create a folder in this project.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_data_api
+from libica.openapi.v2.model.project_data import ProjectData
+from libica.openapi.v2.model.create_folder import CreateFolder
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_data_api.ProjectDataApi(api_client)
+    project_id = "projectId_example" # str | 
+    create_folder = CreateFolder(
+        name="name_example",
+        folder_id="folder_id_example",
+        folder_path="jUR,rZ#UM/?R,Fp^l6$ARj",
+    ) # CreateFolder | The folder to create.
+    idempotency_key = "Idempotency-Key_example" # str | The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create a folder in this project.
+        api_response = api_instance.create_folder(project_id, create_folder)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_folder: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Create a folder in this project.
+        api_response = api_instance.create_folder(project_id, create_folder, idempotency_key=idempotency_key)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_folder: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **create_folder** | [**CreateFolder**](CreateFolder.md)| The folder to create. |
+ **idempotency_key** | **str**| The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code &lt; 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the request body is the same as the previous request and an answer is stored &#x3D;&gt; the stored response is returned without executing the request again.&lt;/li&gt;&lt;li&gt;the request body is the same as the previous request and no answer is stored because the previous request has not finished &#x3D;&gt; 409 error response, which indicates that the original call is still in progress.&lt;/li&gt;&lt;li&gt;the request body is not the same as the previous request &#x3D;&gt; 422 error response, as this is not allowed.&lt;/li&gt;&lt;/ul&gt;This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn&#39;t been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code &gt;&#x3D; 400) we allow clients to retry the call. This is where we don&#39;t follow the IETF specification. | [optional]
+
+### Return type
+
+[**ProjectData**](ProjectData.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The folder is successfully created in this project. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_folder_upload_session**
 > FolderUploadSession create_folder_upload_session(project_id, data_id)
 
@@ -636,6 +1060,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     data_id = "dataId_example" # str | 
     create_temporary_credentials = CreateTemporaryCredentials(
         credentials_format="RCLONE",
+        read_only_credentials=True,
     ) # CreateTemporaryCredentials | Temporary credentials request options. (optional)
 
     # example passing only required values which don't have defaults set
@@ -684,6 +1109,220 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | The folder upload session is successfully created. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_folder_with_temporary_credentials**
+> ProjectDataAndTemporaryCredentials create_folder_with_temporary_credentials(project_id, create_folder_and_temporary_credentials)
+
+Create a folder in this project, and and retrieve temporary credentials for it.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_data_api
+from libica.openapi.v2.model.create_folder_and_temporary_credentials import CreateFolderAndTemporaryCredentials
+from libica.openapi.v2.model.project_data_and_temporary_credentials import ProjectDataAndTemporaryCredentials
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_data_api.ProjectDataApi(api_client)
+    project_id = "projectId_example" # str | 
+    create_folder_and_temporary_credentials = CreateFolderAndTemporaryCredentials(
+        name="name_example",
+        folder_id="folder_id_example",
+        folder_path="jUR,rZ#UM/?R,Fp^l6$ARj",
+        non_indexed=False,
+        temporary_credentials=CreateTemporaryCredentials(
+            credentials_format="RCLONE",
+            read_only_credentials=True,
+        ),
+    ) # CreateFolderAndTemporaryCredentials | The data to create.
+    idempotency_key = "Idempotency-Key_example" # str | The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create a folder in this project, and and retrieve temporary credentials for it.
+        api_response = api_instance.create_folder_with_temporary_credentials(project_id, create_folder_and_temporary_credentials)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_folder_with_temporary_credentials: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Create a folder in this project, and and retrieve temporary credentials for it.
+        api_response = api_instance.create_folder_with_temporary_credentials(project_id, create_folder_and_temporary_credentials, idempotency_key=idempotency_key)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_folder_with_temporary_credentials: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **create_folder_and_temporary_credentials** | [**CreateFolderAndTemporaryCredentials**](CreateFolderAndTemporaryCredentials.md)| The data to create. |
+ **idempotency_key** | **str**| The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code &lt; 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the request body is the same as the previous request and an answer is stored &#x3D;&gt; the stored response is returned without executing the request again.&lt;/li&gt;&lt;li&gt;the request body is the same as the previous request and no answer is stored because the previous request has not finished &#x3D;&gt; 409 error response, which indicates that the original call is still in progress.&lt;/li&gt;&lt;li&gt;the request body is not the same as the previous request &#x3D;&gt; 422 error response, as this is not allowed.&lt;/li&gt;&lt;/ul&gt;This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn&#39;t been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code &gt;&#x3D; 400) we allow clients to retry the call. This is where we don&#39;t follow the IETF specification. | [optional]
+
+### Return type
+
+[**ProjectDataAndTemporaryCredentials**](ProjectDataAndTemporaryCredentials.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The data is successfully created in this project, and the temporary credentials are successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_folder_with_upload_session**
+> ProjectFolderAndUploadSession create_folder_with_upload_session(project_id, create_folder_and_temporary_credentials)
+
+Create a folder in this project, and create a trackable folder upload session.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_data_api
+from libica.openapi.v2.model.create_folder_and_temporary_credentials import CreateFolderAndTemporaryCredentials
+from libica.openapi.v2.model.project_folder_and_upload_session import ProjectFolderAndUploadSession
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_data_api.ProjectDataApi(api_client)
+    project_id = "projectId_example" # str | 
+    create_folder_and_temporary_credentials = CreateFolderAndTemporaryCredentials(
+        name="name_example",
+        folder_id="folder_id_example",
+        folder_path="jUR,rZ#UM/?R,Fp^l6$ARj",
+        non_indexed=False,
+        temporary_credentials=CreateTemporaryCredentials(
+            credentials_format="RCLONE",
+            read_only_credentials=True,
+        ),
+    ) # CreateFolderAndTemporaryCredentials | The data to create.
+    idempotency_key = "Idempotency-Key_example" # str | The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create a folder in this project, and create a trackable folder upload session.
+        api_response = api_instance.create_folder_with_upload_session(project_id, create_folder_and_temporary_credentials)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_folder_with_upload_session: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Create a folder in this project, and create a trackable folder upload session.
+        api_response = api_instance.create_folder_with_upload_session(project_id, create_folder_and_temporary_credentials, idempotency_key=idempotency_key)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_folder_with_upload_session: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **create_folder_and_temporary_credentials** | [**CreateFolderAndTemporaryCredentials**](CreateFolderAndTemporaryCredentials.md)| The data to create. |
+ **idempotency_key** | **str**| The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code &lt; 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the request body is the same as the previous request and an answer is stored &#x3D;&gt; the stored response is returned without executing the request again.&lt;/li&gt;&lt;li&gt;the request body is the same as the previous request and no answer is stored because the previous request has not finished &#x3D;&gt; 409 error response, which indicates that the original call is still in progress.&lt;/li&gt;&lt;li&gt;the request body is not the same as the previous request &#x3D;&gt; 422 error response, as this is not allowed.&lt;/li&gt;&lt;/ul&gt;This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn&#39;t been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code &gt;&#x3D; 400) we allow clients to retry the call. This is where we don&#39;t follow the IETF specification. | [optional]
+
+### Return type
+
+[**ProjectFolderAndUploadSession**](ProjectFolderAndUploadSession.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The data is successfully created in this project, and the folder upload session is successfully created. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -776,6 +1415,106 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_non_indexed_folder**
+> ProjectData create_non_indexed_folder(project_id, create_non_indexed_folder)
+
+Create a non indexed folder in this project. The folder will be created as a top-level folder.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_data_api
+from libica.openapi.v2.model.project_data import ProjectData
+from libica.openapi.v2.model.create_non_indexed_folder import CreateNonIndexedFolder
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_data_api.ProjectDataApi(api_client)
+    project_id = "projectId_example" # str | 
+    create_non_indexed_folder = CreateNonIndexedFolder(
+        name="name_example",
+    ) # CreateNonIndexedFolder | The non indexed folder to create.
+    idempotency_key = "Idempotency-Key_example" # str | The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code < 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:<br /><ul><li>the request body is the same as the previous request and an answer is stored => the stored response is returned without executing the request again.</li><li>the request body is the same as the previous request and no answer is stored because the previous request has not finished => 409 error response, which indicates that the original call is still in progress.</li><li>the request body is not the same as the previous request => 422 error response, as this is not allowed.</li></ul>This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn't been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code >= 400) we allow clients to retry the call. This is where we don't follow the IETF specification. (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create a non indexed folder in this project. The folder will be created as a top-level folder.
+        api_response = api_instance.create_non_indexed_folder(project_id, create_non_indexed_folder)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_non_indexed_folder: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Create a non indexed folder in this project. The folder will be created as a top-level folder.
+        api_response = api_instance.create_non_indexed_folder(project_id, create_non_indexed_folder, idempotency_key=idempotency_key)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectDataApi->create_non_indexed_folder: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **create_non_indexed_folder** | [**CreateNonIndexedFolder**](CreateNonIndexedFolder.md)| The non indexed folder to create. |
+ **idempotency_key** | **str**| The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code &lt; 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the request body is the same as the previous request and an answer is stored &#x3D;&gt; the stored response is returned without executing the request again.&lt;/li&gt;&lt;li&gt;the request body is the same as the previous request and no answer is stored because the previous request has not finished &#x3D;&gt; 409 error response, which indicates that the original call is still in progress.&lt;/li&gt;&lt;li&gt;the request body is not the same as the previous request &#x3D;&gt; 422 error response, as this is not allowed.&lt;/li&gt;&lt;/ul&gt;This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn&#39;t been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code &gt;&#x3D; 400) we allow clients to retry the call. This is where we don&#39;t follow the IETF specification. | [optional]
+
+### Return type
+
+[**ProjectData**](ProjectData.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The non indexed folder is successfully created in this project. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_temporary_credentials_for_data**
 > TempCredentials create_temporary_credentials_for_data(project_id, data_id)
 
@@ -826,6 +1565,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     data_id = "dataId_example" # str | 
     create_temporary_credentials = CreateTemporaryCredentials(
         credentials_format="RCLONE",
+        read_only_credentials=True,
     ) # CreateTemporaryCredentials | Temporary credentials request options. (optional)
 
     # example passing only required values which don't have defaults set
@@ -883,7 +1623,7 @@ Name | Type | Description  | Notes
 
 Retrieve an upload URL for this data.
 
-Can be used to upload a file directly from the region where it is located, no connector is needed.
+Can be used to upload a file directly from the region where it is located, no connector is needed. The project identifier must match the project which owns the data. You can create both new files and overwrite files in status 'partial'.
 
 ### Example
 
@@ -1134,7 +1874,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     parent_folder_id = [
         "parentFolderId_example",
     ] # [str] | The IDs of parents folders to filter on. Lists all files and folders within the folder for the given ID, non-recursively. (optional)
-    parent_folder_path = "parentFolderPath_example" # str | The full path of the parent folder. Should start and end with a '/'. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. (optional)
+    parent_folder_path = "parentFolderPath_example" # str | The full path of the parent folder. Should start and end with a '/'. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. This does not work for contents from a linked folder apposed to individual linked files. (optional)
     creation_date_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date after which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
     creation_date_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date before which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
     status_date_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date after which the status has been updated. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
@@ -1204,7 +1944,7 @@ Name | Type | Description  | Notes
  **format_code** | **[str]**| The codes of the formats to filter on. | [optional]
  **type** | **str**| The type to filter on. | [optional]
  **parent_folder_id** | **[str]**| The IDs of parents folders to filter on. Lists all files and folders within the folder for the given ID, non-recursively. | [optional]
- **parent_folder_path** | **str**| The full path of the parent folder. Should start and end with a &#39;/&#39;. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. | [optional]
+ **parent_folder_path** | **str**| The full path of the parent folder. Should start and end with a &#39;/&#39;. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. This does not work for contents from a linked folder apposed to individual linked files. | [optional]
  **creation_date_after** | **datetime**| The date after which the data is created. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
  **creation_date_before** | **datetime**| The date before which the data is created. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
  **status_date_after** | **datetime**| The date after which the status has been updated. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
@@ -1573,6 +2313,53 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     api_instance = project_data_api.ProjectDataApi(api_client)
     project_id = "projectId_example" # str | 
     data_id = "dataId_example" # str | 
+    full_text = "fullText_example" # str | To search through multiple fields of data. (optional)
+    id = [
+        "id_example",
+    ] # [str] | The ids to filter on. This will always match exact. (optional)
+    filename = [
+        "filename_example",
+    ] # [str] | The filenames to filter on. The filenameMatchMode-parameter determines how the filtering is done. (optional)
+    filename_match_mode = "EXACT" # str | How the filenames are filtered.  (optional)
+    status = [
+        "PARTIAL",
+    ] # [str] | The statuses to filter on. (optional)
+    format_id = [
+        "formatId_example",
+    ] # [str] | The IDs of the formats to filter on. (optional)
+    format_code = [
+        "formatCode_example",
+    ] # [str] | The codes of the formats to filter on. (optional)
+    type = "FILE" # str | The type to filter on. (optional)
+    creation_date_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date after which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
+    creation_date_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date before which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
+    status_date_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date after which the status has been updated. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
+    status_date_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date before which the status has been updated. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
+    user_tag = [
+        "userTag_example",
+    ] # [str] | The usertags to filter on. The userTagMatchMode-parameter determines how the filtering is done. (optional)
+    user_tag_match_mode = "EXACT" # str | How the usertags are filtered.  (optional)
+    run_input_tag = [
+        "runInputTag_example",
+    ] # [str] | The runInputTags to filter on. The runInputTagMatchMode-parameter determines how the filtering is done. (optional)
+    run_input_tag_match_mode = "EXACT" # str | How the runInputTags are filtered.  (optional)
+    run_output_tag = [
+        "runOutputTag_example",
+    ] # [str] | The runOutputTags to filter on. The runOutputTagMatchMode-parameter determines how the filtering is done. (optional)
+    run_output_tag_match_mode = "EXACT" # str | How the runOutputTags are filtered.  (optional)
+    connector_tag = [
+        "connectorTag_example",
+    ] # [str] | The connectorTags to filter on. The connectorTagMatchMode-parameter determines how the filtering is done. (optional)
+    connector_tag_match_mode = "EXACT" # str | How the connectorTags are filtered.  (optional)
+    technical_tag = [
+        "technicalTag_example",
+    ] # [str] | The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done. (optional)
+    technical_tag_match_mode = "EXACT" # str | How the technicalTags are filtered.  (optional)
+    not_in_run = True # bool | When set to true, the data will be filtered on data which is not used in a run. (optional)
+    not_linked_to_sample = True # bool | When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File. (optional)
+    instrument_run_id = [
+        "instrumentRunId_example",
+    ] # [str] | The instrument run IDs of the sequencing runs to filter on. (optional)
     page_offset = "pageOffset_example" # str | [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
     page_token = "pageToken_example" # str | [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = "pageSize_example" # str | [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results (optional)
@@ -1589,7 +2376,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Retrieve the children of this data.
-        api_response = api_instance.get_project_data_children(project_id, data_id, page_offset=page_offset, page_token=page_token, page_size=page_size)
+        api_response = api_instance.get_project_data_children(project_id, data_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, not_linked_to_sample=not_linked_to_sample, instrument_run_id=instrument_run_id, page_offset=page_offset, page_token=page_token, page_size=page_size)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataApi->get_project_data_children: %s\n" % e)
@@ -1602,6 +2389,31 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **project_id** | **str**|  |
  **data_id** | **str**|  |
+ **full_text** | **str**| To search through multiple fields of data. | [optional]
+ **id** | **[str]**| The ids to filter on. This will always match exact. | [optional]
+ **filename** | **[str]**| The filenames to filter on. The filenameMatchMode-parameter determines how the filtering is done. | [optional]
+ **filename_match_mode** | **str**| How the filenames are filtered.  | [optional]
+ **status** | **[str]**| The statuses to filter on. | [optional]
+ **format_id** | **[str]**| The IDs of the formats to filter on. | [optional]
+ **format_code** | **[str]**| The codes of the formats to filter on. | [optional]
+ **type** | **str**| The type to filter on. | [optional]
+ **creation_date_after** | **datetime**| The date after which the data is created. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
+ **creation_date_before** | **datetime**| The date before which the data is created. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
+ **status_date_after** | **datetime**| The date after which the status has been updated. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
+ **status_date_before** | **datetime**| The date before which the status has been updated. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
+ **user_tag** | **[str]**| The usertags to filter on. The userTagMatchMode-parameter determines how the filtering is done. | [optional]
+ **user_tag_match_mode** | **str**| How the usertags are filtered.  | [optional]
+ **run_input_tag** | **[str]**| The runInputTags to filter on. The runInputTagMatchMode-parameter determines how the filtering is done. | [optional]
+ **run_input_tag_match_mode** | **str**| How the runInputTags are filtered.  | [optional]
+ **run_output_tag** | **[str]**| The runOutputTags to filter on. The runOutputTagMatchMode-parameter determines how the filtering is done. | [optional]
+ **run_output_tag_match_mode** | **str**| How the runOutputTags are filtered.  | [optional]
+ **connector_tag** | **[str]**| The connectorTags to filter on. The connectorTagMatchMode-parameter determines how the filtering is done. | [optional]
+ **connector_tag_match_mode** | **str**| How the connectorTags are filtered.  | [optional]
+ **technical_tag** | **[str]**| The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done. | [optional]
+ **technical_tag_match_mode** | **str**| How the technicalTags are filtered.  | [optional]
+ **not_in_run** | **bool**| When set to true, the data will be filtered on data which is not used in a run. | [optional]
+ **not_linked_to_sample** | **bool**| When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File. | [optional]
+ **instrument_run_id** | **[str]**| The instrument run IDs of the sequencing runs to filter on. | [optional]
  **page_offset** | **str**| [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
  **page_token** | **str**| [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
  **page_size** | **str**| [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results | [optional]
@@ -1695,10 +2507,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         "formatCode_example",
     ] # [str] | The codes of the formats to filter on. (optional)
     type = "FILE" # str | The type to filter on. (optional)
+    non_indexed_folders = True # bool | To filter on non-indexed folders. (optional)
     parent_folder_id = [
         "parentFolderId_example",
     ] # [str] | The IDs of parents folders to filter on. Lists all files and folders within the folder for the given ID, non-recursively. (optional)
-    parent_folder_path = "parentFolderPath_example" # str | The full path of the parent folder. Should start and end with a '/'. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. (optional)
+    parent_folder_path = "parentFolderPath_example" # str | The full path of the parent folder. Should start and end with a '/'. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. This does not work for contents from a linked folder apposed to individual linked files. (optional)
     creation_date_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date after which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
     creation_date_before = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date before which the data is created. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
     status_date_after = dateutil_parser('1970-01-01T00:00:00.00Z') # datetime | The date after which the status has been updated. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z (optional)
@@ -1728,6 +2541,9 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     instrument_run_id = [
         "instrumentRunId_example",
     ] # [str] | The instrument run IDs of the sequencing runs to filter on. (optional)
+    owning_project_id = [
+        "owningProjectId_example",
+    ] # [str] | The owning project ID to filter on. (optional)
     page_offset = "pageOffset_example" # str | [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
     page_token = "pageToken_example" # str | [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = "pageSize_example" # str | [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results (optional)
@@ -1745,7 +2561,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Retrieve the list of project data.
-        api_response = api_instance.get_project_data_list(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, not_linked_to_sample=not_linked_to_sample, instrument_run_id=instrument_run_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
+        api_response = api_instance.get_project_data_list(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, non_indexed_folders=non_indexed_folders, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, not_linked_to_sample=not_linked_to_sample, instrument_run_id=instrument_run_id, owning_project_id=owning_project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataApi->get_project_data_list: %s\n" % e)
@@ -1767,8 +2583,9 @@ Name | Type | Description  | Notes
  **format_id** | **[str]**| The IDs of the formats to filter on. | [optional]
  **format_code** | **[str]**| The codes of the formats to filter on. | [optional]
  **type** | **str**| The type to filter on. | [optional]
+ **non_indexed_folders** | **bool**| To filter on non-indexed folders. | [optional]
  **parent_folder_id** | **[str]**| The IDs of parents folders to filter on. Lists all files and folders within the folder for the given ID, non-recursively. | [optional]
- **parent_folder_path** | **str**| The full path of the parent folder. Should start and end with a &#39;/&#39;. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. | [optional]
+ **parent_folder_path** | **str**| The full path of the parent folder. Should start and end with a &#39;/&#39;. Lists all files and folders within the folder for the given path, non-recursively. This can be used to browse through the hierarchical tree of folders, e.g. traversing one level up can be done by removing the last part of the path. This does not work for contents from a linked folder apposed to individual linked files. | [optional]
  **creation_date_after** | **datetime**| The date after which the data is created. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
  **creation_date_before** | **datetime**| The date before which the data is created. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
  **status_date_after** | **datetime**| The date after which the status has been updated. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional]
@@ -1786,6 +2603,7 @@ Name | Type | Description  | Notes
  **not_in_run** | **bool**| When set to true, the data will be filtered on data which is not used in a run. | [optional]
  **not_linked_to_sample** | **bool**| When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File. | [optional]
  **instrument_run_id** | **[str]**| The instrument run IDs of the sequencing runs to filter on. | [optional]
+ **owning_project_id** | **[str]**| The owning project ID to filter on. | [optional]
  **page_offset** | **str**| [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
  **page_token** | **str**| [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
  **page_size** | **str**| [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results | [optional]
@@ -2163,7 +2981,7 @@ void (empty response body)
 
 Schedule a download.
 
-Endpoint for scheduling a download for the data specified by the ID to a connector. This download will only start when the connector is running. This is a non-RESTful endpoint, as the path of this endpoint is not representing a REST resource.
+Endpoint for scheduling a download for the data specified by the ID to a connector. This download will only start when the connector is running. Data transfers for folder contents are created asynchronously, meaning that they will not be immediately visible in the project data transfers end point. This is a non-RESTful endpoint, as the path of this endpoint is not representing a REST resource.
 
 ### Example
 
@@ -2542,6 +3360,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     ),
                     city_name="city_name_example",
                 ),
+                application=ApplicationV4(
+                    id="id_example",
+                    name="name_example",
+                ),
                 will_be_archived_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
                 will_be_deleted_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
                 sequencing_run=SequencingRun(
@@ -2549,6 +3371,9 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     instrument_run_id="instrument_run_id_example",
                     name="name_example",
                 ),
+            ),
+            folder_details=FolderDetails(
+                non_indexed=True,
             ),
         ),
         project_id="project_id_example",

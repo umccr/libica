@@ -30,10 +30,12 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.application_v4 import ApplicationV4
     from libica.openapi.v2.model.metadata_field import MetadataField
     from libica.openapi.v2.model.region import Region
     from libica.openapi.v2.model.sample_tag import SampleTag
     from libica.openapi.v2.model.sequencing_run import SequencingRun
+    globals()['ApplicationV4'] = ApplicationV4
     globals()['MetadataField'] = MetadataField
     globals()['Region'] = Region
     globals()['SampleTag'] = SampleTag
@@ -119,6 +121,7 @@ class Sample(ModelNormal):
             'metadata': ([MetadataField],),  # noqa: E501
             'tenant_name': (str, none_type,),  # noqa: E501
             'description': (str, none_type,),  # noqa: E501
+            'application': (ApplicationV4,),  # noqa: E501
             'sequencing_runs': ([SequencingRun], none_type,),  # noqa: E501
         }
 
@@ -141,6 +144,7 @@ class Sample(ModelNormal):
         'metadata': 'metadata',  # noqa: E501
         'tenant_name': 'tenantName',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'application': 'application',  # noqa: E501
         'sequencing_runs': 'sequencingRuns',  # noqa: E501
     }
 
@@ -200,6 +204,7 @@ class Sample(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The description of the sample. [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
             sequencing_runs ([SequencingRun], none_type): [optional]  # noqa: E501
         """
 
@@ -308,6 +313,7 @@ class Sample(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             description (str, none_type): The description of the sample. [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
             sequencing_runs ([SequencingRun], none_type): [optional]  # noqa: E501
         """
 

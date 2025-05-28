@@ -31,7 +31,9 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.data_details import DataDetails
+    from libica.openapi.v2.model.folder_details import FolderDetails
     globals()['DataDetails'] = DataDetails
+    globals()['FolderDetails'] = FolderDetails
 
 
 class Data(ModelNormal):
@@ -98,6 +100,7 @@ class Data(ModelNormal):
             'id': (str,),  # noqa: E501
             'urn': (str, none_type,),  # noqa: E501
             'details': (DataDetails,),  # noqa: E501
+            'folder_details': (FolderDetails,),  # noqa: E501
         }
 
     @cached_property
@@ -109,6 +112,7 @@ class Data(ModelNormal):
         'id': 'id',  # noqa: E501
         'urn': 'urn',  # noqa: E501
         'details': 'details',  # noqa: E501
+        'folder_details': 'folderDetails',  # noqa: E501
     }
 
     read_only_vars = {
@@ -157,6 +161,7 @@ class Data(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             urn (str, none_type): The URN of this data. The format is urn:ilmn:ica:region:\\<ID of the region\\>:data:\\<ID of the data\\>#\\<optional data path\\>. The path can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             details (DataDetails): [optional]  # noqa: E501
+            folder_details (FolderDetails): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -244,6 +249,7 @@ class Data(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             urn (str, none_type): The URN of this data. The format is urn:ilmn:ica:region:\\<ID of the region\\>:data:\\<ID of the data\\>#\\<optional data path\\>. The path can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             details (DataDetails): [optional]  # noqa: E501
+            folder_details (FolderDetails): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

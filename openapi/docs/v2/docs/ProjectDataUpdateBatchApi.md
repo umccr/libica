@@ -4,7 +4,7 @@ All URIs are relative to */ica/rest*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_project_data_update_batch**](ProjectDataUpdateBatchApi.md#create_project_data_update_batch) | **POST** /api/projects/{projectId}/dataUpdateBatch | Create a project data update batch.
+[**create_project_data_update_batch**](ProjectDataUpdateBatchApi.md#create_project_data_update_batch) | **POST** /api/projects/{projectId}/dataUpdateBatch | Create a project data update batch.  Folder contents will be updated recursively.  Time archive/delete cannot be defined for folders.
 [**get_project_data_update_batch**](ProjectDataUpdateBatchApi.md#get_project_data_update_batch) | **GET** /api/projects/{projectId}/dataUpdateBatch/{batchId} | Retrieve a project data update batch.
 [**get_project_data_update_batch_item**](ProjectDataUpdateBatchApi.md#get_project_data_update_batch_item) | **GET** /api/projects/{projectId}/dataUpdateBatch/{batchId}/items/{itemId} | Retrieve a project data update batch item.
 [**get_project_data_update_batch_items**](ProjectDataUpdateBatchApi.md#get_project_data_update_batch_items) | **GET** /api/projects/{projectId}/dataUpdateBatch/{batchId}/items | Retrieve a list of project data update batch items.
@@ -13,7 +13,9 @@ Method | HTTP request | Description
 # **create_project_data_update_batch**
 > ProjectDataUpdateBatch create_project_data_update_batch(project_id, create_project_data_update_batch)
 
-Create a project data update batch.
+Create a project data update batch.  Folder contents will be updated recursively.  Time archive/delete cannot be defined for folders.
+
+Avoid specifying more than 5000 total dataIds per call if possible (specifying more than 100000 is not allowed).
 
 ### Example
 
@@ -77,13 +79,15 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                         "remove_tags_example",
                     ],
                 ),
+                will_be_archived_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                will_be_deleted_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
             ),
         ],
     ) # CreateProjectDataUpdateBatch | 
 
     # example passing only required values which don't have defaults set
     try:
-        # Create a project data update batch.
+        # Create a project data update batch.  Folder contents will be updated recursively.  Time archive/delete cannot be defined for folders.
         api_response = api_instance.create_project_data_update_batch(project_id, create_project_data_update_batch)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:

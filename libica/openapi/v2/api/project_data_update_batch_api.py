@@ -321,8 +321,9 @@ class ProjectDataUpdateBatchApi(object):
         create_project_data_update_batch,
         **kwargs
     ):
-        """Create a project data update batch.  # noqa: E501
+        """Create a project data update batch.  Folder contents will be updated recursively.  Time archive/delete cannot be defined for folders.  # noqa: E501
 
+        Avoid specifying more than 5000 total dataIds per call if possible (specifying more than 100000 is not allowed).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

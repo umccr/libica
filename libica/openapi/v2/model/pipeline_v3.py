@@ -73,6 +73,10 @@ class PipelineV3(ModelNormal):
             'DRAFT': "DRAFT",
             'RELEASED': "RELEASED",
         },
+        ('input_form_type',): {
+            'XML': "XML",
+            'JSON': "JSON",
+        },
     }
 
     validations = {
@@ -128,6 +132,7 @@ class PipelineV3(ModelNormal):
             'status': (str, none_type,),  # noqa: E501
             'language_version': (PipelineLanguageVersion,),  # noqa: E501
             'proprietary': (bool, none_type,),  # noqa: E501
+            'input_form_type': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -151,6 +156,7 @@ class PipelineV3(ModelNormal):
         'status': 'status',  # noqa: E501
         'language_version': 'languageVersion',  # noqa: E501
         'proprietary': 'proprietary',  # noqa: E501
+        'input_form_type': 'inputFormType',  # noqa: E501
     }
 
     read_only_vars = {
@@ -211,6 +217,7 @@ class PipelineV3(ModelNormal):
             status (str, none_type): The status of the pipeline. [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
+            input_form_type (str): The type of the inputform used.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -319,6 +326,7 @@ class PipelineV3(ModelNormal):
             status (str, none_type): The status of the pipeline. [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
+            input_form_type (str): The type of the inputform used.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

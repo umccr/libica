@@ -62,7 +62,7 @@ class StorageCredential(ModelNormal):
 
     validations = {
         ('name',): {
-            'max_length': 60,
+            'max_length': 150,
             'min_length': 1,
         },
     }
