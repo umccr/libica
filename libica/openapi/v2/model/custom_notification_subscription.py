@@ -30,7 +30,9 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.application_v4 import ApplicationV4
     from libica.openapi.v2.model.notification_channel import NotificationChannel
+    globals()['ApplicationV4'] = ApplicationV4
     globals()['NotificationChannel'] = NotificationChannel
 
 
@@ -105,6 +107,7 @@ class CustomNotificationSubscription(ModelNormal):
             'notification_channel': (NotificationChannel,),  # noqa: E501
             'tenant_name': (str, none_type,),  # noqa: E501
             'filter_expression': (str, none_type,),  # noqa: E501
+            'application': (ApplicationV4,),  # noqa: E501
         }
 
     @cached_property
@@ -123,6 +126,7 @@ class CustomNotificationSubscription(ModelNormal):
         'notification_channel': 'notificationChannel',  # noqa: E501
         'tenant_name': 'tenantName',  # noqa: E501
         'filter_expression': 'filterExpression',  # noqa: E501
+        'application': 'application',  # noqa: E501
     }
 
     read_only_vars = {
@@ -178,6 +182,7 @@ class CustomNotificationSubscription(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             filter_expression (str, none_type): To be used when a notification applies to specific conditions.. [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -279,6 +284,7 @@ class CustomNotificationSubscription(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             tenant_name (str, none_type): [optional]  # noqa: E501
             filter_expression (str, none_type): To be used when a notification applies to specific conditions.. [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

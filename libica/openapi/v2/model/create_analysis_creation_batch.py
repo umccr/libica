@@ -32,8 +32,10 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 def lazy_import():
     from libica.openapi.v2.model.create_cwl_analysis import CreateCwlAnalysis
     from libica.openapi.v2.model.create_nextflow_analysis import CreateNextflowAnalysis
+    from libica.openapi.v2.model.create_nextflow_json_analysis import CreateNextflowJsonAnalysis
     globals()['CreateCwlAnalysis'] = CreateCwlAnalysis
     globals()['CreateNextflowAnalysis'] = CreateNextflowAnalysis
+    globals()['CreateNextflowJsonAnalysis'] = CreateNextflowJsonAnalysis
 
 
 class CreateAnalysisCreationBatch(ModelNormal):
@@ -91,6 +93,7 @@ class CreateAnalysisCreationBatch(ModelNormal):
         return {
             'cwl_items': ([CreateCwlAnalysis],),  # noqa: E501
             'nextflow_items': ([CreateNextflowAnalysis],),  # noqa: E501
+            'nextflow_json_items': ([CreateNextflowJsonAnalysis],),  # noqa: E501
         }
 
     @cached_property
@@ -101,6 +104,7 @@ class CreateAnalysisCreationBatch(ModelNormal):
     attribute_map = {
         'cwl_items': 'cwlItems',  # noqa: E501
         'nextflow_items': 'nextflowItems',  # noqa: E501
+        'nextflow_json_items': 'nextflowJsonItems',  # noqa: E501
     }
 
     read_only_vars = {
@@ -146,6 +150,7 @@ class CreateAnalysisCreationBatch(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             cwl_items ([CreateCwlAnalysis]): [optional]  # noqa: E501
             nextflow_items ([CreateNextflowAnalysis]): [optional]  # noqa: E501
+            nextflow_json_items ([CreateNextflowJsonAnalysis]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,6 +234,7 @@ class CreateAnalysisCreationBatch(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             cwl_items ([CreateCwlAnalysis]): [optional]  # noqa: E501
             nextflow_items ([CreateNextflowAnalysis]): [optional]  # noqa: E501
+            nextflow_json_items ([CreateNextflowJsonAnalysis]): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

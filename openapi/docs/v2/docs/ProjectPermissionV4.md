@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **workgroup** | [**Workgroup**](Workgroup.md) |  | [optional] 
 **invitation_accepted** | **bool, none_type** | Only present when membershipType is EMAIL | [optional] 
 **invitation_rejected** | **bool, none_type** | Only present when user is invited by EMAIL | [optional] 
+**application** | [**ApplicationV4**](ApplicationV4.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

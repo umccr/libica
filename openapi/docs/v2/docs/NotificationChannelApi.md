@@ -404,6 +404,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         type="MAIL",
         address="address_example",
         aws_region="aws_region_example",
+        application=ApplicationV4(
+            id="id_example",
+            name="name_example",
+        ),
     ) # NotificationChannel | The updated channel
     if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 

@@ -25,6 +25,7 @@ from libica.openapi.v2.api.bundle_tool_api import BundleToolApi
 from libica.openapi.v2.api.connector_api import ConnectorApi
 from libica.openapi.v2.api.data_api import DataApi
 from libica.openapi.v2.api.data_format_api import DataFormatApi
+from libica.openapi.v2.api.docker_image_api import DockerImageApi
 from libica.openapi.v2.api.entitled_bundle_api import EntitledBundleApi
 from libica.openapi.v2.api.entitlement_detail_api import EntitlementDetailApi
 from libica.openapi.v2.api.event_code_api import EventCodeApi

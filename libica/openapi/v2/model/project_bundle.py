@@ -30,7 +30,9 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.application_v4 import ApplicationV4
     from libica.openapi.v2.model.bundle import Bundle
+    globals()['ApplicationV4'] = ApplicationV4
     globals()['Bundle'] = Bundle
 
 
@@ -89,6 +91,7 @@ class ProjectBundle(ModelNormal):
         return {
             'bundle': (Bundle,),  # noqa: E501
             'project_id': (str,),  # noqa: E501
+            'application': (ApplicationV4,),  # noqa: E501
         }
 
     @cached_property
@@ -99,6 +102,7 @@ class ProjectBundle(ModelNormal):
     attribute_map = {
         'bundle': 'bundle',  # noqa: E501
         'project_id': 'projectId',  # noqa: E501
+        'application': 'application',  # noqa: E501
     }
 
     read_only_vars = {
@@ -146,6 +150,7 @@ class ProjectBundle(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            application (ApplicationV4): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -233,6 +238,7 @@ class ProjectBundle(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            application (ApplicationV4): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

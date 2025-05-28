@@ -30,8 +30,10 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.application_v4 import ApplicationV4
     from libica.openapi.v2.model.user import User
     from libica.openapi.v2.model.workgroup import Workgroup
+    globals()['ApplicationV4'] = ApplicationV4
     globals()['User'] = User
     globals()['Workgroup'] = Workgroup
 
@@ -112,6 +114,7 @@ class ProjectPermissionV4(ModelNormal):
             'workgroup': (Workgroup,),  # noqa: E501
             'invitation_accepted': (bool, none_type,),  # noqa: E501
             'invitation_rejected': (bool, none_type,),  # noqa: E501
+            'application': (ApplicationV4,),  # noqa: E501
         }
 
     @cached_property
@@ -138,6 +141,7 @@ class ProjectPermissionV4(ModelNormal):
         'workgroup': 'workgroup',  # noqa: E501
         'invitation_accepted': 'invitationAccepted',  # noqa: E501
         'invitation_rejected': 'invitationRejected',  # noqa: E501
+        'application': 'application',  # noqa: E501
     }
 
     read_only_vars = {
@@ -201,6 +205,7 @@ class ProjectPermissionV4(ModelNormal):
             workgroup (Workgroup): [optional]  # noqa: E501
             invitation_accepted (bool, none_type): Only present when membershipType is EMAIL. [optional]  # noqa: E501
             invitation_rejected (bool, none_type): Only present when user is invited by EMAIL. [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -314,6 +319,7 @@ class ProjectPermissionV4(ModelNormal):
             workgroup (Workgroup): [optional]  # noqa: E501
             invitation_accepted (bool, none_type): Only present when membershipType is EMAIL. [optional]  # noqa: E501
             invitation_rejected (bool, none_type): Only present when user is invited by EMAIL. [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -87,8 +87,8 @@ class MultipartFormDataInput(ModelNormal):
         """
         lazy_import()
         return {
-            'form_data_map': ({str: ([InputPart],)},),  # noqa: E501
             'form_data': ({str: (InputPart,)},),  # noqa: E501
+            'form_data_map': ({str: ([InputPart],)},),  # noqa: E501
             'parts': ([InputPart],),  # noqa: E501
             'preamble': (str,),  # noqa: E501
         }
@@ -99,8 +99,8 @@ class MultipartFormDataInput(ModelNormal):
 
 
     attribute_map = {
-        'form_data_map': 'formDataMap',  # noqa: E501
         'form_data': 'formData',  # noqa: E501
+        'form_data_map': 'formDataMap',  # noqa: E501
         'parts': 'parts',  # noqa: E501
         'preamble': 'preamble',  # noqa: E501
     }
@@ -146,8 +146,8 @@ class MultipartFormDataInput(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            form_data_map ({str: ([InputPart],)}): [optional]  # noqa: E501
             form_data ({str: (InputPart,)}): [optional]  # noqa: E501
+            form_data_map ({str: ([InputPart],)}): [optional]  # noqa: E501
             parts ([InputPart]): [optional]  # noqa: E501
             preamble (str): [optional]  # noqa: E501
         """
@@ -231,8 +231,8 @@ class MultipartFormDataInput(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            form_data_map ({str: ([InputPart],)}): [optional]  # noqa: E501
             form_data ({str: (InputPart,)}): [optional]  # noqa: E501
+            form_data_map ({str: ([InputPart],)}): [optional]  # noqa: E501
             parts ([InputPart]): [optional]  # noqa: E501
             preamble (str): [optional]  # noqa: E501
         """

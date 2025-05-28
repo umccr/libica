@@ -32,12 +32,14 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 def lazy_import():
     from libica.openapi.v2.model.analysis_storage_v4 import AnalysisStorageV4
     from libica.openapi.v2.model.analysis_tag import AnalysisTag
+    from libica.openapi.v2.model.application_v4 import ApplicationV4
     from libica.openapi.v2.model.pipeline_v4 import PipelineV4
     from libica.openapi.v2.model.tenant_identifier import TenantIdentifier
     from libica.openapi.v2.model.user_identifier import UserIdentifier
     from libica.openapi.v2.model.workflow_session_v4 import WorkflowSessionV4
     globals()['AnalysisStorageV4'] = AnalysisStorageV4
     globals()['AnalysisTag'] = AnalysisTag
+    globals()['ApplicationV4'] = ApplicationV4
     globals()['PipelineV4'] = PipelineV4
     globals()['TenantIdentifier'] = TenantIdentifier
     globals()['UserIdentifier'] = UserIdentifier
@@ -131,6 +133,7 @@ class AnalysisV4(ModelNormal):
             'summary': (str, none_type,),  # noqa: E501
             'analysis_storage': (AnalysisStorageV4,),  # noqa: E501
             'analysis_priority': (str, none_type,),  # noqa: E501
+            'application': (ApplicationV4,),  # noqa: E501
         }
 
     @cached_property
@@ -155,6 +158,7 @@ class AnalysisV4(ModelNormal):
         'summary': 'summary',  # noqa: E501
         'analysis_storage': 'analysisStorage',  # noqa: E501
         'analysis_priority': 'analysisPriority',  # noqa: E501
+        'application': 'application',  # noqa: E501
     }
 
     read_only_vars = {
@@ -216,6 +220,7 @@ class AnalysisV4(ModelNormal):
             summary (str, none_type): The summary of the analysis. [optional]  # noqa: E501
             analysis_storage (AnalysisStorageV4): [optional]  # noqa: E501
             analysis_priority (str, none_type): The priority of the analysis. [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -325,6 +330,7 @@ class AnalysisV4(ModelNormal):
             summary (str, none_type): The summary of the analysis. [optional]  # noqa: E501
             analysis_storage (AnalysisStorageV4): [optional]  # noqa: E501
             analysis_priority (str, none_type): The priority of the analysis. [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

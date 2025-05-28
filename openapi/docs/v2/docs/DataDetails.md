@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **object_e_tag** | **str, none_type** | The file&#39;s ETag, as received from the cloud provider. Not to be confused with the ETag reponse header of this API. | [optional] 
 **stored_for_the_first_time_at** | **datetime, none_type** | Specifies when the data object was stored for the first time | [optional] 
 **region** | [**Region**](Region.md) |  | [optional] 
+**application** | [**ApplicationV4**](ApplicationV4.md) |  | [optional] 
 **will_be_archived_at** | **datetime, none_type** | Specifies when the data object will be archived. | [optional] 
 **will_be_deleted_at** | **datetime, none_type** | Specifies when the data object will be deleted. | [optional] 
 **sequencing_run** | [**SequencingRun**](SequencingRun.md) |  | [optional] 

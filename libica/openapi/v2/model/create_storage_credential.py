@@ -66,7 +66,7 @@ class CreateStorageCredential(ModelNormal):
 
     validations = {
         ('name',): {
-            'max_length': 60,
+            'max_length': 150,
             'min_length': 1,
             'regex': {
                 'pattern': r'^[a-zA-Z0-9_-]*$',  # noqa: E501
