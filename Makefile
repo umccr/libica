@@ -42,6 +42,10 @@ install:
 	@npm install
 	@pre-commit install
 
+single:
+	@python -m unittest libica.openapi.v3.test.test_workflow_v3.TestWorkflowV3
+	@python -m unittest libica.openapi.v3.test.test_workflow_v4.TestWorkflowV4
+
 unit:
 	@py.test --no-cov tests/
 
@@ -67,13 +71,15 @@ dist: clean
 
 # Usage: make testpypi version=0.2.0
 testpypi: dist/libica-$(version).tar.gz
-	@python3 -m twine upload --repository testpypi --sign dist/libica-$(version)*
+	@python3 -m twine upload --repository testpypi dist/libica-$(version).tar.gz
+	@python3 -m twine upload --repository testpypi dist/libica-$(version)-*.whl
 
 pypi: dist/libica-$(version).tar.gz
-	@python3 -m twine upload --sign dist/libica-$(version)*
+	@python3 -m twine upload dist/libica-$(version).tar.gz
+	@python3 -m twine upload dist/libica-$(version)-*.whl
 
 ########
-# ICA v2
+# Generate v2 SDK package
 
 .PHONY: getapi2 genapi2 mvapidoc2 rmapi2 sweepapi2
 getapi2:
@@ -97,3 +103,30 @@ chkepver2:
 # validate swagger openapi definitions
 validate2:
 	@. syncapi2.sh; validateapi
+
+########
+# Generate v3 SDK package
+
+.PHONY: getapi3 genapi3 mvapidoc3 rmapi3 sweepapi3
+# THIS WILL BE THE SAME AS v2 PACKAGE SINCE USING THE SAME API DOC. COMMENTING OUT FOR NOT TO CONFUSE.
+#getapi3:
+#	@. syncapi3.sh; getapi
+#
+#sweepapi3:
+#	@python sweep.py
+
+genapi3:
+	@. syncapi3.sh; genapi; mvapidoc
+
+mvapidoc3:
+	@. syncapi3.sh; mvapidoc
+
+check3: chkepver3 validate3
+
+# check endpoint version
+chkepver3:
+	@. syncapi3.sh; chkepver
+
+# validate swagger openapi definitions
+validate3:
+	@. syncapi3.sh; validateapi
