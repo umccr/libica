@@ -28,11 +28,11 @@ getapi() {
 genapi() {
   npx openapi-generator-cli generate -i swagger/$OPENAPI_YAML -g python -o . \
     --global-property=apiDocs=true,apiTests=true,modelDocs=true,modelTests=true \
-    --additional-properties="$PYTHON_GEN_PROP",packageName=libica.openapi.v2
+    --additional-properties="$PYTHON_GEN_PROP",packageName=libica.openapi.v3
 }
 
 mvapidoc() {
-  _mvdoc "v2"
+  _mvdoc "v3"
 }
 
 _mvdoc() {
