@@ -5,6 +5,7 @@ repos:
     hooks:
       - id: check-added-large-files
         exclude: ^(package-lock.json|docs/)
+        args: ['--maxkb=600']
 #      - id: check-json
 #      - id: check-yaml
 #      - id: detect-aws-credentials

@@ -52,5 +52,7 @@ setup(
     install_requires=[
         "python-dateutil",
         "urllib3",
+        "pydantic",
+        "typing-extensions"
     ],
 )
