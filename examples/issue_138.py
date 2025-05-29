@@ -13,12 +13,12 @@ if __name__ == '__main__':
 
     # See https://github.com/umccr/libica/issues/138
     # Usage:
-    #   icav2 tenants enter umccr-beta
-    #   icav2 projects enter 'ega-upload-test'
+    #   icav2 tenants enter umccr-prod
+    #   icav2 projects enter 'development'
     #   python issue_138.py
 
-    project_id = 'd3697f78-22b0-41e2-96f6-d105715239f3'
-    pipeline_id = '024dd8d0-6ff5-4641-a6e6-cc5c7d30e2e7'
+    project_id = 'ea19a3f5-ec7c-4940-a474-c31cd91dbad4'
+    pipeline_id = '510c7608-62ac-43bd-b114-d28475125118'
 
     configuration = Configuration(
         host=environ['ICAV2_BASE_URL'],

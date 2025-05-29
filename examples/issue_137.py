@@ -17,18 +17,18 @@ if __name__ == '__main__':
 
     # See https://github.com/umccr/libica/issues/137
 
-    # curl -s -H "Authorization: Bearer $ICAV2_ACCESS_TOKEN" "https://ica.illumina.com/ica/rest/api/pipelines/a10cad1d-b3c6-4a6e-8f44-0605fbe269d5/files" | jq
-    # curl -vvv -s -H "Authorization: Bearer $ICAV2_ACCESS_TOKEN" "https://ica.illumina.com/ica/rest/api/pipelines/a10cad1d-b3c6-4a6e-8f44-0605fbe269d5/files/31a36b7a-f034-4bbc-ba3e-229d6ab866f4/content" | jq
+    # curl -s -H "Authorization: Bearer $ICAV2_ACCESS_TOKEN" "https://ica.illumina.com/ica/rest/api/pipelines/2cd57144-d568-4f0b-b85e-734d82e654b9/files" | jq
+    # curl -vvv -s -H "Authorization: Bearer $ICAV2_ACCESS_TOKEN" "https://ica.illumina.com/ica/rest/api/pipelines/2cd57144-d568-4f0b-b85e-734d82e654b9/files/16498d5f-bebd-4d70-95eb-6c381d41712b/content"
 
     # Usage:
-    #   icav2 tenants enter umccr-beta
-    #   icav2 projects enter 'playground_v2'
-    #   icav2 pipelines get a10cad1d-b3c6-4a6e-8f44-0605fbe269d5
+    #   icav2 tenants enter umccr-prod
+    #   icav2 projects enter 'development'
+    #   icav2 pipelines get 2cd57144-d568-4f0b-b85e-734d82e654b9
     #   python issue_137.py
 
-    pipeline_id = "a10cad1d-b3c6-4a6e-8f44-0605fbe269d5"
-    # file_id = "0a7b29b7-ae8f-4198-85f3-0743f8290a25"  # works fine
-    file_id = "31a36b7a-f034-4bbc-ba3e-229d6ab866f4"
+    pipeline_id = "2cd57144-d568-4f0b-b85e-734d82e654b9"
+    # file_id = "b59f0a4b-2370-40d8-94ea-25c6c5c0f710" # works fine
+    file_id = "16498d5f-bebd-4d70-95eb-6c381d41712b"
 
     configuration = Configuration(
         host=environ['ICAV2_BASE_URL'],

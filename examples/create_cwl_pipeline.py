@@ -1,17 +1,9 @@
 """
 Usage:
-    export ICAV2_ACCESS_TOKEN=$(yq '.access-token' ~/.icav2/.session.ica.yaml)
-    (or)
     export ICAV2_ACCESS_TOKEN=$(icav2 tokens create)
-
     cd examples
     python create_cwl_pipeline.py
 
-Debug:
-    Uncomment debug flag at Line 30
-    export ICAV2_ACCESS_TOKEN=blah
-    cd examples
-    python create_cwl_pipeline.py
 
 Check:
     Check created CWL pipeline using CLI as follows
@@ -29,6 +21,11 @@ from libica.openapi.v2.api import project_pipeline_api
 
 icav2_access_token = os.environ['ICAV2_ACCESS_TOKEN']
 ica_url = "https://ica.illumina.com/ica/rest"
+
+# Modify to suit your setting
+project_id = "ea19a3f5-ec7c-4940-a474-c31cd91dbad4"  # icav2 projects list
+analysis_storage_id = "6e1b6c8f-f913-48b2-9bd0-7fc13eda0fd0"  # icav2 analysisstorages list
+
 
 configuration = Configuration(
     host=ica_url,
@@ -63,9 +60,6 @@ if __name__ == '__main__':
 
     with libica.openapi.v2.ApiClient(configuration) as api_client:
         api_instance = project_pipeline_api.ProjectPipelineApi(api_client)
-
-        project_id = "9c20aeb0-f780-4e9a-ac42-739b30ed91f3"  # icav2 projects list
-        analysis_storage_id = "6e1b6c8f-f913-48b2-9bd0-7fc13eda0fd0"  # icav2 analysisstorages list
 
         code = f"libica__{workflow_package.replace('.', '-')}__{str(uuid.uuid4())}"
         description = "Testing create CWL Pipeline using libica"

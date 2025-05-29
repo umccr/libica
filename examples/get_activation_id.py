@@ -1,3 +1,11 @@
+"""
+Usage:
+    Set
+        export ICAV2_ACCESS_TOKEN=...
+        export ICAV2_PROJECT_ID=...
+    Then
+        python get_activation_id.py
+"""
 import json
 import os
 from importlib.metadata import version
@@ -12,12 +20,15 @@ from libica.openapi.v2.model.search_matching_activation_codes_for_cwl_analysis i
 icav2_access_token = os.environ['ICAV2_ACCESS_TOKEN']
 ica_url = "https://ica.illumina.com/ica/rest"
 
+# Modify to suit your setting
+project_id = "ea19a3f5-ec7c-4940-a474-c31cd91dbad4"
+pipeline_id = "03689516-b7f8-4dca-bba9-8405b85fae45"
+
+
 configuration = Configuration(
     host=ica_url,
     access_token=icav2_access_token,
 )
-
-
 # configuration.debug = True  # uncomment to debug API call logging
 
 
@@ -56,8 +67,8 @@ if __name__ == '__main__':
     )
 
     activation_id = get_activation_id(
-        project_id='9c20aeb0-f780-4e9a-ac42-739b30ed91f3',
-        pipeline_id='6358b7ca-a6c4-4a5a-be2e-899f18ebcdc5',
+        project_id=project_id,
+        pipeline_id=pipeline_id,
         analysis_input=cwl_analysis_input
     )
 
