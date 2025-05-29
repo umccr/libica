@@ -1,7 +1,7 @@
 name: Pull Request Build
 
-# FIXME turn off GitHub Action workflow trigger
-# As it don't get run for some reason. Probably either we hit to free quota or something else.
+# FIXME _manual_ trigger PR Build workflow
+# https://docs.github.com/en/actions/managing-workflow-runs-and-deployments/managing-workflow-runs/manually-running-a-workflow
 # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_dispatch
 on:
   workflow_dispatch
@@ -9,9 +9,16 @@ on:
 #    branches:
 #      - main
 
-# See https://github.com/actions/setup-python#usage
+# Actions Used:
+#  https://github.com/actions/checkout
+#  https://github.com/actions/setup-python
+
 jobs:
   build:
+
+    # Default access (restricted) - https://docs.github.com/en/actions/security-guides/automatic-token-authentication
+    permissions:
+      contents: read
 
     runs-on: ubuntu-latest
     strategy:
@@ -19,17 +26,23 @@ jobs:
         python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Docker compose up Prism mock API microservices
-      run: docker-compose up -d
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Bring mock stack up
+      run: docker compose up -d
+
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install '.[test,dev]' .
+
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
@@ -38,8 +51,10 @@ jobs:
         flake8 . --count --select=E9,F63,F7 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
     - name: Test with pytest
       run: |
         pytest
-    - name: Docker compose down Prism mock API microservices
-      run: docker-compose down
+
+    - name: Bring mock stack down
+      run: docker compose down

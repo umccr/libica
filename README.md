@@ -1,7 +1,6 @@
 # libica
 
-[//]: # (FIXME commented out PR Build status as it don't get run for some reason...)
-[//]: # ([![Pull Request Build Status]&#40;https://github.com/umccr/libica/workflows/Pull%20Request%20Build/badge.svg&#41;]&#40;https://github.com/umccr/libica/actions&#41; )
+[![Pull Request Build Status](https://github.com/umccr/libica/workflows/Pull%20Request%20Build/badge.svg)](https://github.com/umccr/libica/actions) 
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/libica?style=flat)](https://pypistats.org/packages/libica) 
 [![PyPI](https://img.shields.io/pypi/v/libica?style=flat)](https://pypi.org/project/libica) 
 [![PyPI - License](https://img.shields.io/pypi/l/libica?style=flat)](https://opensource.org/licenses/MIT)
