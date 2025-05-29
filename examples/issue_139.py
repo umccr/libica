@@ -73,8 +73,8 @@ if __name__ == '__main__':
     #   python issue_139.py
 
     # Change these variable to suit your situation
-    project_id = "9c20aeb0-f780-4e9a-ac42-739b30ed91f3"
-    pipeline_id = "b34e19ca-ed86-476c-bf17-3bfa190a2a84"
+    project_id = "ea19a3f5-ec7c-4940-a474-c31cd91dbad4"
+    pipeline_id = "2cd57144-d568-4f0b-b85e-734d82e654b9"
 
     # FIXME Do not do this. 400 Bad Request Error at the mo.
     # client = get_icav2_client()

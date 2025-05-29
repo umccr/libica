@@ -8,6 +8,7 @@ Usage:
 """
 import os
 from contextlib import closing
+from importlib.metadata import version
 
 from libica.openapi.v2 import Configuration, ApiClient, ApiException
 from libica.openapi.v2.api.project_data_api import ProjectDataApi
@@ -15,9 +16,11 @@ from libica.openapi.v2.model.project_data import ProjectData
 from libica.openapi.v2.model.project_data_paged_list import ProjectDataPagedList
 
 if __name__ == '__main__':
+    print(f"libica-{version('libica')}")
+    print("-" * 64)
 
     project_id = os.environ['ICAV2_PROJECT_ID']
-    file_path = ["/test_folder/"]  # empty will list everything under project
+    file_path = ["/test_data/"]  # empty will list everything under project
 
     icav2_access_token = os.environ['ICAV2_ACCESS_TOKEN']
     ica_url = "https://ica.illumina.com/ica/rest"
