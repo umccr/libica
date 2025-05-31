@@ -85,7 +85,11 @@ class ApiClient:
         self.configuration = configuration
 
         self.rest_client = rest.RESTClientObject(configuration)
-        self.default_headers = {}
+        # FIXME set default Accept header to application/vnd.illumina.v3+json
+        #  https://github.com/umccr/libica/issues/139
+        self.default_headers = {
+            "Accept": "application/vnd.illumina.v3+json",
+        }
         if header_name is not None:
             self.default_headers[header_name] = header_value
         self.cookie = cookie
