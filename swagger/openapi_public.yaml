@@ -15505,10 +15505,10 @@ components:
             $ref: '#/components/schemas/PipelineConfigurationParameter'
     Settings:
       type: object
-      description: "This object contains a \"oneOf\" construct. Depending on which\
+      description: "This object contains a \"anyOf\" construct. Depending on which\
         \ type, you will receive a StringSettings-, IntegerSettings or OptionsSettings\
         \ object."
-      oneOf:
+      anyOf:
       - $ref: '#/components/schemas/StringSettings'
       - $ref: '#/components/schemas/IntegerSettings'
       - $ref: '#/components/schemas/OptionSettings'
