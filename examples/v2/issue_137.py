@@ -38,6 +38,11 @@ if __name__ == '__main__':
     # configuration.debug = True  # FIXME debug API call logging, do not use in production code base
 
     with ApiClient(configuration) as api_client:
+        api_client.set_default_header(
+            header_name="Accept",
+            header_value="*/*",
+        )
+
         api_instance = PipelineApi(api_client)
         try:
             # Download the contents of a pipeline file.

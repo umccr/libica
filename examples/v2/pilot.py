@@ -33,7 +33,7 @@ if __name__ == '__main__':
 
     api_client = ApiClient(
         configuration=configuration,
-        header_name="Content-Type",
+        header_name="Accept",
         header_value="application/vnd.illumina.v3+json",
     )
 
