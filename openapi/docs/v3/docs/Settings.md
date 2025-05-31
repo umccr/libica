@@ -1,6 +1,6 @@
 # Settings
 
-This object contains a \"oneOf\" construct. Depending on which type, you will receive a StringSettings-, IntegerSettings or OptionsSettings object.
+This object contains a \"anyOf\" construct. Depending on which type, you will receive a StringSettings-, IntegerSettings or OptionsSettings object.
 
 ## Properties
 
