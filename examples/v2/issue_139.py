@@ -76,12 +76,21 @@ if __name__ == '__main__':
     project_id = "ea19a3f5-ec7c-4940-a474-c31cd91dbad4"
     pipeline_id = "2cd57144-d568-4f0b-b85e-734d82e654b9"
 
-    # FIXME Do not do this. 400 Bad Request Error at the mo.
-    # client = get_icav2_client()
+    # FIXME In v3 SDK, this now set to application/vnd.illumina.v3+json by default
+    client = get_icav2_client()
 
     # Client must explicitly set the version.
-    client = get_icav2_client_with(ep_version=3)
+    # client = get_icav2_client_with(ep_version=3)
     # client = get_icav2_client_with(ep_version=4)
+
+    # Or, you can override to Accept all media types.
+    # See https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Accept
+    #
+    # This is the setting needed in content downloading. See issue_137.py
+    # client.set_default_header(
+    #     header_name="Accept",
+    #     header_value="*/*"
+    # )
 
     project_pipeline_api = ProjectPipelineApi(api_client=client)
 
