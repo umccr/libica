@@ -13,37 +13,42 @@
 
 
 from __future__ import annotations
+from inspect import getfullargspec
 import json
 import pprint
+import re  # noqa: F401
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, field_validator
-from typing import Any, List, Optional
+from typing import Optional
 from libica.openapi.v3.models.integer_settings import IntegerSettings
 from libica.openapi.v3.models.option_settings import OptionSettings
 from libica.openapi.v3.models.string_settings import StringSettings
-from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
+from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
 from typing_extensions import Literal, Self
+from pydantic import Field
 
-SETTINGS_ONE_OF_SCHEMAS = ["IntegerSettings", "OptionSettings", "StringSettings"]
+SETTINGS_ANY_OF_SCHEMAS = ["IntegerSettings", "OptionSettings", "StringSettings"]
 
 class Settings(BaseModel):
     """
-    This object contains a \"oneOf\" construct. Depending on which type, you will receive a StringSettings-, IntegerSettings or OptionsSettings object.
+    This object contains a \"anyOf\" construct. Depending on which type, you will receive a StringSettings-, IntegerSettings or OptionsSettings object.
     """
+
     # data type: StringSettings
-    oneof_schema_1_validator: Optional[StringSettings] = None
+    anyof_schema_1_validator: Optional[StringSettings] = None
     # data type: IntegerSettings
-    oneof_schema_2_validator: Optional[IntegerSettings] = None
+    anyof_schema_2_validator: Optional[IntegerSettings] = None
     # data type: OptionSettings
-    oneof_schema_3_validator: Optional[OptionSettings] = None
-    actual_instance: Optional[Union[IntegerSettings, OptionSettings, StringSettings]] = None
-    one_of_schemas: Set[str] = { "IntegerSettings", "OptionSettings", "StringSettings" }
+    anyof_schema_3_validator: Optional[OptionSettings] = None
+    if TYPE_CHECKING:
+        actual_instance: Optional[Union[IntegerSettings, OptionSettings, StringSettings]] = None
+    else:
+        actual_instance: Any = None
+    any_of_schemas: Set[str] = { "IntegerSettings", "OptionSettings", "StringSettings" }
 
-    model_config = ConfigDict(
-        validate_assignment=True,
-        protected_namespaces=(),
-    )
-
+    model_config = {
+        "validate_assignment": True,
+        "protected_namespaces": (),
+    }
 
     def __init__(self, *args, **kwargs) -> None:
         if args:
@@ -56,36 +61,35 @@ class Settings(BaseModel):
             super().__init__(**kwargs)
 
     @field_validator('actual_instance')
-    def actual_instance_must_validate_oneof(cls, v):
+    def actual_instance_must_validate_anyof(cls, v):
         instance = Settings.model_construct()
         error_messages = []
-        match = 0
         # validate data type: StringSettings
         if not isinstance(v, StringSettings):
             error_messages.append(f"Error! Input type `{type(v)}` is not `StringSettings`")
         else:
-            match += 1
+            return v
+
         # validate data type: IntegerSettings
         if not isinstance(v, IntegerSettings):
             error_messages.append(f"Error! Input type `{type(v)}` is not `IntegerSettings`")
         else:
-            match += 1
+            return v
+
         # validate data type: OptionSettings
         if not isinstance(v, OptionSettings):
             error_messages.append(f"Error! Input type `{type(v)}` is not `OptionSettings`")
         else:
-            match += 1
-        if match > 1:
-            # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in Settings with oneOf schemas: IntegerSettings, OptionSettings, StringSettings. Details: " + ", ".join(error_messages))
-        elif match == 0:
+            return v
+
+        if error_messages:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in Settings with oneOf schemas: IntegerSettings, OptionSettings, StringSettings. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting the actual_instance in Settings with anyOf schemas: IntegerSettings, OptionSettings, StringSettings. Details: " + ", ".join(error_messages))
         else:
             return v
 
     @classmethod
-    def from_dict(cls, obj: Union[str, Dict[str, Any]]) -> Self:
+    def from_dict(cls, obj: Dict[str, Any]) -> Self:
         return cls.from_json(json.dumps(obj))
 
     @classmethod
@@ -93,33 +97,28 @@ class Settings(BaseModel):
         """Returns the object represented by the json string"""
         instance = cls.model_construct()
         error_messages = []
-        match = 0
-
-        # deserialize data into StringSettings
+        # anyof_schema_1_validator: Optional[StringSettings] = None
         try:
             instance.actual_instance = StringSettings.from_json(json_str)
-            match += 1
+            return instance
         except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into IntegerSettings
+             error_messages.append(str(e))
+        # anyof_schema_2_validator: Optional[IntegerSettings] = None
         try:
             instance.actual_instance = IntegerSettings.from_json(json_str)
-            match += 1
+            return instance
         except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
-        # deserialize data into OptionSettings
+             error_messages.append(str(e))
+        # anyof_schema_3_validator: Optional[OptionSettings] = None
         try:
             instance.actual_instance = OptionSettings.from_json(json_str)
-            match += 1
+            return instance
         except (ValidationError, ValueError) as e:
-            error_messages.append(str(e))
+             error_messages.append(str(e))
 
-        if match > 1:
-            # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into Settings with oneOf schemas: IntegerSettings, OptionSettings, StringSettings. Details: " + ", ".join(error_messages))
-        elif match == 0:
+        if error_messages:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into Settings with oneOf schemas: IntegerSettings, OptionSettings, StringSettings. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into Settings with anyOf schemas: IntegerSettings, OptionSettings, StringSettings. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -141,7 +140,6 @@ class Settings(BaseModel):
         if hasattr(self.actual_instance, "to_dict") and callable(self.actual_instance.to_dict):
             return self.actual_instance.to_dict()
         else:
-            # primitive type
             return self.actual_instance
 
     def to_str(self) -> str:
