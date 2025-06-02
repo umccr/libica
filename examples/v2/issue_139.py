@@ -34,16 +34,14 @@ def get_icav2_client_with(ep_version: int):
 
 
 def get_icav2_client():
-    # Create API client
+    # Create the API client with SDK default Accept header which is set to "application/vnd.illumina.v3+json"
+    # If you would like to undo this, set to asterisk e.g. "*/*"
+    # See issue_137.py for an example use case.
     api_client = ApiClient(get_icav2_configuration())
 
-    # Using `api_client` this way will get response 400 Bad Request like below.
+    # NOTE:
+    # Using the api_client instance without an Accept header will get response 400 Bad Request like below.
     #
-    # At the time writing of this example,
-    # The API server enforces that the client must provide the API (media content-type) version.
-    # The API server does not automatically fall back (default to) "application/vnd.illumina.v3+json" for the client.
-    # FIXME Should this fall back to API default version be server responsibility? Or the client?
-
     # 400 Bad Request
     # HTTP response body:
     # {
@@ -79,14 +77,22 @@ if __name__ == '__main__':
     # FIXME In v3 SDK, this now set to application/vnd.illumina.v3+json by default
     client = get_icav2_client()
 
-    # Client must explicitly set the version.
+    # Background:
+    #   The ICA REST API backend uses the HTTP Accept Header type as endpoint versioning.
+    #   See these online articles:
+    #       https://www.google.com/search?q=rest+api+header+type+as+endpoint+versioning
+    #       https://www.lonti.com/blog/api-versioning-url-vs-header-vs-media-type-versioning
+    #   Consequently, the client code (SDK or curl) has to specify this Header with the request.
+    #
     # client = get_icav2_client_with(ep_version=3)
     # client = get_icav2_client_with(ep_version=4)
 
     # Or, you can override to Accept all media types.
     # See https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Accept
     #
-    # This is the setting needed in content downloading. See issue_137.py
+    # This is the setting needed in downloading the file content, for example.
+    # See issue_137.py for downloading the file content use case.
+    #
     # client.set_default_header(
     #     header_name="Accept",
     #     header_value="*/*"
