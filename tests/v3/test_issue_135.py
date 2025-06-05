@@ -1,30 +1,24 @@
 import uuid
-from contextlib import closing
 from unittest import TestCase
 
-from libica.openapi.v2 import Configuration, ApiClient
-from libica.openapi.v2.api.project_analysis_api import ProjectAnalysisApi
-from libica.openapi.v2.model.analysis_data_input import AnalysisDataInput
-from libica.openapi.v2.model.analysis_output_mapping import AnalysisOutputMapping
-from libica.openapi.v2.model.analysis_parameter_input import AnalysisParameterInput
-from libica.openapi.v2.model.create_analysis_tag import CreateAnalysisTag
-from libica.openapi.v2.model.analysis_v3 import AnalysisV3
-from libica.openapi.v2.model.analysis_v4 import AnalysisV4
-from libica.openapi.v2.model.create_nextflow_analysis import CreateNextflowAnalysis
-from libica.openapi.v2.model.nextflow_analysis_input import NextflowAnalysisInput
+from libica.openapi.v3 import Configuration, ApiClient, ProjectAnalysisApi, CreateNextflowAnalysis, \
+    NextflowAnalysisInput, CreateAnalysisTag, AnalysisDataInput, AnalysisParameterInput, AnalysisV4, AnalysisV3, \
+    AnalysisReferenceDataParameter, AnalysisOutputMapping
 from tests import MOCK_EP
 
 project_id = str(uuid.uuid4())
 
 nextflow_analysis = CreateNextflowAnalysis(
-    user_reference='PTC-ctTSO-v2-launch-test-mock',
-    pipeline_id=str(uuid.uuid4()),
+    userReference='PTC-ctTSO-v2-launch-test-mock',
+    pipelineId=str(uuid.uuid4()),
+    activationCodeDetailId=str(uuid.uuid4()),
+    analysisStorageId=str(uuid.uuid4()),
     tags=CreateAnalysisTag(
-        reference_tags=[],
-        technical_tags=[
+        referenceTags=[],
+        technicalTags=[
             'portal_run_id=20240308abcd6789'
         ],
-        user_tags=[
+        userTags=[
             'subject_id=SBJ04405',
             'library_id=L2301368',
             'instrument_run_id=231116_A01052_0172_BHVLM5DSX7',  # pragma: allowlist secret
@@ -32,15 +26,15 @@ nextflow_analysis = CreateNextflowAnalysis(
             'project_name=testing'
         ]
     ),
-    analysis_input=NextflowAnalysisInput(
+    analysisInput=NextflowAnalysisInput(
         inputs=[
             AnalysisDataInput(
-                data_ids=['fol.11122333edd141213e0f08dc3cace45e'],
-                parameter_code='run_folder'
+                dataIds=['fol.11122333edd141213e0f08dc3cace45e'],
+                parameterCode='run_folder'
             ),
             AnalysisDataInput(
-                data_ids=['fil.888888f5b9e94977b0a308dc388cf24f'],
-                parameter_code='sample_sheet'
+                dataIds=['fil.888888f5b9e94977b0a308dc388cf24f'],
+                parameterCode='sample_sheet'
             ),
         ],
         parameters=[
@@ -50,20 +44,24 @@ nextflow_analysis = CreateNextflowAnalysis(
             ),
             AnalysisParameterInput(
                 code="sample_pair_ids",
-                multi_value=["L2301368"]
+                multiValue=["L2301368"]
             )
         ],
-        activation_code_detail_id=str(uuid.uuid4()),
-        analysis_storage_id=str(uuid.uuid4()),
-        analysis_output=[
-            AnalysisOutputMapping(
-                source_path='out/',
-                target_path='/ilmn_cttso_fastq_cache/20240308abcd6789/',
-                target_project_id=project_id,
-                type='FOLDER'
+        referenceDataParameters=[
+            AnalysisReferenceDataParameter(
+                parameterCode="sample_pair_ids",
+                referenceDataId=str(uuid.uuid4()),
             )
-        ]
-    )
+        ],
+    ),
+    analysisOutput=[
+        AnalysisOutputMapping(
+            sourcePath='out/',
+            targetPath='/ilmn_cttso_fastq_cache/20240308abcd6789/',
+            targetProjectId=project_id,
+            type='FOLDER'
+        )
+    ]
 )
 
 
@@ -89,15 +87,14 @@ class Issue135IntegrationTests(TestCase):
         )
         self.configuration.debug = True  # debug all API calls
 
-        with closing(ApiClient(self.configuration)) as _c:
-            self.api_client: ApiClient = _c
+        self.api_client: ApiClient = ApiClient(self.configuration)
 
     def tearDown(self) -> None:
-        self.api_client.pool.close()
+        pass
 
     def test_create_nextflow_analysis(self):
         """
-        python -m unittest tests.v2.test_issue_135.Issue135IntegrationTests.test_create_nextflow_analysis
+        python -m unittest tests.v3.test_issue_135.Issue135IntegrationTests.test_create_nextflow_analysis
         """
 
         # In v3 SDK, the SDK ApiClient set "Accept" header default to "application/vnd.illumina.v3+json"
@@ -131,7 +128,7 @@ class Issue135IntegrationTests(TestCase):
 
     def test_create_nextflow_analysis_with_v4(self):
         """
-        python -m unittest tests.v2.test_issue_135.Issue135IntegrationTests.test_create_nextflow_analysis_with_v4
+        python -m unittest tests.v3.test_issue_135.Issue135IntegrationTests.test_create_nextflow_analysis_with_v4
         """
 
         # set explicitly the request media type and header versioning to V4
@@ -146,18 +143,14 @@ class Issue135IntegrationTests(TestCase):
 
         api_instance = ProjectAnalysisApi(self.api_client)
 
-        # NOTE: the AnalysisV4 is the default response_type in settings by SDK generator
-
-        # override endpoint settings response type to the version we want i.e. AnalysisV4
-        endpoint_settings = api_instance.create_nextflow_analysis_endpoint.settings
-        endpoint_settings['response_type'] = (AnalysisV4,)
-
         api_response = api_instance.create_nextflow_analysis(
             project_id,
             nextflow_analysis,
         )
 
         print("-" * 128)
+
+        # the AnalysisV4 is the default response_type in settings by SDK generator
 
         # assert request client headers
         self.assertEqual(self.api_client.default_headers['Content-Type'], "application/vnd.illumina.v4+json")
@@ -170,12 +163,12 @@ class Issue135IntegrationTests(TestCase):
         self.assertIsInstance(api_response, AnalysisV4)
 
         # assert these keys exist in response body
-        print(api_response['owner'])
-        print(api_response['tenant'])
+        print(hasattr(api_response, 'owner'))
+        print(hasattr(api_response, 'tenant'))
 
     def test_create_nextflow_analysis_with_v3(self):
         """
-        python -m unittest tests.v2.test_issue_135.Issue135IntegrationTests.test_create_nextflow_analysis_with_v3
+        python -m unittest tests.v3.test_issue_135.Issue135IntegrationTests.test_create_nextflow_analysis_with_v3
         """
 
         # set explicitly the request media type and header versioning to V3
@@ -188,30 +181,37 @@ class Issue135IntegrationTests(TestCase):
             header_value="application/vnd.illumina.v3+json",
         )
 
-        api_instance = ProjectAnalysisApi(self.api_client)
+        api_instance: ProjectAnalysisApi = ProjectAnalysisApi(self.api_client)
 
-        # override endpoint settings response type to the version we want i.e. AnalysisV3 or Analysis
-        endpoint_settings = api_instance.create_nextflow_analysis_endpoint.settings
-        endpoint_settings['response_type'] = (AnalysisV3,)
+        with self.assertRaises(Exception) as x:
 
-        api_response = api_instance.create_nextflow_analysis(
-            project_id,
-            nextflow_analysis,
-        )
+            # FIXME In v3 SDK, as it has become supporting more "Static Typing", the generator tends to fix
+            #  into one response type mapping. Unaware of "endpoint Header versioning and switching". Consequently
+            #  this now "hard" map to return AnalysisV4 and, Pydantic will attempt to validate and fail.
+            #  No easy workaround. Fallback to use v2 SDK in this case.
+            #  Perhaps, the client should upgrade to AnalysisV4.
 
-        print("-" * 128)
+            api_response = api_instance.create_nextflow_analysis(
+                project_id,
+                nextflow_analysis,
+            )
 
-        # assert request client headers
-        self.assertEqual(self.api_client.default_headers['Content-Type'], "application/vnd.illumina.v3+json")
-        self.assertEqual(self.api_client.default_headers['Accept'], "application/vnd.illumina.v3+json")
-        print(self.api_client.default_headers)
+            print("-" * 128)
 
-        # assert response type V3
-        print(type(api_response))
-        # print(dir(api_response))
-        self.assertIsNotNone(api_response)
-        self.assertIsInstance(api_response, AnalysisV3)
+            # assert request client headers
+            self.assertEqual(self.api_client.default_headers['Content-Type'], "application/vnd.illumina.v3+json")
+            self.assertEqual(self.api_client.default_headers['Accept'], "application/vnd.illumina.v3+json")
+            print(self.api_client.default_headers)
 
-        # assert these keys exist in response body
-        print("owner_id:", api_response['owner_id'])
-        print("tenant_id:", api_response['tenant_id'])
+            # assert response type V3
+            print(type(api_response))
+            print(dir(api_response))
+            self.assertIsNotNone(api_response)
+            self.assertIsInstance(api_response, AnalysisV3)
+
+            # assert these keys exist in response body
+            print("owner_id:", api_response['owner_id'])
+            print("tenant_id:", api_response['tenant_id'])
+
+        print("*" * 128)
+        print(x.exception)
