@@ -2960,6 +2960,9 @@ paths:
               schema:
                 type: string
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/PipelineV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/PipelineV3'
@@ -3154,6 +3157,39 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/PipelineLanguageVersionList'
+  /api/projects/{projectId}/analyses/{analysisId}/reports:
+    get:
+      tags:
+      - Project Analysis
+      summary: Retrieve the report configs and associated reports.
+      description: Retrieves the reports which match the report config defined in
+        a pipeline.
+      operationId: getAnalysisReports
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: analysisId
+        in: path
+        description: The ID of the analysis to retrieve the reports for
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The reports are successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/AnalysisReportEntryList'
   /api/projects/{projectId}/analyses:
     get:
       tags:
@@ -3430,9 +3466,10 @@ paths:
     get:
       tags:
       - Project Analysis
-      summary: "Retrieve the outputs of an analysis. The list might be incomplete\
-        \ if a folder contains too many output files, but all the data can always\
-        \ be retrieved through the GET data endpoint."
+      summary: "Retrieve the outputs of an analysis (limited to the first 200.000\
+        \ files per output folder). When trying to retrieve the listed data with an\
+        \ endpoint such as GET /api/data/{dataUrn}, data which has already been deleted\
+        \ will be skipped."
       operationId: getAnalysisOutputs
       parameters:
       - name: projectId
@@ -8415,6 +8452,9 @@ paths:
               schema:
                 type: string
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectPipelineV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectPipeline'
@@ -9213,6 +9253,49 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline file is successfully deleted.
+  /api/projects/{projectId}/pipelines/{pipelineId}/generalAttributes:
+    post:
+      tags:
+      - Project Pipeline
+      summary: Update the general attributes of a project pipeline.
+      description: |
+        Attributes which can be updated:
+        - code
+        - description
+        - languageVersion
+        - proprietary
+      operationId: updateGeneralAttributesProjectPipeline
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to update
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/PipelineUpdate'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The pipeline is successfully updated.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/PipelineV4'
   /api/projects/{projectId}/pipelines:createNextflowJsonPipeline:
     post:
       tags:
@@ -13315,6 +13398,13 @@ components:
           $ref: '#/components/schemas/MetadataModel'
         application:
           $ref: '#/components/schemas/Application'
+        projectOwner:
+          type: string
+          description: "projectOwner is the current project owner, ownerId is the\
+            \ original project creator. These can be different because you can transfer\
+            \ ownership of a project."
+          format: uuid
+          nullable: true
     ProjectTag:
       required:
       - technicalTags
@@ -15420,6 +15510,127 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PipelineV3'
+    AnalysisStorageV4:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The name of the storage option
+        description:
+          type: string
+          description: The description about the storage option
+          nullable: true
+    Config:
+      required:
+      - name
+      - regex
+      type: object
+      properties:
+        name:
+          type: string
+          description: name of the report
+        regex:
+          type: string
+          description: regex pattern of the filename
+        format:
+          type: string
+          description: Format of the file
+          nullable: true
+    PipelineV4:
+      required:
+      - analysisStorage
+      - code
+      - description
+      - id
+      - language
+      - owner
+      - pipelineTags
+      - tenant
+      - timeCreated
+      - timeModified
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        urn:
+          maxLength: 2000
+          minLength: 1
+          type: string
+          description: "The URN of the pipeline. The format is urn:ilmn:ica:\\<type\
+            \ of the object\\>:\\<ID of the object\\>#\\<optional human readable hint\
+            \ representing the object\\>. The hint can be omitted, in that case the\
+            \ hashtag (#) must also be omitted."
+          nullable: true
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        owner:
+          $ref: '#/components/schemas/UserIdentifier'
+        tenant:
+          $ref: '#/components/schemas/TenantIdentifier'
+        code:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The code of the pipeline
+        description:
+          maxLength: 4000
+          minLength: 1
+          type: string
+          description: The description of the pipeline
+        status:
+          type: string
+          description: The status of the pipeline
+          nullable: true
+          enum:
+          - DRAFT
+          - RELEASED
+        language:
+          type: string
+          description: The language that is used by the pipeline
+          enum:
+          - CWL
+          - NEXTFLOW
+          - UNKNOWN
+        languageVersion:
+          $ref: '#/components/schemas/PipelineLanguageVersion'
+        pipelineTags:
+          $ref: '#/components/schemas/PipelineTag'
+        analysisStorage:
+          $ref: '#/components/schemas/AnalysisStorageV4'
+        proprietary:
+          type: boolean
+          description: A boolean which indicates if the code of this pipeline is proprietary
+          nullable: true
+          default: false
+        inputFormType:
+          type: string
+          description: The type of the inputform used.
+          enum:
+          - XML
+          - JSON
+        reportConfigs:
+          $ref: '#/components/schemas/PipelineReportConfig'
+    PipelineReportConfig:
+      type: object
+      properties:
+        configs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Config'
+      nullable: true
     InputParameter:
       required:
       - code
@@ -15733,6 +15944,44 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PipelineLanguageVersion'
+    AnalysisReportData:
+      type: object
+      properties:
+        dataId:
+          type: string
+          description: The data id of the report
+          nullable: true
+        format:
+          type: string
+          description: The format of the report
+          nullable: true
+        name:
+          type: string
+          description: The name of the report file
+      description: The list of analysis report files
+      nullable: true
+    AnalysisReportEntry:
+      type: object
+      properties:
+        reportTitle:
+          type: string
+          description: The name of the report config
+          nullable: true
+        reportData:
+          type: array
+          description: The list of analysis report files
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AnalysisReportData'
+    AnalysisReportEntryList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/AnalysisReportEntry'
     AnalysisV3:
       required:
       - id
@@ -16060,101 +16309,6 @@ components:
           $ref: '#/components/schemas/AnalysisTag'
         application:
           $ref: '#/components/schemas/ApplicationV4'
-    AnalysisStorageV4:
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: The name of the storage option
-        description:
-          type: string
-          description: The description about the storage option
-          nullable: true
-    PipelineV4:
-      required:
-      - analysisStorage
-      - code
-      - description
-      - id
-      - language
-      - owner
-      - pipelineTags
-      - tenant
-      - timeCreated
-      - timeModified
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        urn:
-          maxLength: 2000
-          minLength: 1
-          type: string
-          description: "The URN of the pipeline. The format is urn:ilmn:ica:\\<type\
-            \ of the object\\>:\\<ID of the object\\>#\\<optional human readable hint\
-            \ representing the object\\>. The hint can be omitted, in that case the\
-            \ hashtag (#) must also be omitted."
-          nullable: true
-        timeCreated:
-          type: string
-          format: date-time
-        timeModified:
-          type: string
-          format: date-time
-        owner:
-          $ref: '#/components/schemas/UserIdentifier'
-        tenant:
-          $ref: '#/components/schemas/TenantIdentifier'
-        code:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: The code of the pipeline
-        description:
-          maxLength: 4000
-          minLength: 1
-          type: string
-          description: The description of the pipeline
-        status:
-          type: string
-          description: The status of the pipeline
-          nullable: true
-          enum:
-          - DRAFT
-          - RELEASED
-        language:
-          type: string
-          description: The language that is used by the pipeline
-          enum:
-          - CWL
-          - NEXTFLOW
-          - UNKNOWN
-        languageVersion:
-          $ref: '#/components/schemas/PipelineLanguageVersion'
-        pipelineTags:
-          $ref: '#/components/schemas/PipelineTag'
-        analysisStorage:
-          $ref: '#/components/schemas/AnalysisStorageV4'
-        proprietary:
-          type: boolean
-          description: A boolean which indicates if the code of this pipeline is proprietary
-          nullable: true
-          default: false
-        inputFormType:
-          type: string
-          description: The type of the inputform used.
-          enum:
-          - XML
-          - JSON
     WorkflowV4:
       required:
       - analysisStorage
@@ -19405,6 +19559,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProjectPipeline'
+    ProjectPipelineV4:
+      required:
+      - bundleLinks
+      - pipeline
+      - projectId
+      type: object
+      properties:
+        pipeline:
+          $ref: '#/components/schemas/PipelineV4'
+        projectId:
+          type: string
+          format: uuid
+        bundleLinks:
+          $ref: '#/components/schemas/BundleList'
     PipelineFileContentSpec:
       required:
       - content
@@ -19416,6 +19584,10 @@ components:
     InputPart:
       type: object
       properties:
+        contentTypeFromMessage:
+          type: boolean
+        bodyAsString:
+          type: string
         mediaType:
           type: object
           properties:
@@ -19431,10 +19603,6 @@ components:
               type: boolean
             wildcardSubtype:
               type: boolean
-        contentTypeFromMessage:
-          type: boolean
-        bodyAsString:
-          type: string
         headers:
           type: object
           additionalProperties:
@@ -19454,12 +19622,37 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/InputPart'
+        preamble:
+          type: string
         parts:
           type: array
           items:
             $ref: '#/components/schemas/InputPart'
-        preamble:
+    PipelineUpdate:
+      type: object
+      properties:
+        code:
+          maxLength: 255
+          minLength: 1
           type: string
+          description: The code of the pipeline
+          nullable: true
+        description:
+          maxLength: 4000
+          minLength: 1
+          type: string
+          description: The description of the pipeline
+          nullable: true
+        languageVersion:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: 'Version of the pipeline language '
+          nullable: true
+        proprietary:
+          type: boolean
+          description: A boolean which indicates if the code of this pipeline is proprietary
+          nullable: true
     CreateNextflowJsonPipeline:
       required:
       - analysisStorageId
@@ -19549,6 +19742,8 @@ components:
           description: A boolean which indicates if the code of this pipeline is proprietary
           nullable: true
           default: false
+        reportConfigs:
+          $ref: '#/components/schemas/PipelineReportConfig'
     CreateNextflowPipeline:
       required:
       - analysisStorageId
@@ -19622,20 +19817,8 @@ components:
           description: A boolean which indicates if the code of this pipeline is proprietary
           nullable: true
           default: false
-    ProjectPipelineV4:
-      required:
-      - bundleLinks
-      - pipeline
-      - projectId
-      type: object
-      properties:
-        pipeline:
-          $ref: '#/components/schemas/PipelineV4'
-        projectId:
-          type: string
-          format: uuid
-        bundleLinks:
-          $ref: '#/components/schemas/BundleList'
+        reportConfigs:
+          $ref: '#/components/schemas/PipelineReportConfig'
     CreateCwlJsonPipeline:
       required:
       - analysisStorageId
@@ -19716,6 +19899,8 @@ components:
           description: A boolean which indicates if the code of this pipeline is proprietary
           nullable: true
           default: false
+        reportConfigs:
+          $ref: '#/components/schemas/PipelineReportConfig'
     CreateCwlPipeline:
       required:
       - analysisStorageId
@@ -19780,6 +19965,8 @@ components:
           description: A boolean which indicates if the code of this pipeline is proprietary
           nullable: true
           default: false
+        reportConfigs:
+          $ref: '#/components/schemas/PipelineReportConfig'
     ProjectSample:
       required:
       - projectId
@@ -20953,7 +21140,7 @@ components:
             $ref: '#/components/schemas/ProjectSample'
         nextPageToken:
           x-faker:
-            helpers.arrayElement: [[ "page1", "" ]]
+            helpers.arrayElement: [[ "page1", "" ]]          
           maxLength: 2000
           minLength: 0
           type: string
