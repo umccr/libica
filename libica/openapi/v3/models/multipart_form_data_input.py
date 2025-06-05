@@ -29,9 +29,9 @@ class MultipartFormDataInput(BaseModel):
     """ # noqa: E501
     form_data: Optional[Dict[str, InputPart]] = Field(default=None, alias="formData")
     form_data_map: Optional[Dict[str, List[InputPart]]] = Field(default=None, alias="formDataMap")
-    parts: Optional[List[InputPart]] = None
     preamble: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["formData", "formDataMap", "parts", "preamble"]
+    parts: Optional[List[InputPart]] = None
+    __properties: ClassVar[List[str]] = ["formData", "formDataMap", "preamble", "parts"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -121,8 +121,8 @@ class MultipartFormDataInput(BaseModel):
                 )
                 for _k, _v in obj.get("formDataMap", {}).items()
             ),
-            "parts": [InputPart.from_dict(_item) for _item in obj["parts"]] if obj.get("parts") is not None else None,
-            "preamble": obj.get("preamble")
+            "preamble": obj.get("preamble"),
+            "parts": [InputPart.from_dict(_item) for _item in obj["parts"]] if obj.get("parts") is not None else None
         })
         return _obj
 

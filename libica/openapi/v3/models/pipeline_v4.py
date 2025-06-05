@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from libica.openapi.v3.models.analysis_storage_v4 import AnalysisStorageV4
 from libica.openapi.v3.models.pipeline_language_version import PipelineLanguageVersion
+from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
 from libica.openapi.v3.models.pipeline_tag import PipelineTag
 from libica.openapi.v3.models.tenant_identifier import TenantIdentifier
 from libica.openapi.v3.models.user_identifier import UserIdentifier
@@ -48,7 +49,8 @@ class PipelineV4(BaseModel):
     analysis_storage: AnalysisStorageV4 = Field(alias="analysisStorage")
     proprietary: Optional[StrictBool] = Field(default=False, description="A boolean which indicates if the code of this pipeline is proprietary")
     input_form_type: Optional[StrictStr] = Field(default=None, description="The type of the inputform used.", alias="inputFormType")
-    __properties: ClassVar[List[str]] = ["id", "urn", "timeCreated", "timeModified", "owner", "tenant", "code", "description", "status", "language", "languageVersion", "pipelineTags", "analysisStorage", "proprietary", "inputFormType"]
+    report_configs: Optional[PipelineReportConfig] = Field(default=None, alias="reportConfigs")
+    __properties: ClassVar[List[str]] = ["id", "urn", "timeCreated", "timeModified", "owner", "tenant", "code", "description", "status", "language", "languageVersion", "pipelineTags", "analysisStorage", "proprietary", "inputFormType", "reportConfigs"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -131,6 +133,9 @@ class PipelineV4(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of analysis_storage
         if self.analysis_storage:
             _dict['analysisStorage'] = self.analysis_storage.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of report_configs
+        if self.report_configs:
+            _dict['reportConfigs'] = self.report_configs.to_dict()
         # set to None if urn (nullable) is None
         # and model_fields_set contains the field
         if self.urn is None and "urn" in self.model_fields_set:
@@ -150,6 +155,11 @@ class PipelineV4(BaseModel):
         # and model_fields_set contains the field
         if self.proprietary is None and "proprietary" in self.model_fields_set:
             _dict['proprietary'] = None
+
+        # set to None if report_configs (nullable) is None
+        # and model_fields_set contains the field
+        if self.report_configs is None and "report_configs" in self.model_fields_set:
+            _dict['reportConfigs'] = None
 
         return _dict
 
@@ -177,7 +187,8 @@ class PipelineV4(BaseModel):
             "pipelineTags": PipelineTag.from_dict(obj["pipelineTags"]) if obj.get("pipelineTags") is not None else None,
             "analysisStorage": AnalysisStorageV4.from_dict(obj["analysisStorage"]) if obj.get("analysisStorage") is not None else None,
             "proprietary": obj.get("proprietary") if obj.get("proprietary") is not None else False,
-            "inputFormType": obj.get("inputFormType")
+            "inputFormType": obj.get("inputFormType"),
+            "reportConfigs": PipelineReportConfig.from_dict(obj["reportConfigs"]) if obj.get("reportConfigs") is not None else None
         })
         return _obj
 

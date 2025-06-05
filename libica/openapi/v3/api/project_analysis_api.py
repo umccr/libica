@@ -25,6 +25,7 @@ from libica.openapi.v3.models.analysis_paged_list_v3 import AnalysisPagedListV3
 from libica.openapi.v3.models.analysis_paged_list_v4 import AnalysisPagedListV4
 from libica.openapi.v3.models.analysis_query_parameters import AnalysisQueryParameters
 from libica.openapi.v3.models.analysis_raw_output import AnalysisRawOutput
+from libica.openapi.v3.models.analysis_report_entry_list import AnalysisReportEntryList
 from libica.openapi.v3.models.analysis_step_list import AnalysisStepList
 from libica.openapi.v3.models.analysis_usage_details import AnalysisUsageDetails
 from libica.openapi.v3.models.analysis_v4 import AnalysisV4
@@ -3759,7 +3760,7 @@ class ProjectAnalysisApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> AnalysisOutputList:
-        """Retrieve the outputs of an analysis. The list might be incomplete if a folder contains too many output files, but all the data can always be retrieved through the GET data endpoint.
+        """Retrieve the outputs of an analysis (limited to the first 200.000 files per output folder). When trying to retrieve the listed data with an endpoint such as GET /api/data/{dataUrn}, data which has already been deleted will be skipped.
 
 
         :param project_id: (required)
@@ -3829,7 +3830,7 @@ class ProjectAnalysisApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[AnalysisOutputList]:
-        """Retrieve the outputs of an analysis. The list might be incomplete if a folder contains too many output files, but all the data can always be retrieved through the GET data endpoint.
+        """Retrieve the outputs of an analysis (limited to the first 200.000 files per output folder). When trying to retrieve the listed data with an endpoint such as GET /api/data/{dataUrn}, data which has already been deleted will be skipped.
 
 
         :param project_id: (required)
@@ -3899,7 +3900,7 @@ class ProjectAnalysisApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Retrieve the outputs of an analysis. The list might be incomplete if a folder contains too many output files, but all the data can always be retrieved through the GET data endpoint.
+        """Retrieve the outputs of an analysis (limited to the first 200.000 files per output folder). When trying to retrieve the listed data with an endpoint such as GET /api/data/{dataUrn}, data which has already been deleted will be skipped.
 
 
         :param project_id: (required)
@@ -4001,6 +4002,284 @@ class ProjectAnalysisApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/api/projects/{projectId}/analyses/{analysisId}/outputs',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_analysis_reports(
+        self,
+        project_id: StrictStr,
+        analysis_id: Annotated[StrictStr, Field(description="The ID of the analysis to retrieve the reports for")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> AnalysisReportEntryList:
+        """Retrieve the report configs and associated reports.
+
+        Retrieves the reports which match the report config defined in a pipeline.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param analysis_id: The ID of the analysis to retrieve the reports for (required)
+        :type analysis_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_analysis_reports_serialize(
+            project_id=project_id,
+            analysis_id=analysis_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AnalysisReportEntryList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_analysis_reports_with_http_info(
+        self,
+        project_id: StrictStr,
+        analysis_id: Annotated[StrictStr, Field(description="The ID of the analysis to retrieve the reports for")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[AnalysisReportEntryList]:
+        """Retrieve the report configs and associated reports.
+
+        Retrieves the reports which match the report config defined in a pipeline.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param analysis_id: The ID of the analysis to retrieve the reports for (required)
+        :type analysis_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_analysis_reports_serialize(
+            project_id=project_id,
+            analysis_id=analysis_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AnalysisReportEntryList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_analysis_reports_without_preload_content(
+        self,
+        project_id: StrictStr,
+        analysis_id: Annotated[StrictStr, Field(description="The ID of the analysis to retrieve the reports for")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Retrieve the report configs and associated reports.
+
+        Retrieves the reports which match the report config defined in a pipeline.
+
+        :param project_id: (required)
+        :type project_id: str
+        :param analysis_id: The ID of the analysis to retrieve the reports for (required)
+        :type analysis_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_analysis_reports_serialize(
+            project_id=project_id,
+            analysis_id=analysis_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "AnalysisReportEntryList",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_analysis_reports_serialize(
+        self,
+        project_id,
+        analysis_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if analysis_id is not None:
+            _path_params['analysisId'] = analysis_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/problem+json', 
+                    'application/vnd.illumina.v3+json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'JwtAuth', 
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/api/projects/{projectId}/analyses/{analysisId}/reports',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

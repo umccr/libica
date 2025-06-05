@@ -111,6 +111,9 @@ from libica.openapi.v3.models.analysis_price import AnalysisPrice
 from libica.openapi.v3.models.analysis_query_parameters import AnalysisQueryParameters
 from libica.openapi.v3.models.analysis_raw_output import AnalysisRawOutput
 from libica.openapi.v3.models.analysis_reference_data_parameter import AnalysisReferenceDataParameter
+from libica.openapi.v3.models.analysis_report_data import AnalysisReportData
+from libica.openapi.v3.models.analysis_report_entry import AnalysisReportEntry
+from libica.openapi.v3.models.analysis_report_entry_list import AnalysisReportEntryList
 from libica.openapi.v3.models.analysis_s3_data_details import AnalysisS3DataDetails
 from libica.openapi.v3.models.analysis_step import AnalysisStep
 from libica.openapi.v3.models.analysis_step_list import AnalysisStepList
@@ -155,6 +158,7 @@ from libica.openapi.v3.models.bundle_tools_list import BundleToolsList
 from libica.openapi.v3.models.cwl_tool_definition import CWLToolDefinition
 from libica.openapi.v3.models.change_project_owner import ChangeProjectOwner
 from libica.openapi.v3.models.complete_folder_upload_session import CompleteFolderUploadSession
+from libica.openapi.v3.models.config import Config
 from libica.openapi.v3.models.connector import Connector
 from libica.openapi.v3.models.connector_list import ConnectorList
 from libica.openapi.v3.models.country import Country
@@ -308,7 +312,9 @@ from libica.openapi.v3.models.pipeline_html_documentation import PipelineHtmlDoc
 from libica.openapi.v3.models.pipeline_language_version import PipelineLanguageVersion
 from libica.openapi.v3.models.pipeline_language_version_list import PipelineLanguageVersionList
 from libica.openapi.v3.models.pipeline_list import PipelineList
+from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
 from libica.openapi.v3.models.pipeline_tag import PipelineTag
+from libica.openapi.v3.models.pipeline_update import PipelineUpdate
 from libica.openapi.v3.models.pipeline_v3 import PipelineV3
 from libica.openapi.v3.models.pipeline_v4 import PipelineV4
 from libica.openapi.v3.models.problem import Problem

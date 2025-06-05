@@ -25,6 +25,8 @@ from libica.openapi.v3.models.pipeline_configuration_parameter_list import Pipel
 from libica.openapi.v3.models.pipeline_file import PipelineFile
 from libica.openapi.v3.models.pipeline_file_list import PipelineFileList
 from libica.openapi.v3.models.pipeline_html_documentation import PipelineHtmlDocumentation
+from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v3.models.pipeline_update import PipelineUpdate
 from libica.openapi.v3.models.pipeline_v4 import PipelineV4
 from libica.openapi.v3.models.project_pipeline import ProjectPipeline
 from libica.openapi.v3.models.project_pipeline_list import ProjectPipelineList
@@ -371,6 +373,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -419,6 +422,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -458,6 +463,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -497,6 +503,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -545,6 +552,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -584,6 +593,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -623,6 +633,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -671,6 +682,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -710,6 +723,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -744,6 +758,7 @@ class ProjectPipelineApi:
         categories,
         html_documentation,
         proprietary,
+        report_configs,
         _request_auth,
         _content_type,
         _headers,
@@ -803,6 +818,8 @@ class ProjectPipelineApi:
             _form_params.append(('analysisStorageId', analysis_storage_id))
         if proprietary is not None:
             _form_params.append(('proprietary', proprietary))
+        if report_configs is not None:
+            _form_params.append(('reportConfigs', report_configs))
         # process the body parameter
 
 
@@ -869,6 +886,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -911,6 +929,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -947,6 +967,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -983,6 +1004,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1025,6 +1047,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1061,6 +1085,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1097,6 +1122,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1139,6 +1165,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1175,6 +1203,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1206,6 +1235,7 @@ class ProjectPipelineApi:
         categories,
         html_documentation,
         proprietary,
+        report_configs,
         _request_auth,
         _content_type,
         _headers,
@@ -1258,6 +1288,8 @@ class ProjectPipelineApi:
             _form_params.append(('analysisStorageId', analysis_storage_id))
         if proprietary is not None:
             _form_params.append(('proprietary', proprietary))
+        if report_configs is not None:
+            _form_params.append(('reportConfigs', report_configs))
         # process the body parameter
 
 
@@ -1329,6 +1361,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1381,6 +1414,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1422,6 +1457,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1463,6 +1499,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1515,6 +1552,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1556,6 +1595,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1597,6 +1637,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1649,6 +1690,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1690,6 +1733,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1726,6 +1770,7 @@ class ProjectPipelineApi:
         categories,
         html_documentation,
         proprietary,
+        report_configs,
         _request_auth,
         _content_type,
         _headers,
@@ -1789,6 +1834,8 @@ class ProjectPipelineApi:
             _form_params.append(('analysisStorageId', analysis_storage_id))
         if proprietary is not None:
             _form_params.append(('proprietary', proprietary))
+        if report_configs is not None:
+            _form_params.append(('reportConfigs', report_configs))
         # process the body parameter
 
 
@@ -1857,6 +1904,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1903,6 +1951,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1941,6 +1991,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1979,6 +2030,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2025,6 +2077,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2063,6 +2117,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2101,6 +2156,7 @@ class ProjectPipelineApi:
         categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2147,6 +2203,8 @@ class ProjectPipelineApi:
         :type html_documentation: str
         :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
         :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2185,6 +2243,7 @@ class ProjectPipelineApi:
             categories=categories,
             html_documentation=html_documentation,
             proprietary=proprietary,
+            report_configs=report_configs,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2218,6 +2277,7 @@ class ProjectPipelineApi:
         categories,
         html_documentation,
         proprietary,
+        report_configs,
         _request_auth,
         _content_type,
         _headers,
@@ -2274,6 +2334,8 @@ class ProjectPipelineApi:
             _form_params.append(('analysisStorageId', analysis_storage_id))
         if proprietary is not None:
             _form_params.append(('proprietary', proprietary))
+        if report_configs is not None:
+            _form_params.append(('reportConfigs', report_configs))
         # process the body parameter
 
 
@@ -4627,7 +4689,7 @@ class ProjectPipelineApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ProjectPipeline:
+    ) -> ProjectPipelineV4:
         """Retrieve a project pipeline.
 
         Retrieves a project pipeline. This can be a pipeline from a linked bundle or an entitled, unlinked bundle.
@@ -4668,7 +4730,7 @@ class ProjectPipelineApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ProjectPipeline",
+            '200': "ProjectPipelineV4",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4698,7 +4760,7 @@ class ProjectPipelineApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ProjectPipeline]:
+    ) -> ApiResponse[ProjectPipelineV4]:
         """Retrieve a project pipeline.
 
         Retrieves a project pipeline. This can be a pipeline from a linked bundle or an entitled, unlinked bundle.
@@ -4739,7 +4801,7 @@ class ProjectPipelineApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ProjectPipeline",
+            '200': "ProjectPipelineV4",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4810,7 +4872,7 @@ class ProjectPipelineApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "ProjectPipeline",
+            '200': "ProjectPipelineV4",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -4859,6 +4921,7 @@ class ProjectPipelineApi:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
                     'application/problem+json', 
+                    'application/vnd.illumina.v4+json', 
                     'application/vnd.illumina.v3+json'
                 ]
             )
@@ -7937,6 +8000,312 @@ class ProjectPipelineApi:
         return self.api_client.param_serialize(
             method='PUT',
             resource_path='/api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles/{fileId}/content',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_general_attributes_project_pipeline(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to update")],
+        pipeline_update: PipelineUpdate,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PipelineV4:
+        """Update the general attributes of a project pipeline.
+
+        Attributes which can be updated: - code - description - languageVersion - proprietary 
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline to update (required)
+        :type pipeline_id: str
+        :param pipeline_update: (required)
+        :type pipeline_update: PipelineUpdate
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_general_attributes_project_pipeline_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            pipeline_update=pipeline_update,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PipelineV4",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_general_attributes_project_pipeline_with_http_info(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to update")],
+        pipeline_update: PipelineUpdate,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PipelineV4]:
+        """Update the general attributes of a project pipeline.
+
+        Attributes which can be updated: - code - description - languageVersion - proprietary 
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline to update (required)
+        :type pipeline_id: str
+        :param pipeline_update: (required)
+        :type pipeline_update: PipelineUpdate
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_general_attributes_project_pipeline_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            pipeline_update=pipeline_update,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PipelineV4",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_general_attributes_project_pipeline_without_preload_content(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to update")],
+        pipeline_update: PipelineUpdate,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update the general attributes of a project pipeline.
+
+        Attributes which can be updated: - code - description - languageVersion - proprietary 
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline to update (required)
+        :type pipeline_id: str
+        :param pipeline_update: (required)
+        :type pipeline_update: PipelineUpdate
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_general_attributes_project_pipeline_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            pipeline_update=pipeline_update,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "PipelineV4",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_general_attributes_project_pipeline_serialize(
+        self,
+        project_id,
+        pipeline_id,
+        pipeline_update,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if pipeline_id is not None:
+            _path_params['pipelineId'] = pipeline_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if pipeline_update is not None:
+            _body_params = pipeline_update
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/problem+json', 
+                    'application/vnd.illumina.v4+json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/vnd.illumina.v4+json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'JwtAuth', 
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/api/projects/{projectId}/pipelines/{pipelineId}/generalAttributes',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

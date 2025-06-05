@@ -55,7 +55,8 @@ class Project(BaseModel):
     analysis_priority: Optional[StrictStr] = Field(default=None, description="Indicates the priority given to a project and its analyses within a single tenant. Note that for a PUT call, when not providing a value for this attribute (null value or absent attribute), the persisted value will not change.", alias="analysisPriority")
     metadata_model: Optional[MetadataModel] = Field(default=None, alias="metadataModel")
     application: Optional[Application] = None
-    __properties: ClassVar[List[str]] = ["id", "timeCreated", "timeModified", "ownerId", "tenantId", "tenantName", "urn", "name", "active", "baseEnabled", "shortDescription", "information", "region", "billingMode", "dataSharingEnabled", "tags", "storageBundle", "selfManagedStorageConfiguration", "analysisPriority", "metadataModel", "application"]
+    project_owner: Optional[StrictStr] = Field(default=None, description="projectOwner is the current project owner, ownerId is the original project creator. These can be different because you can transfer ownership of a project.", alias="projectOwner")
+    __properties: ClassVar[List[str]] = ["id", "timeCreated", "timeModified", "ownerId", "tenantId", "tenantName", "urn", "name", "active", "baseEnabled", "shortDescription", "information", "region", "billingMode", "dataSharingEnabled", "tags", "storageBundle", "selfManagedStorageConfiguration", "analysisPriority", "metadataModel", "application", "projectOwner"]
 
     @field_validator('billing_mode')
     def billing_mode_validate_enum(cls, value):
@@ -176,6 +177,11 @@ class Project(BaseModel):
         if self.application is None and "application" in self.model_fields_set:
             _dict['application'] = None
 
+        # set to None if project_owner (nullable) is None
+        # and model_fields_set contains the field
+        if self.project_owner is None and "project_owner" in self.model_fields_set:
+            _dict['projectOwner'] = None
+
         return _dict
 
     @classmethod
@@ -208,7 +214,8 @@ class Project(BaseModel):
             "selfManagedStorageConfiguration": StorageConfiguration.from_dict(obj["selfManagedStorageConfiguration"]) if obj.get("selfManagedStorageConfiguration") is not None else None,
             "analysisPriority": obj.get("analysisPriority"),
             "metadataModel": MetadataModel.from_dict(obj["metadataModel"]) if obj.get("metadataModel") is not None else None,
-            "application": Application.from_dict(obj["application"]) if obj.get("application") is not None else None
+            "application": Application.from_dict(obj["application"]) if obj.get("application") is not None else None,
+            "projectOwner": obj.get("projectOwner")
         })
         return _obj
 
