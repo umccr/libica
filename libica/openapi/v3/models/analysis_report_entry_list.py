@@ -17,21 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
-from libica.openapi.v3.models.input_part_media_type import InputPartMediaType
+from pydantic import BaseModel, ConfigDict
+from typing import Any, ClassVar, Dict, List
+from libica.openapi.v3.models.analysis_report_entry import AnalysisReportEntry
 from typing import Optional, Set
 from typing_extensions import Self
 
-class InputPart(BaseModel):
+class AnalysisReportEntryList(BaseModel):
     """
-    InputPart
+    AnalysisReportEntryList
     """ # noqa: E501
-    content_type_from_message: Optional[StrictBool] = Field(default=None, alias="contentTypeFromMessage")
-    body_as_string: Optional[StrictStr] = Field(default=None, alias="bodyAsString")
-    media_type: Optional[InputPartMediaType] = Field(default=None, alias="mediaType")
-    headers: Optional[Dict[str, List[StrictStr]]] = None
-    __properties: ClassVar[List[str]] = ["contentTypeFromMessage", "bodyAsString", "mediaType", "headers"]
+    items: List[AnalysisReportEntry]
+    __properties: ClassVar[List[str]] = ["items"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +48,7 @@ class InputPart(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InputPart from a JSON string"""
+        """Create an instance of AnalysisReportEntryList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,14 +69,18 @@ class InputPart(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of media_type
-        if self.media_type:
-            _dict['mediaType'] = self.media_type.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in items (list)
+        _items = []
+        if self.items:
+            for _item_items in self.items:
+                if _item_items:
+                    _items.append(_item_items.to_dict())
+            _dict['items'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InputPart from a dict"""
+        """Create an instance of AnalysisReportEntryList from a dict"""
         if obj is None:
             return None
 
@@ -87,10 +88,7 @@ class InputPart(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "contentTypeFromMessage": obj.get("contentTypeFromMessage"),
-            "bodyAsString": obj.get("bodyAsString"),
-            "mediaType": InputPartMediaType.from_dict(obj["mediaType"]) if obj.get("mediaType") is not None else None,
-            "headers": obj.get("headers")
+            "items": [AnalysisReportEntry.from_dict(_item) for _item in obj["items"]] if obj.get("items") is not None else None
         })
         return _obj
 

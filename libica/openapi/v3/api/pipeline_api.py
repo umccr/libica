@@ -24,7 +24,7 @@ from libica.openapi.v3.models.pipeline_configuration_parameter_list import Pipel
 from libica.openapi.v3.models.pipeline_file_list import PipelineFileList
 from libica.openapi.v3.models.pipeline_html_documentation import PipelineHtmlDocumentation
 from libica.openapi.v3.models.pipeline_list import PipelineList
-from libica.openapi.v3.models.pipeline_v3 import PipelineV3
+from libica.openapi.v3.models.pipeline_v4 import PipelineV4
 from libica.openapi.v3.models.reference_set_list import ReferenceSetList
 
 from libica.openapi.v3.api_client import ApiClient, RequestSerialized
@@ -336,7 +336,7 @@ class PipelineApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> PipelineV3:
+    ) -> PipelineV4:
         """Retrieve a pipeline.
 
 
@@ -373,7 +373,7 @@ class PipelineApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PipelineV3",
+            '200': "PipelineV4",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -402,7 +402,7 @@ class PipelineApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[PipelineV3]:
+    ) -> ApiResponse[PipelineV4]:
         """Retrieve a pipeline.
 
 
@@ -439,7 +439,7 @@ class PipelineApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PipelineV3",
+            '200': "PipelineV4",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -505,7 +505,7 @@ class PipelineApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "PipelineV3",
+            '200': "PipelineV4",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -551,6 +551,7 @@ class PipelineApi:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
                     'application/problem+json', 
+                    'application/vnd.illumina.v4+json', 
                     'application/vnd.illumina.v3+json'
                 ]
             )

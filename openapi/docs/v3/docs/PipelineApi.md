@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline**
-> PipelineV3 get_pipeline(pipeline_id)
+> PipelineV4 get_pipeline(pipeline_id)
 
 Retrieve a pipeline.
 
@@ -111,7 +111,7 @@ Retrieve a pipeline.
 
 ```python
 import libica.openapi.v3
-from libica.openapi.v3.models.pipeline_v3 import PipelineV3
+from libica.openapi.v3.models.pipeline_v4 import PipelineV4
 from libica.openapi.v3.rest import ApiException
 from pprint import pprint
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineV3**](PipelineV3.md)
+[**PipelineV4**](PipelineV4.md)
 
 ### Authorization
 
@@ -172,7 +172,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 ### HTTP response details
 

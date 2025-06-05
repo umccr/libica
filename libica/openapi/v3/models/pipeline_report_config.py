@@ -17,21 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from libica.openapi.v3.models.input_part_media_type import InputPartMediaType
+from libica.openapi.v3.models.config import Config
 from typing import Optional, Set
 from typing_extensions import Self
 
-class InputPart(BaseModel):
+class PipelineReportConfig(BaseModel):
     """
-    InputPart
+    PipelineReportConfig
     """ # noqa: E501
-    content_type_from_message: Optional[StrictBool] = Field(default=None, alias="contentTypeFromMessage")
-    body_as_string: Optional[StrictStr] = Field(default=None, alias="bodyAsString")
-    media_type: Optional[InputPartMediaType] = Field(default=None, alias="mediaType")
-    headers: Optional[Dict[str, List[StrictStr]]] = None
-    __properties: ClassVar[List[str]] = ["contentTypeFromMessage", "bodyAsString", "mediaType", "headers"]
+    configs: Optional[List[Config]] = None
+    __properties: ClassVar[List[str]] = ["configs"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +48,7 @@ class InputPart(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InputPart from a JSON string"""
+        """Create an instance of PipelineReportConfig from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,14 +69,18 @@ class InputPart(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of media_type
-        if self.media_type:
-            _dict['mediaType'] = self.media_type.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in configs (list)
+        _items = []
+        if self.configs:
+            for _item_configs in self.configs:
+                if _item_configs:
+                    _items.append(_item_configs.to_dict())
+            _dict['configs'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InputPart from a dict"""
+        """Create an instance of PipelineReportConfig from a dict"""
         if obj is None:
             return None
 
@@ -87,10 +88,7 @@ class InputPart(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "contentTypeFromMessage": obj.get("contentTypeFromMessage"),
-            "bodyAsString": obj.get("bodyAsString"),
-            "mediaType": InputPartMediaType.from_dict(obj["mediaType"]) if obj.get("mediaType") is not None else None,
-            "headers": obj.get("headers")
+            "configs": [Config.from_dict(_item) for _item in obj["configs"]] if obj.get("configs") is not None else None
         })
         return _obj
 

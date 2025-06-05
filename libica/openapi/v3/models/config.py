@@ -17,21 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from libica.openapi.v3.models.input_part_media_type import InputPartMediaType
 from typing import Optional, Set
 from typing_extensions import Self
 
-class InputPart(BaseModel):
+class Config(BaseModel):
     """
-    InputPart
+    Config
     """ # noqa: E501
-    content_type_from_message: Optional[StrictBool] = Field(default=None, alias="contentTypeFromMessage")
-    body_as_string: Optional[StrictStr] = Field(default=None, alias="bodyAsString")
-    media_type: Optional[InputPartMediaType] = Field(default=None, alias="mediaType")
-    headers: Optional[Dict[str, List[StrictStr]]] = None
-    __properties: ClassVar[List[str]] = ["contentTypeFromMessage", "bodyAsString", "mediaType", "headers"]
+    name: StrictStr = Field(description="name of the report")
+    regex: StrictStr = Field(description="regex pattern of the filename")
+    format: Optional[StrictStr] = Field(default=None, description="Format of the file")
+    __properties: ClassVar[List[str]] = ["name", "regex", "format"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +49,7 @@ class InputPart(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InputPart from a JSON string"""
+        """Create an instance of Config from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,14 +70,16 @@ class InputPart(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of media_type
-        if self.media_type:
-            _dict['mediaType'] = self.media_type.to_dict()
+        # set to None if format (nullable) is None
+        # and model_fields_set contains the field
+        if self.format is None and "format" in self.model_fields_set:
+            _dict['format'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InputPart from a dict"""
+        """Create an instance of Config from a dict"""
         if obj is None:
             return None
 
@@ -87,10 +87,9 @@ class InputPart(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "contentTypeFromMessage": obj.get("contentTypeFromMessage"),
-            "bodyAsString": obj.get("bodyAsString"),
-            "mediaType": InputPartMediaType.from_dict(obj["mediaType"]) if obj.get("mediaType") is not None else None,
-            "headers": obj.get("headers")
+            "name": obj.get("name"),
+            "regex": obj.get("regex"),
+            "format": obj.get("format")
         })
         return _obj
 

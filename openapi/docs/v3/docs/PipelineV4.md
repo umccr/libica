@@ -20,6 +20,7 @@ Name | Type | Description | Notes
 **analysis_storage** | [**AnalysisStorageV4**](AnalysisStorageV4.md) |  | 
 **proprietary** | **bool** | A boolean which indicates if the code of this pipeline is proprietary | [optional] [default to False]
 **input_form_type** | **str** | The type of the inputform used. | [optional] 
+**report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md) |  | [optional] 
 
 ## Example
 
