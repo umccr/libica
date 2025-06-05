@@ -27,6 +27,7 @@ from libica.openapi.v2.model.analysis_paged_list_v3 import AnalysisPagedListV3
 from libica.openapi.v2.model.analysis_paged_list_v4 import AnalysisPagedListV4
 from libica.openapi.v2.model.analysis_query_parameters import AnalysisQueryParameters
 from libica.openapi.v2.model.analysis_raw_output import AnalysisRawOutput
+from libica.openapi.v2.model.analysis_report_entry_list import AnalysisReportEntryList
 from libica.openapi.v2.model.analysis_step_list import AnalysisStepList
 from libica.openapi.v2.model.analysis_usage_details import AnalysisUsageDetails
 from libica.openapi.v2.model.analysis_v3 import AnalysisV3
@@ -892,6 +893,65 @@ class ProjectAnalysisApi(object):
                 ],
                 'endpoint_path': '/api/projects/{projectId}/analyses/{analysisId}/outputs',
                 'operation_id': 'get_analysis_outputs',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'analysis_id',
+                ],
+                'required': [
+                    'project_id',
+                    'analysis_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'analysis_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'analysis_id': 'analysisId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'analysis_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_analysis_reports_endpoint = _Endpoint(
+            settings={
+                'response_type': (AnalysisReportEntryList,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/analyses/{analysisId}/reports',
+                'operation_id': 'get_analysis_reports',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -2449,7 +2509,7 @@ class ProjectAnalysisApi(object):
         analysis_id,
         **kwargs
     ):
-        """Retrieve the outputs of an analysis. The list might be incomplete if a folder contains too many output files, but all the data can always be retrieved through the GET data endpoint.  # noqa: E501
+        """Retrieve the outputs of an analysis (limited to the first 200.000 files per output folder). When trying to retrieve the listed data with an endpoint such as GET /api/data/{dataUrn}, data which has already been deleted will be skipped.  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
@@ -2523,6 +2583,88 @@ class ProjectAnalysisApi(object):
         kwargs['analysis_id'] = \
             analysis_id
         return self.get_analysis_outputs_endpoint.call_with_http_info(**kwargs)
+
+    def get_analysis_reports(
+        self,
+        project_id,
+        analysis_id,
+        **kwargs
+    ):
+        """Retrieve the report configs and associated reports.  # noqa: E501
+
+        Retrieves the reports which match the report config defined in a pipeline.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_analysis_reports(project_id, analysis_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            analysis_id (str): The ID of the analysis to retrieve the reports for
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            AnalysisReportEntryList
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['analysis_id'] = \
+            analysis_id
+        return self.get_analysis_reports_endpoint.call_with_http_info(**kwargs)
 
     def get_analysis_steps(
         self,

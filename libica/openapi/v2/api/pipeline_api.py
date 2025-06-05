@@ -27,6 +27,7 @@ from libica.openapi.v2.model.pipeline_file_list import PipelineFileList
 from libica.openapi.v2.model.pipeline_html_documentation import PipelineHtmlDocumentation
 from libica.openapi.v2.model.pipeline_list import PipelineList
 from libica.openapi.v2.model.pipeline_v3 import PipelineV3
+from libica.openapi.v2.model.pipeline_v4 import PipelineV4
 from libica.openapi.v2.model.problem import Problem
 from libica.openapi.v2.model.reference_set_list import ReferenceSetList
 
@@ -103,7 +104,7 @@ class PipelineApi(object):
         )
         self.get_pipeline_endpoint = _Endpoint(
             settings={
-                'response_type': (PipelineV3,),
+                'response_type': (PipelineV4,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -148,6 +149,7 @@ class PipelineApi(object):
             headers_map={
                 'accept': [
                     'application/problem+json',
+                    'application/vnd.illumina.v4+json',
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [],
@@ -592,7 +594,7 @@ class PipelineApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            PipelineV3
+            PipelineV4
                 If the method is called asynchronously, returns the request
                 thread.
         """
