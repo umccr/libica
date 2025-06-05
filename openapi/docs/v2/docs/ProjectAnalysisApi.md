@@ -16,7 +16,8 @@ Method | HTTP request | Description
 [**get_analysis**](ProjectAnalysisApi.md#get_analysis) | **GET** /api/projects/{projectId}/analyses/{analysisId} | Retrieve an analysis.
 [**get_analysis_configurations**](ProjectAnalysisApi.md#get_analysis_configurations) | **GET** /api/projects/{projectId}/analyses/{analysisId}/configurations | Retrieve the configurations of an analysis.
 [**get_analysis_inputs**](ProjectAnalysisApi.md#get_analysis_inputs) | **GET** /api/projects/{projectId}/analyses/{analysisId}/inputs | Retrieve the inputs of an analysis.
-[**get_analysis_outputs**](ProjectAnalysisApi.md#get_analysis_outputs) | **GET** /api/projects/{projectId}/analyses/{analysisId}/outputs | Retrieve the outputs of an analysis. The list might be incomplete if a folder contains too many output files, but all the data can always be retrieved through the GET data endpoint.
+[**get_analysis_outputs**](ProjectAnalysisApi.md#get_analysis_outputs) | **GET** /api/projects/{projectId}/analyses/{analysisId}/outputs | Retrieve the outputs of an analysis (limited to the first 200.000 files per output folder). When trying to retrieve the listed data with an endpoint such as GET /api/data/{dataUrn}, data which has already been deleted will be skipped.
+[**get_analysis_reports**](ProjectAnalysisApi.md#get_analysis_reports) | **GET** /api/projects/{projectId}/analyses/{analysisId}/reports | Retrieve the report configs and associated reports.
 [**get_analysis_steps**](ProjectAnalysisApi.md#get_analysis_steps) | **GET** /api/projects/{projectId}/analyses/{analysisId}/steps | Retrieve the individual steps of an analysis.
 [**get_analysis_usage_details**](ProjectAnalysisApi.md#get_analysis_usage_details) | **GET** /api/projects/{projectId}/analyses/{analysisId}/usage | Retrieve the analysis usage details.
 [**get_cwl_input_json**](ProjectAnalysisApi.md#get_cwl_input_json) | **GET** /api/projects/{projectId}/analyses/{analysisId}/cwl/inputJson | Retrieve the input json of a CWL analysis.
@@ -1650,7 +1651,7 @@ Name | Type | Description  | Notes
 # **get_analysis_outputs**
 > AnalysisOutputList get_analysis_outputs(project_id, analysis_id)
 
-Retrieve the outputs of an analysis. The list might be incomplete if a folder contains too many output files, but all the data can always be retrieved through the GET data endpoint.
+Retrieve the outputs of an analysis (limited to the first 200.000 files per output folder). When trying to retrieve the listed data with an endpoint such as GET /api/data/{dataUrn}, data which has already been deleted will be skipped.
 
 ### Example
 
@@ -1695,7 +1696,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Retrieve the outputs of an analysis. The list might be incomplete if a folder contains too many output files, but all the data can always be retrieved through the GET data endpoint.
+        # Retrieve the outputs of an analysis (limited to the first 200.000 files per output folder). When trying to retrieve the listed data with an endpoint such as GET /api/data/{dataUrn}, data which has already been deleted will be skipped.
         api_response = api_instance.get_analysis_outputs(project_id, analysis_id)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
@@ -1729,6 +1730,94 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The outputs of the analysis are successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_analysis_reports**
+> AnalysisReportEntryList get_analysis_reports(project_id, analysis_id)
+
+Retrieve the report configs and associated reports.
+
+Retrieves the reports which match the report config defined in a pipeline.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_analysis_api
+from libica.openapi.v2.model.analysis_report_entry_list import AnalysisReportEntryList
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_analysis_api.ProjectAnalysisApi(api_client)
+    project_id = "projectId_example" # str | 
+    analysis_id = "analysisId_example" # str | The ID of the analysis to retrieve the reports for
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Retrieve the report configs and associated reports.
+        api_response = api_instance.get_analysis_reports(project_id, analysis_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectAnalysisApi->get_analysis_reports: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+ **analysis_id** | **str**| The ID of the analysis to retrieve the reports for |
+
+### Return type
+
+[**AnalysisReportEntryList**](AnalysisReportEntryList.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The reports are successfully retrieved. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2466,6 +2555,15 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             ),
             proprietary=False,
             input_form_type="XML",
+            report_configs=PipelineReportConfig(
+                configs=[
+                    Config(
+                        name="name_example",
+                        regex="regex_example",
+                        format="format_example",
+                    ),
+                ],
+            ),
         ),
         workflow_session=WorkflowSessionV4(
             id="id_example",

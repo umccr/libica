@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_pipeline**
-> PipelineV3 get_pipeline(pipeline_id)
+> PipelineV4 get_pipeline(pipeline_id)
 
 Retrieve a pipeline.
 
@@ -114,6 +114,7 @@ import time
 import libica.openapi.v2
 from libica.openapi.v2.api import pipeline_api
 from libica.openapi.v2.model.pipeline_v3 import PipelineV3
+from libica.openapi.v2.model.pipeline_v4 import PipelineV4
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -162,7 +163,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**PipelineV3**](PipelineV3.md)
+[**PipelineV4**](PipelineV4.md)
 
 ### Authorization
 
@@ -171,7 +172,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details

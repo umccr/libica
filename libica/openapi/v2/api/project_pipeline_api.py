@@ -27,6 +27,8 @@ from libica.openapi.v2.model.pipeline_configuration_parameter_list import Pipeli
 from libica.openapi.v2.model.pipeline_file import PipelineFile
 from libica.openapi.v2.model.pipeline_file_list import PipelineFileList
 from libica.openapi.v2.model.pipeline_html_documentation import PipelineHtmlDocumentation
+from libica.openapi.v2.model.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v2.model.pipeline_update import PipelineUpdate
 from libica.openapi.v2.model.pipeline_v4 import PipelineV4
 from libica.openapi.v2.model.problem import Problem
 from libica.openapi.v2.model.project_pipeline import ProjectPipeline
@@ -143,6 +145,7 @@ class ProjectPipelineApi(object):
                     'categories',
                     'html_documentation',
                     'proprietary',
+                    'report_configs',
                 ],
                 'required': [
                     'project_id',
@@ -159,6 +162,7 @@ class ProjectPipelineApi(object):
                     'categories',
                     'html_documentation',
                     'proprietary',
+                    'report_configs',
                 ],
                 'enum': [
                 ],
@@ -222,6 +226,8 @@ class ProjectPipelineApi(object):
                         (str, none_type,),
                     'proprietary':
                         (bool, none_type,),
+                    'report_configs':
+                        (PipelineReportConfig,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -240,6 +246,7 @@ class ProjectPipelineApi(object):
                     'categories': 'categories',
                     'html_documentation': 'htmlDocumentation',
                     'proprietary': 'proprietary',
+                    'report_configs': 'reportConfigs',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -258,6 +265,7 @@ class ProjectPipelineApi(object):
                     'categories': 'form',
                     'html_documentation': 'form',
                     'proprietary': 'form',
+                    'report_configs': 'form',
                 },
                 'collection_format_map': {
                     'tool_cwl_files': 'csv',
@@ -303,6 +311,7 @@ class ProjectPipelineApi(object):
                     'categories',
                     'html_documentation',
                     'proprietary',
+                    'report_configs',
                 ],
                 'required': [
                     'project_id',
@@ -319,6 +328,7 @@ class ProjectPipelineApi(object):
                     'categories',
                     'html_documentation',
                     'proprietary',
+                    'report_configs',
                 ],
                 'enum': [
                 ],
@@ -376,6 +386,8 @@ class ProjectPipelineApi(object):
                         (str, none_type,),
                     'proprietary':
                         (bool, none_type,),
+                    'report_configs':
+                        (PipelineReportConfig,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -391,6 +403,7 @@ class ProjectPipelineApi(object):
                     'categories': 'categories',
                     'html_documentation': 'htmlDocumentation',
                     'proprietary': 'proprietary',
+                    'report_configs': 'reportConfigs',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -406,6 +419,7 @@ class ProjectPipelineApi(object):
                     'categories': 'form',
                     'html_documentation': 'form',
                     'proprietary': 'form',
+                    'report_configs': 'form',
                 },
                 'collection_format_map': {
                     'tool_cwl_files': 'csv',
@@ -455,6 +469,7 @@ class ProjectPipelineApi(object):
                     'categories',
                     'html_documentation',
                     'proprietary',
+                    'report_configs',
                 ],
                 'required': [
                     'project_id',
@@ -472,6 +487,7 @@ class ProjectPipelineApi(object):
                     'categories',
                     'html_documentation',
                     'proprietary',
+                    'report_configs',
                 ],
                 'enum': [
                 ],
@@ -539,6 +555,8 @@ class ProjectPipelineApi(object):
                         (str, none_type,),
                     'proprietary':
                         (bool, none_type,),
+                    'report_configs':
+                        (PipelineReportConfig,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -559,6 +577,7 @@ class ProjectPipelineApi(object):
                     'categories': 'categories',
                     'html_documentation': 'htmlDocumentation',
                     'proprietary': 'proprietary',
+                    'report_configs': 'reportConfigs',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -579,6 +598,7 @@ class ProjectPipelineApi(object):
                     'categories': 'form',
                     'html_documentation': 'form',
                     'proprietary': 'form',
+                    'report_configs': 'form',
                 },
                 'collection_format_map': {
                     'other_nextflow_files': 'csv',
@@ -626,6 +646,7 @@ class ProjectPipelineApi(object):
                     'categories',
                     'html_documentation',
                     'proprietary',
+                    'report_configs',
                 ],
                 'required': [
                     'project_id',
@@ -643,6 +664,7 @@ class ProjectPipelineApi(object):
                     'categories',
                     'html_documentation',
                     'proprietary',
+                    'report_configs',
                 ],
                 'enum': [
                 ],
@@ -704,6 +726,8 @@ class ProjectPipelineApi(object):
                         (str, none_type,),
                     'proprietary':
                         (bool, none_type,),
+                    'report_configs':
+                        (PipelineReportConfig,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -721,6 +745,7 @@ class ProjectPipelineApi(object):
                     'categories': 'categories',
                     'html_documentation': 'htmlDocumentation',
                     'proprietary': 'proprietary',
+                    'report_configs': 'reportConfigs',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -738,6 +763,7 @@ class ProjectPipelineApi(object):
                     'categories': 'form',
                     'html_documentation': 'form',
                     'proprietary': 'form',
+                    'report_configs': 'form',
                 },
                 'collection_format_map': {
                     'other_nextflow_files': 'csv',
@@ -1259,7 +1285,7 @@ class ProjectPipelineApi(object):
         )
         self.get_project_pipeline_endpoint = _Endpoint(
             settings={
-                'response_type': (ProjectPipeline,),
+                'response_type': (ProjectPipelineV4,),
                 'auth': [
                     'ApiKeyAuth',
                     'JwtAuth'
@@ -1310,6 +1336,7 @@ class ProjectPipelineApi(object):
             headers_map={
                 'accept': [
                     'application/problem+json',
+                    'application/vnd.illumina.v4+json',
                     'application/vnd.illumina.v3+json'
                 ],
                 'content_type': [],
@@ -1969,6 +1996,72 @@ class ProjectPipelineApi(object):
             },
             api_client=api_client
         )
+        self.update_general_attributes_project_pipeline_endpoint = _Endpoint(
+            settings={
+                'response_type': (PipelineV4,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/generalAttributes',
+                'operation_id': 'update_general_attributes_project_pipeline',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'pipeline_id',
+                    'pipeline_update',
+                ],
+                'required': [
+                    'project_id',
+                    'pipeline_id',
+                    'pipeline_update',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'pipeline_id':
+                        (str,),
+                    'pipeline_update':
+                        (PipelineUpdate,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'pipeline_id': 'pipelineId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'pipeline_id': 'path',
+                    'pipeline_update': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v4+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v4+json'
+                ]
+            },
+            api_client=api_client
+        )
         self.update_input_form_file_endpoint = _Endpoint(
             settings={
                 'response_type': None,
@@ -2362,6 +2455,7 @@ class ProjectPipelineApi(object):
             categories ([str, none_type], none_type): [optional]
             html_documentation (str, none_type): [optional]
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
+            report_configs (PipelineReportConfig): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2466,6 +2560,7 @@ class ProjectPipelineApi(object):
             categories ([str, none_type], none_type): [optional]
             html_documentation (str, none_type): [optional]
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
+            report_configs (PipelineReportConfig): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2575,6 +2670,7 @@ class ProjectPipelineApi(object):
             categories ([str, none_type], none_type): [optional]
             html_documentation (str, none_type): [optional]
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
+            report_configs (PipelineReportConfig): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2681,6 +2777,7 @@ class ProjectPipelineApi(object):
             categories ([str, none_type], none_type): [optional]
             html_documentation (str, none_type): [optional]
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
+            report_configs (PipelineReportConfig): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -3467,7 +3564,7 @@ class ProjectPipelineApi(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            ProjectPipeline
+            ProjectPipelineV4
                 If the method is called asynchronously, returns the request
                 thread.
         """
@@ -4400,6 +4497,92 @@ class ProjectPipelineApi(object):
         kwargs['content'] = \
             content
         return self.update_additional_file_endpoint.call_with_http_info(**kwargs)
+
+    def update_general_attributes_project_pipeline(
+        self,
+        project_id,
+        pipeline_id,
+        pipeline_update,
+        **kwargs
+    ):
+        """Update the general attributes of a project pipeline.  # noqa: E501
+
+        Attributes which can be updated: - code - description - languageVersion - proprietary   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_general_attributes_project_pipeline(project_id, pipeline_id, pipeline_update, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            pipeline_id (str): The ID of the project pipeline to update
+            pipeline_update (PipelineUpdate):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            PipelineV4
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['pipeline_id'] = \
+            pipeline_id
+        kwargs['pipeline_update'] = \
+            pipeline_update
+        return self.update_general_attributes_project_pipeline_endpoint.call_with_http_info(**kwargs)
 
     def update_input_form_file(
         self,

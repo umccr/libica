@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **analysis_priority** | **str, none_type** | Indicates the priority given to a project and its analyses within a single tenant. Note that for a PUT call, when not providing a value for this attribute (null value or absent attribute), the persisted value will not change. | [optional] 
 **metadata_model** | [**MetadataModel**](MetadataModel.md) |  | [optional] 
 **application** | [**Application**](Application.md) |  | [optional] 
+**project_owner** | **str, none_type** | projectOwner is the current project owner, ownerId is the original project creator. These can be different because you can transfer ownership of a project. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

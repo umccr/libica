@@ -1,12 +1,13 @@
-# Settings
+# AnalysisReportData
 
-This object contains a \"anyOf\" construct. Depending on which type, you will receive a StringSettings-, IntegerSettings or OptionsSettings object.
+The list of analysis report files
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**default_values** | **[str]** |  | [optional] 
-**options** | **[str]** |  | [optional] 
+**data_id** | **str, none_type** | The data id of the report | [optional] 
+**format** | **str, none_type** | The format of the report | [optional] 
+**name** | **str** | The name of the report file | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
