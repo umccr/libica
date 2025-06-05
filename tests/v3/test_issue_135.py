@@ -4,6 +4,7 @@ from unittest import TestCase
 from libica.openapi.v3 import Configuration, ApiClient, ProjectAnalysisApi, CreateNextflowAnalysis, \
     NextflowAnalysisInput, CreateAnalysisTag, AnalysisDataInput, AnalysisParameterInput, AnalysisV4, AnalysisV3, \
     AnalysisReferenceDataParameter, AnalysisOutputMapping
+from libica.openapi.v3.rest import RESTResponseType
 from tests import MOCK_EP
 
 project_id = str(uuid.uuid4())
@@ -184,12 +185,10 @@ class Issue135IntegrationTests(TestCase):
         api_instance: ProjectAnalysisApi = ProjectAnalysisApi(self.api_client)
 
         with self.assertRaises(Exception) as x:
-
             # FIXME In v3 SDK, as it has become supporting more "Static Typing", the generator tends to fix
-            #  into one response type mapping. Unaware of "endpoint Header versioning and switching". Consequently
-            #  this now "hard" map to return AnalysisV4 and, Pydantic will attempt to validate and fail.
-            #  No easy workaround. Fallback to use v2 SDK in this case.
-            #  Perhaps, the client should upgrade to AnalysisV4.
+            #  into one response type mapping. Consequently the response type map to return AnalysisV4 and,
+            #  Pydantic will attempt to validate and fail. Perhaps, the client should stick to AnalysisV4.
+            #  Or, refer to next unittest case for workaround.
 
             api_response = api_instance.create_nextflow_analysis(
                 project_id,
@@ -215,3 +214,47 @@ class Issue135IntegrationTests(TestCase):
 
         print("*" * 128)
         print(x.exception)
+
+    def test_create_nextflow_analysis_with_v3_workaround(self):
+        """
+        python -m unittest tests.v3.test_issue_135.Issue135IntegrationTests.test_create_nextflow_analysis_with_v3_workaround
+        """
+
+        # set explicitly the request media type and header versioning to V3
+        self.api_client.set_default_header(
+            header_name="Content-Type",
+            header_value="application/vnd.illumina.v3+json",
+        )
+        self.api_client.set_default_header(
+            header_name="Accept",
+            header_value="application/vnd.illumina.v3+json",
+        )
+
+        api_instance: ProjectAnalysisApi = ProjectAnalysisApi(self.api_client)
+
+        # The workaround is instead of using create_nextflow_analysis(...), use the method without preload content.
+        # Then, to deserialize the response to AnalysisV3 manually.
+
+        api_response: RESTResponseType = api_instance.create_nextflow_analysis_without_preload_content(
+            project_id,
+            nextflow_analysis,
+        )
+
+        print("-" * 128)
+
+        print(type(api_response))  # raw urllib3.response.HTTPResponse
+
+        # assert request client headers
+        self.assertEqual(self.api_client.default_headers['Content-Type'], "application/vnd.illumina.v3+json")
+        self.assertEqual(self.api_client.default_headers['Accept'], "application/vnd.illumina.v3+json")
+        print(self.api_client.default_headers)
+
+        deserialized_resp = AnalysisV3.from_json(api_response.data)
+        print(deserialized_resp)
+
+        self.assertIsNotNone(deserialized_resp)
+        self.assertIsInstance(deserialized_resp, AnalysisV3)
+
+        # assert these keys exist in response body
+        print("owner_id:", deserialized_resp.owner_id)
+        print("tenant_id:", deserialized_resp.tenant_id)
