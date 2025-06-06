@@ -1,0 +1,1584 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>libica.openapi.v3.api_client API documentation</title>
+<meta name="description" content="ICA Rest API …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>libica.openapi.v3.api_client</code></h1>
+</header>
+<section id="section-intro">
+<p>ICA Rest API</p>
+<p>This API can be used to interact with Illumina Connected Analytics.<br> <h2>Authentication</h2> <p> Authentication to the
+API can be done in multiple ways:<br> <ul><li>For the entire API, except for the POST /tokens endpoint: API-key + JWT</li> <li>Only for the POST /tokens endpoint: API-key + Basic Authentication</li></ul> </p> <p> <h4>API-key</h4> API keys are managed within the Illumina portal where you can manage your profile after you have logged on. The API-key has to be provided in the X-API-Key header parameter when executing API calls to ICA. In the background, a JWT will be requested at the IDP of Illumina to create a session. A good practice is to not use the API-key for every API call, but to first generate a JWT and to use that for authentication in subsequent calls.<br> </p> <p> <h4>JWT</h4> To avoid using an API-key for each call, we recommend to request a JWT via the POST /tokens endpoint
+using this API-key. The JWT will expire after a pre-configured period specified by a tenant administrator through the IAM console in the Illumina portal. The JWT is the preferred way for authentication.<br>A not yet expired, still valid JWT could be refreshed using the POST /tokens:refresh endpoint.<br>Refreshing the JWT is not possible if the JWT was generated by using an API-key.<br> </p> <p> <h4>Basic Authentication</h4> Basic authentication is only supported by the POST /tokens endpoint for generating a JWT. Use "Basic base64encoded(emailaddress:password)" in the "Authorization" header parameter for this authentication method. In case having access to multiple tenants using the same email-address, also provide the "tenant" request parameter to indicate what tenant you would like to request a JWT for. </p> <p> <h2>Compression</h2> If the API client provides request header 'Accept-Encoding' with value 'gzip', then the API applies GZIP compression on the JSON response. This significantly reduces the size and thus the download time of the response, which results in faster end-to-end API calls. In case of compression, the API also provides response header 'Content-Encoding' with value 'gzip', as indication for the client that decompression is required. </p> </p>
+<p>The version of the OpenAPI document: 3
+Generated by OpenAPI Generator (<a href="https://openapi-generator.tech">https://openapi-generator.tech</a>)</p>
+<p>Do not edit the class manually.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="libica.openapi.v3.api_client.ApiClient"><code class="flex name class">
+<span>class <span class="ident">ApiClient</span></span>
+<span>(</span><span>configuration=None, header_name=None, header_value=None, cookie=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ApiClient:
+    &#34;&#34;&#34;Generic API client for OpenAPI client library builds.
+
+    OpenAPI generic API client. This client handles the client-
+    server communication, and is invariant across implementations. Specifics of
+    the methods and models for each application are generated from the OpenAPI
+    templates.
+
+    :param configuration: .Configuration object for this client
+    :param header_name: a header to pass when making calls to the API.
+    :param header_value: a header value to pass when making calls to
+        the API.
+    :param cookie: a cookie to include in the header when making calls
+        to the API
+    &#34;&#34;&#34;
+
+    PRIMITIVE_TYPES = (float, bool, bytes, str, int)
+    NATIVE_TYPES_MAPPING = {
+        &#39;int&#39;: int,
+        &#39;long&#39;: int, # TODO remove as only py3 is supported?
+        &#39;float&#39;: float,
+        &#39;str&#39;: str,
+        &#39;bool&#39;: bool,
+        &#39;date&#39;: datetime.date,
+        &#39;datetime&#39;: datetime.datetime,
+        &#39;decimal&#39;: decimal.Decimal,
+        &#39;object&#39;: object,
+    }
+    _pool = None
+
+    def __init__(
+        self,
+        configuration=None,
+        header_name=None,
+        header_value=None,
+        cookie=None
+    ) -&gt; None:
+        # use default configuration if none is provided
+        if configuration is None:
+            configuration = Configuration.get_default()
+        self.configuration = configuration
+
+        self.rest_client = rest.RESTClientObject(configuration)
+        # FIXME set default Accept header to application/vnd.illumina.v3+json
+        #  https://github.com/umccr/libica/issues/139
+        self.default_headers = {
+            &#34;Accept&#34;: &#34;application/vnd.illumina.v3+json&#34;,
+        }
+        if header_name is not None:
+            self.default_headers[header_name] = header_value
+        self.cookie = cookie
+        # Set default User-Agent.
+        self.user_agent = &#39;OpenAPI-Generator/1.0.0/python&#39;
+        self.client_side_validation = configuration.client_side_validation
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        pass
+
+    @property
+    def user_agent(self):
+        &#34;&#34;&#34;User agent for this API client&#34;&#34;&#34;
+        return self.default_headers[&#39;User-Agent&#39;]
+
+    @user_agent.setter
+    def user_agent(self, value):
+        self.default_headers[&#39;User-Agent&#39;] = value
+
+    def set_default_header(self, header_name, header_value):
+        self.default_headers[header_name] = header_value
+
+
+    _default = None
+
+    @classmethod
+    def get_default(cls):
+        &#34;&#34;&#34;Return new instance of ApiClient.
+
+        This method returns newly created, based on default constructor,
+        object of ApiClient class or returns a copy of default
+        ApiClient.
+
+        :return: The ApiClient object.
+        &#34;&#34;&#34;
+        if cls._default is None:
+            cls._default = ApiClient()
+        return cls._default
+
+    @classmethod
+    def set_default(cls, default):
+        &#34;&#34;&#34;Set default instance of ApiClient.
+
+        It stores default ApiClient.
+
+        :param default: object of ApiClient.
+        &#34;&#34;&#34;
+        cls._default = default
+
+    def param_serialize(
+        self,
+        method,
+        resource_path,
+        path_params=None,
+        query_params=None,
+        header_params=None,
+        body=None,
+        post_params=None,
+        files=None, auth_settings=None,
+        collection_formats=None,
+        _host=None,
+        _request_auth=None
+    ) -&gt; RequestSerialized:
+
+        &#34;&#34;&#34;Builds the HTTP request params needed by the request.
+        :param method: Method to call.
+        :param resource_path: Path to method endpoint.
+        :param path_params: Path parameters in the url.
+        :param query_params: Query parameters in the url.
+        :param header_params: Header parameters to be
+            placed in the request header.
+        :param body: Request body.
+        :param post_params dict: Request post form parameters,
+            for `application/x-www-form-urlencoded`, `multipart/form-data`.
+        :param auth_settings list: Auth Settings names for the request.
+        :param files dict: key -&gt; filename, value -&gt; filepath,
+            for `multipart/form-data`.
+        :param collection_formats: dict of collection formats for path, query,
+            header, and post parameters.
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the authentication
+                              in the spec for a single request.
+        :return: tuple of form (path, http_method, query_params, header_params,
+            body, post_params, files)
+        &#34;&#34;&#34;
+
+        config = self.configuration
+
+        # header parameters
+        header_params = header_params or {}
+        header_params.update(self.default_headers)
+        if self.cookie:
+            header_params[&#39;Cookie&#39;] = self.cookie
+        if header_params:
+            header_params = self.sanitize_for_serialization(header_params)
+            header_params = dict(
+                self.parameters_to_tuples(header_params,collection_formats)
+            )
+
+        # path parameters
+        if path_params:
+            path_params = self.sanitize_for_serialization(path_params)
+            path_params = self.parameters_to_tuples(
+                path_params,
+                collection_formats
+            )
+            for k, v in path_params:
+                # specified safe chars, encode everything
+                resource_path = resource_path.replace(
+                    &#39;{%s}&#39; % k,
+                    quote(str(v), safe=config.safe_chars_for_path_param)
+                )
+
+        # post parameters
+        if post_params or files:
+            post_params = post_params if post_params else []
+            post_params = self.sanitize_for_serialization(post_params)
+            post_params = self.parameters_to_tuples(
+                post_params,
+                collection_formats
+            )
+            if files:
+                post_params.extend(self.files_parameters(files))
+
+        # auth setting
+        self.update_params_for_auth(
+            header_params,
+            query_params,
+            auth_settings,
+            resource_path,
+            method,
+            body,
+            request_auth=_request_auth
+        )
+
+        # body
+        if body:
+            body = self.sanitize_for_serialization(body)
+
+        # request url
+        if _host is None or self.configuration.ignore_operation_servers:
+            url = self.configuration.host + resource_path
+        else:
+            # use server/host defined in path or operation instead
+            url = _host + resource_path
+
+        # query parameters
+        if query_params:
+            query_params = self.sanitize_for_serialization(query_params)
+            url_query = self.parameters_to_url_query(
+                query_params,
+                collection_formats
+            )
+            url += &#34;?&#34; + url_query
+
+        return method, url, header_params, body, post_params
+
+
+    def call_api(
+        self,
+        method,
+        url,
+        header_params=None,
+        body=None,
+        post_params=None,
+        _request_timeout=None
+    ) -&gt; rest.RESTResponse:
+        &#34;&#34;&#34;Makes the HTTP request (synchronous)
+        :param method: Method to call.
+        :param url: Path to method endpoint.
+        :param header_params: Header parameters to be
+            placed in the request header.
+        :param body: Request body.
+        :param post_params dict: Request post form parameters,
+            for `application/x-www-form-urlencoded`, `multipart/form-data`.
+        :param _request_timeout: timeout setting for this request.
+        :return: RESTResponse
+        &#34;&#34;&#34;
+
+        try:
+            # perform request and return response
+            response_data = self.rest_client.request(
+                method, url,
+                headers=header_params,
+                body=body, post_params=post_params,
+                _request_timeout=_request_timeout
+            )
+
+        except ApiException as e:
+            raise e
+
+        return response_data
+
+    def response_deserialize(
+        self,
+        response_data: rest.RESTResponse,
+        response_types_map: Optional[Dict[str, ApiResponseT]]=None
+    ) -&gt; ApiResponse[ApiResponseT]:
+        &#34;&#34;&#34;Deserializes response into an object.
+        :param response_data: RESTResponse object to be deserialized.
+        :param response_types_map: dict of response types.
+        :return: ApiResponse
+        &#34;&#34;&#34;
+
+        msg = &#34;RESTResponse.read() must be called before passing it to response_deserialize()&#34;
+        assert response_data.data is not None, msg
+
+        response_type = response_types_map.get(str(response_data.status), None)
+        if not response_type and isinstance(response_data.status, int) and 100 &lt;= response_data.status &lt;= 599:
+            # if not found, look for &#39;1XX&#39;, &#39;2XX&#39;, etc.
+            response_type = response_types_map.get(str(response_data.status)[0] + &#34;XX&#34;, None)
+
+        # deserialize response data
+        response_text = None
+        return_data = None
+        try:
+            if response_type == &#34;bytearray&#34;:
+                return_data = response_data.data
+            elif response_type == &#34;file&#34;:
+                return_data = self.__deserialize_file(response_data)
+            elif response_type is not None:
+                match = None
+                content_type = response_data.getheader(&#39;content-type&#39;)
+                if content_type is not None:
+                    match = re.search(r&#34;charset=([a-zA-Z\-\d]+)[\s;]?&#34;, content_type)
+                encoding = match.group(1) if match else &#34;utf-8&#34;
+                response_text = response_data.data.decode(encoding)
+                return_data = self.deserialize(response_text, response_type, content_type)
+        finally:
+            if not 200 &lt;= response_data.status &lt;= 299:
+                raise ApiException.from_response(
+                    http_resp=response_data,
+                    body=response_text,
+                    data=return_data,
+                )
+
+        return ApiResponse(
+            status_code = response_data.status,
+            data = return_data,
+            headers = response_data.getheaders(),
+            raw_data = response_data.data
+        )
+
+    def sanitize_for_serialization(self, obj):
+        &#34;&#34;&#34;Builds a JSON POST object.
+
+        If obj is None, return None.
+        If obj is SecretStr, return obj.get_secret_value()
+        If obj is str, int, long, float, bool, return directly.
+        If obj is datetime.datetime, datetime.date
+            convert to string in iso8601 format.
+        If obj is decimal.Decimal return string representation.
+        If obj is list, sanitize each element in the list.
+        If obj is dict, return the dict.
+        If obj is OpenAPI model, return the properties dict.
+
+        :param obj: The data to serialize.
+        :return: The serialized form of data.
+        &#34;&#34;&#34;
+        if obj is None:
+            return None
+        elif isinstance(obj, Enum):
+            return obj.value
+        elif isinstance(obj, SecretStr):
+            return obj.get_secret_value()
+        elif isinstance(obj, self.PRIMITIVE_TYPES):
+            return obj
+        elif isinstance(obj, list):
+            return [
+                self.sanitize_for_serialization(sub_obj) for sub_obj in obj
+            ]
+        elif isinstance(obj, tuple):
+            return tuple(
+                self.sanitize_for_serialization(sub_obj) for sub_obj in obj
+            )
+        elif isinstance(obj, (datetime.datetime, datetime.date)):
+            return obj.isoformat()
+        elif isinstance(obj, decimal.Decimal):
+            return str(obj)
+
+        elif isinstance(obj, dict):
+            obj_dict = obj
+        else:
+            # Convert model obj to dict except
+            # attributes `openapi_types`, `attribute_map`
+            # and attributes which value is not None.
+            # Convert attribute name to json key in
+            # model definition for request.
+            if hasattr(obj, &#39;to_dict&#39;) and callable(getattr(obj, &#39;to_dict&#39;)):
+                obj_dict = obj.to_dict()
+            else:
+                obj_dict = obj.__dict__
+
+        return {
+            key: self.sanitize_for_serialization(val)
+            for key, val in obj_dict.items()
+        }
+
+    def deserialize(self, response_text: str, response_type: str, content_type: Optional[str]):
+        &#34;&#34;&#34;Deserializes response into an object.
+
+        :param response: RESTResponse object to be deserialized.
+        :param response_type: class literal for
+            deserialized object, or string of class name.
+        :param content_type: content type of response.
+
+        :return: deserialized object.
+        &#34;&#34;&#34;
+
+        # fetch data from response object
+        if content_type is None:
+            try:
+                data = json.loads(response_text)
+            except ValueError:
+                data = response_text
+        elif re.match(r&#39;^application/(json|[\w!#$&amp;.+-^_]+\+json)\s*(;|$)&#39;, content_type, re.IGNORECASE):
+            if response_text == &#34;&#34;:
+                data = &#34;&#34;
+            else:
+                data = json.loads(response_text)
+        elif re.match(r&#39;^text\/[a-z.+-]+\s*(;|$)&#39;, content_type, re.IGNORECASE):
+            data = response_text
+        else:
+            raise ApiException(
+                status=0,
+                reason=&#34;Unsupported content type: {0}&#34;.format(content_type)
+            )
+
+        return self.__deserialize(data, response_type)
+
+    def __deserialize(self, data, klass):
+        &#34;&#34;&#34;Deserializes dict, list, str into an object.
+
+        :param data: dict, list or str.
+        :param klass: class literal, or string of class name.
+
+        :return: object.
+        &#34;&#34;&#34;
+        if data is None:
+            return None
+
+        if isinstance(klass, str):
+            if klass.startswith(&#39;List[&#39;):
+                m = re.match(r&#39;List\[(.*)]&#39;, klass)
+                assert m is not None, &#34;Malformed List type definition&#34;
+                sub_kls = m.group(1)
+                return [self.__deserialize(sub_data, sub_kls)
+                        for sub_data in data]
+
+            if klass.startswith(&#39;Dict[&#39;):
+                m = re.match(r&#39;Dict\[([^,]*), (.*)]&#39;, klass)
+                assert m is not None, &#34;Malformed Dict type definition&#34;
+                sub_kls = m.group(2)
+                return {k: self.__deserialize(v, sub_kls)
+                        for k, v in data.items()}
+
+            # convert str to class
+            if klass in self.NATIVE_TYPES_MAPPING:
+                klass = self.NATIVE_TYPES_MAPPING[klass]
+            else:
+                klass = getattr(libica.openapi.v3.models, klass)
+
+        if klass in self.PRIMITIVE_TYPES:
+            return self.__deserialize_primitive(data, klass)
+        elif klass == object:
+            return self.__deserialize_object(data)
+        elif klass == datetime.date:
+            return self.__deserialize_date(data)
+        elif klass == datetime.datetime:
+            return self.__deserialize_datetime(data)
+        elif klass == decimal.Decimal:
+            return decimal.Decimal(data)
+        elif issubclass(klass, Enum):
+            return self.__deserialize_enum(data, klass)
+        else:
+            return self.__deserialize_model(data, klass)
+
+    def parameters_to_tuples(self, params, collection_formats):
+        &#34;&#34;&#34;Get parameters as list of tuples, formatting collections.
+
+        :param params: Parameters as dict or list of two-tuples
+        :param dict collection_formats: Parameter collection formats
+        :return: Parameters as list of tuples, collections formatted
+        &#34;&#34;&#34;
+        new_params: List[Tuple[str, str]] = []
+        if collection_formats is None:
+            collection_formats = {}
+        for k, v in params.items() if isinstance(params, dict) else params:
+            if k in collection_formats:
+                collection_format = collection_formats[k]
+                if collection_format == &#39;multi&#39;:
+                    new_params.extend((k, value) for value in v)
+                else:
+                    if collection_format == &#39;ssv&#39;:
+                        delimiter = &#39; &#39;
+                    elif collection_format == &#39;tsv&#39;:
+                        delimiter = &#39;\t&#39;
+                    elif collection_format == &#39;pipes&#39;:
+                        delimiter = &#39;|&#39;
+                    else:  # csv is the default
+                        delimiter = &#39;,&#39;
+                    new_params.append(
+                        (k, delimiter.join(str(value) for value in v)))
+            else:
+                new_params.append((k, v))
+        return new_params
+
+    def parameters_to_url_query(self, params, collection_formats):
+        &#34;&#34;&#34;Get parameters as list of tuples, formatting collections.
+
+        :param params: Parameters as dict or list of two-tuples
+        :param dict collection_formats: Parameter collection formats
+        :return: URL query string (e.g. a=Hello%20World&amp;b=123)
+        &#34;&#34;&#34;
+        new_params: List[Tuple[str, str]] = []
+        if collection_formats is None:
+            collection_formats = {}
+        for k, v in params.items() if isinstance(params, dict) else params:
+            if isinstance(v, bool):
+                v = str(v).lower()
+            if isinstance(v, (int, float)):
+                v = str(v)
+            if isinstance(v, dict):
+                v = json.dumps(v)
+
+            if k in collection_formats:
+                collection_format = collection_formats[k]
+                if collection_format == &#39;multi&#39;:
+                    new_params.extend((k, quote(str(value))) for value in v)
+                else:
+                    if collection_format == &#39;ssv&#39;:
+                        delimiter = &#39; &#39;
+                    elif collection_format == &#39;tsv&#39;:
+                        delimiter = &#39;\t&#39;
+                    elif collection_format == &#39;pipes&#39;:
+                        delimiter = &#39;|&#39;
+                    else:  # csv is the default
+                        delimiter = &#39;,&#39;
+                    new_params.append(
+                        (k, delimiter.join(quote(str(value)) for value in v))
+                    )
+            else:
+                new_params.append((k, quote(str(v))))
+
+        return &#34;&amp;&#34;.join([&#34;=&#34;.join(map(str, item)) for item in new_params])
+
+    def files_parameters(
+        self,
+        files: Dict[str, Union[str, bytes, List[str], List[bytes], Tuple[str, bytes]]],
+    ):
+        &#34;&#34;&#34;Builds form parameters.
+
+        :param files: File parameters.
+        :return: Form parameters with files.
+        &#34;&#34;&#34;
+        params = []
+        for k, v in files.items():
+            if isinstance(v, str):
+                with open(v, &#39;rb&#39;) as f:
+                    filename = os.path.basename(f.name)
+                    filedata = f.read()
+            elif isinstance(v, bytes):
+                filename = k
+                filedata = v
+            elif isinstance(v, tuple):
+                filename, filedata = v
+            elif isinstance(v, list):
+                for file_param in v:
+                    params.extend(self.files_parameters({k: file_param}))
+                continue
+            else:
+                raise ValueError(&#34;Unsupported file value&#34;)
+            mimetype = (
+                mimetypes.guess_type(filename)[0]
+                or &#39;application/octet-stream&#39;
+            )
+            params.append(
+                tuple([k, tuple([filename, filedata, mimetype])])
+            )
+        return params
+
+    def select_header_accept(self, accepts: List[str]) -&gt; Optional[str]:
+        &#34;&#34;&#34;Returns `Accept` based on an array of accepts provided.
+
+        :param accepts: List of headers.
+        :return: Accept (e.g. application/json).
+        &#34;&#34;&#34;
+        if not accepts:
+            return None
+
+        for accept in accepts:
+            if re.search(&#39;json&#39;, accept, re.IGNORECASE):
+                return accept
+
+        return accepts[0]
+
+    def select_header_content_type(self, content_types):
+        &#34;&#34;&#34;Returns `Content-Type` based on an array of content_types provided.
+
+        :param content_types: List of content-types.
+        :return: Content-Type (e.g. application/json).
+        &#34;&#34;&#34;
+        if not content_types:
+            return None
+
+        for content_type in content_types:
+            if re.search(&#39;json&#39;, content_type, re.IGNORECASE):
+                return content_type
+
+        return content_types[0]
+
+    def update_params_for_auth(
+        self,
+        headers,
+        queries,
+        auth_settings,
+        resource_path,
+        method,
+        body,
+        request_auth=None
+    ) -&gt; None:
+        &#34;&#34;&#34;Updates header and query params based on authentication setting.
+
+        :param headers: Header parameters dict to be updated.
+        :param queries: Query parameters tuple list to be updated.
+        :param auth_settings: Authentication setting identifiers list.
+        :resource_path: A string representation of the HTTP request resource path.
+        :method: A string representation of the HTTP request method.
+        :body: A object representing the body of the HTTP request.
+        The object type is the return value of sanitize_for_serialization().
+        :param request_auth: if set, the provided settings will
+                             override the token in the configuration.
+        &#34;&#34;&#34;
+        if not auth_settings:
+            return
+
+        if request_auth:
+            self._apply_auth_params(
+                headers,
+                queries,
+                resource_path,
+                method,
+                body,
+                request_auth
+            )
+        else:
+            for auth in auth_settings:
+                auth_setting = self.configuration.auth_settings().get(auth)
+                if auth_setting:
+                    self._apply_auth_params(
+                        headers,
+                        queries,
+                        resource_path,
+                        method,
+                        body,
+                        auth_setting
+                    )
+
+    def _apply_auth_params(
+        self,
+        headers,
+        queries,
+        resource_path,
+        method,
+        body,
+        auth_setting
+    ) -&gt; None:
+        &#34;&#34;&#34;Updates the request parameters based on a single auth_setting
+
+        :param headers: Header parameters dict to be updated.
+        :param queries: Query parameters tuple list to be updated.
+        :resource_path: A string representation of the HTTP request resource path.
+        :method: A string representation of the HTTP request method.
+        :body: A object representing the body of the HTTP request.
+        The object type is the return value of sanitize_for_serialization().
+        :param auth_setting: auth settings for the endpoint
+        &#34;&#34;&#34;
+        if auth_setting[&#39;in&#39;] == &#39;cookie&#39;:
+            headers[&#39;Cookie&#39;] = auth_setting[&#39;value&#39;]
+        elif auth_setting[&#39;in&#39;] == &#39;header&#39;:
+            if auth_setting[&#39;type&#39;] != &#39;http-signature&#39;:
+                headers[auth_setting[&#39;key&#39;]] = auth_setting[&#39;value&#39;]
+        elif auth_setting[&#39;in&#39;] == &#39;query&#39;:
+            queries.append((auth_setting[&#39;key&#39;], auth_setting[&#39;value&#39;]))
+        else:
+            raise ApiValueError(
+                &#39;Authentication token must be in `query` or `header`&#39;
+            )
+
+    def __deserialize_file(self, response):
+        &#34;&#34;&#34;Deserializes body to file
+
+        Saves response body into a file in a temporary folder,
+        using the filename from the `Content-Disposition` header if provided.
+
+        handle file downloading
+        save response body into a tmp file and return the instance
+
+        :param response:  RESTResponse.
+        :return: file path.
+        &#34;&#34;&#34;
+        fd, path = tempfile.mkstemp(dir=self.configuration.temp_folder_path)
+        os.close(fd)
+        os.remove(path)
+
+        content_disposition = response.getheader(&#34;Content-Disposition&#34;)
+        if content_disposition:
+            m = re.search(
+                r&#39;filename=[\&#39;&#34;]?([^\&#39;&#34;\s]+)[\&#39;&#34;]?&#39;,
+                content_disposition
+            )
+            assert m is not None, &#34;Unexpected &#39;content-disposition&#39; header value&#34;
+            filename = m.group(1)
+            path = os.path.join(os.path.dirname(path), filename)
+
+        with open(path, &#34;wb&#34;) as f:
+            f.write(response.data)
+
+        return path
+
+    def __deserialize_primitive(self, data, klass):
+        &#34;&#34;&#34;Deserializes string to primitive type.
+
+        :param data: str.
+        :param klass: class literal.
+
+        :return: int, long, float, str, bool.
+        &#34;&#34;&#34;
+        try:
+            return klass(data)
+        except UnicodeEncodeError:
+            return str(data)
+        except TypeError:
+            return data
+
+    def __deserialize_object(self, value):
+        &#34;&#34;&#34;Return an original value.
+
+        :return: object.
+        &#34;&#34;&#34;
+        return value
+
+    def __deserialize_date(self, string):
+        &#34;&#34;&#34;Deserializes string to date.
+
+        :param string: str.
+        :return: date.
+        &#34;&#34;&#34;
+        try:
+            return parse(string).date()
+        except ImportError:
+            return string
+        except ValueError:
+            raise rest.ApiException(
+                status=0,
+                reason=&#34;Failed to parse `{0}` as date object&#34;.format(string)
+            )
+
+    def __deserialize_datetime(self, string):
+        &#34;&#34;&#34;Deserializes string to datetime.
+
+        The string should be in iso8601 datetime format.
+
+        :param string: str.
+        :return: datetime.
+        &#34;&#34;&#34;
+        try:
+            return parse(string)
+        except ImportError:
+            return string
+        except ValueError:
+            raise rest.ApiException(
+                status=0,
+                reason=(
+                    &#34;Failed to parse `{0}` as datetime object&#34;
+                    .format(string)
+                )
+            )
+
+    def __deserialize_enum(self, data, klass):
+        &#34;&#34;&#34;Deserializes primitive type to enum.
+
+        :param data: primitive type.
+        :param klass: class literal.
+        :return: enum value.
+        &#34;&#34;&#34;
+        try:
+            return klass(data)
+        except ValueError:
+            raise rest.ApiException(
+                status=0,
+                reason=(
+                    &#34;Failed to parse `{0}` as `{1}`&#34;
+                    .format(data, klass)
+                )
+            )
+
+    def __deserialize_model(self, data, klass):
+        &#34;&#34;&#34;Deserializes list or dict to model.
+
+        :param data: dict, list.
+        :param klass: class literal.
+        :return: model object.
+        &#34;&#34;&#34;
+
+        return klass.from_dict(data)</code></pre>
+</details>
+<div class="desc"><p>Generic API client for OpenAPI client library builds.</p>
+<p>OpenAPI generic API client. This client handles the client-
+server communication, and is invariant across implementations. Specifics of
+the methods and models for each application are generated from the OpenAPI
+templates.</p>
+<p>:param configuration: .Configuration object for this client
+:param header_name: a header to pass when making calls to the API.
+:param header_value: a header value to pass when making calls to
+the API.
+:param cookie: a cookie to include in the header when making calls
+to the API</p></div>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.api_client.ApiClient.NATIVE_TYPES_MAPPING"><code class="name">var <span class="ident">NATIVE_TYPES_MAPPING</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.PRIMITIVE_TYPES"><code class="name">var <span class="ident">PRIMITIVE_TYPES</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="libica.openapi.v3.api_client.ApiClient.get_default"><code class="name flex">
+<span>def <span class="ident">get_default</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return new instance of ApiClient.</p>
+<p>This method returns newly created, based on default constructor,
+object of ApiClient class or returns a copy of default
+ApiClient.</p>
+<p>:return: The ApiClient object.</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.set_default"><code class="name flex">
+<span>def <span class="ident">set_default</span></span>(<span>default)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set default instance of ApiClient.</p>
+<p>It stores default ApiClient.</p>
+<p>:param default: object of ApiClient.</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="libica.openapi.v3.api_client.ApiClient.user_agent"><code class="name">prop <span class="ident">user_agent</span></code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def user_agent(self):
+    &#34;&#34;&#34;User agent for this API client&#34;&#34;&#34;
+    return self.default_headers[&#39;User-Agent&#39;]</code></pre>
+</details>
+<div class="desc"><p>User agent for this API client</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="libica.openapi.v3.api_client.ApiClient.call_api"><code class="name flex">
+<span>def <span class="ident">call_api</span></span>(<span>self, method, url, header_params=None, body=None, post_params=None) ‑> <a title="libica.openapi.v3.rest.RESTResponse" href="rest.html#libica.openapi.v3.rest.RESTResponse">RESTResponse</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def call_api(
+    self,
+    method,
+    url,
+    header_params=None,
+    body=None,
+    post_params=None,
+    _request_timeout=None
+) -&gt; rest.RESTResponse:
+    &#34;&#34;&#34;Makes the HTTP request (synchronous)
+    :param method: Method to call.
+    :param url: Path to method endpoint.
+    :param header_params: Header parameters to be
+        placed in the request header.
+    :param body: Request body.
+    :param post_params dict: Request post form parameters,
+        for `application/x-www-form-urlencoded`, `multipart/form-data`.
+    :param _request_timeout: timeout setting for this request.
+    :return: RESTResponse
+    &#34;&#34;&#34;
+
+    try:
+        # perform request and return response
+        response_data = self.rest_client.request(
+            method, url,
+            headers=header_params,
+            body=body, post_params=post_params,
+            _request_timeout=_request_timeout
+        )
+
+    except ApiException as e:
+        raise e
+
+    return response_data</code></pre>
+</details>
+<div class="desc"><p>Makes the HTTP request (synchronous)
+:param method: Method to call.
+:param url: Path to method endpoint.
+:param header_params: Header parameters to be
+placed in the request header.
+:param body: Request body.
+:param post_params dict: Request post form parameters,
+for <code>application/x-www-form-urlencoded</code>, <code>multipart/form-data</code>.
+:param _request_timeout: timeout setting for this request.
+:return: RESTResponse</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.deserialize"><code class="name flex">
+<span>def <span class="ident">deserialize</span></span>(<span>self, response_text: str, response_type: str, content_type: str | None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def deserialize(self, response_text: str, response_type: str, content_type: Optional[str]):
+    &#34;&#34;&#34;Deserializes response into an object.
+
+    :param response: RESTResponse object to be deserialized.
+    :param response_type: class literal for
+        deserialized object, or string of class name.
+    :param content_type: content type of response.
+
+    :return: deserialized object.
+    &#34;&#34;&#34;
+
+    # fetch data from response object
+    if content_type is None:
+        try:
+            data = json.loads(response_text)
+        except ValueError:
+            data = response_text
+    elif re.match(r&#39;^application/(json|[\w!#$&amp;.+-^_]+\+json)\s*(;|$)&#39;, content_type, re.IGNORECASE):
+        if response_text == &#34;&#34;:
+            data = &#34;&#34;
+        else:
+            data = json.loads(response_text)
+    elif re.match(r&#39;^text\/[a-z.+-]+\s*(;|$)&#39;, content_type, re.IGNORECASE):
+        data = response_text
+    else:
+        raise ApiException(
+            status=0,
+            reason=&#34;Unsupported content type: {0}&#34;.format(content_type)
+        )
+
+    return self.__deserialize(data, response_type)</code></pre>
+</details>
+<div class="desc"><p>Deserializes response into an object.</p>
+<p>:param response: RESTResponse object to be deserialized.
+:param response_type: class literal for
+deserialized object, or string of class name.
+:param content_type: content type of response.</p>
+<p>:return: deserialized object.</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.files_parameters"><code class="name flex">
+<span>def <span class="ident">files_parameters</span></span>(<span>self,<br>files: Dict[str, str | bytes | List[str] | List[bytes] | Tuple[str, bytes]])</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def files_parameters(
+    self,
+    files: Dict[str, Union[str, bytes, List[str], List[bytes], Tuple[str, bytes]]],
+):
+    &#34;&#34;&#34;Builds form parameters.
+
+    :param files: File parameters.
+    :return: Form parameters with files.
+    &#34;&#34;&#34;
+    params = []
+    for k, v in files.items():
+        if isinstance(v, str):
+            with open(v, &#39;rb&#39;) as f:
+                filename = os.path.basename(f.name)
+                filedata = f.read()
+        elif isinstance(v, bytes):
+            filename = k
+            filedata = v
+        elif isinstance(v, tuple):
+            filename, filedata = v
+        elif isinstance(v, list):
+            for file_param in v:
+                params.extend(self.files_parameters({k: file_param}))
+            continue
+        else:
+            raise ValueError(&#34;Unsupported file value&#34;)
+        mimetype = (
+            mimetypes.guess_type(filename)[0]
+            or &#39;application/octet-stream&#39;
+        )
+        params.append(
+            tuple([k, tuple([filename, filedata, mimetype])])
+        )
+    return params</code></pre>
+</details>
+<div class="desc"><p>Builds form parameters.</p>
+<p>:param files: File parameters.
+:return: Form parameters with files.</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.param_serialize"><code class="name flex">
+<span>def <span class="ident">param_serialize</span></span>(<span>self,<br>method,<br>resource_path,<br>path_params=None,<br>query_params=None,<br>header_params=None,<br>body=None,<br>post_params=None,<br>files=None,<br>auth_settings=None,<br>collection_formats=None) ‑> Tuple[str, str, Dict[str, str], str | None, List[str]]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def param_serialize(
+    self,
+    method,
+    resource_path,
+    path_params=None,
+    query_params=None,
+    header_params=None,
+    body=None,
+    post_params=None,
+    files=None, auth_settings=None,
+    collection_formats=None,
+    _host=None,
+    _request_auth=None
+) -&gt; RequestSerialized:
+
+    &#34;&#34;&#34;Builds the HTTP request params needed by the request.
+    :param method: Method to call.
+    :param resource_path: Path to method endpoint.
+    :param path_params: Path parameters in the url.
+    :param query_params: Query parameters in the url.
+    :param header_params: Header parameters to be
+        placed in the request header.
+    :param body: Request body.
+    :param post_params dict: Request post form parameters,
+        for `application/x-www-form-urlencoded`, `multipart/form-data`.
+    :param auth_settings list: Auth Settings names for the request.
+    :param files dict: key -&gt; filename, value -&gt; filepath,
+        for `multipart/form-data`.
+    :param collection_formats: dict of collection formats for path, query,
+        header, and post parameters.
+    :param _request_auth: set to override the auth_settings for an a single
+                          request; this effectively ignores the authentication
+                          in the spec for a single request.
+    :return: tuple of form (path, http_method, query_params, header_params,
+        body, post_params, files)
+    &#34;&#34;&#34;
+
+    config = self.configuration
+
+    # header parameters
+    header_params = header_params or {}
+    header_params.update(self.default_headers)
+    if self.cookie:
+        header_params[&#39;Cookie&#39;] = self.cookie
+    if header_params:
+        header_params = self.sanitize_for_serialization(header_params)
+        header_params = dict(
+            self.parameters_to_tuples(header_params,collection_formats)
+        )
+
+    # path parameters
+    if path_params:
+        path_params = self.sanitize_for_serialization(path_params)
+        path_params = self.parameters_to_tuples(
+            path_params,
+            collection_formats
+        )
+        for k, v in path_params:
+            # specified safe chars, encode everything
+            resource_path = resource_path.replace(
+                &#39;{%s}&#39; % k,
+                quote(str(v), safe=config.safe_chars_for_path_param)
+            )
+
+    # post parameters
+    if post_params or files:
+        post_params = post_params if post_params else []
+        post_params = self.sanitize_for_serialization(post_params)
+        post_params = self.parameters_to_tuples(
+            post_params,
+            collection_formats
+        )
+        if files:
+            post_params.extend(self.files_parameters(files))
+
+    # auth setting
+    self.update_params_for_auth(
+        header_params,
+        query_params,
+        auth_settings,
+        resource_path,
+        method,
+        body,
+        request_auth=_request_auth
+    )
+
+    # body
+    if body:
+        body = self.sanitize_for_serialization(body)
+
+    # request url
+    if _host is None or self.configuration.ignore_operation_servers:
+        url = self.configuration.host + resource_path
+    else:
+        # use server/host defined in path or operation instead
+        url = _host + resource_path
+
+    # query parameters
+    if query_params:
+        query_params = self.sanitize_for_serialization(query_params)
+        url_query = self.parameters_to_url_query(
+            query_params,
+            collection_formats
+        )
+        url += &#34;?&#34; + url_query
+
+    return method, url, header_params, body, post_params</code></pre>
+</details>
+<div class="desc"><p>Builds the HTTP request params needed by the request.
+:param method: Method to call.
+:param resource_path: Path to method endpoint.
+:param path_params: Path parameters in the url.
+:param query_params: Query parameters in the url.
+:param header_params: Header parameters to be
+placed in the request header.
+:param body: Request body.
+:param post_params dict: Request post form parameters,
+for <code>application/x-www-form-urlencoded</code>, <code>multipart/form-data</code>.
+:param auth_settings list: Auth Settings names for the request.
+:param files dict: key -&gt; filename, value -&gt; filepath,
+for <code>multipart/form-data</code>.
+:param collection_formats: dict of collection formats for path, query,
+header, and post parameters.
+:param _request_auth: set to override the auth_settings for an a single
+request; this effectively ignores the authentication
+in the spec for a single request.
+:return: tuple of form (path, http_method, query_params, header_params,
+body, post_params, files)</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.parameters_to_tuples"><code class="name flex">
+<span>def <span class="ident">parameters_to_tuples</span></span>(<span>self, params, collection_formats)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def parameters_to_tuples(self, params, collection_formats):
+    &#34;&#34;&#34;Get parameters as list of tuples, formatting collections.
+
+    :param params: Parameters as dict or list of two-tuples
+    :param dict collection_formats: Parameter collection formats
+    :return: Parameters as list of tuples, collections formatted
+    &#34;&#34;&#34;
+    new_params: List[Tuple[str, str]] = []
+    if collection_formats is None:
+        collection_formats = {}
+    for k, v in params.items() if isinstance(params, dict) else params:
+        if k in collection_formats:
+            collection_format = collection_formats[k]
+            if collection_format == &#39;multi&#39;:
+                new_params.extend((k, value) for value in v)
+            else:
+                if collection_format == &#39;ssv&#39;:
+                    delimiter = &#39; &#39;
+                elif collection_format == &#39;tsv&#39;:
+                    delimiter = &#39;\t&#39;
+                elif collection_format == &#39;pipes&#39;:
+                    delimiter = &#39;|&#39;
+                else:  # csv is the default
+                    delimiter = &#39;,&#39;
+                new_params.append(
+                    (k, delimiter.join(str(value) for value in v)))
+        else:
+            new_params.append((k, v))
+    return new_params</code></pre>
+</details>
+<div class="desc"><p>Get parameters as list of tuples, formatting collections.</p>
+<p>:param params: Parameters as dict or list of two-tuples
+:param dict collection_formats: Parameter collection formats
+:return: Parameters as list of tuples, collections formatted</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.parameters_to_url_query"><code class="name flex">
+<span>def <span class="ident">parameters_to_url_query</span></span>(<span>self, params, collection_formats)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def parameters_to_url_query(self, params, collection_formats):
+    &#34;&#34;&#34;Get parameters as list of tuples, formatting collections.
+
+    :param params: Parameters as dict or list of two-tuples
+    :param dict collection_formats: Parameter collection formats
+    :return: URL query string (e.g. a=Hello%20World&amp;b=123)
+    &#34;&#34;&#34;
+    new_params: List[Tuple[str, str]] = []
+    if collection_formats is None:
+        collection_formats = {}
+    for k, v in params.items() if isinstance(params, dict) else params:
+        if isinstance(v, bool):
+            v = str(v).lower()
+        if isinstance(v, (int, float)):
+            v = str(v)
+        if isinstance(v, dict):
+            v = json.dumps(v)
+
+        if k in collection_formats:
+            collection_format = collection_formats[k]
+            if collection_format == &#39;multi&#39;:
+                new_params.extend((k, quote(str(value))) for value in v)
+            else:
+                if collection_format == &#39;ssv&#39;:
+                    delimiter = &#39; &#39;
+                elif collection_format == &#39;tsv&#39;:
+                    delimiter = &#39;\t&#39;
+                elif collection_format == &#39;pipes&#39;:
+                    delimiter = &#39;|&#39;
+                else:  # csv is the default
+                    delimiter = &#39;,&#39;
+                new_params.append(
+                    (k, delimiter.join(quote(str(value)) for value in v))
+                )
+        else:
+            new_params.append((k, quote(str(v))))
+
+    return &#34;&amp;&#34;.join([&#34;=&#34;.join(map(str, item)) for item in new_params])</code></pre>
+</details>
+<div class="desc"><p>Get parameters as list of tuples, formatting collections.</p>
+<p>:param params: Parameters as dict or list of two-tuples
+:param dict collection_formats: Parameter collection formats
+:return: URL query string (e.g. a=Hello%20World&amp;b=123)</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.response_deserialize"><code class="name flex">
+<span>def <span class="ident">response_deserialize</span></span>(<span>self,<br>response_data: <a title="libica.openapi.v3.rest.RESTResponse" href="rest.html#libica.openapi.v3.rest.RESTResponse">RESTResponse</a>,<br>response_types_map: Dict[str, ~T] | None = None) ‑> <a title="libica.openapi.v3.api_response.ApiResponse" href="api_response.html#libica.openapi.v3.api_response.ApiResponse">ApiResponse</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def response_deserialize(
+    self,
+    response_data: rest.RESTResponse,
+    response_types_map: Optional[Dict[str, ApiResponseT]]=None
+) -&gt; ApiResponse[ApiResponseT]:
+    &#34;&#34;&#34;Deserializes response into an object.
+    :param response_data: RESTResponse object to be deserialized.
+    :param response_types_map: dict of response types.
+    :return: ApiResponse
+    &#34;&#34;&#34;
+
+    msg = &#34;RESTResponse.read() must be called before passing it to response_deserialize()&#34;
+    assert response_data.data is not None, msg
+
+    response_type = response_types_map.get(str(response_data.status), None)
+    if not response_type and isinstance(response_data.status, int) and 100 &lt;= response_data.status &lt;= 599:
+        # if not found, look for &#39;1XX&#39;, &#39;2XX&#39;, etc.
+        response_type = response_types_map.get(str(response_data.status)[0] + &#34;XX&#34;, None)
+
+    # deserialize response data
+    response_text = None
+    return_data = None
+    try:
+        if response_type == &#34;bytearray&#34;:
+            return_data = response_data.data
+        elif response_type == &#34;file&#34;:
+            return_data = self.__deserialize_file(response_data)
+        elif response_type is not None:
+            match = None
+            content_type = response_data.getheader(&#39;content-type&#39;)
+            if content_type is not None:
+                match = re.search(r&#34;charset=([a-zA-Z\-\d]+)[\s;]?&#34;, content_type)
+            encoding = match.group(1) if match else &#34;utf-8&#34;
+            response_text = response_data.data.decode(encoding)
+            return_data = self.deserialize(response_text, response_type, content_type)
+    finally:
+        if not 200 &lt;= response_data.status &lt;= 299:
+            raise ApiException.from_response(
+                http_resp=response_data,
+                body=response_text,
+                data=return_data,
+            )
+
+    return ApiResponse(
+        status_code = response_data.status,
+        data = return_data,
+        headers = response_data.getheaders(),
+        raw_data = response_data.data
+    )</code></pre>
+</details>
+<div class="desc"><p>Deserializes response into an object.
+:param response_data: RESTResponse object to be deserialized.
+:param response_types_map: dict of response types.
+:return: ApiResponse</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.sanitize_for_serialization"><code class="name flex">
+<span>def <span class="ident">sanitize_for_serialization</span></span>(<span>self, obj)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sanitize_for_serialization(self, obj):
+    &#34;&#34;&#34;Builds a JSON POST object.
+
+    If obj is None, return None.
+    If obj is SecretStr, return obj.get_secret_value()
+    If obj is str, int, long, float, bool, return directly.
+    If obj is datetime.datetime, datetime.date
+        convert to string in iso8601 format.
+    If obj is decimal.Decimal return string representation.
+    If obj is list, sanitize each element in the list.
+    If obj is dict, return the dict.
+    If obj is OpenAPI model, return the properties dict.
+
+    :param obj: The data to serialize.
+    :return: The serialized form of data.
+    &#34;&#34;&#34;
+    if obj is None:
+        return None
+    elif isinstance(obj, Enum):
+        return obj.value
+    elif isinstance(obj, SecretStr):
+        return obj.get_secret_value()
+    elif isinstance(obj, self.PRIMITIVE_TYPES):
+        return obj
+    elif isinstance(obj, list):
+        return [
+            self.sanitize_for_serialization(sub_obj) for sub_obj in obj
+        ]
+    elif isinstance(obj, tuple):
+        return tuple(
+            self.sanitize_for_serialization(sub_obj) for sub_obj in obj
+        )
+    elif isinstance(obj, (datetime.datetime, datetime.date)):
+        return obj.isoformat()
+    elif isinstance(obj, decimal.Decimal):
+        return str(obj)
+
+    elif isinstance(obj, dict):
+        obj_dict = obj
+    else:
+        # Convert model obj to dict except
+        # attributes `openapi_types`, `attribute_map`
+        # and attributes which value is not None.
+        # Convert attribute name to json key in
+        # model definition for request.
+        if hasattr(obj, &#39;to_dict&#39;) and callable(getattr(obj, &#39;to_dict&#39;)):
+            obj_dict = obj.to_dict()
+        else:
+            obj_dict = obj.__dict__
+
+    return {
+        key: self.sanitize_for_serialization(val)
+        for key, val in obj_dict.items()
+    }</code></pre>
+</details>
+<div class="desc"><p>Builds a JSON POST object.</p>
+<p>If obj is None, return None.
+If obj is SecretStr, return obj.get_secret_value()
+If obj is str, int, long, float, bool, return directly.
+If obj is datetime.datetime, datetime.date
+convert to string in iso8601 format.
+If obj is decimal.Decimal return string representation.
+If obj is list, sanitize each element in the list.
+If obj is dict, return the dict.
+If obj is OpenAPI model, return the properties dict.</p>
+<p>:param obj: The data to serialize.
+:return: The serialized form of data.</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.select_header_accept"><code class="name flex">
+<span>def <span class="ident">select_header_accept</span></span>(<span>self, accepts: List[str]) ‑> str | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def select_header_accept(self, accepts: List[str]) -&gt; Optional[str]:
+    &#34;&#34;&#34;Returns `Accept` based on an array of accepts provided.
+
+    :param accepts: List of headers.
+    :return: Accept (e.g. application/json).
+    &#34;&#34;&#34;
+    if not accepts:
+        return None
+
+    for accept in accepts:
+        if re.search(&#39;json&#39;, accept, re.IGNORECASE):
+            return accept
+
+    return accepts[0]</code></pre>
+</details>
+<div class="desc"><p>Returns <code>Accept</code> based on an array of accepts provided.</p>
+<p>:param accepts: List of headers.
+:return: Accept (e.g. application/json).</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.select_header_content_type"><code class="name flex">
+<span>def <span class="ident">select_header_content_type</span></span>(<span>self, content_types)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def select_header_content_type(self, content_types):
+    &#34;&#34;&#34;Returns `Content-Type` based on an array of content_types provided.
+
+    :param content_types: List of content-types.
+    :return: Content-Type (e.g. application/json).
+    &#34;&#34;&#34;
+    if not content_types:
+        return None
+
+    for content_type in content_types:
+        if re.search(&#39;json&#39;, content_type, re.IGNORECASE):
+            return content_type
+
+    return content_types[0]</code></pre>
+</details>
+<div class="desc"><p>Returns <code>Content-Type</code> based on an array of content_types provided.</p>
+<p>:param content_types: List of content-types.
+:return: Content-Type (e.g. application/json).</p></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.set_default_header"><code class="name flex">
+<span>def <span class="ident">set_default_header</span></span>(<span>self, header_name, header_value)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_default_header(self, header_name, header_value):
+    self.default_headers[header_name] = header_value</code></pre>
+</details>
+<div class="desc"></div>
+</dd>
+<dt id="libica.openapi.v3.api_client.ApiClient.update_params_for_auth"><code class="name flex">
+<span>def <span class="ident">update_params_for_auth</span></span>(<span>self, headers, queries, auth_settings, resource_path, method, body, request_auth=None) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def update_params_for_auth(
+    self,
+    headers,
+    queries,
+    auth_settings,
+    resource_path,
+    method,
+    body,
+    request_auth=None
+) -&gt; None:
+    &#34;&#34;&#34;Updates header and query params based on authentication setting.
+
+    :param headers: Header parameters dict to be updated.
+    :param queries: Query parameters tuple list to be updated.
+    :param auth_settings: Authentication setting identifiers list.
+    :resource_path: A string representation of the HTTP request resource path.
+    :method: A string representation of the HTTP request method.
+    :body: A object representing the body of the HTTP request.
+    The object type is the return value of sanitize_for_serialization().
+    :param request_auth: if set, the provided settings will
+                         override the token in the configuration.
+    &#34;&#34;&#34;
+    if not auth_settings:
+        return
+
+    if request_auth:
+        self._apply_auth_params(
+            headers,
+            queries,
+            resource_path,
+            method,
+            body,
+            request_auth
+        )
+    else:
+        for auth in auth_settings:
+            auth_setting = self.configuration.auth_settings().get(auth)
+            if auth_setting:
+                self._apply_auth_params(
+                    headers,
+                    queries,
+                    resource_path,
+                    method,
+                    body,
+                    auth_setting
+                )</code></pre>
+</details>
+<div class="desc"><p>Updates header and query params based on authentication setting.</p>
+<p>:param headers: Header parameters dict to be updated.
+:param queries: Query parameters tuple list to be updated.
+:param auth_settings: Authentication setting identifiers list.
+:resource_path: A string representation of the HTTP request resource path.
+:method: A string representation of the HTTP request method.
+:body: A object representing the body of the HTTP request.
+The object type is the return value of sanitize_for_serialization().
+:param request_auth: if set, the provided settings will
+override the token in the configuration.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="libica.openapi.v3" href="index.html">libica.openapi.v3</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="libica.openapi.v3.api_client.ApiClient" href="#libica.openapi.v3.api_client.ApiClient">ApiClient</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.NATIVE_TYPES_MAPPING" href="#libica.openapi.v3.api_client.ApiClient.NATIVE_TYPES_MAPPING">NATIVE_TYPES_MAPPING</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.PRIMITIVE_TYPES" href="#libica.openapi.v3.api_client.ApiClient.PRIMITIVE_TYPES">PRIMITIVE_TYPES</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.call_api" href="#libica.openapi.v3.api_client.ApiClient.call_api">call_api</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.deserialize" href="#libica.openapi.v3.api_client.ApiClient.deserialize">deserialize</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.files_parameters" href="#libica.openapi.v3.api_client.ApiClient.files_parameters">files_parameters</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.get_default" href="#libica.openapi.v3.api_client.ApiClient.get_default">get_default</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.param_serialize" href="#libica.openapi.v3.api_client.ApiClient.param_serialize">param_serialize</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.parameters_to_tuples" href="#libica.openapi.v3.api_client.ApiClient.parameters_to_tuples">parameters_to_tuples</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.parameters_to_url_query" href="#libica.openapi.v3.api_client.ApiClient.parameters_to_url_query">parameters_to_url_query</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.response_deserialize" href="#libica.openapi.v3.api_client.ApiClient.response_deserialize">response_deserialize</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.sanitize_for_serialization" href="#libica.openapi.v3.api_client.ApiClient.sanitize_for_serialization">sanitize_for_serialization</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.select_header_accept" href="#libica.openapi.v3.api_client.ApiClient.select_header_accept">select_header_accept</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.select_header_content_type" href="#libica.openapi.v3.api_client.ApiClient.select_header_content_type">select_header_content_type</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.set_default" href="#libica.openapi.v3.api_client.ApiClient.set_default">set_default</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.set_default_header" href="#libica.openapi.v3.api_client.ApiClient.set_default_header">set_default_header</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.update_params_for_auth" href="#libica.openapi.v3.api_client.ApiClient.update_params_for_auth">update_params_for_auth</a></code></li>
+<li><code><a title="libica.openapi.v3.api_client.ApiClient.user_agent" href="#libica.openapi.v3.api_client.ApiClient.user_agent">user_agent</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

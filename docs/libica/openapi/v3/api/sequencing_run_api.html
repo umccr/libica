@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>libica.openapi.v3.api.sequencing_run_api API documentation</title>
+<meta name="description" content="ICA Rest API …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>libica.openapi.v3.api.sequencing_run_api</code></h1>
+</header>
+<section id="section-intro">
+<p>ICA Rest API</p>
+<p>This API can be used to interact with Illumina Connected Analytics.<br> <h2>Authentication</h2> <p> Authentication to the
+API can be done in multiple ways:<br> <ul><li>For the entire API, except for the POST /tokens endpoint: API-key + JWT</li> <li>Only for the POST /tokens endpoint: API-key + Basic Authentication</li></ul> </p> <p> <h4>API-key</h4> API keys are managed within the Illumina portal where you can manage your profile after you have logged on. The API-key has to be provided in the X-API-Key header parameter when executing API calls to ICA. In the background, a JWT will be requested at the IDP of Illumina to create a session. A good practice is to not use the API-key for every API call, but to first generate a JWT and to use that for authentication in subsequent calls.<br> </p> <p> <h4>JWT</h4> To avoid using an API-key for each call, we recommend to request a JWT via the POST /tokens endpoint
+using this API-key. The JWT will expire after a pre-configured period specified by a tenant administrator through the IAM console in the Illumina portal. The JWT is the preferred way for authentication.<br>A not yet expired, still valid JWT could be refreshed using the POST /tokens:refresh endpoint.<br>Refreshing the JWT is not possible if the JWT was generated by using an API-key.<br> </p> <p> <h4>Basic Authentication</h4> Basic authentication is only supported by the POST /tokens endpoint for generating a JWT. Use "Basic base64encoded(emailaddress:password)" in the "Authorization" header parameter for this authentication method. In case having access to multiple tenants using the same email-address, also provide the "tenant" request parameter to indicate what tenant you would like to request a JWT for. </p> <p> <h2>Compression</h2> If the API client provides request header 'Accept-Encoding' with value 'gzip', then the API applies GZIP compression on the JSON response. This significantly reduces the size and thus the download time of the response, which results in faster end-to-end API calls. In case of compression, the API also provides response header 'Content-Encoding' with value 'gzip', as indication for the client that decompression is required. </p> </p>
+<p>The version of the OpenAPI document: 3
+Generated by OpenAPI Generator (<a href="https://openapi-generator.tech">https://openapi-generator.tech</a>)</p>
+<p>Do not edit the class manually.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="libica.openapi.v3.api.sequencing_run_api.SequencingRunApi"><code class="flex name class">
+<span>class <span class="ident">SequencingRunApi</span></span>
+<span>(</span><span>api_client=None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SequencingRunApi:
+    &#34;&#34;&#34;NOTE: This class is auto generated by OpenAPI Generator
+    Ref: https://openapi-generator.tech
+
+    Do not edit the class manually.
+    &#34;&#34;&#34;
+
+    def __init__(self, api_client=None) -&gt; None:
+        if api_client is None:
+            api_client = ApiClient.get_default()
+        self.api_client = api_client
+
+
+    @validate_call
+    def get_sequencing_run(
+        self,
+        sequencing_run_id: Annotated[StrictStr, Field(description=&#34;The ID of the sequencing run to retrieve&#34;)],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -&gt; SequencingRun:
+        &#34;&#34;&#34;Retrieve a sequencing run.
+
+
+        :param sequencing_run_id: The ID of the sequencing run to retrieve (required)
+        :type sequencing_run_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        &#34;&#34;&#34; # noqa: E501
+
+        _param = self._get_sequencing_run_serialize(
+            sequencing_run_id=sequencing_run_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            &#39;200&#39;: &#34;SequencingRun&#34;,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_sequencing_run_with_http_info(
+        self,
+        sequencing_run_id: Annotated[StrictStr, Field(description=&#34;The ID of the sequencing run to retrieve&#34;)],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -&gt; ApiResponse[SequencingRun]:
+        &#34;&#34;&#34;Retrieve a sequencing run.
+
+
+        :param sequencing_run_id: The ID of the sequencing run to retrieve (required)
+        :type sequencing_run_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        &#34;&#34;&#34; # noqa: E501
+
+        _param = self._get_sequencing_run_serialize(
+            sequencing_run_id=sequencing_run_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            &#39;200&#39;: &#34;SequencingRun&#34;,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_sequencing_run_without_preload_content(
+        self,
+        sequencing_run_id: Annotated[StrictStr, Field(description=&#34;The ID of the sequencing run to retrieve&#34;)],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -&gt; RESTResponseType:
+        &#34;&#34;&#34;Retrieve a sequencing run.
+
+
+        :param sequencing_run_id: The ID of the sequencing run to retrieve (required)
+        :type sequencing_run_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        &#34;&#34;&#34; # noqa: E501
+
+        _param = self._get_sequencing_run_serialize(
+            sequencing_run_id=sequencing_run_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            &#39;200&#39;: &#34;SequencingRun&#34;,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_sequencing_run_serialize(
+        self,
+        sequencing_run_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -&gt; RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if sequencing_run_id is not None:
+            _path_params[&#39;sequencingRunId&#39;] = sequencing_run_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if &#39;Accept&#39; not in _header_params:
+            _header_params[&#39;Accept&#39;] = self.api_client.select_header_accept(
+                [
+                    &#39;application/problem+json&#39;, 
+                    &#39;application/vnd.illumina.v3+json&#39;
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            &#39;JwtAuth&#39;, 
+            &#39;ApiKeyAuth&#39;
+        ]
+
+        return self.api_client.param_serialize(
+            method=&#39;GET&#39;,
+            resource_path=&#39;/api/sequencingRuns/{sequencingRunId}&#39;,
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )</code></pre>
+</details>
+<div class="desc"><p>NOTE: This class is auto generated by OpenAPI Generator
+Ref: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a></p>
+<p>Do not edit the class manually.</p></div>
+<h3>Methods</h3>
+<dl>
+<dt id="libica.openapi.v3.api.sequencing_run_api.SequencingRunApi.get_sequencing_run"><code class="name flex">
+<span>def <span class="ident">get_sequencing_run</span></span>(<span>self,<br>sequencing_run_id: Annotated[str, Strict(strict=True), FieldInfo(annotation=NoneType, required=True, description='The ID of the sequencing run to retrieve')]) ‑> <a title="libica.openapi.v3.models.sequencing_run.SequencingRun" href="../models/sequencing_run.html#libica.openapi.v3.models.sequencing_run.SequencingRun">SequencingRun</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@validate_call
+def get_sequencing_run(
+    self,
+    sequencing_run_id: Annotated[StrictStr, Field(description=&#34;The ID of the sequencing run to retrieve&#34;)],
+    _request_timeout: Union[
+        None,
+        Annotated[StrictFloat, Field(gt=0)],
+        Tuple[
+            Annotated[StrictFloat, Field(gt=0)],
+            Annotated[StrictFloat, Field(gt=0)]
+        ]
+    ] = None,
+    _request_auth: Optional[Dict[StrictStr, Any]] = None,
+    _content_type: Optional[StrictStr] = None,
+    _headers: Optional[Dict[StrictStr, Any]] = None,
+    _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+) -&gt; SequencingRun:
+    &#34;&#34;&#34;Retrieve a sequencing run.
+
+
+    :param sequencing_run_id: The ID of the sequencing run to retrieve (required)
+    :type sequencing_run_id: str
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :type _request_timeout: int, tuple(int, int), optional
+    :param _request_auth: set to override the auth_settings for an a single
+                          request; this effectively ignores the
+                          authentication in the spec for a single request.
+    :type _request_auth: dict, optional
+    :param _content_type: force content-type for the request.
+    :type _content_type: str, Optional
+    :param _headers: set to override the headers for a single
+                     request; this effectively ignores the headers
+                     in the spec for a single request.
+    :type _headers: dict, optional
+    :param _host_index: set to override the host_index for a single
+                        request; this effectively ignores the host_index
+                        in the spec for a single request.
+    :type _host_index: int, optional
+    :return: Returns the result object.
+    &#34;&#34;&#34; # noqa: E501
+
+    _param = self._get_sequencing_run_serialize(
+        sequencing_run_id=sequencing_run_id,
+        _request_auth=_request_auth,
+        _content_type=_content_type,
+        _headers=_headers,
+        _host_index=_host_index
+    )
+
+    _response_types_map: Dict[str, Optional[str]] = {
+        &#39;200&#39;: &#34;SequencingRun&#34;,
+    }
+    response_data = self.api_client.call_api(
+        *_param,
+        _request_timeout=_request_timeout
+    )
+    response_data.read()
+    return self.api_client.response_deserialize(
+        response_data=response_data,
+        response_types_map=_response_types_map,
+    ).data</code></pre>
+</details>
+<div class="desc"><p>Retrieve a sequencing run.</p>
+<p>:param sequencing_run_id: The ID of the sequencing run to retrieve (required)
+:type sequencing_run_id: str
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+request; this effectively ignores the
+authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+request; this effectively ignores the headers
+in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+request; this effectively ignores the host_index
+in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p></div>
+</dd>
+<dt id="libica.openapi.v3.api.sequencing_run_api.SequencingRunApi.get_sequencing_run_with_http_info"><code class="name flex">
+<span>def <span class="ident">get_sequencing_run_with_http_info</span></span>(<span>self,<br>sequencing_run_id: Annotated[str, Strict(strict=True), FieldInfo(annotation=NoneType, required=True, description='The ID of the sequencing run to retrieve')]) ‑> <a title="libica.openapi.v3.api_response.ApiResponse" href="../api_response.html#libica.openapi.v3.api_response.ApiResponse">ApiResponse</a>[SequencingRun]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@validate_call
+def get_sequencing_run_with_http_info(
+    self,
+    sequencing_run_id: Annotated[StrictStr, Field(description=&#34;The ID of the sequencing run to retrieve&#34;)],
+    _request_timeout: Union[
+        None,
+        Annotated[StrictFloat, Field(gt=0)],
+        Tuple[
+            Annotated[StrictFloat, Field(gt=0)],
+            Annotated[StrictFloat, Field(gt=0)]
+        ]
+    ] = None,
+    _request_auth: Optional[Dict[StrictStr, Any]] = None,
+    _content_type: Optional[StrictStr] = None,
+    _headers: Optional[Dict[StrictStr, Any]] = None,
+    _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+) -&gt; ApiResponse[SequencingRun]:
+    &#34;&#34;&#34;Retrieve a sequencing run.
+
+
+    :param sequencing_run_id: The ID of the sequencing run to retrieve (required)
+    :type sequencing_run_id: str
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :type _request_timeout: int, tuple(int, int), optional
+    :param _request_auth: set to override the auth_settings for an a single
+                          request; this effectively ignores the
+                          authentication in the spec for a single request.
+    :type _request_auth: dict, optional
+    :param _content_type: force content-type for the request.
+    :type _content_type: str, Optional
+    :param _headers: set to override the headers for a single
+                     request; this effectively ignores the headers
+                     in the spec for a single request.
+    :type _headers: dict, optional
+    :param _host_index: set to override the host_index for a single
+                        request; this effectively ignores the host_index
+                        in the spec for a single request.
+    :type _host_index: int, optional
+    :return: Returns the result object.
+    &#34;&#34;&#34; # noqa: E501
+
+    _param = self._get_sequencing_run_serialize(
+        sequencing_run_id=sequencing_run_id,
+        _request_auth=_request_auth,
+        _content_type=_content_type,
+        _headers=_headers,
+        _host_index=_host_index
+    )
+
+    _response_types_map: Dict[str, Optional[str]] = {
+        &#39;200&#39;: &#34;SequencingRun&#34;,
+    }
+    response_data = self.api_client.call_api(
+        *_param,
+        _request_timeout=_request_timeout
+    )
+    response_data.read()
+    return self.api_client.response_deserialize(
+        response_data=response_data,
+        response_types_map=_response_types_map,
+    )</code></pre>
+</details>
+<div class="desc"><p>Retrieve a sequencing run.</p>
+<p>:param sequencing_run_id: The ID of the sequencing run to retrieve (required)
+:type sequencing_run_id: str
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+request; this effectively ignores the
+authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+request; this effectively ignores the headers
+in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+request; this effectively ignores the host_index
+in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p></div>
+</dd>
+<dt id="libica.openapi.v3.api.sequencing_run_api.SequencingRunApi.get_sequencing_run_without_preload_content"><code class="name flex">
+<span>def <span class="ident">get_sequencing_run_without_preload_content</span></span>(<span>self,<br>sequencing_run_id: Annotated[str, Strict(strict=True), FieldInfo(annotation=NoneType, required=True, description='The ID of the sequencing run to retrieve')]) ‑> urllib3.response.HTTPResponse</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@validate_call
+def get_sequencing_run_without_preload_content(
+    self,
+    sequencing_run_id: Annotated[StrictStr, Field(description=&#34;The ID of the sequencing run to retrieve&#34;)],
+    _request_timeout: Union[
+        None,
+        Annotated[StrictFloat, Field(gt=0)],
+        Tuple[
+            Annotated[StrictFloat, Field(gt=0)],
+            Annotated[StrictFloat, Field(gt=0)]
+        ]
+    ] = None,
+    _request_auth: Optional[Dict[StrictStr, Any]] = None,
+    _content_type: Optional[StrictStr] = None,
+    _headers: Optional[Dict[StrictStr, Any]] = None,
+    _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+) -&gt; RESTResponseType:
+    &#34;&#34;&#34;Retrieve a sequencing run.
+
+
+    :param sequencing_run_id: The ID of the sequencing run to retrieve (required)
+    :type sequencing_run_id: str
+    :param _request_timeout: timeout setting for this request. If one
+                             number provided, it will be total request
+                             timeout. It can also be a pair (tuple) of
+                             (connection, read) timeouts.
+    :type _request_timeout: int, tuple(int, int), optional
+    :param _request_auth: set to override the auth_settings for an a single
+                          request; this effectively ignores the
+                          authentication in the spec for a single request.
+    :type _request_auth: dict, optional
+    :param _content_type: force content-type for the request.
+    :type _content_type: str, Optional
+    :param _headers: set to override the headers for a single
+                     request; this effectively ignores the headers
+                     in the spec for a single request.
+    :type _headers: dict, optional
+    :param _host_index: set to override the host_index for a single
+                        request; this effectively ignores the host_index
+                        in the spec for a single request.
+    :type _host_index: int, optional
+    :return: Returns the result object.
+    &#34;&#34;&#34; # noqa: E501
+
+    _param = self._get_sequencing_run_serialize(
+        sequencing_run_id=sequencing_run_id,
+        _request_auth=_request_auth,
+        _content_type=_content_type,
+        _headers=_headers,
+        _host_index=_host_index
+    )
+
+    _response_types_map: Dict[str, Optional[str]] = {
+        &#39;200&#39;: &#34;SequencingRun&#34;,
+    }
+    response_data = self.api_client.call_api(
+        *_param,
+        _request_timeout=_request_timeout
+    )
+    return response_data.response</code></pre>
+</details>
+<div class="desc"><p>Retrieve a sequencing run.</p>
+<p>:param sequencing_run_id: The ID of the sequencing run to retrieve (required)
+:type sequencing_run_id: str
+:param _request_timeout: timeout setting for this request. If one
+number provided, it will be total request
+timeout. It can also be a pair (tuple) of
+(connection, read) timeouts.
+:type _request_timeout: int, tuple(int, int), optional
+:param _request_auth: set to override the auth_settings for an a single
+request; this effectively ignores the
+authentication in the spec for a single request.
+:type _request_auth: dict, optional
+:param _content_type: force content-type for the request.
+:type _content_type: str, Optional
+:param _headers: set to override the headers for a single
+request; this effectively ignores the headers
+in the spec for a single request.
+:type _headers: dict, optional
+:param _host_index: set to override the host_index for a single
+request; this effectively ignores the host_index
+in the spec for a single request.
+:type _host_index: int, optional
+:return: Returns the result object.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="libica.openapi.v3.api" href="index.html">libica.openapi.v3.api</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="libica.openapi.v3.api.sequencing_run_api.SequencingRunApi" href="#libica.openapi.v3.api.sequencing_run_api.SequencingRunApi">SequencingRunApi</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.api.sequencing_run_api.SequencingRunApi.get_sequencing_run" href="#libica.openapi.v3.api.sequencing_run_api.SequencingRunApi.get_sequencing_run">get_sequencing_run</a></code></li>
+<li><code><a title="libica.openapi.v3.api.sequencing_run_api.SequencingRunApi.get_sequencing_run_with_http_info" href="#libica.openapi.v3.api.sequencing_run_api.SequencingRunApi.get_sequencing_run_with_http_info">get_sequencing_run_with_http_info</a></code></li>
+<li><code><a title="libica.openapi.v3.api.sequencing_run_api.SequencingRunApi.get_sequencing_run_without_preload_content" href="#libica.openapi.v3.api.sequencing_run_api.SequencingRunApi.get_sequencing_run_without_preload_content">get_sequencing_run_without_preload_content</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

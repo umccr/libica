@@ -16,7 +16,6 @@ pip install libica
 ## Overview
 
 - Tested for Python 3.8, 3.9, 3.10, 3.11, 3.12, 3.13
-- [Test Coverage](https://umccr.github.io/libica/coverage/)
 - SDK Guide: [PyDoc](https://umccr.github.io/libica/libica/)
 - User Guide: https://umccr.github.io/libica/
 

@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>libica.openapi.v3.test.test_project_pipeline_api API documentation</title>
+<meta name="description" content="ICA Rest API …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>libica.openapi.v3.test.test_project_pipeline_api</code></h1>
+</header>
+<section id="section-intro">
+<p>ICA Rest API</p>
+<p>This API can be used to interact with Illumina Connected Analytics.<br> <h2>Authentication</h2> <p> Authentication to the
+API can be done in multiple ways:<br> <ul><li>For the entire API, except for the POST /tokens endpoint: API-key + JWT</li> <li>Only for the POST /tokens endpoint: API-key + Basic Authentication</li></ul> </p> <p> <h4>API-key</h4> API keys are managed within the Illumina portal where you can manage your profile after you have logged on. The API-key has to be provided in the X-API-Key header parameter when executing API calls to ICA. In the background, a JWT will be requested at the IDP of Illumina to create a session. A good practice is to not use the API-key for every API call, but to first generate a JWT and to use that for authentication in subsequent calls.<br> </p> <p> <h4>JWT</h4> To avoid using an API-key for each call, we recommend to request a JWT via the POST /tokens endpoint
+using this API-key. The JWT will expire after a pre-configured period specified by a tenant administrator through the IAM console in the Illumina portal. The JWT is the preferred way for authentication.<br>A not yet expired, still valid JWT could be refreshed using the POST /tokens:refresh endpoint.<br>Refreshing the JWT is not possible if the JWT was generated by using an API-key.<br> </p> <p> <h4>Basic Authentication</h4> Basic authentication is only supported by the POST /tokens endpoint for generating a JWT. Use "Basic base64encoded(emailaddress:password)" in the "Authorization" header parameter for this authentication method. In case having access to multiple tenants using the same email-address, also provide the "tenant" request parameter to indicate what tenant you would like to request a JWT for. </p> <p> <h2>Compression</h2> If the API client provides request header 'Accept-Encoding' with value 'gzip', then the API applies GZIP compression on the JSON response. This significantly reduces the size and thus the download time of the response, which results in faster end-to-end API calls. In case of compression, the API also provides response header 'Content-Encoding' with value 'gzip', as indication for the client that decompression is required. </p> </p>
+<p>The version of the OpenAPI document: 3
+Generated by OpenAPI Generator (<a href="https://openapi-generator.tech">https://openapi-generator.tech</a>)</p>
+<p>Do not edit the class manually.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi"><code class="flex name class">
+<span>class <span class="ident">TestProjectPipelineApi</span></span>
+<span>(</span><span>methodName='runTest')</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TestProjectPipelineApi(unittest.TestCase):
+    &#34;&#34;&#34;ProjectPipelineApi unit test stubs&#34;&#34;&#34;
+
+    def setUp(self) -&gt; None:
+        self.api = ProjectPipelineApi()
+
+    def tearDown(self) -&gt; None:
+        pass
+
+    def test_create_additional_project_pipeline_file(self) -&gt; None:
+        &#34;&#34;&#34;Test case for create_additional_project_pipeline_file
+
+        Create an additional input form file for a pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_create_cwl_json_pipeline(self) -&gt; None:
+        &#34;&#34;&#34;Test case for create_cwl_json_pipeline
+
+        Create a JSON based CWL pipeline within a project.
+        &#34;&#34;&#34;
+        pass
+
+    def test_create_cwl_pipeline(self) -&gt; None:
+        &#34;&#34;&#34;Test case for create_cwl_pipeline
+
+        Create a CWL pipeline within a project.
+        &#34;&#34;&#34;
+        pass
+
+    def test_create_nextflow_json_pipeline(self) -&gt; None:
+        &#34;&#34;&#34;Test case for create_nextflow_json_pipeline
+
+        Create a JSON based Nextflow pipeline within a project.
+        &#34;&#34;&#34;
+        pass
+
+    def test_create_nextflow_pipeline(self) -&gt; None:
+        &#34;&#34;&#34;Test case for create_nextflow_pipeline
+
+        Create a Nextflow pipeline within a project.
+        &#34;&#34;&#34;
+        pass
+
+    def test_create_project_pipeline_file(self) -&gt; None:
+        &#34;&#34;&#34;Test case for create_project_pipeline_file
+
+        Create a file for a pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_delete_additional_project_pipeline_file(self) -&gt; None:
+        &#34;&#34;&#34;Test case for delete_additional_project_pipeline_file
+
+        Delete an additional input form file for a pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_delete_project_pipeline_file(self) -&gt; None:
+        &#34;&#34;&#34;Test case for delete_project_pipeline_file
+
+        Delete a file for a pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_download_additional_file_content(self) -&gt; None:
+        &#34;&#34;&#34;Test case for download_additional_file_content
+
+        Download the contents of an additional input form file.
+        &#34;&#34;&#34;
+        pass
+
+    def test_download_input_form_file_content(self) -&gt; None:
+        &#34;&#34;&#34;Test case for download_input_form_file_content
+
+        Download the contents of the input form file.
+        &#34;&#34;&#34;
+        pass
+
+    def test_download_on_render_file_content(self) -&gt; None:
+        &#34;&#34;&#34;Test case for download_on_render_file_content
+
+        Download the contents of the onRender file.
+        &#34;&#34;&#34;
+        pass
+
+    def test_download_on_submit_file_content(self) -&gt; None:
+        &#34;&#34;&#34;Test case for download_on_submit_file_content
+
+        Download the contents of the onSubmit file.
+        &#34;&#34;&#34;
+        pass
+
+    def test_download_project_pipeline_file_content(self) -&gt; None:
+        &#34;&#34;&#34;Test case for download_project_pipeline_file_content
+
+        Download the contents of a pipeline file.
+        &#34;&#34;&#34;
+        pass
+
+    def test_get_project_pipeline(self) -&gt; None:
+        &#34;&#34;&#34;Test case for get_project_pipeline
+
+        Retrieve a project pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_get_project_pipeline_additional_files(self) -&gt; None:
+        &#34;&#34;&#34;Test case for get_project_pipeline_additional_files
+
+        Retrieve additional input form files for a project pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_get_project_pipeline_configuration_parameters(self) -&gt; None:
+        &#34;&#34;&#34;Test case for get_project_pipeline_configuration_parameters
+
+        Retrieve configuration parameters for a project pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_get_project_pipeline_files(self) -&gt; None:
+        &#34;&#34;&#34;Test case for get_project_pipeline_files
+
+        Retrieve files for a project pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_get_project_pipeline_html_documentation(self) -&gt; None:
+        &#34;&#34;&#34;Test case for get_project_pipeline_html_documentation
+
+        Retrieve HTML documentation for a project pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_get_project_pipeline_input_parameters(self) -&gt; None:
+        &#34;&#34;&#34;Test case for get_project_pipeline_input_parameters
+
+        Retrieve input parameters for a project pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_get_project_pipeline_reference_sets(self) -&gt; None:
+        &#34;&#34;&#34;Test case for get_project_pipeline_reference_sets
+
+        Retrieve the reference sets of a project pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_get_project_pipelines(self) -&gt; None:
+        &#34;&#34;&#34;Test case for get_project_pipelines
+
+        Retrieve a list of project pipelines.
+        &#34;&#34;&#34;
+        pass
+
+    def test_link_pipeline_to_project(self) -&gt; None:
+        &#34;&#34;&#34;Test case for link_pipeline_to_project
+
+        Link a pipeline to a project.
+        &#34;&#34;&#34;
+        pass
+
+    def test_release_project_pipeline(self) -&gt; None:
+        &#34;&#34;&#34;Test case for release_project_pipeline
+
+        Release a pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_unlink_pipeline_from_project(self) -&gt; None:
+        &#34;&#34;&#34;Test case for unlink_pipeline_from_project
+
+        Unlink a pipeline from a project.
+        &#34;&#34;&#34;
+        pass
+
+    def test_update_additional_file(self) -&gt; None:
+        &#34;&#34;&#34;Test case for update_additional_file
+
+        Update the contents of an additional input form file.
+        &#34;&#34;&#34;
+        pass
+
+    def test_update_input_form_file(self) -&gt; None:
+        &#34;&#34;&#34;Test case for update_input_form_file
+
+        Update the contents of the input form file for a pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_update_on_render_file(self) -&gt; None:
+        &#34;&#34;&#34;Test case for update_on_render_file
+
+        Update the contents of the onRender file for a pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_update_on_submit_file(self) -&gt; None:
+        &#34;&#34;&#34;Test case for update_on_submit_file
+
+        Update the contents of the onSubmit file for a pipeline.
+        &#34;&#34;&#34;
+        pass
+
+    def test_update_project_pipeline_file(self) -&gt; None:
+        &#34;&#34;&#34;Test case for update_project_pipeline_file
+
+        Update the contents of a file for a pipeline.
+        &#34;&#34;&#34;
+        pass</code></pre>
+</details>
+<div class="desc"><p>ProjectPipelineApi unit test stubs</p>
+<p>Create an instance of the class that will use the named test
+method when executed. Raises a ValueError if the instance does
+not have a method with the specified name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>unittest.case.TestCase</li>
+</ul>
+<h3>Methods</h3>
+<dl>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.setUp"><code class="name flex">
+<span>def <span class="ident">setUp</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setUp(self) -&gt; None:
+    self.api = ProjectPipelineApi()</code></pre>
+</details>
+<div class="desc"><p>Hook method for setting up the test fixture before exercising it.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.tearDown"><code class="name flex">
+<span>def <span class="ident">tearDown</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tearDown(self) -&gt; None:
+    pass</code></pre>
+</details>
+<div class="desc"><p>Hook method for deconstructing the test fixture after testing it.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_additional_project_pipeline_file"><code class="name flex">
+<span>def <span class="ident">test_create_additional_project_pipeline_file</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_create_additional_project_pipeline_file(self) -&gt; None:
+    &#34;&#34;&#34;Test case for create_additional_project_pipeline_file
+
+    Create an additional input form file for a pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for create_additional_project_pipeline_file</p>
+<p>Create an additional input form file for a pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_cwl_json_pipeline"><code class="name flex">
+<span>def <span class="ident">test_create_cwl_json_pipeline</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_create_cwl_json_pipeline(self) -&gt; None:
+    &#34;&#34;&#34;Test case for create_cwl_json_pipeline
+
+    Create a JSON based CWL pipeline within a project.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for create_cwl_json_pipeline</p>
+<p>Create a JSON based CWL pipeline within a project.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_cwl_pipeline"><code class="name flex">
+<span>def <span class="ident">test_create_cwl_pipeline</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_create_cwl_pipeline(self) -&gt; None:
+    &#34;&#34;&#34;Test case for create_cwl_pipeline
+
+    Create a CWL pipeline within a project.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for create_cwl_pipeline</p>
+<p>Create a CWL pipeline within a project.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_nextflow_json_pipeline"><code class="name flex">
+<span>def <span class="ident">test_create_nextflow_json_pipeline</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_create_nextflow_json_pipeline(self) -&gt; None:
+    &#34;&#34;&#34;Test case for create_nextflow_json_pipeline
+
+    Create a JSON based Nextflow pipeline within a project.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for create_nextflow_json_pipeline</p>
+<p>Create a JSON based Nextflow pipeline within a project.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_nextflow_pipeline"><code class="name flex">
+<span>def <span class="ident">test_create_nextflow_pipeline</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_create_nextflow_pipeline(self) -&gt; None:
+    &#34;&#34;&#34;Test case for create_nextflow_pipeline
+
+    Create a Nextflow pipeline within a project.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for create_nextflow_pipeline</p>
+<p>Create a Nextflow pipeline within a project.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_project_pipeline_file"><code class="name flex">
+<span>def <span class="ident">test_create_project_pipeline_file</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_create_project_pipeline_file(self) -&gt; None:
+    &#34;&#34;&#34;Test case for create_project_pipeline_file
+
+    Create a file for a pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for create_project_pipeline_file</p>
+<p>Create a file for a pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_delete_additional_project_pipeline_file"><code class="name flex">
+<span>def <span class="ident">test_delete_additional_project_pipeline_file</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_delete_additional_project_pipeline_file(self) -&gt; None:
+    &#34;&#34;&#34;Test case for delete_additional_project_pipeline_file
+
+    Delete an additional input form file for a pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for delete_additional_project_pipeline_file</p>
+<p>Delete an additional input form file for a pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_delete_project_pipeline_file"><code class="name flex">
+<span>def <span class="ident">test_delete_project_pipeline_file</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_delete_project_pipeline_file(self) -&gt; None:
+    &#34;&#34;&#34;Test case for delete_project_pipeline_file
+
+    Delete a file for a pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for delete_project_pipeline_file</p>
+<p>Delete a file for a pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_additional_file_content"><code class="name flex">
+<span>def <span class="ident">test_download_additional_file_content</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_download_additional_file_content(self) -&gt; None:
+    &#34;&#34;&#34;Test case for download_additional_file_content
+
+    Download the contents of an additional input form file.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for download_additional_file_content</p>
+<p>Download the contents of an additional input form file.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_input_form_file_content"><code class="name flex">
+<span>def <span class="ident">test_download_input_form_file_content</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_download_input_form_file_content(self) -&gt; None:
+    &#34;&#34;&#34;Test case for download_input_form_file_content
+
+    Download the contents of the input form file.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for download_input_form_file_content</p>
+<p>Download the contents of the input form file.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_on_render_file_content"><code class="name flex">
+<span>def <span class="ident">test_download_on_render_file_content</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_download_on_render_file_content(self) -&gt; None:
+    &#34;&#34;&#34;Test case for download_on_render_file_content
+
+    Download the contents of the onRender file.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for download_on_render_file_content</p>
+<p>Download the contents of the onRender file.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_on_submit_file_content"><code class="name flex">
+<span>def <span class="ident">test_download_on_submit_file_content</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_download_on_submit_file_content(self) -&gt; None:
+    &#34;&#34;&#34;Test case for download_on_submit_file_content
+
+    Download the contents of the onSubmit file.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for download_on_submit_file_content</p>
+<p>Download the contents of the onSubmit file.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_project_pipeline_file_content"><code class="name flex">
+<span>def <span class="ident">test_download_project_pipeline_file_content</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_download_project_pipeline_file_content(self) -&gt; None:
+    &#34;&#34;&#34;Test case for download_project_pipeline_file_content
+
+    Download the contents of a pipeline file.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for download_project_pipeline_file_content</p>
+<p>Download the contents of a pipeline file.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline"><code class="name flex">
+<span>def <span class="ident">test_get_project_pipeline</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_get_project_pipeline(self) -&gt; None:
+    &#34;&#34;&#34;Test case for get_project_pipeline
+
+    Retrieve a project pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for get_project_pipeline</p>
+<p>Retrieve a project pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_additional_files"><code class="name flex">
+<span>def <span class="ident">test_get_project_pipeline_additional_files</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_get_project_pipeline_additional_files(self) -&gt; None:
+    &#34;&#34;&#34;Test case for get_project_pipeline_additional_files
+
+    Retrieve additional input form files for a project pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for get_project_pipeline_additional_files</p>
+<p>Retrieve additional input form files for a project pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_configuration_parameters"><code class="name flex">
+<span>def <span class="ident">test_get_project_pipeline_configuration_parameters</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_get_project_pipeline_configuration_parameters(self) -&gt; None:
+    &#34;&#34;&#34;Test case for get_project_pipeline_configuration_parameters
+
+    Retrieve configuration parameters for a project pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for get_project_pipeline_configuration_parameters</p>
+<p>Retrieve configuration parameters for a project pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_files"><code class="name flex">
+<span>def <span class="ident">test_get_project_pipeline_files</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_get_project_pipeline_files(self) -&gt; None:
+    &#34;&#34;&#34;Test case for get_project_pipeline_files
+
+    Retrieve files for a project pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for get_project_pipeline_files</p>
+<p>Retrieve files for a project pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_html_documentation"><code class="name flex">
+<span>def <span class="ident">test_get_project_pipeline_html_documentation</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_get_project_pipeline_html_documentation(self) -&gt; None:
+    &#34;&#34;&#34;Test case for get_project_pipeline_html_documentation
+
+    Retrieve HTML documentation for a project pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for get_project_pipeline_html_documentation</p>
+<p>Retrieve HTML documentation for a project pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_input_parameters"><code class="name flex">
+<span>def <span class="ident">test_get_project_pipeline_input_parameters</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_get_project_pipeline_input_parameters(self) -&gt; None:
+    &#34;&#34;&#34;Test case for get_project_pipeline_input_parameters
+
+    Retrieve input parameters for a project pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for get_project_pipeline_input_parameters</p>
+<p>Retrieve input parameters for a project pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_reference_sets"><code class="name flex">
+<span>def <span class="ident">test_get_project_pipeline_reference_sets</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_get_project_pipeline_reference_sets(self) -&gt; None:
+    &#34;&#34;&#34;Test case for get_project_pipeline_reference_sets
+
+    Retrieve the reference sets of a project pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for get_project_pipeline_reference_sets</p>
+<p>Retrieve the reference sets of a project pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipelines"><code class="name flex">
+<span>def <span class="ident">test_get_project_pipelines</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_get_project_pipelines(self) -&gt; None:
+    &#34;&#34;&#34;Test case for get_project_pipelines
+
+    Retrieve a list of project pipelines.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for get_project_pipelines</p>
+<p>Retrieve a list of project pipelines.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_link_pipeline_to_project"><code class="name flex">
+<span>def <span class="ident">test_link_pipeline_to_project</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_link_pipeline_to_project(self) -&gt; None:
+    &#34;&#34;&#34;Test case for link_pipeline_to_project
+
+    Link a pipeline to a project.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for link_pipeline_to_project</p>
+<p>Link a pipeline to a project.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_release_project_pipeline"><code class="name flex">
+<span>def <span class="ident">test_release_project_pipeline</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_release_project_pipeline(self) -&gt; None:
+    &#34;&#34;&#34;Test case for release_project_pipeline
+
+    Release a pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for release_project_pipeline</p>
+<p>Release a pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_unlink_pipeline_from_project"><code class="name flex">
+<span>def <span class="ident">test_unlink_pipeline_from_project</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_unlink_pipeline_from_project(self) -&gt; None:
+    &#34;&#34;&#34;Test case for unlink_pipeline_from_project
+
+    Unlink a pipeline from a project.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for unlink_pipeline_from_project</p>
+<p>Unlink a pipeline from a project.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_additional_file"><code class="name flex">
+<span>def <span class="ident">test_update_additional_file</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_update_additional_file(self) -&gt; None:
+    &#34;&#34;&#34;Test case for update_additional_file
+
+    Update the contents of an additional input form file.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for update_additional_file</p>
+<p>Update the contents of an additional input form file.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_input_form_file"><code class="name flex">
+<span>def <span class="ident">test_update_input_form_file</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_update_input_form_file(self) -&gt; None:
+    &#34;&#34;&#34;Test case for update_input_form_file
+
+    Update the contents of the input form file for a pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for update_input_form_file</p>
+<p>Update the contents of the input form file for a pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_on_render_file"><code class="name flex">
+<span>def <span class="ident">test_update_on_render_file</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_update_on_render_file(self) -&gt; None:
+    &#34;&#34;&#34;Test case for update_on_render_file
+
+    Update the contents of the onRender file for a pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for update_on_render_file</p>
+<p>Update the contents of the onRender file for a pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_on_submit_file"><code class="name flex">
+<span>def <span class="ident">test_update_on_submit_file</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_update_on_submit_file(self) -&gt; None:
+    &#34;&#34;&#34;Test case for update_on_submit_file
+
+    Update the contents of the onSubmit file for a pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for update_on_submit_file</p>
+<p>Update the contents of the onSubmit file for a pipeline.</p></div>
+</dd>
+<dt id="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_project_pipeline_file"><code class="name flex">
+<span>def <span class="ident">test_update_project_pipeline_file</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def test_update_project_pipeline_file(self) -&gt; None:
+    &#34;&#34;&#34;Test case for update_project_pipeline_file
+
+    Update the contents of a file for a pipeline.
+    &#34;&#34;&#34;
+    pass</code></pre>
+</details>
+<div class="desc"><p>Test case for update_project_pipeline_file</p>
+<p>Update the contents of a file for a pipeline.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="libica.openapi.v3.test" href="index.html">libica.openapi.v3.test</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi">TestProjectPipelineApi</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.setUp" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.setUp">setUp</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.tearDown" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.tearDown">tearDown</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_additional_project_pipeline_file" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_additional_project_pipeline_file">test_create_additional_project_pipeline_file</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_cwl_json_pipeline" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_cwl_json_pipeline">test_create_cwl_json_pipeline</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_cwl_pipeline" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_cwl_pipeline">test_create_cwl_pipeline</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_nextflow_json_pipeline" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_nextflow_json_pipeline">test_create_nextflow_json_pipeline</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_nextflow_pipeline" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_nextflow_pipeline">test_create_nextflow_pipeline</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_project_pipeline_file" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_create_project_pipeline_file">test_create_project_pipeline_file</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_delete_additional_project_pipeline_file" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_delete_additional_project_pipeline_file">test_delete_additional_project_pipeline_file</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_delete_project_pipeline_file" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_delete_project_pipeline_file">test_delete_project_pipeline_file</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_additional_file_content" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_additional_file_content">test_download_additional_file_content</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_input_form_file_content" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_input_form_file_content">test_download_input_form_file_content</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_on_render_file_content" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_on_render_file_content">test_download_on_render_file_content</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_on_submit_file_content" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_on_submit_file_content">test_download_on_submit_file_content</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_project_pipeline_file_content" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_download_project_pipeline_file_content">test_download_project_pipeline_file_content</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline">test_get_project_pipeline</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_additional_files" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_additional_files">test_get_project_pipeline_additional_files</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_configuration_parameters" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_configuration_parameters">test_get_project_pipeline_configuration_parameters</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_files" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_files">test_get_project_pipeline_files</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_html_documentation" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_html_documentation">test_get_project_pipeline_html_documentation</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_input_parameters" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_input_parameters">test_get_project_pipeline_input_parameters</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_reference_sets" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipeline_reference_sets">test_get_project_pipeline_reference_sets</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipelines" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_get_project_pipelines">test_get_project_pipelines</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_link_pipeline_to_project" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_link_pipeline_to_project">test_link_pipeline_to_project</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_release_project_pipeline" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_release_project_pipeline">test_release_project_pipeline</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_unlink_pipeline_from_project" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_unlink_pipeline_from_project">test_unlink_pipeline_from_project</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_additional_file" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_additional_file">test_update_additional_file</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_input_form_file" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_input_form_file">test_update_input_form_file</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_on_render_file" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_on_render_file">test_update_on_render_file</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_on_submit_file" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_on_submit_file">test_update_on_submit_file</a></code></li>
+<li><code><a title="libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_project_pipeline_file" href="#libica.openapi.v3.test.test_project_pipeline_api.TestProjectPipelineApi.test_update_project_pipeline_file">test_update_project_pipeline_file</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

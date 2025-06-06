@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>libica.openapi.v3.models.data_details API documentation</title>
+<meta name="description" content="ICA Rest API …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>libica.openapi.v3.models.data_details</code></h1>
+</header>
+<section id="section-intro">
+<p>ICA Rest API</p>
+<p>This API can be used to interact with Illumina Connected Analytics.<br> <h2>Authentication</h2> <p> Authentication to the
+API can be done in multiple ways:<br> <ul><li>For the entire API, except for the POST /tokens endpoint: API-key + JWT</li> <li>Only for the POST /tokens endpoint: API-key + Basic Authentication</li></ul> </p> <p> <h4>API-key</h4> API keys are managed within the Illumina portal where you can manage your profile after you have logged on. The API-key has to be provided in the X-API-Key header parameter when executing API calls to ICA. In the background, a JWT will be requested at the IDP of Illumina to create a session. A good practice is to not use the API-key for every API call, but to first generate a JWT and to use that for authentication in subsequent calls.<br> </p> <p> <h4>JWT</h4> To avoid using an API-key for each call, we recommend to request a JWT via the POST /tokens endpoint
+using this API-key. The JWT will expire after a pre-configured period specified by a tenant administrator through the IAM console in the Illumina portal. The JWT is the preferred way for authentication.<br>A not yet expired, still valid JWT could be refreshed using the POST /tokens:refresh endpoint.<br>Refreshing the JWT is not possible if the JWT was generated by using an API-key.<br> </p> <p> <h4>Basic Authentication</h4> Basic authentication is only supported by the POST /tokens endpoint for generating a JWT. Use "Basic base64encoded(emailaddress:password)" in the "Authorization" header parameter for this authentication method. In case having access to multiple tenants using the same email-address, also provide the "tenant" request parameter to indicate what tenant you would like to request a JWT for. </p> <p> <h2>Compression</h2> If the API client provides request header 'Accept-Encoding' with value 'gzip', then the API applies GZIP compression on the JSON response. This significantly reduces the size and thus the download time of the response, which results in faster end-to-end API calls. In case of compression, the API also provides response header 'Content-Encoding' with value 'gzip', as indication for the client that decompression is required. </p> </p>
+<p>The version of the OpenAPI document: 3
+Generated by OpenAPI Generator (<a href="https://openapi-generator.tech">https://openapi-generator.tech</a>)</p>
+<p>Do not edit the class manually.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="libica.openapi.v3.models.data_details.DataDetails"><code class="flex name class">
+<span>class <span class="ident">DataDetails</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DataDetails(BaseModel):
+    &#34;&#34;&#34;
+    DataDetails
+    &#34;&#34;&#34; # noqa: E501
+    time_created: datetime = Field(alias=&#34;timeCreated&#34;)
+    time_modified: datetime = Field(alias=&#34;timeModified&#34;)
+    creator_id: Optional[StrictStr] = Field(default=None, alias=&#34;creatorId&#34;)
+    tenant_id: StrictStr = Field(alias=&#34;tenantId&#34;)
+    tenant_name: Optional[StrictStr] = Field(default=None, alias=&#34;tenantName&#34;)
+    owning_project_id: StrictStr = Field(alias=&#34;owningProjectId&#34;)
+    owning_project_name: Optional[StrictStr] = Field(default=None, alias=&#34;owningProjectName&#34;)
+    name: StrictStr = Field(description=&#34;The name of the file/folder as it was uploaded.&#34;)
+    path: Optional[StrictStr] = Field(default=None, description=&#34;The user friendly path of the parent of this data.&#34;)
+    file_size_in_bytes: Optional[StrictInt] = Field(default=None, description=&#34;The size of the file in bytes. Folders do not have a size.&#34;, alias=&#34;fileSizeInBytes&#34;)
+    status: StrictStr
+    tags: DataTag
+    format: Optional[DataFormat] = None
+    data_type: StrictStr = Field(alias=&#34;dataType&#34;)
+    object_e_tag: Optional[StrictStr] = Field(default=None, description=&#34;The file&#39;s ETag, as received from the cloud provider. Not to be confused with the ETag reponse header of this API.&#34;, alias=&#34;objectETag&#34;)
+    stored_for_the_first_time_at: Optional[datetime] = Field(default=None, description=&#34;Specifies when the data object was stored for the first time&#34;, alias=&#34;storedForTheFirstTimeAt&#34;)
+    region: Optional[Region] = None
+    application: Optional[ApplicationV4] = None
+    will_be_archived_at: Optional[datetime] = Field(default=None, description=&#34;Specifies when the data object will be archived.&#34;, alias=&#34;willBeArchivedAt&#34;)
+    will_be_deleted_at: Optional[datetime] = Field(default=None, description=&#34;Specifies when the data object will be deleted.&#34;, alias=&#34;willBeDeletedAt&#34;)
+    sequencing_run: Optional[SequencingRun] = Field(default=None, alias=&#34;sequencingRun&#34;)
+    __properties: ClassVar[List[str]] = [&#34;timeCreated&#34;, &#34;timeModified&#34;, &#34;creatorId&#34;, &#34;tenantId&#34;, &#34;tenantName&#34;, &#34;owningProjectId&#34;, &#34;owningProjectName&#34;, &#34;name&#34;, &#34;path&#34;, &#34;fileSizeInBytes&#34;, &#34;status&#34;, &#34;tags&#34;, &#34;format&#34;, &#34;dataType&#34;, &#34;objectETag&#34;, &#34;storedForTheFirstTimeAt&#34;, &#34;region&#34;, &#34;application&#34;, &#34;willBeArchivedAt&#34;, &#34;willBeDeletedAt&#34;, &#34;sequencingRun&#34;]
+
+    @field_validator(&#39;status&#39;)
+    def status_validate_enum(cls, value):
+        &#34;&#34;&#34;Validates the enum&#34;&#34;&#34;
+        if value not in set([&#39;PARTIAL&#39;, &#39;AVAILABLE&#39;, &#39;ARCHIVING&#39;, &#39;ARCHIVED&#39;, &#39;UNARCHIVING&#39;, &#39;DELETING&#39;]):
+            raise ValueError(&#34;must be one of enum values (&#39;PARTIAL&#39;, &#39;AVAILABLE&#39;, &#39;ARCHIVING&#39;, &#39;ARCHIVED&#39;, &#39;UNARCHIVING&#39;, &#39;DELETING&#39;)&#34;)
+        return value
+
+    @field_validator(&#39;data_type&#39;)
+    def data_type_validate_enum(cls, value):
+        &#34;&#34;&#34;Validates the enum&#34;&#34;&#34;
+        if value not in set([&#39;FILE&#39;, &#39;FOLDER&#39;]):
+            raise ValueError(&#34;must be one of enum values (&#39;FILE&#39;, &#39;FOLDER&#39;)&#34;)
+        return value
+
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
+
+    def to_str(self) -&gt; str:
+        &#34;&#34;&#34;Returns the string representation of the model using alias&#34;&#34;&#34;
+        return pprint.pformat(self.model_dump(by_alias=True))
+
+    def to_json(self) -&gt; str:
+        &#34;&#34;&#34;Returns the JSON representation of the model using alias&#34;&#34;&#34;
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -&gt; Optional[Self]:
+        &#34;&#34;&#34;Create an instance of DataDetails from a JSON string&#34;&#34;&#34;
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic&#39;s
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        &#34;&#34;&#34;
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
+        # override the default output from pydantic by calling `to_dict()` of tags
+        if self.tags:
+            _dict[&#39;tags&#39;] = self.tags.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of format
+        if self.format:
+            _dict[&#39;format&#39;] = self.format.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of region
+        if self.region:
+            _dict[&#39;region&#39;] = self.region.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of application
+        if self.application:
+            _dict[&#39;application&#39;] = self.application.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of sequencing_run
+        if self.sequencing_run:
+            _dict[&#39;sequencingRun&#39;] = self.sequencing_run.to_dict()
+        # set to None if creator_id (nullable) is None
+        # and model_fields_set contains the field
+        if self.creator_id is None and &#34;creator_id&#34; in self.model_fields_set:
+            _dict[&#39;creatorId&#39;] = None
+
+        # set to None if tenant_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.tenant_name is None and &#34;tenant_name&#34; in self.model_fields_set:
+            _dict[&#39;tenantName&#39;] = None
+
+        # set to None if owning_project_name (nullable) is None
+        # and model_fields_set contains the field
+        if self.owning_project_name is None and &#34;owning_project_name&#34; in self.model_fields_set:
+            _dict[&#39;owningProjectName&#39;] = None
+
+        # set to None if path (nullable) is None
+        # and model_fields_set contains the field
+        if self.path is None and &#34;path&#34; in self.model_fields_set:
+            _dict[&#39;path&#39;] = None
+
+        # set to None if file_size_in_bytes (nullable) is None
+        # and model_fields_set contains the field
+        if self.file_size_in_bytes is None and &#34;file_size_in_bytes&#34; in self.model_fields_set:
+            _dict[&#39;fileSizeInBytes&#39;] = None
+
+        # set to None if format (nullable) is None
+        # and model_fields_set contains the field
+        if self.format is None and &#34;format&#34; in self.model_fields_set:
+            _dict[&#39;format&#39;] = None
+
+        # set to None if object_e_tag (nullable) is None
+        # and model_fields_set contains the field
+        if self.object_e_tag is None and &#34;object_e_tag&#34; in self.model_fields_set:
+            _dict[&#39;objectETag&#39;] = None
+
+        # set to None if stored_for_the_first_time_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.stored_for_the_first_time_at is None and &#34;stored_for_the_first_time_at&#34; in self.model_fields_set:
+            _dict[&#39;storedForTheFirstTimeAt&#39;] = None
+
+        # set to None if application (nullable) is None
+        # and model_fields_set contains the field
+        if self.application is None and &#34;application&#34; in self.model_fields_set:
+            _dict[&#39;application&#39;] = None
+
+        # set to None if will_be_archived_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.will_be_archived_at is None and &#34;will_be_archived_at&#34; in self.model_fields_set:
+            _dict[&#39;willBeArchivedAt&#39;] = None
+
+        # set to None if will_be_deleted_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.will_be_deleted_at is None and &#34;will_be_deleted_at&#34; in self.model_fields_set:
+            _dict[&#39;willBeDeletedAt&#39;] = None
+
+        # set to None if sequencing_run (nullable) is None
+        # and model_fields_set contains the field
+        if self.sequencing_run is None and &#34;sequencing_run&#34; in self.model_fields_set:
+            _dict[&#39;sequencingRun&#39;] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -&gt; Optional[Self]:
+        &#34;&#34;&#34;Create an instance of DataDetails from a dict&#34;&#34;&#34;
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return cls.model_validate(obj)
+
+        _obj = cls.model_validate({
+            &#34;timeCreated&#34;: obj.get(&#34;timeCreated&#34;),
+            &#34;timeModified&#34;: obj.get(&#34;timeModified&#34;),
+            &#34;creatorId&#34;: obj.get(&#34;creatorId&#34;),
+            &#34;tenantId&#34;: obj.get(&#34;tenantId&#34;),
+            &#34;tenantName&#34;: obj.get(&#34;tenantName&#34;),
+            &#34;owningProjectId&#34;: obj.get(&#34;owningProjectId&#34;),
+            &#34;owningProjectName&#34;: obj.get(&#34;owningProjectName&#34;),
+            &#34;name&#34;: obj.get(&#34;name&#34;),
+            &#34;path&#34;: obj.get(&#34;path&#34;),
+            &#34;fileSizeInBytes&#34;: obj.get(&#34;fileSizeInBytes&#34;),
+            &#34;status&#34;: obj.get(&#34;status&#34;),
+            &#34;tags&#34;: DataTag.from_dict(obj[&#34;tags&#34;]) if obj.get(&#34;tags&#34;) is not None else None,
+            &#34;format&#34;: DataFormat.from_dict(obj[&#34;format&#34;]) if obj.get(&#34;format&#34;) is not None else None,
+            &#34;dataType&#34;: obj.get(&#34;dataType&#34;),
+            &#34;objectETag&#34;: obj.get(&#34;objectETag&#34;),
+            &#34;storedForTheFirstTimeAt&#34;: obj.get(&#34;storedForTheFirstTimeAt&#34;),
+            &#34;region&#34;: Region.from_dict(obj[&#34;region&#34;]) if obj.get(&#34;region&#34;) is not None else None,
+            &#34;application&#34;: ApplicationV4.from_dict(obj[&#34;application&#34;]) if obj.get(&#34;application&#34;) is not None else None,
+            &#34;willBeArchivedAt&#34;: obj.get(&#34;willBeArchivedAt&#34;),
+            &#34;willBeDeletedAt&#34;: obj.get(&#34;willBeDeletedAt&#34;),
+            &#34;sequencingRun&#34;: SequencingRun.from_dict(obj[&#34;sequencingRun&#34;]) if obj.get(&#34;sequencingRun&#34;) is not None else None
+        })
+        return _obj</code></pre>
+</details>
+<div class="desc"><p>DataDetails</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.application"><code class="name">var <span class="ident">application</span> : <a title="libica.openapi.v3.models.application_v4.ApplicationV4" href="application_v4.html#libica.openapi.v3.models.application_v4.ApplicationV4">ApplicationV4</a> | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.creator_id"><code class="name">var <span class="ident">creator_id</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.data_type"><code class="name">var <span class="ident">data_type</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.file_size_in_bytes"><code class="name">var <span class="ident">file_size_in_bytes</span> : int | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.format"><code class="name">var <span class="ident">format</span> : <a title="libica.openapi.v3.models.data_format.DataFormat" href="data_format.html#libica.openapi.v3.models.data_format.DataFormat">DataFormat</a> | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.model_config"><code class="name">var <span class="ident">model_config</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.object_e_tag"><code class="name">var <span class="ident">object_e_tag</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.owning_project_id"><code class="name">var <span class="ident">owning_project_id</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.owning_project_name"><code class="name">var <span class="ident">owning_project_name</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.path"><code class="name">var <span class="ident">path</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.region"><code class="name">var <span class="ident">region</span> : <a title="libica.openapi.v3.models.region.Region" href="region.html#libica.openapi.v3.models.region.Region">Region</a> | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.sequencing_run"><code class="name">var <span class="ident">sequencing_run</span> : <a title="libica.openapi.v3.models.sequencing_run.SequencingRun" href="sequencing_run.html#libica.openapi.v3.models.sequencing_run.SequencingRun">SequencingRun</a> | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.status"><code class="name">var <span class="ident">status</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.stored_for_the_first_time_at"><code class="name">var <span class="ident">stored_for_the_first_time_at</span> : datetime.datetime | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.tags"><code class="name">var <span class="ident">tags</span> : <a title="libica.openapi.v3.models.data_tag.DataTag" href="data_tag.html#libica.openapi.v3.models.data_tag.DataTag">DataTag</a></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.tenant_id"><code class="name">var <span class="ident">tenant_id</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.tenant_name"><code class="name">var <span class="ident">tenant_name</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.time_created"><code class="name">var <span class="ident">time_created</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.time_modified"><code class="name">var <span class="ident">time_modified</span> : datetime.datetime</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.will_be_archived_at"><code class="name">var <span class="ident">will_be_archived_at</span> : datetime.datetime | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.will_be_deleted_at"><code class="name">var <span class="ident">will_be_deleted_at</span> : datetime.datetime | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.data_type_validate_enum"><code class="name flex">
+<span>def <span class="ident">data_type_validate_enum</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Validates the enum</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.from_dict"><code class="name flex">
+<span>def <span class="ident">from_dict</span></span>(<span>obj: Optional[Dict[str, Any]]) ‑> Self | None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an instance of DataDetails from a dict</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.from_json"><code class="name flex">
+<span>def <span class="ident">from_json</span></span>(<span>json_str: str) ‑> Self | None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an instance of DataDetails from a JSON string</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.status_validate_enum"><code class="name flex">
+<span>def <span class="ident">status_validate_enum</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Validates the enum</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.to_dict"><code class="name flex">
+<span>def <span class="ident">to_dict</span></span>(<span>self) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_dict(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Return the dictionary representation of the model using alias.
+
+    This has the following differences from calling pydantic&#39;s
+    `self.model_dump(by_alias=True)`:
+
+    * `None` is only added to the output dict for nullable fields that
+      were set at model initialization. Other fields with value `None`
+      are ignored.
+    &#34;&#34;&#34;
+    excluded_fields: Set[str] = set([
+    ])
+
+    _dict = self.model_dump(
+        by_alias=True,
+        exclude=excluded_fields,
+        exclude_none=True,
+    )
+    # override the default output from pydantic by calling `to_dict()` of tags
+    if self.tags:
+        _dict[&#39;tags&#39;] = self.tags.to_dict()
+    # override the default output from pydantic by calling `to_dict()` of format
+    if self.format:
+        _dict[&#39;format&#39;] = self.format.to_dict()
+    # override the default output from pydantic by calling `to_dict()` of region
+    if self.region:
+        _dict[&#39;region&#39;] = self.region.to_dict()
+    # override the default output from pydantic by calling `to_dict()` of application
+    if self.application:
+        _dict[&#39;application&#39;] = self.application.to_dict()
+    # override the default output from pydantic by calling `to_dict()` of sequencing_run
+    if self.sequencing_run:
+        _dict[&#39;sequencingRun&#39;] = self.sequencing_run.to_dict()
+    # set to None if creator_id (nullable) is None
+    # and model_fields_set contains the field
+    if self.creator_id is None and &#34;creator_id&#34; in self.model_fields_set:
+        _dict[&#39;creatorId&#39;] = None
+
+    # set to None if tenant_name (nullable) is None
+    # and model_fields_set contains the field
+    if self.tenant_name is None and &#34;tenant_name&#34; in self.model_fields_set:
+        _dict[&#39;tenantName&#39;] = None
+
+    # set to None if owning_project_name (nullable) is None
+    # and model_fields_set contains the field
+    if self.owning_project_name is None and &#34;owning_project_name&#34; in self.model_fields_set:
+        _dict[&#39;owningProjectName&#39;] = None
+
+    # set to None if path (nullable) is None
+    # and model_fields_set contains the field
+    if self.path is None and &#34;path&#34; in self.model_fields_set:
+        _dict[&#39;path&#39;] = None
+
+    # set to None if file_size_in_bytes (nullable) is None
+    # and model_fields_set contains the field
+    if self.file_size_in_bytes is None and &#34;file_size_in_bytes&#34; in self.model_fields_set:
+        _dict[&#39;fileSizeInBytes&#39;] = None
+
+    # set to None if format (nullable) is None
+    # and model_fields_set contains the field
+    if self.format is None and &#34;format&#34; in self.model_fields_set:
+        _dict[&#39;format&#39;] = None
+
+    # set to None if object_e_tag (nullable) is None
+    # and model_fields_set contains the field
+    if self.object_e_tag is None and &#34;object_e_tag&#34; in self.model_fields_set:
+        _dict[&#39;objectETag&#39;] = None
+
+    # set to None if stored_for_the_first_time_at (nullable) is None
+    # and model_fields_set contains the field
+    if self.stored_for_the_first_time_at is None and &#34;stored_for_the_first_time_at&#34; in self.model_fields_set:
+        _dict[&#39;storedForTheFirstTimeAt&#39;] = None
+
+    # set to None if application (nullable) is None
+    # and model_fields_set contains the field
+    if self.application is None and &#34;application&#34; in self.model_fields_set:
+        _dict[&#39;application&#39;] = None
+
+    # set to None if will_be_archived_at (nullable) is None
+    # and model_fields_set contains the field
+    if self.will_be_archived_at is None and &#34;will_be_archived_at&#34; in self.model_fields_set:
+        _dict[&#39;willBeArchivedAt&#39;] = None
+
+    # set to None if will_be_deleted_at (nullable) is None
+    # and model_fields_set contains the field
+    if self.will_be_deleted_at is None and &#34;will_be_deleted_at&#34; in self.model_fields_set:
+        _dict[&#39;willBeDeletedAt&#39;] = None
+
+    # set to None if sequencing_run (nullable) is None
+    # and model_fields_set contains the field
+    if self.sequencing_run is None and &#34;sequencing_run&#34; in self.model_fields_set:
+        _dict[&#39;sequencingRun&#39;] = None
+
+    return _dict</code></pre>
+</details>
+<div class="desc"><p>Return the dictionary representation of the model using alias.</p>
+<p>This has the following differences from calling pydantic's
+<code>self.model_dump(by_alias=True)</code>:</p>
+<ul>
+<li><code>None</code> is only added to the output dict for nullable fields that
+were set at model initialization. Other fields with value <code>None</code>
+are ignored.</li>
+</ul></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.to_json"><code class="name flex">
+<span>def <span class="ident">to_json</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_json(self) -&gt; str:
+    &#34;&#34;&#34;Returns the JSON representation of the model using alias&#34;&#34;&#34;
+    # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
+    return json.dumps(self.to_dict())</code></pre>
+</details>
+<div class="desc"><p>Returns the JSON representation of the model using alias</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.data_details.DataDetails.to_str"><code class="name flex">
+<span>def <span class="ident">to_str</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_str(self) -&gt; str:
+    &#34;&#34;&#34;Returns the string representation of the model using alias&#34;&#34;&#34;
+    return pprint.pformat(self.model_dump(by_alias=True))</code></pre>
+</details>
+<div class="desc"><p>Returns the string representation of the model using alias</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="libica.openapi.v3.models" href="index.html">libica.openapi.v3.models</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="libica.openapi.v3.models.data_details.DataDetails" href="#libica.openapi.v3.models.data_details.DataDetails">DataDetails</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.application" href="#libica.openapi.v3.models.data_details.DataDetails.application">application</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.creator_id" href="#libica.openapi.v3.models.data_details.DataDetails.creator_id">creator_id</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.data_type" href="#libica.openapi.v3.models.data_details.DataDetails.data_type">data_type</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.data_type_validate_enum" href="#libica.openapi.v3.models.data_details.DataDetails.data_type_validate_enum">data_type_validate_enum</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.file_size_in_bytes" href="#libica.openapi.v3.models.data_details.DataDetails.file_size_in_bytes">file_size_in_bytes</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.format" href="#libica.openapi.v3.models.data_details.DataDetails.format">format</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.from_dict" href="#libica.openapi.v3.models.data_details.DataDetails.from_dict">from_dict</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.from_json" href="#libica.openapi.v3.models.data_details.DataDetails.from_json">from_json</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.model_config" href="#libica.openapi.v3.models.data_details.DataDetails.model_config">model_config</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.name" href="#libica.openapi.v3.models.data_details.DataDetails.name">name</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.object_e_tag" href="#libica.openapi.v3.models.data_details.DataDetails.object_e_tag">object_e_tag</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.owning_project_id" href="#libica.openapi.v3.models.data_details.DataDetails.owning_project_id">owning_project_id</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.owning_project_name" href="#libica.openapi.v3.models.data_details.DataDetails.owning_project_name">owning_project_name</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.path" href="#libica.openapi.v3.models.data_details.DataDetails.path">path</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.region" href="#libica.openapi.v3.models.data_details.DataDetails.region">region</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.sequencing_run" href="#libica.openapi.v3.models.data_details.DataDetails.sequencing_run">sequencing_run</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.status" href="#libica.openapi.v3.models.data_details.DataDetails.status">status</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.status_validate_enum" href="#libica.openapi.v3.models.data_details.DataDetails.status_validate_enum">status_validate_enum</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.stored_for_the_first_time_at" href="#libica.openapi.v3.models.data_details.DataDetails.stored_for_the_first_time_at">stored_for_the_first_time_at</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.tags" href="#libica.openapi.v3.models.data_details.DataDetails.tags">tags</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.tenant_id" href="#libica.openapi.v3.models.data_details.DataDetails.tenant_id">tenant_id</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.tenant_name" href="#libica.openapi.v3.models.data_details.DataDetails.tenant_name">tenant_name</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.time_created" href="#libica.openapi.v3.models.data_details.DataDetails.time_created">time_created</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.time_modified" href="#libica.openapi.v3.models.data_details.DataDetails.time_modified">time_modified</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.to_dict" href="#libica.openapi.v3.models.data_details.DataDetails.to_dict">to_dict</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.to_json" href="#libica.openapi.v3.models.data_details.DataDetails.to_json">to_json</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.to_str" href="#libica.openapi.v3.models.data_details.DataDetails.to_str">to_str</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.will_be_archived_at" href="#libica.openapi.v3.models.data_details.DataDetails.will_be_archived_at">will_be_archived_at</a></code></li>
+<li><code><a title="libica.openapi.v3.models.data_details.DataDetails.will_be_deleted_at" href="#libica.openapi.v3.models.data_details.DataDetails.will_be_deleted_at">will_be_deleted_at</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>
