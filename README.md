@@ -25,6 +25,10 @@ pip install libica
 - See [changelog](https://github.com/umccr/libica/blob/main/CHANGELOG.md) and [closed milestones](https://github.com/umccr/libica/milestones?state=closed)
 - See opening [milestones](https://github.com/umccr/libica/milestones) for current planning and next SDK release
 
+## Release
+
+There are two SDK Python packages, namely `v2` and `v3`. If you are a new starter, please use `v3` SDK package. If you are an existing user, please upgrade to `v3` when you can. Most of the time, this should be straight forward with minor tuning to application code. Since `v3` release, the SDK `v2` package now enter into maintenance mode and deprecate by 2026 Oct.
+
 ## Example
 
 - See [examples](https://github.com/umccr/libica/tree/main/examples) directory for some example scripts
