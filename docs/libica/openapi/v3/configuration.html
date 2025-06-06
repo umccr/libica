@@ -1,0 +1,1645 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>libica.openapi.v3.configuration API documentation</title>
+<meta name="description" content="ICA Rest API …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>libica.openapi.v3.configuration</code></h1>
+</header>
+<section id="section-intro">
+<p>ICA Rest API</p>
+<p>This API can be used to interact with Illumina Connected Analytics.<br> <h2>Authentication</h2> <p> Authentication to the
+API can be done in multiple ways:<br> <ul><li>For the entire API, except for the POST /tokens endpoint: API-key + JWT</li> <li>Only for the POST /tokens endpoint: API-key + Basic Authentication</li></ul> </p> <p> <h4>API-key</h4> API keys are managed within the Illumina portal where you can manage your profile after you have logged on. The API-key has to be provided in the X-API-Key header parameter when executing API calls to ICA. In the background, a JWT will be requested at the IDP of Illumina to create a session. A good practice is to not use the API-key for every API call, but to first generate a JWT and to use that for authentication in subsequent calls.<br> </p> <p> <h4>JWT</h4> To avoid using an API-key for each call, we recommend to request a JWT via the POST /tokens endpoint
+using this API-key. The JWT will expire after a pre-configured period specified by a tenant administrator through the IAM console in the Illumina portal. The JWT is the preferred way for authentication.<br>A not yet expired, still valid JWT could be refreshed using the POST /tokens:refresh endpoint.<br>Refreshing the JWT is not possible if the JWT was generated by using an API-key.<br> </p> <p> <h4>Basic Authentication</h4> Basic authentication is only supported by the POST /tokens endpoint for generating a JWT. Use "Basic base64encoded(emailaddress:password)" in the "Authorization" header parameter for this authentication method. In case having access to multiple tenants using the same email-address, also provide the "tenant" request parameter to indicate what tenant you would like to request a JWT for. </p> <p> <h2>Compression</h2> If the API client provides request header 'Accept-Encoding' with value 'gzip', then the API applies GZIP compression on the JSON response. This significantly reduces the size and thus the download time of the response, which results in faster end-to-end API calls. In case of compression, the API also provides response header 'Content-Encoding' with value 'gzip', as indication for the client that decompression is required. </p> </p>
+<p>The version of the OpenAPI document: 3
+Generated by OpenAPI Generator (<a href="https://openapi-generator.tech">https://openapi-generator.tech</a>)</p>
+<p>Do not edit the class manually.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="libica.openapi.v3.configuration.APIKeyAuthSetting"><code class="flex name class">
+<span>class <span class="ident">APIKeyAuthSetting</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.APIKeyAuthSetting.in"><code class="name">var <span class="ident">in</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.APIKeyAuthSetting.key"><code class="name">var <span class="ident">key</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.APIKeyAuthSetting.type"><code class="name">var <span class="ident">type</span> : Literal['api_key']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.APIKeyAuthSetting.value"><code class="name">var <span class="ident">value</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="libica.openapi.v3.configuration.AuthSettings"><code class="flex name class">
+<span>class <span class="ident">AuthSettings</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.AuthSettings.ApiKeyAuth"><code class="name">var <span class="ident">ApiKeyAuth</span> : <a title="libica.openapi.v3.configuration.APIKeyAuthSetting" href="#libica.openapi.v3.configuration.APIKeyAuthSetting">APIKeyAuthSetting</a></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.AuthSettings.BasicAuth"><code class="name">var <span class="ident">BasicAuth</span> : <a title="libica.openapi.v3.configuration.BasicAuthSetting" href="#libica.openapi.v3.configuration.BasicAuthSetting">BasicAuthSetting</a></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.AuthSettings.JwtAuth"><code class="name">var <span class="ident">JwtAuth</span> : <a title="libica.openapi.v3.configuration.BearerFormatAuthSetting" href="#libica.openapi.v3.configuration.BearerFormatAuthSetting">BearerFormatAuthSetting</a></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.AuthSettings.PsTokenAuth"><code class="name">var <span class="ident">PsTokenAuth</span> : <a title="libica.openapi.v3.configuration.BearerFormatAuthSetting" href="#libica.openapi.v3.configuration.BearerFormatAuthSetting">BearerFormatAuthSetting</a></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="libica.openapi.v3.configuration.BasicAuthSetting"><code class="flex name class">
+<span>class <span class="ident">BasicAuthSetting</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.BasicAuthSetting.in"><code class="name">var <span class="ident">in</span> : Literal['header']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.BasicAuthSetting.key"><code class="name">var <span class="ident">key</span> : Literal['Authorization']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.BasicAuthSetting.type"><code class="name">var <span class="ident">type</span> : Literal['basic']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.BasicAuthSetting.value"><code class="name">var <span class="ident">value</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="libica.openapi.v3.configuration.BearerAuthSetting"><code class="flex name class">
+<span>class <span class="ident">BearerAuthSetting</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.BearerAuthSetting.in"><code class="name">var <span class="ident">in</span> : Literal['header']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.BearerAuthSetting.key"><code class="name">var <span class="ident">key</span> : Literal['Authorization']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.BearerAuthSetting.type"><code class="name">var <span class="ident">type</span> : Literal['bearer']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.BearerAuthSetting.value"><code class="name">var <span class="ident">value</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="libica.openapi.v3.configuration.BearerFormatAuthSetting"><code class="flex name class">
+<span>class <span class="ident">BearerFormatAuthSetting</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.BearerFormatAuthSetting.format"><code class="name">var <span class="ident">format</span> : Literal['JWT']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.BearerFormatAuthSetting.in"><code class="name">var <span class="ident">in</span> : Literal['header']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.BearerFormatAuthSetting.key"><code class="name">var <span class="ident">key</span> : Literal['Authorization']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.BearerFormatAuthSetting.type"><code class="name">var <span class="ident">type</span> : Literal['bearer']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.BearerFormatAuthSetting.value"><code class="name">var <span class="ident">value</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration"><code class="flex name class">
+<span>class <span class="ident">Configuration</span></span>
+<span>(</span><span>host: str | None = None,<br>api_key: Dict[str, str] | None = None,<br>api_key_prefix: Dict[str, str] | None = None,<br>username: str | None = None,<br>password: str | None = None,<br>access_token: str | None = None,<br>server_index: int | None = None,<br>server_variables: Dict[str, str] | None = None,<br>server_operation_index: Dict[int, int] | None = None,<br>server_operation_variables: Dict[int, Dict[str, str]] | None = None,<br>ignore_operation_servers: bool = False,<br>ssl_ca_cert: str | None = None,<br>retries: int | None = None,<br>ca_cert_data: str | bytes | None = None,<br>*,<br>debug: bool | None = None)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Configuration:
+    &#34;&#34;&#34;This class contains various settings of the API client.
+
+    :param host: Base url.
+    :param ignore_operation_servers
+      Boolean to ignore operation servers for the API client.
+      Config will use `host` as the base url regardless of the operation servers.
+    :param api_key: Dict to store API key(s).
+      Each entry in the dict specifies an API key.
+      The dict key is the name of the security scheme in the OAS specification.
+      The dict value is the API key secret.
+    :param api_key_prefix: Dict to store API prefix (e.g. Bearer).
+      The dict key is the name of the security scheme in the OAS specification.
+      The dict value is an API key prefix when generating the auth data.
+    :param username: Username for HTTP basic authentication.
+    :param password: Password for HTTP basic authentication.
+    :param access_token: Access token.
+    :param server_index: Index to servers configuration.
+    :param server_variables: Mapping with string values to replace variables in
+      templated server configuration. The validation of enums is performed for
+      variables with defined enum values before.
+    :param server_operation_index: Mapping from operation ID to an index to server
+      configuration.
+    :param server_operation_variables: Mapping from operation ID to a mapping with
+      string values to replace variables in templated server configuration.
+      The validation of enums is performed for variables with defined enum
+      values before.
+    :param ssl_ca_cert: str - the path to a file of concatenated CA certificates
+      in PEM format.
+    :param retries: Number of retries for API requests.
+    :param ca_cert_data: verify the peer using concatenated CA certificate data
+      in PEM (str) or DER (bytes) format.
+
+    :Example:
+
+    API Key Authentication Example.
+    Given the following security scheme in the OpenAPI specification:
+      components:
+        securitySchemes:
+          cookieAuth:         # name for the security scheme
+            type: apiKey
+            in: cookie
+            name: JSESSIONID  # cookie name
+
+    You can programmatically set the cookie:
+
+conf = libica.openapi.v3.Configuration(
+    api_key={&#39;cookieAuth&#39;: &#39;abc123&#39;}
+    api_key_prefix={&#39;cookieAuth&#39;: &#39;JSESSIONID&#39;}
+)
+
+    The following cookie will be added to the HTTP request:
+       Cookie: JSESSIONID abc123
+
+    HTTP Basic Authentication Example.
+    Given the following security scheme in the OpenAPI specification:
+      components:
+        securitySchemes:
+          http_basic_auth:
+            type: http
+            scheme: basic
+
+    Configure API client with HTTP basic authentication:
+
+conf = libica.openapi.v3.Configuration(
+    username=&#39;the-user&#39;,
+    password=&#39;the-password&#39;,    # pragma: allowlist secret
+)
+
+    &#34;&#34;&#34;
+
+    _default: ClassVar[Optional[Self]] = None
+
+    def __init__(
+        self,
+        host: Optional[str]=None,
+        api_key: Optional[Dict[str, str]]=None,
+        api_key_prefix: Optional[Dict[str, str]]=None,
+        username: Optional[str]=None,
+        password: Optional[str]=None,
+        access_token: Optional[str]=None,
+        server_index: Optional[int]=None,
+        server_variables: Optional[ServerVariablesT]=None,
+        server_operation_index: Optional[Dict[int, int]]=None,
+        server_operation_variables: Optional[Dict[int, ServerVariablesT]]=None,
+        ignore_operation_servers: bool=False,
+        ssl_ca_cert: Optional[str]=None,
+        retries: Optional[int] = None,
+        ca_cert_data: Optional[Union[str, bytes]] = None,
+        *,
+        debug: Optional[bool] = None,
+    ) -&gt; None:
+        &#34;&#34;&#34;Constructor
+        &#34;&#34;&#34;
+        self._base_path = &#34;/ica/rest&#34; if host is None else host
+        &#34;&#34;&#34;Default Base url
+        &#34;&#34;&#34;
+        self.server_index = 0 if server_index is None and host is None else server_index
+        self.server_operation_index = server_operation_index or {}
+        &#34;&#34;&#34;Default server index
+        &#34;&#34;&#34;
+        self.server_variables = server_variables or {}
+        self.server_operation_variables = server_operation_variables or {}
+        &#34;&#34;&#34;Default server variables
+        &#34;&#34;&#34;
+        self.ignore_operation_servers = ignore_operation_servers
+        &#34;&#34;&#34;Ignore operation servers
+        &#34;&#34;&#34;
+        self.temp_folder_path = None
+        &#34;&#34;&#34;Temp file folder for downloading files
+        &#34;&#34;&#34;
+        # Authentication Settings
+        self.api_key = {}
+        if api_key:
+            self.api_key = api_key
+        &#34;&#34;&#34;dict to store API key(s)
+        &#34;&#34;&#34;
+        self.api_key_prefix = {}
+        if api_key_prefix:
+            self.api_key_prefix = api_key_prefix
+        &#34;&#34;&#34;dict to store API prefix (e.g. Bearer)
+        &#34;&#34;&#34;
+        self.refresh_api_key_hook = None
+        &#34;&#34;&#34;function hook to refresh API key if expired
+        &#34;&#34;&#34;
+        self.username = username
+        &#34;&#34;&#34;Username for HTTP basic authentication
+        &#34;&#34;&#34;
+        self.password = password
+        &#34;&#34;&#34;Password for HTTP basic authentication
+        &#34;&#34;&#34;
+        self.access_token = access_token
+        &#34;&#34;&#34;Access token
+        &#34;&#34;&#34;
+        self.logger = {}
+        &#34;&#34;&#34;Logging Settings
+        &#34;&#34;&#34;
+        self.logger[&#34;package_logger&#34;] = logging.getLogger(&#34;libica.openapi.v3&#34;)
+        self.logger[&#34;urllib3_logger&#34;] = logging.getLogger(&#34;urllib3&#34;)
+        self.logger_format = &#39;%(asctime)s %(levelname)s %(message)s&#39;
+        &#34;&#34;&#34;Log format
+        &#34;&#34;&#34;
+        self.logger_stream_handler = None
+        &#34;&#34;&#34;Log stream handler
+        &#34;&#34;&#34;
+        self.logger_file_handler: Optional[FileHandler] = None
+        &#34;&#34;&#34;Log file handler
+        &#34;&#34;&#34;
+        self.logger_file = None
+        &#34;&#34;&#34;Debug file location
+        &#34;&#34;&#34;
+        if debug is not None:
+            self.debug = debug
+        else:
+            self.__debug = False
+        &#34;&#34;&#34;Debug switch
+        &#34;&#34;&#34;
+
+        self.verify_ssl = True
+        &#34;&#34;&#34;SSL/TLS verification
+           Set this to false to skip verifying SSL certificate when calling API
+           from https server.
+        &#34;&#34;&#34;
+        self.ssl_ca_cert = ssl_ca_cert
+        &#34;&#34;&#34;Set this to customize the certificate file to verify the peer.
+        &#34;&#34;&#34;
+        self.ca_cert_data = ca_cert_data
+        &#34;&#34;&#34;Set this to verify the peer using PEM (str) or DER (bytes)
+           certificate data.
+        &#34;&#34;&#34;
+        self.cert_file = None
+        &#34;&#34;&#34;client certificate file
+        &#34;&#34;&#34;
+        self.key_file = None
+        &#34;&#34;&#34;client key file
+        &#34;&#34;&#34;
+        self.assert_hostname = None
+        &#34;&#34;&#34;Set this to True/False to enable/disable SSL hostname verification.
+        &#34;&#34;&#34;
+        self.tls_server_name = None
+        &#34;&#34;&#34;SSL/TLS Server Name Indication (SNI)
+           Set this to the SNI value expected by the server.
+        &#34;&#34;&#34;
+
+        self.connection_pool_maxsize = multiprocessing.cpu_count() * 5
+        &#34;&#34;&#34;urllib3 connection pool&#39;s maximum number of connections saved
+           per pool. urllib3 uses 1 connection as default value, but this is
+           not the best value when you are making a lot of possibly parallel
+           requests to the same host, which is often the case here.
+           cpu_count * 5 is used as default value to increase performance.
+        &#34;&#34;&#34;
+
+        self.proxy: Optional[str] = None
+        &#34;&#34;&#34;Proxy URL
+        &#34;&#34;&#34;
+        self.proxy_headers = None
+        &#34;&#34;&#34;Proxy headers
+        &#34;&#34;&#34;
+        self.safe_chars_for_path_param = &#39;&#39;
+        &#34;&#34;&#34;Safe chars for path_param
+        &#34;&#34;&#34;
+        self.retries = retries
+        &#34;&#34;&#34;Adding retries to override urllib3 default value 3
+        &#34;&#34;&#34;
+        # Enable client side validation
+        self.client_side_validation = True
+
+        self.socket_options = None
+        &#34;&#34;&#34;Options to pass down to the underlying urllib3 socket
+        &#34;&#34;&#34;
+
+        self.datetime_format = &#34;%Y-%m-%dT%H:%M:%S.%f%z&#34;
+        &#34;&#34;&#34;datetime format
+        &#34;&#34;&#34;
+
+        self.date_format = &#34;%Y-%m-%d&#34;
+        &#34;&#34;&#34;date format
+        &#34;&#34;&#34;
+
+    def __deepcopy__(self, memo:  Dict[int, Any]) -&gt; Self:
+        cls = self.__class__
+        result = cls.__new__(cls)
+        memo[id(self)] = result
+        for k, v in self.__dict__.items():
+            if k not in (&#39;logger&#39;, &#39;logger_file_handler&#39;):
+                setattr(result, k, copy.deepcopy(v, memo))
+        # shallow copy of loggers
+        result.logger = copy.copy(self.logger)
+        # use setters to configure loggers
+        result.logger_file = self.logger_file
+        result.debug = self.debug
+        return result
+
+    def __setattr__(self, name: str, value: Any) -&gt; None:
+        object.__setattr__(self, name, value)
+
+    @classmethod
+    def set_default(cls, default: Optional[Self]) -&gt; None:
+        &#34;&#34;&#34;Set default instance of configuration.
+
+        It stores default configuration, which can be
+        returned by get_default_copy method.
+
+        :param default: object of Configuration
+        &#34;&#34;&#34;
+        cls._default = default
+
+    @classmethod
+    def get_default_copy(cls) -&gt; Self:
+        &#34;&#34;&#34;Deprecated. Please use `get_default` instead.
+
+        Deprecated. Please use `get_default` instead.
+
+        :return: The configuration object.
+        &#34;&#34;&#34;
+        return cls.get_default()
+
+    @classmethod
+    def get_default(cls) -&gt; Self:
+        &#34;&#34;&#34;Return the default configuration.
+
+        This method returns newly created, based on default constructor,
+        object of Configuration class or returns a copy of default
+        configuration.
+
+        :return: The configuration object.
+        &#34;&#34;&#34;
+        if cls._default is None:
+            cls._default = cls()
+        return cls._default
+
+    @property
+    def logger_file(self) -&gt; Optional[str]:
+        &#34;&#34;&#34;The logger file.
+
+        If the logger_file is None, then add stream handler and remove file
+        handler. Otherwise, add file handler and remove stream handler.
+
+        :param value: The logger_file path.
+        :type: str
+        &#34;&#34;&#34;
+        return self.__logger_file
+
+    @logger_file.setter
+    def logger_file(self, value: Optional[str]) -&gt; None:
+        &#34;&#34;&#34;The logger file.
+
+        If the logger_file is None, then add stream handler and remove file
+        handler. Otherwise, add file handler and remove stream handler.
+
+        :param value: The logger_file path.
+        :type: str
+        &#34;&#34;&#34;
+        self.__logger_file = value
+        if self.__logger_file:
+            # If set logging file,
+            # then add file handler and remove stream handler.
+            self.logger_file_handler = logging.FileHandler(self.__logger_file)
+            self.logger_file_handler.setFormatter(self.logger_formatter)
+            for _, logger in self.logger.items():
+                logger.addHandler(self.logger_file_handler)
+
+    @property
+    def debug(self) -&gt; bool:
+        &#34;&#34;&#34;Debug status
+
+        :param value: The debug status, True or False.
+        :type: bool
+        &#34;&#34;&#34;
+        return self.__debug
+
+    @debug.setter
+    def debug(self, value: bool) -&gt; None:
+        &#34;&#34;&#34;Debug status
+
+        :param value: The debug status, True or False.
+        :type: bool
+        &#34;&#34;&#34;
+        self.__debug = value
+        if self.__debug:
+            # if debug status is True, turn on debug logging
+            for _, logger in self.logger.items():
+                logger.setLevel(logging.DEBUG)
+            # turn on httplib debug
+            httplib.HTTPConnection.debuglevel = 1
+        else:
+            # if debug status is False, turn off debug logging,
+            # setting log level to default `logging.WARNING`
+            for _, logger in self.logger.items():
+                logger.setLevel(logging.WARNING)
+            # turn off httplib debug
+            httplib.HTTPConnection.debuglevel = 0
+
+    @property
+    def logger_format(self) -&gt; str:
+        &#34;&#34;&#34;The logger format.
+
+        The logger_formatter will be updated when sets logger_format.
+
+        :param value: The format string.
+        :type: str
+        &#34;&#34;&#34;
+        return self.__logger_format
+
+    @logger_format.setter
+    def logger_format(self, value: str) -&gt; None:
+        &#34;&#34;&#34;The logger format.
+
+        The logger_formatter will be updated when sets logger_format.
+
+        :param value: The format string.
+        :type: str
+        &#34;&#34;&#34;
+        self.__logger_format = value
+        self.logger_formatter = logging.Formatter(self.__logger_format)
+
+    def get_api_key_with_prefix(self, identifier: str, alias: Optional[str]=None) -&gt; Optional[str]:
+        &#34;&#34;&#34;Gets API key (with prefix if set).
+
+        :param identifier: The identifier of apiKey.
+        :param alias: The alternative identifier of apiKey.
+        :return: The token for api key authentication.
+        &#34;&#34;&#34;
+        if self.refresh_api_key_hook is not None:
+            self.refresh_api_key_hook(self)
+        key = self.api_key.get(identifier, self.api_key.get(alias) if alias is not None else None)
+        if key:
+            prefix = self.api_key_prefix.get(identifier)
+            if prefix:
+                return &#34;%s %s&#34; % (prefix, key)
+            else:
+                return key
+
+        return None
+
+    def get_basic_auth_token(self) -&gt; Optional[str]:
+        &#34;&#34;&#34;Gets HTTP basic authentication header (string).
+
+        :return: The token for basic HTTP authentication.
+        &#34;&#34;&#34;
+        username = &#34;&#34;
+        if self.username is not None:
+            username = self.username
+        password = &#34;&#34;
+        if self.password is not None:
+            password = self.password
+        return urllib3.util.make_headers(
+            basic_auth=username + &#39;:&#39; + password
+        ).get(&#39;authorization&#39;)
+
+    def auth_settings(self)-&gt; AuthSettings:
+        &#34;&#34;&#34;Gets Auth Settings dict for api client.
+
+        :return: The Auth Settings information dict.
+        &#34;&#34;&#34;
+        auth: AuthSettings = {}
+        if self.access_token is not None:
+            auth[&#39;JwtAuth&#39;] = {
+                &#39;type&#39;: &#39;bearer&#39;,
+                &#39;in&#39;: &#39;header&#39;,
+                &#39;format&#39;: &#39;JWT&#39;,
+                &#39;key&#39;: &#39;Authorization&#39;,
+                &#39;value&#39;: &#39;Bearer &#39; + self.access_token
+            }
+        if self.access_token is not None:
+            auth[&#39;PsTokenAuth&#39;] = {
+                &#39;type&#39;: &#39;bearer&#39;,
+                &#39;in&#39;: &#39;header&#39;,
+                &#39;format&#39;: &#39;psToken&#39;,
+                &#39;key&#39;: &#39;Authorization&#39;,
+                &#39;value&#39;: &#39;Bearer &#39; + self.access_token
+            }
+        if &#39;ApiKeyAuth&#39; in self.api_key:
+            auth[&#39;ApiKeyAuth&#39;] = {
+                &#39;type&#39;: &#39;api_key&#39;,
+                &#39;in&#39;: &#39;header&#39;,
+                &#39;key&#39;: &#39;X-API-Key&#39;,
+                &#39;value&#39;: self.get_api_key_with_prefix(
+                    &#39;ApiKeyAuth&#39;,
+                ),
+            }
+        if self.username is not None and self.password is not None:
+            auth[&#39;BasicAuth&#39;] = {
+                &#39;type&#39;: &#39;basic&#39;,
+                &#39;in&#39;: &#39;header&#39;,
+                &#39;key&#39;: &#39;Authorization&#39;,
+                &#39;value&#39;: self.get_basic_auth_token()
+            }
+        return auth
+
+    def to_debug_report(self) -&gt; str:
+        &#34;&#34;&#34;Gets the essential information for debugging.
+
+        :return: The report for debugging.
+        &#34;&#34;&#34;
+        return &#34;Python SDK Debug Report:\n&#34;\
+               &#34;OS: {env}\n&#34;\
+               &#34;Python Version: {pyversion}\n&#34;\
+               &#34;Version of the API: 3\n&#34;\
+               &#34;SDK Package Version: 1.0.0&#34;.\
+               format(env=sys.platform, pyversion=sys.version)
+
+    def get_host_settings(self) -&gt; List[HostSetting]:
+        &#34;&#34;&#34;Gets an array of host settings
+
+        :return: An array of host settings
+        &#34;&#34;&#34;
+        return [
+            {
+                &#39;url&#39;: &#34;/ica/rest&#34;,
+                &#39;description&#39;: &#34;No description provided&#34;,
+            }
+        ]
+
+    def get_host_from_settings(
+        self,
+        index: Optional[int],
+        variables: Optional[ServerVariablesT]=None,
+        servers: Optional[List[HostSetting]]=None,
+    ) -&gt; str:
+        &#34;&#34;&#34;Gets host URL based on the index and variables
+        :param index: array index of the host settings
+        :param variables: hash of variable and the corresponding value
+        :param servers: an array of host settings or None
+        :return: URL based on host settings
+        &#34;&#34;&#34;
+        if index is None:
+            return self._base_path
+
+        variables = {} if variables is None else variables
+        servers = self.get_host_settings() if servers is None else servers
+
+        try:
+            server = servers[index]
+        except IndexError:
+            raise ValueError(
+                &#34;Invalid index {0} when selecting the host settings. &#34;
+                &#34;Must be less than {1}&#34;.format(index, len(servers)))
+
+        url = server[&#39;url&#39;]
+
+        # go through variables and replace placeholders
+        for variable_name, variable in server.get(&#39;variables&#39;, {}).items():
+            used_value = variables.get(
+                variable_name, variable[&#39;default_value&#39;])
+
+            if &#39;enum_values&#39; in variable \
+                    and used_value not in variable[&#39;enum_values&#39;]:
+                raise ValueError(
+                    &#34;The variable `{0}` in the host URL has invalid value &#34;
+                    &#34;{1}. Must be {2}.&#34;.format(
+                        variable_name, variables[variable_name],
+                        variable[&#39;enum_values&#39;]))
+
+            url = url.replace(&#34;{&#34; + variable_name + &#34;}&#34;, used_value)
+
+        return url
+
+    @property
+    def host(self) -&gt; str:
+        &#34;&#34;&#34;Return generated host.&#34;&#34;&#34;
+        return self.get_host_from_settings(self.server_index, variables=self.server_variables)
+
+    @host.setter
+    def host(self, value: str) -&gt; None:
+        &#34;&#34;&#34;Fix base path.&#34;&#34;&#34;
+        self._base_path = value
+        self.server_index = None</code></pre>
+</details>
+<div class="desc"><p>This class contains various settings of the API client.</p>
+<pre><code>:param host: Base url.
+:param ignore_operation_servers
+  Boolean to ignore operation servers for the API client.
+  Config will use &lt;code&gt;host&lt;/code&gt; as the base url regardless of the operation servers.
+:param api_key: Dict to store API key(s).
+  Each entry in the dict specifies an API key.
+  The dict key is the name of the security scheme in the OAS specification.
+  The dict value is the API key secret.
+:param api_key_prefix: Dict to store API prefix (e.g. Bearer).
+  The dict key is the name of the security scheme in the OAS specification.
+  The dict value is an API key prefix when generating the auth data.
+:param username: Username for HTTP basic authentication.
+:param password: Password for HTTP basic authentication.
+:param access_token: Access token.
+:param server_index: Index to servers configuration.
+:param server_variables: Mapping with string values to replace variables in
+  templated server configuration. The validation of enums is performed for
+  variables with defined enum values before.
+:param server_operation_index: Mapping from operation ID to an index to server
+  configuration.
+:param server_operation_variables: Mapping from operation ID to a mapping with
+  string values to replace variables in templated server configuration.
+  The validation of enums is performed for variables with defined enum
+  values before.
+:param ssl_ca_cert: str - the path to a file of concatenated CA certificates
+  in PEM format.
+:param retries: Number of retries for API requests.
+:param ca_cert_data: verify the peer using concatenated CA certificate data
+  in PEM (str) or DER (bytes) format.
+
+:Example:
+
+API Key Authentication Example.
+Given the following security scheme in the OpenAPI specification:
+  components:
+    securitySchemes:
+      cookieAuth:         # name for the security scheme
+        type: apiKey
+        in: cookie
+        name: JSESSIONID  # cookie name
+
+You can programmatically set the cookie:
+</code></pre>
+<p>conf = libica.openapi.v3.Configuration(
+api_key={'cookieAuth': 'abc123'}
+api_key_prefix={'cookieAuth': 'JSESSIONID'}
+)</p>
+<pre><code>The following cookie will be added to the HTTP request:
+   Cookie: JSESSIONID abc123
+
+HTTP Basic Authentication Example.
+Given the following security scheme in the OpenAPI specification:
+  components:
+    securitySchemes:
+      http_basic_auth:
+        type: http
+        scheme: basic
+
+Configure API client with HTTP basic authentication:
+</code></pre>
+<p>conf = libica.openapi.v3.Configuration(
+username='the-user',
+password='the-password',
+# pragma: allowlist secret
+)</p>
+<p>Constructor</p></div>
+<h3>Static methods</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.Configuration.get_default"><code class="name flex">
+<span>def <span class="ident">get_default</span></span>(<span>) ‑> Self</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the default configuration.</p>
+<p>This method returns newly created, based on default constructor,
+object of Configuration class or returns a copy of default
+configuration.</p>
+<p>:return: The configuration object.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.get_default_copy"><code class="name flex">
+<span>def <span class="ident">get_default_copy</span></span>(<span>) ‑> Self</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Deprecated. Please use <code>get_default</code> instead.</p>
+<p>Deprecated. Please use <code>get_default</code> instead.</p>
+<p>:return: The configuration object.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.set_default"><code class="name flex">
+<span>def <span class="ident">set_default</span></span>(<span>default: Self | None) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set default instance of configuration.</p>
+<p>It stores default configuration, which can be
+returned by get_default_copy method.</p>
+<p>:param default: object of Configuration</p></div>
+</dd>
+</dl>
+<h3>Instance variables</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.Configuration.access_token"><code class="name">var <span class="ident">access_token</span></code></dt>
+<dd>
+<div class="desc"><p>Access token</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.assert_hostname"><code class="name">var <span class="ident">assert_hostname</span></code></dt>
+<dd>
+<div class="desc"><p>Set this to True/False to enable/disable SSL hostname verification.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.ca_cert_data"><code class="name">var <span class="ident">ca_cert_data</span></code></dt>
+<dd>
+<div class="desc"><p>Set this to verify the peer using PEM (str) or DER (bytes)
+certificate data.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.cert_file"><code class="name">var <span class="ident">cert_file</span></code></dt>
+<dd>
+<div class="desc"><p>client certificate file</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.connection_pool_maxsize"><code class="name">var <span class="ident">connection_pool_maxsize</span></code></dt>
+<dd>
+<div class="desc"><p>urllib3 connection pool's maximum number of connections saved
+per pool. urllib3 uses 1 connection as default value, but this is
+not the best value when you are making a lot of possibly parallel
+requests to the same host, which is often the case here.
+cpu_count * 5 is used as default value to increase performance.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.date_format"><code class="name">var <span class="ident">date_format</span></code></dt>
+<dd>
+<div class="desc"><p>date format</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.datetime_format"><code class="name">var <span class="ident">datetime_format</span></code></dt>
+<dd>
+<div class="desc"><p>datetime format</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.debug"><code class="name">prop <span class="ident">debug</span> : bool</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def debug(self) -&gt; bool:
+    &#34;&#34;&#34;Debug status
+
+    :param value: The debug status, True or False.
+    :type: bool
+    &#34;&#34;&#34;
+    return self.__debug</code></pre>
+</details>
+<div class="desc"><p>Debug status</p>
+<p>:param value: The debug status, True or False.
+:type: bool</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.host"><code class="name">prop <span class="ident">host</span> : str</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def host(self) -&gt; str:
+    &#34;&#34;&#34;Return generated host.&#34;&#34;&#34;
+    return self.get_host_from_settings(self.server_index, variables=self.server_variables)</code></pre>
+</details>
+<div class="desc"><p>Return generated host.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.ignore_operation_servers"><code class="name">var <span class="ident">ignore_operation_servers</span></code></dt>
+<dd>
+<div class="desc"><p>Ignore operation servers</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.key_file"><code class="name">var <span class="ident">key_file</span></code></dt>
+<dd>
+<div class="desc"><p>client key file</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.logger"><code class="name">var <span class="ident">logger</span></code></dt>
+<dd>
+<div class="desc"><p>Logging Settings</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.logger_file"><code class="name">var <span class="ident">logger_file</span> : str | None</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def logger_file(self) -&gt; Optional[str]:
+    &#34;&#34;&#34;The logger file.
+
+    If the logger_file is None, then add stream handler and remove file
+    handler. Otherwise, add file handler and remove stream handler.
+
+    :param value: The logger_file path.
+    :type: str
+    &#34;&#34;&#34;
+    return self.__logger_file</code></pre>
+</details>
+<div class="desc"><p>Debug file location</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.logger_file_handler"><code class="name">var <span class="ident">logger_file_handler</span></code></dt>
+<dd>
+<div class="desc"><p>Log file handler</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.logger_format"><code class="name">var <span class="ident">logger_format</span> : str</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def logger_format(self) -&gt; str:
+    &#34;&#34;&#34;The logger format.
+
+    The logger_formatter will be updated when sets logger_format.
+
+    :param value: The format string.
+    :type: str
+    &#34;&#34;&#34;
+    return self.__logger_format</code></pre>
+</details>
+<div class="desc"><p>Log format</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.logger_stream_handler"><code class="name">var <span class="ident">logger_stream_handler</span></code></dt>
+<dd>
+<div class="desc"><p>Log stream handler</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.password"><code class="name">var <span class="ident">password</span></code></dt>
+<dd>
+<div class="desc"><p>Password for HTTP basic authentication</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.proxy"><code class="name">var <span class="ident">proxy</span></code></dt>
+<dd>
+<div class="desc"><p>Proxy URL</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.proxy_headers"><code class="name">var <span class="ident">proxy_headers</span></code></dt>
+<dd>
+<div class="desc"><p>Proxy headers</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.refresh_api_key_hook"><code class="name">var <span class="ident">refresh_api_key_hook</span></code></dt>
+<dd>
+<div class="desc"><p>function hook to refresh API key if expired</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.retries"><code class="name">var <span class="ident">retries</span></code></dt>
+<dd>
+<div class="desc"><p>Adding retries to override urllib3 default value 3</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.safe_chars_for_path_param"><code class="name">var <span class="ident">safe_chars_for_path_param</span></code></dt>
+<dd>
+<div class="desc"><p>Safe chars for path_param</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.server_operation_index"><code class="name">var <span class="ident">server_operation_index</span></code></dt>
+<dd>
+<div class="desc"><p>Default server index</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.server_operation_variables"><code class="name">var <span class="ident">server_operation_variables</span></code></dt>
+<dd>
+<div class="desc"><p>Default server variables</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.socket_options"><code class="name">var <span class="ident">socket_options</span></code></dt>
+<dd>
+<div class="desc"><p>Options to pass down to the underlying urllib3 socket</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.ssl_ca_cert"><code class="name">var <span class="ident">ssl_ca_cert</span></code></dt>
+<dd>
+<div class="desc"><p>Set this to customize the certificate file to verify the peer.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.temp_folder_path"><code class="name">var <span class="ident">temp_folder_path</span></code></dt>
+<dd>
+<div class="desc"><p>Temp file folder for downloading files</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.tls_server_name"><code class="name">var <span class="ident">tls_server_name</span></code></dt>
+<dd>
+<div class="desc"><p>SSL/TLS Server Name Indication (SNI)
+Set this to the SNI value expected by the server.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.username"><code class="name">var <span class="ident">username</span></code></dt>
+<dd>
+<div class="desc"><p>Username for HTTP basic authentication</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.verify_ssl"><code class="name">var <span class="ident">verify_ssl</span></code></dt>
+<dd>
+<div class="desc"><p>SSL/TLS verification
+Set this to false to skip verifying SSL certificate when calling API
+from https server.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.Configuration.auth_settings"><code class="name flex">
+<span>def <span class="ident">auth_settings</span></span>(<span>self) ‑> <a title="libica.openapi.v3.configuration.AuthSettings" href="#libica.openapi.v3.configuration.AuthSettings">AuthSettings</a></span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def auth_settings(self)-&gt; AuthSettings:
+    &#34;&#34;&#34;Gets Auth Settings dict for api client.
+
+    :return: The Auth Settings information dict.
+    &#34;&#34;&#34;
+    auth: AuthSettings = {}
+    if self.access_token is not None:
+        auth[&#39;JwtAuth&#39;] = {
+            &#39;type&#39;: &#39;bearer&#39;,
+            &#39;in&#39;: &#39;header&#39;,
+            &#39;format&#39;: &#39;JWT&#39;,
+            &#39;key&#39;: &#39;Authorization&#39;,
+            &#39;value&#39;: &#39;Bearer &#39; + self.access_token
+        }
+    if self.access_token is not None:
+        auth[&#39;PsTokenAuth&#39;] = {
+            &#39;type&#39;: &#39;bearer&#39;,
+            &#39;in&#39;: &#39;header&#39;,
+            &#39;format&#39;: &#39;psToken&#39;,
+            &#39;key&#39;: &#39;Authorization&#39;,
+            &#39;value&#39;: &#39;Bearer &#39; + self.access_token
+        }
+    if &#39;ApiKeyAuth&#39; in self.api_key:
+        auth[&#39;ApiKeyAuth&#39;] = {
+            &#39;type&#39;: &#39;api_key&#39;,
+            &#39;in&#39;: &#39;header&#39;,
+            &#39;key&#39;: &#39;X-API-Key&#39;,
+            &#39;value&#39;: self.get_api_key_with_prefix(
+                &#39;ApiKeyAuth&#39;,
+            ),
+        }
+    if self.username is not None and self.password is not None:
+        auth[&#39;BasicAuth&#39;] = {
+            &#39;type&#39;: &#39;basic&#39;,
+            &#39;in&#39;: &#39;header&#39;,
+            &#39;key&#39;: &#39;Authorization&#39;,
+            &#39;value&#39;: self.get_basic_auth_token()
+        }
+    return auth</code></pre>
+</details>
+<div class="desc"><p>Gets Auth Settings dict for api client.</p>
+<p>:return: The Auth Settings information dict.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.get_api_key_with_prefix"><code class="name flex">
+<span>def <span class="ident">get_api_key_with_prefix</span></span>(<span>self, identifier: str, alias: str | None = None) ‑> str | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_api_key_with_prefix(self, identifier: str, alias: Optional[str]=None) -&gt; Optional[str]:
+    &#34;&#34;&#34;Gets API key (with prefix if set).
+
+    :param identifier: The identifier of apiKey.
+    :param alias: The alternative identifier of apiKey.
+    :return: The token for api key authentication.
+    &#34;&#34;&#34;
+    if self.refresh_api_key_hook is not None:
+        self.refresh_api_key_hook(self)
+    key = self.api_key.get(identifier, self.api_key.get(alias) if alias is not None else None)
+    if key:
+        prefix = self.api_key_prefix.get(identifier)
+        if prefix:
+            return &#34;%s %s&#34; % (prefix, key)
+        else:
+            return key
+
+    return None</code></pre>
+</details>
+<div class="desc"><p>Gets API key (with prefix if set).</p>
+<p>:param identifier: The identifier of apiKey.
+:param alias: The alternative identifier of apiKey.
+:return: The token for api key authentication.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.get_basic_auth_token"><code class="name flex">
+<span>def <span class="ident">get_basic_auth_token</span></span>(<span>self) ‑> str | None</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_basic_auth_token(self) -&gt; Optional[str]:
+    &#34;&#34;&#34;Gets HTTP basic authentication header (string).
+
+    :return: The token for basic HTTP authentication.
+    &#34;&#34;&#34;
+    username = &#34;&#34;
+    if self.username is not None:
+        username = self.username
+    password = &#34;&#34;
+    if self.password is not None:
+        password = self.password
+    return urllib3.util.make_headers(
+        basic_auth=username + &#39;:&#39; + password
+    ).get(&#39;authorization&#39;)</code></pre>
+</details>
+<div class="desc"><p>Gets HTTP basic authentication header (string).</p>
+<p>:return: The token for basic HTTP authentication.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.get_host_from_settings"><code class="name flex">
+<span>def <span class="ident">get_host_from_settings</span></span>(<span>self,<br>index: int | None,<br>variables: Dict[str, str] | None = None,<br>servers: List[<a title="libica.openapi.v3.configuration.HostSetting" href="#libica.openapi.v3.configuration.HostSetting">HostSetting</a>] | None = None) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_host_from_settings(
+    self,
+    index: Optional[int],
+    variables: Optional[ServerVariablesT]=None,
+    servers: Optional[List[HostSetting]]=None,
+) -&gt; str:
+    &#34;&#34;&#34;Gets host URL based on the index and variables
+    :param index: array index of the host settings
+    :param variables: hash of variable and the corresponding value
+    :param servers: an array of host settings or None
+    :return: URL based on host settings
+    &#34;&#34;&#34;
+    if index is None:
+        return self._base_path
+
+    variables = {} if variables is None else variables
+    servers = self.get_host_settings() if servers is None else servers
+
+    try:
+        server = servers[index]
+    except IndexError:
+        raise ValueError(
+            &#34;Invalid index {0} when selecting the host settings. &#34;
+            &#34;Must be less than {1}&#34;.format(index, len(servers)))
+
+    url = server[&#39;url&#39;]
+
+    # go through variables and replace placeholders
+    for variable_name, variable in server.get(&#39;variables&#39;, {}).items():
+        used_value = variables.get(
+            variable_name, variable[&#39;default_value&#39;])
+
+        if &#39;enum_values&#39; in variable \
+                and used_value not in variable[&#39;enum_values&#39;]:
+            raise ValueError(
+                &#34;The variable `{0}` in the host URL has invalid value &#34;
+                &#34;{1}. Must be {2}.&#34;.format(
+                    variable_name, variables[variable_name],
+                    variable[&#39;enum_values&#39;]))
+
+        url = url.replace(&#34;{&#34; + variable_name + &#34;}&#34;, used_value)
+
+    return url</code></pre>
+</details>
+<div class="desc"><p>Gets host URL based on the index and variables
+:param index: array index of the host settings
+:param variables: hash of variable and the corresponding value
+:param servers: an array of host settings or None
+:return: URL based on host settings</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.get_host_settings"><code class="name flex">
+<span>def <span class="ident">get_host_settings</span></span>(<span>self) ‑> List[<a title="libica.openapi.v3.configuration.HostSetting" href="#libica.openapi.v3.configuration.HostSetting">HostSetting</a>]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_host_settings(self) -&gt; List[HostSetting]:
+    &#34;&#34;&#34;Gets an array of host settings
+
+    :return: An array of host settings
+    &#34;&#34;&#34;
+    return [
+        {
+            &#39;url&#39;: &#34;/ica/rest&#34;,
+            &#39;description&#39;: &#34;No description provided&#34;,
+        }
+    ]</code></pre>
+</details>
+<div class="desc"><p>Gets an array of host settings</p>
+<p>:return: An array of host settings</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.Configuration.to_debug_report"><code class="name flex">
+<span>def <span class="ident">to_debug_report</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_debug_report(self) -&gt; str:
+    &#34;&#34;&#34;Gets the essential information for debugging.
+
+    :return: The report for debugging.
+    &#34;&#34;&#34;
+    return &#34;Python SDK Debug Report:\n&#34;\
+           &#34;OS: {env}\n&#34;\
+           &#34;Python Version: {pyversion}\n&#34;\
+           &#34;Version of the API: 3\n&#34;\
+           &#34;SDK Package Version: 1.0.0&#34;.\
+           format(env=sys.platform, pyversion=sys.version)</code></pre>
+</details>
+<div class="desc"><p>Gets the essential information for debugging.</p>
+<p>:return: The report for debugging.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="libica.openapi.v3.configuration.GenericAuthSetting"><code class="flex name class">
+<span>class <span class="ident">GenericAuthSetting</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.GenericAuthSetting.in"><code class="name">var <span class="ident">in</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.GenericAuthSetting.key"><code class="name">var <span class="ident">key</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.GenericAuthSetting.type"><code class="name">var <span class="ident">type</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.GenericAuthSetting.value"><code class="name">var <span class="ident">value</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="libica.openapi.v3.configuration.HTTPSignatureAuthSetting"><code class="flex name class">
+<span>class <span class="ident">HTTPSignatureAuthSetting</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.HTTPSignatureAuthSetting.in"><code class="name">var <span class="ident">in</span> : Literal['header']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.HTTPSignatureAuthSetting.key"><code class="name">var <span class="ident">key</span> : Literal['Authorization']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.HTTPSignatureAuthSetting.type"><code class="name">var <span class="ident">type</span> : Literal['http-signature']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.HTTPSignatureAuthSetting.value"><code class="name">var <span class="ident">value</span> : None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="libica.openapi.v3.configuration.HostSetting"><code class="flex name class">
+<span>class <span class="ident">HostSetting</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class HostSetting(TypedDict):
+    url: str
+    description: str
+    variables: NotRequired[Dict[str, HostSettingVariable]]</code></pre>
+</details>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.HostSetting.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.HostSetting.url"><code class="name">var <span class="ident">url</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.HostSetting.variables"><code class="name">var <span class="ident">variables</span> : Dict[str, <a title="libica.openapi.v3.configuration.HostSettingVariable" href="#libica.openapi.v3.configuration.HostSettingVariable">HostSettingVariable</a>]</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="libica.openapi.v3.configuration.HostSettingVariable"><code class="flex name class">
+<span>class <span class="ident">HostSettingVariable</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class HostSettingVariable(TypedDict):
+    description: str
+    default_value: str
+    enum_values: List[str]</code></pre>
+</details>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.HostSettingVariable.default_value"><code class="name">var <span class="ident">default_value</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.HostSettingVariable.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.HostSettingVariable.enum_values"><code class="name">var <span class="ident">enum_values</span> : List[str]</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+<dt id="libica.openapi.v3.configuration.OAuth2AuthSetting"><code class="flex name class">
+<span>class <span class="ident">OAuth2AuthSetting</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+(key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+d = {}
+for k, v in iterable:
+d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+in the keyword argument list.
+For example:
+dict(one=1, two=2)</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>builtins.dict</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.configuration.OAuth2AuthSetting.in"><code class="name">var <span class="ident">in</span> : Literal['header']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.OAuth2AuthSetting.key"><code class="name">var <span class="ident">key</span> : Literal['Authorization']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.OAuth2AuthSetting.type"><code class="name">var <span class="ident">type</span> : Literal['oauth2']</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.configuration.OAuth2AuthSetting.value"><code class="name">var <span class="ident">value</span> : str</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="libica.openapi.v3" href="index.html">libica.openapi.v3</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="libica.openapi.v3.configuration.APIKeyAuthSetting" href="#libica.openapi.v3.configuration.APIKeyAuthSetting">APIKeyAuthSetting</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.configuration.APIKeyAuthSetting.in" href="#libica.openapi.v3.configuration.APIKeyAuthSetting.in">in</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.APIKeyAuthSetting.key" href="#libica.openapi.v3.configuration.APIKeyAuthSetting.key">key</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.APIKeyAuthSetting.type" href="#libica.openapi.v3.configuration.APIKeyAuthSetting.type">type</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.APIKeyAuthSetting.value" href="#libica.openapi.v3.configuration.APIKeyAuthSetting.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="libica.openapi.v3.configuration.AuthSettings" href="#libica.openapi.v3.configuration.AuthSettings">AuthSettings</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.configuration.AuthSettings.ApiKeyAuth" href="#libica.openapi.v3.configuration.AuthSettings.ApiKeyAuth">ApiKeyAuth</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.AuthSettings.BasicAuth" href="#libica.openapi.v3.configuration.AuthSettings.BasicAuth">BasicAuth</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.AuthSettings.JwtAuth" href="#libica.openapi.v3.configuration.AuthSettings.JwtAuth">JwtAuth</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.AuthSettings.PsTokenAuth" href="#libica.openapi.v3.configuration.AuthSettings.PsTokenAuth">PsTokenAuth</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="libica.openapi.v3.configuration.BasicAuthSetting" href="#libica.openapi.v3.configuration.BasicAuthSetting">BasicAuthSetting</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.configuration.BasicAuthSetting.in" href="#libica.openapi.v3.configuration.BasicAuthSetting.in">in</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.BasicAuthSetting.key" href="#libica.openapi.v3.configuration.BasicAuthSetting.key">key</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.BasicAuthSetting.type" href="#libica.openapi.v3.configuration.BasicAuthSetting.type">type</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.BasicAuthSetting.value" href="#libica.openapi.v3.configuration.BasicAuthSetting.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="libica.openapi.v3.configuration.BearerAuthSetting" href="#libica.openapi.v3.configuration.BearerAuthSetting">BearerAuthSetting</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.configuration.BearerAuthSetting.in" href="#libica.openapi.v3.configuration.BearerAuthSetting.in">in</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.BearerAuthSetting.key" href="#libica.openapi.v3.configuration.BearerAuthSetting.key">key</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.BearerAuthSetting.type" href="#libica.openapi.v3.configuration.BearerAuthSetting.type">type</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.BearerAuthSetting.value" href="#libica.openapi.v3.configuration.BearerAuthSetting.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="libica.openapi.v3.configuration.BearerFormatAuthSetting" href="#libica.openapi.v3.configuration.BearerFormatAuthSetting">BearerFormatAuthSetting</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.configuration.BearerFormatAuthSetting.format" href="#libica.openapi.v3.configuration.BearerFormatAuthSetting.format">format</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.BearerFormatAuthSetting.in" href="#libica.openapi.v3.configuration.BearerFormatAuthSetting.in">in</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.BearerFormatAuthSetting.key" href="#libica.openapi.v3.configuration.BearerFormatAuthSetting.key">key</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.BearerFormatAuthSetting.type" href="#libica.openapi.v3.configuration.BearerFormatAuthSetting.type">type</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.BearerFormatAuthSetting.value" href="#libica.openapi.v3.configuration.BearerFormatAuthSetting.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="libica.openapi.v3.configuration.Configuration" href="#libica.openapi.v3.configuration.Configuration">Configuration</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.configuration.Configuration.access_token" href="#libica.openapi.v3.configuration.Configuration.access_token">access_token</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.assert_hostname" href="#libica.openapi.v3.configuration.Configuration.assert_hostname">assert_hostname</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.auth_settings" href="#libica.openapi.v3.configuration.Configuration.auth_settings">auth_settings</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.ca_cert_data" href="#libica.openapi.v3.configuration.Configuration.ca_cert_data">ca_cert_data</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.cert_file" href="#libica.openapi.v3.configuration.Configuration.cert_file">cert_file</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.connection_pool_maxsize" href="#libica.openapi.v3.configuration.Configuration.connection_pool_maxsize">connection_pool_maxsize</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.date_format" href="#libica.openapi.v3.configuration.Configuration.date_format">date_format</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.datetime_format" href="#libica.openapi.v3.configuration.Configuration.datetime_format">datetime_format</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.debug" href="#libica.openapi.v3.configuration.Configuration.debug">debug</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.get_api_key_with_prefix" href="#libica.openapi.v3.configuration.Configuration.get_api_key_with_prefix">get_api_key_with_prefix</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.get_basic_auth_token" href="#libica.openapi.v3.configuration.Configuration.get_basic_auth_token">get_basic_auth_token</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.get_default" href="#libica.openapi.v3.configuration.Configuration.get_default">get_default</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.get_default_copy" href="#libica.openapi.v3.configuration.Configuration.get_default_copy">get_default_copy</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.get_host_from_settings" href="#libica.openapi.v3.configuration.Configuration.get_host_from_settings">get_host_from_settings</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.get_host_settings" href="#libica.openapi.v3.configuration.Configuration.get_host_settings">get_host_settings</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.host" href="#libica.openapi.v3.configuration.Configuration.host">host</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.ignore_operation_servers" href="#libica.openapi.v3.configuration.Configuration.ignore_operation_servers">ignore_operation_servers</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.key_file" href="#libica.openapi.v3.configuration.Configuration.key_file">key_file</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.logger" href="#libica.openapi.v3.configuration.Configuration.logger">logger</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.logger_file" href="#libica.openapi.v3.configuration.Configuration.logger_file">logger_file</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.logger_file_handler" href="#libica.openapi.v3.configuration.Configuration.logger_file_handler">logger_file_handler</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.logger_format" href="#libica.openapi.v3.configuration.Configuration.logger_format">logger_format</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.logger_stream_handler" href="#libica.openapi.v3.configuration.Configuration.logger_stream_handler">logger_stream_handler</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.password" href="#libica.openapi.v3.configuration.Configuration.password">password</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.proxy" href="#libica.openapi.v3.configuration.Configuration.proxy">proxy</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.proxy_headers" href="#libica.openapi.v3.configuration.Configuration.proxy_headers">proxy_headers</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.refresh_api_key_hook" href="#libica.openapi.v3.configuration.Configuration.refresh_api_key_hook">refresh_api_key_hook</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.retries" href="#libica.openapi.v3.configuration.Configuration.retries">retries</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.safe_chars_for_path_param" href="#libica.openapi.v3.configuration.Configuration.safe_chars_for_path_param">safe_chars_for_path_param</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.server_operation_index" href="#libica.openapi.v3.configuration.Configuration.server_operation_index">server_operation_index</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.server_operation_variables" href="#libica.openapi.v3.configuration.Configuration.server_operation_variables">server_operation_variables</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.set_default" href="#libica.openapi.v3.configuration.Configuration.set_default">set_default</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.socket_options" href="#libica.openapi.v3.configuration.Configuration.socket_options">socket_options</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.ssl_ca_cert" href="#libica.openapi.v3.configuration.Configuration.ssl_ca_cert">ssl_ca_cert</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.temp_folder_path" href="#libica.openapi.v3.configuration.Configuration.temp_folder_path">temp_folder_path</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.tls_server_name" href="#libica.openapi.v3.configuration.Configuration.tls_server_name">tls_server_name</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.to_debug_report" href="#libica.openapi.v3.configuration.Configuration.to_debug_report">to_debug_report</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.username" href="#libica.openapi.v3.configuration.Configuration.username">username</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.Configuration.verify_ssl" href="#libica.openapi.v3.configuration.Configuration.verify_ssl">verify_ssl</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="libica.openapi.v3.configuration.GenericAuthSetting" href="#libica.openapi.v3.configuration.GenericAuthSetting">GenericAuthSetting</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.configuration.GenericAuthSetting.in" href="#libica.openapi.v3.configuration.GenericAuthSetting.in">in</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.GenericAuthSetting.key" href="#libica.openapi.v3.configuration.GenericAuthSetting.key">key</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.GenericAuthSetting.type" href="#libica.openapi.v3.configuration.GenericAuthSetting.type">type</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.GenericAuthSetting.value" href="#libica.openapi.v3.configuration.GenericAuthSetting.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="libica.openapi.v3.configuration.HTTPSignatureAuthSetting" href="#libica.openapi.v3.configuration.HTTPSignatureAuthSetting">HTTPSignatureAuthSetting</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.configuration.HTTPSignatureAuthSetting.in" href="#libica.openapi.v3.configuration.HTTPSignatureAuthSetting.in">in</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.HTTPSignatureAuthSetting.key" href="#libica.openapi.v3.configuration.HTTPSignatureAuthSetting.key">key</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.HTTPSignatureAuthSetting.type" href="#libica.openapi.v3.configuration.HTTPSignatureAuthSetting.type">type</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.HTTPSignatureAuthSetting.value" href="#libica.openapi.v3.configuration.HTTPSignatureAuthSetting.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="libica.openapi.v3.configuration.HostSetting" href="#libica.openapi.v3.configuration.HostSetting">HostSetting</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.configuration.HostSetting.description" href="#libica.openapi.v3.configuration.HostSetting.description">description</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.HostSetting.url" href="#libica.openapi.v3.configuration.HostSetting.url">url</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.HostSetting.variables" href="#libica.openapi.v3.configuration.HostSetting.variables">variables</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="libica.openapi.v3.configuration.HostSettingVariable" href="#libica.openapi.v3.configuration.HostSettingVariable">HostSettingVariable</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.configuration.HostSettingVariable.default_value" href="#libica.openapi.v3.configuration.HostSettingVariable.default_value">default_value</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.HostSettingVariable.description" href="#libica.openapi.v3.configuration.HostSettingVariable.description">description</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.HostSettingVariable.enum_values" href="#libica.openapi.v3.configuration.HostSettingVariable.enum_values">enum_values</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="libica.openapi.v3.configuration.OAuth2AuthSetting" href="#libica.openapi.v3.configuration.OAuth2AuthSetting">OAuth2AuthSetting</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.configuration.OAuth2AuthSetting.in" href="#libica.openapi.v3.configuration.OAuth2AuthSetting.in">in</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.OAuth2AuthSetting.key" href="#libica.openapi.v3.configuration.OAuth2AuthSetting.key">key</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.OAuth2AuthSetting.type" href="#libica.openapi.v3.configuration.OAuth2AuthSetting.type">type</a></code></li>
+<li><code><a title="libica.openapi.v3.configuration.OAuth2AuthSetting.value" href="#libica.openapi.v3.configuration.OAuth2AuthSetting.value">value</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

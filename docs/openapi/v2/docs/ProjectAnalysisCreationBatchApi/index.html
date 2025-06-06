@@ -1,0 +1,1155 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>libica.openapi.v2.ProjectAnalysisCreationBatchApi - libica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#libicaopenapiv2projectanalysiscreationbatchapi" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="libica" class="md-header__button md-logo" aria-label="libica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            libica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              libica.openapi.v2.ProjectAnalysisCreationBatchApi
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/umccr/libica" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    umccr/libica
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="libica" class="md-nav__button md-logo" aria-label="libica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    libica
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/umccr/libica" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    umccr/libica
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    v2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../v3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    v3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="libicaopenapiv2projectanalysiscreationbatchapi">libica.openapi.v2.ProjectAnalysisCreationBatchApi<a class="headerlink" href="#libicaopenapiv2projectanalysiscreationbatchapi" title="Permanent link">&para;</a></h1>
+<p>All URIs are relative to <em>/ica/rest</em></p>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>HTTP request</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="./#create_analysis_creation_batch"><strong>create_analysis_creation_batch</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/analysisCreationBatch</td>
+<td>Create and start multiple analyses in batch.</td>
+</tr>
+<tr>
+<td><a href="./#get_analysis_creation_batch"><strong>get_analysis_creation_batch</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analysisCreationBatch/{batchId}</td>
+<td>Retrieve a analysis creation batch.</td>
+</tr>
+<tr>
+<td><a href="./#get_analysis_creation_batch_item"><strong>get_analysis_creation_batch_item</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analysisCreationBatch/{batchId}/items/{itemId}</td>
+<td>Retrieve a analysis creation batch item.</td>
+</tr>
+<tr>
+<td><a href="./#get_analysis_creation_batch_items"><strong>get_analysis_creation_batch_items</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analysisCreationBatch/{batchId}/items</td>
+<td>Retrieve a list of analysis creation batch items.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="create_analysis_creation_batch"><strong>create_analysis_creation_batch</strong><a class="headerlink" href="#create_analysis_creation_batch" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>AnalysisCreationBatch create_analysis_creation_batch(project_id, create_analysis_creation_batch)</p>
+</blockquote>
+<p>Create and start multiple analyses in batch.</p>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Api Key Authentication (ApiKeyAuth):</li>
+<li>Bearer (JWT) Authentication (JwtAuth):</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libica.openapi.v2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">project_analysis_creation_batch_api</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.create_analysis_creation_batch</span><span class="w"> </span><span class="kn">import</span> <span class="n">CreateAnalysisCreationBatch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.analysis_creation_batch</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnalysisCreationBatch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.problem</span><span class="w"> </span><span class="kn">import</span> <span class="n">Problem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+<span class="c1"># Defining the host is optional and defaults to /ica/rest</span>
+<span class="c1"># See configuration.py for a list of all supported configuration parameters.</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;/ica/rest&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># The client must configure the authentication and authorization parameters</span>
+<span class="c1"># in accordance with the API server security policy.</span>
+<span class="c1"># Examples for each auth method are provided below, use the example that</span>
+<span class="c1"># satisfies your auth use case.</span>
+
+<span class="c1"># Configure API key authorization: ApiKeyAuth</span>
+<span class="n">configuration</span><span class="o">.</span><span class="n">api_key</span><span class="p">[</span><span class="s1">&#39;ApiKeyAuth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
+
+<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
+<span class="c1"># configuration.api_key_prefix[&#39;ApiKeyAuth&#39;] = &#39;Bearer&#39;</span>
+
+<span class="c1"># Configure Bearer authorization (JWT): JwtAuth</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">access_token</span> <span class="o">=</span> <span class="s1">&#39;YOUR_BEARER_TOKEN&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Enter a context with an instance of the API client</span>
+<span class="k">with</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiClient</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">api_client</span><span class="p">:</span>
+    <span class="c1"># Create an instance of the API class</span>
+    <span class="n">api_instance</span> <span class="o">=</span> <span class="n">project_analysis_creation_batch_api</span><span class="o">.</span><span class="n">ProjectAnalysisCreationBatchApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
+    <span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;projectId_example&quot;</span> <span class="c1"># str | </span>
+    <span class="n">create_analysis_creation_batch</span> <span class="o">=</span> <span class="n">CreateAnalysisCreationBatch</span><span class="p">(</span>
+        <span class="n">cwl_items</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">CreateCwlAnalysis</span><span class="p">(</span>
+                <span class="n">user_reference</span><span class="o">=</span><span class="s2">&quot;26bUUGjjNSwg0_bs9ZayIM/dgN/b6gvxmPb9GcsM61ate1RA89q3w1l4eH4XxEz-5awxoFZxHzs6ED-kjUSnTINkYPUndNl8pmPg5K897Fu1JEFj9R1_dz/rEoBi0LnU8SsOWJ7wYrczi/Qdt8mVLxbg4bCLrLBcmXxWQK6MzKSg5jphei0IfRRwpnT_Z-qKa_YppZepezJ0-VmLSUTLYyW- e_jxxzpBvw-y P/SI-13 AOsiPRVvnXrDhh58EJzzOxprDzE3pjHRAkK7vI7/jcoPqzNk YKJOXJ2zkgYnmU-hV4pJhQ7dhTAGxjARc6SZKg2qV/ hA054g00j8CXRM4JZgexx5/BmiUdb8V-5tS7Ce-8OP8jM6Q/ap ieHoJL0cOHxhIz6IzRjPiSbv46JLcKaA-xTwLJcAkoNQxJsCUIkorO-2KAnnTOE8M6xmSejA6BGR RDxxWc493QsJ JFt/rxtNb3BtpHGNB33FSli/EaSDC3Jwlo9Aq-OZySuGXBwuNL5ICjOL uxZFN7oEXv3Rjr7mZXbY7cFU6HPiDV aM8XFtx5ef7XxGahEx5as4igHCaW/gfGuN6Yogo9e2fmFQ_q_V0iz1l6lakAtMD7gXmnBhySbG7coPhWOlWnLvrLZaxa78JI_LGepDuQ3z-LtIx RE8z6ZbHjz/3coUV uT/EXw3Z8KLTvaqhteQpbwYU8rf85eyxCXQ02l2UfQbP/Hwb TbI1I6mS 9V-ofBBak wevR6F 37RS4Mqp-z9OYCpSjEqZEdbOOqMNkk0MEG4PgSZp-tY7nzp2V09rLuCvfKd3/B7Nke4pyLFXi20uVuBIVQWxeziEmPj4-KIZ4EBDYGMeHwlQHgxMV_coQzDZPhSAcDWSu58NayafWzmTt-P7RTuj3iloSmvq6ptM/paqws8RfvaYMfrqa8yWUb/aew8fGzxL8UBpf4IYjQxCBv0aEqODMs6 __HvAARQCZ_HKqroXyt6-Y8imaC5It9ZEZjIoZP9V1EjbA-tFQv/KOFpHUcVNnqDdEconiUhJ/_OYqv01dQetO3oDTHSQdhLouT7merxKTcqNMpXfpU5ktnd4BBULIW0N/GhiW92gAEui/l WoiEW-tzti/9q3K407VNjp2Rdt_M_wxbjDN svNTMlZscMPUeqTE205sTZIkhsadNbiDH3R9hn/97bNktDzITop4y58kMdi7sEjYIZXQNI/G2UN7cFEvraG_8ul060s0W5myfNUsZOAfyRSKwumr7vrmbObYZ5LLOTkAJpJ6yD/EyKvzp oyT1iV44YK Q7W9XH_ nC87n1lMXx/cpcof84rc bTU20M2sFqt4zswj63S37gymcb35PFmFooUEItJ/WXmmb6rN-PG7CfVVrIXdUuyma63xZJQfyqFaad9jaJKwsaFZawt9CZCsgO_EkphsT/YD6 2t z_dodcIO0StQgTXeyp0Q-9qUn4jz1sIzDHdZi5DAKyeNjBARo-Dde72ZQ7rgUiF6NuAm_ZXdh 6NvD08O/uXF_iMcrZ0AkcxL21NwNNfADepMfPI jxbyGRU9VFh-_a9Mbcva1MSFLSU/GAcLlmJPzj1b/En KXp2ZJ1qP6EIAQRw6KWw-PSWFS0LzB0tz6JsM zfsuuNyQ1F qNTmvGd/34AbRwr1Mi1qq8Bv/7r73NXsLH6lkp_YwgeBZkfv7aEST19XJTe9 4t GIqXuFdD/054gT-SQFzTGrV3v TunXGLysUh_by7pmMGuKPyyeSFxct6Ze7099nRsM3R50i8YYD7uU6_-V/RO7VbVfLxqbCc-GimutTgMtTfBOiI07gLv8fxp8Rrvb2oVixDwL_5GL/dkyb0ofYJLarfJrS4gkeTAfK5NMnpgtwWLpKWVb8A/uQa TKwyJvJPBgILfXHpRfA79W9rCcVEcc1VmOZvW3--sp_E2t2terN4_2lcppBwgjIIFpE/9wjR SU K0GOwW4T/aO1NV6_Hx-5jhuPYUigmskjs38qptZPjGbQcMS6bq4jio6/n_hxYgCm- Z/K_7Ms5LyP8NoYNVF5v/C_I7qzU/pSP39e4y_L 2jAgjSpNK_48uV-MZ7CZL92Y/TDLRif4BX0k_kxk-VTaov2mlM18SfVTJ/mcMNVIO85230RBh-y9g8MNnnvGKT10t-mI5XH9biew58zTl0rQVIApvKA eQe3wv SD86JI2WO4rz8dSltvVqfei/m5FrnEpLvFqwhHFvdn0kEWtwPAhULVh_u/c  m 15yE3/jO3gKaP YHCaCFHZkWsh-mLTR_p_ZhJXuOoIsNHZsK m5ntCxGzmy4lVW_PKmo 4vtEAhOm289Yqnh43gtmE0DcSlXRhP/iRTQHkAPGO AROE GYzP3aIBvIz2Du0PJgDeBXnU3IgkF7V-jBW/R9V8PHmR5UHiFYWfIRAHRUzlaQ_5fkL16fmprt8wmIyj95MZALC3mmE-9-9QIQ_TxYHnPGd129xGytHvWDBO-HWa9uog_gy/B_Lcv_NbdKzBHV0mHJ0otqw-2cVo74hoJwmXoaUvId-qA0zLPa/yNACHAPKtKgQ-wkE FxSQB6am1_36v_4sO/L0 obeH_A5Q g0U8nnM/tLSIw h_9TVGO7HSAcUt2jm2mJ6jxIaRYSQHPbXmRPRzaWrmwaKy4EMWPwbc-aU2Q37XoigypCN/O vMz_s2eIdV-ysI6yTso6oV4n2icY_UqIX3aXe8/fjQVrmDXiXxxvBTvfg06jgn9-ScpKH8N5C4XWGVGRk3j37rxQmI4kwvKHhIKCAUvIkWH6jwZxFRo eIKF/u9HDcrUBkJ7XvQAc-6hPCiLNyumZW bZ1Z1lFtnk615uonsVXHfF05q0NRqj15TZJbNNeHStQMOuYC_jqdm9E9SG W_klzb/D/EIYyIete7WHGdGvaz8OlgB8y7yFT3urhGfXNdaf9LPJpeol/Hsm_twH5CZ0hw5E79TYBg5mTcvHosbmds0/lnttAjUMBqupVLK3x4 0AG976YmWGXzKcfMwo/AJe6AqMxeiI54JCwm88akvPHFEeT/B2_DFbeoWsodas1SE0ZbMSAutkOh5Xxm5JinIE-HSc3Uum5CXQM8IAqgV7Pt7UP7R-a-gxq3pkrhbyaL /g06Y18ROfY0YdRY3jzlcCRRc0YCrW8XRt5tBgOBd9I6/WfODawxODTr6XaLBZ4N4HcKJ0/9/176mYQK5G5Zg_-QRvAnzbzYh01qrNB/0OPLkLvQwJMAZYcIIuHLVBKQgB0tiFZAgCaX_xRaJdoCvlRQ2NFmqxndmXhZUKursXMGxzxNhAE-TRB8qkmv3x3zsY/hWxhBU-WrXobNN/UrgSnP/Hqo0hrfoM/2nH G5cT7PUzahLIwtoU8svwt-H5quoR L8lSHdFBrWE3qxdnl3KF6G9CqDK1MEEUL/z_3v2OEgVjFWE0PvPA tgxkNhx5gRDEgjBNW&quot;</span><span class="p">,</span>
+                <span class="n">pipeline_id</span><span class="o">=</span><span class="s2">&quot;pipeline_id_example&quot;</span><span class="p">,</span>
+                <span class="n">tags</span><span class="o">=</span><span class="n">CreateAnalysisTag</span><span class="p">(</span>
+                    <span class="n">technical_tags</span><span class="o">=</span><span class="p">[</span>
+                        <span class="s2">&quot;technical_tags_example&quot;</span><span class="p">,</span>
+                    <span class="p">],</span>
+                    <span class="n">user_tags</span><span class="o">=</span><span class="p">[</span>
+                        <span class="s2">&quot;user_tags_example&quot;</span><span class="p">,</span>
+                    <span class="p">],</span>
+                    <span class="n">reference_tags</span><span class="o">=</span><span class="p">[</span>
+                        <span class="s2">&quot;reference_tags_example&quot;</span><span class="p">,</span>
+                    <span class="p">],</span>
+                <span class="p">),</span>
+                <span class="n">analysis_storage_id</span><span class="o">=</span><span class="s2">&quot;analysis_storage_id_example&quot;</span><span class="p">,</span>
+                <span class="n">output_parent_folder_id</span><span class="o">=</span><span class="s2">&quot;output_parent_folder_id_example&quot;</span><span class="p">,</span>
+                <span class="n">analysis_output</span><span class="o">=</span><span class="p">[</span>
+                    <span class="n">AnalysisOutputMapping</span><span class="p">(</span>
+                        <span class="n">source_path</span><span class="o">=</span><span class="s2">&quot;source_path_example&quot;</span><span class="p">,</span>
+                        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;FILE&quot;</span><span class="p">,</span>
+                        <span class="n">target_project_id</span><span class="o">=</span><span class="s2">&quot;target_project_id_example&quot;</span><span class="p">,</span>
+                        <span class="n">target_path</span><span class="o">=</span><span class="s2">&quot;target_path_example&quot;</span><span class="p">,</span>
+                        <span class="n">action_on_exist</span><span class="o">=</span><span class="s2">&quot;action_on_exist_example&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">],</span>
+                <span class="n">analysis_input</span><span class="o">=</span><span class="n">CwlAnalysisInput</span><span class="p">(),</span>
+                <span class="n">activation_code_detail_id</span><span class="o">=</span><span class="s2">&quot;activation_code_detail_id_example&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">],</span>
+        <span class="n">nextflow_items</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">CreateNextflowAnalysis</span><span class="p">(</span>
+                <span class="n">user_reference</span><span class="o">=</span><span class="s2">&quot;26bUUGjjNSwg0_bs9ZayIM/dgN/b6gvxmPb9GcsM61ate1RA89q3w1l4eH4XxEz-5awxoFZxHzs6ED-kjUSnTINkYPUndNl8pmPg5K897Fu1JEFj9R1_dz/rEoBi0LnU8SsOWJ7wYrczi/Qdt8mVLxbg4bCLrLBcmXxWQK6MzKSg5jphei0IfRRwpnT_Z-qKa_YppZepezJ0-VmLSUTLYyW- e_jxxzpBvw-y P/SI-13 AOsiPRVvnXrDhh58EJzzOxprDzE3pjHRAkK7vI7/jcoPqzNk YKJOXJ2zkgYnmU-hV4pJhQ7dhTAGxjARc6SZKg2qV/ hA054g00j8CXRM4JZgexx5/BmiUdb8V-5tS7Ce-8OP8jM6Q/ap ieHoJL0cOHxhIz6IzRjPiSbv46JLcKaA-xTwLJcAkoNQxJsCUIkorO-2KAnnTOE8M6xmSejA6BGR RDxxWc493QsJ JFt/rxtNb3BtpHGNB33FSli/EaSDC3Jwlo9Aq-OZySuGXBwuNL5ICjOL uxZFN7oEXv3Rjr7mZXbY7cFU6HPiDV aM8XFtx5ef7XxGahEx5as4igHCaW/gfGuN6Yogo9e2fmFQ_q_V0iz1l6lakAtMD7gXmnBhySbG7coPhWOlWnLvrLZaxa78JI_LGepDuQ3z-LtIx RE8z6ZbHjz/3coUV uT/EXw3Z8KLTvaqhteQpbwYU8rf85eyxCXQ02l2UfQbP/Hwb TbI1I6mS 9V-ofBBak wevR6F 37RS4Mqp-z9OYCpSjEqZEdbOOqMNkk0MEG4PgSZp-tY7nzp2V09rLuCvfKd3/B7Nke4pyLFXi20uVuBIVQWxeziEmPj4-KIZ4EBDYGMeHwlQHgxMV_coQzDZPhSAcDWSu58NayafWzmTt-P7RTuj3iloSmvq6ptM/paqws8RfvaYMfrqa8yWUb/aew8fGzxL8UBpf4IYjQxCBv0aEqODMs6 __HvAARQCZ_HKqroXyt6-Y8imaC5It9ZEZjIoZP9V1EjbA-tFQv/KOFpHUcVNnqDdEconiUhJ/_OYqv01dQetO3oDTHSQdhLouT7merxKTcqNMpXfpU5ktnd4BBULIW0N/GhiW92gAEui/l WoiEW-tzti/9q3K407VNjp2Rdt_M_wxbjDN svNTMlZscMPUeqTE205sTZIkhsadNbiDH3R9hn/97bNktDzITop4y58kMdi7sEjYIZXQNI/G2UN7cFEvraG_8ul060s0W5myfNUsZOAfyRSKwumr7vrmbObYZ5LLOTkAJpJ6yD/EyKvzp oyT1iV44YK Q7W9XH_ nC87n1lMXx/cpcof84rc bTU20M2sFqt4zswj63S37gymcb35PFmFooUEItJ/WXmmb6rN-PG7CfVVrIXdUuyma63xZJQfyqFaad9jaJKwsaFZawt9CZCsgO_EkphsT/YD6 2t z_dodcIO0StQgTXeyp0Q-9qUn4jz1sIzDHdZi5DAKyeNjBARo-Dde72ZQ7rgUiF6NuAm_ZXdh 6NvD08O/uXF_iMcrZ0AkcxL21NwNNfADepMfPI jxbyGRU9VFh-_a9Mbcva1MSFLSU/GAcLlmJPzj1b/En KXp2ZJ1qP6EIAQRw6KWw-PSWFS0LzB0tz6JsM zfsuuNyQ1F qNTmvGd/34AbRwr1Mi1qq8Bv/7r73NXsLH6lkp_YwgeBZkfv7aEST19XJTe9 4t GIqXuFdD/054gT-SQFzTGrV3v TunXGLysUh_by7pmMGuKPyyeSFxct6Ze7099nRsM3R50i8YYD7uU6_-V/RO7VbVfLxqbCc-GimutTgMtTfBOiI07gLv8fxp8Rrvb2oVixDwL_5GL/dkyb0ofYJLarfJrS4gkeTAfK5NMnpgtwWLpKWVb8A/uQa TKwyJvJPBgILfXHpRfA79W9rCcVEcc1VmOZvW3--sp_E2t2terN4_2lcppBwgjIIFpE/9wjR SU K0GOwW4T/aO1NV6_Hx-5jhuPYUigmskjs38qptZPjGbQcMS6bq4jio6/n_hxYgCm- Z/K_7Ms5LyP8NoYNVF5v/C_I7qzU/pSP39e4y_L 2jAgjSpNK_48uV-MZ7CZL92Y/TDLRif4BX0k_kxk-VTaov2mlM18SfVTJ/mcMNVIO85230RBh-y9g8MNnnvGKT10t-mI5XH9biew58zTl0rQVIApvKA eQe3wv SD86JI2WO4rz8dSltvVqfei/m5FrnEpLvFqwhHFvdn0kEWtwPAhULVh_u/c  m 15yE3/jO3gKaP YHCaCFHZkWsh-mLTR_p_ZhJXuOoIsNHZsK m5ntCxGzmy4lVW_PKmo 4vtEAhOm289Yqnh43gtmE0DcSlXRhP/iRTQHkAPGO AROE GYzP3aIBvIz2Du0PJgDeBXnU3IgkF7V-jBW/R9V8PHmR5UHiFYWfIRAHRUzlaQ_5fkL16fmprt8wmIyj95MZALC3mmE-9-9QIQ_TxYHnPGd129xGytHvWDBO-HWa9uog_gy/B_Lcv_NbdKzBHV0mHJ0otqw-2cVo74hoJwmXoaUvId-qA0zLPa/yNACHAPKtKgQ-wkE FxSQB6am1_36v_4sO/L0 obeH_A5Q g0U8nnM/tLSIw h_9TVGO7HSAcUt2jm2mJ6jxIaRYSQHPbXmRPRzaWrmwaKy4EMWPwbc-aU2Q37XoigypCN/O vMz_s2eIdV-ysI6yTso6oV4n2icY_UqIX3aXe8/fjQVrmDXiXxxvBTvfg06jgn9-ScpKH8N5C4XWGVGRk3j37rxQmI4kwvKHhIKCAUvIkWH6jwZxFRo eIKF/u9HDcrUBkJ7XvQAc-6hPCiLNyumZW bZ1Z1lFtnk615uonsVXHfF05q0NRqj15TZJbNNeHStQMOuYC_jqdm9E9SG W_klzb/D/EIYyIete7WHGdGvaz8OlgB8y7yFT3urhGfXNdaf9LPJpeol/Hsm_twH5CZ0hw5E79TYBg5mTcvHosbmds0/lnttAjUMBqupVLK3x4 0AG976YmWGXzKcfMwo/AJe6AqMxeiI54JCwm88akvPHFEeT/B2_DFbeoWsodas1SE0ZbMSAutkOh5Xxm5JinIE-HSc3Uum5CXQM8IAqgV7Pt7UP7R-a-gxq3pkrhbyaL /g06Y18ROfY0YdRY3jzlcCRRc0YCrW8XRt5tBgOBd9I6/WfODawxODTr6XaLBZ4N4HcKJ0/9/176mYQK5G5Zg_-QRvAnzbzYh01qrNB/0OPLkLvQwJMAZYcIIuHLVBKQgB0tiFZAgCaX_xRaJdoCvlRQ2NFmqxndmXhZUKursXMGxzxNhAE-TRB8qkmv3x3zsY/hWxhBU-WrXobNN/UrgSnP/Hqo0hrfoM/2nH G5cT7PUzahLIwtoU8svwt-H5quoR L8lSHdFBrWE3qxdnl3KF6G9CqDK1MEEUL/z_3v2OEgVjFWE0PvPA tgxkNhx5gRDEgjBNW&quot;</span><span class="p">,</span>
+                <span class="n">pipeline_id</span><span class="o">=</span><span class="s2">&quot;pipeline_id_example&quot;</span><span class="p">,</span>
+                <span class="n">tags</span><span class="o">=</span><span class="n">CreateAnalysisTag</span><span class="p">(</span>
+                    <span class="n">technical_tags</span><span class="o">=</span><span class="p">[</span>
+                        <span class="s2">&quot;technical_tags_example&quot;</span><span class="p">,</span>
+                    <span class="p">],</span>
+                    <span class="n">user_tags</span><span class="o">=</span><span class="p">[</span>
+                        <span class="s2">&quot;user_tags_example&quot;</span><span class="p">,</span>
+                    <span class="p">],</span>
+                    <span class="n">reference_tags</span><span class="o">=</span><span class="p">[</span>
+                        <span class="s2">&quot;reference_tags_example&quot;</span><span class="p">,</span>
+                    <span class="p">],</span>
+                <span class="p">),</span>
+                <span class="n">analysis_storage_id</span><span class="o">=</span><span class="s2">&quot;analysis_storage_id_example&quot;</span><span class="p">,</span>
+                <span class="n">output_parent_folder_id</span><span class="o">=</span><span class="s2">&quot;output_parent_folder_id_example&quot;</span><span class="p">,</span>
+                <span class="n">analysis_output</span><span class="o">=</span><span class="p">[</span>
+                    <span class="n">AnalysisOutputMapping</span><span class="p">(</span>
+                        <span class="n">source_path</span><span class="o">=</span><span class="s2">&quot;source_path_example&quot;</span><span class="p">,</span>
+                        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;FILE&quot;</span><span class="p">,</span>
+                        <span class="n">target_project_id</span><span class="o">=</span><span class="s2">&quot;target_project_id_example&quot;</span><span class="p">,</span>
+                        <span class="n">target_path</span><span class="o">=</span><span class="s2">&quot;target_path_example&quot;</span><span class="p">,</span>
+                        <span class="n">action_on_exist</span><span class="o">=</span><span class="s2">&quot;action_on_exist_example&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">],</span>
+                <span class="n">analysis_input</span><span class="o">=</span><span class="n">NextflowAnalysisInput</span><span class="p">(</span>
+                    <span class="n">inputs</span><span class="o">=</span><span class="p">[</span>
+                        <span class="n">AnalysisDataInput</span><span class="p">(</span>
+                            <span class="n">parameter_code</span><span class="o">=</span><span class="s2">&quot;parameter_code_example&quot;</span><span class="p">,</span>
+                            <span class="n">data_ids</span><span class="o">=</span><span class="p">[</span>
+                                <span class="s2">&quot;data_ids_example&quot;</span><span class="p">,</span>
+                            <span class="p">],</span>
+                            <span class="n">mounts</span><span class="o">=</span><span class="p">[</span>
+                                <span class="n">AnalysisInputDataMount</span><span class="p">(</span>
+                                    <span class="n">data_id</span><span class="o">=</span><span class="s2">&quot;data_id_example&quot;</span><span class="p">,</span>
+                                    <span class="n">mount_path</span><span class="o">=</span><span class="s2">&quot;mount_path_example&quot;</span><span class="p">,</span>
+                                <span class="p">),</span>
+                            <span class="p">],</span>
+                            <span class="n">external_data</span><span class="o">=</span><span class="p">[</span>
+                                <span class="n">AnalysisInputExternalData</span><span class="p">(</span>
+                                    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;url_example&quot;</span><span class="p">,</span>
+                                    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;basespac&quot;</span><span class="p">,</span>
+                                    <span class="n">mount_path</span><span class="o">=</span><span class="s2">&quot;mount_path_example&quot;</span><span class="p">,</span>
+                                    <span class="n">s3_details</span><span class="o">=</span><span class="n">AnalysisS3DataDetails</span><span class="p">(</span>
+                                        <span class="n">storage_credentials_id</span><span class="o">=</span><span class="s2">&quot;storage_credentials_id_example&quot;</span><span class="p">,</span>
+                                    <span class="p">),</span>
+                                    <span class="n">basespace_details</span><span class="o">=</span><span class="n">AnalysisBaseSpaceDataDetails</span><span class="p">(</span>
+                                        <span class="n">workgroup_id</span><span class="o">=</span><span class="s2">&quot;workgroup_id_example&quot;</span><span class="p">,</span>
+                                        <span class="n">extensions</span><span class="o">=</span><span class="s2">&quot;extensions_example&quot;</span><span class="p">,</span>
+                                        <span class="n">path_prefix</span><span class="o">=</span><span class="s2">&quot;path_prefix_example&quot;</span><span class="p">,</span>
+                                    <span class="p">),</span>
+                                <span class="p">),</span>
+                            <span class="p">],</span>
+                        <span class="p">),</span>
+                    <span class="p">],</span>
+                    <span class="n">parameters</span><span class="o">=</span><span class="p">[</span>
+                        <span class="n">AnalysisParameterInput</span><span class="p">(</span>
+                            <span class="n">code</span><span class="o">=</span><span class="s2">&quot;code_example&quot;</span><span class="p">,</span>
+                            <span class="n">value</span><span class="o">=</span><span class="s2">&quot;value_example&quot;</span><span class="p">,</span>
+                            <span class="n">multi_value</span><span class="o">=</span><span class="p">[</span>
+                                <span class="s2">&quot;multi_value_example&quot;</span><span class="p">,</span>
+                            <span class="p">],</span>
+                        <span class="p">),</span>
+                    <span class="p">],</span>
+                    <span class="n">reference_data_parameters</span><span class="o">=</span><span class="p">[</span>
+                        <span class="n">AnalysisReferenceDataParameter</span><span class="p">(</span>
+                            <span class="n">parameter_code</span><span class="o">=</span><span class="s2">&quot;parameter_code_example&quot;</span><span class="p">,</span>
+                            <span class="n">reference_data_id</span><span class="o">=</span><span class="s2">&quot;reference_data_id_example&quot;</span><span class="p">,</span>
+                        <span class="p">),</span>
+                    <span class="p">],</span>
+                <span class="p">),</span>
+                <span class="n">activation_code_detail_id</span><span class="o">=</span><span class="s2">&quot;activation_code_detail_id_example&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">],</span>
+        <span class="n">nextflow_json_items</span><span class="o">=</span><span class="p">[</span>
+            <span class="n">CreateNextflowJsonAnalysis</span><span class="p">(</span>
+                <span class="n">user_reference</span><span class="o">=</span><span class="s2">&quot;26bUUGjjNSwg0_bs9ZayIM/dgN/b6gvxmPb9GcsM61ate1RA89q3w1l4eH4XxEz-5awxoFZxHzs6ED-kjUSnTINkYPUndNl8pmPg5K897Fu1JEFj9R1_dz/rEoBi0LnU8SsOWJ7wYrczi/Qdt8mVLxbg4bCLrLBcmXxWQK6MzKSg5jphei0IfRRwpnT_Z-qKa_YppZepezJ0-VmLSUTLYyW- e_jxxzpBvw-y P/SI-13 AOsiPRVvnXrDhh58EJzzOxprDzE3pjHRAkK7vI7/jcoPqzNk YKJOXJ2zkgYnmU-hV4pJhQ7dhTAGxjARc6SZKg2qV/ hA054g00j8CXRM4JZgexx5/BmiUdb8V-5tS7Ce-8OP8jM6Q/ap ieHoJL0cOHxhIz6IzRjPiSbv46JLcKaA-xTwLJcAkoNQxJsCUIkorO-2KAnnTOE8M6xmSejA6BGR RDxxWc493QsJ JFt/rxtNb3BtpHGNB33FSli/EaSDC3Jwlo9Aq-OZySuGXBwuNL5ICjOL uxZFN7oEXv3Rjr7mZXbY7cFU6HPiDV aM8XFtx5ef7XxGahEx5as4igHCaW/gfGuN6Yogo9e2fmFQ_q_V0iz1l6lakAtMD7gXmnBhySbG7coPhWOlWnLvrLZaxa78JI_LGepDuQ3z-LtIx RE8z6ZbHjz/3coUV uT/EXw3Z8KLTvaqhteQpbwYU8rf85eyxCXQ02l2UfQbP/Hwb TbI1I6mS 9V-ofBBak wevR6F 37RS4Mqp-z9OYCpSjEqZEdbOOqMNkk0MEG4PgSZp-tY7nzp2V09rLuCvfKd3/B7Nke4pyLFXi20uVuBIVQWxeziEmPj4-KIZ4EBDYGMeHwlQHgxMV_coQzDZPhSAcDWSu58NayafWzmTt-P7RTuj3iloSmvq6ptM/paqws8RfvaYMfrqa8yWUb/aew8fGzxL8UBpf4IYjQxCBv0aEqODMs6 __HvAARQCZ_HKqroXyt6-Y8imaC5It9ZEZjIoZP9V1EjbA-tFQv/KOFpHUcVNnqDdEconiUhJ/_OYqv01dQetO3oDTHSQdhLouT7merxKTcqNMpXfpU5ktnd4BBULIW0N/GhiW92gAEui/l WoiEW-tzti/9q3K407VNjp2Rdt_M_wxbjDN svNTMlZscMPUeqTE205sTZIkhsadNbiDH3R9hn/97bNktDzITop4y58kMdi7sEjYIZXQNI/G2UN7cFEvraG_8ul060s0W5myfNUsZOAfyRSKwumr7vrmbObYZ5LLOTkAJpJ6yD/EyKvzp oyT1iV44YK Q7W9XH_ nC87n1lMXx/cpcof84rc bTU20M2sFqt4zswj63S37gymcb35PFmFooUEItJ/WXmmb6rN-PG7CfVVrIXdUuyma63xZJQfyqFaad9jaJKwsaFZawt9CZCsgO_EkphsT/YD6 2t z_dodcIO0StQgTXeyp0Q-9qUn4jz1sIzDHdZi5DAKyeNjBARo-Dde72ZQ7rgUiF6NuAm_ZXdh 6NvD08O/uXF_iMcrZ0AkcxL21NwNNfADepMfPI jxbyGRU9VFh-_a9Mbcva1MSFLSU/GAcLlmJPzj1b/En KXp2ZJ1qP6EIAQRw6KWw-PSWFS0LzB0tz6JsM zfsuuNyQ1F qNTmvGd/34AbRwr1Mi1qq8Bv/7r73NXsLH6lkp_YwgeBZkfv7aEST19XJTe9 4t GIqXuFdD/054gT-SQFzTGrV3v TunXGLysUh_by7pmMGuKPyyeSFxct6Ze7099nRsM3R50i8YYD7uU6_-V/RO7VbVfLxqbCc-GimutTgMtTfBOiI07gLv8fxp8Rrvb2oVixDwL_5GL/dkyb0ofYJLarfJrS4gkeTAfK5NMnpgtwWLpKWVb8A/uQa TKwyJvJPBgILfXHpRfA79W9rCcVEcc1VmOZvW3--sp_E2t2terN4_2lcppBwgjIIFpE/9wjR SU K0GOwW4T/aO1NV6_Hx-5jhuPYUigmskjs38qptZPjGbQcMS6bq4jio6/n_hxYgCm- Z/K_7Ms5LyP8NoYNVF5v/C_I7qzU/pSP39e4y_L 2jAgjSpNK_48uV-MZ7CZL92Y/TDLRif4BX0k_kxk-VTaov2mlM18SfVTJ/mcMNVIO85230RBh-y9g8MNnnvGKT10t-mI5XH9biew58zTl0rQVIApvKA eQe3wv SD86JI2WO4rz8dSltvVqfei/m5FrnEpLvFqwhHFvdn0kEWtwPAhULVh_u/c  m 15yE3/jO3gKaP YHCaCFHZkWsh-mLTR_p_ZhJXuOoIsNHZsK m5ntCxGzmy4lVW_PKmo 4vtEAhOm289Yqnh43gtmE0DcSlXRhP/iRTQHkAPGO AROE GYzP3aIBvIz2Du0PJgDeBXnU3IgkF7V-jBW/R9V8PHmR5UHiFYWfIRAHRUzlaQ_5fkL16fmprt8wmIyj95MZALC3mmE-9-9QIQ_TxYHnPGd129xGytHvWDBO-HWa9uog_gy/B_Lcv_NbdKzBHV0mHJ0otqw-2cVo74hoJwmXoaUvId-qA0zLPa/yNACHAPKtKgQ-wkE FxSQB6am1_36v_4sO/L0 obeH_A5Q g0U8nnM/tLSIw h_9TVGO7HSAcUt2jm2mJ6jxIaRYSQHPbXmRPRzaWrmwaKy4EMWPwbc-aU2Q37XoigypCN/O vMz_s2eIdV-ysI6yTso6oV4n2icY_UqIX3aXe8/fjQVrmDXiXxxvBTvfg06jgn9-ScpKH8N5C4XWGVGRk3j37rxQmI4kwvKHhIKCAUvIkWH6jwZxFRo eIKF/u9HDcrUBkJ7XvQAc-6hPCiLNyumZW bZ1Z1lFtnk615uonsVXHfF05q0NRqj15TZJbNNeHStQMOuYC_jqdm9E9SG W_klzb/D/EIYyIete7WHGdGvaz8OlgB8y7yFT3urhGfXNdaf9LPJpeol/Hsm_twH5CZ0hw5E79TYBg5mTcvHosbmds0/lnttAjUMBqupVLK3x4 0AG976YmWGXzKcfMwo/AJe6AqMxeiI54JCwm88akvPHFEeT/B2_DFbeoWsodas1SE0ZbMSAutkOh5Xxm5JinIE-HSc3Uum5CXQM8IAqgV7Pt7UP7R-a-gxq3pkrhbyaL /g06Y18ROfY0YdRY3jzlcCRRc0YCrW8XRt5tBgOBd9I6/WfODawxODTr6XaLBZ4N4HcKJ0/9/176mYQK5G5Zg_-QRvAnzbzYh01qrNB/0OPLkLvQwJMAZYcIIuHLVBKQgB0tiFZAgCaX_xRaJdoCvlRQ2NFmqxndmXhZUKursXMGxzxNhAE-TRB8qkmv3x3zsY/hWxhBU-WrXobNN/UrgSnP/Hqo0hrfoM/2nH G5cT7PUzahLIwtoU8svwt-H5quoR L8lSHdFBrWE3qxdnl3KF6G9CqDK1MEEUL/z_3v2OEgVjFWE0PvPA tgxkNhx5gRDEgjBNW&quot;</span><span class="p">,</span>
+                <span class="n">pipeline_id</span><span class="o">=</span><span class="s2">&quot;pipeline_id_example&quot;</span><span class="p">,</span>
+                <span class="n">tags</span><span class="o">=</span><span class="n">CreateAnalysisTag</span><span class="p">(</span>
+                    <span class="n">technical_tags</span><span class="o">=</span><span class="p">[</span>
+                        <span class="s2">&quot;technical_tags_example&quot;</span><span class="p">,</span>
+                    <span class="p">],</span>
+                    <span class="n">user_tags</span><span class="o">=</span><span class="p">[</span>
+                        <span class="s2">&quot;user_tags_example&quot;</span><span class="p">,</span>
+                    <span class="p">],</span>
+                    <span class="n">reference_tags</span><span class="o">=</span><span class="p">[</span>
+                        <span class="s2">&quot;reference_tags_example&quot;</span><span class="p">,</span>
+                    <span class="p">],</span>
+                <span class="p">),</span>
+                <span class="n">analysis_storage_id</span><span class="o">=</span><span class="s2">&quot;analysis_storage_id_example&quot;</span><span class="p">,</span>
+                <span class="n">output_parent_folder_id</span><span class="o">=</span><span class="s2">&quot;output_parent_folder_id_example&quot;</span><span class="p">,</span>
+                <span class="n">analysis_output</span><span class="o">=</span><span class="p">[</span>
+                    <span class="n">AnalysisOutputMapping</span><span class="p">(</span>
+                        <span class="n">source_path</span><span class="o">=</span><span class="s2">&quot;source_path_example&quot;</span><span class="p">,</span>
+                        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;FILE&quot;</span><span class="p">,</span>
+                        <span class="n">target_project_id</span><span class="o">=</span><span class="s2">&quot;target_project_id_example&quot;</span><span class="p">,</span>
+                        <span class="n">target_path</span><span class="o">=</span><span class="s2">&quot;target_path_example&quot;</span><span class="p">,</span>
+                        <span class="n">action_on_exist</span><span class="o">=</span><span class="s2">&quot;action_on_exist_example&quot;</span><span class="p">,</span>
+                    <span class="p">),</span>
+                <span class="p">],</span>
+                <span class="n">input_form_values</span><span class="o">=</span><span class="n">NextflowJsonAnalysisInput</span><span class="p">(</span>
+                    <span class="n">fields</span><span class="o">=</span><span class="p">[</span>
+                        <span class="n">InputFormFieldValues</span><span class="p">(</span>
+                            <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;id_example&quot;</span><span class="p">,</span>
+                            <span class="n">values</span><span class="o">=</span><span class="p">[</span>
+                                <span class="s2">&quot;values_example&quot;</span><span class="p">,</span>
+                            <span class="p">],</span>
+                            <span class="n">data_values</span><span class="o">=</span><span class="p">[</span>
+                                <span class="n">InputFormData</span><span class="p">(</span>
+                                    <span class="n">data_id</span><span class="o">=</span><span class="s2">&quot;data_id_example&quot;</span><span class="p">,</span>
+                                    <span class="n">mount_path</span><span class="o">=</span><span class="s2">&quot;mount_path_example&quot;</span><span class="p">,</span>
+                                <span class="p">),</span>
+                            <span class="p">],</span>
+                            <span class="n">external_data_values</span><span class="o">=</span><span class="p">[</span>
+                                <span class="n">AnalysisInputExternalData</span><span class="p">(</span>
+                                    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;url_example&quot;</span><span class="p">,</span>
+                                    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;basespac&quot;</span><span class="p">,</span>
+                                    <span class="n">mount_path</span><span class="o">=</span><span class="s2">&quot;mount_path_example&quot;</span><span class="p">,</span>
+                                    <span class="n">s3_details</span><span class="o">=</span><span class="n">AnalysisS3DataDetails</span><span class="p">(</span>
+                                        <span class="n">storage_credentials_id</span><span class="o">=</span><span class="s2">&quot;storage_credentials_id_example&quot;</span><span class="p">,</span>
+                                    <span class="p">),</span>
+                                    <span class="n">basespace_details</span><span class="o">=</span><span class="n">AnalysisBaseSpaceDataDetails</span><span class="p">(</span>
+                                        <span class="n">workgroup_id</span><span class="o">=</span><span class="s2">&quot;workgroup_id_example&quot;</span><span class="p">,</span>
+                                        <span class="n">extensions</span><span class="o">=</span><span class="s2">&quot;extensions_example&quot;</span><span class="p">,</span>
+                                        <span class="n">path_prefix</span><span class="o">=</span><span class="s2">&quot;path_prefix_example&quot;</span><span class="p">,</span>
+                                    <span class="p">),</span>
+                                <span class="p">),</span>
+                            <span class="p">],</span>
+                        <span class="p">),</span>
+                    <span class="p">],</span>
+                    <span class="n">groups</span><span class="o">=</span><span class="p">[</span>
+                        <span class="n">InputFormGroup</span><span class="p">(</span>
+                            <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;id_example&quot;</span><span class="p">,</span>
+                            <span class="n">values</span><span class="o">=</span><span class="p">[</span>
+                                <span class="n">InputFormGroupFieldValues</span><span class="p">(</span>
+                                    <span class="n">values</span><span class="o">=</span><span class="p">[</span>
+                                        <span class="n">InputFormFieldValues</span><span class="p">(</span>
+                                            <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;id_example&quot;</span><span class="p">,</span>
+                                            <span class="n">values</span><span class="o">=</span><span class="p">[</span>
+                                                <span class="s2">&quot;values_example&quot;</span><span class="p">,</span>
+                                            <span class="p">],</span>
+                                            <span class="n">data_values</span><span class="o">=</span><span class="p">[</span>
+                                                <span class="n">InputFormData</span><span class="p">(</span>
+                                                    <span class="n">data_id</span><span class="o">=</span><span class="s2">&quot;data_id_example&quot;</span><span class="p">,</span>
+                                                    <span class="n">mount_path</span><span class="o">=</span><span class="s2">&quot;mount_path_example&quot;</span><span class="p">,</span>
+                                                <span class="p">),</span>
+                                            <span class="p">],</span>
+                                            <span class="n">external_data_values</span><span class="o">=</span><span class="p">[</span>
+                                                <span class="n">AnalysisInputExternalData</span><span class="p">(</span>
+                                                    <span class="n">url</span><span class="o">=</span><span class="s2">&quot;url_example&quot;</span><span class="p">,</span>
+                                                    <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;basespac&quot;</span><span class="p">,</span>
+                                                    <span class="n">mount_path</span><span class="o">=</span><span class="s2">&quot;mount_path_example&quot;</span><span class="p">,</span>
+                                                    <span class="n">s3_details</span><span class="o">=</span><span class="n">AnalysisS3DataDetails</span><span class="p">(</span>
+                                                        <span class="n">storage_credentials_id</span><span class="o">=</span><span class="s2">&quot;storage_credentials_id_example&quot;</span><span class="p">,</span>
+                                                    <span class="p">),</span>
+                                                    <span class="n">basespace_details</span><span class="o">=</span><span class="n">AnalysisBaseSpaceDataDetails</span><span class="p">(</span>
+                                                        <span class="n">workgroup_id</span><span class="o">=</span><span class="s2">&quot;workgroup_id_example&quot;</span><span class="p">,</span>
+                                                        <span class="n">extensions</span><span class="o">=</span><span class="s2">&quot;extensions_example&quot;</span><span class="p">,</span>
+                                                        <span class="n">path_prefix</span><span class="o">=</span><span class="s2">&quot;path_prefix_example&quot;</span><span class="p">,</span>
+                                                    <span class="p">),</span>
+                                                <span class="p">),</span>
+                                            <span class="p">],</span>
+                                        <span class="p">),</span>
+                                    <span class="p">],</span>
+                                <span class="p">),</span>
+                            <span class="p">],</span>
+                        <span class="p">),</span>
+                    <span class="p">],</span>
+                <span class="p">),</span>
+            <span class="p">),</span>
+        <span class="p">],</span>
+    <span class="p">)</span> <span class="c1"># CreateAnalysisCreationBatch | </span>
+    <span class="n">idempotency_key</span> <span class="o">=</span> <span class="s2">&quot;Idempotency-Key_example&quot;</span> <span class="c1"># str | The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code &lt; 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the request body is the same as the previous request and an answer is stored =&gt; the stored response is returned without executing the request again.&lt;/li&gt;&lt;li&gt;the request body is the same as the previous request and no answer is stored because the previous request has not finished =&gt; 409 error response, which indicates that the original call is still in progress.&lt;/li&gt;&lt;li&gt;the request body is not the same as the previous request =&gt; 422 error response, as this is not allowed.&lt;/li&gt;&lt;/ul&gt;This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn&#39;t been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code &gt;= 400) we allow clients to retry the call. This is where we don&#39;t follow the IETF specification. (optional)</span>
+
+    <span class="c1"># example passing only required values which don&#39;t have defaults set</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create and start multiple analyses in batch.</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">create_analysis_creation_batch</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">create_analysis_creation_batch</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling ProjectAnalysisCreationBatchApi-&gt;create_analysis_creation_batch: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+
+    <span class="c1"># example passing only required values which don&#39;t have defaults set</span>
+    <span class="c1"># and optional values</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Create and start multiple analyses in batch.</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">create_analysis_creation_batch</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">create_analysis_creation_batch</span><span class="p">,</span> <span class="n">idempotency_key</span><span class="o">=</span><span class="n">idempotency_key</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling ProjectAnalysisCreationBatchApi-&gt;create_analysis_creation_batch: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="parameters">Parameters<a class="headerlink" href="#parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>project_id</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>create_analysis_creation_batch</strong></td>
+<td><a href="../CreateAnalysisCreationBatch/"><strong>CreateAnalysisCreationBatch</strong></a></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>idempotency_key</strong></td>
+<td><strong>str</strong></td>
+<td>The Idempotency-Key header can be used to prevent duplicate requests and support retries. It is implemented according to the IETF spec, with one exception (see below). The header value is allowed to be max 255 characters long. If the header is supplied for a successful response (HTTP status code &lt; 400) then the response  will be saved for 7 days for the specific API endpoint, header value and user reference. When the same user makes  a new request within 7 days to the same API endpoint with the same Idempotency-Key header value, following use cases can occur:&lt;br /&gt;&lt;ul&gt;&lt;li&gt;the request body is the same as the previous request and an answer is stored &#x3D;&gt; the stored response is returned without executing the request again.&lt;/li&gt;&lt;li&gt;the request body is the same as the previous request and no answer is stored because the previous request has not finished &#x3D;&gt; 409 error response, which indicates that the original call is still in progress.&lt;/li&gt;&lt;li&gt;the request body is not the same as the previous request &#x3D;&gt; 422 error response, as this is not allowed.&lt;/li&gt;&lt;/ul&gt;This means that each time when executing a new API request using the Idempotency-Key header, the request has to contain a new header value that hasn&#39;t been used (successfully) in the past 7 days for that specific API endpoint and by the specific user. For error responses (HTTP status code &gt;&#x3D; 400) we allow clients to retry the call. This is where we don&#39;t follow the IETF specification.</td>
+<td>[optional]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-type">Return type<a class="headerlink" href="#return-type" title="Permanent link">&para;</a></h3>
+<p><a href="../AnalysisCreationBatch/"><strong>AnalysisCreationBatch</strong></a></p>
+<h3 id="authorization">Authorization<a class="headerlink" href="#authorization" title="Permanent link">&para;</a></h3>
+<p><a href="../../#ApiKeyAuth">ApiKeyAuth</a>, <a href="../../#JwtAuth">JwtAuth</a></p>
+<h3 id="http-request-headers">HTTP request headers<a class="headerlink" href="#http-request-headers" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Content-Type</strong>: application/vnd.illumina.v3+json</li>
+<li><strong>Accept</strong>: application/problem+json, application/vnd.illumina.v3+json</li>
+</ul>
+<h3 id="http-response-details">HTTP response details<a class="headerlink" href="#http-response-details" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+<th>Response headers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>201</strong></td>
+<td>The analyses are scheduled for creation.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td>A problem occurred.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#">[Back to top]</a> <a href="../../#documentation-for-api-endpoints">[Back to API list]</a> <a href="../../#documentation-for-models">[Back to Model list]</a> <a href="../../">[Back to README]</a></p>
+<h1 id="get_analysis_creation_batch"><strong>get_analysis_creation_batch</strong><a class="headerlink" href="#get_analysis_creation_batch" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>AnalysisCreationBatch get_analysis_creation_batch(project_id, batch_id)</p>
+</blockquote>
+<p>Retrieve a analysis creation batch.</p>
+<h3 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Api Key Authentication (ApiKeyAuth):</li>
+<li>Bearer (JWT) Authentication (JwtAuth):</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libica.openapi.v2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">project_analysis_creation_batch_api</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.analysis_creation_batch</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnalysisCreationBatch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.problem</span><span class="w"> </span><span class="kn">import</span> <span class="n">Problem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+<span class="c1"># Defining the host is optional and defaults to /ica/rest</span>
+<span class="c1"># See configuration.py for a list of all supported configuration parameters.</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;/ica/rest&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># The client must configure the authentication and authorization parameters</span>
+<span class="c1"># in accordance with the API server security policy.</span>
+<span class="c1"># Examples for each auth method are provided below, use the example that</span>
+<span class="c1"># satisfies your auth use case.</span>
+
+<span class="c1"># Configure API key authorization: ApiKeyAuth</span>
+<span class="n">configuration</span><span class="o">.</span><span class="n">api_key</span><span class="p">[</span><span class="s1">&#39;ApiKeyAuth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
+
+<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
+<span class="c1"># configuration.api_key_prefix[&#39;ApiKeyAuth&#39;] = &#39;Bearer&#39;</span>
+
+<span class="c1"># Configure Bearer authorization (JWT): JwtAuth</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">access_token</span> <span class="o">=</span> <span class="s1">&#39;YOUR_BEARER_TOKEN&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Enter a context with an instance of the API client</span>
+<span class="k">with</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiClient</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">api_client</span><span class="p">:</span>
+    <span class="c1"># Create an instance of the API class</span>
+    <span class="n">api_instance</span> <span class="o">=</span> <span class="n">project_analysis_creation_batch_api</span><span class="o">.</span><span class="n">ProjectAnalysisCreationBatchApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
+    <span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;projectId_example&quot;</span> <span class="c1"># str | </span>
+    <span class="n">batch_id</span> <span class="o">=</span> <span class="s2">&quot;batchId_example&quot;</span> <span class="c1"># str | The ID of the analysis creation batch</span>
+
+    <span class="c1"># example passing only required values which don&#39;t have defaults set</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Retrieve a analysis creation batch.</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">get_analysis_creation_batch</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">batch_id</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling ProjectAnalysisCreationBatchApi-&gt;get_analysis_creation_batch: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="parameters_1">Parameters<a class="headerlink" href="#parameters_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>project_id</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>batch_id</strong></td>
+<td><strong>str</strong></td>
+<td>The ID of the analysis creation batch</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-type_1">Return type<a class="headerlink" href="#return-type_1" title="Permanent link">&para;</a></h3>
+<p><a href="../AnalysisCreationBatch/"><strong>AnalysisCreationBatch</strong></a></p>
+<h3 id="authorization_1">Authorization<a class="headerlink" href="#authorization_1" title="Permanent link">&para;</a></h3>
+<p><a href="../../#ApiKeyAuth">ApiKeyAuth</a>, <a href="../../#JwtAuth">JwtAuth</a></p>
+<h3 id="http-request-headers_1">HTTP request headers<a class="headerlink" href="#http-request-headers_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Content-Type</strong>: Not defined</li>
+<li><strong>Accept</strong>: application/problem+json, application/vnd.illumina.v3+json</li>
+</ul>
+<h3 id="http-response-details_1">HTTP response details<a class="headerlink" href="#http-response-details_1" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+<th>Response headers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>200</strong></td>
+<td>The analysis creation batch is successfully retrieved.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td>A problem occurred.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#">[Back to top]</a> <a href="../../#documentation-for-api-endpoints">[Back to API list]</a> <a href="../../#documentation-for-models">[Back to Model list]</a> <a href="../../">[Back to README]</a></p>
+<h1 id="get_analysis_creation_batch_item"><strong>get_analysis_creation_batch_item</strong><a class="headerlink" href="#get_analysis_creation_batch_item" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>AnalysisCreationBatchItemV4 get_analysis_creation_batch_item(project_id, batch_id, item_id)</p>
+</blockquote>
+<p>Retrieve a analysis creation batch item.</p>
+<h1 id="changelog-for-this-endpoint-multiple-versions-exist-note-that-the-values-for-request-headers-content-type-and-accept-must-contain-a-matching-version-v3-initial-version-v4-field-createdanalysis-changes-field-type-status-changed-from-enum-to-string-new-statuses-have-been-added-queued-initializing-preparing_inputs-generating_outputs-aborting-field-analysispriority-changed-from-enum-to-string-the-owner-and-tenant-are-now-represented-by-identifier-objects">Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3] Initial version ## [V4] Field 'createdAnalysis' changes:  * Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.<a class="headerlink" href="#changelog-for-this-endpoint-multiple-versions-exist-note-that-the-values-for-request-headers-content-type-and-accept-must-contain-a-matching-version-v3-initial-version-v4-field-createdanalysis-changes-field-type-status-changed-from-enum-to-string-new-statuses-have-been-added-queued-initializing-preparing_inputs-generating_outputs-aborting-field-analysispriority-changed-from-enum-to-string-the-owner-and-tenant-are-now-represented-by-identifier-objects" title="Permanent link">&para;</a></h1>
+<h3 id="example_2">Example<a class="headerlink" href="#example_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Api Key Authentication (ApiKeyAuth):</li>
+<li>Bearer (JWT) Authentication (JwtAuth):</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libica.openapi.v2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">project_analysis_creation_batch_api</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.analysis_creation_batch_item_v4</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnalysisCreationBatchItemV4</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.analysis_creation_batch_item_v3</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnalysisCreationBatchItemV3</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.problem</span><span class="w"> </span><span class="kn">import</span> <span class="n">Problem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+<span class="c1"># Defining the host is optional and defaults to /ica/rest</span>
+<span class="c1"># See configuration.py for a list of all supported configuration parameters.</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;/ica/rest&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># The client must configure the authentication and authorization parameters</span>
+<span class="c1"># in accordance with the API server security policy.</span>
+<span class="c1"># Examples for each auth method are provided below, use the example that</span>
+<span class="c1"># satisfies your auth use case.</span>
+
+<span class="c1"># Configure API key authorization: ApiKeyAuth</span>
+<span class="n">configuration</span><span class="o">.</span><span class="n">api_key</span><span class="p">[</span><span class="s1">&#39;ApiKeyAuth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
+
+<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
+<span class="c1"># configuration.api_key_prefix[&#39;ApiKeyAuth&#39;] = &#39;Bearer&#39;</span>
+
+<span class="c1"># Configure Bearer authorization (JWT): JwtAuth</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">access_token</span> <span class="o">=</span> <span class="s1">&#39;YOUR_BEARER_TOKEN&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Enter a context with an instance of the API client</span>
+<span class="k">with</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiClient</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">api_client</span><span class="p">:</span>
+    <span class="c1"># Create an instance of the API class</span>
+    <span class="n">api_instance</span> <span class="o">=</span> <span class="n">project_analysis_creation_batch_api</span><span class="o">.</span><span class="n">ProjectAnalysisCreationBatchApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
+    <span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;projectId_example&quot;</span> <span class="c1"># str | </span>
+    <span class="n">batch_id</span> <span class="o">=</span> <span class="s2">&quot;batchId_example&quot;</span> <span class="c1"># str | The ID of the analysis creation batch</span>
+    <span class="n">item_id</span> <span class="o">=</span> <span class="s2">&quot;itemId_example&quot;</span> <span class="c1"># str | The ID of the analysis creation batch item</span>
+
+    <span class="c1"># example passing only required values which don&#39;t have defaults set</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Retrieve a analysis creation batch item.</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">get_analysis_creation_batch_item</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">batch_id</span><span class="p">,</span> <span class="n">item_id</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling ProjectAnalysisCreationBatchApi-&gt;get_analysis_creation_batch_item: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="parameters_2">Parameters<a class="headerlink" href="#parameters_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>project_id</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>batch_id</strong></td>
+<td><strong>str</strong></td>
+<td>The ID of the analysis creation batch</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>item_id</strong></td>
+<td><strong>str</strong></td>
+<td>The ID of the analysis creation batch item</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-type_2">Return type<a class="headerlink" href="#return-type_2" title="Permanent link">&para;</a></h3>
+<p><a href="../AnalysisCreationBatchItemV4/"><strong>AnalysisCreationBatchItemV4</strong></a></p>
+<h3 id="authorization_2">Authorization<a class="headerlink" href="#authorization_2" title="Permanent link">&para;</a></h3>
+<p><a href="../../#ApiKeyAuth">ApiKeyAuth</a>, <a href="../../#JwtAuth">JwtAuth</a></p>
+<h3 id="http-request-headers_2">HTTP request headers<a class="headerlink" href="#http-request-headers_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Content-Type</strong>: Not defined</li>
+<li><strong>Accept</strong>: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json</li>
+</ul>
+<h3 id="http-response-details_2">HTTP response details<a class="headerlink" href="#http-response-details_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+<th>Response headers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>200</strong></td>
+<td>The analysis creation batch item is successfully retrieved.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td>A problem occurred.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#">[Back to top]</a> <a href="../../#documentation-for-api-endpoints">[Back to API list]</a> <a href="../../#documentation-for-models">[Back to Model list]</a> <a href="../../">[Back to README]</a></p>
+<h1 id="get_analysis_creation_batch_items"><strong>get_analysis_creation_batch_items</strong><a class="headerlink" href="#get_analysis_creation_batch_items" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>AnalysisCreationBatchItemPagedListV4 get_analysis_creation_batch_items(project_id, batch_id)</p>
+</blockquote>
+<p>Retrieve a list of analysis creation batch items.</p>
+<h1 id="changelog-for-this-endpoint-multiple-versions-exist-note-that-the-values-for-request-headers-content-type-and-accept-must-contain-a-matching-version-v3-initial-version-v4-item-field-createdanalysis-changes-field-type-status-changed-from-enum-to-string-new-statuses-have-been-added-queued-initializing-preparing_inputs-generating_outputs-aborting-field-analysispriority-changed-from-enum-to-string-the-owner-and-tenant-are-now-represented-by-identifier-objects">Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3]  * Initial version ## [V4] ## Item field 'createdAnalysis' changes:  * Field type 'status' changed from enum to String. New statuses have been added: ['QUEUED', 'INITIALIZING', 'PREPARING_INPUTS', 'GENERATING_OUTPUTS', 'ABORTING'].  * Field analysisPriority changed from enum to String.  * The owner and tenant are now represented by Identifier objects.<a class="headerlink" href="#changelog-for-this-endpoint-multiple-versions-exist-note-that-the-values-for-request-headers-content-type-and-accept-must-contain-a-matching-version-v3-initial-version-v4-item-field-createdanalysis-changes-field-type-status-changed-from-enum-to-string-new-statuses-have-been-added-queued-initializing-preparing_inputs-generating_outputs-aborting-field-analysispriority-changed-from-enum-to-string-the-owner-and-tenant-are-now-represented-by-identifier-objects" title="Permanent link">&para;</a></h1>
+<h3 id="example_3">Example<a class="headerlink" href="#example_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Api Key Authentication (ApiKeyAuth):</li>
+<li>Bearer (JWT) Authentication (JwtAuth):</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libica.openapi.v2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">project_analysis_creation_batch_api</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.analysis_creation_batch_item_paged_list_v4</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnalysisCreationBatchItemPagedListV4</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.analysis_creation_batch_item_paged_list_v3</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnalysisCreationBatchItemPagedListV3</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.problem</span><span class="w"> </span><span class="kn">import</span> <span class="n">Problem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+<span class="c1"># Defining the host is optional and defaults to /ica/rest</span>
+<span class="c1"># See configuration.py for a list of all supported configuration parameters.</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;/ica/rest&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># The client must configure the authentication and authorization parameters</span>
+<span class="c1"># in accordance with the API server security policy.</span>
+<span class="c1"># Examples for each auth method are provided below, use the example that</span>
+<span class="c1"># satisfies your auth use case.</span>
+
+<span class="c1"># Configure API key authorization: ApiKeyAuth</span>
+<span class="n">configuration</span><span class="o">.</span><span class="n">api_key</span><span class="p">[</span><span class="s1">&#39;ApiKeyAuth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
+
+<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
+<span class="c1"># configuration.api_key_prefix[&#39;ApiKeyAuth&#39;] = &#39;Bearer&#39;</span>
+
+<span class="c1"># Configure Bearer authorization (JWT): JwtAuth</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">access_token</span> <span class="o">=</span> <span class="s1">&#39;YOUR_BEARER_TOKEN&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Enter a context with an instance of the API client</span>
+<span class="k">with</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiClient</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">api_client</span><span class="p">:</span>
+    <span class="c1"># Create an instance of the API class</span>
+    <span class="n">api_instance</span> <span class="o">=</span> <span class="n">project_analysis_creation_batch_api</span><span class="o">.</span><span class="n">ProjectAnalysisCreationBatchApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
+    <span class="n">project_id</span> <span class="o">=</span> <span class="s2">&quot;projectId_example&quot;</span> <span class="c1"># str | </span>
+    <span class="n">batch_id</span> <span class="o">=</span> <span class="s2">&quot;batchId_example&quot;</span> <span class="c1"># str | The ID of the analysis creation batch</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;RUNNING&quot;</span><span class="p">,</span>
+    <span class="p">]</span> <span class="c1"># [str] | The statuses to filter on. (optional)</span>
+    <span class="n">page_offset</span> <span class="o">=</span> <span class="s2">&quot;pageOffset_example&quot;</span> <span class="c1"># str | [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)</span>
+    <span class="n">page_token</span> <span class="o">=</span> <span class="s2">&quot;pageToken_example&quot;</span> <span class="c1"># str | [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)</span>
+    <span class="n">page_size</span> <span class="o">=</span> <span class="s2">&quot;pageSize_example&quot;</span> <span class="c1"># str | [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results (optional)</span>
+
+    <span class="c1"># example passing only required values which don&#39;t have defaults set</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Retrieve a list of analysis creation batch items.</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">get_analysis_creation_batch_items</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">batch_id</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling ProjectAnalysisCreationBatchApi-&gt;get_analysis_creation_batch_items: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+
+    <span class="c1"># example passing only required values which don&#39;t have defaults set</span>
+    <span class="c1"># and optional values</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Retrieve a list of analysis creation batch items.</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">get_analysis_creation_batch_items</span><span class="p">(</span><span class="n">project_id</span><span class="p">,</span> <span class="n">batch_id</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="n">status</span><span class="p">,</span> <span class="n">page_offset</span><span class="o">=</span><span class="n">page_offset</span><span class="p">,</span> <span class="n">page_token</span><span class="o">=</span><span class="n">page_token</span><span class="p">,</span> <span class="n">page_size</span><span class="o">=</span><span class="n">page_size</span><span class="p">)</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling ProjectAnalysisCreationBatchApi-&gt;get_analysis_creation_batch_items: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="parameters_3">Parameters<a class="headerlink" href="#parameters_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>project_id</strong></td>
+<td><strong>str</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>batch_id</strong></td>
+<td><strong>str</strong></td>
+<td>The ID of the analysis creation batch</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>status</strong></td>
+<td><strong>[str]</strong></td>
+<td>The statuses to filter on.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>page_offset</strong></td>
+<td><strong>str</strong></td>
+<td>[only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>page_token</strong></td>
+<td><strong>str</strong></td>
+<td>[only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.</td>
+<td>[optional]</td>
+</tr>
+<tr>
+<td><strong>page_size</strong></td>
+<td><strong>str</strong></td>
+<td>[can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results</td>
+<td>[optional]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="return-type_3">Return type<a class="headerlink" href="#return-type_3" title="Permanent link">&para;</a></h3>
+<p><a href="../AnalysisCreationBatchItemPagedListV4/"><strong>AnalysisCreationBatchItemPagedListV4</strong></a></p>
+<h3 id="authorization_3">Authorization<a class="headerlink" href="#authorization_3" title="Permanent link">&para;</a></h3>
+<p><a href="../../#ApiKeyAuth">ApiKeyAuth</a>, <a href="../../#JwtAuth">JwtAuth</a></p>
+<h3 id="http-request-headers_3">HTTP request headers<a class="headerlink" href="#http-request-headers_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Content-Type</strong>: Not defined</li>
+<li><strong>Accept</strong>: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json</li>
+</ul>
+<h3 id="http-response-details_3">HTTP response details<a class="headerlink" href="#http-response-details_3" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Status code</th>
+<th>Description</th>
+<th>Response headers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>200</strong></td>
+<td>The list of analysis creation batch items is successfully retrieved.</td>
+<td>-</td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td>A problem occurred.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<p><a href="#">[Back to top]</a> <a href="../../#documentation-for-api-endpoints">[Back to API list]</a> <a href="../../#documentation-for-models">[Back to Model list]</a> <a href="../../">[Back to README]</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/umccr/libica" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/umccr" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

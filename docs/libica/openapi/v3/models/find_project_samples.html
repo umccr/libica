@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>libica.openapi.v3.models.find_project_samples API documentation</title>
+<meta name="description" content="ICA Rest API …">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>libica.openapi.v3.models.find_project_samples</code></h1>
+</header>
+<section id="section-intro">
+<p>ICA Rest API</p>
+<p>This API can be used to interact with Illumina Connected Analytics.<br> <h2>Authentication</h2> <p> Authentication to the
+API can be done in multiple ways:<br> <ul><li>For the entire API, except for the POST /tokens endpoint: API-key + JWT</li> <li>Only for the POST /tokens endpoint: API-key + Basic Authentication</li></ul> </p> <p> <h4>API-key</h4> API keys are managed within the Illumina portal where you can manage your profile after you have logged on. The API-key has to be provided in the X-API-Key header parameter when executing API calls to ICA. In the background, a JWT will be requested at the IDP of Illumina to create a session. A good practice is to not use the API-key for every API call, but to first generate a JWT and to use that for authentication in subsequent calls.<br> </p> <p> <h4>JWT</h4> To avoid using an API-key for each call, we recommend to request a JWT via the POST /tokens endpoint
+using this API-key. The JWT will expire after a pre-configured period specified by a tenant administrator through the IAM console in the Illumina portal. The JWT is the preferred way for authentication.<br>A not yet expired, still valid JWT could be refreshed using the POST /tokens:refresh endpoint.<br>Refreshing the JWT is not possible if the JWT was generated by using an API-key.<br> </p> <p> <h4>Basic Authentication</h4> Basic authentication is only supported by the POST /tokens endpoint for generating a JWT. Use "Basic base64encoded(emailaddress:password)" in the "Authorization" header parameter for this authentication method. In case having access to multiple tenants using the same email-address, also provide the "tenant" request parameter to indicate what tenant you would like to request a JWT for. </p> <p> <h2>Compression</h2> If the API client provides request header 'Accept-Encoding' with value 'gzip', then the API applies GZIP compression on the JSON response. This significantly reduces the size and thus the download time of the response, which results in faster end-to-end API calls. In case of compression, the API also provides response header 'Content-Encoding' with value 'gzip', as indication for the client that decompression is required. </p> </p>
+<p>The version of the OpenAPI document: 3
+Generated by OpenAPI Generator (<a href="https://openapi-generator.tech">https://openapi-generator.tech</a>)</p>
+<p>Do not edit the class manually.</p>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples"><code class="flex name class">
+<span>class <span class="ident">FindProjectSamples</span></span>
+<span>(</span><span>**data: Any)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class FindProjectSamples(BaseModel):
+    &#34;&#34;&#34;
+    FindProjectSamples
+    &#34;&#34;&#34; # noqa: E501
+    conditions: List[FindSampleCondition] = Field(description=&#34;Adds a condition on a string field.&#34;)
+    date_conditions: List[FindSampleDateCondition] = Field(description=&#34;Adds a condition on a date metadate field. If both the dateBefore and dateAfter parameter are null it will return any sample that has no value for the date field.&#34;, alias=&#34;dateConditions&#34;)
+    number_conditions: List[FindSampleNumberCondition] = Field(description=&#34;Adds a condition on a number metadata field. If both the lowerBoundary and upperBoundary parameter are null it will return any sample that has no value for the number field.&#34;, alias=&#34;numberConditions&#34;)
+    boolean_conditions: List[FindSampleBooleanCondition] = Field(description=&#34;Adds a condition on a boolean field.&#34;, alias=&#34;booleanConditions&#34;)
+    full_text_search_string: Optional[StrictStr] = Field(default=None, description=&#34;Adds a fuzzy matching condition for the text on all string fields of the sample i.e. on both the fixed fields (name, description) as any metadata text field.&#34;, alias=&#34;fullTextSearchString&#34;)
+    include_deleted: Optional[StrictBool] = Field(default=False, description=&#34;Indicates whether deleted samples should be included.&#34;, alias=&#34;includeDeleted&#34;)
+    user_tags: Optional[List[Optional[StrictStr]]] = Field(default=None, description=&#34;The usertags to filter on. The userTagMatchMode-parameter determines how the filtering is done.&#34;, alias=&#34;userTags&#34;)
+    user_tag_match_mode: Optional[StrictStr] = Field(default=None, description=&#34;How the usertags are filtered.&#34;, alias=&#34;userTagMatchMode&#34;)
+    run_input_tags: Optional[List[Optional[StrictStr]]] = Field(default=None, description=&#34;The runInputTags to filter on. The runInputTagMatchMode-parameter determines how the filtering is done.&#34;, alias=&#34;runInputTags&#34;)
+    run_input_tag_match_mode: Optional[StrictStr] = Field(default=None, description=&#34;How the runInputTags are filtered.&#34;, alias=&#34;runInputTagMatchMode&#34;)
+    connector_tags: Optional[List[Optional[StrictStr]]] = Field(default=None, description=&#34;The connectorTags to filter on. The connectorTagMatchMode-parameter determines how the filtering is done.&#34;, alias=&#34;connectorTags&#34;)
+    connector_tag_match_mode: Optional[StrictStr] = Field(default=None, description=&#34;How the connectorTags are filtered.&#34;, alias=&#34;connectorTagMatchMode&#34;)
+    tech_tags: Optional[List[Optional[StrictStr]]] = Field(default=None, description=&#34;The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done.&#34;, alias=&#34;techTags&#34;)
+    tech_tag_match_mode: Optional[StrictStr] = Field(default=None, description=&#34;How the technicalTags are filtered.&#34;, alias=&#34;techTagMatchMode&#34;)
+    instrument_run_ids: Optional[List[Optional[StrictStr]]] = Field(default=None, alias=&#34;instrumentRunIds&#34;)
+    __properties: ClassVar[List[str]] = [&#34;conditions&#34;, &#34;dateConditions&#34;, &#34;numberConditions&#34;, &#34;booleanConditions&#34;, &#34;fullTextSearchString&#34;, &#34;includeDeleted&#34;, &#34;userTags&#34;, &#34;userTagMatchMode&#34;, &#34;runInputTags&#34;, &#34;runInputTagMatchMode&#34;, &#34;connectorTags&#34;, &#34;connectorTagMatchMode&#34;, &#34;techTags&#34;, &#34;techTagMatchMode&#34;, &#34;instrumentRunIds&#34;]
+
+    @field_validator(&#39;user_tag_match_mode&#39;)
+    def user_tag_match_mode_validate_enum(cls, value):
+        &#34;&#34;&#34;Validates the enum&#34;&#34;&#34;
+        if value is None:
+            return value
+
+        if value not in set([&#39;EXACT&#39;, &#39;EXCLUDE&#39;, &#39;FUZZY&#39;]):
+            raise ValueError(&#34;must be one of enum values (&#39;EXACT&#39;, &#39;EXCLUDE&#39;, &#39;FUZZY&#39;)&#34;)
+        return value
+
+    @field_validator(&#39;run_input_tag_match_mode&#39;)
+    def run_input_tag_match_mode_validate_enum(cls, value):
+        &#34;&#34;&#34;Validates the enum&#34;&#34;&#34;
+        if value is None:
+            return value
+
+        if value not in set([&#39;EXACT&#39;, &#39;EXCLUDE&#39;, &#39;FUZZY&#39;]):
+            raise ValueError(&#34;must be one of enum values (&#39;EXACT&#39;, &#39;EXCLUDE&#39;, &#39;FUZZY&#39;)&#34;)
+        return value
+
+    @field_validator(&#39;connector_tag_match_mode&#39;)
+    def connector_tag_match_mode_validate_enum(cls, value):
+        &#34;&#34;&#34;Validates the enum&#34;&#34;&#34;
+        if value is None:
+            return value
+
+        if value not in set([&#39;EXACT&#39;, &#39;EXCLUDE&#39;, &#39;FUZZY&#39;]):
+            raise ValueError(&#34;must be one of enum values (&#39;EXACT&#39;, &#39;EXCLUDE&#39;, &#39;FUZZY&#39;)&#34;)
+        return value
+
+    @field_validator(&#39;tech_tag_match_mode&#39;)
+    def tech_tag_match_mode_validate_enum(cls, value):
+        &#34;&#34;&#34;Validates the enum&#34;&#34;&#34;
+        if value is None:
+            return value
+
+        if value not in set([&#39;EXACT&#39;, &#39;EXCLUDE&#39;, &#39;FUZZY&#39;]):
+            raise ValueError(&#34;must be one of enum values (&#39;EXACT&#39;, &#39;EXCLUDE&#39;, &#39;FUZZY&#39;)&#34;)
+        return value
+
+    model_config = ConfigDict(
+        populate_by_name=True,
+        validate_assignment=True,
+        protected_namespaces=(),
+    )
+
+
+    def to_str(self) -&gt; str:
+        &#34;&#34;&#34;Returns the string representation of the model using alias&#34;&#34;&#34;
+        return pprint.pformat(self.model_dump(by_alias=True))
+
+    def to_json(self) -&gt; str:
+        &#34;&#34;&#34;Returns the JSON representation of the model using alias&#34;&#34;&#34;
+        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
+        return json.dumps(self.to_dict())
+
+    @classmethod
+    def from_json(cls, json_str: str) -&gt; Optional[Self]:
+        &#34;&#34;&#34;Create an instance of FindProjectSamples from a JSON string&#34;&#34;&#34;
+        return cls.from_dict(json.loads(json_str))
+
+    def to_dict(self) -&gt; Dict[str, Any]:
+        &#34;&#34;&#34;Return the dictionary representation of the model using alias.
+
+        This has the following differences from calling pydantic&#39;s
+        `self.model_dump(by_alias=True)`:
+
+        * `None` is only added to the output dict for nullable fields that
+          were set at model initialization. Other fields with value `None`
+          are ignored.
+        &#34;&#34;&#34;
+        excluded_fields: Set[str] = set([
+        ])
+
+        _dict = self.model_dump(
+            by_alias=True,
+            exclude=excluded_fields,
+            exclude_none=True,
+        )
+        # override the default output from pydantic by calling `to_dict()` of each item in conditions (list)
+        _items = []
+        if self.conditions:
+            for _item_conditions in self.conditions:
+                if _item_conditions:
+                    _items.append(_item_conditions.to_dict())
+            _dict[&#39;conditions&#39;] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in date_conditions (list)
+        _items = []
+        if self.date_conditions:
+            for _item_date_conditions in self.date_conditions:
+                if _item_date_conditions:
+                    _items.append(_item_date_conditions.to_dict())
+            _dict[&#39;dateConditions&#39;] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in number_conditions (list)
+        _items = []
+        if self.number_conditions:
+            for _item_number_conditions in self.number_conditions:
+                if _item_number_conditions:
+                    _items.append(_item_number_conditions.to_dict())
+            _dict[&#39;numberConditions&#39;] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in boolean_conditions (list)
+        _items = []
+        if self.boolean_conditions:
+            for _item_boolean_conditions in self.boolean_conditions:
+                if _item_boolean_conditions:
+                    _items.append(_item_boolean_conditions.to_dict())
+            _dict[&#39;booleanConditions&#39;] = _items
+        # set to None if full_text_search_string (nullable) is None
+        # and model_fields_set contains the field
+        if self.full_text_search_string is None and &#34;full_text_search_string&#34; in self.model_fields_set:
+            _dict[&#39;fullTextSearchString&#39;] = None
+
+        # set to None if include_deleted (nullable) is None
+        # and model_fields_set contains the field
+        if self.include_deleted is None and &#34;include_deleted&#34; in self.model_fields_set:
+            _dict[&#39;includeDeleted&#39;] = None
+
+        # set to None if user_tags (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_tags is None and &#34;user_tags&#34; in self.model_fields_set:
+            _dict[&#39;userTags&#39;] = None
+
+        # set to None if user_tag_match_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.user_tag_match_mode is None and &#34;user_tag_match_mode&#34; in self.model_fields_set:
+            _dict[&#39;userTagMatchMode&#39;] = None
+
+        # set to None if run_input_tags (nullable) is None
+        # and model_fields_set contains the field
+        if self.run_input_tags is None and &#34;run_input_tags&#34; in self.model_fields_set:
+            _dict[&#39;runInputTags&#39;] = None
+
+        # set to None if run_input_tag_match_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.run_input_tag_match_mode is None and &#34;run_input_tag_match_mode&#34; in self.model_fields_set:
+            _dict[&#39;runInputTagMatchMode&#39;] = None
+
+        # set to None if connector_tags (nullable) is None
+        # and model_fields_set contains the field
+        if self.connector_tags is None and &#34;connector_tags&#34; in self.model_fields_set:
+            _dict[&#39;connectorTags&#39;] = None
+
+        # set to None if connector_tag_match_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.connector_tag_match_mode is None and &#34;connector_tag_match_mode&#34; in self.model_fields_set:
+            _dict[&#39;connectorTagMatchMode&#39;] = None
+
+        # set to None if tech_tags (nullable) is None
+        # and model_fields_set contains the field
+        if self.tech_tags is None and &#34;tech_tags&#34; in self.model_fields_set:
+            _dict[&#39;techTags&#39;] = None
+
+        # set to None if tech_tag_match_mode (nullable) is None
+        # and model_fields_set contains the field
+        if self.tech_tag_match_mode is None and &#34;tech_tag_match_mode&#34; in self.model_fields_set:
+            _dict[&#39;techTagMatchMode&#39;] = None
+
+        # set to None if instrument_run_ids (nullable) is None
+        # and model_fields_set contains the field
+        if self.instrument_run_ids is None and &#34;instrument_run_ids&#34; in self.model_fields_set:
+            _dict[&#39;instrumentRunIds&#39;] = None
+
+        return _dict
+
+    @classmethod
+    def from_dict(cls, obj: Optional[Dict[str, Any]]) -&gt; Optional[Self]:
+        &#34;&#34;&#34;Create an instance of FindProjectSamples from a dict&#34;&#34;&#34;
+        if obj is None:
+            return None
+
+        if not isinstance(obj, dict):
+            return cls.model_validate(obj)
+
+        _obj = cls.model_validate({
+            &#34;conditions&#34;: [FindSampleCondition.from_dict(_item) for _item in obj[&#34;conditions&#34;]] if obj.get(&#34;conditions&#34;) is not None else None,
+            &#34;dateConditions&#34;: [FindSampleDateCondition.from_dict(_item) for _item in obj[&#34;dateConditions&#34;]] if obj.get(&#34;dateConditions&#34;) is not None else None,
+            &#34;numberConditions&#34;: [FindSampleNumberCondition.from_dict(_item) for _item in obj[&#34;numberConditions&#34;]] if obj.get(&#34;numberConditions&#34;) is not None else None,
+            &#34;booleanConditions&#34;: [FindSampleBooleanCondition.from_dict(_item) for _item in obj[&#34;booleanConditions&#34;]] if obj.get(&#34;booleanConditions&#34;) is not None else None,
+            &#34;fullTextSearchString&#34;: obj.get(&#34;fullTextSearchString&#34;),
+            &#34;includeDeleted&#34;: obj.get(&#34;includeDeleted&#34;) if obj.get(&#34;includeDeleted&#34;) is not None else False,
+            &#34;userTags&#34;: obj.get(&#34;userTags&#34;),
+            &#34;userTagMatchMode&#34;: obj.get(&#34;userTagMatchMode&#34;),
+            &#34;runInputTags&#34;: obj.get(&#34;runInputTags&#34;),
+            &#34;runInputTagMatchMode&#34;: obj.get(&#34;runInputTagMatchMode&#34;),
+            &#34;connectorTags&#34;: obj.get(&#34;connectorTags&#34;),
+            &#34;connectorTagMatchMode&#34;: obj.get(&#34;connectorTagMatchMode&#34;),
+            &#34;techTags&#34;: obj.get(&#34;techTags&#34;),
+            &#34;techTagMatchMode&#34;: obj.get(&#34;techTagMatchMode&#34;),
+            &#34;instrumentRunIds&#34;: obj.get(&#34;instrumentRunIds&#34;)
+        })
+        return _obj</code></pre>
+</details>
+<div class="desc"><p>FindProjectSamples</p>
+<p>Create a new model by parsing and validating input data from keyword arguments.</p>
+<p>Raises [<code>ValidationError</code>][pydantic_core.ValidationError] if the input data cannot be
+validated to form a valid model.</p>
+<p><code>self</code> is explicitly positional-only to allow <code>self</code> as a field name.</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>pydantic.main.BaseModel</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.boolean_conditions"><code class="name">var <span class="ident">boolean_conditions</span> : List[<a title="libica.openapi.v3.models.find_sample_boolean_condition.FindSampleBooleanCondition" href="find_sample_boolean_condition.html#libica.openapi.v3.models.find_sample_boolean_condition.FindSampleBooleanCondition">FindSampleBooleanCondition</a>]</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.conditions"><code class="name">var <span class="ident">conditions</span> : List[<a title="libica.openapi.v3.models.find_sample_condition.FindSampleCondition" href="find_sample_condition.html#libica.openapi.v3.models.find_sample_condition.FindSampleCondition">FindSampleCondition</a>]</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.connector_tag_match_mode"><code class="name">var <span class="ident">connector_tag_match_mode</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.connector_tags"><code class="name">var <span class="ident">connector_tags</span> : List[str | None] | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.date_conditions"><code class="name">var <span class="ident">date_conditions</span> : List[<a title="libica.openapi.v3.models.find_sample_date_condition.FindSampleDateCondition" href="find_sample_date_condition.html#libica.openapi.v3.models.find_sample_date_condition.FindSampleDateCondition">FindSampleDateCondition</a>]</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.full_text_search_string"><code class="name">var <span class="ident">full_text_search_string</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.include_deleted"><code class="name">var <span class="ident">include_deleted</span> : bool | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.instrument_run_ids"><code class="name">var <span class="ident">instrument_run_ids</span> : List[str | None] | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.model_config"><code class="name">var <span class="ident">model_config</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.number_conditions"><code class="name">var <span class="ident">number_conditions</span> : List[<a title="libica.openapi.v3.models.find_sample_number_condition.FindSampleNumberCondition" href="find_sample_number_condition.html#libica.openapi.v3.models.find_sample_number_condition.FindSampleNumberCondition">FindSampleNumberCondition</a>]</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.run_input_tag_match_mode"><code class="name">var <span class="ident">run_input_tag_match_mode</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.run_input_tags"><code class="name">var <span class="ident">run_input_tags</span> : List[str | None] | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.tech_tag_match_mode"><code class="name">var <span class="ident">tech_tag_match_mode</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.tech_tags"><code class="name">var <span class="ident">tech_tags</span> : List[str | None] | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.user_tag_match_mode"><code class="name">var <span class="ident">user_tag_match_mode</span> : str | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.user_tags"><code class="name">var <span class="ident">user_tags</span> : List[str | None] | None</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.connector_tag_match_mode_validate_enum"><code class="name flex">
+<span>def <span class="ident">connector_tag_match_mode_validate_enum</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Validates the enum</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.from_dict"><code class="name flex">
+<span>def <span class="ident">from_dict</span></span>(<span>obj: Optional[Dict[str, Any]]) ‑> Self | None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an instance of FindProjectSamples from a dict</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.from_json"><code class="name flex">
+<span>def <span class="ident">from_json</span></span>(<span>json_str: str) ‑> Self | None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an instance of FindProjectSamples from a JSON string</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.run_input_tag_match_mode_validate_enum"><code class="name flex">
+<span>def <span class="ident">run_input_tag_match_mode_validate_enum</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Validates the enum</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.tech_tag_match_mode_validate_enum"><code class="name flex">
+<span>def <span class="ident">tech_tag_match_mode_validate_enum</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Validates the enum</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.user_tag_match_mode_validate_enum"><code class="name flex">
+<span>def <span class="ident">user_tag_match_mode_validate_enum</span></span>(<span>value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Validates the enum</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.to_dict"><code class="name flex">
+<span>def <span class="ident">to_dict</span></span>(<span>self) ‑> Dict[str, Any]</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_dict(self) -&gt; Dict[str, Any]:
+    &#34;&#34;&#34;Return the dictionary representation of the model using alias.
+
+    This has the following differences from calling pydantic&#39;s
+    `self.model_dump(by_alias=True)`:
+
+    * `None` is only added to the output dict for nullable fields that
+      were set at model initialization. Other fields with value `None`
+      are ignored.
+    &#34;&#34;&#34;
+    excluded_fields: Set[str] = set([
+    ])
+
+    _dict = self.model_dump(
+        by_alias=True,
+        exclude=excluded_fields,
+        exclude_none=True,
+    )
+    # override the default output from pydantic by calling `to_dict()` of each item in conditions (list)
+    _items = []
+    if self.conditions:
+        for _item_conditions in self.conditions:
+            if _item_conditions:
+                _items.append(_item_conditions.to_dict())
+        _dict[&#39;conditions&#39;] = _items
+    # override the default output from pydantic by calling `to_dict()` of each item in date_conditions (list)
+    _items = []
+    if self.date_conditions:
+        for _item_date_conditions in self.date_conditions:
+            if _item_date_conditions:
+                _items.append(_item_date_conditions.to_dict())
+        _dict[&#39;dateConditions&#39;] = _items
+    # override the default output from pydantic by calling `to_dict()` of each item in number_conditions (list)
+    _items = []
+    if self.number_conditions:
+        for _item_number_conditions in self.number_conditions:
+            if _item_number_conditions:
+                _items.append(_item_number_conditions.to_dict())
+        _dict[&#39;numberConditions&#39;] = _items
+    # override the default output from pydantic by calling `to_dict()` of each item in boolean_conditions (list)
+    _items = []
+    if self.boolean_conditions:
+        for _item_boolean_conditions in self.boolean_conditions:
+            if _item_boolean_conditions:
+                _items.append(_item_boolean_conditions.to_dict())
+        _dict[&#39;booleanConditions&#39;] = _items
+    # set to None if full_text_search_string (nullable) is None
+    # and model_fields_set contains the field
+    if self.full_text_search_string is None and &#34;full_text_search_string&#34; in self.model_fields_set:
+        _dict[&#39;fullTextSearchString&#39;] = None
+
+    # set to None if include_deleted (nullable) is None
+    # and model_fields_set contains the field
+    if self.include_deleted is None and &#34;include_deleted&#34; in self.model_fields_set:
+        _dict[&#39;includeDeleted&#39;] = None
+
+    # set to None if user_tags (nullable) is None
+    # and model_fields_set contains the field
+    if self.user_tags is None and &#34;user_tags&#34; in self.model_fields_set:
+        _dict[&#39;userTags&#39;] = None
+
+    # set to None if user_tag_match_mode (nullable) is None
+    # and model_fields_set contains the field
+    if self.user_tag_match_mode is None and &#34;user_tag_match_mode&#34; in self.model_fields_set:
+        _dict[&#39;userTagMatchMode&#39;] = None
+
+    # set to None if run_input_tags (nullable) is None
+    # and model_fields_set contains the field
+    if self.run_input_tags is None and &#34;run_input_tags&#34; in self.model_fields_set:
+        _dict[&#39;runInputTags&#39;] = None
+
+    # set to None if run_input_tag_match_mode (nullable) is None
+    # and model_fields_set contains the field
+    if self.run_input_tag_match_mode is None and &#34;run_input_tag_match_mode&#34; in self.model_fields_set:
+        _dict[&#39;runInputTagMatchMode&#39;] = None
+
+    # set to None if connector_tags (nullable) is None
+    # and model_fields_set contains the field
+    if self.connector_tags is None and &#34;connector_tags&#34; in self.model_fields_set:
+        _dict[&#39;connectorTags&#39;] = None
+
+    # set to None if connector_tag_match_mode (nullable) is None
+    # and model_fields_set contains the field
+    if self.connector_tag_match_mode is None and &#34;connector_tag_match_mode&#34; in self.model_fields_set:
+        _dict[&#39;connectorTagMatchMode&#39;] = None
+
+    # set to None if tech_tags (nullable) is None
+    # and model_fields_set contains the field
+    if self.tech_tags is None and &#34;tech_tags&#34; in self.model_fields_set:
+        _dict[&#39;techTags&#39;] = None
+
+    # set to None if tech_tag_match_mode (nullable) is None
+    # and model_fields_set contains the field
+    if self.tech_tag_match_mode is None and &#34;tech_tag_match_mode&#34; in self.model_fields_set:
+        _dict[&#39;techTagMatchMode&#39;] = None
+
+    # set to None if instrument_run_ids (nullable) is None
+    # and model_fields_set contains the field
+    if self.instrument_run_ids is None and &#34;instrument_run_ids&#34; in self.model_fields_set:
+        _dict[&#39;instrumentRunIds&#39;] = None
+
+    return _dict</code></pre>
+</details>
+<div class="desc"><p>Return the dictionary representation of the model using alias.</p>
+<p>This has the following differences from calling pydantic's
+<code>self.model_dump(by_alias=True)</code>:</p>
+<ul>
+<li><code>None</code> is only added to the output dict for nullable fields that
+were set at model initialization. Other fields with value <code>None</code>
+are ignored.</li>
+</ul></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.to_json"><code class="name flex">
+<span>def <span class="ident">to_json</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_json(self) -&gt; str:
+    &#34;&#34;&#34;Returns the JSON representation of the model using alias&#34;&#34;&#34;
+    # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
+    return json.dumps(self.to_dict())</code></pre>
+</details>
+<div class="desc"><p>Returns the JSON representation of the model using alias</p></div>
+</dd>
+<dt id="libica.openapi.v3.models.find_project_samples.FindProjectSamples.to_str"><code class="name flex">
+<span>def <span class="ident">to_str</span></span>(<span>self) ‑> str</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def to_str(self) -&gt; str:
+    &#34;&#34;&#34;Returns the string representation of the model using alias&#34;&#34;&#34;
+    return pprint.pformat(self.model_dump(by_alias=True))</code></pre>
+</details>
+<div class="desc"><p>Returns the string representation of the model using alias</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="libica.openapi.v3.models" href="index.html">libica.openapi.v3.models</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples">FindProjectSamples</a></code></h4>
+<ul class="">
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.boolean_conditions" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.boolean_conditions">boolean_conditions</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.conditions" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.conditions">conditions</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.connector_tag_match_mode" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.connector_tag_match_mode">connector_tag_match_mode</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.connector_tag_match_mode_validate_enum" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.connector_tag_match_mode_validate_enum">connector_tag_match_mode_validate_enum</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.connector_tags" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.connector_tags">connector_tags</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.date_conditions" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.date_conditions">date_conditions</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.from_dict" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.from_dict">from_dict</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.from_json" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.from_json">from_json</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.full_text_search_string" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.full_text_search_string">full_text_search_string</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.include_deleted" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.include_deleted">include_deleted</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.instrument_run_ids" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.instrument_run_ids">instrument_run_ids</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.model_config" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.model_config">model_config</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.number_conditions" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.number_conditions">number_conditions</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.run_input_tag_match_mode" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.run_input_tag_match_mode">run_input_tag_match_mode</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.run_input_tag_match_mode_validate_enum" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.run_input_tag_match_mode_validate_enum">run_input_tag_match_mode_validate_enum</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.run_input_tags" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.run_input_tags">run_input_tags</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.tech_tag_match_mode" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.tech_tag_match_mode">tech_tag_match_mode</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.tech_tag_match_mode_validate_enum" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.tech_tag_match_mode_validate_enum">tech_tag_match_mode_validate_enum</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.tech_tags" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.tech_tags">tech_tags</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.to_dict" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.to_dict">to_dict</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.to_json" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.to_json">to_json</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.to_str" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.to_str">to_str</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.user_tag_match_mode" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.user_tag_match_mode">user_tag_match_mode</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.user_tag_match_mode_validate_enum" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.user_tag_match_mode_validate_enum">user_tag_match_mode_validate_enum</a></code></li>
+<li><code><a title="libica.openapi.v3.models.find_project_samples.FindProjectSamples.user_tags" href="#libica.openapi.v3.models.find_project_samples.FindProjectSamples.user_tags">user_tags</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

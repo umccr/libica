@@ -1,0 +1,2894 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="../v3/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>v2 - libica</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#libicaopenapiv2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="libica" class="md-header__button md-logo" aria-label="libica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            libica
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              v2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/umccr/libica" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    umccr/libica
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="libica" class="md-nav__button md-logo" aria-label="libica" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    libica
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/umccr/libica" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    umccr/libica
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    v2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    v2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation &amp; Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-for-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation for API Endpoints
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-for-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation For Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-for-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation For Authorization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apikeyauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      ApiKeyAuth
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basicauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      BasicAuth
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jwtauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      JwtAuth
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pstokenauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      PsTokenAuth
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#author" class="md-nav__link">
+    <span class="md-ellipsis">
+      Author
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-for-large-openapi-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes for Large OpenAPI documents
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../v3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    v3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requirements.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation &amp; Usage
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#getting-started" class="md-nav__link">
+    <span class="md-ellipsis">
+      Getting Started
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-for-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation for API Endpoints
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-for-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation For Models
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-for-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentation For Authorization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#apikeyauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      ApiKeyAuth
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basicauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      BasicAuth
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jwtauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      JwtAuth
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pstokenauth" class="md-nav__link">
+    <span class="md-ellipsis">
+      PsTokenAuth
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#author" class="md-nav__link">
+    <span class="md-ellipsis">
+      Author
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-for-large-openapi-documents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Notes for Large OpenAPI documents
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="libicaopenapiv2">libica.openapi.v2<a class="headerlink" href="#libicaopenapiv2" title="Permanent link">&para;</a></h1>
+<p>This API can be used to interact with Illumina Connected Analytics.<br> <h2>Authentication</h2> <p> Authentication to the  API can be done in multiple ways:<br> <ul><li>For the entire API, except for the POST /tokens endpoint: API-key + JWT</li> <li>Only for the POST /tokens endpoint: API-key + Basic Authentication</li></ul> </p> <p> <h4>API-key</h4> API keys are managed within the Illumina portal where you can manage your profile after you have logged on. The API-key has to be provided in the X-API-Key header parameter when executing API calls to ICA. In the background, a JWT will be requested at the IDP of Illumina to create a session. A good practice is to not use the API-key for every API call, but to first generate a JWT and to use that for authentication in subsequent calls.<br> </p> <p> <h4>JWT</h4> To avoid using an API-key for each call, we recommend to request a JWT via the POST /tokens endpoint  using this API-key. The JWT will expire after a pre-configured period specified by a tenant administrator through the IAM console in the Illumina portal. The JWT is the preferred way for authentication.<br>A not yet expired, still valid JWT could be refreshed using the POST /tokens:refresh endpoint.<br>Refreshing the JWT is not possible if the JWT was generated by using an API-key.<br> </p> <p> <h4>Basic Authentication</h4> Basic authentication is only supported by the POST /tokens endpoint for generating a JWT. Use \"Basic base64encoded(emailaddress:password)\" in the \"Authorization\" header parameter for this authentication method. In case having access to multiple tenants using the same email-address, also provide the \"tenant\" request parameter to indicate what tenant you would like to request a JWT for. </p> <p> <h2>Compression</h2> If the API client provides request header 'Accept-Encoding' with value 'gzip', then the API applies GZIP compression on the JSON response. This significantly reduces the size and thus the download time of the response, which results in faster end-to-end API calls. In case of compression, the API also provides response header 'Content-Encoding' with value 'gzip', as indication for the client that decompression is required. </p> </p>
+<p>The <code>libica.openapi.v2</code> package is automatically generated by the <a href="https://openapi-generator.tech">OpenAPI Generator</a> project:</p>
+<ul>
+<li>API version: 3</li>
+<li>Package version: 1.0.0</li>
+<li>Build date: 2025-06-05T14:43:12.864218+10:00[Australia/Melbourne]</li>
+<li>Build package: org.openapitools.codegen.languages.PythonClientCodegen</li>
+</ul>
+<h2 id="requirements">Requirements.<a class="headerlink" href="#requirements" title="Permanent link">&para;</a></h2>
+<p>Python &gt;=3.6</p>
+<h2 id="installation-usage">Installation &amp; Usage<a class="headerlink" href="#installation-usage" title="Permanent link">&para;</a></h2>
+<p>This python library package is generated without supporting files like setup.py or requirements files</p>
+<p>To be able to use it, you will need these dependencies in your own package that uses this library:</p>
+<ul>
+<li>urllib3 &gt;= 1.25.3</li>
+<li>python-dateutil</li>
+</ul>
+<h2 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h2>
+<p>In your own code, to use this library to connect and interact with libica.openapi.v2,
+you can run the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libica.openapi.v2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.api</span><span class="w"> </span><span class="kn">import</span> <span class="n">analysis_storage_api</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.analysis_storage_list_v3</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnalysisStorageListV3</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.model.problem</span><span class="w"> </span><span class="kn">import</span> <span class="n">Problem</span>
+<span class="c1"># Defining the host is optional and defaults to /ica/rest</span>
+<span class="c1"># See configuration.py for a list of all supported configuration parameters.</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;/ica/rest&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># The client must configure the authentication and authorization parameters</span>
+<span class="c1"># in accordance with the API server security policy.</span>
+<span class="c1"># Examples for each auth method are provided below, use the example that</span>
+<span class="c1"># satisfies your auth use case.</span>
+
+<span class="c1"># Configure API key authorization: ApiKeyAuth</span>
+<span class="n">configuration</span><span class="o">.</span><span class="n">api_key</span><span class="p">[</span><span class="s1">&#39;ApiKeyAuth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;YOUR_API_KEY&#39;</span>
+
+<span class="c1"># Uncomment below to setup prefix (e.g. Bearer) for API key, if needed</span>
+<span class="c1"># configuration.api_key_prefix[&#39;ApiKeyAuth&#39;] = &#39;Bearer&#39;</span>
+
+<span class="c1"># Configure Bearer authorization (JWT): JwtAuth</span>
+<span class="n">configuration</span> <span class="o">=</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">Configuration</span><span class="p">(</span>
+    <span class="n">access_token</span> <span class="o">=</span> <span class="s1">&#39;YOUR_BEARER_TOKEN&#39;</span>
+<span class="p">)</span>
+
+
+<span class="c1"># Enter a context with an instance of the API client</span>
+<span class="k">with</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiClient</span><span class="p">(</span><span class="n">configuration</span><span class="p">)</span> <span class="k">as</span> <span class="n">api_client</span><span class="p">:</span>
+    <span class="c1"># Create an instance of the API class</span>
+    <span class="n">api_instance</span> <span class="o">=</span> <span class="n">analysis_storage_api</span><span class="o">.</span><span class="n">AnalysisStorageApi</span><span class="p">(</span><span class="n">api_client</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Retrieve the list of analysis storage options.</span>
+        <span class="n">api_response</span> <span class="o">=</span> <span class="n">api_instance</span><span class="o">.</span><span class="n">get_analysis_storage_options</span><span class="p">()</span>
+        <span class="n">pprint</span><span class="p">(</span><span class="n">api_response</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">libica</span><span class="o">.</span><span class="n">openapi</span><span class="o">.</span><span class="n">v2</span><span class="o">.</span><span class="n">ApiException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exception when calling AnalysisStorageApi-&gt;get_analysis_storage_options: </span><span class="si">%s</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">e</span><span class="p">)</span>
+</code></pre></div>
+
+<h2 id="documentation-for-api-endpoints">Documentation for API Endpoints<a class="headerlink" href="#documentation-for-api-endpoints" title="Permanent link">&para;</a></h2>
+<p>All URIs are relative to <em>/ica/rest</em></p>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Method</th>
+<th>HTTP request</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><em>AnalysisStorageApi</em></td>
+<td><a href="docs/AnalysisStorageApi/#get_analysis_storage_options"><strong>get_analysis_storage_options</strong></a></td>
+<td><strong>GET</strong> /api/analysisStorages</td>
+<td>Retrieve the list of analysis storage options.</td>
+</tr>
+<tr>
+<td><em>BundleApi</em></td>
+<td><a href="docs/BundleApi/#accept_terms_of_use_bundle"><strong>accept_terms_of_use_bundle</strong></a></td>
+<td><strong>POST</strong> /api/bundles/{bundleId}/termsOfUse:accept</td>
+<td>accept terms of use for a bundle</td>
+</tr>
+<tr>
+<td><em>BundleApi</em></td>
+<td><a href="docs/BundleApi/#create_bundle"><strong>create_bundle</strong></a></td>
+<td><strong>POST</strong> /api/bundles</td>
+<td>Create a new bundle</td>
+</tr>
+<tr>
+<td><em>BundleApi</em></td>
+<td><a href="docs/BundleApi/#deprecate_bundle"><strong>deprecate_bundle</strong></a></td>
+<td><strong>POST</strong> /api/bundles/{bundleId}:deprecate</td>
+<td>deprecate a bundle</td>
+</tr>
+<tr>
+<td><em>BundleApi</em></td>
+<td><a href="docs/BundleApi/#get_bundle"><strong>get_bundle</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}</td>
+<td>Retrieve a bundle.</td>
+</tr>
+<tr>
+<td><em>BundleApi</em></td>
+<td><a href="docs/BundleApi/#get_bundle_terms_of_use"><strong>get_bundle_terms_of_use</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/termsOfUse</td>
+<td>Retrieve the last version of terms of use for a bundle.</td>
+</tr>
+<tr>
+<td><em>BundleApi</em></td>
+<td><a href="docs/BundleApi/#get_bundles"><strong>get_bundles</strong></a></td>
+<td><strong>GET</strong> /api/bundles</td>
+<td>Retrieve a list of bundles.</td>
+</tr>
+<tr>
+<td><em>BundleApi</em></td>
+<td><a href="docs/BundleApi/#get_terms_of_use_acceptance"><strong>get_terms_of_use_acceptance</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/termsOfUse/userAcceptance/currentUser</td>
+<td>Retrieve the acceptance record for a bundle for the current user.</td>
+</tr>
+<tr>
+<td><em>BundleApi</em></td>
+<td><a href="docs/BundleApi/#insert_bundle_terms_of_use"><strong>insert_bundle_terms_of_use</strong></a></td>
+<td><strong>POST</strong> /api/bundles/{bundleId}/termsOfUse:new</td>
+<td>Insert a new version of the terms of use for a bundle</td>
+</tr>
+<tr>
+<td><em>BundleApi</em></td>
+<td><a href="docs/BundleApi/#release_bundle"><strong>release_bundle</strong></a></td>
+<td><strong>POST</strong> /api/bundles/{bundleId}:release</td>
+<td>release a bundle</td>
+</tr>
+<tr>
+<td><em>BundleDataApi</em></td>
+<td><a href="docs/BundleDataApi/#get_bundle_data"><strong>get_bundle_data</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/data</td>
+<td>Retrieve the list of bundle data.</td>
+</tr>
+<tr>
+<td><em>BundleDataApi</em></td>
+<td><a href="docs/BundleDataApi/#link_data_to_bundle"><strong>link_data_to_bundle</strong></a></td>
+<td><strong>POST</strong> /api/bundles/{bundleId}/data/{dataId}</td>
+<td>Link data to this bundle.</td>
+</tr>
+<tr>
+<td><em>BundleDataApi</em></td>
+<td><a href="docs/BundleDataApi/#unlink_data_from_bundle"><strong>unlink_data_from_bundle</strong></a></td>
+<td><strong>DELETE</strong> /api/bundles/{bundleId}/data/{dataId}</td>
+<td>Unlink data from this bundle.</td>
+</tr>
+<tr>
+<td><em>BundleDataLinkingBatchApi</em></td>
+<td><a href="docs/BundleDataLinkingBatchApi/#create_bundle_data_linking_batch"><strong>create_bundle_data_linking_batch</strong></a></td>
+<td><strong>POST</strong> /api/bundles/{bundleId}/dataLinkingBatch</td>
+<td>Create a bundle data linking batch.</td>
+</tr>
+<tr>
+<td><em>BundleDataLinkingBatchApi</em></td>
+<td><a href="docs/BundleDataLinkingBatchApi/#get_bundle_data_linking_batch"><strong>get_bundle_data_linking_batch</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/dataLinkingBatch/{batchId}</td>
+<td>Retrieve a bundle data linking batch.</td>
+</tr>
+<tr>
+<td><em>BundleDataLinkingBatchApi</em></td>
+<td><a href="docs/BundleDataLinkingBatchApi/#get_bundle_data_linking_batch_item"><strong>get_bundle_data_linking_batch_item</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/dataLinkingBatch/{batchId}/items/{itemId}</td>
+<td>Retrieve a bundle data linking batch item.</td>
+</tr>
+<tr>
+<td><em>BundleDataLinkingBatchApi</em></td>
+<td><a href="docs/BundleDataLinkingBatchApi/#get_bundle_data_linking_batch_items"><strong>get_bundle_data_linking_batch_items</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/dataLinkingBatch/{batchId}/items</td>
+<td>Retrieve a list of bundle data linking batch items.</td>
+</tr>
+<tr>
+<td><em>BundleDataUnlinkingBatchApi</em></td>
+<td><a href="docs/BundleDataUnlinkingBatchApi/#create_bundle_data_unlinking_batch"><strong>create_bundle_data_unlinking_batch</strong></a></td>
+<td><strong>POST</strong> /api/bundles/{bundleId}/dataUnlinkingBatch</td>
+<td>Create a bundle data unlinking batch.</td>
+</tr>
+<tr>
+<td><em>BundleDataUnlinkingBatchApi</em></td>
+<td><a href="docs/BundleDataUnlinkingBatchApi/#get_bundle_data_unlinking_batch"><strong>get_bundle_data_unlinking_batch</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/dataUnlinkingBatch/{batchId}</td>
+<td>Retrieve a bundle data unlinking batch.</td>
+</tr>
+<tr>
+<td><em>BundleDataUnlinkingBatchApi</em></td>
+<td><a href="docs/BundleDataUnlinkingBatchApi/#get_bundle_data_unlinking_batch_item"><strong>get_bundle_data_unlinking_batch_item</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/dataUnlinkingBatch/{batchId}/items/{itemId}</td>
+<td>Retrieve a bundle data unlinking batch item.</td>
+</tr>
+<tr>
+<td><em>BundleDataUnlinkingBatchApi</em></td>
+<td><a href="docs/BundleDataUnlinkingBatchApi/#get_bundle_data_unlinking_batch_items"><strong>get_bundle_data_unlinking_batch_items</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/dataUnlinkingBatch/{batchId}/items</td>
+<td>Retrieve a list of bundle data unlinking batch items.</td>
+</tr>
+<tr>
+<td><em>BundlePipelineApi</em></td>
+<td><a href="docs/BundlePipelineApi/#get_bundle_pipelines"><strong>get_bundle_pipelines</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/pipelines</td>
+<td>Retrieve a list of bundle pipelines.</td>
+</tr>
+<tr>
+<td><em>BundlePipelineApi</em></td>
+<td><a href="docs/BundlePipelineApi/#link_pipeline_to_bundle"><strong>link_pipeline_to_bundle</strong></a></td>
+<td><strong>POST</strong> /api/bundles/{bundleId}/pipelines/{pipelineId}</td>
+<td>Link a pipeline to a bundle.</td>
+</tr>
+<tr>
+<td><em>BundlePipelineApi</em></td>
+<td><a href="docs/BundlePipelineApi/#unlink_pipeline_from_bundle"><strong>unlink_pipeline_from_bundle</strong></a></td>
+<td><strong>DELETE</strong> /api/bundles/{bundleId}/pipelines/{pipelineId}</td>
+<td>Unlink a pipeline from a bundle.</td>
+</tr>
+<tr>
+<td><em>BundleSampleApi</em></td>
+<td><a href="docs/BundleSampleApi/#get_bundle_samples"><strong>get_bundle_samples</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/samples</td>
+<td>Retrieve a list of bundle samples.</td>
+</tr>
+<tr>
+<td><em>BundleSampleApi</em></td>
+<td><a href="docs/BundleSampleApi/#link_sample_to_bundle"><strong>link_sample_to_bundle</strong></a></td>
+<td><strong>POST</strong> /api/bundles/{bundleId}/samples/{sampleId}</td>
+<td>Link a sample to a bundle.</td>
+</tr>
+<tr>
+<td><em>BundleSampleApi</em></td>
+<td><a href="docs/BundleSampleApi/#unlink_sample_from_bundle"><strong>unlink_sample_from_bundle</strong></a></td>
+<td><strong>DELETE</strong> /api/bundles/{bundleId}/samples/{sampleId}</td>
+<td>Unlink a sample from a bundle.</td>
+</tr>
+<tr>
+<td><em>BundleToolApi</em></td>
+<td><a href="docs/BundleToolApi/#get_bundle_tools"><strong>get_bundle_tools</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/tools</td>
+<td>Retrieve a list of bundle tools.</td>
+</tr>
+<tr>
+<td><em>BundleToolApi</em></td>
+<td><a href="docs/BundleToolApi/#get_tools_eligible_for_linking_to_bundle"><strong>get_tools_eligible_for_linking_to_bundle</strong></a></td>
+<td><strong>GET</strong> /api/bundles/{bundleId}/tools/eligibleForLinking</td>
+<td>Retrieve a list of tools eligible for linking to the bundle.</td>
+</tr>
+<tr>
+<td><em>BundleToolApi</em></td>
+<td><a href="docs/BundleToolApi/#link_tool_to_bundle"><strong>link_tool_to_bundle</strong></a></td>
+<td><strong>POST</strong> /api/bundles/{bundleId}/tools/{toolId}</td>
+<td>Link a tool to a bundle</td>
+</tr>
+<tr>
+<td><em>BundleToolApi</em></td>
+<td><a href="docs/BundleToolApi/#unlink_tool_from_bundle"><strong>unlink_tool_from_bundle</strong></a></td>
+<td><strong>DELETE</strong> /api/bundles/{bundleId}/tools/{toolId}</td>
+<td>Unlink a tool from this bundle.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#cancel_connector"><strong>cancel_connector</strong></a></td>
+<td><strong>POST</strong> /api/connectors/{connectorId}:cancel</td>
+<td>Cancel a connector.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#create_connector"><strong>create_connector</strong></a></td>
+<td><strong>POST</strong> /api/connectors</td>
+<td>Create a connector.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#create_download_rule"><strong>create_download_rule</strong></a></td>
+<td><strong>POST</strong> /api/connectors/{connectorId}/downloadRules</td>
+<td>Create a download rule.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#create_upload_rule"><strong>create_upload_rule</strong></a></td>
+<td><strong>POST</strong> /api/connectors/{connectorId}/uploadRules</td>
+<td>Create an upload rule.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#delete_download_rule"><strong>delete_download_rule</strong></a></td>
+<td><strong>DELETE</strong> /api/connectors/{connectorId}/downloadRules/{downloadRuleId}</td>
+<td>Delete a download rule.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#delete_upload_rule"><strong>delete_upload_rule</strong></a></td>
+<td><strong>DELETE</strong> /api/connectors/{connectorId}/uploadRules/{uploadRuleId}</td>
+<td>Delete an upload rule.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#disable_connector"><strong>disable_connector</strong></a></td>
+<td><strong>POST</strong> /api/connectors/{connectorId}:disable</td>
+<td>Disable a connector.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#enable_connector"><strong>enable_connector</strong></a></td>
+<td><strong>POST</strong> /api/connectors/{connectorId}:enable</td>
+<td>Enable a connector.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#get_connector"><strong>get_connector</strong></a></td>
+<td><strong>GET</strong> /api/connectors/{connectorId}</td>
+<td>Retrieve a connector.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#get_connectors"><strong>get_connectors</strong></a></td>
+<td><strong>GET</strong> /api/connectors</td>
+<td>Retrieve a list of connectors.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#get_download_rule"><strong>get_download_rule</strong></a></td>
+<td><strong>GET</strong> /api/connectors/{connectorId}/downloadRules/{downloadRuleId}</td>
+<td>Retrieve a download rule.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#get_download_rules"><strong>get_download_rules</strong></a></td>
+<td><strong>GET</strong> /api/connectors/{connectorId}/downloadRules</td>
+<td>Retrieve a list of download rules.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#get_upload_rule"><strong>get_upload_rule</strong></a></td>
+<td><strong>GET</strong> /api/connectors/{connectorId}/uploadRules/{uploadRuleId}</td>
+<td>Retrieve an upload rule.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#get_upload_rules"><strong>get_upload_rules</strong></a></td>
+<td><strong>GET</strong> /api/connectors/{connectorId}/uploadRules</td>
+<td>Retrieve a list of upload rules.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#update_download_rule"><strong>update_download_rule</strong></a></td>
+<td><strong>PUT</strong> /api/connectors/{connectorId}/downloadRules/{downloadRuleId}</td>
+<td>Update a download rule.</td>
+</tr>
+<tr>
+<td><em>ConnectorApi</em></td>
+<td><a href="docs/ConnectorApi/#update_upload_rule"><strong>update_upload_rule</strong></a></td>
+<td><strong>PUT</strong> /api/connectors/{connectorId}/uploadRules/{uploadRuleId}</td>
+<td>Update an upload rule.</td>
+</tr>
+<tr>
+<td><em>DataApi</em></td>
+<td><a href="docs/DataApi/#create_download_url_for_data_without_project_context"><strong>create_download_url_for_data_without_project_context</strong></a></td>
+<td><strong>POST</strong> /api/data/{dataUrn}:createDownloadUrl</td>
+<td>Retrieve a download URL for this data.</td>
+</tr>
+<tr>
+<td><em>DataApi</em></td>
+<td><a href="docs/DataApi/#create_inline_view_url_for_data_without_project_context"><strong>create_inline_view_url_for_data_without_project_context</strong></a></td>
+<td><strong>POST</strong> /api/data/{dataUrn}:createInlineViewUrl</td>
+<td>Retrieve an URL for this data to use for inline view in a browser.</td>
+</tr>
+<tr>
+<td><em>DataApi</em></td>
+<td><a href="docs/DataApi/#get_data"><strong>get_data</strong></a></td>
+<td><strong>GET</strong> /api/data/{dataUrn}</td>
+<td>Retrieve a data.</td>
+</tr>
+<tr>
+<td><em>DataFormatApi</em></td>
+<td><a href="docs/DataFormatApi/#get_data_formats"><strong>get_data_formats</strong></a></td>
+<td><strong>GET</strong> /api/dataFormats</td>
+<td>Retrieve a list of data formats.</td>
+</tr>
+<tr>
+<td><em>DockerImageApi</em></td>
+<td><a href="docs/DockerImageApi/#add_regions"><strong>add_regions</strong></a></td>
+<td><strong>POST</strong> /api/dockerImages/{imageId}:addRegions</td>
+<td>Add regions to an existing Docker image.</td>
+</tr>
+<tr>
+<td><em>DockerImageApi</em></td>
+<td><a href="docs/DockerImageApi/#create_external_docker_image"><strong>create_external_docker_image</strong></a></td>
+<td><strong>POST</strong> /api/dockerImages:createExternal</td>
+<td>Create an external Docker image.</td>
+</tr>
+<tr>
+<td><em>DockerImageApi</em></td>
+<td><a href="docs/DockerImageApi/#create_internal_docker_image"><strong>create_internal_docker_image</strong></a></td>
+<td><strong>POST</strong> /api/dockerImages:createInternal</td>
+<td>Create an internal Docker image.</td>
+</tr>
+<tr>
+<td><em>DockerImageApi</em></td>
+<td><a href="docs/DockerImageApi/#get_docker_image"><strong>get_docker_image</strong></a></td>
+<td><strong>GET</strong> /api/dockerImages/{imageId}</td>
+<td>Retrieve a Docker image. Only the Docker image the user has access to can be retrieved.</td>
+</tr>
+<tr>
+<td><em>DockerImageApi</em></td>
+<td><a href="docs/DockerImageApi/#get_docker_images"><strong>get_docker_images</strong></a></td>
+<td><strong>GET</strong> /api/dockerImages</td>
+<td>Retrieve a list of Docker images. Only the Docker images the user has access to are returned.</td>
+</tr>
+<tr>
+<td><em>DockerImageApi</em></td>
+<td><a href="docs/DockerImageApi/#remove_regions"><strong>remove_regions</strong></a></td>
+<td><strong>POST</strong> /api/dockerImages/{imageId}:removeRegions</td>
+<td>Remove regions to an existing Docker image.</td>
+</tr>
+<tr>
+<td><em>EntitledBundleApi</em></td>
+<td><a href="docs/EntitledBundleApi/#accept_terms_of_use_entitled_bundle"><strong>accept_terms_of_use_entitled_bundle</strong></a></td>
+<td><strong>POST</strong> /api/entitledbundles/{entitledBundleId}/termsOfUse:accept</td>
+<td>Accept terms of use for an entitled bundle</td>
+</tr>
+<tr>
+<td><em>EntitledBundleApi</em></td>
+<td><a href="docs/EntitledBundleApi/#get_entitled_bundle"><strong>get_entitled_bundle</strong></a></td>
+<td><strong>GET</strong> /api/entitledbundles/{entitledBundleId}</td>
+<td>Retrieve an entitled bundle.</td>
+</tr>
+<tr>
+<td><em>EntitledBundleApi</em></td>
+<td><a href="docs/EntitledBundleApi/#get_entitled_bundle_terms_of_use"><strong>get_entitled_bundle_terms_of_use</strong></a></td>
+<td><strong>GET</strong> /api/entitledbundles/{entitledBundleId}/termsOfUse</td>
+<td>Retrieve the last version of terms of use for an entitled bundle.</td>
+</tr>
+<tr>
+<td><em>EntitledBundleApi</em></td>
+<td><a href="docs/EntitledBundleApi/#get_entitled_bundle_terms_of_use_acceptance"><strong>get_entitled_bundle_terms_of_use_acceptance</strong></a></td>
+<td><strong>GET</strong> /api/entitledbundles/{entitledBundleId}/termsOfUse/userAcceptance/currentUser</td>
+<td>Retrieve the acceptance record for an entitled bundle for the current user.</td>
+</tr>
+<tr>
+<td><em>EntitledBundleApi</em></td>
+<td><a href="docs/EntitledBundleApi/#get_entitled_bundles"><strong>get_entitled_bundles</strong></a></td>
+<td><strong>GET</strong> /api/entitledbundles</td>
+<td>Retrieve a list of entitled bundles.</td>
+</tr>
+<tr>
+<td><em>EntitlementDetailApi</em></td>
+<td><a href="docs/EntitlementDetailApi/#find_all_matching_activation_codes_for_cwl"><strong>find_all_matching_activation_codes_for_cwl</strong></a></td>
+<td><strong>POST</strong> /api/activationCodes:findAllMatchingForCwl</td>
+<td>Search all matching activation code details for a Cwl pipeline.</td>
+</tr>
+<tr>
+<td><em>EntitlementDetailApi</em></td>
+<td><a href="docs/EntitlementDetailApi/#find_all_matching_activation_codes_for_nextflow"><strong>find_all_matching_activation_codes_for_nextflow</strong></a></td>
+<td><strong>POST</strong> /api/activationCodes:findAllMatchingForNextflow</td>
+<td>Search all matching activation code details for a Nextflow pipeline.</td>
+</tr>
+<tr>
+<td><em>EntitlementDetailApi</em></td>
+<td><a href="docs/EntitlementDetailApi/#find_best_matching_activation_code_for_cwl"><strong>find_best_matching_activation_code_for_cwl</strong></a></td>
+<td><strong>POST</strong> /api/activationCodes:findBestMatchingForCwl</td>
+<td>Search the best matching activation code detail for Cwl pipeline.</td>
+</tr>
+<tr>
+<td><em>EntitlementDetailApi</em></td>
+<td><a href="docs/EntitlementDetailApi/#find_best_matching_activation_codes_for_nextflow"><strong>find_best_matching_activation_codes_for_nextflow</strong></a></td>
+<td><strong>POST</strong> /api/activationCodes:findBestMatchingForNextflow</td>
+<td>Search the best matching activation code details for Nextflow pipeline.</td>
+</tr>
+<tr>
+<td><em>EventCodeApi</em></td>
+<td><a href="docs/EventCodeApi/#get_event_codes"><strong>get_event_codes</strong></a></td>
+<td><strong>GET</strong> /api/eventCodes</td>
+<td>Retrieve event codes</td>
+</tr>
+<tr>
+<td><em>EventLogApi</em></td>
+<td><a href="docs/EventLogApi/#get_event_logs"><strong>get_event_logs</strong></a></td>
+<td><strong>GET</strong> /api/eventLog</td>
+<td>Retrieve a list of event logs.</td>
+</tr>
+<tr>
+<td><em>EventLogApi</em></td>
+<td><a href="docs/EventLogApi/#search_event_logs"><strong>search_event_logs</strong></a></td>
+<td><strong>POST</strong> /api/eventLog:search</td>
+<td>Search event logs.</td>
+</tr>
+<tr>
+<td><em>JobApi</em></td>
+<td><a href="docs/JobApi/#get_job"><strong>get_job</strong></a></td>
+<td><strong>GET</strong> /api/jobs/{jobId}</td>
+<td>Retrieve a job.</td>
+</tr>
+<tr>
+<td><em>JobApi</em></td>
+<td><a href="docs/JobApi/#get_jobs"><strong>get_jobs</strong></a></td>
+<td><strong>GET</strong> /api/jobs</td>
+<td>Retrieve a list of jobs.</td>
+</tr>
+<tr>
+<td><em>MetadataModelApi</em></td>
+<td><a href="docs/MetadataModelApi/#get_metadata_model"><strong>get_metadata_model</strong></a></td>
+<td><strong>GET</strong> /api/metadataModels/{metadataModelId}</td>
+<td>Retrieve a metadata model. Only metadata models that the user has access to can be retrieved.</td>
+</tr>
+<tr>
+<td><em>MetadataModelApi</em></td>
+<td><a href="docs/MetadataModelApi/#get_metadata_model_fields"><strong>get_metadata_model_fields</strong></a></td>
+<td><strong>GET</strong> /api/metadataModels/{metadataModelId}/fields</td>
+<td>Retrieve the fields of a metadata model. Only metadata models that the user has access to can be retrieved.</td>
+</tr>
+<tr>
+<td><em>MetadataModelApi</em></td>
+<td><a href="docs/MetadataModelApi/#get_metadata_models"><strong>get_metadata_models</strong></a></td>
+<td><strong>GET</strong> /api/metadataModels</td>
+<td>Retrieve the metadata models for the tenant associated to the security context.</td>
+</tr>
+<tr>
+<td><em>MetadataModelApi</em></td>
+<td><a href="docs/MetadataModelApi/#get_tenant_model"><strong>get_tenant_model</strong></a></td>
+<td><strong>GET</strong> /api/metadataModels/tenantModel</td>
+<td>Retrieve the tenant model for the tenant associated to the security context.</td>
+</tr>
+<tr>
+<td><em>NotificationChannelApi</em></td>
+<td><a href="docs/NotificationChannelApi/#create_notification_channel"><strong>create_notification_channel</strong></a></td>
+<td><strong>POST</strong> /api/notificationChannels</td>
+<td>Create a notification channel</td>
+</tr>
+<tr>
+<td><em>NotificationChannelApi</em></td>
+<td><a href="docs/NotificationChannelApi/#delete_notification_channel"><strong>delete_notification_channel</strong></a></td>
+<td><strong>DELETE</strong> /api/notificationChannels/{channelId}</td>
+<td>Delete a notification channel</td>
+</tr>
+<tr>
+<td><em>NotificationChannelApi</em></td>
+<td><a href="docs/NotificationChannelApi/#get_notification_channel"><strong>get_notification_channel</strong></a></td>
+<td><strong>GET</strong> /api/notificationChannels/{channelId}</td>
+<td>Retrieve a notification channel</td>
+</tr>
+<tr>
+<td><em>NotificationChannelApi</em></td>
+<td><a href="docs/NotificationChannelApi/#get_notification_channels"><strong>get_notification_channels</strong></a></td>
+<td><strong>GET</strong> /api/notificationChannels</td>
+<td>Retrieve notification channels</td>
+</tr>
+<tr>
+<td><em>NotificationChannelApi</em></td>
+<td><a href="docs/NotificationChannelApi/#update_notification_channel"><strong>update_notification_channel</strong></a></td>
+<td><strong>PUT</strong> /api/notificationChannels/{channelId}</td>
+<td>Update a notification channel</td>
+</tr>
+<tr>
+<td><em>PipelineApi</em></td>
+<td><a href="docs/PipelineApi/#download_pipeline_file_content"><strong>download_pipeline_file_content</strong></a></td>
+<td><strong>GET</strong> /api/pipelines/{pipelineId}/files/{fileId}/content</td>
+<td>Download the contents of a pipeline file.</td>
+</tr>
+<tr>
+<td><em>PipelineApi</em></td>
+<td><a href="docs/PipelineApi/#get_pipeline"><strong>get_pipeline</strong></a></td>
+<td><strong>GET</strong> /api/pipelines/{pipelineId}</td>
+<td>Retrieve a pipeline.</td>
+</tr>
+<tr>
+<td><em>PipelineApi</em></td>
+<td><a href="docs/PipelineApi/#get_pipeline_configuration_parameters"><strong>get_pipeline_configuration_parameters</strong></a></td>
+<td><strong>GET</strong> /api/pipelines/{pipelineId}/configurationParameters</td>
+<td>Retrieve configuration parameters for a pipeline.</td>
+</tr>
+<tr>
+<td><em>PipelineApi</em></td>
+<td><a href="docs/PipelineApi/#get_pipeline_files"><strong>get_pipeline_files</strong></a></td>
+<td><strong>GET</strong> /api/pipelines/{pipelineId}/files</td>
+<td>Retrieve files for a pipeline.</td>
+</tr>
+<tr>
+<td><em>PipelineApi</em></td>
+<td><a href="docs/PipelineApi/#get_pipeline_html_documentation"><strong>get_pipeline_html_documentation</strong></a></td>
+<td><strong>GET</strong> /api/pipelines/{pipelineId}/documentation/HTML</td>
+<td>Retrieve HTML documentation for a project pipeline.</td>
+</tr>
+<tr>
+<td><em>PipelineApi</em></td>
+<td><a href="docs/PipelineApi/#get_pipeline_input_parameters"><strong>get_pipeline_input_parameters</strong></a></td>
+<td><strong>GET</strong> /api/pipelines/{pipelineId}/inputParameters</td>
+<td>Retrieve input parameters for a pipeline.</td>
+</tr>
+<tr>
+<td><em>PipelineApi</em></td>
+<td><a href="docs/PipelineApi/#get_pipeline_reference_sets"><strong>get_pipeline_reference_sets</strong></a></td>
+<td><strong>GET</strong> /api/pipelines/{pipelineId}/referenceSets</td>
+<td>Retrieve the reference sets of a pipeline.</td>
+</tr>
+<tr>
+<td><em>PipelineApi</em></td>
+<td><a href="docs/PipelineApi/#get_pipelines"><strong>get_pipelines</strong></a></td>
+<td><strong>GET</strong> /api/pipelines</td>
+<td>Retrieve a list of pipelines.</td>
+</tr>
+<tr>
+<td><em>PipelineLanguageApi</em></td>
+<td><a href="docs/PipelineLanguageApi/#get_nextflow_versions"><strong>get_nextflow_versions</strong></a></td>
+<td><strong>GET</strong> /api/pipelineLanguages/nextflow/versions</td>
+<td>Retrieve a list of nextflow versions.</td>
+</tr>
+<tr>
+<td><em>ProjectApi</em></td>
+<td><a href="docs/ProjectApi/#change_project_owner"><strong>change_project_owner</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}:changeOwner</td>
+<td>Change the project owner.</td>
+</tr>
+<tr>
+<td><em>ProjectApi</em></td>
+<td><a href="docs/ProjectApi/#create_project"><strong>create_project</strong></a></td>
+<td><strong>POST</strong> /api/projects</td>
+<td>Create a new project.</td>
+</tr>
+<tr>
+<td><em>ProjectApi</em></td>
+<td><a href="docs/ProjectApi/#get_project"><strong>get_project</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}</td>
+<td>Retrieve a project.</td>
+</tr>
+<tr>
+<td><em>ProjectApi</em></td>
+<td><a href="docs/ProjectApi/#get_project_bundle"><strong>get_project_bundle</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/bundles/{bundleId}</td>
+<td>Retrieve a project bundle.</td>
+</tr>
+<tr>
+<td><em>ProjectApi</em></td>
+<td><a href="docs/ProjectApi/#get_project_bundles"><strong>get_project_bundles</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/bundles</td>
+<td>Retrieve project bundles.</td>
+</tr>
+<tr>
+<td><em>ProjectApi</em></td>
+<td><a href="docs/ProjectApi/#get_projects"><strong>get_projects</strong></a></td>
+<td><strong>GET</strong> /api/projects</td>
+<td>Retrieve a list of projects.</td>
+</tr>
+<tr>
+<td><em>ProjectApi</em></td>
+<td><a href="docs/ProjectApi/#hide_project"><strong>hide_project</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}:hide</td>
+<td>Hide a project.</td>
+</tr>
+<tr>
+<td><em>ProjectApi</em></td>
+<td><a href="docs/ProjectApi/#link_project_bundle"><strong>link_project_bundle</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/bundles/{bundleId}</td>
+<td>Link a bundle to a project.</td>
+</tr>
+<tr>
+<td><em>ProjectApi</em></td>
+<td><a href="docs/ProjectApi/#unlink_project_bundle"><strong>unlink_project_bundle</strong></a></td>
+<td><strong>DELETE</strong> /api/projects/{projectId}/bundles/{bundleId}</td>
+<td>Unlink a bundle from a project.</td>
+</tr>
+<tr>
+<td><em>ProjectApi</em></td>
+<td><a href="docs/ProjectApi/#update_project"><strong>update_project</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}</td>
+<td>Update a project.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#abort_analysis"><strong>abort_analysis</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/analyses/{analysisId}:abort</td>
+<td>Abort an analysis.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#create_cwl_analysis"><strong>create_cwl_analysis</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/analysis:cwl</td>
+<td>Create and start an analysis for a CWL pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#create_cwl_analysis_with_json_input"><strong>create_cwl_analysis_with_json_input</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/analysis:cwlWithJsonInput</td>
+<td>Create and start an analysis for a CWL pipeline with an input.json.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#create_cwl_analysis_with_structured_input"><strong>create_cwl_analysis_with_structured_input</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/analysis:cwlWithStructuredInput</td>
+<td>Create and start an analysis for a CWL pipeline with a structured input.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#create_cwl_json_analysis"><strong>create_cwl_json_analysis</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/analysis:cwlJson</td>
+<td>Create and start an analysis for a JSON based CWL pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#create_nextflow_analysis"><strong>create_nextflow_analysis</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/analysis:nextflow</td>
+<td>Create and start an analysis for a Nextflow pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#create_nextflow_analysis_with_custom_input"><strong>create_nextflow_analysis_with_custom_input</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/analysis:nextflowWithCustomInput</td>
+<td>Create and initiate an analysis for a Nextflow pipeline using a custom input, provided in either YAML format or an escaped JSON string.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#create_nextflow_json_analysis"><strong>create_nextflow_json_analysis</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/analysis:nextflowJson</td>
+<td>Create and start an analysis for a JSON based Nextflow pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_analyses"><strong>get_analyses</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses</td>
+<td>Retrieve the list of analyses.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_analysis"><strong>get_analysis</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses/{analysisId}</td>
+<td>Retrieve an analysis.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_analysis_configurations"><strong>get_analysis_configurations</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses/{analysisId}/configurations</td>
+<td>Retrieve the configurations of an analysis.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_analysis_inputs"><strong>get_analysis_inputs</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses/{analysisId}/inputs</td>
+<td>Retrieve the inputs of an analysis.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_analysis_outputs"><strong>get_analysis_outputs</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses/{analysisId}/outputs</td>
+<td>Retrieve the outputs of an analysis (limited to the first 200.000 files per output folder). When trying to retrieve the listed data with an endpoint such as GET /api/data/{dataUrn}, data which has already been deleted will be skipped.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_analysis_reports"><strong>get_analysis_reports</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses/{analysisId}/reports</td>
+<td>Retrieve the report configs and associated reports.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_analysis_steps"><strong>get_analysis_steps</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses/{analysisId}/steps</td>
+<td>Retrieve the individual steps of an analysis.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_analysis_usage_details"><strong>get_analysis_usage_details</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses/{analysisId}/usage</td>
+<td>Retrieve the analysis usage details.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_cwl_input_json"><strong>get_cwl_input_json</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses/{analysisId}/cwl/inputJson</td>
+<td>Retrieve the input json of a CWL analysis.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_cwl_output_json"><strong>get_cwl_output_json</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses/{analysisId}/cwl/outputJson</td>
+<td>Retrieve the output json of a CWL analysis.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_project_analysis_input_form_values"><strong>get_project_analysis_input_form_values</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses/{analysisId}/inputFormValues</td>
+<td>Retrieve the values from an input form.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#get_raw_analysis_output"><strong>get_raw_analysis_output</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analyses/{analysisId}/rawOutput</td>
+<td>Retrieve the raw output of an analysis.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#search_analyses"><strong>search_analyses</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/analysis:search</td>
+<td>Search analyses.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisApi</em></td>
+<td><a href="docs/ProjectAnalysisApi/#update_analysis"><strong>update_analysis</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}/analyses/{analysisId}</td>
+<td>Update an analysis.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisCreationBatchApi</em></td>
+<td><a href="docs/ProjectAnalysisCreationBatchApi/#create_analysis_creation_batch"><strong>create_analysis_creation_batch</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/analysisCreationBatch</td>
+<td>Create and start multiple analyses in batch.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisCreationBatchApi</em></td>
+<td><a href="docs/ProjectAnalysisCreationBatchApi/#get_analysis_creation_batch"><strong>get_analysis_creation_batch</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analysisCreationBatch/{batchId}</td>
+<td>Retrieve a analysis creation batch.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisCreationBatchApi</em></td>
+<td><a href="docs/ProjectAnalysisCreationBatchApi/#get_analysis_creation_batch_item"><strong>get_analysis_creation_batch_item</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analysisCreationBatch/{batchId}/items/{itemId}</td>
+<td>Retrieve a analysis creation batch item.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisCreationBatchApi</em></td>
+<td><a href="docs/ProjectAnalysisCreationBatchApi/#get_analysis_creation_batch_items"><strong>get_analysis_creation_batch_items</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analysisCreationBatch/{batchId}/items</td>
+<td>Retrieve a list of analysis creation batch items.</td>
+</tr>
+<tr>
+<td><em>ProjectAnalysisStorageApi</em></td>
+<td><a href="docs/ProjectAnalysisStorageApi/#get_project_analysis_storage_options"><strong>get_project_analysis_storage_options</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/analysisStorages</td>
+<td>Retrieve the list of project analysis storage options.</td>
+</tr>
+<tr>
+<td><em>ProjectBaseApi</em></td>
+<td><a href="docs/ProjectBaseApi/#create_base_connection_details"><strong>create_base_connection_details</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/base:connectionDetails</td>
+<td>Creates the connection details to snowflake instance.</td>
+</tr>
+<tr>
+<td><em>ProjectBaseApi</em></td>
+<td><a href="docs/ProjectBaseApi/#get_base_job"><strong>get_base_job</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/base/jobs/{baseJobId}</td>
+<td>Retrieve a base job.</td>
+</tr>
+<tr>
+<td><em>ProjectBaseApi</em></td>
+<td><a href="docs/ProjectBaseApi/#get_base_jobs"><strong>get_base_jobs</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/base/jobs</td>
+<td>Retrieve a list of base jobs</td>
+</tr>
+<tr>
+<td><em>ProjectBaseApi</em></td>
+<td><a href="docs/ProjectBaseApi/#get_base_tables"><strong>get_base_tables</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/base/tables</td>
+<td>Retrieve a list of base tables.</td>
+</tr>
+<tr>
+<td><em>ProjectBaseApi</em></td>
+<td><a href="docs/ProjectBaseApi/#load_data"><strong>load_data</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/base/tables/{tableId}:loadData</td>
+<td>Load data in a base table.</td>
+</tr>
+<tr>
+<td><em>ProjectCustomEventsApi</em></td>
+<td><a href="docs/ProjectCustomEventsApi/#create_custom_event"><strong>create_custom_event</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/customEvents</td>
+<td>Create a new custom event.</td>
+</tr>
+<tr>
+<td><em>ProjectCustomNotificationSubscriptionsApi</em></td>
+<td><a href="docs/ProjectCustomNotificationSubscriptionsApi/#create_custom_notification_subscription"><strong>create_custom_notification_subscription</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/customNotificationSubscriptions</td>
+<td>Create a custom notification subscription</td>
+</tr>
+<tr>
+<td><em>ProjectCustomNotificationSubscriptionsApi</em></td>
+<td><a href="docs/ProjectCustomNotificationSubscriptionsApi/#delete_custom_notification_subscription"><strong>delete_custom_notification_subscription</strong></a></td>
+<td><strong>DELETE</strong> /api/projects/{projectId}/customNotificationSubscriptions/{subscriptionId}</td>
+<td>Delete a custom notification subscription</td>
+</tr>
+<tr>
+<td><em>ProjectCustomNotificationSubscriptionsApi</em></td>
+<td><a href="docs/ProjectCustomNotificationSubscriptionsApi/#get_custom_notification_subscription"><strong>get_custom_notification_subscription</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/customNotificationSubscriptions/{subscriptionId}</td>
+<td>Retrieve a notification subscription</td>
+</tr>
+<tr>
+<td><em>ProjectCustomNotificationSubscriptionsApi</em></td>
+<td><a href="docs/ProjectCustomNotificationSubscriptionsApi/#get_custom_notification_subscriptions"><strong>get_custom_notification_subscriptions</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/customNotificationSubscriptions</td>
+<td>Retrieve notification subscriptions</td>
+</tr>
+<tr>
+<td><em>ProjectCustomNotificationSubscriptionsApi</em></td>
+<td><a href="docs/ProjectCustomNotificationSubscriptionsApi/#update_custom_notification_subscription"><strong>update_custom_notification_subscription</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}/customNotificationSubscriptions/{subscriptionId}</td>
+<td>Update a notification subscription</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#add_secondary_data"><strong>add_secondary_data</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}/secondaryData/{secondaryDataId}</td>
+<td>Add secondary data to data.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#archive_data"><strong>archive_data</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}:archive</td>
+<td>Schedule this data for archival.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#complete_folder_upload_session"><strong>complete_folder_upload_session</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}/folderUploadSessions/{folderUploadSessionId}:complete</td>
+<td>Complete a trackable folder upload session.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_data_in_project"><strong>create_data_in_project</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data</td>
+<td>Create data in this project.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_download_url_for_data"><strong>create_download_url_for_data</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}:createDownloadUrl</td>
+<td>Retrieve a download URL for this data.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_download_urls_for_data"><strong>create_download_urls_for_data</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data:createDownloadUrls</td>
+<td>Retrieve download URLs for the data.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_file"><strong>create_file</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data:createFile</td>
+<td>Create a file in this project.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_file_with_temporary_credentials"><strong>create_file_with_temporary_credentials</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data:createFileWithTemporaryCredentials</td>
+<td>Create a file in this project, and retrieve temporary credentials for it.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_file_with_upload_url"><strong>create_file_with_upload_url</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data:createFileWithUploadUrl</td>
+<td>Create a file in this project, and retrieve an upload url for it.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_folder"><strong>create_folder</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data:createFolder</td>
+<td>Create a folder in this project.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_folder_upload_session"><strong>create_folder_upload_session</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}/folderUploadSessions</td>
+<td>Create a trackable folder upload session.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_folder_with_temporary_credentials"><strong>create_folder_with_temporary_credentials</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data:createFolderWithTemporaryCredentials</td>
+<td>Create a folder in this project, and and retrieve temporary credentials for it.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_folder_with_upload_session"><strong>create_folder_with_upload_session</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data:createFolderWithUploadSession</td>
+<td>Create a folder in this project, and create a trackable folder upload session.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_inline_view_url_for_data"><strong>create_inline_view_url_for_data</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}:createInlineViewUrl</td>
+<td>Retrieve an URL for this data to use for inline view in a browser.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_non_indexed_folder"><strong>create_non_indexed_folder</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data:createNonIndexedFolder</td>
+<td>Create a non indexed folder in this project. The folder will be created as a top-level folder.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_temporary_credentials_for_data"><strong>create_temporary_credentials_for_data</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}:createTemporaryCredentials</td>
+<td>Retrieve temporary credentials for this data.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#create_upload_url_for_data"><strong>create_upload_url_for_data</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}:createUploadUrl</td>
+<td>Retrieve an upload URL for this data.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#delete_data"><strong>delete_data</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}:delete</td>
+<td>Schedule this data for deletion.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#get_data_eligible_for_linking"><strong>get_data_eligible_for_linking</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/data/eligibleForLinking</td>
+<td>Retrieve a list of data eligible for linking to the current project.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#get_folder_upload_session"><strong>get_folder_upload_session</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/data/{dataId}/folderUploadSessions/{folderUploadSessionId}</td>
+<td>Retrieve folder upload session details.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#get_non_sample_project_data"><strong>get_non_sample_project_data</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/data/nonSampleData</td>
+<td>Retrieve a list of project data not linked to a sample.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#get_project_data"><strong>get_project_data</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/data/{dataId}</td>
+<td>Retrieve a project data.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#get_project_data_children"><strong>get_project_data_children</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/data/{dataId}/children</td>
+<td>Retrieve the children of this data.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#get_project_data_list"><strong>get_project_data_list</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/data</td>
+<td>Retrieve the list of project data.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#get_projects_linked_to_data"><strong>get_projects_linked_to_data</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/data/{dataId}/linkedProjects</td>
+<td>Retrieve a list of projects to which this data is linked.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#get_secondary_data"><strong>get_secondary_data</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/data/{dataId}/secondaryData</td>
+<td>Retrieve a list of secondary data for data.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#link_data_to_project"><strong>link_data_to_project</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}</td>
+<td>Link data to this project.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#remove_secondary_data"><strong>remove_secondary_data</strong></a></td>
+<td><strong>DELETE</strong> /api/projects/{projectId}/data/{dataId}/secondaryData/{secondaryDataId}</td>
+<td>Remove secondary data from data.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#schedule_download_for_data"><strong>schedule_download_for_data</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}:scheduleDownload</td>
+<td>Schedule a download.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#unarchive_data"><strong>unarchive_data</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}:unarchive</td>
+<td>Schedule this data for unarchival.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#unlink_data_from_project"><strong>unlink_data_from_project</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/data/{dataId}:unlink</td>
+<td>Unlink data from this project.</td>
+</tr>
+<tr>
+<td><em>ProjectDataApi</em></td>
+<td><a href="docs/ProjectDataApi/#update_project_data"><strong>update_project_data</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}/data/{dataId}</td>
+<td>Update this project data.</td>
+</tr>
+<tr>
+<td><em>ProjectDataCopyBatchApi</em></td>
+<td><a href="docs/ProjectDataCopyBatchApi/#create_project_data_copy_batch"><strong>create_project_data_copy_batch</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/dataCopyBatch</td>
+<td>Create a project data copy batch.</td>
+</tr>
+<tr>
+<td><em>ProjectDataCopyBatchApi</em></td>
+<td><a href="docs/ProjectDataCopyBatchApi/#get_project_data_copy_batch"><strong>get_project_data_copy_batch</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataCopyBatch/{batchId}</td>
+<td>Retrieve a project data copy batch.</td>
+</tr>
+<tr>
+<td><em>ProjectDataCopyBatchApi</em></td>
+<td><a href="docs/ProjectDataCopyBatchApi/#get_project_data_copy_batch_item"><strong>get_project_data_copy_batch_item</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataCopyBatch/{batchId}/items/{itemId}</td>
+<td>Retrieve a project data copy batch item.</td>
+</tr>
+<tr>
+<td><em>ProjectDataCopyBatchApi</em></td>
+<td><a href="docs/ProjectDataCopyBatchApi/#get_project_data_copy_batch_items"><strong>get_project_data_copy_batch_items</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataCopyBatch/{batchId}/items</td>
+<td>Retrieve a list of project data copy batch items.</td>
+</tr>
+<tr>
+<td><em>ProjectDataLinkingBatchApi</em></td>
+<td><a href="docs/ProjectDataLinkingBatchApi/#create_project_data_linking_batch"><strong>create_project_data_linking_batch</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/dataLinkingBatch</td>
+<td>Create a project data linking batch.</td>
+</tr>
+<tr>
+<td><em>ProjectDataLinkingBatchApi</em></td>
+<td><a href="docs/ProjectDataLinkingBatchApi/#get_project_data_linking_batch"><strong>get_project_data_linking_batch</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataLinkingBatch/{batchId}</td>
+<td>Retrieve a project data linking batch.</td>
+</tr>
+<tr>
+<td><em>ProjectDataLinkingBatchApi</em></td>
+<td><a href="docs/ProjectDataLinkingBatchApi/#get_project_data_linking_batch_item"><strong>get_project_data_linking_batch_item</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataLinkingBatch/{batchId}/items/{itemId}</td>
+<td>Retrieve a project data linking batch item.</td>
+</tr>
+<tr>
+<td><em>ProjectDataLinkingBatchApi</em></td>
+<td><a href="docs/ProjectDataLinkingBatchApi/#get_project_data_linking_batch_items"><strong>get_project_data_linking_batch_items</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataLinkingBatch/{batchId}/items</td>
+<td>Retrieve a list of project data linking batch items.</td>
+</tr>
+<tr>
+<td><em>ProjectDataMoveBatchApi</em></td>
+<td><a href="docs/ProjectDataMoveBatchApi/#create_project_data_move_batch"><strong>create_project_data_move_batch</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/dataMoveBatch</td>
+<td>Create a project data move batch.</td>
+</tr>
+<tr>
+<td><em>ProjectDataMoveBatchApi</em></td>
+<td><a href="docs/ProjectDataMoveBatchApi/#get_project_data_move_batch"><strong>get_project_data_move_batch</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataMoveBatch/{batchId}</td>
+<td>Retrieve a project data move batch.</td>
+</tr>
+<tr>
+<td><em>ProjectDataMoveBatchApi</em></td>
+<td><a href="docs/ProjectDataMoveBatchApi/#get_project_data_move_batch_item"><strong>get_project_data_move_batch_item</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataMoveBatch/{batchId}/items/{itemId}</td>
+<td>Retrieve a project data move batch item.</td>
+</tr>
+<tr>
+<td><em>ProjectDataMoveBatchApi</em></td>
+<td><a href="docs/ProjectDataMoveBatchApi/#get_project_data_move_batch_items"><strong>get_project_data_move_batch_items</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/dataMoveBatch/{batchId}/items:search</td>
+<td>Retrieve a list of project data move batch items.</td>
+</tr>
+<tr>
+<td><em>ProjectDataTransferApi</em></td>
+<td><a href="docs/ProjectDataTransferApi/#abort_data_transfer"><strong>abort_data_transfer</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/dataTransfers/{dataTransferId}:abort</td>
+<td>Abort a data transfer.</td>
+</tr>
+<tr>
+<td><em>ProjectDataTransferApi</em></td>
+<td><a href="docs/ProjectDataTransferApi/#get_data_transfer"><strong>get_data_transfer</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataTransfers/{dataTransferId}</td>
+<td>Retrieve a data transfer.</td>
+</tr>
+<tr>
+<td><em>ProjectDataTransferApi</em></td>
+<td><a href="docs/ProjectDataTransferApi/#get_data_transfers"><strong>get_data_transfers</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataTransfers</td>
+<td>Retrieve a list of data transfers.</td>
+</tr>
+<tr>
+<td><em>ProjectDataUnlinkingBatchApi</em></td>
+<td><a href="docs/ProjectDataUnlinkingBatchApi/#create_project_data_unlinking_batch"><strong>create_project_data_unlinking_batch</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/dataUnlinkingBatch</td>
+<td>Create a project data unlinking batch.</td>
+</tr>
+<tr>
+<td><em>ProjectDataUnlinkingBatchApi</em></td>
+<td><a href="docs/ProjectDataUnlinkingBatchApi/#get_project_data_unlinking_batch"><strong>get_project_data_unlinking_batch</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataUnlinkingBatch/{batchId}</td>
+<td>Retrieve a project data unlinking batch.</td>
+</tr>
+<tr>
+<td><em>ProjectDataUnlinkingBatchApi</em></td>
+<td><a href="docs/ProjectDataUnlinkingBatchApi/#get_project_data_unlinking_batch_item"><strong>get_project_data_unlinking_batch_item</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataUnlinkingBatch/{batchId}/items/{itemId}</td>
+<td>Retrieve a project data unlinking batch item.</td>
+</tr>
+<tr>
+<td><em>ProjectDataUnlinkingBatchApi</em></td>
+<td><a href="docs/ProjectDataUnlinkingBatchApi/#get_project_data_unlinking_batch_items"><strong>get_project_data_unlinking_batch_items</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataUnlinkingBatch/{batchId}/items</td>
+<td>Retrieve a list of project data unlinking batch items.</td>
+</tr>
+<tr>
+<td><em>ProjectDataUpdateBatchApi</em></td>
+<td><a href="docs/ProjectDataUpdateBatchApi/#create_project_data_update_batch"><strong>create_project_data_update_batch</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/dataUpdateBatch</td>
+<td>Create a project data update batch.  Folder contents will be updated recursively.  Time archive/delete cannot be defined for folders.</td>
+</tr>
+<tr>
+<td><em>ProjectDataUpdateBatchApi</em></td>
+<td><a href="docs/ProjectDataUpdateBatchApi/#get_project_data_update_batch"><strong>get_project_data_update_batch</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataUpdateBatch/{batchId}</td>
+<td>Retrieve a project data update batch.</td>
+</tr>
+<tr>
+<td><em>ProjectDataUpdateBatchApi</em></td>
+<td><a href="docs/ProjectDataUpdateBatchApi/#get_project_data_update_batch_item"><strong>get_project_data_update_batch_item</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataUpdateBatch/{batchId}/items/{itemId}</td>
+<td>Retrieve a project data update batch item.</td>
+</tr>
+<tr>
+<td><em>ProjectDataUpdateBatchApi</em></td>
+<td><a href="docs/ProjectDataUpdateBatchApi/#get_project_data_update_batch_items"><strong>get_project_data_update_batch_items</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/dataUpdateBatch/{batchId}/items</td>
+<td>Retrieve a list of project data update batch items.</td>
+</tr>
+<tr>
+<td><em>ProjectNotificationSubscriptionsApi</em></td>
+<td><a href="docs/ProjectNotificationSubscriptionsApi/#create_notification_subscription"><strong>create_notification_subscription</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/notificationSubscriptions</td>
+<td>Create a notification subscription</td>
+</tr>
+<tr>
+<td><em>ProjectNotificationSubscriptionsApi</em></td>
+<td><a href="docs/ProjectNotificationSubscriptionsApi/#delete_notification_subscription"><strong>delete_notification_subscription</strong></a></td>
+<td><strong>DELETE</strong> /api/projects/{projectId}/notificationSubscriptions/{subscriptionId}</td>
+<td>Delete a notification subscription</td>
+</tr>
+<tr>
+<td><em>ProjectNotificationSubscriptionsApi</em></td>
+<td><a href="docs/ProjectNotificationSubscriptionsApi/#get_notification_subscription"><strong>get_notification_subscription</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/notificationSubscriptions/{subscriptionId}</td>
+<td>Retrieve a notification subscription</td>
+</tr>
+<tr>
+<td><em>ProjectNotificationSubscriptionsApi</em></td>
+<td><a href="docs/ProjectNotificationSubscriptionsApi/#get_notification_subscriptions"><strong>get_notification_subscriptions</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/notificationSubscriptions</td>
+<td>Retrieve notification subscriptions</td>
+</tr>
+<tr>
+<td><em>ProjectNotificationSubscriptionsApi</em></td>
+<td><a href="docs/ProjectNotificationSubscriptionsApi/#update_notification_subscription"><strong>update_notification_subscription</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}/notificationSubscriptions/{subscriptionId}</td>
+<td>Update a notification subscription</td>
+</tr>
+<tr>
+<td><em>ProjectPermissionApi</em></td>
+<td><a href="docs/ProjectPermissionApi/#create_project_permission"><strong>create_project_permission</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/permissions</td>
+<td>Create a project permission.</td>
+</tr>
+<tr>
+<td><em>ProjectPermissionApi</em></td>
+<td><a href="docs/ProjectPermissionApi/#get_project_permission"><strong>get_project_permission</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/permissions/{permissionId}</td>
+<td>Retrieve a project permission.</td>
+</tr>
+<tr>
+<td><em>ProjectPermissionApi</em></td>
+<td><a href="docs/ProjectPermissionApi/#get_project_permissions"><strong>get_project_permissions</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/permissions</td>
+<td>Retrieve a list of project permissions.</td>
+</tr>
+<tr>
+<td><em>ProjectPermissionApi</em></td>
+<td><a href="docs/ProjectPermissionApi/#update_project_permission"><strong>update_project_permission</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}/permissions/{permissionId}</td>
+<td>Update a project permission.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#create_additional_project_pipeline_file"><strong>create_additional_project_pipeline_file</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles</td>
+<td>Create an additional input form file for a pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#create_cwl_json_pipeline"><strong>create_cwl_json_pipeline</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/pipelines:createCwlJsonPipeline</td>
+<td>Create a JSON based CWL pipeline within a project.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#create_cwl_pipeline"><strong>create_cwl_pipeline</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/pipelines:createCwlPipeline</td>
+<td>Create a CWL pipeline within a project.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#create_nextflow_json_pipeline"><strong>create_nextflow_json_pipeline</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/pipelines:createNextflowJsonPipeline</td>
+<td>Create a JSON based Nextflow pipeline within a project.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#create_nextflow_pipeline"><strong>create_nextflow_pipeline</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/pipelines:createNextflowPipeline</td>
+<td>Create a Nextflow pipeline within a project.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#create_project_pipeline_file"><strong>create_project_pipeline_file</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/pipelines/{pipelineId}/files</td>
+<td>Create a file for a pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#delete_additional_project_pipeline_file"><strong>delete_additional_project_pipeline_file</strong></a></td>
+<td><strong>DELETE</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles/{fileId}</td>
+<td>Delete an additional input form file for a pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#delete_project_pipeline_file"><strong>delete_project_pipeline_file</strong></a></td>
+<td><strong>DELETE</strong> /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}</td>
+<td>Delete a file for a pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#download_additional_file_content"><strong>download_additional_file_content</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles/{fileId}/content</td>
+<td>Download the contents of an additional input form file.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#download_input_form_file_content"><strong>download_input_form_file_content</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/inputFormFile</td>
+<td>Download the contents of the input form file.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#download_on_render_file_content"><strong>download_on_render_file_content</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/onRenderFile</td>
+<td>Download the contents of the onRender file.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#download_on_submit_file_content"><strong>download_on_submit_file_content</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/onSubmitFile</td>
+<td>Download the contents of the onSubmit file.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#download_project_pipeline_file_content"><strong>download_project_pipeline_file_content</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content</td>
+<td>Download the contents of a pipeline file.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#get_project_pipeline"><strong>get_project_pipeline</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}</td>
+<td>Retrieve a project pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#get_project_pipeline_additional_files"><strong>get_project_pipeline_additional_files</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles</td>
+<td>Retrieve additional input form files for a project pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#get_project_pipeline_configuration_parameters"><strong>get_project_pipeline_configuration_parameters</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}/configurationParameters</td>
+<td>Retrieve configuration parameters for a project pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#get_project_pipeline_files"><strong>get_project_pipeline_files</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}/files</td>
+<td>Retrieve files for a project pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#get_project_pipeline_html_documentation"><strong>get_project_pipeline_html_documentation</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}/documentation/HTML</td>
+<td>Retrieve HTML documentation for a project pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#get_project_pipeline_input_parameters"><strong>get_project_pipeline_input_parameters</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputParameters</td>
+<td>Retrieve input parameters for a project pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#get_project_pipeline_reference_sets"><strong>get_project_pipeline_reference_sets</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines/{pipelineId}/referenceSets</td>
+<td>Retrieve the reference sets of a project pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#get_project_pipelines"><strong>get_project_pipelines</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/pipelines</td>
+<td>Retrieve a list of project pipelines.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#link_pipeline_to_project"><strong>link_pipeline_to_project</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/pipelines/{pipelineId}</td>
+<td>Link a pipeline to a project.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#release_project_pipeline"><strong>release_project_pipeline</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/pipelines/{pipelineId}:release</td>
+<td>Release a pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#unlink_pipeline_from_project"><strong>unlink_pipeline_from_project</strong></a></td>
+<td><strong>DELETE</strong> /api/projects/{projectId}/pipelines/{pipelineId}</td>
+<td>Unlink a pipeline from a project.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#update_additional_file"><strong>update_additional_file</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles/{fileId}/content</td>
+<td>Update the contents of an additional input form file.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#update_general_attributes_project_pipeline"><strong>update_general_attributes_project_pipeline</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/pipelines/{pipelineId}/generalAttributes</td>
+<td>Update the general attributes of a project pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#update_input_form_file"><strong>update_input_form_file</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/inputFormFile</td>
+<td>Update the contents of the input form file for a pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#update_on_render_file"><strong>update_on_render_file</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/onRenderFile</td>
+<td>Update the contents of the onRender file for a pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#update_on_submit_file"><strong>update_on_submit_file</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/onSubmitFile</td>
+<td>Update the contents of the onSubmit file for a pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectPipelineApi</em></td>
+<td><a href="docs/ProjectPipelineApi/#update_project_pipeline_file"><strong>update_project_pipeline_file</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content</td>
+<td>Update the contents of a file for a pipeline.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#add_metadata_model_to_sample"><strong>add_metadata_model_to_sample</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}/metadata/{metadataModelId}</td>
+<td>Add a metadata model to a sample.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#complete_project_sample"><strong>complete_project_sample</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}:complete</td>
+<td>Completes the sample after data has been linked to it.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#create_sample_in_project"><strong>create_sample_in_project</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples</td>
+<td>Create a new sample in this project</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#deep_delete_sample"><strong>deep_delete_sample</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}:deleteDeep</td>
+<td>Delete a sample together with all of its data.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#delete_and_unlink_sample"><strong>delete_and_unlink_sample</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}:deleteUnlink</td>
+<td>Delete a sample and unlink its data.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#delete_sample_with_input"><strong>delete_sample_with_input</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}:deleteWithInput</td>
+<td>Delete a sample as well as its input data.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#get_project_sample"><strong>get_project_sample</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/samples/{sampleId}</td>
+<td>Retrieve a project sample.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#get_project_sample_analyses"><strong>get_project_sample_analyses</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/samples/{sampleId}/analyses</td>
+<td>Retrieve the list of analyses.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#get_project_samples"><strong>get_project_samples</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples:search</td>
+<td>Retrieve project samples.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#get_projects_for_sample"><strong>get_projects_for_sample</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/samples/{sampleId}/projects</td>
+<td>Retrieve a list of projects for this sample.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#get_sample_data_list"><strong>get_sample_data_list</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/samples/{sampleId}/data</td>
+<td>Retrieve the list of sample data.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#get_sample_history"><strong>get_sample_history</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/samples/{sampleId}/history</td>
+<td>Retrieve sample history.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#get_sample_metadata_field"><strong>get_sample_metadata_field</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/samples/{sampleId}/metadata/field/{fieldId}</td>
+<td>Retrieve a metadata field.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#get_sample_metadata_field_count"><strong>get_sample_metadata_field_count</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/samples/{sampleId}/metadata/{fieldId}/fieldCount</td>
+<td>Retrieves the number of occurrences of a given field.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#link_data_to_sample"><strong>link_data_to_sample</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}/data/{dataId}</td>
+<td>Link data to a sample.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#link_sample_to_project"><strong>link_sample_to_project</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}</td>
+<td>Link a sample to a project.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#mark_sample_deleted"><strong>mark_sample_deleted</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}:deleteMark</td>
+<td>Mark a sample deleted.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#search_project_sample_analyses"><strong>search_project_sample_analyses</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}/analyses:search</td>
+<td>Search analyses for sample.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#unlink_data_from_sample"><strong>unlink_data_from_sample</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}/data/{dataId}:unlink</td>
+<td>Unlink data from a sample.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#unlink_sample_from_project"><strong>unlink_sample_from_project</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}:unlink</td>
+<td>Unlink a sample from a project.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#update_project_sample"><strong>update_project_sample</strong></a></td>
+<td><strong>PUT</strong> /api/projects/{projectId}/samples/{sampleId}</td>
+<td>Update a project sample.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleApi</em></td>
+<td><a href="docs/ProjectSampleApi/#update_sample_metadata_fields"><strong>update_sample_metadata_fields</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/samples/{sampleId}/metadata:updateFields</td>
+<td>Update metadata fields.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleBatchApi</em></td>
+<td><a href="docs/ProjectSampleBatchApi/#create_sample_creation_batch"><strong>create_sample_creation_batch</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/sampleCreationBatch</td>
+<td>Create a sample creation batch.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleBatchApi</em></td>
+<td><a href="docs/ProjectSampleBatchApi/#get_sample_creation_batch"><strong>get_sample_creation_batch</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/sampleCreationBatch/{batchId}</td>
+<td>Retrieve a sample creation batch.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleBatchApi</em></td>
+<td><a href="docs/ProjectSampleBatchApi/#get_sample_creation_batch_item"><strong>get_sample_creation_batch_item</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/sampleCreationBatch/{batchId}/items/{itemId}</td>
+<td>Retrieve a sample creation batch item.</td>
+</tr>
+<tr>
+<td><em>ProjectSampleBatchApi</em></td>
+<td><a href="docs/ProjectSampleBatchApi/#get_sample_creation_batch_items"><strong>get_sample_creation_batch_items</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/sampleCreationBatch/{batchId}/items</td>
+<td>Retrieve a list of sample creation batch items.</td>
+</tr>
+<tr>
+<td><em>ProjectWorkflowSessionApi</em></td>
+<td><a href="docs/ProjectWorkflowSessionApi/#get_workflow_session_configurations"><strong>get_workflow_session_configurations</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/workflowSessions/{workflowSessionId}/configurations</td>
+<td>Retrieve the configurations of a workflow session.</td>
+</tr>
+<tr>
+<td><em>ProjectWorkflowSessionApi</em></td>
+<td><a href="docs/ProjectWorkflowSessionApi/#get_workflow_session_inputs"><strong>get_workflow_session_inputs</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/workflowSessions/{workflowSessionId}/inputs</td>
+<td>Retrieve the inputs of a workflow session.</td>
+</tr>
+<tr>
+<td><em>ProjectWorkflowSessionApi</em></td>
+<td><a href="docs/ProjectWorkflowSessionApi/#get_workflow_sessions"><strong>get_workflow_sessions</strong></a></td>
+<td><strong>GET</strong> /api/projects/{projectId}/workflowSessions</td>
+<td>Retrieve the list of workflow sessions.</td>
+</tr>
+<tr>
+<td><em>ProjectWorkflowSessionApi</em></td>
+<td><a href="docs/ProjectWorkflowSessionApi/#search_orchestrated_analyses"><strong>search_orchestrated_analyses</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/workflowSessions/{workflowSessionId}/analyses:search</td>
+<td>Search analyses orchestrated by the workflow session.</td>
+</tr>
+<tr>
+<td><em>ProjectWorkflowSessionApi</em></td>
+<td><a href="docs/ProjectWorkflowSessionApi/#search_workflow_sessions"><strong>search_workflow_sessions</strong></a></td>
+<td><strong>POST</strong> /api/projects/{projectId}/workflowSessions:search</td>
+<td>Search workflow sessions.</td>
+</tr>
+<tr>
+<td><em>ReferenceSetApi</em></td>
+<td><a href="docs/ReferenceSetApi/#get_reference_sets"><strong>get_reference_sets</strong></a></td>
+<td><strong>GET</strong> /api/referenceSets</td>
+<td>Retrieve a list of of reference sets.</td>
+</tr>
+<tr>
+<td><em>ReferenceSetApi</em></td>
+<td><a href="docs/ReferenceSetApi/#get_species"><strong>get_species</strong></a></td>
+<td><strong>GET</strong> /api/referenceSets/{referenceSetId}/species</td>
+<td>Retrieve a list of species linked to the reference set.</td>
+</tr>
+<tr>
+<td><em>RegionApi</em></td>
+<td><a href="docs/RegionApi/#get_region"><strong>get_region</strong></a></td>
+<td><strong>GET</strong> /api/regions/{regionId}</td>
+<td>Retrieve a region. Only the regions the user has access to through his/her entitlements can be retrieved.</td>
+</tr>
+<tr>
+<td><em>RegionApi</em></td>
+<td><a href="docs/RegionApi/#get_regions"><strong>get_regions</strong></a></td>
+<td><strong>GET</strong> /api/regions</td>
+<td>Retrieve a list of regions. Only the regions the user has access to through his/her entitlements are returned.</td>
+</tr>
+<tr>
+<td><em>SampleApi</em></td>
+<td><a href="docs/SampleApi/#get_samples"><strong>get_samples</strong></a></td>
+<td><strong>GET</strong> /api/samples</td>
+<td>Retrieve a list of samples.</td>
+</tr>
+<tr>
+<td><em>SequencingRunApi</em></td>
+<td><a href="docs/SequencingRunApi/#get_sequencing_run"><strong>get_sequencing_run</strong></a></td>
+<td><strong>GET</strong> /api/sequencingRuns/{sequencingRunId}</td>
+<td>Retrieve a sequencing run.</td>
+</tr>
+<tr>
+<td><em>StorageBundleApi</em></td>
+<td><a href="docs/StorageBundleApi/#get_storage_bundles"><strong>get_storage_bundles</strong></a></td>
+<td><strong>GET</strong> /api/storageBundles</td>
+<td>Retrieve a list of storage bundles.</td>
+</tr>
+<tr>
+<td><em>StorageConfigurationApi</em></td>
+<td><a href="docs/StorageConfigurationApi/#create_storage_configuration"><strong>create_storage_configuration</strong></a></td>
+<td><strong>POST</strong> /api/storageConfigurations</td>
+<td>Create a new storage configuration</td>
+</tr>
+<tr>
+<td><em>StorageConfigurationApi</em></td>
+<td><a href="docs/StorageConfigurationApi/#get_storage_configuration"><strong>get_storage_configuration</strong></a></td>
+<td><strong>GET</strong> /api/storageConfigurations/{storageConfigurationId}</td>
+<td>Retrieve a storage configuration.</td>
+</tr>
+<tr>
+<td><em>StorageConfigurationApi</em></td>
+<td><a href="docs/StorageConfigurationApi/#get_storage_configuration_details"><strong>get_storage_configuration_details</strong></a></td>
+<td><strong>GET</strong> /api/storageConfigurations/{storageConfigurationId}/details</td>
+<td>Retrieve a storage configuration detail.</td>
+</tr>
+<tr>
+<td><em>StorageConfigurationApi</em></td>
+<td><a href="docs/StorageConfigurationApi/#get_storage_configurations"><strong>get_storage_configurations</strong></a></td>
+<td><strong>GET</strong> /api/storageConfigurations</td>
+<td>Retrieve a list of storage configurations.</td>
+</tr>
+<tr>
+<td><em>StorageConfigurationApi</em></td>
+<td><a href="docs/StorageConfigurationApi/#share_storage_configuration"><strong>share_storage_configuration</strong></a></td>
+<td><strong>POST</strong> /api/storageConfigurations/{storageConfigurationId}:share</td>
+<td>Share your own storage configuration with tenant.</td>
+</tr>
+<tr>
+<td><em>StorageConfigurationApi</em></td>
+<td><a href="docs/StorageConfigurationApi/#validate_storage_configuration"><strong>validate_storage_configuration</strong></a></td>
+<td><strong>POST</strong> /api/storageConfigurations/{storageConfigurationId}:validate</td>
+<td>Start validation of your storage configuration.</td>
+</tr>
+<tr>
+<td><em>StorageCredentialsApi</em></td>
+<td><a href="docs/StorageCredentialsApi/#create_storage_credential"><strong>create_storage_credential</strong></a></td>
+<td><strong>POST</strong> /api/storageCredentials</td>
+<td>Create a new storage credential</td>
+</tr>
+<tr>
+<td><em>StorageCredentialsApi</em></td>
+<td><a href="docs/StorageCredentialsApi/#get_storage_credential"><strong>get_storage_credential</strong></a></td>
+<td><strong>GET</strong> /api/storageCredentials/{storageCredentialId}</td>
+<td>Retrieve a storage credential.</td>
+</tr>
+<tr>
+<td><em>StorageCredentialsApi</em></td>
+<td><a href="docs/StorageCredentialsApi/#get_storage_credentials"><strong>get_storage_credentials</strong></a></td>
+<td><strong>GET</strong> /api/storageCredentials</td>
+<td>Retrieve a list of storage credentials.</td>
+</tr>
+<tr>
+<td><em>StorageCredentialsApi</em></td>
+<td><a href="docs/StorageCredentialsApi/#share_storage_credential"><strong>share_storage_credential</strong></a></td>
+<td><strong>POST</strong> /api/storageCredentials/{storageCredentialId}:share</td>
+<td>Share your own storage credentials with tenant.</td>
+</tr>
+<tr>
+<td><em>StorageCredentialsApi</em></td>
+<td><a href="docs/StorageCredentialsApi/#update_storage_credential_secrets"><strong>update_storage_credential_secrets</strong></a></td>
+<td><strong>POST</strong> /api/storageCredentials/{storageCredentialId}:updateSecrets</td>
+<td>Update a storage credential&#39;s secrets.</td>
+</tr>
+<tr>
+<td><em>SystemApi</em></td>
+<td><a href="docs/SystemApi/#get_system_info"><strong>get_system_info</strong></a></td>
+<td><strong>GET</strong> /api/system/info</td>
+<td>Retrieve system information.</td>
+</tr>
+<tr>
+<td><em>TokenApi</em></td>
+<td><a href="docs/TokenApi/#create_jwt_token"><strong>create_jwt_token</strong></a></td>
+<td><strong>POST</strong> /api/tokens</td>
+<td>Generate a JWT using an API-key, Basic Authentication or a psToken.</td>
+</tr>
+<tr>
+<td><em>TokenApi</em></td>
+<td><a href="docs/TokenApi/#refresh_jwt_token"><strong>refresh_jwt_token</strong></a></td>
+<td><strong>POST</strong> /api/tokens:refresh</td>
+<td>Refresh a JWT using a not yet expired, still valid JWT.</td>
+</tr>
+<tr>
+<td><em>UserApi</em></td>
+<td><a href="docs/UserApi/#approve_user"><strong>approve_user</strong></a></td>
+<td><strong>POST</strong> /api/users/{userId}:approve</td>
+<td>Approve a user.</td>
+</tr>
+<tr>
+<td><em>UserApi</em></td>
+<td><a href="docs/UserApi/#assign_tenant_admin_rights_to_user"><strong>assign_tenant_admin_rights_to_user</strong></a></td>
+<td><strong>POST</strong> /api/users/{userId}:assignTenantAdministratorRights</td>
+<td>Assign tenant administrator rights to a user.</td>
+</tr>
+<tr>
+<td><em>UserApi</em></td>
+<td><a href="docs/UserApi/#get_user"><strong>get_user</strong></a></td>
+<td><strong>GET</strong> /api/users/{userId}</td>
+<td>Retrieve a user.</td>
+</tr>
+<tr>
+<td><em>UserApi</em></td>
+<td><a href="docs/UserApi/#get_users"><strong>get_users</strong></a></td>
+<td><strong>GET</strong> /api/users</td>
+<td>Retrieve a list of users.</td>
+</tr>
+<tr>
+<td><em>UserApi</em></td>
+<td><a href="docs/UserApi/#revoke_tenant_admin_rights_to_user"><strong>revoke_tenant_admin_rights_to_user</strong></a></td>
+<td><strong>POST</strong> /api/users/{userId}:revokeTenantAdministratorRights</td>
+<td>Revoke tenant administrator rights to a user.</td>
+</tr>
+<tr>
+<td><em>UserApi</em></td>
+<td><a href="docs/UserApi/#update_user"><strong>update_user</strong></a></td>
+<td><strong>PUT</strong> /api/users/{userId}</td>
+<td>Update a user.</td>
+</tr>
+<tr>
+<td><em>WorkgroupApi</em></td>
+<td><a href="docs/WorkgroupApi/#get_workgroup"><strong>get_workgroup</strong></a></td>
+<td><strong>GET</strong> /api/workgroups/{workgroupId}</td>
+<td>Retrieve a workgroup.</td>
+</tr>
+<tr>
+<td><em>WorkgroupApi</em></td>
+<td><a href="docs/WorkgroupApi/#get_workgroups"><strong>get_workgroups</strong></a></td>
+<td><strong>GET</strong> /api/workgroups</td>
+<td>Retrieve a list of workgroups.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="documentation-for-models">Documentation For Models<a class="headerlink" href="#documentation-for-models" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="docs/AWSDetails/">AWSDetails</a></li>
+<li><a href="docs/ActivationCodeDetail/">ActivationCodeDetail</a></li>
+<li><a href="docs/ActivationCodeDetailList/">ActivationCodeDetailList</a></li>
+<li><a href="docs/ActivationCodeDetailUsage/">ActivationCodeDetailUsage</a></li>
+<li><a href="docs/AnalysisBaseSpaceDataDetails/">AnalysisBaseSpaceDataDetails</a></li>
+<li><a href="docs/AnalysisCreationBatch/">AnalysisCreationBatch</a></li>
+<li><a href="docs/AnalysisCreationBatchItemPagedListV3/">AnalysisCreationBatchItemPagedListV3</a></li>
+<li><a href="docs/AnalysisCreationBatchItemPagedListV4/">AnalysisCreationBatchItemPagedListV4</a></li>
+<li><a href="docs/AnalysisCreationBatchItemProcessing/">AnalysisCreationBatchItemProcessing</a></li>
+<li><a href="docs/AnalysisCreationBatchItemRequest/">AnalysisCreationBatchItemRequest</a></li>
+<li><a href="docs/AnalysisCreationBatchItemV3/">AnalysisCreationBatchItemV3</a></li>
+<li><a href="docs/AnalysisCreationBatchItemV4/">AnalysisCreationBatchItemV4</a></li>
+<li><a href="docs/AnalysisData/">AnalysisData</a></li>
+<li><a href="docs/AnalysisDataInput/">AnalysisDataInput</a></li>
+<li><a href="docs/AnalysisExternalData/">AnalysisExternalData</a></li>
+<li><a href="docs/AnalysisInput/">AnalysisInput</a></li>
+<li><a href="docs/AnalysisInputDataMount/">AnalysisInputDataMount</a></li>
+<li><a href="docs/AnalysisInputExternalData/">AnalysisInputExternalData</a></li>
+<li><a href="docs/AnalysisInputList/">AnalysisInputList</a></li>
+<li><a href="docs/AnalysisOutput/">AnalysisOutput</a></li>
+<li><a href="docs/AnalysisOutputList/">AnalysisOutputList</a></li>
+<li><a href="docs/AnalysisOutputMapping/">AnalysisOutputMapping</a></li>
+<li><a href="docs/AnalysisPagedListV3/">AnalysisPagedListV3</a></li>
+<li><a href="docs/AnalysisPagedListV4/">AnalysisPagedListV4</a></li>
+<li><a href="docs/AnalysisParameterInput/">AnalysisParameterInput</a></li>
+<li><a href="docs/AnalysisPrice/">AnalysisPrice</a></li>
+<li><a href="docs/AnalysisQueryParameters/">AnalysisQueryParameters</a></li>
+<li><a href="docs/AnalysisRawOutput/">AnalysisRawOutput</a></li>
+<li><a href="docs/AnalysisReferenceDataParameter/">AnalysisReferenceDataParameter</a></li>
+<li><a href="docs/AnalysisReportData/">AnalysisReportData</a></li>
+<li><a href="docs/AnalysisReportEntry/">AnalysisReportEntry</a></li>
+<li><a href="docs/AnalysisReportEntryList/">AnalysisReportEntryList</a></li>
+<li><a href="docs/AnalysisS3DataDetails/">AnalysisS3DataDetails</a></li>
+<li><a href="docs/AnalysisStep/">AnalysisStep</a></li>
+<li><a href="docs/AnalysisStepList/">AnalysisStepList</a></li>
+<li><a href="docs/AnalysisStepLogs/">AnalysisStepLogs</a></li>
+<li><a href="docs/AnalysisStorageListV3/">AnalysisStorageListV3</a></li>
+<li><a href="docs/AnalysisStorageListV4/">AnalysisStorageListV4</a></li>
+<li><a href="docs/AnalysisStorageV3/">AnalysisStorageV3</a></li>
+<li><a href="docs/AnalysisStorageV4/">AnalysisStorageV4</a></li>
+<li><a href="docs/AnalysisTag/">AnalysisTag</a></li>
+<li><a href="docs/AnalysisUsageDetails/">AnalysisUsageDetails</a></li>
+<li><a href="docs/AnalysisV3/">AnalysisV3</a></li>
+<li><a href="docs/AnalysisV4/">AnalysisV4</a></li>
+<li><a href="docs/Application/">Application</a></li>
+<li><a href="docs/ApplicationV4/">ApplicationV4</a></li>
+<li><a href="docs/AwsCredentials/">AwsCredentials</a></li>
+<li><a href="docs/AwsTempCredentials/">AwsTempCredentials</a></li>
+<li><a href="docs/BaseConnection/">BaseConnection</a></li>
+<li><a href="docs/BaseJob/">BaseJob</a></li>
+<li><a href="docs/BaseJobList/">BaseJobList</a></li>
+<li><a href="docs/BenchSettings/">BenchSettings</a></li>
+<li><a href="docs/Bundle/">Bundle</a></li>
+<li><a href="docs/BundleData/">BundleData</a></li>
+<li><a href="docs/BundleDataLinkingBatch/">BundleDataLinkingBatch</a></li>
+<li><a href="docs/BundleDataLinkingBatchItem/">BundleDataLinkingBatchItem</a></li>
+<li><a href="docs/BundleDataLinkingBatchItemPagedList/">BundleDataLinkingBatchItemPagedList</a></li>
+<li><a href="docs/BundleDataLinkingBatchItemProcessing/">BundleDataLinkingBatchItemProcessing</a></li>
+<li><a href="docs/BundleDataLinkingBatchItemRequest/">BundleDataLinkingBatchItemRequest</a></li>
+<li><a href="docs/BundleDataPagedList/">BundleDataPagedList</a></li>
+<li><a href="docs/BundleDataUnlinkingBatch/">BundleDataUnlinkingBatch</a></li>
+<li><a href="docs/BundleDataUnlinkingBatchItem/">BundleDataUnlinkingBatchItem</a></li>
+<li><a href="docs/BundleDataUnlinkingBatchItemPagedList/">BundleDataUnlinkingBatchItemPagedList</a></li>
+<li><a href="docs/BundleDataUnlinkingBatchItemProcessing/">BundleDataUnlinkingBatchItemProcessing</a></li>
+<li><a href="docs/BundleDataUnlinkingBatchItemRequest/">BundleDataUnlinkingBatchItemRequest</a></li>
+<li><a href="docs/BundleList/">BundleList</a></li>
+<li><a href="docs/BundlePagedList/">BundlePagedList</a></li>
+<li><a href="docs/BundlePipeline/">BundlePipeline</a></li>
+<li><a href="docs/BundlePipelineList/">BundlePipelineList</a></li>
+<li><a href="docs/BundleSample/">BundleSample</a></li>
+<li><a href="docs/BundleSamplePagedList/">BundleSamplePagedList</a></li>
+<li><a href="docs/BundleTool/">BundleTool</a></li>
+<li><a href="docs/BundleToolsList/">BundleToolsList</a></li>
+<li><a href="docs/CWLToolDefinition/">CWLToolDefinition</a></li>
+<li><a href="docs/ChangeProjectOwner/">ChangeProjectOwner</a></li>
+<li><a href="docs/CompleteFolderUploadSession/">CompleteFolderUploadSession</a></li>
+<li><a href="docs/Config/">Config</a></li>
+<li><a href="docs/Connector/">Connector</a></li>
+<li><a href="docs/ConnectorList/">ConnectorList</a></li>
+<li><a href="docs/Country/">Country</a></li>
+<li><a href="docs/CreateAnalysisCreationBatch/">CreateAnalysisCreationBatch</a></li>
+<li><a href="docs/CreateAnalysisTag/">CreateAnalysisTag</a></li>
+<li><a href="docs/CreateBundle/">CreateBundle</a></li>
+<li><a href="docs/CreateBundleDataLinkingBatch/">CreateBundleDataLinkingBatch</a></li>
+<li><a href="docs/CreateBundleDataLinkingBatchItem/">CreateBundleDataLinkingBatchItem</a></li>
+<li><a href="docs/CreateBundleDataUnlinkingBatch/">CreateBundleDataUnlinkingBatch</a></li>
+<li><a href="docs/CreateBundleDataUnlinkingBatchItem/">CreateBundleDataUnlinkingBatchItem</a></li>
+<li><a href="docs/CreateConnector/">CreateConnector</a></li>
+<li><a href="docs/CreateCustomEvent/">CreateCustomEvent</a></li>
+<li><a href="docs/CreateCustomNotificationSubscription/">CreateCustomNotificationSubscription</a></li>
+<li><a href="docs/CreateCwlAnalysis/">CreateCwlAnalysis</a></li>
+<li><a href="docs/CreateCwlJsonAnalysis/">CreateCwlJsonAnalysis</a></li>
+<li><a href="docs/CreateCwlWithJsonInputAnalysis/">CreateCwlWithJsonInputAnalysis</a></li>
+<li><a href="docs/CreateCwlWithStructuredInputAnalysis/">CreateCwlWithStructuredInputAnalysis</a></li>
+<li><a href="docs/CreateData/">CreateData</a></li>
+<li><a href="docs/CreateDownloadRule/">CreateDownloadRule</a></li>
+<li><a href="docs/CreateExternalDockerImage/">CreateExternalDockerImage</a></li>
+<li><a href="docs/CreateFileAndTemporaryCredentials/">CreateFileAndTemporaryCredentials</a></li>
+<li><a href="docs/CreateFileAndUploadUrl/">CreateFileAndUploadUrl</a></li>
+<li><a href="docs/CreateFileData/">CreateFileData</a></li>
+<li><a href="docs/CreateFolder/">CreateFolder</a></li>
+<li><a href="docs/CreateFolderAndTemporaryCredentials/">CreateFolderAndTemporaryCredentials</a></li>
+<li><a href="docs/CreateInternalDockerImage/">CreateInternalDockerImage</a></li>
+<li><a href="docs/CreateNextflowAnalysis/">CreateNextflowAnalysis</a></li>
+<li><a href="docs/CreateNextflowJsonAnalysis/">CreateNextflowJsonAnalysis</a></li>
+<li><a href="docs/CreateNextflowWithCustomInputAnalysis/">CreateNextflowWithCustomInputAnalysis</a></li>
+<li><a href="docs/CreateNonIndexedFolder/">CreateNonIndexedFolder</a></li>
+<li><a href="docs/CreateNotificationChannel/">CreateNotificationChannel</a></li>
+<li><a href="docs/CreateNotificationSubscription/">CreateNotificationSubscription</a></li>
+<li><a href="docs/CreateProject/">CreateProject</a></li>
+<li><a href="docs/CreateProjectDataCopyBatch/">CreateProjectDataCopyBatch</a></li>
+<li><a href="docs/CreateProjectDataCopyBatchItem/">CreateProjectDataCopyBatchItem</a></li>
+<li><a href="docs/CreateProjectDataLinkingBatch/">CreateProjectDataLinkingBatch</a></li>
+<li><a href="docs/CreateProjectDataLinkingBatchItem/">CreateProjectDataLinkingBatchItem</a></li>
+<li><a href="docs/CreateProjectDataMoveBatch/">CreateProjectDataMoveBatch</a></li>
+<li><a href="docs/CreateProjectDataMoveBatchItem/">CreateProjectDataMoveBatchItem</a></li>
+<li><a href="docs/CreateProjectDataUnlinkingBatch/">CreateProjectDataUnlinkingBatch</a></li>
+<li><a href="docs/CreateProjectDataUnlinkingBatchItem/">CreateProjectDataUnlinkingBatchItem</a></li>
+<li><a href="docs/CreateProjectDataUpdateBatch/">CreateProjectDataUpdateBatch</a></li>
+<li><a href="docs/CreateProjectPermission/">CreateProjectPermission</a></li>
+<li><a href="docs/CreateProjectPermissionV4/">CreateProjectPermissionV4</a></li>
+<li><a href="docs/CreateSample/">CreateSample</a></li>
+<li><a href="docs/CreateSampleCreationBatch/">CreateSampleCreationBatch</a></li>
+<li><a href="docs/CreateSampleCreationBatchDataItem/">CreateSampleCreationBatchDataItem</a></li>
+<li><a href="docs/CreateSampleCreationBatchSampleItem/">CreateSampleCreationBatchSampleItem</a></li>
+<li><a href="docs/CreateStorageConfiguration/">CreateStorageConfiguration</a></li>
+<li><a href="docs/CreateStorageCredential/">CreateStorageCredential</a></li>
+<li><a href="docs/CreateTemporaryCredentials/">CreateTemporaryCredentials</a></li>
+<li><a href="docs/CreateTermsOfUse/">CreateTermsOfUse</a></li>
+<li><a href="docs/CreateUploadRule/">CreateUploadRule</a></li>
+<li><a href="docs/CustomNotificationSubscription/">CustomNotificationSubscription</a></li>
+<li><a href="docs/CustomNotificationSubscriptionList/">CustomNotificationSubscriptionList</a></li>
+<li><a href="docs/CwlAnalysisInput/">CwlAnalysisInput</a></li>
+<li><a href="docs/CwlAnalysisInputJson/">CwlAnalysisInputJson</a></li>
+<li><a href="docs/CwlAnalysisJsonInput/">CwlAnalysisJsonInput</a></li>
+<li><a href="docs/CwlAnalysisOutputJson/">CwlAnalysisOutputJson</a></li>
+<li><a href="docs/CwlAnalysisStructuredInput/">CwlAnalysisStructuredInput</a></li>
+<li><a href="docs/CwlAnalysisWithJsonInput/">CwlAnalysisWithJsonInput</a></li>
+<li><a href="docs/CwlAnalysisWithStructuredInput/">CwlAnalysisWithStructuredInput</a></li>
+<li><a href="docs/CwlJsonAnalysisInput/">CwlJsonAnalysisInput</a></li>
+<li><a href="docs/CwlToolDefinitionList/">CwlToolDefinitionList</a></li>
+<li><a href="docs/Data/">Data</a></li>
+<li><a href="docs/DataDetails/">DataDetails</a></li>
+<li><a href="docs/DataFormat/">DataFormat</a></li>
+<li><a href="docs/DataFormatPagedList/">DataFormatPagedList</a></li>
+<li><a href="docs/DataIdOrPathList/">DataIdOrPathList</a></li>
+<li><a href="docs/DataList/">DataList</a></li>
+<li><a href="docs/DataPagedList/">DataPagedList</a></li>
+<li><a href="docs/DataTag/">DataTag</a></li>
+<li><a href="docs/DataTransfer/">DataTransfer</a></li>
+<li><a href="docs/DataTransferPagedList/">DataTransferPagedList</a></li>
+<li><a href="docs/DataUpdateGroup/">DataUpdateGroup</a></li>
+<li><a href="docs/DataUrlWithPath/">DataUrlWithPath</a></li>
+<li><a href="docs/DataUrlWithPathList/">DataUrlWithPathList</a></li>
+<li><a href="docs/DockerImage/">DockerImage</a></li>
+<li><a href="docs/DockerImageAccess/">DockerImageAccess</a></li>
+<li><a href="docs/DockerImageList/">DockerImageList</a></li>
+<li><a href="docs/DockerImageRegion/">DockerImageRegion</a></li>
+<li><a href="docs/DockerImageRegionList/">DockerImageRegionList</a></li>
+<li><a href="docs/Download/">Download</a></li>
+<li><a href="docs/DownloadRule/">DownloadRule</a></li>
+<li><a href="docs/DownloadRuleList/">DownloadRuleList</a></li>
+<li><a href="docs/EventCode/">EventCode</a></li>
+<li><a href="docs/EventCodeList/">EventCodeList</a></li>
+<li><a href="docs/EventLogListV3/">EventLogListV3</a></li>
+<li><a href="docs/EventLogPagedListV4/">EventLogPagedListV4</a></li>
+<li><a href="docs/EventLogQueryParametersV4/">EventLogQueryParametersV4</a></li>
+<li><a href="docs/EventLogV3/">EventLogV3</a></li>
+<li><a href="docs/EventLogV4/">EventLogV4</a></li>
+<li><a href="docs/ExecutionConfiguration/">ExecutionConfiguration</a></li>
+<li><a href="docs/ExecutionConfigurationList/">ExecutionConfigurationList</a></li>
+<li><a href="docs/ExternalDockerImageSettings/">ExternalDockerImageSettings</a></li>
+<li><a href="docs/Field/">Field</a></li>
+<li><a href="docs/FieldId/">FieldId</a></li>
+<li><a href="docs/FieldList/">FieldList</a></li>
+<li><a href="docs/FindProjectSamples/">FindProjectSamples</a></li>
+<li><a href="docs/FindSampleBooleanCondition/">FindSampleBooleanCondition</a></li>
+<li><a href="docs/FindSampleCondition/">FindSampleCondition</a></li>
+<li><a href="docs/FindSampleDateCondition/">FindSampleDateCondition</a></li>
+<li><a href="docs/FindSampleNumberCondition/">FindSampleNumberCondition</a></li>
+<li><a href="docs/FolderDetails/">FolderDetails</a></li>
+<li><a href="docs/FolderUploadSession/">FolderUploadSession</a></li>
+<li><a href="docs/InlineView/">InlineView</a></li>
+<li><a href="docs/InputFormBaseSpaceDataDetails/">InputFormBaseSpaceDataDetails</a></li>
+<li><a href="docs/InputFormData/">InputFormData</a></li>
+<li><a href="docs/InputFormExternalData/">InputFormExternalData</a></li>
+<li><a href="docs/InputFormField/">InputFormField</a></li>
+<li><a href="docs/InputFormFieldChoice/">InputFormFieldChoice</a></li>
+<li><a href="docs/InputFormFieldDataFilter/">InputFormFieldDataFilter</a></li>
+<li><a href="docs/InputFormFieldList/">InputFormFieldList</a></li>
+<li><a href="docs/InputFormFieldValues/">InputFormFieldValues</a></li>
+<li><a href="docs/InputFormGroup/">InputFormGroup</a></li>
+<li><a href="docs/InputFormGroupField/">InputFormGroupField</a></li>
+<li><a href="docs/InputFormGroupFieldValues/">InputFormGroupFieldValues</a></li>
+<li><a href="docs/InputFormS3DataDetails/">InputFormS3DataDetails</a></li>
+<li><a href="docs/InputFormWithExternalData/">InputFormWithExternalData</a></li>
+<li><a href="docs/InputParameter/">InputParameter</a></li>
+<li><a href="docs/InputParameterList/">InputParameterList</a></li>
+<li><a href="docs/InputPart/">InputPart</a></li>
+<li><a href="docs/InputPartMediaType/">InputPartMediaType</a></li>
+<li><a href="docs/IntegerSettings/">IntegerSettings</a></li>
+<li><a href="docs/InternalDockerImageSettings/">InternalDockerImageSettings</a></li>
+<li><a href="docs/Job/">Job</a></li>
+<li><a href="docs/JobPagedList/">JobPagedList</a></li>
+<li><a href="docs/Link/">Link</a></li>
+<li><a href="docs/Links/">Links</a></li>
+<li><a href="docs/LoadDataInBaseRequest/">LoadDataInBaseRequest</a></li>
+<li><a href="docs/MetadataField/">MetadataField</a></li>
+<li><a href="docs/MetadataModel/">MetadataModel</a></li>
+<li><a href="docs/MetadataModelList/">MetadataModelList</a></li>
+<li><a href="docs/Model/">Model</a></li>
+<li><a href="docs/MultipartFormDataInput/">MultipartFormDataInput</a></li>
+<li><a href="docs/NextflowAnalysisInput/">NextflowAnalysisInput</a></li>
+<li><a href="docs/NextflowAnalysisWithCustomInput/">NextflowAnalysisWithCustomInput</a></li>
+<li><a href="docs/NextflowJsonAnalysisInput/">NextflowJsonAnalysisInput</a></li>
+<li><a href="docs/NotificationChannel/">NotificationChannel</a></li>
+<li><a href="docs/NotificationChannelList/">NotificationChannelList</a></li>
+<li><a href="docs/NotificationSubscription/">NotificationSubscription</a></li>
+<li><a href="docs/NotificationSubscriptionList/">NotificationSubscriptionList</a></li>
+<li><a href="docs/OptionSettings/">OptionSettings</a></li>
+<li><a href="docs/OptionalSampleTags/">OptionalSampleTags</a></li>
+<li><a href="docs/PipelineBundle/">PipelineBundle</a></li>
+<li><a href="docs/PipelineConfigurationParameter/">PipelineConfigurationParameter</a></li>
+<li><a href="docs/PipelineConfigurationParameterList/">PipelineConfigurationParameterList</a></li>
+<li><a href="docs/PipelineFile/">PipelineFile</a></li>
+<li><a href="docs/PipelineFileList/">PipelineFileList</a></li>
+<li><a href="docs/PipelineHtmlDocumentation/">PipelineHtmlDocumentation</a></li>
+<li><a href="docs/PipelineLanguageVersion/">PipelineLanguageVersion</a></li>
+<li><a href="docs/PipelineLanguageVersionList/">PipelineLanguageVersionList</a></li>
+<li><a href="docs/PipelineList/">PipelineList</a></li>
+<li><a href="docs/PipelineReportConfig/">PipelineReportConfig</a></li>
+<li><a href="docs/PipelineTag/">PipelineTag</a></li>
+<li><a href="docs/PipelineUpdate/">PipelineUpdate</a></li>
+<li><a href="docs/PipelineV3/">PipelineV3</a></li>
+<li><a href="docs/PipelineV4/">PipelineV4</a></li>
+<li><a href="docs/Problem/">Problem</a></li>
+<li><a href="docs/Project/">Project</a></li>
+<li><a href="docs/ProjectBaseTable/">ProjectBaseTable</a></li>
+<li><a href="docs/ProjectBaseTableList/">ProjectBaseTableList</a></li>
+<li><a href="docs/ProjectBundle/">ProjectBundle</a></li>
+<li><a href="docs/ProjectBundleList/">ProjectBundleList</a></li>
+<li><a href="docs/ProjectData/">ProjectData</a></li>
+<li><a href="docs/ProjectDataAndTemporaryCredentials/">ProjectDataAndTemporaryCredentials</a></li>
+<li><a href="docs/ProjectDataCopyBatch/">ProjectDataCopyBatch</a></li>
+<li><a href="docs/ProjectDataCopyBatchItem/">ProjectDataCopyBatchItem</a></li>
+<li><a href="docs/ProjectDataCopyBatchItemPagedList/">ProjectDataCopyBatchItemPagedList</a></li>
+<li><a href="docs/ProjectDataCopyBatchItemProcessing/">ProjectDataCopyBatchItemProcessing</a></li>
+<li><a href="docs/ProjectDataCopyBatchItemRequest/">ProjectDataCopyBatchItemRequest</a></li>
+<li><a href="docs/ProjectDataLinkingBatch/">ProjectDataLinkingBatch</a></li>
+<li><a href="docs/ProjectDataLinkingBatchItem/">ProjectDataLinkingBatchItem</a></li>
+<li><a href="docs/ProjectDataLinkingBatchItemPagedList/">ProjectDataLinkingBatchItemPagedList</a></li>
+<li><a href="docs/ProjectDataLinkingBatchItemPagedListV4/">ProjectDataLinkingBatchItemPagedListV4</a></li>
+<li><a href="docs/ProjectDataLinkingBatchItemProcessing/">ProjectDataLinkingBatchItemProcessing</a></li>
+<li><a href="docs/ProjectDataLinkingBatchItemProcessingV4/">ProjectDataLinkingBatchItemProcessingV4</a></li>
+<li><a href="docs/ProjectDataLinkingBatchItemRequest/">ProjectDataLinkingBatchItemRequest</a></li>
+<li><a href="docs/ProjectDataLinkingBatchItemV4/">ProjectDataLinkingBatchItemV4</a></li>
+<li><a href="docs/ProjectDataMoveBatch/">ProjectDataMoveBatch</a></li>
+<li><a href="docs/ProjectDataMoveBatchItem/">ProjectDataMoveBatchItem</a></li>
+<li><a href="docs/ProjectDataMoveBatchItemPagedList/">ProjectDataMoveBatchItemPagedList</a></li>
+<li><a href="docs/ProjectDataMoveBatchItemProcessing/">ProjectDataMoveBatchItemProcessing</a></li>
+<li><a href="docs/ProjectDataMoveBatchItemQueryParameters/">ProjectDataMoveBatchItemQueryParameters</a></li>
+<li><a href="docs/ProjectDataMoveBatchItemRequest/">ProjectDataMoveBatchItemRequest</a></li>
+<li><a href="docs/ProjectDataPagedList/">ProjectDataPagedList</a></li>
+<li><a href="docs/ProjectDataUnlinkingBatch/">ProjectDataUnlinkingBatch</a></li>
+<li><a href="docs/ProjectDataUnlinkingBatchItem/">ProjectDataUnlinkingBatchItem</a></li>
+<li><a href="docs/ProjectDataUnlinkingBatchItemPagedList/">ProjectDataUnlinkingBatchItemPagedList</a></li>
+<li><a href="docs/ProjectDataUnlinkingBatchItemProcessing/">ProjectDataUnlinkingBatchItemProcessing</a></li>
+<li><a href="docs/ProjectDataUnlinkingBatchItemRequest/">ProjectDataUnlinkingBatchItemRequest</a></li>
+<li><a href="docs/ProjectDataUpdateBatch/">ProjectDataUpdateBatch</a></li>
+<li><a href="docs/ProjectDataUpdateBatchItem/">ProjectDataUpdateBatchItem</a></li>
+<li><a href="docs/ProjectDataUpdateBatchItemPagedList/">ProjectDataUpdateBatchItemPagedList</a></li>
+<li><a href="docs/ProjectDataUpdateBatchItemProcessing/">ProjectDataUpdateBatchItemProcessing</a></li>
+<li><a href="docs/ProjectDataUpdateBatchItemRequest/">ProjectDataUpdateBatchItemRequest</a></li>
+<li><a href="docs/ProjectFileAndUploadUrl/">ProjectFileAndUploadUrl</a></li>
+<li><a href="docs/ProjectFolderAndUploadSession/">ProjectFolderAndUploadSession</a></li>
+<li><a href="docs/ProjectList/">ProjectList</a></li>
+<li><a href="docs/ProjectPagedList/">ProjectPagedList</a></li>
+<li><a href="docs/ProjectPermission/">ProjectPermission</a></li>
+<li><a href="docs/ProjectPermissionList/">ProjectPermissionList</a></li>
+<li><a href="docs/ProjectPermissionListV4/">ProjectPermissionListV4</a></li>
+<li><a href="docs/ProjectPermissionV4/">ProjectPermissionV4</a></li>
+<li><a href="docs/ProjectPipeline/">ProjectPipeline</a></li>
+<li><a href="docs/ProjectPipelineList/">ProjectPipelineList</a></li>
+<li><a href="docs/ProjectPipelineV4/">ProjectPipelineV4</a></li>
+<li><a href="docs/ProjectSample/">ProjectSample</a></li>
+<li><a href="docs/ProjectSamplePagedList/">ProjectSamplePagedList</a></li>
+<li><a href="docs/ProjectTag/">ProjectTag</a></li>
+<li><a href="docs/RcloneTempCredentials/">RcloneTempCredentials</a></li>
+<li><a href="docs/ReferenceData/">ReferenceData</a></li>
+<li><a href="docs/ReferenceDataList/">ReferenceDataList</a></li>
+<li><a href="docs/ReferenceDataType/">ReferenceDataType</a></li>
+<li><a href="docs/ReferenceDataTypeList/">ReferenceDataTypeList</a></li>
+<li><a href="docs/ReferenceSet/">ReferenceSet</a></li>
+<li><a href="docs/ReferenceSetList/">ReferenceSetList</a></li>
+<li><a href="docs/Region/">Region</a></li>
+<li><a href="docs/RegionList/">RegionList</a></li>
+<li><a href="docs/RegionV4/">RegionV4</a></li>
+<li><a href="docs/Sample/">Sample</a></li>
+<li><a href="docs/SampleCreationBatch/">SampleCreationBatch</a></li>
+<li><a href="docs/SampleCreationBatchItemPagedList/">SampleCreationBatchItemPagedList</a></li>
+<li><a href="docs/SampleCreationBatchItemProcessing/">SampleCreationBatchItemProcessing</a></li>
+<li><a href="docs/SampleCreationBatchItemRequest/">SampleCreationBatchItemRequest</a></li>
+<li><a href="docs/SampleCreationBatchSampleItem/">SampleCreationBatchSampleItem</a></li>
+<li><a href="docs/SampleHistory/">SampleHistory</a></li>
+<li><a href="docs/SampleHistoryList/">SampleHistoryList</a></li>
+<li><a href="docs/SamplePagedList/">SamplePagedList</a></li>
+<li><a href="docs/SampleTag/">SampleTag</a></li>
+<li><a href="docs/ScheduleDownload/">ScheduleDownload</a></li>
+<li><a href="docs/SearchMatchingActivationCodesForCwlAnalysis/">SearchMatchingActivationCodesForCwlAnalysis</a></li>
+<li><a href="docs/SearchMatchingActivationCodesForNextflowAnalysis/">SearchMatchingActivationCodesForNextflowAnalysis</a></li>
+<li><a href="docs/SequencingRun/">SequencingRun</a></li>
+<li><a href="docs/Settings/">Settings</a></li>
+<li><a href="docs/Species/">Species</a></li>
+<li><a href="docs/SpeciesList/">SpeciesList</a></li>
+<li><a href="docs/StorageBundle/">StorageBundle</a></li>
+<li><a href="docs/StorageBundleList/">StorageBundleList</a></li>
+<li><a href="docs/StorageConfiguration/">StorageConfiguration</a></li>
+<li><a href="docs/StorageConfigurationDetails/">StorageConfigurationDetails</a></li>
+<li><a href="docs/StorageConfigurationWithDetails/">StorageConfigurationWithDetails</a></li>
+<li><a href="docs/StorageConfigurationWithDetailsList/">StorageConfigurationWithDetailsList</a></li>
+<li><a href="docs/StorageCredential/">StorageCredential</a></li>
+<li><a href="docs/StorageCredentialList/">StorageCredentialList</a></li>
+<li><a href="docs/StringSettings/">StringSettings</a></li>
+<li><a href="docs/SystemInfo/">SystemInfo</a></li>
+<li><a href="docs/TagUpdate/">TagUpdate</a></li>
+<li><a href="docs/TempCredentials/">TempCredentials</a></li>
+<li><a href="docs/TenantIdentifier/">TenantIdentifier</a></li>
+<li><a href="docs/TermsOfUse/">TermsOfUse</a></li>
+<li><a href="docs/TermsOfUseAcceptance/">TermsOfUseAcceptance</a></li>
+<li><a href="docs/Token/">Token</a></li>
+<li><a href="docs/UpdateMetadata/">UpdateMetadata</a></li>
+<li><a href="docs/UpdateMetadataFieldGroup/">UpdateMetadataFieldGroup</a></li>
+<li><a href="docs/UpdateSingleMetadataField/">UpdateSingleMetadataField</a></li>
+<li><a href="docs/UpdateStorageCredentialSecrets/">UpdateStorageCredentialSecrets</a></li>
+<li><a href="docs/Upload/">Upload</a></li>
+<li><a href="docs/UploadRule/">UploadRule</a></li>
+<li><a href="docs/UploadRuleList/">UploadRuleList</a></li>
+<li><a href="docs/User/">User</a></li>
+<li><a href="docs/UserIdentifier/">UserIdentifier</a></li>
+<li><a href="docs/UserList/">UserList</a></li>
+<li><a href="docs/WorkflowSessionAnalysisPagedListV4/">WorkflowSessionAnalysisPagedListV4</a></li>
+<li><a href="docs/WorkflowSessionAnalysisV4/">WorkflowSessionAnalysisV4</a></li>
+<li><a href="docs/WorkflowSessionConfiguration/">WorkflowSessionConfiguration</a></li>
+<li><a href="docs/WorkflowSessionConfigurationList/">WorkflowSessionConfigurationList</a></li>
+<li><a href="docs/WorkflowSessionData/">WorkflowSessionData</a></li>
+<li><a href="docs/WorkflowSessionExternalData/">WorkflowSessionExternalData</a></li>
+<li><a href="docs/WorkflowSessionInput/">WorkflowSessionInput</a></li>
+<li><a href="docs/WorkflowSessionInputList/">WorkflowSessionInputList</a></li>
+<li><a href="docs/WorkflowSessionPagedListV3/">WorkflowSessionPagedListV3</a></li>
+<li><a href="docs/WorkflowSessionPagedListV4/">WorkflowSessionPagedListV4</a></li>
+<li><a href="docs/WorkflowSessionTag/">WorkflowSessionTag</a></li>
+<li><a href="docs/WorkflowSessionV3/">WorkflowSessionV3</a></li>
+<li><a href="docs/WorkflowSessionV4/">WorkflowSessionV4</a></li>
+<li><a href="docs/WorkflowV3/">WorkflowV3</a></li>
+<li><a href="docs/WorkflowV4/">WorkflowV4</a></li>
+<li><a href="docs/Workgroup/">Workgroup</a></li>
+<li><a href="docs/WorkgroupList/">WorkgroupList</a></li>
+</ul>
+<h2 id="documentation-for-authorization">Documentation For Authorization<a class="headerlink" href="#documentation-for-authorization" title="Permanent link">&para;</a></h2>
+<h2 id="apikeyauth">ApiKeyAuth<a class="headerlink" href="#apikeyauth" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Type</strong>: API key</li>
+<li><strong>API key parameter name</strong>: X-API-Key</li>
+<li><strong>Location</strong>: HTTP header</li>
+</ul>
+<h2 id="basicauth">BasicAuth<a class="headerlink" href="#basicauth" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Type</strong>: HTTP basic authentication</li>
+</ul>
+<h2 id="jwtauth">JwtAuth<a class="headerlink" href="#jwtauth" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Type</strong>: Bearer authentication (JWT)</li>
+</ul>
+<h2 id="pstokenauth">PsTokenAuth<a class="headerlink" href="#pstokenauth" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Type</strong>: Bearer authentication (psToken)</li>
+</ul>
+<h2 id="author">Author<a class="headerlink" href="#author" title="Permanent link">&para;</a></h2>
+<h2 id="notes-for-large-openapi-documents">Notes for Large OpenAPI documents<a class="headerlink" href="#notes-for-large-openapi-documents" title="Permanent link">&para;</a></h2>
+<p>If the OpenAPI document is large, imports in libica.openapi.v2.apis and libica.openapi.v2.models may fail with a
+RecursionError indicating the maximum recursion limit has been exceeded. In that case, there are a couple of solutions:</p>
+<p>Solution 1:
+Use specific imports for apis and models like:
+- <code>from libica.openapi.v2.api.default_api import DefaultApi</code>
+- <code>from libica.openapi.v2.model.pet import Pet</code></p>
+<p>Solution 2:
+Before importing the package, adjust the maximum recursion limit as shown below:</p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">setrecursionlimit</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">libica.openapi.v2</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.apis</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">libica.openapi.v2.models</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/umccr/libica" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/umccr" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
