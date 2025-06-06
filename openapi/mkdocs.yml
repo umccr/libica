@@ -1,6 +1,7 @@
 site_name: libica
 nav:
   - v2: v2/README.md
+  - v3: v3/README.md
 
 theme:
   name:

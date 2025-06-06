@@ -1,3 +1,12 @@
+3.0
+-----
+* Release date: 2025-06-06
+* Made the major SDK v3 update with Pydantic-based Python code generator.
+* Retained SDK v2 package as Long-term support (LTS) maintenance mode.
+* Deprecated ICA v1 packages.
+* Updated for upstream ICA API Release -- [2025 June 02 - ICA v2.36.0](https://help.ica.illumina.com/reference/software-release-notes/2025)
+* See [milestone 3.0 for all related PRs](https://github.com/umccr/libica/milestone/12?closed=1)
+
 2.5.0
 -----
 * Release date: 2024-07-31
