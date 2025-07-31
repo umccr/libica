@@ -2564,6 +2564,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     ),
                 ],
             ),
+            resources=PipelineResources(
+                f1=True,
+                f2=True,
+                gpu=True,
+                software_only=True,
+            ),
         ),
         workflow_session=WorkflowSessionV4(
             id="id_example",

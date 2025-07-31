@@ -240,6 +240,7 @@ from libica.openapi.v2.model.pipeline_language_version import PipelineLanguageVe
 from libica.openapi.v2.model.pipeline_language_version_list import PipelineLanguageVersionList
 from libica.openapi.v2.model.pipeline_list import PipelineList
 from libica.openapi.v2.model.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v2.model.pipeline_resources import PipelineResources
 from libica.openapi.v2.model.pipeline_tag import PipelineTag
 from libica.openapi.v2.model.pipeline_update import PipelineUpdate
 from libica.openapi.v2.model.pipeline_v3 import PipelineV3

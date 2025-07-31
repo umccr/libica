@@ -2981,7 +2981,7 @@ void (empty response body)
 
 Schedule a download.
 
-Endpoint for scheduling a download for the data specified by the ID to a connector. This download will only start when the connector is running. Data transfers for folder contents are created asynchronously, meaning that they will not be immediately visible in the project data transfers end point. This is a non-RESTful endpoint, as the path of this endpoint is not representing a REST resource.
+Endpoint for scheduling a download for the data specified by the ID to a connector. This download will only start when the connector is running. Data transfers for folder contents are created asynchronously, meaning that they will not be immediately visible in the project data transfers end point. Note: The localPath field is optional. When omitted or invalid, the download rules of the connector are followed.This is a non-RESTful endpoint, as the path of this endpoint is not representing a REST resource.
 
 ### Example
 

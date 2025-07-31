@@ -140,6 +140,7 @@ import libica.openapi.v2
 from libica.openapi.v2.api import project_pipeline_api
 from libica.openapi.v2.model.pipeline_report_config import PipelineReportConfig
 from libica.openapi.v2.model.project_pipeline_v4 import ProjectPipelineV4
+from libica.openapi.v2.model.pipeline_resources import PipelineResources
 from libica.openapi.v2.model.links import Links
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -225,6 +226,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             ),
         ],
     ) # PipelineReportConfig |  (optional)
+    resources = PipelineResources(
+        f1=True,
+        f2=True,
+        gpu=True,
+        software_only=True,
+    ) # PipelineResources |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -238,7 +245,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Create a JSON based CWL pipeline within a project.
-        api_response = api_instance.create_cwl_json_pipeline(project_id, code, description, workflow_cwl_file, input_form_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+        api_response = api_instance.create_cwl_json_pipeline(project_id, code, description, workflow_cwl_file, input_form_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectPipelineApi->create_cwl_json_pipeline: %s\n" % e)
@@ -266,6 +273,7 @@ Name | Type | Description  | Notes
  **html_documentation** | **str, none_type**|  | [optional]
  **proprietary** | **bool, none_type**| A boolean which indicates if the code of this pipeline is proprietary | [optional] if omitted the server will use the default value of False
  **report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md)|  | [optional]
+ **resources** | [**PipelineResources**](PipelineResources.md)|  | [optional]
 
 ### Return type
 
@@ -306,6 +314,7 @@ import libica.openapi.v2
 from libica.openapi.v2.api import project_pipeline_api
 from libica.openapi.v2.model.pipeline_report_config import PipelineReportConfig
 from libica.openapi.v2.model.project_pipeline import ProjectPipeline
+from libica.openapi.v2.model.pipeline_resources import PipelineResources
 from libica.openapi.v2.model.links import Links
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -386,6 +395,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             ),
         ],
     ) # PipelineReportConfig |  (optional)
+    resources = PipelineResources(
+        f1=True,
+        f2=True,
+        gpu=True,
+        software_only=True,
+    ) # PipelineResources |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -399,7 +414,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Create a CWL pipeline within a project.
-        api_response = api_instance.create_cwl_pipeline(project_id, code, description, workflow_cwl_file, parameters_xml_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+        api_response = api_instance.create_cwl_pipeline(project_id, code, description, workflow_cwl_file, parameters_xml_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectPipelineApi->create_cwl_pipeline: %s\n" % e)
@@ -424,6 +439,7 @@ Name | Type | Description  | Notes
  **html_documentation** | **str, none_type**|  | [optional]
  **proprietary** | **bool, none_type**| A boolean which indicates if the code of this pipeline is proprietary | [optional] if omitted the server will use the default value of False
  **report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md)|  | [optional]
+ **resources** | [**PipelineResources**](PipelineResources.md)|  | [optional]
 
 ### Return type
 
@@ -463,6 +479,7 @@ import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_pipeline_api
 from libica.openapi.v2.model.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v2.model.pipeline_resources import PipelineResources
 from libica.openapi.v2.model.links import Links
 from libica.openapi.v2.model.pipeline_v4 import PipelineV4
 from libica.openapi.v2.model.problem import Problem
@@ -551,6 +568,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             ),
         ],
     ) # PipelineReportConfig |  (optional)
+    resources = PipelineResources(
+        f1=True,
+        f2=True,
+        gpu=True,
+        software_only=True,
+    ) # PipelineResources |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -564,7 +587,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Create a JSON based Nextflow pipeline within a project.
-        api_response = api_instance.create_nextflow_json_pipeline(project_id, code, description, main_nextflow_file, input_form_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+        api_response = api_instance.create_nextflow_json_pipeline(project_id, code, description, main_nextflow_file, input_form_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectPipelineApi->create_nextflow_json_pipeline: %s\n" % e)
@@ -594,6 +617,7 @@ Name | Type | Description  | Notes
  **html_documentation** | **str, none_type**|  | [optional]
  **proprietary** | **bool, none_type**| A boolean which indicates if the code of this pipeline is proprietary | [optional] if omitted the server will use the default value of False
  **report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md)|  | [optional]
+ **resources** | [**PipelineResources**](PipelineResources.md)|  | [optional]
 
 ### Return type
 
@@ -634,6 +658,7 @@ import libica.openapi.v2
 from libica.openapi.v2.api import project_pipeline_api
 from libica.openapi.v2.model.pipeline_report_config import PipelineReportConfig
 from libica.openapi.v2.model.project_pipeline import ProjectPipeline
+from libica.openapi.v2.model.pipeline_resources import PipelineResources
 from libica.openapi.v2.model.links import Links
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -716,6 +741,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             ),
         ],
     ) # PipelineReportConfig |  (optional)
+    resources = PipelineResources(
+        f1=True,
+        f2=True,
+        gpu=True,
+        software_only=True,
+    ) # PipelineResources |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -729,7 +760,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Create a Nextflow pipeline within a project.
-        api_response = api_instance.create_nextflow_pipeline(project_id, code, description, main_nextflow_file, parameters_xml_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+        api_response = api_instance.create_nextflow_pipeline(project_id, code, description, main_nextflow_file, parameters_xml_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectPipelineApi->create_nextflow_pipeline: %s\n" % e)
@@ -756,6 +787,7 @@ Name | Type | Description  | Notes
  **html_documentation** | **str, none_type**|  | [optional]
  **proprietary** | **bool, none_type**| A boolean which indicates if the code of this pipeline is proprietary | [optional] if omitted the server will use the default value of False
  **report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md)|  | [optional]
+ **resources** | [**PipelineResources**](PipelineResources.md)|  | [optional]
 
 ### Return type
 
@@ -2513,7 +2545,7 @@ void (empty response body)
 
 Update the general attributes of a project pipeline.
 
-Attributes which can be updated: - code - description - languageVersion - proprietary 
+Attributes which can be updated: - code - description - languageVersion - proprietary - resources 
 
 ### Example
 
@@ -2561,6 +2593,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         description="description_example",
         language_version="language_version_example",
         proprietary=True,
+        resources=PipelineResources(
+            f1=True,
+            f2=True,
+            gpu=True,
+            software_only=True,
+        ),
     ) # PipelineUpdate | 
 
     # example passing only required values which don't have defaults set

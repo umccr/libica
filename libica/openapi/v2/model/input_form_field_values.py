@@ -151,7 +151,7 @@ class InputFormFieldValues(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            values ([str, none_type], none_type): Use 'values' for all fields except data fields. Use string values to avoid rounding of numbers with a high precision.. [optional]  # noqa: E501
+            values ([str, none_type], none_type): Use 'values' for all fields except data fields. Use string values to avoid rounding of numbers with a high precision. '' values for textbox type fields will be treated as null.. [optional]  # noqa: E501
             data_values ([InputFormData], none_type): Use 'dataValues' for data fields.. [optional]  # noqa: E501
             external_data_values ([AnalysisInputExternalData], none_type): Use 'externalDataValues' for external data. [optional]  # noqa: E501
         """
@@ -239,7 +239,7 @@ class InputFormFieldValues(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            values ([str, none_type], none_type): Use 'values' for all fields except data fields. Use string values to avoid rounding of numbers with a high precision.. [optional]  # noqa: E501
+            values ([str, none_type], none_type): Use 'values' for all fields except data fields. Use string values to avoid rounding of numbers with a high precision. '' values for textbox type fields will be treated as null.. [optional]  # noqa: E501
             data_values ([InputFormData], none_type): Use 'dataValues' for data fields.. [optional]  # noqa: E501
             external_data_values ([AnalysisInputExternalData], none_type): Use 'externalDataValues' for external data. [optional]  # noqa: E501
         """
