@@ -26,6 +26,7 @@ from libica.openapi.v3.models.pipeline_file import PipelineFile
 from libica.openapi.v3.models.pipeline_file_list import PipelineFileList
 from libica.openapi.v3.models.pipeline_html_documentation import PipelineHtmlDocumentation
 from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v3.models.pipeline_resources import PipelineResources
 from libica.openapi.v3.models.pipeline_update import PipelineUpdate
 from libica.openapi.v3.models.pipeline_v4 import PipelineV4
 from libica.openapi.v3.models.project_pipeline import ProjectPipeline
@@ -374,6 +375,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -424,6 +426,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -464,6 +468,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -504,6 +509,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -554,6 +560,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -594,6 +602,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -634,6 +643,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -684,6 +694,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -724,6 +736,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -759,6 +772,7 @@ class ProjectPipelineApi:
         html_documentation,
         proprietary,
         report_configs,
+        resources,
         _request_auth,
         _content_type,
         _headers,
@@ -820,6 +834,8 @@ class ProjectPipelineApi:
             _form_params.append(('proprietary', proprietary))
         if report_configs is not None:
             _form_params.append(('reportConfigs', report_configs))
+        if resources is not None:
+            _form_params.append(('resources', resources))
         # process the body parameter
 
 
@@ -887,6 +903,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -931,6 +948,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -968,6 +987,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1005,6 +1025,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1049,6 +1070,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1086,6 +1109,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1123,6 +1147,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1167,6 +1192,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1204,6 +1231,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1236,6 +1264,7 @@ class ProjectPipelineApi:
         html_documentation,
         proprietary,
         report_configs,
+        resources,
         _request_auth,
         _content_type,
         _headers,
@@ -1290,6 +1319,8 @@ class ProjectPipelineApi:
             _form_params.append(('proprietary', proprietary))
         if report_configs is not None:
             _form_params.append(('reportConfigs', report_configs))
+        if resources is not None:
+            _form_params.append(('resources', resources))
         # process the body parameter
 
 
@@ -1362,6 +1393,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1416,6 +1448,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1458,6 +1492,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1500,6 +1535,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1554,6 +1590,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1596,6 +1634,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1638,6 +1677,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1692,6 +1732,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1734,6 +1776,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1771,6 +1814,7 @@ class ProjectPipelineApi:
         html_documentation,
         proprietary,
         report_configs,
+        resources,
         _request_auth,
         _content_type,
         _headers,
@@ -1836,6 +1880,8 @@ class ProjectPipelineApi:
             _form_params.append(('proprietary', proprietary))
         if report_configs is not None:
             _form_params.append(('reportConfigs', report_configs))
+        if resources is not None:
+            _form_params.append(('resources', resources))
         # process the body parameter
 
 
@@ -1905,6 +1951,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1953,6 +2000,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1992,6 +2041,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2031,6 +2081,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2079,6 +2130,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2118,6 +2171,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2157,6 +2211,7 @@ class ProjectPipelineApi:
         html_documentation: Optional[StrictStr] = None,
         proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
         report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2205,6 +2260,8 @@ class ProjectPipelineApi:
         :type proprietary: bool
         :param report_configs:
         :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2244,6 +2301,7 @@ class ProjectPipelineApi:
             html_documentation=html_documentation,
             proprietary=proprietary,
             report_configs=report_configs,
+            resources=resources,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2278,6 +2336,7 @@ class ProjectPipelineApi:
         html_documentation,
         proprietary,
         report_configs,
+        resources,
         _request_auth,
         _content_type,
         _headers,
@@ -2336,6 +2395,8 @@ class ProjectPipelineApi:
             _form_params.append(('proprietary', proprietary))
         if report_configs is not None:
             _form_params.append(('reportConfigs', report_configs))
+        if resources is not None:
+            _form_params.append(('resources', resources))
         # process the body parameter
 
 
@@ -8036,7 +8097,7 @@ class ProjectPipelineApi:
     ) -> PipelineV4:
         """Update the general attributes of a project pipeline.
 
-        Attributes which can be updated: - code - description - languageVersion - proprietary 
+        Attributes which can be updated: - code - description - languageVersion - proprietary - resources 
 
         :param project_id: (required)
         :type project_id: str
@@ -8111,7 +8172,7 @@ class ProjectPipelineApi:
     ) -> ApiResponse[PipelineV4]:
         """Update the general attributes of a project pipeline.
 
-        Attributes which can be updated: - code - description - languageVersion - proprietary 
+        Attributes which can be updated: - code - description - languageVersion - proprietary - resources 
 
         :param project_id: (required)
         :type project_id: str
@@ -8186,7 +8247,7 @@ class ProjectPipelineApi:
     ) -> RESTResponseType:
         """Update the general attributes of a project pipeline.
 
-        Attributes which can be updated: - code - description - languageVersion - proprietary 
+        Attributes which can be updated: - code - description - languageVersion - proprietary - resources 
 
         :param project_id: (required)
         :type project_id: str

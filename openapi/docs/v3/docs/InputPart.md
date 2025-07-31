@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**content_type_from_message** | **bool** |  | [optional] 
 **body_as_string** | **str** |  | [optional] 
+**content_type_from_message** | **bool** |  | [optional] 
 **media_type** | [**InputPartMediaType**](InputPartMediaType.md) |  | [optional] 
 **headers** | **Dict[str, List[str]]** |  | [optional] 
 

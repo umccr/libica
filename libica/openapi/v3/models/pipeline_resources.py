@@ -19,21 +19,18 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
-from libica.openapi.v3.models.pipeline_resources import PipelineResources
 from typing import Optional, Set
 from typing_extensions import Self
 
-class PipelineUpdate(BaseModel):
+class PipelineResources(BaseModel):
     """
-    PipelineUpdate
+    PipelineResources
     """ # noqa: E501
-    code: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]] = Field(default=None, description="The code of the pipeline")
-    description: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=4000)]] = Field(default=None, description="The description of the pipeline")
-    language_version: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]] = Field(default=None, description="Version of the pipeline language ", alias="languageVersion")
-    proprietary: Optional[StrictBool] = Field(default=None, description="A boolean which indicates if the code of this pipeline is proprietary")
-    resources: Optional[PipelineResources] = None
-    __properties: ClassVar[List[str]] = ["code", "description", "languageVersion", "proprietary", "resources"]
+    f1: Optional[StrictBool] = None
+    f2: Optional[StrictBool] = None
+    gpu: Optional[StrictBool] = None
+    software_only: Optional[StrictBool] = Field(default=None, description="Can not be true in case one of [f1,f2,gpu] is also true.", alias="software-only")
+    __properties: ClassVar[List[str]] = ["f1", "f2", "gpu", "software-only"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +50,7 @@ class PipelineUpdate(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of PipelineUpdate from a JSON string"""
+        """Create an instance of PipelineResources from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,39 +71,31 @@ class PipelineUpdate(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of resources
-        if self.resources:
-            _dict['resources'] = self.resources.to_dict()
-        # set to None if code (nullable) is None
+        # set to None if f1 (nullable) is None
         # and model_fields_set contains the field
-        if self.code is None and "code" in self.model_fields_set:
-            _dict['code'] = None
+        if self.f1 is None and "f1" in self.model_fields_set:
+            _dict['f1'] = None
 
-        # set to None if description (nullable) is None
+        # set to None if f2 (nullable) is None
         # and model_fields_set contains the field
-        if self.description is None and "description" in self.model_fields_set:
-            _dict['description'] = None
+        if self.f2 is None and "f2" in self.model_fields_set:
+            _dict['f2'] = None
 
-        # set to None if language_version (nullable) is None
+        # set to None if gpu (nullable) is None
         # and model_fields_set contains the field
-        if self.language_version is None and "language_version" in self.model_fields_set:
-            _dict['languageVersion'] = None
+        if self.gpu is None and "gpu" in self.model_fields_set:
+            _dict['gpu'] = None
 
-        # set to None if proprietary (nullable) is None
+        # set to None if software_only (nullable) is None
         # and model_fields_set contains the field
-        if self.proprietary is None and "proprietary" in self.model_fields_set:
-            _dict['proprietary'] = None
-
-        # set to None if resources (nullable) is None
-        # and model_fields_set contains the field
-        if self.resources is None and "resources" in self.model_fields_set:
-            _dict['resources'] = None
+        if self.software_only is None and "software_only" in self.model_fields_set:
+            _dict['software-only'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of PipelineUpdate from a dict"""
+        """Create an instance of PipelineResources from a dict"""
         if obj is None:
             return None
 
@@ -114,11 +103,10 @@ class PipelineUpdate(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "code": obj.get("code"),
-            "description": obj.get("description"),
-            "languageVersion": obj.get("languageVersion"),
-            "proprietary": obj.get("proprietary"),
-            "resources": PipelineResources.from_dict(obj["resources"]) if obj.get("resources") is not None else None
+            "f1": obj.get("f1"),
+            "f2": obj.get("f2"),
+            "gpu": obj.get("gpu"),
+            "software-only": obj.get("software-only")
         })
         return _obj
 
