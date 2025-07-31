@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,9 +27,9 @@ class Config(BaseModel):
     """
     Config
     """ # noqa: E501
-    name: StrictStr = Field(description="name of the report")
-    regex: StrictStr = Field(description="regex pattern of the filename")
-    format: Optional[StrictStr] = Field(default=None, description="Format of the file")
+    name: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="name of the report")
+    regex: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="regex pattern of the filename")
+    format: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]] = Field(default=None, description="Format of the file")
     __properties: ClassVar[List[str]] = ["name", "regex", "format"]
 
     model_config = ConfigDict(

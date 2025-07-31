@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **analysis_storage** | [**AnalysisStorageV3**](AnalysisStorageV3.md) |  | 
 **proprietary** | **bool** | A boolean which indicates if the code of this pipeline is proprietary | [optional] [default to False]
 **input_form_type** | **str** | The type of the inputform used. | [optional] 
+**resources** | [**PipelineResources**](PipelineResources.md) |  | [optional] 
 
 ## Example
 

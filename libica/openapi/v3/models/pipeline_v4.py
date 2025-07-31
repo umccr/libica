@@ -24,6 +24,7 @@ from typing_extensions import Annotated
 from libica.openapi.v3.models.analysis_storage_v4 import AnalysisStorageV4
 from libica.openapi.v3.models.pipeline_language_version import PipelineLanguageVersion
 from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v3.models.pipeline_resources import PipelineResources
 from libica.openapi.v3.models.pipeline_tag import PipelineTag
 from libica.openapi.v3.models.tenant_identifier import TenantIdentifier
 from libica.openapi.v3.models.user_identifier import UserIdentifier
@@ -50,7 +51,8 @@ class PipelineV4(BaseModel):
     proprietary: Optional[StrictBool] = Field(default=False, description="A boolean which indicates if the code of this pipeline is proprietary")
     input_form_type: Optional[StrictStr] = Field(default=None, description="The type of the inputform used.", alias="inputFormType")
     report_configs: Optional[PipelineReportConfig] = Field(default=None, alias="reportConfigs")
-    __properties: ClassVar[List[str]] = ["id", "urn", "timeCreated", "timeModified", "owner", "tenant", "code", "description", "status", "language", "languageVersion", "pipelineTags", "analysisStorage", "proprietary", "inputFormType", "reportConfigs"]
+    resources: Optional[PipelineResources] = None
+    __properties: ClassVar[List[str]] = ["id", "urn", "timeCreated", "timeModified", "owner", "tenant", "code", "description", "status", "language", "languageVersion", "pipelineTags", "analysisStorage", "proprietary", "inputFormType", "reportConfigs", "resources"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -136,6 +138,9 @@ class PipelineV4(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of report_configs
         if self.report_configs:
             _dict['reportConfigs'] = self.report_configs.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of resources
+        if self.resources:
+            _dict['resources'] = self.resources.to_dict()
         # set to None if urn (nullable) is None
         # and model_fields_set contains the field
         if self.urn is None and "urn" in self.model_fields_set:
@@ -160,6 +165,11 @@ class PipelineV4(BaseModel):
         # and model_fields_set contains the field
         if self.report_configs is None and "report_configs" in self.model_fields_set:
             _dict['reportConfigs'] = None
+
+        # set to None if resources (nullable) is None
+        # and model_fields_set contains the field
+        if self.resources is None and "resources" in self.model_fields_set:
+            _dict['resources'] = None
 
         return _dict
 
@@ -188,7 +198,8 @@ class PipelineV4(BaseModel):
             "analysisStorage": AnalysisStorageV4.from_dict(obj["analysisStorage"]) if obj.get("analysisStorage") is not None else None,
             "proprietary": obj.get("proprietary") if obj.get("proprietary") is not None else False,
             "inputFormType": obj.get("inputFormType"),
-            "reportConfigs": PipelineReportConfig.from_dict(obj["reportConfigs"]) if obj.get("reportConfigs") is not None else None
+            "reportConfigs": PipelineReportConfig.from_dict(obj["reportConfigs"]) if obj.get("reportConfigs") is not None else None,
+            "resources": PipelineResources.from_dict(obj["resources"]) if obj.get("resources") is not None else None
         })
         return _obj
 

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **description** | **str** | The description of the pipeline | [optional] 
 **language_version** | **str** | Version of the pipeline language  | [optional] 
 **proprietary** | **bool** | A boolean which indicates if the code of this pipeline is proprietary | [optional] 
+**resources** | [**PipelineResources**](PipelineResources.md) |  | [optional] 
 
 ## Example
 

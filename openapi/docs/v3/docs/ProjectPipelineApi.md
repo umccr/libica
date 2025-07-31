@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_cwl_json_pipeline**
-> ProjectPipelineV4 create_cwl_json_pipeline(project_id, code, description, workflow_cwl_file, input_form_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+> ProjectPipelineV4 create_cwl_json_pipeline(project_id, code, description, workflow_cwl_file, input_form_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
 
 Create a JSON based CWL pipeline within a project.
 
@@ -138,6 +138,7 @@ Create a JSON based CWL pipeline within a project.
 import libica.openapi.v3
 from libica.openapi.v3.models.links import Links
 from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v3.models.pipeline_resources import PipelineResources
 from libica.openapi.v3.models.project_pipeline_v4 import ProjectPipelineV4
 from libica.openapi.v3.rest import ApiException
 from pprint import pprint
@@ -185,10 +186,11 @@ with libica.openapi.v3.ApiClient(configuration) as api_client:
     html_documentation = 'html_documentation_example' # str |  (optional)
     proprietary = False # bool | A boolean which indicates if the code of this pipeline is proprietary (optional) (default to False)
     report_configs = libica.openapi.v3.PipelineReportConfig() # PipelineReportConfig |  (optional)
+    resources = libica.openapi.v3.PipelineResources() # PipelineResources |  (optional)
 
     try:
         # Create a JSON based CWL pipeline within a project.
-        api_response = api_instance.create_cwl_json_pipeline(project_id, code, description, workflow_cwl_file, input_form_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+        api_response = api_instance.create_cwl_json_pipeline(project_id, code, description, workflow_cwl_file, input_form_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
         print("The response of ProjectPipelineApi->create_cwl_json_pipeline:\n")
         pprint(api_response)
     except Exception as e:
@@ -219,6 +221,7 @@ Name | Type | Description  | Notes
  **html_documentation** | **str**|  | [optional] 
  **proprietary** | **bool**| A boolean which indicates if the code of this pipeline is proprietary | [optional] [default to False]
  **report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md)|  | [optional] 
+ **resources** | [**PipelineResources**](PipelineResources.md)|  | [optional] 
 
 ### Return type
 
@@ -243,7 +246,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_cwl_pipeline**
-> ProjectPipeline create_cwl_pipeline(project_id, code, description, workflow_cwl_file, parameters_xml_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+> ProjectPipeline create_cwl_pipeline(project_id, code, description, workflow_cwl_file, parameters_xml_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
 
 Create a CWL pipeline within a project.
 
@@ -256,6 +259,7 @@ Create a CWL pipeline within a project.
 import libica.openapi.v3
 from libica.openapi.v3.models.links import Links
 from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v3.models.pipeline_resources import PipelineResources
 from libica.openapi.v3.models.project_pipeline import ProjectPipeline
 from libica.openapi.v3.rest import ApiException
 from pprint import pprint
@@ -300,10 +304,11 @@ with libica.openapi.v3.ApiClient(configuration) as api_client:
     html_documentation = 'html_documentation_example' # str |  (optional)
     proprietary = False # bool | A boolean which indicates if the code of this pipeline is proprietary (optional) (default to False)
     report_configs = libica.openapi.v3.PipelineReportConfig() # PipelineReportConfig |  (optional)
+    resources = libica.openapi.v3.PipelineResources() # PipelineResources |  (optional)
 
     try:
         # Create a CWL pipeline within a project.
-        api_response = api_instance.create_cwl_pipeline(project_id, code, description, workflow_cwl_file, parameters_xml_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+        api_response = api_instance.create_cwl_pipeline(project_id, code, description, workflow_cwl_file, parameters_xml_file, analysis_storage_id, tool_cwl_files=tool_cwl_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
         print("The response of ProjectPipelineApi->create_cwl_pipeline:\n")
         pprint(api_response)
     except Exception as e:
@@ -331,6 +336,7 @@ Name | Type | Description  | Notes
  **html_documentation** | **str**|  | [optional] 
  **proprietary** | **bool**| A boolean which indicates if the code of this pipeline is proprietary | [optional] [default to False]
  **report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md)|  | [optional] 
+ **resources** | [**PipelineResources**](PipelineResources.md)|  | [optional] 
 
 ### Return type
 
@@ -355,7 +361,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_nextflow_json_pipeline**
-> PipelineV4 create_nextflow_json_pipeline(project_id, code, description, main_nextflow_file, input_form_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+> PipelineV4 create_nextflow_json_pipeline(project_id, code, description, main_nextflow_file, input_form_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
 
 Create a JSON based Nextflow pipeline within a project.
 
@@ -368,6 +374,7 @@ Create a JSON based Nextflow pipeline within a project.
 import libica.openapi.v3
 from libica.openapi.v3.models.links import Links
 from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v3.models.pipeline_resources import PipelineResources
 from libica.openapi.v3.models.pipeline_v4 import PipelineV4
 from libica.openapi.v3.rest import ApiException
 from pprint import pprint
@@ -417,10 +424,11 @@ with libica.openapi.v3.ApiClient(configuration) as api_client:
     html_documentation = 'html_documentation_example' # str |  (optional)
     proprietary = False # bool | A boolean which indicates if the code of this pipeline is proprietary (optional) (default to False)
     report_configs = libica.openapi.v3.PipelineReportConfig() # PipelineReportConfig |  (optional)
+    resources = libica.openapi.v3.PipelineResources() # PipelineResources |  (optional)
 
     try:
         # Create a JSON based Nextflow pipeline within a project.
-        api_response = api_instance.create_nextflow_json_pipeline(project_id, code, description, main_nextflow_file, input_form_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+        api_response = api_instance.create_nextflow_json_pipeline(project_id, code, description, main_nextflow_file, input_form_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
         print("The response of ProjectPipelineApi->create_nextflow_json_pipeline:\n")
         pprint(api_response)
     except Exception as e:
@@ -453,6 +461,7 @@ Name | Type | Description  | Notes
  **html_documentation** | **str**|  | [optional] 
  **proprietary** | **bool**| A boolean which indicates if the code of this pipeline is proprietary | [optional] [default to False]
  **report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md)|  | [optional] 
+ **resources** | [**PipelineResources**](PipelineResources.md)|  | [optional] 
 
 ### Return type
 
@@ -477,7 +486,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_nextflow_pipeline**
-> ProjectPipeline create_nextflow_pipeline(project_id, code, description, main_nextflow_file, parameters_xml_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+> ProjectPipeline create_nextflow_pipeline(project_id, code, description, main_nextflow_file, parameters_xml_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
 
 Create a Nextflow pipeline within a project.
 
@@ -490,6 +499,7 @@ Create a Nextflow pipeline within a project.
 import libica.openapi.v3
 from libica.openapi.v3.models.links import Links
 from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v3.models.pipeline_resources import PipelineResources
 from libica.openapi.v3.models.project_pipeline import ProjectPipeline
 from libica.openapi.v3.rest import ApiException
 from pprint import pprint
@@ -536,10 +546,11 @@ with libica.openapi.v3.ApiClient(configuration) as api_client:
     html_documentation = 'html_documentation_example' # str |  (optional)
     proprietary = False # bool | A boolean which indicates if the code of this pipeline is proprietary (optional) (default to False)
     report_configs = libica.openapi.v3.PipelineReportConfig() # PipelineReportConfig |  (optional)
+    resources = libica.openapi.v3.PipelineResources() # PipelineResources |  (optional)
 
     try:
         # Create a Nextflow pipeline within a project.
-        api_response = api_instance.create_nextflow_pipeline(project_id, code, description, main_nextflow_file, parameters_xml_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs)
+        api_response = api_instance.create_nextflow_pipeline(project_id, code, description, main_nextflow_file, parameters_xml_file, analysis_storage_id, pipeline_language_version_id=pipeline_language_version_id, nextflow_config_file=nextflow_config_file, other_nextflow_files=other_nextflow_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
         print("The response of ProjectPipelineApi->create_nextflow_pipeline:\n")
         pprint(api_response)
     except Exception as e:
@@ -569,6 +580,7 @@ Name | Type | Description  | Notes
  **html_documentation** | **str**|  | [optional] 
  **proprietary** | **bool**| A boolean which indicates if the code of this pipeline is proprietary | [optional] [default to False]
  **report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md)|  | [optional] 
+ **resources** | [**PipelineResources**](PipelineResources.md)|  | [optional] 
 
 ### Return type
 
@@ -2323,6 +2335,7 @@ Attributes which can be updated:
 - description
 - languageVersion
 - proprietary
+- resources
 
 
 ### Example

@@ -26,7 +26,7 @@ class LoadDataInBaseRequest(BaseModel):
     """
     LoadDataInBaseRequest
     """ # noqa: E501
-    allow_quoted_newlines: Optional[StrictBool] = Field(default=False, description="Enable to include newlines contained in quoted data sections in the cell’s value. When disabled, newlines will signal a new row", alias="allowQuotedNewlines")
+    allow_quoted_newlines: Optional[StrictBool] = Field(default=False, description="Enable to include newlines contained in quoted data sections in the cell's value. When disabled, newlines will signal a new row", alias="allowQuotedNewlines")
     data_id: StrictStr = Field(description="ID of the data to load into the table", alias="dataId")
     delimiter: Optional[StrictStr] = Field(default=',', description="field delimiter")
     encoding: Optional[StrictStr] = Field(default='UTF8', description="Encoding")

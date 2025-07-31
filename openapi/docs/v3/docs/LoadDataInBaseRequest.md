@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**allow_quoted_newlines** | **bool** | Enable to include newlines contained in quoted data sections in the cell’s value. When disabled, newlines will signal a new row | [optional] [default to False]
+**allow_quoted_newlines** | **bool** | Enable to include newlines contained in quoted data sections in the cell&#39;s value. When disabled, newlines will signal a new row | [optional] [default to False]
 **data_id** | **str** | ID of the data to load into the table | 
 **delimiter** | **str** | field delimiter | [optional] [default to ',']
 **encoding** | **str** | Encoding | [optional] [default to 'UTF8']

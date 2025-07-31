@@ -23,6 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from libica.openapi.v3.models.analysis_storage_v3 import AnalysisStorageV3
 from libica.openapi.v3.models.pipeline_language_version import PipelineLanguageVersion
+from libica.openapi.v3.models.pipeline_resources import PipelineResources
 from libica.openapi.v3.models.pipeline_tag import PipelineTag
 from typing import Optional, Set
 from typing_extensions import Self
@@ -47,7 +48,8 @@ class PipelineV3(BaseModel):
     analysis_storage: AnalysisStorageV3 = Field(alias="analysisStorage")
     proprietary: Optional[StrictBool] = Field(default=False, description="A boolean which indicates if the code of this pipeline is proprietary")
     input_form_type: Optional[StrictStr] = Field(default=None, description="The type of the inputform used.", alias="inputFormType")
-    __properties: ClassVar[List[str]] = ["id", "timeCreated", "timeModified", "ownerId", "tenantId", "tenantName", "code", "urn", "description", "status", "language", "languageVersion", "pipelineTags", "analysisStorage", "proprietary", "inputFormType"]
+    resources: Optional[PipelineResources] = None
+    __properties: ClassVar[List[str]] = ["id", "timeCreated", "timeModified", "ownerId", "tenantId", "tenantName", "code", "urn", "description", "status", "language", "languageVersion", "pipelineTags", "analysisStorage", "proprietary", "inputFormType", "resources"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -124,6 +126,9 @@ class PipelineV3(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of analysis_storage
         if self.analysis_storage:
             _dict['analysisStorage'] = self.analysis_storage.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of resources
+        if self.resources:
+            _dict['resources'] = self.resources.to_dict()
         # set to None if tenant_name (nullable) is None
         # and model_fields_set contains the field
         if self.tenant_name is None and "tenant_name" in self.model_fields_set:
@@ -148,6 +153,11 @@ class PipelineV3(BaseModel):
         # and model_fields_set contains the field
         if self.proprietary is None and "proprietary" in self.model_fields_set:
             _dict['proprietary'] = None
+
+        # set to None if resources (nullable) is None
+        # and model_fields_set contains the field
+        if self.resources is None and "resources" in self.model_fields_set:
+            _dict['resources'] = None
 
         return _dict
 
@@ -176,7 +186,8 @@ class PipelineV3(BaseModel):
             "pipelineTags": PipelineTag.from_dict(obj["pipelineTags"]) if obj.get("pipelineTags") is not None else None,
             "analysisStorage": AnalysisStorageV3.from_dict(obj["analysisStorage"]) if obj.get("analysisStorage") is not None else None,
             "proprietary": obj.get("proprietary") if obj.get("proprietary") is not None else False,
-            "inputFormType": obj.get("inputFormType")
+            "inputFormType": obj.get("inputFormType"),
+            "resources": PipelineResources.from_dict(obj["resources"]) if obj.get("resources") is not None else None
         })
         return _obj
 
