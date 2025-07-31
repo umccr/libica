@@ -87,8 +87,8 @@ class InputPart(ModelNormal):
         """
         lazy_import()
         return {
-            'content_type_from_message': (bool,),  # noqa: E501
             'body_as_string': (str,),  # noqa: E501
+            'content_type_from_message': (bool,),  # noqa: E501
             'media_type': (InputPartMediaType,),  # noqa: E501
             'headers': ({str: ([str],)},),  # noqa: E501
         }
@@ -99,8 +99,8 @@ class InputPart(ModelNormal):
 
 
     attribute_map = {
-        'content_type_from_message': 'contentTypeFromMessage',  # noqa: E501
         'body_as_string': 'bodyAsString',  # noqa: E501
+        'content_type_from_message': 'contentTypeFromMessage',  # noqa: E501
         'media_type': 'mediaType',  # noqa: E501
         'headers': 'headers',  # noqa: E501
     }
@@ -146,8 +146,8 @@ class InputPart(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            content_type_from_message (bool): [optional]  # noqa: E501
             body_as_string (str): [optional]  # noqa: E501
+            content_type_from_message (bool): [optional]  # noqa: E501
             media_type (InputPartMediaType): [optional]  # noqa: E501
             headers ({str: ([str],)}): [optional]  # noqa: E501
         """
@@ -231,8 +231,8 @@ class InputPart(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            content_type_from_message (bool): [optional]  # noqa: E501
             body_as_string (str): [optional]  # noqa: E501
+            content_type_from_message (bool): [optional]  # noqa: E501
             media_type (InputPartMediaType): [optional]  # noqa: E501
             headers ({str: ([str],)}): [optional]  # noqa: E501
         """

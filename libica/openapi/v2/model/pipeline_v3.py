@@ -32,9 +32,11 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 def lazy_import():
     from libica.openapi.v2.model.analysis_storage_v3 import AnalysisStorageV3
     from libica.openapi.v2.model.pipeline_language_version import PipelineLanguageVersion
+    from libica.openapi.v2.model.pipeline_resources import PipelineResources
     from libica.openapi.v2.model.pipeline_tag import PipelineTag
     globals()['AnalysisStorageV3'] = AnalysisStorageV3
     globals()['PipelineLanguageVersion'] = PipelineLanguageVersion
+    globals()['PipelineResources'] = PipelineResources
     globals()['PipelineTag'] = PipelineTag
 
 
@@ -133,6 +135,7 @@ class PipelineV3(ModelNormal):
             'language_version': (PipelineLanguageVersion,),  # noqa: E501
             'proprietary': (bool, none_type,),  # noqa: E501
             'input_form_type': (str,),  # noqa: E501
+            'resources': (PipelineResources,),  # noqa: E501
         }
 
     @cached_property
@@ -157,6 +160,7 @@ class PipelineV3(ModelNormal):
         'language_version': 'languageVersion',  # noqa: E501
         'proprietary': 'proprietary',  # noqa: E501
         'input_form_type': 'inputFormType',  # noqa: E501
+        'resources': 'resources',  # noqa: E501
     }
 
     read_only_vars = {
@@ -218,6 +222,7 @@ class PipelineV3(ModelNormal):
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
             input_form_type (str): The type of the inputform used.. [optional]  # noqa: E501
+            resources (PipelineResources): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -327,6 +332,7 @@ class PipelineV3(ModelNormal):
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
             input_form_type (str): The type of the inputform used.. [optional]  # noqa: E501
+            resources (PipelineResources): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

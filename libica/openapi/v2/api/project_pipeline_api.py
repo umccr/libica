@@ -28,6 +28,7 @@ from libica.openapi.v2.model.pipeline_file import PipelineFile
 from libica.openapi.v2.model.pipeline_file_list import PipelineFileList
 from libica.openapi.v2.model.pipeline_html_documentation import PipelineHtmlDocumentation
 from libica.openapi.v2.model.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v2.model.pipeline_resources import PipelineResources
 from libica.openapi.v2.model.pipeline_update import PipelineUpdate
 from libica.openapi.v2.model.pipeline_v4 import PipelineV4
 from libica.openapi.v2.model.problem import Problem
@@ -146,6 +147,7 @@ class ProjectPipelineApi(object):
                     'html_documentation',
                     'proprietary',
                     'report_configs',
+                    'resources',
                 ],
                 'required': [
                     'project_id',
@@ -163,6 +165,7 @@ class ProjectPipelineApi(object):
                     'html_documentation',
                     'proprietary',
                     'report_configs',
+                    'resources',
                 ],
                 'enum': [
                 ],
@@ -228,6 +231,8 @@ class ProjectPipelineApi(object):
                         (bool, none_type,),
                     'report_configs':
                         (PipelineReportConfig,),
+                    'resources':
+                        (PipelineResources,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -247,6 +252,7 @@ class ProjectPipelineApi(object):
                     'html_documentation': 'htmlDocumentation',
                     'proprietary': 'proprietary',
                     'report_configs': 'reportConfigs',
+                    'resources': 'resources',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -266,6 +272,7 @@ class ProjectPipelineApi(object):
                     'html_documentation': 'form',
                     'proprietary': 'form',
                     'report_configs': 'form',
+                    'resources': 'form',
                 },
                 'collection_format_map': {
                     'tool_cwl_files': 'csv',
@@ -312,6 +319,7 @@ class ProjectPipelineApi(object):
                     'html_documentation',
                     'proprietary',
                     'report_configs',
+                    'resources',
                 ],
                 'required': [
                     'project_id',
@@ -329,6 +337,7 @@ class ProjectPipelineApi(object):
                     'html_documentation',
                     'proprietary',
                     'report_configs',
+                    'resources',
                 ],
                 'enum': [
                 ],
@@ -388,6 +397,8 @@ class ProjectPipelineApi(object):
                         (bool, none_type,),
                     'report_configs':
                         (PipelineReportConfig,),
+                    'resources':
+                        (PipelineResources,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -404,6 +415,7 @@ class ProjectPipelineApi(object):
                     'html_documentation': 'htmlDocumentation',
                     'proprietary': 'proprietary',
                     'report_configs': 'reportConfigs',
+                    'resources': 'resources',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -420,6 +432,7 @@ class ProjectPipelineApi(object):
                     'html_documentation': 'form',
                     'proprietary': 'form',
                     'report_configs': 'form',
+                    'resources': 'form',
                 },
                 'collection_format_map': {
                     'tool_cwl_files': 'csv',
@@ -470,6 +483,7 @@ class ProjectPipelineApi(object):
                     'html_documentation',
                     'proprietary',
                     'report_configs',
+                    'resources',
                 ],
                 'required': [
                     'project_id',
@@ -488,6 +502,7 @@ class ProjectPipelineApi(object):
                     'html_documentation',
                     'proprietary',
                     'report_configs',
+                    'resources',
                 ],
                 'enum': [
                 ],
@@ -557,6 +572,8 @@ class ProjectPipelineApi(object):
                         (bool, none_type,),
                     'report_configs':
                         (PipelineReportConfig,),
+                    'resources':
+                        (PipelineResources,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -578,6 +595,7 @@ class ProjectPipelineApi(object):
                     'html_documentation': 'htmlDocumentation',
                     'proprietary': 'proprietary',
                     'report_configs': 'reportConfigs',
+                    'resources': 'resources',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -599,6 +617,7 @@ class ProjectPipelineApi(object):
                     'html_documentation': 'form',
                     'proprietary': 'form',
                     'report_configs': 'form',
+                    'resources': 'form',
                 },
                 'collection_format_map': {
                     'other_nextflow_files': 'csv',
@@ -647,6 +666,7 @@ class ProjectPipelineApi(object):
                     'html_documentation',
                     'proprietary',
                     'report_configs',
+                    'resources',
                 ],
                 'required': [
                     'project_id',
@@ -665,6 +685,7 @@ class ProjectPipelineApi(object):
                     'html_documentation',
                     'proprietary',
                     'report_configs',
+                    'resources',
                 ],
                 'enum': [
                 ],
@@ -728,6 +749,8 @@ class ProjectPipelineApi(object):
                         (bool, none_type,),
                     'report_configs':
                         (PipelineReportConfig,),
+                    'resources':
+                        (PipelineResources,),
                 },
                 'attribute_map': {
                     'project_id': 'projectId',
@@ -746,6 +769,7 @@ class ProjectPipelineApi(object):
                     'html_documentation': 'htmlDocumentation',
                     'proprietary': 'proprietary',
                     'report_configs': 'reportConfigs',
+                    'resources': 'resources',
                 },
                 'location_map': {
                     'project_id': 'path',
@@ -764,6 +788,7 @@ class ProjectPipelineApi(object):
                     'html_documentation': 'form',
                     'proprietary': 'form',
                     'report_configs': 'form',
+                    'resources': 'form',
                 },
                 'collection_format_map': {
                     'other_nextflow_files': 'csv',
@@ -2456,6 +2481,7 @@ class ProjectPipelineApi(object):
             html_documentation (str, none_type): [optional]
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
             report_configs (PipelineReportConfig): [optional]
+            resources (PipelineResources): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2561,6 +2587,7 @@ class ProjectPipelineApi(object):
             html_documentation (str, none_type): [optional]
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
             report_configs (PipelineReportConfig): [optional]
+            resources (PipelineResources): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2671,6 +2698,7 @@ class ProjectPipelineApi(object):
             html_documentation (str, none_type): [optional]
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
             report_configs (PipelineReportConfig): [optional]
+            resources (PipelineResources): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2778,6 +2806,7 @@ class ProjectPipelineApi(object):
             html_documentation (str, none_type): [optional]
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
             report_configs (PipelineReportConfig): [optional]
+            resources (PipelineResources): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -4507,7 +4536,7 @@ class ProjectPipelineApi(object):
     ):
         """Update the general attributes of a project pipeline.  # noqa: E501
 
-        Attributes which can be updated: - code - description - languageVersion - proprietary   # noqa: E501
+        Attributes which can be updated: - code - description - languageVersion - proprietary - resources   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 

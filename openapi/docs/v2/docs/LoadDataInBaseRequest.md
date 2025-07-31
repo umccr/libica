@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **data_id** | **str** | ID of the data to load into the table | 
-**allow_quoted_newlines** | **bool, none_type** | Enable to include newlines contained in quoted data sections in the cell’s value. When disabled, newlines will signal a new row | [optional]  if omitted the server will use the default value of False
+**allow_quoted_newlines** | **bool, none_type** | Enable to include newlines contained in quoted data sections in the cell&#39;s value. When disabled, newlines will signal a new row | [optional]  if omitted the server will use the default value of False
 **delimiter** | **str, none_type** | field delimiter | [optional]  if omitted the server will use the default value of ","
 **encoding** | **str, none_type** | Encoding | [optional]  if omitted the server will use the default value of "UTF8"
 **force_load** | **bool, none_type** | When false (default): the data will not be loaded if it was already previously loaded to table ; when true, the data will be loaded even if already loaded in the past | [optional]  if omitted the server will use the default value of False

@@ -58,6 +58,18 @@ class Config(ModelNormal):
     }
 
     validations = {
+        ('name',): {
+            'max_length': 255,
+            'min_length': 1,
+        },
+        ('regex',): {
+            'max_length': 255,
+            'min_length': 1,
+        },
+        ('format',): {
+            'max_length': 255,
+            'min_length': 1,
+        },
     }
 
     @cached_property
