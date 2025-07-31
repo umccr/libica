@@ -11,7 +11,7 @@
 
 ```
 node -v
-v20.19.2
+v20.19.4
 
 npm install
 
@@ -19,7 +19,7 @@ npx openapi-generator-cli help
 npx redocly lint --help
 
 docker --version
-Docker version 28.1.1, build 4eba377
+Docker version 28.3.2, build 578ccf6
 ```
 
 ## AutoGen Workflow
