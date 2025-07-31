@@ -6687,8 +6687,9 @@ paths:
         \ ID to a connector. This download will only start when the connector is running.\
         \ Data transfers for folder contents are created asynchronously, meaning that\
         \ they will not be immediately visible in the project data transfers end point.\
-        \ This is a non-RESTful endpoint, as the path of this endpoint is not representing\
-        \ a REST resource."
+        \ Note: The localPath field is optional. When omitted or invalid, the download\
+        \ rules of the connector are followed.This is a non-RESTful endpoint, as the\
+        \ path of this endpoint is not representing a REST resource."
       operationId: scheduleDownloadForData
       parameters:
       - name: projectId
@@ -9264,6 +9265,7 @@ paths:
         - description
         - languageVersion
         - proprietary
+        - resources
       operationId: updateGeneralAttributesProjectPipeline
       parameters:
       - name: projectId
@@ -13925,6 +13927,8 @@ components:
           enum:
           - XML
           - JSON
+        resources:
+          $ref: '#/components/schemas/PipelineResources'
     PipelineLanguageVersion:
       required:
       - id
@@ -13947,6 +13951,23 @@ components:
           - CWL
           - NEXTFLOW
           - UNKNOWN
+      nullable: true
+    PipelineResources:
+      type: object
+      properties:
+        f1:
+          type: boolean
+          nullable: true
+        f2:
+          type: boolean
+          nullable: true
+        gpu:
+          type: boolean
+          nullable: true
+        software-only:
+          type: boolean
+          description: "Can not be true in case one of [f1,f2,gpu] is also true."
+          nullable: true
       nullable: true
     PipelineTag:
       required:
@@ -15535,12 +15556,18 @@ components:
       type: object
       properties:
         name:
+          maxLength: 255
+          minLength: 1
           type: string
           description: name of the report
         regex:
+          maxLength: 255
+          minLength: 1
           type: string
           description: regex pattern of the filename
         format:
+          maxLength: 255
+          minLength: 1
           type: string
           description: Format of the file
           nullable: true
@@ -15623,6 +15650,8 @@ components:
           - JSON
         reportConfigs:
           $ref: '#/components/schemas/PipelineReportConfig'
+        resources:
+          $ref: '#/components/schemas/PipelineResources'
     PipelineReportConfig:
       type: object
       properties:
@@ -16763,12 +16792,14 @@ components:
         values:
           type: array
           description: Use 'values' for all fields except data fields. Use string
-            values to avoid rounding of numbers with a high precision.
+            values to avoid rounding of numbers with a high precision. '' values for
+            textbox type fields will be treated as null.
           nullable: true
           items:
             type: string
             description: Use 'values' for all fields except data fields. Use string
-              values to avoid rounding of numbers with a high precision.
+              values to avoid rounding of numbers with a high precision. '' values
+              for textbox type fields will be treated as null.
             nullable: true
         dataValues:
           type: array
@@ -17873,7 +17904,7 @@ components:
         allowQuotedNewlines:
           type: boolean
           description: "Enable to include newlines contained in quoted data sections\
-            \ in the cell’s value. When disabled, newlines will signal a new row"
+            \ in the cell's value. When disabled, newlines will signal a new row"
           nullable: true
           default: false
         dataId:
@@ -19584,10 +19615,10 @@ components:
     InputPart:
       type: object
       properties:
-        contentTypeFromMessage:
-          type: boolean
         bodyAsString:
           type: string
+        contentTypeFromMessage:
+          type: boolean
         mediaType:
           type: object
           properties:
@@ -19599,9 +19630,9 @@ components:
               type: object
               additionalProperties:
                 type: string
-            wildcardType:
-              type: boolean
             wildcardSubtype:
+              type: boolean
+            wildcardType:
               type: boolean
         headers:
           type: object
@@ -19653,6 +19684,8 @@ components:
           type: boolean
           description: A boolean which indicates if the code of this pipeline is proprietary
           nullable: true
+        resources:
+          $ref: '#/components/schemas/PipelineResources'
     CreateNextflowJsonPipeline:
       required:
       - analysisStorageId
@@ -19744,6 +19777,8 @@ components:
           default: false
         reportConfigs:
           $ref: '#/components/schemas/PipelineReportConfig'
+        resources:
+          $ref: '#/components/schemas/PipelineResources'
     CreateNextflowPipeline:
       required:
       - analysisStorageId
@@ -19819,6 +19854,8 @@ components:
           default: false
         reportConfigs:
           $ref: '#/components/schemas/PipelineReportConfig'
+        resources:
+          $ref: '#/components/schemas/PipelineResources'
     CreateCwlJsonPipeline:
       required:
       - analysisStorageId
@@ -19901,6 +19938,8 @@ components:
           default: false
         reportConfigs:
           $ref: '#/components/schemas/PipelineReportConfig'
+        resources:
+          $ref: '#/components/schemas/PipelineResources'
     CreateCwlPipeline:
       required:
       - analysisStorageId
@@ -19967,6 +20006,8 @@ components:
           default: false
         reportConfigs:
           $ref: '#/components/schemas/PipelineReportConfig'
+        resources:
+          $ref: '#/components/schemas/PipelineResources'
     ProjectSample:
       required:
       - projectId
@@ -21140,7 +21181,7 @@ components:
             $ref: '#/components/schemas/ProjectSample'
         nextPageToken:
           x-faker:
-            helpers.arrayElement: [[ "page1", "" ]]          
+            helpers.arrayElement: [[ "page1", "" ]]
           maxLength: 2000
           minLength: 0
           type: string
