@@ -4,7 +4,7 @@
     "redocly": "redocly"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.21.4",
-    "@redocly/cli": "^2.0.2"
+    "@openapitools/openapi-generator-cli": "^2.23.3",
+    "@redocly/cli": "^2.1.3"
   }
 }
