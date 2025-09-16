@@ -34,7 +34,7 @@ hints:
         coresMin: 1
         ramMin: 4000
     DockerRequirement:
-        dockerPull: public.ecr.aws/biocontainers/tabix:1.11--hdfd78af_0
+        dockerPull: community.wave.seqera.io/library/tabix:1.11--6c7fb31b37683708
 
 requirements:
   InlineJavascriptRequirement: {}
