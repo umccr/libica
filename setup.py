@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="libica",
-    version="3.1",
+    version="3.2rc1",
     url="https://github.com/umccr/libica",
     license="MIT",
     author="UMCCR and Contributors",
