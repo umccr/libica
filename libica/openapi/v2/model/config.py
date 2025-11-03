@@ -68,7 +68,7 @@ class Config(ModelNormal):
         },
         ('format',): {
             'max_length': 255,
-            'min_length': 1,
+            'min_length': 0,
         },
     }
 

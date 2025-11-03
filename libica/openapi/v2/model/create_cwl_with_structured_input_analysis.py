@@ -31,9 +31,11 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 def lazy_import():
     from libica.openapi.v2.model.analysis_output_mapping import AnalysisOutputMapping
+    from libica.openapi.v2.model.create_analysis_logs import CreateAnalysisLogs
     from libica.openapi.v2.model.create_analysis_tag import CreateAnalysisTag
     from libica.openapi.v2.model.cwl_analysis_with_structured_input import CwlAnalysisWithStructuredInput
     globals()['AnalysisOutputMapping'] = AnalysisOutputMapping
+    globals()['CreateAnalysisLogs'] = CreateAnalysisLogs
     globals()['CreateAnalysisTag'] = CreateAnalysisTag
     globals()['CwlAnalysisWithStructuredInput'] = CwlAnalysisWithStructuredInput
 
@@ -104,6 +106,7 @@ class CreateCwlWithStructuredInputAnalysis(ModelNormal):
             'tags': (CreateAnalysisTag,),  # noqa: E501
             'analysis_storage_id': (str, none_type,),  # noqa: E501
             'output_parent_folder_id': (str, none_type,),  # noqa: E501
+            'logs': (CreateAnalysisLogs,),  # noqa: E501
             'analysis_output': ([AnalysisOutputMapping], none_type,),  # noqa: E501
         }
 
@@ -119,6 +122,7 @@ class CreateCwlWithStructuredInputAnalysis(ModelNormal):
         'tags': 'tags',  # noqa: E501
         'analysis_storage_id': 'analysisStorageId',  # noqa: E501
         'output_parent_folder_id': 'outputParentFolderId',  # noqa: E501
+        'logs': 'logs',  # noqa: E501
         'analysis_output': 'analysisOutput',  # noqa: E501
     }
 
@@ -171,6 +175,7 @@ class CreateCwlWithStructuredInputAnalysis(ModelNormal):
             tags (CreateAnalysisTag): [optional]  # noqa: E501
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id or the urn of the folder in which the output folder should be created.. [optional]  # noqa: E501
+            logs (CreateAnalysisLogs): [optional]  # noqa: E501
             analysis_output ([AnalysisOutputMapping], none_type): [optional]  # noqa: E501
         """
 
@@ -264,6 +269,7 @@ class CreateCwlWithStructuredInputAnalysis(ModelNormal):
             tags (CreateAnalysisTag): [optional]  # noqa: E501
             analysis_storage_id (str, none_type): The id of the storage to use for the analysis.. [optional]  # noqa: E501
             output_parent_folder_id (str, none_type): The id or the urn of the folder in which the output folder should be created.. [optional]  # noqa: E501
+            logs (CreateAnalysisLogs): [optional]  # noqa: E501
             analysis_output ([AnalysisOutputMapping], none_type): [optional]  # noqa: E501
         """
 

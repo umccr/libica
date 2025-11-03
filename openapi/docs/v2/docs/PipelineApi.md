@@ -4,6 +4,8 @@ All URIs are relative to */ica/rest*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**archive_pipeline**](PipelineApi.md#archive_pipeline) | **POST** /api/pipelines/{pipelineId}:archive | Archive a pipeline.
+[**deprecate_pipeline**](PipelineApi.md#deprecate_pipeline) | **POST** /api/pipelines/{pipelineId}:deprecate | Deprecate a pipeline.
 [**download_pipeline_file_content**](PipelineApi.md#download_pipeline_file_content) | **GET** /api/pipelines/{pipelineId}/files/{fileId}/content | Download the contents of a pipeline file.
 [**get_pipeline**](PipelineApi.md#get_pipeline) | **GET** /api/pipelines/{pipelineId} | Retrieve a pipeline.
 [**get_pipeline_configuration_parameters**](PipelineApi.md#get_pipeline_configuration_parameters) | **GET** /api/pipelines/{pipelineId}/configurationParameters | Retrieve configuration parameters for a pipeline.
@@ -13,6 +15,196 @@ Method | HTTP request | Description
 [**get_pipeline_reference_sets**](PipelineApi.md#get_pipeline_reference_sets) | **GET** /api/pipelines/{pipelineId}/referenceSets | Retrieve the reference sets of a pipeline.
 [**get_pipelines**](PipelineApi.md#get_pipelines) | **GET** /api/pipelines | Retrieve a list of pipelines.
 
+
+# **archive_pipeline**
+> archive_pipeline(pipeline_id)
+
+Archive a pipeline.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import pipeline_api
+from libica.openapi.v2.model.archive_pipeline import ArchivePipeline
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pipeline_api.PipelineApi(api_client)
+    pipeline_id = "pipelineId_example" # str | The ID of the pipeline
+    archive_pipeline = ArchivePipeline(
+        message="message_example",
+    ) # ArchivePipeline |  (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Archive a pipeline.
+        api_instance.archive_pipeline(pipeline_id)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling PipelineApi->archive_pipeline: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Archive a pipeline.
+        api_instance.archive_pipeline(pipeline_id, archive_pipeline=archive_pipeline)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling PipelineApi->archive_pipeline: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pipeline_id** | **str**| The ID of the pipeline |
+ **archive_pipeline** | [**ArchivePipeline**](ArchivePipeline.md)|  | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/x-www-form-urlencoded, application/json
+ - **Accept**: application/problem+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The pipeline is successfully archived. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deprecate_pipeline**
+> deprecate_pipeline(pipeline_id)
+
+Deprecate a pipeline.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import pipeline_api
+from libica.openapi.v2.model.deprecate_pipeline import DeprecatePipeline
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = pipeline_api.PipelineApi(api_client)
+    pipeline_id = "pipelineId_example" # str | The ID of the pipeline
+    deprecate_pipeline = DeprecatePipeline(
+        message="message_example",
+    ) # DeprecatePipeline |  (optional)
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Deprecate a pipeline.
+        api_instance.deprecate_pipeline(pipeline_id)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling PipelineApi->deprecate_pipeline: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # Deprecate a pipeline.
+        api_instance.deprecate_pipeline(pipeline_id, deprecate_pipeline=deprecate_pipeline)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling PipelineApi->deprecate_pipeline: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pipeline_id** | **str**| The ID of the pipeline |
+ **deprecate_pipeline** | [**DeprecatePipeline**](DeprecatePipeline.md)|  | [optional]
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/x-www-form-urlencoded, application/json
+ - **Accept**: application/problem+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The pipeline is successfully deprecated. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **download_pipeline_file_content**
 > file_type download_pipeline_file_content(pipeline_id, file_id)

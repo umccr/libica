@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **analysis_storage** | [**AnalysisStorageV4**](AnalysisStorageV4.md) |  | 
 **urn** | **str, none_type** | The URN of the pipeline. The format is urn:ilmn:ica:\\&lt;type of the object\\&gt;:\\&lt;ID of the object\\&gt;#\\&lt;optional human readable hint representing the object\\&gt;. The hint can be omitted, in that case the hashtag (#) must also be omitted. | [optional] 
 **status** | **str, none_type** | The status of the pipeline | [optional] 
+**status_as_string** | **str** | The status of the pipeline as string (&#39;Draft&#39;, &#39;Released&#39;, &#39;Deprecated&#39;, &#39;Archived&#39;) | [optional] 
 **language_version** | [**PipelineLanguageVersion**](PipelineLanguageVersion.md) |  | [optional] 
 **proprietary** | **bool, none_type** | A boolean which indicates if the code of this pipeline is proprietary | [optional]  if omitted the server will use the default value of False
 **input_form_type** | **str** | The type of the inputform used. | [optional] 

@@ -30,10 +30,12 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.application_v4 import ApplicationV4
     from libica.openapi.v2.model.tenant_identifier import TenantIdentifier
     from libica.openapi.v2.model.user_identifier import UserIdentifier
     from libica.openapi.v2.model.workflow_session_tag import WorkflowSessionTag
     from libica.openapi.v2.model.workflow_v4 import WorkflowV4
+    globals()['ApplicationV4'] = ApplicationV4
     globals()['TenantIdentifier'] = TenantIdentifier
     globals()['UserIdentifier'] = UserIdentifier
     globals()['WorkflowSessionTag'] = WorkflowSessionTag
@@ -113,6 +115,7 @@ class WorkflowSessionV4(ModelNormal):
             'start_date': (datetime, none_type,),  # noqa: E501
             'end_date': (datetime, none_type,),  # noqa: E501
             'summary': (str, none_type,),  # noqa: E501
+            'application': (ApplicationV4,),  # noqa: E501
         }
 
     @cached_property
@@ -132,6 +135,7 @@ class WorkflowSessionV4(ModelNormal):
         'start_date': 'startDate',  # noqa: E501
         'end_date': 'endDate',  # noqa: E501
         'summary': 'summary',  # noqa: E501
+        'application': 'application',  # noqa: E501
     }
 
     read_only_vars = {
@@ -188,6 +192,7 @@ class WorkflowSessionV4(ModelNormal):
             start_date (datetime, none_type): When the workflow session was started. [optional]  # noqa: E501
             end_date (datetime, none_type): When the workflow session was finished. [optional]  # noqa: E501
             summary (str, none_type): The summary of the workflow session. [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -290,6 +295,7 @@ class WorkflowSessionV4(ModelNormal):
             start_date (datetime, none_type): When the workflow session was started. [optional]  # noqa: E501
             end_date (datetime, none_type): When the workflow session was finished. [optional]  # noqa: E501
             summary (str, none_type): The summary of the workflow session. [optional]  # noqa: E501
+            application (ApplicationV4): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

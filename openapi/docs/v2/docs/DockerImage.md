@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **description** | **str, none_type** |  | [optional] 
 **internal_docker_image_settings** | [**InternalDockerImageSettings**](InternalDockerImageSettings.md) |  | [optional] 
 **external_docker_image_settings** | [**ExternalDockerImageSettings**](ExternalDockerImageSettings.md) |  | [optional] 
+**ilmn_repo_docker_image_settings** | [**IlmnRepoDockerImageSettings**](IlmnRepoDockerImageSettings.md) |  | [optional] 
 **bench_settings** | [**BenchSettings**](BenchSettings.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

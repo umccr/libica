@@ -81,6 +81,8 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
                 will_be_archived_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
                 will_be_deleted_at=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                clear_will_be_archived_at=False,
+                clear_will_be_deleted_at=False,
             ),
         ],
     ) # CreateProjectDataUpdateBatch | 

@@ -32,11 +32,13 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 def lazy_import():
     from libica.openapi.v2.model.bench_settings import BenchSettings
     from libica.openapi.v2.model.external_docker_image_settings import ExternalDockerImageSettings
+    from libica.openapi.v2.model.ilmn_repo_docker_image_settings import IlmnRepoDockerImageSettings
     from libica.openapi.v2.model.internal_docker_image_settings import InternalDockerImageSettings
     from libica.openapi.v2.model.tenant_identifier import TenantIdentifier
     from libica.openapi.v2.model.user_identifier import UserIdentifier
     globals()['BenchSettings'] = BenchSettings
     globals()['ExternalDockerImageSettings'] = ExternalDockerImageSettings
+    globals()['IlmnRepoDockerImageSettings'] = IlmnRepoDockerImageSettings
     globals()['InternalDockerImageSettings'] = InternalDockerImageSettings
     globals()['TenantIdentifier'] = TenantIdentifier
     globals()['UserIdentifier'] = UserIdentifier
@@ -118,6 +120,7 @@ class DockerImage(ModelNormal):
             'description': (str, none_type,),  # noqa: E501
             'internal_docker_image_settings': (InternalDockerImageSettings,),  # noqa: E501
             'external_docker_image_settings': (ExternalDockerImageSettings,),  # noqa: E501
+            'ilmn_repo_docker_image_settings': (IlmnRepoDockerImageSettings,),  # noqa: E501
             'bench_settings': (BenchSettings,),  # noqa: E501
         }
 
@@ -139,6 +142,7 @@ class DockerImage(ModelNormal):
         'description': 'description',  # noqa: E501
         'internal_docker_image_settings': 'internalDockerImageSettings',  # noqa: E501
         'external_docker_image_settings': 'externalDockerImageSettings',  # noqa: E501
+        'ilmn_repo_docker_image_settings': 'ilmnRepoDockerImageSettings',  # noqa: E501
         'bench_settings': 'benchSettings',  # noqa: E501
     }
 
@@ -197,6 +201,7 @@ class DockerImage(ModelNormal):
             description (str, none_type): [optional]  # noqa: E501
             internal_docker_image_settings (InternalDockerImageSettings): [optional]  # noqa: E501
             external_docker_image_settings (ExternalDockerImageSettings): [optional]  # noqa: E501
+            ilmn_repo_docker_image_settings (IlmnRepoDockerImageSettings): [optional]  # noqa: E501
             bench_settings (BenchSettings): [optional]  # noqa: E501
         """
 
@@ -301,6 +306,7 @@ class DockerImage(ModelNormal):
             description (str, none_type): [optional]  # noqa: E501
             internal_docker_image_settings (InternalDockerImageSettings): [optional]  # noqa: E501
             external_docker_image_settings (ExternalDockerImageSettings): [optional]  # noqa: E501
+            ilmn_repo_docker_image_settings (IlmnRepoDockerImageSettings): [optional]  # noqa: E501
             bench_settings (BenchSettings): [optional]  # noqa: E501
         """
 

@@ -104,6 +104,7 @@ class AnalysisStep(ModelNormal):
             'start_date': (datetime, none_type,),  # noqa: E501
             'end_date': (datetime, none_type,),  # noqa: E501
             'exit_code': (int, none_type,),  # noqa: E501
+            'compute_type': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -121,6 +122,7 @@ class AnalysisStep(ModelNormal):
         'start_date': 'startDate',  # noqa: E501
         'end_date': 'endDate',  # noqa: E501
         'exit_code': 'exitCode',  # noqa: E501
+        'compute_type': 'computeType',  # noqa: E501
     }
 
     read_only_vars = {
@@ -175,6 +177,7 @@ class AnalysisStep(ModelNormal):
             start_date (datetime, none_type): When the analysis step was started. [optional]  # noqa: E501
             end_date (datetime, none_type): When the analysis step was finished. [optional]  # noqa: E501
             exit_code (int, none_type): The exit code of the analysis step. [optional]  # noqa: E501
+            compute_type (str, none_type): The compute type of the analysis step. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -272,6 +275,7 @@ class AnalysisStep(ModelNormal):
             start_date (datetime, none_type): When the analysis step was started. [optional]  # noqa: E501
             end_date (datetime, none_type): When the analysis step was finished. [optional]  # noqa: E501
             exit_code (int, none_type): The exit code of the analysis step. [optional]  # noqa: E501
+            compute_type (str, none_type): The compute type of the analysis step. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

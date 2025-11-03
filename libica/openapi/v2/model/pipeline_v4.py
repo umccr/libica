@@ -100,6 +100,10 @@ class PipelineV4(ModelNormal):
             'max_length': 2000,
             'min_length': 1,
         },
+        ('status_as_string',): {
+            'max_length': 10,
+            'min_length': 1,
+        },
     }
 
     @cached_property
@@ -137,6 +141,7 @@ class PipelineV4(ModelNormal):
             'analysis_storage': (AnalysisStorageV4,),  # noqa: E501
             'urn': (str, none_type,),  # noqa: E501
             'status': (str, none_type,),  # noqa: E501
+            'status_as_string': (str,),  # noqa: E501
             'language_version': (PipelineLanguageVersion,),  # noqa: E501
             'proprietary': (bool, none_type,),  # noqa: E501
             'input_form_type': (str,),  # noqa: E501
@@ -162,6 +167,7 @@ class PipelineV4(ModelNormal):
         'analysis_storage': 'analysisStorage',  # noqa: E501
         'urn': 'urn',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'status_as_string': 'statusAsString',  # noqa: E501
         'language_version': 'languageVersion',  # noqa: E501
         'proprietary': 'proprietary',  # noqa: E501
         'input_form_type': 'inputFormType',  # noqa: E501
@@ -224,6 +230,7 @@ class PipelineV4(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\<type of the object\\>:\\<ID of the object\\>#\\<optional human readable hint representing the object\\>. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             status (str, none_type): The status of the pipeline. [optional]  # noqa: E501
+            status_as_string (str): The status of the pipeline as string ('Draft', 'Released', 'Deprecated', 'Archived'). [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
             input_form_type (str): The type of the inputform used.. [optional]  # noqa: E501
@@ -334,6 +341,7 @@ class PipelineV4(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             urn (str, none_type): The URN of the pipeline. The format is urn:ilmn:ica:\\<type of the object\\>:\\<ID of the object\\>#\\<optional human readable hint representing the object\\>. The hint can be omitted, in that case the hashtag (#) must also be omitted.. [optional]  # noqa: E501
             status (str, none_type): The status of the pipeline. [optional]  # noqa: E501
+            status_as_string (str): The status of the pipeline as string ('Draft', 'Released', 'Deprecated', 'Archived'). [optional]  # noqa: E501
             language_version (PipelineLanguageVersion): [optional]  # noqa: E501
             proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False  # noqa: E501
             input_form_type (str): The type of the inputform used.. [optional]  # noqa: E501

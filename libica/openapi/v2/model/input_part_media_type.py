@@ -84,8 +84,8 @@ class InputPartMediaType(ModelNormal):
             'type': (str,),  # noqa: E501
             'subtype': (str,),  # noqa: E501
             'parameters': ({str: (str,)},),  # noqa: E501
-            'wildcard_subtype': (bool,),  # noqa: E501
             'wildcard_type': (bool,),  # noqa: E501
+            'wildcard_subtype': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -97,8 +97,8 @@ class InputPartMediaType(ModelNormal):
         'type': 'type',  # noqa: E501
         'subtype': 'subtype',  # noqa: E501
         'parameters': 'parameters',  # noqa: E501
-        'wildcard_subtype': 'wildcardSubtype',  # noqa: E501
         'wildcard_type': 'wildcardType',  # noqa: E501
+        'wildcard_subtype': 'wildcardSubtype',  # noqa: E501
     }
 
     read_only_vars = {
@@ -145,8 +145,8 @@ class InputPartMediaType(ModelNormal):
             type (str): [optional]  # noqa: E501
             subtype (str): [optional]  # noqa: E501
             parameters ({str: (str,)}): [optional]  # noqa: E501
-            wildcard_subtype (bool): [optional]  # noqa: E501
             wildcard_type (bool): [optional]  # noqa: E501
+            wildcard_subtype (bool): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -231,8 +231,8 @@ class InputPartMediaType(ModelNormal):
             type (str): [optional]  # noqa: E501
             subtype (str): [optional]  # noqa: E501
             parameters ({str: (str,)}): [optional]  # noqa: E501
-            wildcard_subtype (bool): [optional]  # noqa: E501
             wildcard_type (bool): [optional]  # noqa: E501
+            wildcard_subtype (bool): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

@@ -73,13 +73,17 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
                 analysis_storage_id="analysis_storage_id_example",
                 output_parent_folder_id="output_parent_folder_id_example",
+                logs=CreateAnalysisLogs(
+                    logs_folder_id="logs_folder_id_example",
+                    logs_folder_path="/k",
+                ),
                 analysis_output=[
                     AnalysisOutputMapping(
                         source_path="source_path_example",
                         type="FILE",
                         target_project_id="target_project_id_example",
                         target_path="target_path_example",
-                        action_on_exist="action_on_exist_example",
+                        action_on_exist="SKI",
                     ),
                 ],
                 analysis_input=CwlAnalysisInput(),
@@ -103,13 +107,17 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
                 analysis_storage_id="analysis_storage_id_example",
                 output_parent_folder_id="output_parent_folder_id_example",
+                logs=CreateAnalysisLogs(
+                    logs_folder_id="logs_folder_id_example",
+                    logs_folder_path="/k",
+                ),
                 analysis_output=[
                     AnalysisOutputMapping(
                         source_path="source_path_example",
                         type="FILE",
                         target_project_id="target_project_id_example",
                         target_path="target_path_example",
-                        action_on_exist="action_on_exist_example",
+                        action_on_exist="SKI",
                     ),
                 ],
                 analysis_input=NextflowAnalysisInput(
@@ -178,13 +186,17 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 ),
                 analysis_storage_id="analysis_storage_id_example",
                 output_parent_folder_id="output_parent_folder_id_example",
+                logs=CreateAnalysisLogs(
+                    logs_folder_id="logs_folder_id_example",
+                    logs_folder_path="/k",
+                ),
                 analysis_output=[
                     AnalysisOutputMapping(
                         source_path="source_path_example",
                         type="FILE",
                         target_project_id="target_project_id_example",
                         target_path="target_path_example",
-                        action_on_exist="action_on_exist_example",
+                        action_on_exist="SKI",
                     ),
                 ],
                 input_form_values=NextflowJsonAnalysisInput(

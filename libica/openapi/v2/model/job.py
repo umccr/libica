@@ -30,9 +30,11 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from libica.openapi.v2.model.application import Application
     from libica.openapi.v2.model.bundle import Bundle
     from libica.openapi.v2.model.project import Project
     from libica.openapi.v2.model.user import User
+    globals()['Application'] = Application
     globals()['Bundle'] = Bundle
     globals()['Project'] = Project
     globals()['User'] = User
@@ -111,6 +113,7 @@ class Job(ModelNormal):
             'time_finished': (datetime, none_type,),  # noqa: E501
             'project': (Project,),  # noqa: E501
             'bundle': (Bundle,),  # noqa: E501
+            'application': (Application,),  # noqa: E501
         }
 
     @cached_property
@@ -130,6 +133,7 @@ class Job(ModelNormal):
         'time_finished': 'timeFinished',  # noqa: E501
         'project': 'project',  # noqa: E501
         'bundle': 'bundle',  # noqa: E501
+        'application': 'application',  # noqa: E501
     }
 
     read_only_vars = {
@@ -186,6 +190,7 @@ class Job(ModelNormal):
             time_finished (datetime, none_type): [optional]  # noqa: E501
             project (Project): [optional]  # noqa: E501
             bundle (Bundle): [optional]  # noqa: E501
+            application (Application): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -286,6 +291,7 @@ class Job(ModelNormal):
             time_finished (datetime, none_type): [optional]  # noqa: E501
             project (Project): [optional]  # noqa: E501
             bundle (Bundle): [optional]  # noqa: E501
+            application (Application): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
