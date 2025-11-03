@@ -21,6 +21,8 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
+from libica.openapi.v3.models.application_v4 import ApplicationV4
 from libica.openapi.v3.models.tenant_identifier import TenantIdentifier
 from libica.openapi.v3.models.user_identifier import UserIdentifier
 from libica.openapi.v3.models.workflow_session_tag import WorkflowSessionTag
@@ -32,7 +34,7 @@ class WorkflowSessionV4(BaseModel):
     """
     WorkflowSessionV4
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     owner: UserIdentifier
     tenant: TenantIdentifier
@@ -43,7 +45,8 @@ class WorkflowSessionV4(BaseModel):
     end_date: Optional[datetime] = Field(default=None, description="When the workflow session was finished", alias="endDate")
     summary: Optional[StrictStr] = Field(default=None, description="The summary of the workflow session")
     tags: WorkflowSessionTag
-    __properties: ClassVar[List[str]] = ["id", "timeCreated", "owner", "tenant", "userReference", "workflow", "status", "startDate", "endDate", "summary", "tags"]
+    application: Optional[ApplicationV4] = None
+    __properties: ClassVar[List[str]] = ["id", "timeCreated", "owner", "tenant", "userReference", "workflow", "status", "startDate", "endDate", "summary", "tags", "application"]
 
     @field_validator('status')
     def status_validate_regular_expression(cls, value):
@@ -103,6 +106,9 @@ class WorkflowSessionV4(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of tags
         if self.tags:
             _dict['tags'] = self.tags.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of application
+        if self.application:
+            _dict['application'] = self.application.to_dict()
         # set to None if start_date (nullable) is None
         # and model_fields_set contains the field
         if self.start_date is None and "start_date" in self.model_fields_set:
@@ -117,6 +123,11 @@ class WorkflowSessionV4(BaseModel):
         # and model_fields_set contains the field
         if self.summary is None and "summary" in self.model_fields_set:
             _dict['summary'] = None
+
+        # set to None if application (nullable) is None
+        # and model_fields_set contains the field
+        if self.application is None and "application" in self.model_fields_set:
+            _dict['application'] = None
 
         return _dict
 
@@ -140,7 +151,8 @@ class WorkflowSessionV4(BaseModel):
             "startDate": obj.get("startDate"),
             "endDate": obj.get("endDate"),
             "summary": obj.get("summary"),
-            "tags": WorkflowSessionTag.from_dict(obj["tags"]) if obj.get("tags") is not None else None
+            "tags": WorkflowSessionTag.from_dict(obj["tags"]) if obj.get("tags") is not None else None,
+            "application": ApplicationV4.from_dict(obj["application"]) if obj.get("application") is not None else None
         })
         return _obj
 

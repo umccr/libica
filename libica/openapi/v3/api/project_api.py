@@ -19,6 +19,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictStr
 from typing import List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.change_project_owner import ChangeProjectOwner
 from libica.openapi.v3.models.create_project import CreateProject
 from libica.openapi.v3.models.project import Project
@@ -869,7 +870,7 @@ class ProjectApi:
     def get_project_bundle(
         self,
         project_id: StrictStr,
-        bundle_id: StrictStr,
+        bundle_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -939,7 +940,7 @@ class ProjectApi:
     def get_project_bundle_with_http_info(
         self,
         project_id: StrictStr,
-        bundle_id: StrictStr,
+        bundle_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1009,7 +1010,7 @@ class ProjectApi:
     def get_project_bundle_without_preload_content(
         self,
         project_id: StrictStr,
-        bundle_id: StrictStr,
+        bundle_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2081,7 +2082,7 @@ class ProjectApi:
     def link_project_bundle(
         self,
         project_id: StrictStr,
-        bundle_id: StrictStr,
+        bundle_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2151,7 +2152,7 @@ class ProjectApi:
     def link_project_bundle_with_http_info(
         self,
         project_id: StrictStr,
-        bundle_id: StrictStr,
+        bundle_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2221,7 +2222,7 @@ class ProjectApi:
     def link_project_bundle_without_preload_content(
         self,
         project_id: StrictStr,
-        bundle_id: StrictStr,
+        bundle_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2356,7 +2357,7 @@ class ProjectApi:
     def unlink_project_bundle(
         self,
         project_id: StrictStr,
-        bundle_id: StrictStr,
+        bundle_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2426,7 +2427,7 @@ class ProjectApi:
     def unlink_project_bundle_with_http_info(
         self,
         project_id: StrictStr,
-        bundle_id: StrictStr,
+        bundle_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2496,7 +2497,7 @@ class ProjectApi:
     def unlink_project_bundle_without_preload_content(
         self,
         project_id: StrictStr,
-        bundle_id: StrictStr,
+        bundle_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

@@ -19,6 +19,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.job import Job
 from libica.openapi.v3.models.job_paged_list import JobPagedList
 
@@ -43,7 +44,7 @@ class JobApi:
     @validate_call
     def get_job(
         self,
-        job_id: Annotated[StrictStr, Field(description="The ID of the job.")],
+        job_id: Annotated[UUID, Field(description="The ID of the job.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -109,7 +110,7 @@ class JobApi:
     @validate_call
     def get_job_with_http_info(
         self,
-        job_id: Annotated[StrictStr, Field(description="The ID of the job.")],
+        job_id: Annotated[UUID, Field(description="The ID of the job.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -175,7 +176,7 @@ class JobApi:
     @validate_call
     def get_job_without_preload_content(
         self,
-        job_id: Annotated[StrictStr, Field(description="The ID of the job.")],
+        job_id: Annotated[UUID, Field(description="The ID of the job.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

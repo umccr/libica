@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.aws_details import AWSDetails
 from typing import Optional, Set
 from typing_extensions import Self
@@ -30,10 +31,10 @@ class CreateStorageConfiguration(BaseModel):
     """ # noqa: E501
     name: Annotated[str, Field(min_length=3, strict=True, max_length=15)] = Field(description="The name of the configuration")
     description: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=1000)]] = Field(default=None, description="An optional description")
-    storage_credential_id: StrictStr = Field(description="The id of the storage credential", alias="storageCredentialId")
+    storage_credential_id: UUID = Field(description="The id of the storage credential", alias="storageCredentialId")
     type: StrictStr = Field(description="The type of configuration")
     aws_details: Optional[AWSDetails] = Field(default=None, alias="awsDetails")
-    region_id: StrictStr = Field(description="The id of the region where the bucket will be located", alias="regionId")
+    region_id: UUID = Field(description="The id of the region where the bucket will be located", alias="regionId")
     __properties: ClassVar[List[str]] = ["name", "description", "storageCredentialId", "type", "awsDetails", "regionId"]
 
     @field_validator('name')

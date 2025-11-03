@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from libica.openapi.v3.models.data import Data
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +29,7 @@ class ProjectData(BaseModel):
     ProjectData
     """ # noqa: E501
     data: Data
-    project_id: StrictStr = Field(alias="projectId")
+    project_id: UUID = Field(alias="projectId")
     __properties: ClassVar[List[str]] = ["data", "projectId"]
 
     model_config = ConfigDict(

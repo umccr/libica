@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.links import Links
 from typing import Optional, Set
 from typing_extensions import Self
@@ -32,8 +33,8 @@ class CreateBundle(BaseModel):
     short_description: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=4000)]] = Field(default=None, alias="shortDescription")
     bundle_release_version: StrictStr = Field(alias="bundleReleaseVersion")
     bundle_version_comment: Optional[StrictStr] = Field(default=None, alias="bundleVersionComment")
-    region_id: StrictStr = Field(alias="regionId")
-    metadata_model_id: Optional[StrictStr] = Field(default=None, alias="metadataModelId")
+    region_id: UUID = Field(alias="regionId")
+    metadata_model_id: Optional[UUID] = Field(default=None, alias="metadataModelId")
     bundle_status: StrictStr = Field(alias="bundleStatus")
     categories: List[StrictStr] = Field(description="category tags as string array")
     links: Optional[Links] = None

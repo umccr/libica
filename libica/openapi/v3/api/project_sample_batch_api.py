@@ -19,6 +19,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr, field_validator
 from typing import List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.create_sample_creation_batch import CreateSampleCreationBatch
 from libica.openapi.v3.models.sample_creation_batch import SampleCreationBatch
 from libica.openapi.v3.models.sample_creation_batch_item_paged_list import SampleCreationBatchItemPagedList
@@ -351,7 +352,7 @@ class ProjectSampleBatchApi:
     def get_sample_creation_batch(
         self,
         project_id: StrictStr,
-        batch_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch")],
+        batch_id: Annotated[UUID, Field(description="The ID of the sample creation batch")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -421,7 +422,7 @@ class ProjectSampleBatchApi:
     def get_sample_creation_batch_with_http_info(
         self,
         project_id: StrictStr,
-        batch_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch")],
+        batch_id: Annotated[UUID, Field(description="The ID of the sample creation batch")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -491,7 +492,7 @@ class ProjectSampleBatchApi:
     def get_sample_creation_batch_without_preload_content(
         self,
         project_id: StrictStr,
-        batch_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch")],
+        batch_id: Annotated[UUID, Field(description="The ID of the sample creation batch")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -626,8 +627,8 @@ class ProjectSampleBatchApi:
     def get_sample_creation_batch_item(
         self,
         project_id: StrictStr,
-        batch_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch")],
-        item_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch item")],
+        batch_id: Annotated[UUID, Field(description="The ID of the sample creation batch")],
+        item_id: Annotated[UUID, Field(description="The ID of the sample creation batch item")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -700,8 +701,8 @@ class ProjectSampleBatchApi:
     def get_sample_creation_batch_item_with_http_info(
         self,
         project_id: StrictStr,
-        batch_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch")],
-        item_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch item")],
+        batch_id: Annotated[UUID, Field(description="The ID of the sample creation batch")],
+        item_id: Annotated[UUID, Field(description="The ID of the sample creation batch item")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -774,8 +775,8 @@ class ProjectSampleBatchApi:
     def get_sample_creation_batch_item_without_preload_content(
         self,
         project_id: StrictStr,
-        batch_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch")],
-        item_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch item")],
+        batch_id: Annotated[UUID, Field(description="The ID of the sample creation batch")],
+        item_id: Annotated[UUID, Field(description="The ID of the sample creation batch item")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -916,7 +917,7 @@ class ProjectSampleBatchApi:
     def get_sample_creation_batch_items(
         self,
         project_id: StrictStr,
-        batch_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch")],
+        batch_id: Annotated[UUID, Field(description="The ID of the sample creation batch")],
         status: Annotated[Optional[List[StrictStr]], Field(description="The statuses to filter on.")] = None,
         page_offset: Annotated[Optional[StrictStr], Field(description="[only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages")] = None,
         page_token: Annotated[Optional[StrictStr], Field(description="[only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.")] = None,
@@ -1002,7 +1003,7 @@ class ProjectSampleBatchApi:
     def get_sample_creation_batch_items_with_http_info(
         self,
         project_id: StrictStr,
-        batch_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch")],
+        batch_id: Annotated[UUID, Field(description="The ID of the sample creation batch")],
         status: Annotated[Optional[List[StrictStr]], Field(description="The statuses to filter on.")] = None,
         page_offset: Annotated[Optional[StrictStr], Field(description="[only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages")] = None,
         page_token: Annotated[Optional[StrictStr], Field(description="[only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.")] = None,
@@ -1088,7 +1089,7 @@ class ProjectSampleBatchApi:
     def get_sample_creation_batch_items_without_preload_content(
         self,
         project_id: StrictStr,
-        batch_id: Annotated[StrictStr, Field(description="The ID of the sample creation batch")],
+        batch_id: Annotated[UUID, Field(description="The ID of the sample creation batch")],
         status: Annotated[Optional[List[StrictStr]], Field(description="The statuses to filter on.")] = None,
         page_offset: Annotated[Optional[StrictStr], Field(description="[only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages")] = None,
         page_token: Annotated[Optional[StrictStr], Field(description="[only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.")] = None,

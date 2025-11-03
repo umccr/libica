@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +33,7 @@ class CreateUploadRule(BaseModel):
     description: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]] = None
     local_folder: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The local folder to monitor. Files in this folder on your local environment will be uploaded to the specified project. Only files matching the filePattern will be uploaded.", alias="localFolder")
     file_pattern: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The regular expression to match a file name. eg: to match all files use '.*'", alias="filePattern")
-    data_format_id: Optional[StrictStr] = Field(default=None, description="The format which will be assigned to the uploaded data. If not specified, an auto-detection of the format will be done.", alias="dataFormatId")
+    data_format_id: Optional[UUID] = Field(default=None, description="The format which will be assigned to the uploaded data. If not specified, an auto-detection of the format will be done.", alias="dataFormatId")
     project_id: StrictStr = Field(description="The project to which the data will be uploaded.", alias="projectId")
     __properties: ClassVar[List[str]] = ["code", "active", "description", "localFolder", "filePattern", "dataFormatId", "projectId"]
 

@@ -29,9 +29,9 @@ class InputPartMediaType(BaseModel):
     type: Optional[StrictStr] = None
     subtype: Optional[StrictStr] = None
     parameters: Optional[Dict[str, StrictStr]] = None
-    wildcard_subtype: Optional[StrictBool] = Field(default=None, alias="wildcardSubtype")
     wildcard_type: Optional[StrictBool] = Field(default=None, alias="wildcardType")
-    __properties: ClassVar[List[str]] = ["type", "subtype", "parameters", "wildcardSubtype", "wildcardType"]
+    wildcard_subtype: Optional[StrictBool] = Field(default=None, alias="wildcardSubtype")
+    __properties: ClassVar[List[str]] = ["type", "subtype", "parameters", "wildcardType", "wildcardSubtype"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,8 +87,8 @@ class InputPartMediaType(BaseModel):
             "type": obj.get("type"),
             "subtype": obj.get("subtype"),
             "parameters": obj.get("parameters"),
-            "wildcardSubtype": obj.get("wildcardSubtype"),
-            "wildcardType": obj.get("wildcardType")
+            "wildcardType": obj.get("wildcardType"),
+            "wildcardSubtype": obj.get("wildcardSubtype")
         })
         return _obj
 

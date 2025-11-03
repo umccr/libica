@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,11 +29,11 @@ class SampleHistory(BaseModel):
     SampleHistory
     """ # noqa: E501
     occurred_at: datetime = Field(description="When the change was made", alias="occurredAt")
-    user: Optional[StrictStr] = Field(default=None, description="The user that made the change")
-    run: Optional[StrictStr] = Field(default=None, description="In which execution context the change was made")
+    user: Optional[UUID] = Field(default=None, description="The user that made the change")
+    run: Optional[UUID] = Field(default=None, description="In which execution context the change was made")
     source: StrictStr = Field(description="In which context the change was made")
     text: StrictStr = Field(description="What was changed")
-    project: Optional[StrictStr] = Field(default=None, description="In which project context the change was made")
+    project: Optional[UUID] = Field(default=None, description="In which project context the change was made")
     model: Optional[StrictInt] = Field(default=None, description="In which model context the change was made")
     __properties: ClassVar[List[str]] = ["occurredAt", "user", "run", "source", "text", "project", "model"]
 

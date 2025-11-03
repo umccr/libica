@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.application_v4 import ApplicationV4
 from libica.openapi.v3.models.data_format import DataFormat
 from libica.openapi.v3.models.data_tag import DataTag
@@ -34,10 +35,10 @@ class DataDetails(BaseModel):
     """ # noqa: E501
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
-    creator_id: Optional[StrictStr] = Field(default=None, alias="creatorId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    creator_id: Optional[UUID] = Field(default=None, alias="creatorId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
-    owning_project_id: StrictStr = Field(alias="owningProjectId")
+    owning_project_id: UUID = Field(alias="owningProjectId")
     owning_project_name: Optional[StrictStr] = Field(default=None, alias="owningProjectName")
     name: StrictStr = Field(description="The name of the file/folder as it was uploaded.")
     path: Optional[StrictStr] = Field(default=None, description="The user friendly path of the parent of this data.")

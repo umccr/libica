@@ -16,7 +16,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import StrictStr
+from uuid import UUID
 from libica.openapi.v3.models.reference_set_list import ReferenceSetList
 from libica.openapi.v3.models.species_list import SpeciesList
 
@@ -286,7 +286,7 @@ class ReferenceSetApi:
     @validate_call
     def get_species(
         self,
-        reference_set_id: StrictStr,
+        reference_set_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -352,7 +352,7 @@ class ReferenceSetApi:
     @validate_call
     def get_species_with_http_info(
         self,
-        reference_set_id: StrictStr,
+        reference_set_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -418,7 +418,7 @@ class ReferenceSetApi:
     @validate_call
     def get_species_without_preload_content(
         self,
-        reference_set_id: StrictStr,
+        reference_set_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

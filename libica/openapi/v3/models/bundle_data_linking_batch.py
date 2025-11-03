@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.job import Job
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +28,7 @@ class BundleDataLinkingBatch(BaseModel):
     """
     BundleDataLinkingBatch
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     job: Optional[Job]
     __properties: ClassVar[List[str]] = ["id", "job"]
 

@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **technical** | **bool** | Indicates which kind of step was executed | 
 **logs** | [**AnalysisStepLogs**](AnalysisStepLogs.md) |  | 
 **exit_code** | **int** | The exit code of the analysis step | [optional] 
+**compute_type** | **str** | The compute type of the analysis step | [optional] 
 
 ## Example
 

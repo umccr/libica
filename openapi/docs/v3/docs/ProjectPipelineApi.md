@@ -4,14 +4,18 @@ All URIs are relative to */ica/rest*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**archive_project_pipeline**](ProjectPipelineApi.md#archive_project_pipeline) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}:archive | Archive a pipeline.
 [**create_additional_project_pipeline_file**](ProjectPipelineApi.md#create_additional_project_pipeline_file) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles | Create an additional input form file for a pipeline.
 [**create_cwl_json_pipeline**](ProjectPipelineApi.md#create_cwl_json_pipeline) | **POST** /api/projects/{projectId}/pipelines:createCwlJsonPipeline | Create a JSON based CWL pipeline within a project.
+[**create_cwl_json_pipeline_from_git**](ProjectPipelineApi.md#create_cwl_json_pipeline_from_git) | **POST** /api/projects/{projectId}/pipelines:createCwlJsonPipelineFromGit | Create a JSON based CWL pipeline within a project from Git.
 [**create_cwl_pipeline**](ProjectPipelineApi.md#create_cwl_pipeline) | **POST** /api/projects/{projectId}/pipelines:createCwlPipeline | Create a CWL pipeline within a project.
 [**create_nextflow_json_pipeline**](ProjectPipelineApi.md#create_nextflow_json_pipeline) | **POST** /api/projects/{projectId}/pipelines:createNextflowJsonPipeline | Create a JSON based Nextflow pipeline within a project.
+[**create_nextflow_json_pipeline_from_git**](ProjectPipelineApi.md#create_nextflow_json_pipeline_from_git) | **POST** /api/projects/{projectId}/pipelines:createNextflowJsonPipelineFromGit | Create a JSON based Nextflow pipeline within a project from Git.
 [**create_nextflow_pipeline**](ProjectPipelineApi.md#create_nextflow_pipeline) | **POST** /api/projects/{projectId}/pipelines:createNextflowPipeline | Create a Nextflow pipeline within a project.
 [**create_project_pipeline_file**](ProjectPipelineApi.md#create_project_pipeline_file) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}/files | Create a file for a pipeline.
 [**delete_additional_project_pipeline_file**](ProjectPipelineApi.md#delete_additional_project_pipeline_file) | **DELETE** /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles/{fileId} | Delete an additional input form file for a pipeline.
 [**delete_project_pipeline_file**](ProjectPipelineApi.md#delete_project_pipeline_file) | **DELETE** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId} | Delete a file for a pipeline.
+[**deprecate_project_pipeline**](ProjectPipelineApi.md#deprecate_project_pipeline) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}:deprecate | Deprecate a pipeline.
 [**download_additional_file_content**](ProjectPipelineApi.md#download_additional_file_content) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles/{fileId}/content | Download the contents of an additional input form file.
 [**download_input_form_file_content**](ProjectPipelineApi.md#download_input_form_file_content) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/inputFormFile | Download the contents of the input form file.
 [**download_on_render_file_content**](ProjectPipelineApi.md#download_on_render_file_content) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/onRenderFile | Download the contents of the onRender file.
@@ -20,21 +24,111 @@ Method | HTTP request | Description
 [**get_project_pipeline**](ProjectPipelineApi.md#get_project_pipeline) | **GET** /api/projects/{projectId}/pipelines/{pipelineId} | Retrieve a project pipeline.
 [**get_project_pipeline_additional_files**](ProjectPipelineApi.md#get_project_pipeline_additional_files) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles | Retrieve additional input form files for a project pipeline.
 [**get_project_pipeline_configuration_parameters**](ProjectPipelineApi.md#get_project_pipeline_configuration_parameters) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/configurationParameters | Retrieve configuration parameters for a project pipeline.
+[**get_project_pipeline_cwl_git_config**](ProjectPipelineApi.md#get_project_pipeline_cwl_git_config) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/cwlGitConfig | Retrieve git config for a CWL project pipeline.
 [**get_project_pipeline_files**](ProjectPipelineApi.md#get_project_pipeline_files) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/files | Retrieve files for a project pipeline.
 [**get_project_pipeline_html_documentation**](ProjectPipelineApi.md#get_project_pipeline_html_documentation) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/documentation/HTML | Retrieve HTML documentation for a project pipeline.
 [**get_project_pipeline_input_parameters**](ProjectPipelineApi.md#get_project_pipeline_input_parameters) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/inputParameters | Retrieve input parameters for a project pipeline.
+[**get_project_pipeline_nextflow_git_config**](ProjectPipelineApi.md#get_project_pipeline_nextflow_git_config) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/nextflowGitConfig | Retrieve git config for a Nextflow project pipeline.
 [**get_project_pipeline_reference_sets**](ProjectPipelineApi.md#get_project_pipeline_reference_sets) | **GET** /api/projects/{projectId}/pipelines/{pipelineId}/referenceSets | Retrieve the reference sets of a project pipeline.
 [**get_project_pipelines**](ProjectPipelineApi.md#get_project_pipelines) | **GET** /api/projects/{projectId}/pipelines | Retrieve a list of project pipelines.
 [**link_pipeline_to_project**](ProjectPipelineApi.md#link_pipeline_to_project) | **POST** /api/projects/{projectId}/pipelines/{pipelineId} | Link a pipeline to a project.
 [**release_project_pipeline**](ProjectPipelineApi.md#release_project_pipeline) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}:release | Release a pipeline.
 [**unlink_pipeline_from_project**](ProjectPipelineApi.md#unlink_pipeline_from_project) | **DELETE** /api/projects/{projectId}/pipelines/{pipelineId} | Unlink a pipeline from a project.
 [**update_additional_file**](ProjectPipelineApi.md#update_additional_file) | **PUT** /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles/{fileId}/content | Update the contents of an additional input form file.
+[**update_cwl_git_config**](ProjectPipelineApi.md#update_cwl_git_config) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}/cwlGitConfig:update | Update git config for CWL
 [**update_general_attributes_project_pipeline**](ProjectPipelineApi.md#update_general_attributes_project_pipeline) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}/generalAttributes | Update the general attributes of a project pipeline.
 [**update_input_form_file**](ProjectPipelineApi.md#update_input_form_file) | **PUT** /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/inputFormFile | Update the contents of the input form file for a pipeline.
+[**update_nextflow_git_config**](ProjectPipelineApi.md#update_nextflow_git_config) | **POST** /api/projects/{projectId}/pipelines/{pipelineId}/nextflowGitConfig:update | Update git config for Nextflow
 [**update_on_render_file**](ProjectPipelineApi.md#update_on_render_file) | **PUT** /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/onRenderFile | Update the contents of the onRender file for a pipeline.
 [**update_on_submit_file**](ProjectPipelineApi.md#update_on_submit_file) | **PUT** /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/onSubmitFile | Update the contents of the onSubmit file for a pipeline.
 [**update_project_pipeline_file**](ProjectPipelineApi.md#update_project_pipeline_file) | **PUT** /api/projects/{projectId}/pipelines/{pipelineId}/files/{fileId}/content | Update the contents of a file for a pipeline.
 
+
+# **archive_project_pipeline**
+> archive_project_pipeline(project_id, pipeline_id, archive_pipeline=archive_pipeline)
+
+Archive a pipeline.
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import libica.openapi.v3
+from libica.openapi.v3.models.archive_pipeline import ArchivePipeline
+from libica.openapi.v3.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v3.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v3.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.v3.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.v3.ProjectPipelineApi(api_client)
+    project_id = 'project_id_example' # str | 
+    pipeline_id = 'pipeline_id_example' # str | The ID of the pipeline
+    archive_pipeline = libica.openapi.v3.ArchivePipeline() # ArchivePipeline |  (optional)
+
+    try:
+        # Archive a pipeline.
+        api_instance.archive_project_pipeline(project_id, pipeline_id, archive_pipeline=archive_pipeline)
+    except Exception as e:
+        print("Exception when calling ProjectPipelineApi->archive_project_pipeline: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  | 
+ **pipeline_id** | **str**| The ID of the pipeline | 
+ **archive_pipeline** | [**ArchivePipeline**](ArchivePipeline.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[JwtAuth](../README.md#JwtAuth), [ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/x-www-form-urlencoded, application/json
+ - **Accept**: application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The pipeline is successfully archived. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_additional_project_pipeline_file**
 > PipelineFile create_additional_project_pipeline_file(project_id, pipeline_id, content)
@@ -211,6 +305,126 @@ Name | Type | Description  | Notes
  **input_form_file** | **bytearray**| The JSON based input form. | 
  **analysis_storage_id** | **str**| The id of the storage to use for the pipeline. | 
  **tool_cwl_files** | **List[bytearray]**|  | [optional] 
+ **on_render_file** | **bytearray**| A file that will render the current state of the input form. | [optional] 
+ **on_submit_file** | **bytearray**| A file that will submit the current state of the input form. | [optional] 
+ **other_input_form_files** | **List[bytearray]**|  | [optional] 
+ **metadata_model_file** | **bytearray**| The metadata model json file(contents can be retrieved from the controlplane). | [optional] 
+ **links** | [**Links**](Links.md)|  | [optional] 
+ **version_comment** | **str**|  | [optional] 
+ **categories** | [**List[Optional[str]]**](str.md)|  | [optional] 
+ **html_documentation** | **str**|  | [optional] 
+ **proprietary** | **bool**| A boolean which indicates if the code of this pipeline is proprietary | [optional] [default to False]
+ **report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md)|  | [optional] 
+ **resources** | [**PipelineResources**](PipelineResources.md)|  | [optional] 
+
+### Return type
+
+[**ProjectPipelineV4**](ProjectPipelineV4.md)
+
+### Authorization
+
+[JwtAuth](../README.md#JwtAuth), [ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The CWL pipeline is successfully created. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_cwl_json_pipeline_from_git**
+> ProjectPipelineV4 create_cwl_json_pipeline_from_git(project_id, code, description, input_form_file, analysis_storage_id, cwl_git_config, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
+
+Create a JSON based CWL pipeline within a project from Git.
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import libica.openapi.v3
+from libica.openapi.v3.models.cwl_git_config import CwlGitConfig
+from libica.openapi.v3.models.links import Links
+from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v3.models.pipeline_resources import PipelineResources
+from libica.openapi.v3.models.project_pipeline_v4 import ProjectPipelineV4
+from libica.openapi.v3.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v3.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v3.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.v3.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.v3.ProjectPipelineApi(api_client)
+    project_id = 'project_id_example' # str | 
+    code = 'code_example' # str | The code of the CWL pipeline
+    description = 'description_example' # str | The description of the CWL pipeline
+    input_form_file = None # bytearray | The JSON based input form.
+    analysis_storage_id = 'analysis_storage_id_example' # str | The id of the storage to use for the pipeline.
+    cwl_git_config = libica.openapi.v3.CwlGitConfig() # CwlGitConfig | 
+    on_render_file = None # bytearray | A file that will render the current state of the input form. (optional)
+    on_submit_file = None # bytearray | A file that will submit the current state of the input form. (optional)
+    other_input_form_files = None # List[bytearray] |  (optional)
+    metadata_model_file = None # bytearray | The metadata model json file(contents can be retrieved from the controlplane). (optional)
+    links = libica.openapi.v3.Links() # Links |  (optional)
+    version_comment = 'version_comment_example' # str |  (optional)
+    categories = ['categories_example'] # List[Optional[str]] |  (optional)
+    html_documentation = 'html_documentation_example' # str |  (optional)
+    proprietary = False # bool | A boolean which indicates if the code of this pipeline is proprietary (optional) (default to False)
+    report_configs = libica.openapi.v3.PipelineReportConfig() # PipelineReportConfig |  (optional)
+    resources = libica.openapi.v3.PipelineResources() # PipelineResources |  (optional)
+
+    try:
+        # Create a JSON based CWL pipeline within a project from Git.
+        api_response = api_instance.create_cwl_json_pipeline_from_git(project_id, code, description, input_form_file, analysis_storage_id, cwl_git_config, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
+        print("The response of ProjectPipelineApi->create_cwl_json_pipeline_from_git:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectPipelineApi->create_cwl_json_pipeline_from_git: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  | 
+ **code** | **str**| The code of the CWL pipeline | 
+ **description** | **str**| The description of the CWL pipeline | 
+ **input_form_file** | **bytearray**| The JSON based input form. | 
+ **analysis_storage_id** | **str**| The id of the storage to use for the pipeline. | 
+ **cwl_git_config** | [**CwlGitConfig**](CwlGitConfig.md)|  | 
  **on_render_file** | **bytearray**| A file that will render the current state of the input form. | [optional] 
  **on_submit_file** | **bytearray**| A file that will submit the current state of the input form. | [optional] 
  **other_input_form_files** | **List[bytearray]**|  | [optional] 
@@ -451,6 +665,128 @@ Name | Type | Description  | Notes
  **pipeline_language_version_id** | **str**| The id of the Nextflow version to use for the pipeline. | [optional] 
  **nextflow_config_file** | **bytearray**| The Nextflow config file. | [optional] 
  **other_nextflow_files** | **List[bytearray]**|  | [optional] 
+ **on_render_file** | **bytearray**| A file that will render the current state of the input form. | [optional] 
+ **on_submit_file** | **bytearray**| A file that will submit the current state of the input form. | [optional] 
+ **other_input_form_files** | **List[bytearray]**|  | [optional] 
+ **metadata_model_file** | **bytearray**| The metadata model json file(contents can be retrieved from the controlplane). | [optional] 
+ **links** | [**Links**](Links.md)|  | [optional] 
+ **version_comment** | **str**|  | [optional] 
+ **categories** | [**List[Optional[str]]**](str.md)|  | [optional] 
+ **html_documentation** | **str**|  | [optional] 
+ **proprietary** | **bool**| A boolean which indicates if the code of this pipeline is proprietary | [optional] [default to False]
+ **report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md)|  | [optional] 
+ **resources** | [**PipelineResources**](PipelineResources.md)|  | [optional] 
+
+### Return type
+
+[**PipelineV4**](PipelineV4.md)
+
+### Authorization
+
+[JwtAuth](../README.md#JwtAuth), [ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The Nextflow pipeline is successfully created. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_nextflow_json_pipeline_from_git**
+> PipelineV4 create_nextflow_json_pipeline_from_git(project_id, code, description, input_form_file, analysis_storage_id, nextflow_git_config, pipeline_language_version_id=pipeline_language_version_id, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
+
+Create a JSON based Nextflow pipeline within a project from Git.
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import libica.openapi.v3
+from libica.openapi.v3.models.links import Links
+from libica.openapi.v3.models.nextflow_git_config import NextflowGitConfig
+from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
+from libica.openapi.v3.models.pipeline_resources import PipelineResources
+from libica.openapi.v3.models.pipeline_v4 import PipelineV4
+from libica.openapi.v3.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v3.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v3.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.v3.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.v3.ProjectPipelineApi(api_client)
+    project_id = 'project_id_example' # str | 
+    code = 'code_example' # str | The code of the pipeline
+    description = 'description_example' # str | The description of the pipeline
+    input_form_file = None # bytearray | The JSON based input form.
+    analysis_storage_id = 'analysis_storage_id_example' # str | The id of the storage to use for the pipeline.
+    nextflow_git_config = libica.openapi.v3.NextflowGitConfig() # NextflowGitConfig | 
+    pipeline_language_version_id = 'pipeline_language_version_id_example' # str | The id of the Nextflow version to use for the pipeline. (optional)
+    on_render_file = None # bytearray | A file that will render the current state of the input form. (optional)
+    on_submit_file = None # bytearray | A file that will submit the current state of the input form. (optional)
+    other_input_form_files = None # List[bytearray] |  (optional)
+    metadata_model_file = None # bytearray | The metadata model json file(contents can be retrieved from the controlplane). (optional)
+    links = libica.openapi.v3.Links() # Links |  (optional)
+    version_comment = 'version_comment_example' # str |  (optional)
+    categories = ['categories_example'] # List[Optional[str]] |  (optional)
+    html_documentation = 'html_documentation_example' # str |  (optional)
+    proprietary = False # bool | A boolean which indicates if the code of this pipeline is proprietary (optional) (default to False)
+    report_configs = libica.openapi.v3.PipelineReportConfig() # PipelineReportConfig |  (optional)
+    resources = libica.openapi.v3.PipelineResources() # PipelineResources |  (optional)
+
+    try:
+        # Create a JSON based Nextflow pipeline within a project from Git.
+        api_response = api_instance.create_nextflow_json_pipeline_from_git(project_id, code, description, input_form_file, analysis_storage_id, nextflow_git_config, pipeline_language_version_id=pipeline_language_version_id, on_render_file=on_render_file, on_submit_file=on_submit_file, other_input_form_files=other_input_form_files, metadata_model_file=metadata_model_file, links=links, version_comment=version_comment, categories=categories, html_documentation=html_documentation, proprietary=proprietary, report_configs=report_configs, resources=resources)
+        print("The response of ProjectPipelineApi->create_nextflow_json_pipeline_from_git:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectPipelineApi->create_nextflow_json_pipeline_from_git: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  | 
+ **code** | **str**| The code of the pipeline | 
+ **description** | **str**| The description of the pipeline | 
+ **input_form_file** | **bytearray**| The JSON based input form. | 
+ **analysis_storage_id** | **str**| The id of the storage to use for the pipeline. | 
+ **nextflow_git_config** | [**NextflowGitConfig**](NextflowGitConfig.md)|  | 
+ **pipeline_language_version_id** | **str**| The id of the Nextflow version to use for the pipeline. | [optional] 
  **on_render_file** | **bytearray**| A file that will render the current state of the input form. | [optional] 
  **on_submit_file** | **bytearray**| A file that will submit the current state of the input form. | [optional] 
  **other_input_form_files** | **List[bytearray]**|  | [optional] 
@@ -858,6 +1194,92 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | The pipeline file is successfully deleted. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **deprecate_project_pipeline**
+> deprecate_project_pipeline(project_id, pipeline_id, deprecate_pipeline=deprecate_pipeline)
+
+Deprecate a pipeline.
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import libica.openapi.v3
+from libica.openapi.v3.models.deprecate_pipeline import DeprecatePipeline
+from libica.openapi.v3.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v3.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v3.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.v3.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.v3.ProjectPipelineApi(api_client)
+    project_id = 'project_id_example' # str | 
+    pipeline_id = 'pipeline_id_example' # str | The ID of the pipeline
+    deprecate_pipeline = libica.openapi.v3.DeprecatePipeline() # DeprecatePipeline |  (optional)
+
+    try:
+        # Deprecate a pipeline.
+        api_instance.deprecate_project_pipeline(project_id, pipeline_id, deprecate_pipeline=deprecate_pipeline)
+    except Exception as e:
+        print("Exception when calling ProjectPipelineApi->deprecate_project_pipeline: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  | 
+ **pipeline_id** | **str**| The ID of the pipeline | 
+ **deprecate_pipeline** | [**DeprecatePipeline**](DeprecatePipeline.md)|  | [optional] 
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[JwtAuth](../README.md#JwtAuth), [ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/x-www-form-urlencoded, application/json
+ - **Accept**: application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | The pipeline is successfully deprecated. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1553,6 +1975,92 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_project_pipeline_cwl_git_config**
+> CwlGitConfig get_project_pipeline_cwl_git_config(project_id, pipeline_id)
+
+Retrieve git config for a CWL project pipeline.
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import libica.openapi.v3
+from libica.openapi.v3.models.cwl_git_config import CwlGitConfig
+from libica.openapi.v3.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v3.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v3.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.v3.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.v3.ProjectPipelineApi(api_client)
+    project_id = 'project_id_example' # str | 
+    pipeline_id = 'pipeline_id_example' # str | The ID of the project pipeline to retrieve the git config for
+
+    try:
+        # Retrieve git config for a CWL project pipeline.
+        api_response = api_instance.get_project_pipeline_cwl_git_config(project_id, pipeline_id)
+        print("The response of ProjectPipelineApi->get_project_pipeline_cwl_git_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectPipelineApi->get_project_pipeline_cwl_git_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  | 
+ **pipeline_id** | **str**| The ID of the project pipeline to retrieve the git config for | 
+
+### Return type
+
+[**CwlGitConfig**](CwlGitConfig.md)
+
+### Authorization
+
+[JwtAuth](../README.md#JwtAuth), [ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The git config is successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **get_project_pipeline_files**
 > PipelineFileList get_project_pipeline_files(project_id, pipeline_id)
 
@@ -1811,6 +2319,92 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The input parameters are successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_project_pipeline_nextflow_git_config**
+> NextflowGitConfig get_project_pipeline_nextflow_git_config(project_id, pipeline_id)
+
+Retrieve git config for a Nextflow project pipeline.
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import libica.openapi.v3
+from libica.openapi.v3.models.nextflow_git_config import NextflowGitConfig
+from libica.openapi.v3.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v3.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v3.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.v3.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.v3.ProjectPipelineApi(api_client)
+    project_id = 'project_id_example' # str | 
+    pipeline_id = 'pipeline_id_example' # str | The ID of the project pipeline to retrieve the git config for
+
+    try:
+        # Retrieve git config for a Nextflow project pipeline.
+        api_response = api_instance.get_project_pipeline_nextflow_git_config(project_id, pipeline_id)
+        print("The response of ProjectPipelineApi->get_project_pipeline_nextflow_git_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectPipelineApi->get_project_pipeline_nextflow_git_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  | 
+ **pipeline_id** | **str**| The ID of the project pipeline to retrieve the git config for | 
+
+### Return type
+
+[**NextflowGitConfig**](NextflowGitConfig.md)
+
+### Authorization
+
+[JwtAuth](../README.md#JwtAuth), [ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The git config is successfully retrieved. |  -  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2325,6 +2919,95 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_cwl_git_config**
+> CwlGitConfig update_cwl_git_config(project_id, pipeline_id, update_cwl_git_config)
+
+Update git config for CWL
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import libica.openapi.v3
+from libica.openapi.v3.models.cwl_git_config import CwlGitConfig
+from libica.openapi.v3.models.update_cwl_git_config import UpdateCwlGitConfig
+from libica.openapi.v3.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v3.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v3.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.v3.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.v3.ProjectPipelineApi(api_client)
+    project_id = 'project_id_example' # str | 
+    pipeline_id = 'pipeline_id_example' # str | The ID of the project pipeline for which to update the git config.
+    update_cwl_git_config = libica.openapi.v3.UpdateCwlGitConfig() # UpdateCwlGitConfig | 
+
+    try:
+        # Update git config for CWL
+        api_response = api_instance.update_cwl_git_config(project_id, pipeline_id, update_cwl_git_config)
+        print("The response of ProjectPipelineApi->update_cwl_git_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectPipelineApi->update_cwl_git_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  | 
+ **pipeline_id** | **str**| The ID of the project pipeline for which to update the git config. | 
+ **update_cwl_git_config** | [**UpdateCwlGitConfig**](UpdateCwlGitConfig.md)|  | 
+
+### Return type
+
+[**CwlGitConfig**](CwlGitConfig.md)
+
+### Authorization
+
+[JwtAuth](../README.md#JwtAuth), [ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The git config is successfully updated. |  * ETag - The current version of the resource. Can be passed to the corresponding PUT endpoint to enable conflict exposure (409 response). <br>  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_general_attributes_project_pipeline**
 > PipelineV4 update_general_attributes_project_pipeline(project_id, pipeline_id, pipeline_update)
 
@@ -2503,6 +3186,95 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The input  form file is successfully updated. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_nextflow_git_config**
+> NextflowGitConfig update_nextflow_git_config(project_id, pipeline_id, update_nextflow_git_config)
+
+Update git config for Nextflow
+
+### Example
+
+* Bearer (JWT) Authentication (JwtAuth):
+* Api Key Authentication (ApiKeyAuth):
+
+```python
+import libica.openapi.v3
+from libica.openapi.v3.models.nextflow_git_config import NextflowGitConfig
+from libica.openapi.v3.models.update_nextflow_git_config import UpdateNextflowGitConfig
+from libica.openapi.v3.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v3.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v3.Configuration(
+    access_token = os.environ["BEARER_TOKEN"]
+)
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = os.environ["API_KEY"]
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Enter a context with an instance of the API client
+with libica.openapi.v3.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = libica.openapi.v3.ProjectPipelineApi(api_client)
+    project_id = 'project_id_example' # str | 
+    pipeline_id = 'pipeline_id_example' # str | The ID of the project pipeline for which to update the git config.
+    update_nextflow_git_config = libica.openapi.v3.UpdateNextflowGitConfig() # UpdateNextflowGitConfig | 
+
+    try:
+        # Update git config for Nextflow
+        api_response = api_instance.update_nextflow_git_config(project_id, pipeline_id, update_nextflow_git_config)
+        print("The response of ProjectPipelineApi->update_nextflow_git_config:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ProjectPipelineApi->update_nextflow_git_config: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  | 
+ **pipeline_id** | **str**| The ID of the project pipeline for which to update the git config. | 
+ **update_nextflow_git_config** | [**UpdateNextflowGitConfig**](UpdateNextflowGitConfig.md)|  | 
+
+### Return type
+
+[**NextflowGitConfig**](NextflowGitConfig.md)
+
+### Authorization
+
+[JwtAuth](../README.md#JwtAuth), [ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | The git config is successfully updated. |  * ETag - The current version of the resource. Can be passed to the corresponding PUT endpoint to enable conflict exposure (409 response). <br>  |
 **0** | A problem occurred. |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

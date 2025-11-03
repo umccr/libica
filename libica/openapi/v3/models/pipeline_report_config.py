@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from libica.openapi.v3.models.config import Config
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +28,7 @@ class PipelineReportConfig(BaseModel):
     """
     PipelineReportConfig
     """ # noqa: E501
-    configs: Optional[List[Config]] = None
+    configs: Optional[Annotated[List[Config], Field(min_length=0, max_length=100)]] = None
     __properties: ClassVar[List[str]] = ["configs"]
 
     model_config = ConfigDict(

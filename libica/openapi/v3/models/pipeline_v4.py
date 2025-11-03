@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.analysis_storage_v4 import AnalysisStorageV4
 from libica.openapi.v3.models.pipeline_language_version import PipelineLanguageVersion
 from libica.openapi.v3.models.pipeline_report_config import PipelineReportConfig
@@ -35,7 +36,7 @@ class PipelineV4(BaseModel):
     """
     PipelineV4
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     urn: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=2000)]] = Field(default=None, description="The URN of the pipeline. The format is urn:ilmn:ica:\\<type of the object\\>:\\<ID of the object\\>#\\<optional human readable hint representing the object\\>. The hint can be omitted, in that case the hashtag (#) must also be omitted.")
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
@@ -44,6 +45,7 @@ class PipelineV4(BaseModel):
     code: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The code of the pipeline")
     description: Annotated[str, Field(min_length=1, strict=True, max_length=4000)] = Field(description="The description of the pipeline")
     status: Optional[StrictStr] = Field(default=None, description="The status of the pipeline")
+    status_as_string: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=10)]] = Field(default=None, description="The status of the pipeline as string ('Draft', 'Released', 'Deprecated', 'Archived')", alias="statusAsString")
     language: StrictStr = Field(description="The language that is used by the pipeline")
     language_version: Optional[PipelineLanguageVersion] = Field(default=None, alias="languageVersion")
     pipeline_tags: PipelineTag = Field(alias="pipelineTags")
@@ -52,7 +54,7 @@ class PipelineV4(BaseModel):
     input_form_type: Optional[StrictStr] = Field(default=None, description="The type of the inputform used.", alias="inputFormType")
     report_configs: Optional[PipelineReportConfig] = Field(default=None, alias="reportConfigs")
     resources: Optional[PipelineResources] = None
-    __properties: ClassVar[List[str]] = ["id", "urn", "timeCreated", "timeModified", "owner", "tenant", "code", "description", "status", "language", "languageVersion", "pipelineTags", "analysisStorage", "proprietary", "inputFormType", "reportConfigs", "resources"]
+    __properties: ClassVar[List[str]] = ["id", "urn", "timeCreated", "timeModified", "owner", "tenant", "code", "description", "status", "statusAsString", "language", "languageVersion", "pipelineTags", "analysisStorage", "proprietary", "inputFormType", "reportConfigs", "resources"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -192,6 +194,7 @@ class PipelineV4(BaseModel):
             "code": obj.get("code"),
             "description": obj.get("description"),
             "status": obj.get("status"),
+            "statusAsString": obj.get("statusAsString"),
             "language": obj.get("language"),
             "languageVersion": PipelineLanguageVersion.from_dict(obj["languageVersion"]) if obj.get("languageVersion") is not None else None,
             "pipelineTags": PipelineTag.from_dict(obj["pipelineTags"]) if obj.get("pipelineTags") is not None else None,

@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class AnalysisReferenceDataParameter(BaseModel):
     AnalysisReferenceDataParameter
     """ # noqa: E501
     parameter_code: Optional[StrictStr] = Field(default=None, alias="parameterCode")
-    reference_data_id: Optional[StrictStr] = Field(default=None, alias="referenceDataId")
+    reference_data_id: Optional[UUID] = Field(default=None, alias="referenceDataId")
     __properties: ClassVar[List[str]] = ["parameterCode", "referenceDataId"]
 
     model_config = ConfigDict(

@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.region import Region
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,11 +30,11 @@ class StorageBundle(BaseModel):
     """
     StorageBundle
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
-    owner_id: StrictStr = Field(alias="ownerId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    owner_id: UUID = Field(alias="ownerId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
     bundle_name: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The name of the storage bundle", alias="bundleName")
     entitlement_name: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The name of the parent entitlement", alias="entitlementName")

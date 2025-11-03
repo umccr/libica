@@ -20,6 +20,8 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
+from libica.openapi.v3.models.application import Application
 from libica.openapi.v3.models.bundle import Bundle
 from libica.openapi.v3.models.project import Project
 from libica.openapi.v3.models.user import User
@@ -30,18 +32,19 @@ class Job(BaseModel):
     """
     Job
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     status: StrictStr
     additional_status_information: Optional[StrictStr] = Field(default=None, description="Additional information regarding the status of this job.", alias="additionalStatusInformation")
     subject_type: StrictStr = Field(description="The type of the subject for which this job provides execution.", alias="subjectType")
-    subject_id: StrictStr = Field(description="The id of the subject for which this job provides execution.", alias="subjectId")
+    subject_id: UUID = Field(description="The id of the subject for which this job provides execution.", alias="subjectId")
     time_created: datetime = Field(alias="timeCreated")
     time_started: Optional[datetime] = Field(default=None, alias="timeStarted")
     time_finished: Optional[datetime] = Field(default=None, alias="timeFinished")
     owner: User
     project: Optional[Project] = None
     bundle: Optional[Bundle] = None
-    __properties: ClassVar[List[str]] = ["id", "status", "additionalStatusInformation", "subjectType", "subjectId", "timeCreated", "timeStarted", "timeFinished", "owner", "project", "bundle"]
+    application: Optional[Application] = None
+    __properties: ClassVar[List[str]] = ["id", "status", "additionalStatusInformation", "subjectType", "subjectId", "timeCreated", "timeStarted", "timeFinished", "owner", "project", "bundle", "application"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -98,6 +101,9 @@ class Job(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of bundle
         if self.bundle:
             _dict['bundle'] = self.bundle.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of application
+        if self.application:
+            _dict['application'] = self.application.to_dict()
         # set to None if additional_status_information (nullable) is None
         # and model_fields_set contains the field
         if self.additional_status_information is None and "additional_status_information" in self.model_fields_set:
@@ -117,6 +123,11 @@ class Job(BaseModel):
         # and model_fields_set contains the field
         if self.bundle is None and "bundle" in self.model_fields_set:
             _dict['bundle'] = None
+
+        # set to None if application (nullable) is None
+        # and model_fields_set contains the field
+        if self.application is None and "application" in self.model_fields_set:
+            _dict['application'] = None
 
         return _dict
 
@@ -140,7 +151,8 @@ class Job(BaseModel):
             "timeFinished": obj.get("timeFinished"),
             "owner": User.from_dict(obj["owner"]) if obj.get("owner") is not None else None,
             "project": Project.from_dict(obj["project"]) if obj.get("project") is not None else None,
-            "bundle": Bundle.from_dict(obj["bundle"]) if obj.get("bundle") is not None else None
+            "bundle": Bundle.from_dict(obj["bundle"]) if obj.get("bundle") is not None else None,
+            "application": Application.from_dict(obj["application"]) if obj.get("application") is not None else None
         })
         return _obj
 

@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **owner** | [**User**](User.md) |  | 
 **project** | [**Project**](Project.md) |  | [optional] 
 **bundle** | [**Bundle**](Bundle.md) |  | [optional] 
+**application** | [**Application**](Application.md) |  | [optional] 
 
 ## Example
 

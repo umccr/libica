@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from libica.openapi.v3.models.analysis_v4 import AnalysisV4
 from libica.openapi.v3.models.project import Project
 from typing import Optional, Set
@@ -30,7 +31,7 @@ class WorkflowSessionAnalysisV4(BaseModel):
     """ # noqa: E501
     analysis: AnalysisV4
     project: Project
-    workflow_session_id: StrictStr = Field(alias="workflowSessionId")
+    workflow_session_id: UUID = Field(alias="workflowSessionId")
     __properties: ClassVar[List[str]] = ["analysis", "project", "workflowSessionId"]
 
     model_config = ConfigDict(

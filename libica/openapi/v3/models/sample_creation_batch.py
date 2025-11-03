@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.job import Job
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,9 +28,9 @@ class SampleCreationBatch(BaseModel):
     """
     SampleCreationBatch
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     job: Optional[Job] = None
-    sequencing_run_id: Optional[StrictStr] = Field(default=None, description="The sequencingRunId to link to all created samples and linked data", alias="sequencingRunId")
+    sequencing_run_id: Optional[UUID] = Field(default=None, description="The sequencingRunId to link to all created samples and linked data", alias="sequencingRunId")
     __properties: ClassVar[List[str]] = ["id", "job", "sequencingRunId"]
 
     model_config = ConfigDict(

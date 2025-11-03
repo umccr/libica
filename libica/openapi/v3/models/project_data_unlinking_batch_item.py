@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from libica.openapi.v3.models.project_data_unlinking_batch_item_processing import ProjectDataUnlinkingBatchItemProcessing
 from libica.openapi.v3.models.project_data_unlinking_batch_item_request import ProjectDataUnlinkingBatchItemRequest
 from typing import Optional, Set
@@ -28,7 +29,7 @@ class ProjectDataUnlinkingBatchItem(BaseModel):
     """
     ProjectDataUnlinkingBatchItem
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     request: ProjectDataUnlinkingBatchItemRequest
     processing: ProjectDataUnlinkingBatchItemProcessing
     __properties: ClassVar[List[str]] = ["id", "request", "processing"]

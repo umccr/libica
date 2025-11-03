@@ -17,9 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.activation_code_detail_usage import ActivationCodeDetailUsage
 from libica.openapi.v3.models.pipeline_bundle import PipelineBundle
 from typing import Optional, Set
@@ -29,7 +30,7 @@ class ActivationCodeDetail(BaseModel):
     """
     ActivationCodeDetail
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     allowed_slots: Annotated[int, Field(strict=True, ge=-1)] = Field(description="The allowed slot within this code, -1 means unlimited", alias="allowedSlots")
     used_slots: Annotated[int, Field(strict=True, ge=0)] = Field(description="Indicates how many slots can are used.", alias="usedSlots")
     moved_slots: Annotated[int, Field(strict=True, ge=0)] = Field(description="The slots that where moved to another activation code", alias="movedSlots")

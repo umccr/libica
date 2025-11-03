@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **type** | **str** |  | [optional] 
 **subtype** | **str** |  | [optional] 
 **parameters** | **Dict[str, str]** |  | [optional] 
-**wildcard_subtype** | **bool** |  | [optional] 
 **wildcard_type** | **bool** |  | [optional] 
+**wildcard_subtype** | **bool** |  | [optional] 
 
 ## Example
 

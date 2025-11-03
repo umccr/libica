@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.data import Data
 from libica.openapi.v3.models.temp_credentials import TempCredentials
 from typing import Optional, Set
@@ -29,7 +30,7 @@ class ProjectDataAndTemporaryCredentials(BaseModel):
     ProjectDataAndTemporaryCredentials
     """ # noqa: E501
     data: Data
-    project_id: StrictStr = Field(alias="projectId")
+    project_id: UUID = Field(alias="projectId")
     temp_credentials: Optional[TempCredentials] = Field(alias="tempCredentials")
     __properties: ClassVar[List[str]] = ["data", "projectId", "tempCredentials"]
 

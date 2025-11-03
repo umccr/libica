@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from libica.openapi.v3.models.docker_image_region import DockerImageRegion
+from libica.openapi.v3.models.internal_docker_image_region import InternalDockerImageRegion
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class InternalDockerImageSettings(BaseModel):
     """
     InternalDockerImageSettings
     """ # noqa: E501
-    regions: Optional[List[Optional[DockerImageRegion]]] = None
+    regions: Optional[List[Optional[InternalDockerImageRegion]]] = None
     __properties: ClassVar[List[str]] = ["regions"]
 
     model_config = ConfigDict(
@@ -93,7 +93,7 @@ class InternalDockerImageSettings(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "regions": [DockerImageRegion.from_dict(_item) for _item in obj["regions"]] if obj.get("regions") is not None else None
+            "regions": [InternalDockerImageRegion.from_dict(_item) for _item in obj["regions"]] if obj.get("regions") is not None else None
         })
         return _obj
 

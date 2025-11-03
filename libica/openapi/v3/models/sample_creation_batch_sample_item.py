@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.sample import Sample
 from libica.openapi.v3.models.sample_creation_batch_item_processing import SampleCreationBatchItemProcessing
 from libica.openapi.v3.models.sample_creation_batch_item_request import SampleCreationBatchItemRequest
@@ -29,7 +30,7 @@ class SampleCreationBatchSampleItem(BaseModel):
     """
     SampleCreationBatchSampleItem
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     request: SampleCreationBatchItemRequest
     processing: SampleCreationBatchItemProcessing
     created_sample: Optional[Sample] = Field(default=None, alias="createdSample")

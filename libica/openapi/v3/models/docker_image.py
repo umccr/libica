@@ -20,8 +20,10 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.bench_settings import BenchSettings
 from libica.openapi.v3.models.external_docker_image_settings import ExternalDockerImageSettings
+from libica.openapi.v3.models.ilmn_repo_docker_image_settings import IlmnRepoDockerImageSettings
 from libica.openapi.v3.models.internal_docker_image_settings import InternalDockerImageSettings
 from libica.openapi.v3.models.tenant_identifier import TenantIdentifier
 from libica.openapi.v3.models.user_identifier import UserIdentifier
@@ -32,7 +34,7 @@ class DockerImage(BaseModel):
     """
     DockerImage
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
     owner: UserIdentifier
@@ -44,8 +46,9 @@ class DockerImage(BaseModel):
     type: StrictStr
     internal_docker_image_settings: Optional[InternalDockerImageSettings] = Field(default=None, alias="internalDockerImageSettings")
     external_docker_image_settings: Optional[ExternalDockerImageSettings] = Field(default=None, alias="externalDockerImageSettings")
+    ilmn_repo_docker_image_settings: Optional[IlmnRepoDockerImageSettings] = Field(default=None, alias="ilmnRepoDockerImageSettings")
     bench_settings: Optional[BenchSettings] = Field(default=None, alias="benchSettings")
-    __properties: ClassVar[List[str]] = ["id", "timeCreated", "timeModified", "owner", "tenant", "name", "version", "description", "status", "type", "internalDockerImageSettings", "externalDockerImageSettings", "benchSettings"]
+    __properties: ClassVar[List[str]] = ["id", "timeCreated", "timeModified", "owner", "tenant", "name", "version", "description", "status", "type", "internalDockerImageSettings", "externalDockerImageSettings", "ilmnRepoDockerImageSettings", "benchSettings"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -112,6 +115,9 @@ class DockerImage(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of external_docker_image_settings
         if self.external_docker_image_settings:
             _dict['externalDockerImageSettings'] = self.external_docker_image_settings.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ilmn_repo_docker_image_settings
+        if self.ilmn_repo_docker_image_settings:
+            _dict['ilmnRepoDockerImageSettings'] = self.ilmn_repo_docker_image_settings.to_dict()
         # override the default output from pydantic by calling `to_dict()` of bench_settings
         if self.bench_settings:
             _dict['benchSettings'] = self.bench_settings.to_dict()
@@ -134,6 +140,11 @@ class DockerImage(BaseModel):
         # and model_fields_set contains the field
         if self.external_docker_image_settings is None and "external_docker_image_settings" in self.model_fields_set:
             _dict['externalDockerImageSettings'] = None
+
+        # set to None if ilmn_repo_docker_image_settings (nullable) is None
+        # and model_fields_set contains the field
+        if self.ilmn_repo_docker_image_settings is None and "ilmn_repo_docker_image_settings" in self.model_fields_set:
+            _dict['ilmnRepoDockerImageSettings'] = None
 
         # set to None if bench_settings (nullable) is None
         # and model_fields_set contains the field
@@ -164,6 +175,7 @@ class DockerImage(BaseModel):
             "type": obj.get("type"),
             "internalDockerImageSettings": InternalDockerImageSettings.from_dict(obj["internalDockerImageSettings"]) if obj.get("internalDockerImageSettings") is not None else None,
             "externalDockerImageSettings": ExternalDockerImageSettings.from_dict(obj["externalDockerImageSettings"]) if obj.get("externalDockerImageSettings") is not None else None,
+            "ilmnRepoDockerImageSettings": IlmnRepoDockerImageSettings.from_dict(obj["ilmnRepoDockerImageSettings"]) if obj.get("ilmnRepoDockerImageSettings") is not None else None,
             "benchSettings": BenchSettings.from_dict(obj["benchSettings"]) if obj.get("benchSettings") is not None else None
         })
         return _obj

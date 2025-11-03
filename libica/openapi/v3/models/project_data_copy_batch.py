@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.job import Job
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +28,7 @@ class ProjectDataCopyBatch(BaseModel):
     """
     ProjectDataCopyBatch
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     job: Optional[Job]
     destination_folder_id: Optional[StrictStr] = Field(default=None, alias="destinationFolderId")
     copy_user_tags: StrictBool = Field(alias="copyUserTags")

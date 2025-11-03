@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from typing_extensions import Annotated
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +31,7 @@ class AnalysisOutputMapping(BaseModel):
     type: Optional[StrictStr] = None
     target_project_id: StrictStr = Field(alias="targetProjectId")
     target_path: StrictStr = Field(alias="targetPath")
-    action_on_exist: Optional[StrictStr] = Field(default=None, alias="actionOnExist")
+    action_on_exist: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, alias="actionOnExist")
     __properties: ClassVar[List[str]] = ["sourcePath", "type", "targetProjectId", "targetPath", "actionOnExist"]
 
     @field_validator('type')
@@ -41,6 +42,16 @@ class AnalysisOutputMapping(BaseModel):
 
         if value not in set(['FILE', 'FOLDER']):
             raise ValueError("must be one of enum values ('FILE', 'FOLDER')")
+        return value
+
+    @field_validator('action_on_exist')
+    def action_on_exist_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"OVERWRITE|RENAME|SKIP", value):
+            raise ValueError(r"must validate the regular expression /OVERWRITE|RENAME|SKIP/")
         return value
 
     model_config = ConfigDict(

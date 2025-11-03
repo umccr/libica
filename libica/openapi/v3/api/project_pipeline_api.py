@@ -19,8 +19,13 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictBool, StrictBytes, StrictStr, field_validator
 from typing import List, Optional, Tuple, Union
 from typing_extensions import Annotated
+from uuid import UUID
+from libica.openapi.v3.models.archive_pipeline import ArchivePipeline
+from libica.openapi.v3.models.cwl_git_config import CwlGitConfig
+from libica.openapi.v3.models.deprecate_pipeline import DeprecatePipeline
 from libica.openapi.v3.models.input_parameter_list import InputParameterList
 from libica.openapi.v3.models.links import Links
+from libica.openapi.v3.models.nextflow_git_config import NextflowGitConfig
 from libica.openapi.v3.models.pipeline_configuration_parameter_list import PipelineConfigurationParameterList
 from libica.openapi.v3.models.pipeline_file import PipelineFile
 from libica.openapi.v3.models.pipeline_file_list import PipelineFileList
@@ -33,6 +38,8 @@ from libica.openapi.v3.models.project_pipeline import ProjectPipeline
 from libica.openapi.v3.models.project_pipeline_list import ProjectPipelineList
 from libica.openapi.v3.models.project_pipeline_v4 import ProjectPipelineV4
 from libica.openapi.v3.models.reference_set_list import ReferenceSetList
+from libica.openapi.v3.models.update_cwl_git_config import UpdateCwlGitConfig
+from libica.openapi.v3.models.update_nextflow_git_config import UpdateNextflowGitConfig
 
 from libica.openapi.v3.api_client import ApiClient, RequestSerialized
 from libica.openapi.v3.api_response import ApiResponse
@@ -50,6 +57,310 @@ class ProjectPipelineApi:
         if api_client is None:
             api_client = ApiClient.get_default()
         self.api_client = api_client
+
+
+    @validate_call
+    def archive_project_pipeline(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the pipeline")],
+        archive_pipeline: Optional[ArchivePipeline] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Archive a pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the pipeline (required)
+        :type pipeline_id: str
+        :param archive_pipeline:
+        :type archive_pipeline: ArchivePipeline
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._archive_project_pipeline_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            archive_pipeline=archive_pipeline,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def archive_project_pipeline_with_http_info(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the pipeline")],
+        archive_pipeline: Optional[ArchivePipeline] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Archive a pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the pipeline (required)
+        :type pipeline_id: str
+        :param archive_pipeline:
+        :type archive_pipeline: ArchivePipeline
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._archive_project_pipeline_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            archive_pipeline=archive_pipeline,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def archive_project_pipeline_without_preload_content(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the pipeline")],
+        archive_pipeline: Optional[ArchivePipeline] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Archive a pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the pipeline (required)
+        :type pipeline_id: str
+        :param archive_pipeline:
+        :type archive_pipeline: ArchivePipeline
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._archive_project_pipeline_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            archive_pipeline=archive_pipeline,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _archive_project_pipeline_serialize(
+        self,
+        project_id,
+        pipeline_id,
+        archive_pipeline,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if pipeline_id is not None:
+            _path_params['pipelineId'] = pipeline_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if archive_pipeline is not None:
+            _body_params = archive_pipeline
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/problem+json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/vnd.illumina.v3+json', 
+                        'application/x-www-form-urlencoded', 
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'JwtAuth', 
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/api/projects/{projectId}/pipelines/{pipelineId}:archive',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
 
 
     @validate_call
@@ -363,7 +674,7 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the CWL pipeline")],
         workflow_cwl_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The CWL workflow file.")],
         input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
         tool_cwl_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
         on_submit_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will submit the current state of the input form.")] = None,
@@ -497,7 +808,7 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the CWL pipeline")],
         workflow_cwl_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The CWL workflow file.")],
         input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
         tool_cwl_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
         on_submit_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will submit the current state of the input form.")] = None,
@@ -631,7 +942,7 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the CWL pipeline")],
         workflow_cwl_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The CWL workflow file.")],
         input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
         tool_cwl_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
         on_submit_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will submit the current state of the input form.")] = None,
@@ -887,6 +1198,521 @@ class ProjectPipelineApi:
 
 
     @validate_call
+    def create_cwl_json_pipeline_from_git(
+        self,
+        project_id: StrictStr,
+        code: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="The code of the CWL pipeline")],
+        description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the CWL pipeline")],
+        input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        cwl_git_config: Optional[CwlGitConfig],
+        on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
+        on_submit_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will submit the current state of the input form.")] = None,
+        other_input_form_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
+        metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
+        links: Optional[Links] = None,
+        version_comment: Optional[StrictStr] = None,
+        categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
+        html_documentation: Optional[StrictStr] = None,
+        proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ProjectPipelineV4:
+        """Create a JSON based CWL pipeline within a project from Git.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param code: The code of the CWL pipeline (required)
+        :type code: str
+        :param description: The description of the CWL pipeline (required)
+        :type description: str
+        :param input_form_file: The JSON based input form. (required)
+        :type input_form_file: bytearray
+        :param analysis_storage_id: The id of the storage to use for the pipeline. (required)
+        :type analysis_storage_id: str
+        :param cwl_git_config: (required)
+        :type cwl_git_config: CwlGitConfig
+        :param on_render_file: A file that will render the current state of the input form.
+        :type on_render_file: bytearray
+        :param on_submit_file: A file that will submit the current state of the input form.
+        :type on_submit_file: bytearray
+        :param other_input_form_files:
+        :type other_input_form_files: List[bytearray]
+        :param metadata_model_file: The metadata model json file(contents can be retrieved from the controlplane).
+        :type metadata_model_file: bytearray
+        :param links:
+        :type links: Links
+        :param version_comment:
+        :type version_comment: str
+        :param categories:
+        :type categories: List[Optional[str]]
+        :param html_documentation:
+        :type html_documentation: str
+        :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
+        :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_cwl_json_pipeline_from_git_serialize(
+            project_id=project_id,
+            code=code,
+            description=description,
+            input_form_file=input_form_file,
+            analysis_storage_id=analysis_storage_id,
+            cwl_git_config=cwl_git_config,
+            on_render_file=on_render_file,
+            on_submit_file=on_submit_file,
+            other_input_form_files=other_input_form_files,
+            metadata_model_file=metadata_model_file,
+            links=links,
+            version_comment=version_comment,
+            categories=categories,
+            html_documentation=html_documentation,
+            proprietary=proprietary,
+            report_configs=report_configs,
+            resources=resources,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ProjectPipelineV4",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def create_cwl_json_pipeline_from_git_with_http_info(
+        self,
+        project_id: StrictStr,
+        code: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="The code of the CWL pipeline")],
+        description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the CWL pipeline")],
+        input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        cwl_git_config: Optional[CwlGitConfig],
+        on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
+        on_submit_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will submit the current state of the input form.")] = None,
+        other_input_form_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
+        metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
+        links: Optional[Links] = None,
+        version_comment: Optional[StrictStr] = None,
+        categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
+        html_documentation: Optional[StrictStr] = None,
+        proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ProjectPipelineV4]:
+        """Create a JSON based CWL pipeline within a project from Git.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param code: The code of the CWL pipeline (required)
+        :type code: str
+        :param description: The description of the CWL pipeline (required)
+        :type description: str
+        :param input_form_file: The JSON based input form. (required)
+        :type input_form_file: bytearray
+        :param analysis_storage_id: The id of the storage to use for the pipeline. (required)
+        :type analysis_storage_id: str
+        :param cwl_git_config: (required)
+        :type cwl_git_config: CwlGitConfig
+        :param on_render_file: A file that will render the current state of the input form.
+        :type on_render_file: bytearray
+        :param on_submit_file: A file that will submit the current state of the input form.
+        :type on_submit_file: bytearray
+        :param other_input_form_files:
+        :type other_input_form_files: List[bytearray]
+        :param metadata_model_file: The metadata model json file(contents can be retrieved from the controlplane).
+        :type metadata_model_file: bytearray
+        :param links:
+        :type links: Links
+        :param version_comment:
+        :type version_comment: str
+        :param categories:
+        :type categories: List[Optional[str]]
+        :param html_documentation:
+        :type html_documentation: str
+        :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
+        :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_cwl_json_pipeline_from_git_serialize(
+            project_id=project_id,
+            code=code,
+            description=description,
+            input_form_file=input_form_file,
+            analysis_storage_id=analysis_storage_id,
+            cwl_git_config=cwl_git_config,
+            on_render_file=on_render_file,
+            on_submit_file=on_submit_file,
+            other_input_form_files=other_input_form_files,
+            metadata_model_file=metadata_model_file,
+            links=links,
+            version_comment=version_comment,
+            categories=categories,
+            html_documentation=html_documentation,
+            proprietary=proprietary,
+            report_configs=report_configs,
+            resources=resources,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ProjectPipelineV4",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_cwl_json_pipeline_from_git_without_preload_content(
+        self,
+        project_id: StrictStr,
+        code: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="The code of the CWL pipeline")],
+        description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the CWL pipeline")],
+        input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        cwl_git_config: Optional[CwlGitConfig],
+        on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
+        on_submit_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will submit the current state of the input form.")] = None,
+        other_input_form_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
+        metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
+        links: Optional[Links] = None,
+        version_comment: Optional[StrictStr] = None,
+        categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
+        html_documentation: Optional[StrictStr] = None,
+        proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create a JSON based CWL pipeline within a project from Git.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param code: The code of the CWL pipeline (required)
+        :type code: str
+        :param description: The description of the CWL pipeline (required)
+        :type description: str
+        :param input_form_file: The JSON based input form. (required)
+        :type input_form_file: bytearray
+        :param analysis_storage_id: The id of the storage to use for the pipeline. (required)
+        :type analysis_storage_id: str
+        :param cwl_git_config: (required)
+        :type cwl_git_config: CwlGitConfig
+        :param on_render_file: A file that will render the current state of the input form.
+        :type on_render_file: bytearray
+        :param on_submit_file: A file that will submit the current state of the input form.
+        :type on_submit_file: bytearray
+        :param other_input_form_files:
+        :type other_input_form_files: List[bytearray]
+        :param metadata_model_file: The metadata model json file(contents can be retrieved from the controlplane).
+        :type metadata_model_file: bytearray
+        :param links:
+        :type links: Links
+        :param version_comment:
+        :type version_comment: str
+        :param categories:
+        :type categories: List[Optional[str]]
+        :param html_documentation:
+        :type html_documentation: str
+        :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
+        :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_cwl_json_pipeline_from_git_serialize(
+            project_id=project_id,
+            code=code,
+            description=description,
+            input_form_file=input_form_file,
+            analysis_storage_id=analysis_storage_id,
+            cwl_git_config=cwl_git_config,
+            on_render_file=on_render_file,
+            on_submit_file=on_submit_file,
+            other_input_form_files=other_input_form_files,
+            metadata_model_file=metadata_model_file,
+            links=links,
+            version_comment=version_comment,
+            categories=categories,
+            html_documentation=html_documentation,
+            proprietary=proprietary,
+            report_configs=report_configs,
+            resources=resources,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "ProjectPipelineV4",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_cwl_json_pipeline_from_git_serialize(
+        self,
+        project_id,
+        code,
+        description,
+        input_form_file,
+        analysis_storage_id,
+        cwl_git_config,
+        on_render_file,
+        on_submit_file,
+        other_input_form_files,
+        metadata_model_file,
+        links,
+        version_comment,
+        categories,
+        html_documentation,
+        proprietary,
+        report_configs,
+        resources,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'otherInputFormFiles': 'csv',
+            'categories': 'csv',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        if code is not None:
+            _form_params.append(('code', code))
+        if description is not None:
+            _form_params.append(('description', description))
+        if input_form_file is not None:
+            _files['inputFormFile'] = input_form_file
+        if on_render_file is not None:
+            _files['onRenderFile'] = on_render_file
+        if on_submit_file is not None:
+            _files['onSubmitFile'] = on_submit_file
+        if other_input_form_files is not None:
+            _files['otherInputFormFiles'] = other_input_form_files
+        if metadata_model_file is not None:
+            _files['metadataModelFile'] = metadata_model_file
+        if links is not None:
+            _form_params.append(('links', links))
+        if version_comment is not None:
+            _form_params.append(('versionComment', version_comment))
+        if categories is not None:
+            _form_params.append(('categories', categories))
+        if html_documentation is not None:
+            _form_params.append(('htmlDocumentation', html_documentation))
+        if analysis_storage_id is not None:
+            _form_params.append(('analysisStorageId', analysis_storage_id))
+        if proprietary is not None:
+            _form_params.append(('proprietary', proprietary))
+        if report_configs is not None:
+            _form_params.append(('reportConfigs', report_configs))
+        if cwl_git_config is not None:
+            _form_params.append(('cwlGitConfig', cwl_git_config))
+        if resources is not None:
+            _form_params.append(('resources', resources))
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/problem+json', 
+                    'application/vnd.illumina.v4+json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'multipart/form-data'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'JwtAuth', 
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/api/projects/{projectId}/pipelines:createCwlJsonPipelineFromGit',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def create_cwl_pipeline(
         self,
         project_id: StrictStr,
@@ -894,7 +1720,7 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the CWL pipeline")],
         workflow_cwl_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The CWL workflow file.")],
         parameters_xml_file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
         tool_cwl_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
         links: Optional[Links] = None,
@@ -1016,7 +1842,7 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the CWL pipeline")],
         workflow_cwl_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The CWL workflow file.")],
         parameters_xml_file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
         tool_cwl_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
         links: Optional[Links] = None,
@@ -1138,7 +1964,7 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the CWL pipeline")],
         workflow_cwl_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The CWL workflow file.")],
         parameters_xml_file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
         tool_cwl_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
         links: Optional[Links] = None,
@@ -1379,8 +2205,8 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the pipeline")],
         main_nextflow_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The main Nextflow file.")],
         input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
-        pipeline_language_version_id: Annotated[Optional[StrictStr], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        pipeline_language_version_id: Annotated[Optional[UUID], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
         nextflow_config_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The Nextflow config file.")] = None,
         other_nextflow_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
@@ -1521,8 +2347,8 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the pipeline")],
         main_nextflow_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The main Nextflow file.")],
         input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
-        pipeline_language_version_id: Annotated[Optional[StrictStr], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        pipeline_language_version_id: Annotated[Optional[UUID], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
         nextflow_config_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The Nextflow config file.")] = None,
         other_nextflow_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
@@ -1663,8 +2489,8 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the pipeline")],
         main_nextflow_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The main Nextflow file.")],
         input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
-        pipeline_language_version_id: Annotated[Optional[StrictStr], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        pipeline_language_version_id: Annotated[Optional[UUID], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
         nextflow_config_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The Nextflow config file.")] = None,
         other_nextflow_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
@@ -1933,6 +2759,536 @@ class ProjectPipelineApi:
 
 
     @validate_call
+    def create_nextflow_json_pipeline_from_git(
+        self,
+        project_id: StrictStr,
+        code: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="The code of the pipeline")],
+        description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the pipeline")],
+        input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        nextflow_git_config: NextflowGitConfig,
+        pipeline_language_version_id: Annotated[Optional[UUID], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
+        on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
+        on_submit_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will submit the current state of the input form.")] = None,
+        other_input_form_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
+        metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
+        links: Optional[Links] = None,
+        version_comment: Optional[StrictStr] = None,
+        categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
+        html_documentation: Optional[StrictStr] = None,
+        proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> PipelineV4:
+        """Create a JSON based Nextflow pipeline within a project from Git.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param code: The code of the pipeline (required)
+        :type code: str
+        :param description: The description of the pipeline (required)
+        :type description: str
+        :param input_form_file: The JSON based input form. (required)
+        :type input_form_file: bytearray
+        :param analysis_storage_id: The id of the storage to use for the pipeline. (required)
+        :type analysis_storage_id: str
+        :param nextflow_git_config: (required)
+        :type nextflow_git_config: NextflowGitConfig
+        :param pipeline_language_version_id: The id of the Nextflow version to use for the pipeline.
+        :type pipeline_language_version_id: str
+        :param on_render_file: A file that will render the current state of the input form.
+        :type on_render_file: bytearray
+        :param on_submit_file: A file that will submit the current state of the input form.
+        :type on_submit_file: bytearray
+        :param other_input_form_files:
+        :type other_input_form_files: List[bytearray]
+        :param metadata_model_file: The metadata model json file(contents can be retrieved from the controlplane).
+        :type metadata_model_file: bytearray
+        :param links:
+        :type links: Links
+        :param version_comment:
+        :type version_comment: str
+        :param categories:
+        :type categories: List[Optional[str]]
+        :param html_documentation:
+        :type html_documentation: str
+        :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
+        :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_nextflow_json_pipeline_from_git_serialize(
+            project_id=project_id,
+            code=code,
+            description=description,
+            input_form_file=input_form_file,
+            analysis_storage_id=analysis_storage_id,
+            nextflow_git_config=nextflow_git_config,
+            pipeline_language_version_id=pipeline_language_version_id,
+            on_render_file=on_render_file,
+            on_submit_file=on_submit_file,
+            other_input_form_files=other_input_form_files,
+            metadata_model_file=metadata_model_file,
+            links=links,
+            version_comment=version_comment,
+            categories=categories,
+            html_documentation=html_documentation,
+            proprietary=proprietary,
+            report_configs=report_configs,
+            resources=resources,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "PipelineV4",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def create_nextflow_json_pipeline_from_git_with_http_info(
+        self,
+        project_id: StrictStr,
+        code: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="The code of the pipeline")],
+        description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the pipeline")],
+        input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        nextflow_git_config: NextflowGitConfig,
+        pipeline_language_version_id: Annotated[Optional[UUID], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
+        on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
+        on_submit_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will submit the current state of the input form.")] = None,
+        other_input_form_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
+        metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
+        links: Optional[Links] = None,
+        version_comment: Optional[StrictStr] = None,
+        categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
+        html_documentation: Optional[StrictStr] = None,
+        proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[PipelineV4]:
+        """Create a JSON based Nextflow pipeline within a project from Git.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param code: The code of the pipeline (required)
+        :type code: str
+        :param description: The description of the pipeline (required)
+        :type description: str
+        :param input_form_file: The JSON based input form. (required)
+        :type input_form_file: bytearray
+        :param analysis_storage_id: The id of the storage to use for the pipeline. (required)
+        :type analysis_storage_id: str
+        :param nextflow_git_config: (required)
+        :type nextflow_git_config: NextflowGitConfig
+        :param pipeline_language_version_id: The id of the Nextflow version to use for the pipeline.
+        :type pipeline_language_version_id: str
+        :param on_render_file: A file that will render the current state of the input form.
+        :type on_render_file: bytearray
+        :param on_submit_file: A file that will submit the current state of the input form.
+        :type on_submit_file: bytearray
+        :param other_input_form_files:
+        :type other_input_form_files: List[bytearray]
+        :param metadata_model_file: The metadata model json file(contents can be retrieved from the controlplane).
+        :type metadata_model_file: bytearray
+        :param links:
+        :type links: Links
+        :param version_comment:
+        :type version_comment: str
+        :param categories:
+        :type categories: List[Optional[str]]
+        :param html_documentation:
+        :type html_documentation: str
+        :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
+        :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_nextflow_json_pipeline_from_git_serialize(
+            project_id=project_id,
+            code=code,
+            description=description,
+            input_form_file=input_form_file,
+            analysis_storage_id=analysis_storage_id,
+            nextflow_git_config=nextflow_git_config,
+            pipeline_language_version_id=pipeline_language_version_id,
+            on_render_file=on_render_file,
+            on_submit_file=on_submit_file,
+            other_input_form_files=other_input_form_files,
+            metadata_model_file=metadata_model_file,
+            links=links,
+            version_comment=version_comment,
+            categories=categories,
+            html_documentation=html_documentation,
+            proprietary=proprietary,
+            report_configs=report_configs,
+            resources=resources,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "PipelineV4",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_nextflow_json_pipeline_from_git_without_preload_content(
+        self,
+        project_id: StrictStr,
+        code: Annotated[str, Field(min_length=1, strict=True, max_length=255, description="The code of the pipeline")],
+        description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the pipeline")],
+        input_form_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The JSON based input form.")],
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        nextflow_git_config: NextflowGitConfig,
+        pipeline_language_version_id: Annotated[Optional[UUID], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
+        on_render_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will render the current state of the input form.")] = None,
+        on_submit_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="A file that will submit the current state of the input form.")] = None,
+        other_input_form_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
+        metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
+        links: Optional[Links] = None,
+        version_comment: Optional[StrictStr] = None,
+        categories: Optional[Annotated[List[Optional[StrictStr]], Field(min_length=1, max_length=4000)]] = None,
+        html_documentation: Optional[StrictStr] = None,
+        proprietary: Annotated[Optional[StrictBool], Field(description="A boolean which indicates if the code of this pipeline is proprietary")] = None,
+        report_configs: Optional[PipelineReportConfig] = None,
+        resources: Optional[PipelineResources] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create a JSON based Nextflow pipeline within a project from Git.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param code: The code of the pipeline (required)
+        :type code: str
+        :param description: The description of the pipeline (required)
+        :type description: str
+        :param input_form_file: The JSON based input form. (required)
+        :type input_form_file: bytearray
+        :param analysis_storage_id: The id of the storage to use for the pipeline. (required)
+        :type analysis_storage_id: str
+        :param nextflow_git_config: (required)
+        :type nextflow_git_config: NextflowGitConfig
+        :param pipeline_language_version_id: The id of the Nextflow version to use for the pipeline.
+        :type pipeline_language_version_id: str
+        :param on_render_file: A file that will render the current state of the input form.
+        :type on_render_file: bytearray
+        :param on_submit_file: A file that will submit the current state of the input form.
+        :type on_submit_file: bytearray
+        :param other_input_form_files:
+        :type other_input_form_files: List[bytearray]
+        :param metadata_model_file: The metadata model json file(contents can be retrieved from the controlplane).
+        :type metadata_model_file: bytearray
+        :param links:
+        :type links: Links
+        :param version_comment:
+        :type version_comment: str
+        :param categories:
+        :type categories: List[Optional[str]]
+        :param html_documentation:
+        :type html_documentation: str
+        :param proprietary: A boolean which indicates if the code of this pipeline is proprietary
+        :type proprietary: bool
+        :param report_configs:
+        :type report_configs: PipelineReportConfig
+        :param resources:
+        :type resources: PipelineResources
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_nextflow_json_pipeline_from_git_serialize(
+            project_id=project_id,
+            code=code,
+            description=description,
+            input_form_file=input_form_file,
+            analysis_storage_id=analysis_storage_id,
+            nextflow_git_config=nextflow_git_config,
+            pipeline_language_version_id=pipeline_language_version_id,
+            on_render_file=on_render_file,
+            on_submit_file=on_submit_file,
+            other_input_form_files=other_input_form_files,
+            metadata_model_file=metadata_model_file,
+            links=links,
+            version_comment=version_comment,
+            categories=categories,
+            html_documentation=html_documentation,
+            proprietary=proprietary,
+            report_configs=report_configs,
+            resources=resources,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "PipelineV4",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_nextflow_json_pipeline_from_git_serialize(
+        self,
+        project_id,
+        code,
+        description,
+        input_form_file,
+        analysis_storage_id,
+        nextflow_git_config,
+        pipeline_language_version_id,
+        on_render_file,
+        on_submit_file,
+        other_input_form_files,
+        metadata_model_file,
+        links,
+        version_comment,
+        categories,
+        html_documentation,
+        proprietary,
+        report_configs,
+        resources,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+            'otherInputFormFiles': 'csv',
+            'categories': 'csv',
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        if code is not None:
+            _form_params.append(('code', code))
+        if pipeline_language_version_id is not None:
+            _form_params.append(('pipelineLanguageVersionId', pipeline_language_version_id))
+        if description is not None:
+            _form_params.append(('description', description))
+        if input_form_file is not None:
+            _files['inputFormFile'] = input_form_file
+        if on_render_file is not None:
+            _files['onRenderFile'] = on_render_file
+        if on_submit_file is not None:
+            _files['onSubmitFile'] = on_submit_file
+        if other_input_form_files is not None:
+            _files['otherInputFormFiles'] = other_input_form_files
+        if metadata_model_file is not None:
+            _files['metadataModelFile'] = metadata_model_file
+        if links is not None:
+            _form_params.append(('links', links))
+        if version_comment is not None:
+            _form_params.append(('versionComment', version_comment))
+        if categories is not None:
+            _form_params.append(('categories', categories))
+        if html_documentation is not None:
+            _form_params.append(('htmlDocumentation', html_documentation))
+        if analysis_storage_id is not None:
+            _form_params.append(('analysisStorageId', analysis_storage_id))
+        if proprietary is not None:
+            _form_params.append(('proprietary', proprietary))
+        if report_configs is not None:
+            _form_params.append(('reportConfigs', report_configs))
+        if nextflow_git_config is not None:
+            _form_params.append(('nextflowGitConfig', nextflow_git_config))
+        if resources is not None:
+            _form_params.append(('resources', resources))
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/problem+json', 
+                    'application/vnd.illumina.v4+json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'multipart/form-data'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'JwtAuth', 
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/api/projects/{projectId}/pipelines:createNextflowJsonPipelineFromGit',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def create_nextflow_pipeline(
         self,
         project_id: StrictStr,
@@ -1940,8 +3296,8 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the pipeline")],
         main_nextflow_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The main Nextflow file.")],
         parameters_xml_file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
-        pipeline_language_version_id: Annotated[Optional[StrictStr], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        pipeline_language_version_id: Annotated[Optional[UUID], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
         nextflow_config_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The Nextflow config file.")] = None,
         other_nextflow_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
@@ -2070,8 +3426,8 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the pipeline")],
         main_nextflow_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The main Nextflow file.")],
         parameters_xml_file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
-        pipeline_language_version_id: Annotated[Optional[StrictStr], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        pipeline_language_version_id: Annotated[Optional[UUID], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
         nextflow_config_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The Nextflow config file.")] = None,
         other_nextflow_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
@@ -2200,8 +3556,8 @@ class ProjectPipelineApi:
         description: Annotated[str, Field(min_length=1, strict=True, max_length=4000, description="The description of the pipeline")],
         main_nextflow_file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The main Nextflow file.")],
         parameters_xml_file: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
-        analysis_storage_id: Annotated[StrictStr, Field(description="The id of the storage to use for the pipeline.")],
-        pipeline_language_version_id: Annotated[Optional[StrictStr], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
+        analysis_storage_id: Annotated[UUID, Field(description="The id of the storage to use for the pipeline.")],
+        pipeline_language_version_id: Annotated[Optional[UUID], Field(description="The id of the Nextflow version to use for the pipeline.")] = None,
         nextflow_config_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The Nextflow config file.")] = None,
         other_nextflow_files: Optional[List[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]]] = None,
         metadata_model_file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The metadata model json file(contents can be retrieved from the controlplane).")] = None,
@@ -2755,7 +4111,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to delete an additional file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2829,7 +4185,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to delete an additional file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2903,7 +4259,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to delete an additional file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3044,7 +4400,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to delete a file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3118,7 +4474,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to delete a file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3192,7 +4548,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to delete a file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3329,11 +4685,315 @@ class ProjectPipelineApi:
 
 
     @validate_call
+    def deprecate_project_pipeline(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the pipeline")],
+        deprecate_pipeline: Optional[DeprecatePipeline] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> None:
+        """Deprecate a pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the pipeline (required)
+        :type pipeline_id: str
+        :param deprecate_pipeline:
+        :type deprecate_pipeline: DeprecatePipeline
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._deprecate_project_pipeline_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            deprecate_pipeline=deprecate_pipeline,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def deprecate_project_pipeline_with_http_info(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the pipeline")],
+        deprecate_pipeline: Optional[DeprecatePipeline] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[None]:
+        """Deprecate a pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the pipeline (required)
+        :type pipeline_id: str
+        :param deprecate_pipeline:
+        :type deprecate_pipeline: DeprecatePipeline
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._deprecate_project_pipeline_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            deprecate_pipeline=deprecate_pipeline,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def deprecate_project_pipeline_without_preload_content(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the pipeline")],
+        deprecate_pipeline: Optional[DeprecatePipeline] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Deprecate a pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the pipeline (required)
+        :type pipeline_id: str
+        :param deprecate_pipeline:
+        :type deprecate_pipeline: DeprecatePipeline
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._deprecate_project_pipeline_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            deprecate_pipeline=deprecate_pipeline,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '204': None,
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _deprecate_project_pipeline_serialize(
+        self,
+        project_id,
+        pipeline_id,
+        deprecate_pipeline,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if pipeline_id is not None:
+            _path_params['pipelineId'] = pipeline_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if deprecate_pipeline is not None:
+            _body_params = deprecate_pipeline
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/problem+json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/vnd.illumina.v3+json', 
+                        'application/x-www-form-urlencoded', 
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'JwtAuth', 
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/api/projects/{projectId}/pipelines/{pipelineId}:deprecate',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def download_additional_file_content(
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve the additional file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the additional file")],
+        file_id: Annotated[UUID, Field(description="The ID of the additional file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3407,7 +5067,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve the additional file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the additional file")],
+        file_id: Annotated[UUID, Field(description="The ID of the additional file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3481,7 +5141,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve the additional file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the additional file")],
+        file_id: Annotated[UUID, Field(description="The ID of the additional file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4448,7 +6108,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve files for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4522,7 +6182,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve files for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4596,7 +6256,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve files for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5566,6 +7226,281 @@ class ProjectPipelineApi:
 
 
     @validate_call
+    def get_project_pipeline_cwl_git_config(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve the git config for")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CwlGitConfig:
+        """Retrieve git config for a CWL project pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline to retrieve the git config for (required)
+        :type pipeline_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_project_pipeline_cwl_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CwlGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_project_pipeline_cwl_git_config_with_http_info(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve the git config for")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CwlGitConfig]:
+        """Retrieve git config for a CWL project pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline to retrieve the git config for (required)
+        :type pipeline_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_project_pipeline_cwl_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CwlGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_project_pipeline_cwl_git_config_without_preload_content(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve the git config for")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Retrieve git config for a CWL project pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline to retrieve the git config for (required)
+        :type pipeline_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_project_pipeline_cwl_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "CwlGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_project_pipeline_cwl_git_config_serialize(
+        self,
+        project_id,
+        pipeline_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if pipeline_id is not None:
+            _path_params['pipelineId'] = pipeline_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/problem+json', 
+                    'application/vnd.illumina.v3+json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'JwtAuth', 
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/api/projects/{projectId}/pipelines/{pipelineId}/cwlGitConfig',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def get_project_pipeline_files(
         self,
         project_id: StrictStr,
@@ -6381,6 +8316,281 @@ class ProjectPipelineApi:
         return self.api_client.param_serialize(
             method='GET',
             resource_path='/api/projects/{projectId}/pipelines/{pipelineId}/inputParameters',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def get_project_pipeline_nextflow_git_config(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve the git config for")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NextflowGitConfig:
+        """Retrieve git config for a Nextflow project pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline to retrieve the git config for (required)
+        :type pipeline_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_project_pipeline_nextflow_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NextflowGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def get_project_pipeline_nextflow_git_config_with_http_info(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve the git config for")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NextflowGitConfig]:
+        """Retrieve git config for a Nextflow project pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline to retrieve the git config for (required)
+        :type pipeline_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_project_pipeline_nextflow_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NextflowGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def get_project_pipeline_nextflow_git_config_without_preload_content(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to retrieve the git config for")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Retrieve git config for a Nextflow project pipeline.
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline to retrieve the git config for (required)
+        :type pipeline_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._get_project_pipeline_nextflow_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '200': "NextflowGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _get_project_pipeline_nextflow_git_config_serialize(
+        self,
+        project_id,
+        pipeline_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if pipeline_id is not None:
+            _path_params['pipelineId'] = pipeline_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/problem+json', 
+                    'application/vnd.illumina.v3+json'
+                ]
+            )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'JwtAuth', 
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/api/projects/{projectId}/pipelines/{pipelineId}/nextflowGitConfig',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -7764,7 +9974,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to update the additional file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the additional file")],
+        file_id: Annotated[UUID, Field(description="The ID of the additional file")],
         content: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         _request_timeout: Union[
             None,
@@ -7842,7 +10052,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to update the additional file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the additional file")],
+        file_id: Annotated[UUID, Field(description="The ID of the additional file")],
         content: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         _request_timeout: Union[
             None,
@@ -7920,7 +10130,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to update the additional file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the additional file")],
+        file_id: Annotated[UUID, Field(description="The ID of the additional file")],
         content: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         _request_timeout: Union[
             None,
@@ -8061,6 +10271,310 @@ class ProjectPipelineApi:
         return self.api_client.param_serialize(
             method='PUT',
             resource_path='/api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles/{fileId}/content',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def update_cwl_git_config(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline for which to update the git config.")],
+        update_cwl_git_config: UpdateCwlGitConfig,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> CwlGitConfig:
+        """Update git config for CWL
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline for which to update the git config. (required)
+        :type pipeline_id: str
+        :param update_cwl_git_config: (required)
+        :type update_cwl_git_config: UpdateCwlGitConfig
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cwl_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            update_cwl_git_config=update_cwl_git_config,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "CwlGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_cwl_git_config_with_http_info(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline for which to update the git config.")],
+        update_cwl_git_config: UpdateCwlGitConfig,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[CwlGitConfig]:
+        """Update git config for CWL
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline for which to update the git config. (required)
+        :type pipeline_id: str
+        :param update_cwl_git_config: (required)
+        :type update_cwl_git_config: UpdateCwlGitConfig
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cwl_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            update_cwl_git_config=update_cwl_git_config,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "CwlGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_cwl_git_config_without_preload_content(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline for which to update the git config.")],
+        update_cwl_git_config: UpdateCwlGitConfig,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update git config for CWL
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline for which to update the git config. (required)
+        :type pipeline_id: str
+        :param update_cwl_git_config: (required)
+        :type update_cwl_git_config: UpdateCwlGitConfig
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_cwl_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            update_cwl_git_config=update_cwl_git_config,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "CwlGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_cwl_git_config_serialize(
+        self,
+        project_id,
+        pipeline_id,
+        update_cwl_git_config,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if pipeline_id is not None:
+            _path_params['pipelineId'] = pipeline_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if update_cwl_git_config is not None:
+            _body_params = update_cwl_git_config
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/problem+json', 
+                    'application/vnd.illumina.v3+json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/vnd.illumina.v3+json', 
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'JwtAuth', 
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/api/projects/{projectId}/pipelines/{pipelineId}/cwlGitConfig:update',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -8685,6 +11199,310 @@ class ProjectPipelineApi:
 
 
     @validate_call
+    def update_nextflow_git_config(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline for which to update the git config.")],
+        update_nextflow_git_config: UpdateNextflowGitConfig,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> NextflowGitConfig:
+        """Update git config for Nextflow
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline for which to update the git config. (required)
+        :type pipeline_id: str
+        :param update_nextflow_git_config: (required)
+        :type update_nextflow_git_config: UpdateNextflowGitConfig
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_nextflow_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            update_nextflow_git_config=update_nextflow_git_config,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "NextflowGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def update_nextflow_git_config_with_http_info(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline for which to update the git config.")],
+        update_nextflow_git_config: UpdateNextflowGitConfig,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[NextflowGitConfig]:
+        """Update git config for Nextflow
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline for which to update the git config. (required)
+        :type pipeline_id: str
+        :param update_nextflow_git_config: (required)
+        :type update_nextflow_git_config: UpdateNextflowGitConfig
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_nextflow_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            update_nextflow_git_config=update_nextflow_git_config,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "NextflowGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def update_nextflow_git_config_without_preload_content(
+        self,
+        project_id: StrictStr,
+        pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline for which to update the git config.")],
+        update_nextflow_git_config: UpdateNextflowGitConfig,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Update git config for Nextflow
+
+
+        :param project_id: (required)
+        :type project_id: str
+        :param pipeline_id: The ID of the project pipeline for which to update the git config. (required)
+        :type pipeline_id: str
+        :param update_nextflow_git_config: (required)
+        :type update_nextflow_git_config: UpdateNextflowGitConfig
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._update_nextflow_git_config_serialize(
+            project_id=project_id,
+            pipeline_id=pipeline_id,
+            update_nextflow_git_config=update_nextflow_git_config,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '201': "NextflowGitConfig",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _update_nextflow_git_config_serialize(
+        self,
+        project_id,
+        pipeline_id,
+        update_nextflow_git_config,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if project_id is not None:
+            _path_params['projectId'] = project_id
+        if pipeline_id is not None:
+            _path_params['pipelineId'] = pipeline_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if update_nextflow_git_config is not None:
+            _body_params = update_nextflow_git_config
+
+
+        # set the HTTP header `Accept`
+        if 'Accept' not in _header_params:
+            _header_params['Accept'] = self.api_client.select_header_accept(
+                [
+                    'application/problem+json', 
+                    'application/vnd.illumina.v3+json'
+                ]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params['Content-Type'] = _content_type
+        else:
+            _default_content_type = (
+                self.api_client.select_header_content_type(
+                    [
+                        'application/vnd.illumina.v3+json', 
+                        'application/json'
+                    ]
+                )
+            )
+            if _default_content_type is not None:
+                _header_params['Content-Type'] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'JwtAuth', 
+            'ApiKeyAuth'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/api/projects/{projectId}/pipelines/{pipelineId}/nextflowGitConfig:update',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def update_on_render_file(
         self,
         project_id: StrictStr,
@@ -9293,7 +12111,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to update a file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         content: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         _request_timeout: Union[
             None,
@@ -9371,7 +12189,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to update a file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         content: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         _request_timeout: Union[
             None,
@@ -9449,7 +12267,7 @@ class ProjectPipelineApi:
         self,
         project_id: StrictStr,
         pipeline_id: Annotated[StrictStr, Field(description="The ID of the project pipeline to update a file for")],
-        file_id: Annotated[StrictStr, Field(description="The ID of the pipeline file")],
+        file_id: Annotated[UUID, Field(description="The ID of the pipeline file")],
         content: Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]],
         _request_timeout: Union[
             None,

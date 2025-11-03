@@ -16,8 +16,9 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from pydantic import Field, StrictStr
+from pydantic import Field
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.workgroup import Workgroup
 from libica.openapi.v3.models.workgroup_list import WorkgroupList
 
@@ -42,7 +43,7 @@ class WorkgroupApi:
     @validate_call
     def get_workgroup(
         self,
-        workgroup_id: Annotated[StrictStr, Field(description="The ID of the workgroup to retrieve")],
+        workgroup_id: Annotated[UUID, Field(description="The ID of the workgroup to retrieve")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -108,7 +109,7 @@ class WorkgroupApi:
     @validate_call
     def get_workgroup_with_http_info(
         self,
-        workgroup_id: Annotated[StrictStr, Field(description="The ID of the workgroup to retrieve")],
+        workgroup_id: Annotated[UUID, Field(description="The ID of the workgroup to retrieve")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -174,7 +175,7 @@ class WorkgroupApi:
     @validate_call
     def get_workgroup_without_preload_content(
         self,
-        workgroup_id: Annotated[StrictStr, Field(description="The ID of the workgroup to retrieve")],
+        workgroup_id: Annotated[UUID, Field(description="The ID of the workgroup to retrieve")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],

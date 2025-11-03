@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**regions** | [**List[DockerImageRegion]**](DockerImageRegion.md) |  | [optional] 
+**regions** | [**List[InternalDockerImageRegion]**](InternalDockerImageRegion.md) |  | [optional] 
 
 ## Example
 

@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from libica.openapi.v3.models.project_data_update_batch_item_processing import ProjectDataUpdateBatchItemProcessing
 from libica.openapi.v3.models.project_data_update_batch_item_request import ProjectDataUpdateBatchItemRequest
 from typing import Optional, Set
@@ -28,7 +29,7 @@ class ProjectDataUpdateBatchItem(BaseModel):
     """
     ProjectDataUpdateBatchItem
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     request: ProjectDataUpdateBatchItemRequest
     processing: ProjectDataUpdateBatchItemProcessing
     __properties: ClassVar[List[str]] = ["id", "request", "processing"]

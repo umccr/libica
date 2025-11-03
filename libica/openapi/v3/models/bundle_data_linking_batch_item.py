@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.bundle_data import BundleData
 from libica.openapi.v3.models.bundle_data_linking_batch_item_processing import BundleDataLinkingBatchItemProcessing
 from libica.openapi.v3.models.bundle_data_linking_batch_item_request import BundleDataLinkingBatchItemRequest
@@ -29,7 +30,7 @@ class BundleDataLinkingBatchItem(BaseModel):
     """
     BundleDataLinkingBatchItem
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     request: BundleDataLinkingBatchItemRequest
     processing: BundleDataLinkingBatchItemProcessing
     bundle_data: Optional[BundleData] = Field(default=None, alias="bundleData")

@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +27,7 @@ class InputFormS3DataDetails(BaseModel):
     """
     InputFormS3DataDetails
     """ # noqa: E501
-    storage_credentials_id: Optional[StrictStr] = Field(default=None, description="The storage credentials with the S3 access key.", alias="storageCredentialsId")
+    storage_credentials_id: Optional[UUID] = Field(default=None, description="The storage credentials with the S3 access key.", alias="storageCredentialsId")
     __properties: ClassVar[List[str]] = ["storageCredentialsId"]
 
     model_config = ConfigDict(

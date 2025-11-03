@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.analysis_data import AnalysisData
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +29,7 @@ class AnalysisOutput(BaseModel):
     AnalysisOutput
     """ # noqa: E501
     code: StrictStr = Field(description="The name of the output-parameter.")
-    project_id: Optional[StrictStr] = Field(default=None, description="The ID of the project containing the analysis-data produced by the analysis for the output-parameter.", alias="projectId")
+    project_id: Optional[UUID] = Field(default=None, description="The ID of the project containing the analysis-data produced by the analysis for the output-parameter.", alias="projectId")
     data: Optional[List[AnalysisData]] = None
     __properties: ClassVar[List[str]] = ["code", "projectId", "data"]
 

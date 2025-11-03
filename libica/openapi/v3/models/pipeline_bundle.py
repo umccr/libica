@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.analysis_storage_v3 import AnalysisStorageV3
 from libica.openapi.v3.models.pipeline_v3 import PipelineV3
 from libica.openapi.v3.models.region import Region
@@ -30,7 +31,7 @@ class PipelineBundle(BaseModel):
     """
     PipelineBundle
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     name: StrictStr
     max_number_of_allowed_slots: Annotated[int, Field(strict=True, ge=-1)] = Field(alias="maxNumberOfAllowedSlots")
     active_pipelines: List[PipelineV3] = Field(alias="activePipelines")

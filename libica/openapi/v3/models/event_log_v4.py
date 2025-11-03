@@ -18,9 +18,10 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.tenant_identifier import TenantIdentifier
 from libica.openapi.v3.models.user_identifier import UserIdentifier
 from typing import Optional, Set
@@ -30,7 +31,7 @@ class EventLogV4(BaseModel):
     """
     EventLogV4
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     owner: UserIdentifier
     tenant: TenantIdentifier

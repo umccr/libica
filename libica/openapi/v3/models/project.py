@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.application import Application
 from libica.openapi.v3.models.metadata_model import MetadataModel
 from libica.openapi.v3.models.project_tag import ProjectTag
@@ -34,11 +35,11 @@ class Project(BaseModel):
     """
     Project
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
-    owner_id: StrictStr = Field(alias="ownerId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    owner_id: UUID = Field(alias="ownerId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
     urn: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=2000)]] = Field(default=None, description="The URN of the project. The format is urn:ilmn:ica:\\<type of the object\\>:\\<ID of the object\\>#\\<optional human readable hint representing the object\\>. The hint can be omitted, in that case the hashtag (#) must also be omitted.")
     name: Annotated[str, Field(min_length=1, strict=True, max_length=255)]
@@ -55,7 +56,7 @@ class Project(BaseModel):
     analysis_priority: Optional[StrictStr] = Field(default=None, description="Indicates the priority given to a project and its analyses within a single tenant. Note that for a PUT call, when not providing a value for this attribute (null value or absent attribute), the persisted value will not change.", alias="analysisPriority")
     metadata_model: Optional[MetadataModel] = Field(default=None, alias="metadataModel")
     application: Optional[Application] = None
-    project_owner: Optional[StrictStr] = Field(default=None, description="projectOwner is the current project owner, ownerId is the original project creator. These can be different because you can transfer ownership of a project.", alias="projectOwner")
+    project_owner: Optional[UUID] = Field(default=None, description="projectOwner is the current project owner, ownerId is the original project creator. These can be different because you can transfer ownership of a project.", alias="projectOwner")
     __properties: ClassVar[List[str]] = ["id", "timeCreated", "timeModified", "ownerId", "tenantId", "tenantName", "urn", "name", "active", "baseEnabled", "shortDescription", "information", "region", "billingMode", "dataSharingEnabled", "tags", "storageBundle", "selfManagedStorageConfiguration", "analysisPriority", "metadataModel", "application", "projectOwner"]
 
     @field_validator('billing_mode')

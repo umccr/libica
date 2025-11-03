@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.application_v4 import ApplicationV4
 from libica.openapi.v3.models.bundle import Bundle
 from typing import Optional, Set
@@ -29,7 +30,7 @@ class ProjectBundle(BaseModel):
     ProjectBundle
     """ # noqa: E501
     bundle: Optional[Bundle]
-    project_id: StrictStr = Field(alias="projectId")
+    project_id: UUID = Field(alias="projectId")
     application: Optional[ApplicationV4] = None
     __properties: ClassVar[List[str]] = ["bundle", "projectId", "application"]
 

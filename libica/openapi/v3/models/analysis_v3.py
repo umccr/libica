@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.analysis_storage_v3 import AnalysisStorageV3
 from libica.openapi.v3.models.analysis_tag import AnalysisTag
 from libica.openapi.v3.models.application_v4 import ApplicationV4
@@ -33,11 +34,11 @@ class AnalysisV3(BaseModel):
     """
     AnalysisV3
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
-    owner_id: StrictStr = Field(alias="ownerId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    owner_id: UUID = Field(alias="ownerId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
     reference: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The unique reference of the analysis")
     user_reference: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The user reference of the analysis", alias="userReference")
