@@ -21,8 +21,12 @@ from libica.openapi.v2.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from libica.openapi.v2.model.archive_pipeline import ArchivePipeline
+from libica.openapi.v2.model.cwl_git_config import CwlGitConfig
+from libica.openapi.v2.model.deprecate_pipeline import DeprecatePipeline
 from libica.openapi.v2.model.input_parameter_list import InputParameterList
 from libica.openapi.v2.model.links import Links
+from libica.openapi.v2.model.nextflow_git_config import NextflowGitConfig
 from libica.openapi.v2.model.pipeline_configuration_parameter_list import PipelineConfigurationParameterList
 from libica.openapi.v2.model.pipeline_file import PipelineFile
 from libica.openapi.v2.model.pipeline_file_list import PipelineFileList
@@ -36,6 +40,8 @@ from libica.openapi.v2.model.project_pipeline import ProjectPipeline
 from libica.openapi.v2.model.project_pipeline_list import ProjectPipelineList
 from libica.openapi.v2.model.project_pipeline_v4 import ProjectPipelineV4
 from libica.openapi.v2.model.reference_set_list import ReferenceSetList
+from libica.openapi.v2.model.update_cwl_git_config import UpdateCwlGitConfig
+from libica.openapi.v2.model.update_nextflow_git_config import UpdateNextflowGitConfig
 
 
 class ProjectPipelineApi(object):
@@ -49,6 +55,72 @@ class ProjectPipelineApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+        self.archive_project_pipeline_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}:archive',
+                'operation_id': 'archive_project_pipeline',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'pipeline_id',
+                    'archive_pipeline',
+                ],
+                'required': [
+                    'project_id',
+                    'pipeline_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'pipeline_id':
+                        (str,),
+                    'archive_pipeline':
+                        (ArchivePipeline,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'pipeline_id': 'pipelineId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'pipeline_id': 'path',
+                    'archive_pipeline': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/x-www-form-urlencoded',
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
         self.create_additional_project_pipeline_file_endpoint = _Endpoint(
             settings={
                 'response_type': (PipelineFile,),
@@ -276,6 +348,176 @@ class ProjectPipelineApi(object):
                 },
                 'collection_format_map': {
                     'tool_cwl_files': 'csv',
+                    'other_input_form_files': 'csv',
+                    'categories': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v4+json'
+                ],
+                'content_type': [
+                    'multipart/form-data'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_cwl_json_pipeline_from_git_endpoint = _Endpoint(
+            settings={
+                'response_type': (ProjectPipelineV4,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/pipelines:createCwlJsonPipelineFromGit',
+                'operation_id': 'create_cwl_json_pipeline_from_git',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'code',
+                    'description',
+                    'input_form_file',
+                    'analysis_storage_id',
+                    'cwl_git_config',
+                    'on_render_file',
+                    'on_submit_file',
+                    'other_input_form_files',
+                    'metadata_model_file',
+                    'links',
+                    'version_comment',
+                    'categories',
+                    'html_documentation',
+                    'proprietary',
+                    'report_configs',
+                    'resources',
+                ],
+                'required': [
+                    'project_id',
+                    'code',
+                    'description',
+                    'input_form_file',
+                    'analysis_storage_id',
+                    'cwl_git_config',
+                ],
+                'nullable': [
+                    'cwl_git_config',
+                    'metadata_model_file',
+                    'links',
+                    'version_comment',
+                    'categories',
+                    'html_documentation',
+                    'proprietary',
+                    'report_configs',
+                    'resources',
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'code',
+                    'description',
+                    'categories',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('code',): {
+                        'max_length': 255,
+                        'min_length': 1,
+                        'regex': {
+                            'pattern': r'^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$',  # noqa: E501
+                        },
+                    },
+                    ('description',): {
+                        'max_length': 4000,
+                        'min_length': 1,
+                    },
+                    ('categories',): {
+
+                        'max_items': 4000,
+                        'min_items': 1,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'code':
+                        (str,),
+                    'description':
+                        (str,),
+                    'input_form_file':
+                        (file_type,),
+                    'analysis_storage_id':
+                        (str,),
+                    'cwl_git_config':
+                        (CwlGitConfig,),
+                    'on_render_file':
+                        (file_type,),
+                    'on_submit_file':
+                        (file_type,),
+                    'other_input_form_files':
+                        ([file_type],),
+                    'metadata_model_file':
+                        (file_type, none_type,),
+                    'links':
+                        (Links,),
+                    'version_comment':
+                        (str, none_type,),
+                    'categories':
+                        ([str, none_type], none_type,),
+                    'html_documentation':
+                        (str, none_type,),
+                    'proprietary':
+                        (bool, none_type,),
+                    'report_configs':
+                        (PipelineReportConfig,),
+                    'resources':
+                        (PipelineResources,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'code': 'code',
+                    'description': 'description',
+                    'input_form_file': 'inputFormFile',
+                    'analysis_storage_id': 'analysisStorageId',
+                    'cwl_git_config': 'cwlGitConfig',
+                    'on_render_file': 'onRenderFile',
+                    'on_submit_file': 'onSubmitFile',
+                    'other_input_form_files': 'otherInputFormFiles',
+                    'metadata_model_file': 'metadataModelFile',
+                    'links': 'links',
+                    'version_comment': 'versionComment',
+                    'categories': 'categories',
+                    'html_documentation': 'htmlDocumentation',
+                    'proprietary': 'proprietary',
+                    'report_configs': 'reportConfigs',
+                    'resources': 'resources',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'code': 'form',
+                    'description': 'form',
+                    'input_form_file': 'form',
+                    'analysis_storage_id': 'form',
+                    'cwl_git_config': 'form',
+                    'on_render_file': 'form',
+                    'on_submit_file': 'form',
+                    'other_input_form_files': 'form',
+                    'metadata_model_file': 'form',
+                    'links': 'form',
+                    'version_comment': 'form',
+                    'categories': 'form',
+                    'html_documentation': 'form',
+                    'proprietary': 'form',
+                    'report_configs': 'form',
+                    'resources': 'form',
+                },
+                'collection_format_map': {
                     'other_input_form_files': 'csv',
                     'categories': 'csv',
                 }
@@ -621,6 +863,181 @@ class ProjectPipelineApi(object):
                 },
                 'collection_format_map': {
                     'other_nextflow_files': 'csv',
+                    'other_input_form_files': 'csv',
+                    'categories': 'csv',
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v4+json'
+                ],
+                'content_type': [
+                    'multipart/form-data'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_nextflow_json_pipeline_from_git_endpoint = _Endpoint(
+            settings={
+                'response_type': (PipelineV4,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/pipelines:createNextflowJsonPipelineFromGit',
+                'operation_id': 'create_nextflow_json_pipeline_from_git',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'code',
+                    'description',
+                    'input_form_file',
+                    'analysis_storage_id',
+                    'nextflow_git_config',
+                    'pipeline_language_version_id',
+                    'on_render_file',
+                    'on_submit_file',
+                    'other_input_form_files',
+                    'metadata_model_file',
+                    'links',
+                    'version_comment',
+                    'categories',
+                    'html_documentation',
+                    'proprietary',
+                    'report_configs',
+                    'resources',
+                ],
+                'required': [
+                    'project_id',
+                    'code',
+                    'description',
+                    'input_form_file',
+                    'analysis_storage_id',
+                    'nextflow_git_config',
+                ],
+                'nullable': [
+                    'pipeline_language_version_id',
+                    'metadata_model_file',
+                    'links',
+                    'version_comment',
+                    'categories',
+                    'html_documentation',
+                    'proprietary',
+                    'report_configs',
+                    'resources',
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'code',
+                    'description',
+                    'categories',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('code',): {
+                        'max_length': 255,
+                        'min_length': 1,
+                        'regex': {
+                            'pattern': r'^[a-zA-Z0-9 _-]*(\/[a-zA-Z0-9 _-]+)*$',  # noqa: E501
+                        },
+                    },
+                    ('description',): {
+                        'max_length': 4000,
+                        'min_length': 1,
+                    },
+                    ('categories',): {
+
+                        'max_items': 4000,
+                        'min_items': 1,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'code':
+                        (str,),
+                    'description':
+                        (str,),
+                    'input_form_file':
+                        (file_type,),
+                    'analysis_storage_id':
+                        (str,),
+                    'nextflow_git_config':
+                        (NextflowGitConfig,),
+                    'pipeline_language_version_id':
+                        (str, none_type,),
+                    'on_render_file':
+                        (file_type,),
+                    'on_submit_file':
+                        (file_type,),
+                    'other_input_form_files':
+                        ([file_type],),
+                    'metadata_model_file':
+                        (file_type, none_type,),
+                    'links':
+                        (Links,),
+                    'version_comment':
+                        (str, none_type,),
+                    'categories':
+                        ([str, none_type], none_type,),
+                    'html_documentation':
+                        (str, none_type,),
+                    'proprietary':
+                        (bool, none_type,),
+                    'report_configs':
+                        (PipelineReportConfig,),
+                    'resources':
+                        (PipelineResources,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'code': 'code',
+                    'description': 'description',
+                    'input_form_file': 'inputFormFile',
+                    'analysis_storage_id': 'analysisStorageId',
+                    'nextflow_git_config': 'nextflowGitConfig',
+                    'pipeline_language_version_id': 'pipelineLanguageVersionId',
+                    'on_render_file': 'onRenderFile',
+                    'on_submit_file': 'onSubmitFile',
+                    'other_input_form_files': 'otherInputFormFiles',
+                    'metadata_model_file': 'metadataModelFile',
+                    'links': 'links',
+                    'version_comment': 'versionComment',
+                    'categories': 'categories',
+                    'html_documentation': 'htmlDocumentation',
+                    'proprietary': 'proprietary',
+                    'report_configs': 'reportConfigs',
+                    'resources': 'resources',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'code': 'form',
+                    'description': 'form',
+                    'input_form_file': 'form',
+                    'analysis_storage_id': 'form',
+                    'nextflow_git_config': 'form',
+                    'pipeline_language_version_id': 'form',
+                    'on_render_file': 'form',
+                    'on_submit_file': 'form',
+                    'other_input_form_files': 'form',
+                    'metadata_model_file': 'form',
+                    'links': 'form',
+                    'version_comment': 'form',
+                    'categories': 'form',
+                    'html_documentation': 'form',
+                    'proprietary': 'form',
+                    'report_configs': 'form',
+                    'resources': 'form',
+                },
+                'collection_format_map': {
                     'other_input_form_files': 'csv',
                     'categories': 'csv',
                 }
@@ -998,6 +1415,72 @@ class ProjectPipelineApi(object):
                     'application/problem+json'
                 ],
                 'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.deprecate_project_pipeline_endpoint = _Endpoint(
+            settings={
+                'response_type': None,
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}:deprecate',
+                'operation_id': 'deprecate_project_pipeline',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'pipeline_id',
+                    'deprecate_pipeline',
+                ],
+                'required': [
+                    'project_id',
+                    'pipeline_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'pipeline_id':
+                        (str,),
+                    'deprecate_pipeline':
+                        (DeprecatePipeline,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'pipeline_id': 'pipelineId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'pipeline_id': 'path',
+                    'deprecate_pipeline': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/x-www-form-urlencoded',
+                    'application/json'
+                ]
             },
             api_client=api_client
         )
@@ -1486,6 +1969,65 @@ class ProjectPipelineApi(object):
             },
             api_client=api_client
         )
+        self.get_project_pipeline_cwl_git_config_endpoint = _Endpoint(
+            settings={
+                'response_type': (CwlGitConfig,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/cwlGitConfig',
+                'operation_id': 'get_project_pipeline_cwl_git_config',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'pipeline_id',
+                ],
+                'required': [
+                    'project_id',
+                    'pipeline_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'pipeline_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'pipeline_id': 'pipelineId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'pipeline_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.get_project_pipeline_files_endpoint = _Endpoint(
             settings={
                 'response_type': (PipelineFileList,),
@@ -1613,6 +2155,65 @@ class ProjectPipelineApi(object):
                 ],
                 'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/inputParameters',
                 'operation_id': 'get_project_pipeline_input_parameters',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'pipeline_id',
+                ],
+                'required': [
+                    'project_id',
+                    'pipeline_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'pipeline_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'pipeline_id': 'pipelineId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'pipeline_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_project_pipeline_nextflow_git_config_endpoint = _Endpoint(
+            settings={
+                'response_type': (NextflowGitConfig,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/nextflowGitConfig',
+                'operation_id': 'get_project_pipeline_nextflow_git_config',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -2021,6 +2622,73 @@ class ProjectPipelineApi(object):
             },
             api_client=api_client
         )
+        self.update_cwl_git_config_endpoint = _Endpoint(
+            settings={
+                'response_type': (CwlGitConfig,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/cwlGitConfig:update',
+                'operation_id': 'update_cwl_git_config',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'pipeline_id',
+                    'update_cwl_git_config',
+                ],
+                'required': [
+                    'project_id',
+                    'pipeline_id',
+                    'update_cwl_git_config',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'pipeline_id':
+                        (str,),
+                    'update_cwl_git_config':
+                        (UpdateCwlGitConfig,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'pipeline_id': 'pipelineId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'pipeline_id': 'path',
+                    'update_cwl_git_config': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
         self.update_general_attributes_project_pipeline_endpoint = _Endpoint(
             settings={
                 'response_type': (PipelineV4,),
@@ -2149,6 +2817,73 @@ class ProjectPipelineApi(object):
                 ],
                 'content_type': [
                     'multipart/form-data'
+                ]
+            },
+            api_client=api_client
+        )
+        self.update_nextflow_git_config_endpoint = _Endpoint(
+            settings={
+                'response_type': (NextflowGitConfig,),
+                'auth': [
+                    'ApiKeyAuth',
+                    'JwtAuth'
+                ],
+                'endpoint_path': '/api/projects/{projectId}/pipelines/{pipelineId}/nextflowGitConfig:update',
+                'operation_id': 'update_nextflow_git_config',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'project_id',
+                    'pipeline_id',
+                    'update_nextflow_git_config',
+                ],
+                'required': [
+                    'project_id',
+                    'pipeline_id',
+                    'update_nextflow_git_config',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'project_id':
+                        (str,),
+                    'pipeline_id':
+                        (str,),
+                    'update_nextflow_git_config':
+                        (UpdateNextflowGitConfig,),
+                },
+                'attribute_map': {
+                    'project_id': 'projectId',
+                    'pipeline_id': 'pipelineId',
+                },
+                'location_map': {
+                    'project_id': 'path',
+                    'pipeline_id': 'path',
+                    'update_nextflow_git_config': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/problem+json',
+                    'application/vnd.illumina.v3+json'
+                ],
+                'content_type': [
+                    'application/vnd.illumina.v3+json',
+                    'application/json'
                 ]
             },
             api_client=api_client
@@ -2358,6 +3093,88 @@ class ProjectPipelineApi(object):
             api_client=api_client
         )
 
+    def archive_project_pipeline(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        """Archive a pipeline.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.archive_project_pipeline(project_id, pipeline_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            pipeline_id (str): The ID of the pipeline
+
+        Keyword Args:
+            archive_pipeline (ArchivePipeline): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['pipeline_id'] = \
+            pipeline_id
+        return self.archive_project_pipeline_endpoint.call_with_http_info(**kwargs)
+
     def create_additional_project_pipeline_file(
         self,
         project_id,
@@ -2551,6 +3368,114 @@ class ProjectPipelineApi(object):
         kwargs['analysis_storage_id'] = \
             analysis_storage_id
         return self.create_cwl_json_pipeline_endpoint.call_with_http_info(**kwargs)
+
+    def create_cwl_json_pipeline_from_git(
+        self,
+        project_id,
+        code,
+        description,
+        input_form_file,
+        analysis_storage_id,
+        cwl_git_config,
+        **kwargs
+    ):
+        """Create a JSON based CWL pipeline within a project from Git.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_cwl_json_pipeline_from_git(project_id, code, description, input_form_file, analysis_storage_id, cwl_git_config, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            code (str): The code of the CWL pipeline
+            description (str): The description of the CWL pipeline
+            input_form_file (file_type): The JSON based input form.
+            analysis_storage_id (str): The id of the storage to use for the pipeline.
+            cwl_git_config (CwlGitConfig):
+
+        Keyword Args:
+            on_render_file (file_type): A file that will render the current state of the input form.. [optional]
+            on_submit_file (file_type): A file that will submit the current state of the input form.. [optional]
+            other_input_form_files ([file_type]): [optional]
+            metadata_model_file (file_type, none_type): The metadata model json file(contents can be retrieved from the controlplane).. [optional]
+            links (Links): [optional]
+            version_comment (str, none_type): [optional]
+            categories ([str, none_type], none_type): [optional]
+            html_documentation (str, none_type): [optional]
+            proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
+            report_configs (PipelineReportConfig): [optional]
+            resources (PipelineResources): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ProjectPipelineV4
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['code'] = \
+            code
+        kwargs['description'] = \
+            description
+        kwargs['input_form_file'] = \
+            input_form_file
+        kwargs['analysis_storage_id'] = \
+            analysis_storage_id
+        kwargs['cwl_git_config'] = \
+            cwl_git_config
+        return self.create_cwl_json_pipeline_from_git_endpoint.call_with_http_info(**kwargs)
 
     def create_cwl_pipeline(
         self,
@@ -2768,6 +3693,115 @@ class ProjectPipelineApi(object):
         kwargs['analysis_storage_id'] = \
             analysis_storage_id
         return self.create_nextflow_json_pipeline_endpoint.call_with_http_info(**kwargs)
+
+    def create_nextflow_json_pipeline_from_git(
+        self,
+        project_id,
+        code,
+        description,
+        input_form_file,
+        analysis_storage_id,
+        nextflow_git_config,
+        **kwargs
+    ):
+        """Create a JSON based Nextflow pipeline within a project from Git.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_nextflow_json_pipeline_from_git(project_id, code, description, input_form_file, analysis_storage_id, nextflow_git_config, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            code (str): The code of the pipeline
+            description (str): The description of the pipeline
+            input_form_file (file_type): The JSON based input form.
+            analysis_storage_id (str): The id of the storage to use for the pipeline.
+            nextflow_git_config (NextflowGitConfig):
+
+        Keyword Args:
+            pipeline_language_version_id (str, none_type): The id of the Nextflow version to use for the pipeline.. [optional]
+            on_render_file (file_type): A file that will render the current state of the input form.. [optional]
+            on_submit_file (file_type): A file that will submit the current state of the input form.. [optional]
+            other_input_form_files ([file_type]): [optional]
+            metadata_model_file (file_type, none_type): The metadata model json file(contents can be retrieved from the controlplane).. [optional]
+            links (Links): [optional]
+            version_comment (str, none_type): [optional]
+            categories ([str, none_type], none_type): [optional]
+            html_documentation (str, none_type): [optional]
+            proprietary (bool, none_type): A boolean which indicates if the code of this pipeline is proprietary. [optional] if omitted the server will use the default value of False
+            report_configs (PipelineReportConfig): [optional]
+            resources (PipelineResources): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            PipelineV4
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['code'] = \
+            code
+        kwargs['description'] = \
+            description
+        kwargs['input_form_file'] = \
+            input_form_file
+        kwargs['analysis_storage_id'] = \
+            analysis_storage_id
+        kwargs['nextflow_git_config'] = \
+            nextflow_git_config
+        return self.create_nextflow_json_pipeline_from_git_endpoint.call_with_http_info(**kwargs)
 
     def create_nextflow_pipeline(
         self,
@@ -3131,6 +4165,88 @@ class ProjectPipelineApi(object):
         kwargs['file_id'] = \
             file_id
         return self.delete_project_pipeline_file_endpoint.call_with_http_info(**kwargs)
+
+    def deprecate_project_pipeline(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        """Deprecate a pipeline.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.deprecate_project_pipeline(project_id, pipeline_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            pipeline_id (str): The ID of the pipeline
+
+        Keyword Args:
+            deprecate_pipeline (DeprecatePipeline): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            None
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['pipeline_id'] = \
+            pipeline_id
+        return self.deprecate_project_pipeline_endpoint.call_with_http_info(**kwargs)
 
     def download_additional_file_content(
         self,
@@ -3790,6 +4906,87 @@ class ProjectPipelineApi(object):
             pipeline_id
         return self.get_project_pipeline_configuration_parameters_endpoint.call_with_http_info(**kwargs)
 
+    def get_project_pipeline_cwl_git_config(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        """Retrieve git config for a CWL project pipeline.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_project_pipeline_cwl_git_config(project_id, pipeline_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            pipeline_id (str): The ID of the project pipeline to retrieve the git config for
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CwlGitConfig
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['pipeline_id'] = \
+            pipeline_id
+        return self.get_project_pipeline_cwl_git_config_endpoint.call_with_http_info(**kwargs)
+
     def get_project_pipeline_files(
         self,
         project_id,
@@ -4034,6 +5231,87 @@ class ProjectPipelineApi(object):
         kwargs['pipeline_id'] = \
             pipeline_id
         return self.get_project_pipeline_input_parameters_endpoint.call_with_http_info(**kwargs)
+
+    def get_project_pipeline_nextflow_git_config(
+        self,
+        project_id,
+        pipeline_id,
+        **kwargs
+    ):
+        """Retrieve git config for a Nextflow project pipeline.  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_project_pipeline_nextflow_git_config(project_id, pipeline_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            pipeline_id (str): The ID of the project pipeline to retrieve the git config for
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            NextflowGitConfig
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['pipeline_id'] = \
+            pipeline_id
+        return self.get_project_pipeline_nextflow_git_config_endpoint.call_with_http_info(**kwargs)
 
     def get_project_pipeline_reference_sets(
         self,
@@ -4527,6 +5805,91 @@ class ProjectPipelineApi(object):
             content
         return self.update_additional_file_endpoint.call_with_http_info(**kwargs)
 
+    def update_cwl_git_config(
+        self,
+        project_id,
+        pipeline_id,
+        update_cwl_git_config,
+        **kwargs
+    ):
+        """Update git config for CWL  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_cwl_git_config(project_id, pipeline_id, update_cwl_git_config, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            pipeline_id (str): The ID of the project pipeline for which to update the git config.
+            update_cwl_git_config (UpdateCwlGitConfig):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CwlGitConfig
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['pipeline_id'] = \
+            pipeline_id
+        kwargs['update_cwl_git_config'] = \
+            update_cwl_git_config
+        return self.update_cwl_git_config_endpoint.call_with_http_info(**kwargs)
+
     def update_general_attributes_project_pipeline(
         self,
         project_id,
@@ -4697,6 +6060,91 @@ class ProjectPipelineApi(object):
         kwargs['content'] = \
             content
         return self.update_input_form_file_endpoint.call_with_http_info(**kwargs)
+
+    def update_nextflow_git_config(
+        self,
+        project_id,
+        pipeline_id,
+        update_nextflow_git_config,
+        **kwargs
+    ):
+        """Update git config for Nextflow  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_nextflow_git_config(project_id, pipeline_id, update_nextflow_git_config, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            project_id (str):
+            pipeline_id (str): The ID of the project pipeline for which to update the git config.
+            update_nextflow_git_config (UpdateNextflowGitConfig):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            NextflowGitConfig
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['project_id'] = \
+            project_id
+        kwargs['pipeline_id'] = \
+            pipeline_id
+        kwargs['update_nextflow_git_config'] = \
+            update_nextflow_git_config
+        return self.update_nextflow_git_config_endpoint.call_with_http_info(**kwargs)
 
     def update_on_render_file(
         self,

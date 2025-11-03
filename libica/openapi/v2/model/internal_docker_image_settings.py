@@ -30,8 +30,8 @@ from libica.openapi.v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from libica.openapi.v2.model.docker_image_region import DockerImageRegion
-    globals()['DockerImageRegion'] = DockerImageRegion
+    from libica.openapi.v2.model.internal_docker_image_region import InternalDockerImageRegion
+    globals()['InternalDockerImageRegion'] = InternalDockerImageRegion
 
 
 class InternalDockerImageSettings(ModelNormal):
@@ -87,7 +87,7 @@ class InternalDockerImageSettings(ModelNormal):
         """
         lazy_import()
         return {
-            'regions': ([DockerImageRegion], none_type,),  # noqa: E501
+            'regions': ([InternalDockerImageRegion], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -140,7 +140,7 @@ class InternalDockerImageSettings(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            regions ([DockerImageRegion], none_type): [optional]  # noqa: E501
+            regions ([InternalDockerImageRegion], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -222,7 +222,7 @@ class InternalDockerImageSettings(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            regions ([DockerImageRegion], none_type): [optional]  # noqa: E501
+            regions ([InternalDockerImageRegion], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

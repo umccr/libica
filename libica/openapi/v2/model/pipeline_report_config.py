@@ -62,6 +62,10 @@ class PipelineReportConfig(ModelNormal):
     }
 
     validations = {
+        ('configs',): {
+            'max_items': 100,
+            'min_items': 0,
+        },
     }
 
     @cached_property

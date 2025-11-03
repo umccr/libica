@@ -62,6 +62,11 @@ class AnalysisOutputMapping(ModelNormal):
     }
 
     validations = {
+        ('action_on_exist',): {
+            'regex': {
+                'pattern': r'OVERWRITE|RENAME|SKIP',  # noqa: E501
+            },
+        },
     }
 
     @cached_property

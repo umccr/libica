@@ -92,6 +92,8 @@ class DataUpdateGroup(ModelNormal):
             'technical_tags': (TagUpdate,),  # noqa: E501
             'will_be_archived_at': (datetime,),  # noqa: E501
             'will_be_deleted_at': (datetime,),  # noqa: E501
+            'clear_will_be_archived_at': (bool, none_type,),  # noqa: E501
+            'clear_will_be_deleted_at': (bool, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -105,6 +107,8 @@ class DataUpdateGroup(ModelNormal):
         'technical_tags': 'technicalTags',  # noqa: E501
         'will_be_archived_at': 'willBeArchivedAt',  # noqa: E501
         'will_be_deleted_at': 'willBeDeletedAt',  # noqa: E501
+        'clear_will_be_archived_at': 'clearWillBeArchivedAt',  # noqa: E501
+        'clear_will_be_deleted_at': 'clearWillBeDeletedAt',  # noqa: E501
     }
 
     read_only_vars = {
@@ -153,8 +157,10 @@ class DataUpdateGroup(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             user_tags (TagUpdate): [optional]  # noqa: E501
             technical_tags (TagUpdate): [optional]  # noqa: E501
-            will_be_archived_at (datetime): The timestamp when the data should be archived.. [optional]  # noqa: E501
-            will_be_deleted_at (datetime): The timestamp when the data should be deleted.. [optional]  # noqa: E501
+            will_be_archived_at (datetime): The timestamp when the data should be archived. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]  # noqa: E501
+            will_be_deleted_at (datetime): The timestamp when the data should be deleted. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]  # noqa: E501
+            clear_will_be_archived_at (bool, none_type): Boolean to indicate that the willBeArchivedAt value should be cleared.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            clear_will_be_deleted_at (bool, none_type): Boolean to indicate that the willBeDeletedAt value should be cleared.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -242,8 +248,10 @@ class DataUpdateGroup(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             user_tags (TagUpdate): [optional]  # noqa: E501
             technical_tags (TagUpdate): [optional]  # noqa: E501
-            will_be_archived_at (datetime): The timestamp when the data should be archived.. [optional]  # noqa: E501
-            will_be_deleted_at (datetime): The timestamp when the data should be deleted.. [optional]  # noqa: E501
+            will_be_archived_at (datetime): The timestamp when the data should be archived. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]  # noqa: E501
+            will_be_deleted_at (datetime): The timestamp when the data should be deleted. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z. [optional]  # noqa: E501
+            clear_will_be_archived_at (bool, none_type): Boolean to indicate that the willBeArchivedAt value should be cleared.. [optional] if omitted the server will use the default value of False  # noqa: E501
+            clear_will_be_deleted_at (bool, none_type): Boolean to indicate that the willBeDeletedAt value should be cleared.. [optional] if omitted the server will use the default value of False  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
