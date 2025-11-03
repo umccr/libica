@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +27,7 @@ class ApplicationV4(BaseModel):
     """
     ApplicationV4
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     name: StrictStr
     __properties: ClassVar[List[str]] = ["id", "name"]
 

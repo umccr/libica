@@ -19,6 +19,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.create_project_data_move_batch import CreateProjectDataMoveBatch
 from libica.openapi.v3.models.project_data_move_batch import ProjectDataMoveBatch
 from libica.openapi.v3.models.project_data_move_batch_item import ProjectDataMoveBatchItem
@@ -336,7 +337,7 @@ class ProjectDataMoveBatchApi:
     def get_project_data_move_batch(
         self,
         project_id: StrictStr,
-        batch_id: StrictStr,
+        batch_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -406,7 +407,7 @@ class ProjectDataMoveBatchApi:
     def get_project_data_move_batch_with_http_info(
         self,
         project_id: StrictStr,
-        batch_id: StrictStr,
+        batch_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -476,7 +477,7 @@ class ProjectDataMoveBatchApi:
     def get_project_data_move_batch_without_preload_content(
         self,
         project_id: StrictStr,
-        batch_id: StrictStr,
+        batch_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -611,8 +612,8 @@ class ProjectDataMoveBatchApi:
     def get_project_data_move_batch_item(
         self,
         project_id: StrictStr,
-        batch_id: StrictStr,
-        item_id: StrictStr,
+        batch_id: UUID,
+        item_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -685,8 +686,8 @@ class ProjectDataMoveBatchApi:
     def get_project_data_move_batch_item_with_http_info(
         self,
         project_id: StrictStr,
-        batch_id: StrictStr,
-        item_id: StrictStr,
+        batch_id: UUID,
+        item_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -759,8 +760,8 @@ class ProjectDataMoveBatchApi:
     def get_project_data_move_batch_item_without_preload_content(
         self,
         project_id: StrictStr,
-        batch_id: StrictStr,
-        item_id: StrictStr,
+        batch_id: UUID,
+        item_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -901,7 +902,7 @@ class ProjectDataMoveBatchApi:
     def get_project_data_move_batch_items(
         self,
         project_id: StrictStr,
-        batch_id: StrictStr,
+        batch_id: UUID,
         page_offset: Annotated[Optional[StrictStr], Field(description="[only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages")] = None,
         page_token: Annotated[Optional[StrictStr], Field(description="[only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.")] = None,
         page_size: Annotated[Optional[StrictStr], Field(description="[can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results")] = None,
@@ -987,7 +988,7 @@ class ProjectDataMoveBatchApi:
     def get_project_data_move_batch_items_with_http_info(
         self,
         project_id: StrictStr,
-        batch_id: StrictStr,
+        batch_id: UUID,
         page_offset: Annotated[Optional[StrictStr], Field(description="[only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages")] = None,
         page_token: Annotated[Optional[StrictStr], Field(description="[only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.")] = None,
         page_size: Annotated[Optional[StrictStr], Field(description="[can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results")] = None,
@@ -1073,7 +1074,7 @@ class ProjectDataMoveBatchApi:
     def get_project_data_move_batch_items_without_preload_content(
         self,
         project_id: StrictStr,
-        batch_id: StrictStr,
+        batch_id: UUID,
         page_offset: Annotated[Optional[StrictStr], Field(description="[only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages")] = None,
         page_token: Annotated[Optional[StrictStr], Field(description="[only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages.")] = None,
         page_size: Annotated[Optional[StrictStr], Field(description="[can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results")] = None,

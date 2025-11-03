@@ -29,7 +29,7 @@ class InputFormFieldValues(BaseModel):
     InputFormFieldValues
     """ # noqa: E501
     id: StrictStr
-    values: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Use 'values' for all fields except data fields. Use string values to avoid rounding of numbers with a high precision. '' values for textbox type fields will be treated as null.")
+    values: Optional[List[Optional[StrictStr]]] = Field(default=None, description="Use 'values' for all fields except data fields. Use string values to avoid rounding of numbers with a high precision. Values of length 0 for textbox type fields will be treated as null.")
     data_values: Optional[List[Optional[InputFormData]]] = Field(default=None, description="Use 'dataValues' for data fields.", alias="dataValues")
     external_data_values: Optional[List[Optional[AnalysisInputExternalData]]] = Field(default=None, description="Use 'externalDataValues' for external data", alias="externalDataValues")
     __properties: ClassVar[List[str]] = ["id", "values", "dataValues", "externalDataValues"]

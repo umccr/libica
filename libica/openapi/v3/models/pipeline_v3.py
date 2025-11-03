@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.analysis_storage_v3 import AnalysisStorageV3
 from libica.openapi.v3.models.pipeline_language_version import PipelineLanguageVersion
 from libica.openapi.v3.models.pipeline_resources import PipelineResources
@@ -32,11 +33,11 @@ class PipelineV3(BaseModel):
     """
     PipelineV3
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
-    owner_id: StrictStr = Field(alias="ownerId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    owner_id: UUID = Field(alias="ownerId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
     code: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The code of the pipeline")
     urn: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=2000)]] = Field(default=None, description="The URN of the pipeline. The format is urn:ilmn:ica:\\<type of the object\\>:\\<ID of the object\\>#\\<optional human readable hint representing the object\\>. The hint can be omitted, in that case the hashtag (#) must also be omitted.")

@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.application_v4 import ApplicationV4
 from libica.openapi.v3.models.notification_channel import NotificationChannel
 from typing import Optional, Set
@@ -30,11 +31,11 @@ class CustomNotificationSubscription(BaseModel):
     """
     CustomNotificationSubscription
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
-    owner_id: StrictStr = Field(alias="ownerId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    owner_id: UUID = Field(alias="ownerId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
     custom_event_code: Annotated[str, Field(min_length=1, strict=True, max_length=20)] = Field(description="The custom event code to subscribe to", alias="customEventCode")
     filter_expression: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=2000)]] = Field(default=None, description="To be used when a notification applies to specific conditions.", alias="filterExpression")

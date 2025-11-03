@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.project_data import ProjectData
 from libica.openapi.v3.models.project_data_linking_batch_item_processing_v4 import ProjectDataLinkingBatchItemProcessingV4
 from libica.openapi.v3.models.project_data_linking_batch_item_request import ProjectDataLinkingBatchItemRequest
@@ -29,7 +30,7 @@ class ProjectDataLinkingBatchItemV4(BaseModel):
     """
     ProjectDataLinkingBatchItemV4
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     request: ProjectDataLinkingBatchItemRequest
     processing: ProjectDataLinkingBatchItemProcessingV4
     created_project_data: Optional[ProjectData] = Field(default=None, alias="createdProjectData")

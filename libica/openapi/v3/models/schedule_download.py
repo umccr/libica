@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +27,7 @@ class ScheduleDownload(BaseModel):
     """
     ScheduleDownload
     """ # noqa: E501
-    connector_id: Optional[StrictStr] = Field(default=None, alias="connectorId")
+    connector_id: Optional[UUID] = Field(default=None, alias="connectorId")
     protocol: Optional[StrictStr] = None
     local_path: Optional[StrictStr] = Field(default=None, alias="localPath")
     disable_hashing: Optional[StrictBool] = Field(default=None, alias="disableHashing")

@@ -20,7 +20,9 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.analysis_output_mapping import AnalysisOutputMapping
+from libica.openapi.v3.models.create_analysis_logs import CreateAnalysisLogs
 from libica.openapi.v3.models.create_analysis_tag import CreateAnalysisTag
 from libica.openapi.v3.models.nextflow_analysis_with_custom_input import NextflowAnalysisWithCustomInput
 from typing import Optional, Set
@@ -33,11 +35,12 @@ class CreateNextflowWithCustomInputAnalysis(BaseModel):
     user_reference: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The user-reference of the analysis. This should be something meaningful for the user.", alias="userReference")
     pipeline_id: StrictStr = Field(description="The pipeline for which an analysis will be created.", alias="pipelineId")
     tags: Optional[CreateAnalysisTag] = None
-    analysis_storage_id: Optional[StrictStr] = Field(default=None, description="The id of the storage to use for the analysis.", alias="analysisStorageId")
+    analysis_storage_id: Optional[UUID] = Field(default=None, description="The id of the storage to use for the analysis.", alias="analysisStorageId")
     output_parent_folder_id: Optional[StrictStr] = Field(default=None, description="The id or the urn of the folder in which the output folder should be created.", alias="outputParentFolderId")
+    logs: Optional[CreateAnalysisLogs] = None
     analysis_output: Optional[List[Optional[AnalysisOutputMapping]]] = Field(default=None, alias="analysisOutput")
     analysis_input: NextflowAnalysisWithCustomInput = Field(alias="analysisInput")
-    __properties: ClassVar[List[str]] = ["userReference", "pipelineId", "tags", "analysisStorageId", "outputParentFolderId", "analysisOutput", "analysisInput"]
+    __properties: ClassVar[List[str]] = ["userReference", "pipelineId", "tags", "analysisStorageId", "outputParentFolderId", "logs", "analysisOutput", "analysisInput"]
 
     @field_validator('user_reference')
     def user_reference_validate_regular_expression(cls, value):
@@ -88,6 +91,9 @@ class CreateNextflowWithCustomInputAnalysis(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of tags
         if self.tags:
             _dict['tags'] = self.tags.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of logs
+        if self.logs:
+            _dict['logs'] = self.logs.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in analysis_output (list)
         _items = []
         if self.analysis_output:
@@ -107,6 +113,11 @@ class CreateNextflowWithCustomInputAnalysis(BaseModel):
         # and model_fields_set contains the field
         if self.output_parent_folder_id is None and "output_parent_folder_id" in self.model_fields_set:
             _dict['outputParentFolderId'] = None
+
+        # set to None if logs (nullable) is None
+        # and model_fields_set contains the field
+        if self.logs is None and "logs" in self.model_fields_set:
+            _dict['logs'] = None
 
         # set to None if analysis_output (nullable) is None
         # and model_fields_set contains the field
@@ -130,6 +141,7 @@ class CreateNextflowWithCustomInputAnalysis(BaseModel):
             "tags": CreateAnalysisTag.from_dict(obj["tags"]) if obj.get("tags") is not None else None,
             "analysisStorageId": obj.get("analysisStorageId"),
             "outputParentFolderId": obj.get("outputParentFolderId"),
+            "logs": CreateAnalysisLogs.from_dict(obj["logs"]) if obj.get("logs") is not None else None,
             "analysisOutput": [AnalysisOutputMapping.from_dict(_item) for _item in obj["analysisOutput"]] if obj.get("analysisOutput") is not None else None,
             "analysisInput": NextflowAnalysisWithCustomInput.from_dict(obj["analysisInput"]) if obj.get("analysisInput") is not None else None
         })

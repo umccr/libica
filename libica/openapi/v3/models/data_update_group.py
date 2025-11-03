@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from libica.openapi.v3.models.tag_update import TagUpdate
 from typing import Optional, Set
@@ -31,9 +31,11 @@ class DataUpdateGroup(BaseModel):
     data_ids: List[StrictStr] = Field(alias="dataIds")
     user_tags: Optional[TagUpdate] = Field(default=None, alias="userTags")
     technical_tags: Optional[TagUpdate] = Field(default=None, alias="technicalTags")
-    will_be_archived_at: Optional[datetime] = Field(default=None, description="The timestamp when the data should be archived.", alias="willBeArchivedAt")
-    will_be_deleted_at: Optional[datetime] = Field(default=None, description="The timestamp when the data should be deleted.", alias="willBeDeletedAt")
-    __properties: ClassVar[List[str]] = ["dataIds", "userTags", "technicalTags", "willBeArchivedAt", "willBeDeletedAt"]
+    will_be_archived_at: Optional[datetime] = Field(default=None, description="The timestamp when the data should be archived. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z", alias="willBeArchivedAt")
+    will_be_deleted_at: Optional[datetime] = Field(default=None, description="The timestamp when the data should be deleted. Format: yyyy-MM-dd'T'HH:mm:ss'Z' eg: 2021-01-30T08:30:00Z", alias="willBeDeletedAt")
+    clear_will_be_archived_at: Optional[StrictBool] = Field(default=False, description="Boolean to indicate that the willBeArchivedAt value should be cleared.", alias="clearWillBeArchivedAt")
+    clear_will_be_deleted_at: Optional[StrictBool] = Field(default=False, description="Boolean to indicate that the willBeDeletedAt value should be cleared.", alias="clearWillBeDeletedAt")
+    __properties: ClassVar[List[str]] = ["dataIds", "userTags", "technicalTags", "willBeArchivedAt", "willBeDeletedAt", "clearWillBeArchivedAt", "clearWillBeDeletedAt"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,6 +92,16 @@ class DataUpdateGroup(BaseModel):
         if self.technical_tags is None and "technical_tags" in self.model_fields_set:
             _dict['technicalTags'] = None
 
+        # set to None if clear_will_be_archived_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.clear_will_be_archived_at is None and "clear_will_be_archived_at" in self.model_fields_set:
+            _dict['clearWillBeArchivedAt'] = None
+
+        # set to None if clear_will_be_deleted_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.clear_will_be_deleted_at is None and "clear_will_be_deleted_at" in self.model_fields_set:
+            _dict['clearWillBeDeletedAt'] = None
+
         return _dict
 
     @classmethod
@@ -106,7 +118,9 @@ class DataUpdateGroup(BaseModel):
             "userTags": TagUpdate.from_dict(obj["userTags"]) if obj.get("userTags") is not None else None,
             "technicalTags": TagUpdate.from_dict(obj["technicalTags"]) if obj.get("technicalTags") is not None else None,
             "willBeArchivedAt": obj.get("willBeArchivedAt"),
-            "willBeDeletedAt": obj.get("willBeDeletedAt")
+            "willBeDeletedAt": obj.get("willBeDeletedAt"),
+            "clearWillBeArchivedAt": obj.get("clearWillBeArchivedAt") if obj.get("clearWillBeArchivedAt") is not None else False,
+            "clearWillBeDeletedAt": obj.get("clearWillBeDeletedAt") if obj.get("clearWillBeDeletedAt") is not None else False
         })
         return _obj
 

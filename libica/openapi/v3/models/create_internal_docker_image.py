@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,12 +29,12 @@ class CreateInternalDockerImage(BaseModel):
     CreateInternalDockerImage
     """ # noqa: E501
     docker_data_id: StrictStr = Field(description="The id of the data for which an Docker image will be created.", alias="dockerDataId")
-    docker_data_project_id: StrictStr = Field(description="The id of the project where the Docker data resides.", alias="dockerDataProjectId")
+    docker_data_project_id: UUID = Field(description="The id of the project where the Docker data resides.", alias="dockerDataProjectId")
     name: Annotated[str, Field(min_length=1, strict=True, max_length=255)]
     version: Annotated[str, Field(min_length=1, strict=True, max_length=255)]
     description: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=255)]] = None
     type: StrictStr
-    regions: List[StrictStr] = Field(description="The UUID of the regions where the Docker image will be made available.")
+    regions: List[UUID] = Field(description="The UUID of the regions where the Docker image will be made available.")
     __properties: ClassVar[List[str]] = ["dockerDataId", "dockerDataProjectId", "name", "version", "description", "type", "regions"]
 
     @field_validator('type')

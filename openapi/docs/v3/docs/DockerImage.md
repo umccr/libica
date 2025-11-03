@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **type** | **str** |  | 
 **internal_docker_image_settings** | [**InternalDockerImageSettings**](InternalDockerImageSettings.md) |  | [optional] 
 **external_docker_image_settings** | [**ExternalDockerImageSettings**](ExternalDockerImageSettings.md) |  | [optional] 
+**ilmn_repo_docker_image_settings** | [**IlmnRepoDockerImageSettings**](IlmnRepoDockerImageSettings.md) |  | [optional] 
 **bench_settings** | [**BenchSettings**](BenchSettings.md) |  | [optional] 
 
 ## Example

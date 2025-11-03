@@ -37,7 +37,8 @@ class AnalysisStep(BaseModel):
     technical: StrictBool = Field(description="Indicates which kind of step was executed")
     logs: AnalysisStepLogs
     exit_code: Optional[StrictInt] = Field(default=None, description="The exit code of the analysis step", alias="exitCode")
-    __properties: ClassVar[List[str]] = ["id", "name", "status", "queueDate", "startDate", "endDate", "technical", "logs", "exitCode"]
+    compute_type: Optional[StrictStr] = Field(default=None, description="The compute type of the analysis step", alias="computeType")
+    __properties: ClassVar[List[str]] = ["id", "name", "status", "queueDate", "startDate", "endDate", "technical", "logs", "exitCode", "computeType"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -108,6 +109,11 @@ class AnalysisStep(BaseModel):
         if self.exit_code is None and "exit_code" in self.model_fields_set:
             _dict['exitCode'] = None
 
+        # set to None if compute_type (nullable) is None
+        # and model_fields_set contains the field
+        if self.compute_type is None and "compute_type" in self.model_fields_set:
+            _dict['computeType'] = None
+
         return _dict
 
     @classmethod
@@ -128,7 +134,8 @@ class AnalysisStep(BaseModel):
             "endDate": obj.get("endDate"),
             "technical": obj.get("technical"),
             "logs": AnalysisStepLogs.from_dict(obj["logs"]) if obj.get("logs") is not None else None,
-            "exitCode": obj.get("exitCode")
+            "exitCode": obj.get("exitCode"),
+            "computeType": obj.get("computeType")
         })
         return _obj
 

@@ -34,6 +34,7 @@ __all__ = [
     "EntitlementDetailApi",
     "EventCodeApi",
     "EventLogApi",
+    "GitCredentialsApi",
     "JobApi",
     "MetadataModelApi",
     "NotificationChannelApi",
@@ -98,6 +99,7 @@ __all__ = [
     "AnalysisInputDataMount",
     "AnalysisInputExternalData",
     "AnalysisInputList",
+    "AnalysisLogs",
     "AnalysisOutput",
     "AnalysisOutputList",
     "AnalysisOutputMapping",
@@ -125,6 +127,7 @@ __all__ = [
     "AnalysisV4",
     "Application",
     "ApplicationV4",
+    "ArchivePipeline",
     "AwsCredentials",
     "AwsTempCredentials",
     "BaseConnection",
@@ -160,6 +163,7 @@ __all__ = [
     "ConnectorList",
     "Country",
     "CreateAnalysisCreationBatch",
+    "CreateAnalysisLogs",
     "CreateAnalysisTag",
     "CreateBundle",
     "CreateBundleDataLinkingBatch",
@@ -181,6 +185,7 @@ __all__ = [
     "CreateFileData",
     "CreateFolder",
     "CreateFolderAndTemporaryCredentials",
+    "CreateGitCredential",
     "CreateInternalDockerImage",
     "CreateNextflowAnalysis",
     "CreateNextflowJsonAnalysis",
@@ -218,6 +223,7 @@ __all__ = [
     "CwlAnalysisStructuredInput",
     "CwlAnalysisWithJsonInput",
     "CwlAnalysisWithStructuredInput",
+    "CwlGitConfig",
     "CwlJsonAnalysisInput",
     "CwlToolDefinitionList",
     "Data",
@@ -233,10 +239,10 @@ __all__ = [
     "DataUpdateGroup",
     "DataUrlWithPath",
     "DataUrlWithPathList",
+    "DeprecatePipeline",
     "DockerImage",
     "DockerImageAccess",
     "DockerImageList",
-    "DockerImageRegion",
     "DockerImageRegionList",
     "Download",
     "DownloadRule",
@@ -260,6 +266,10 @@ __all__ = [
     "FindSampleNumberCondition",
     "FolderDetails",
     "FolderUploadSession",
+    "GitCredential",
+    "GitCredentialList",
+    "IlmnRepoDockerImageRegion",
+    "IlmnRepoDockerImageSettings",
     "InlineView",
     "InputFormBaseSpaceDataDetails",
     "InputFormData",
@@ -279,6 +289,7 @@ __all__ = [
     "InputPart",
     "InputPartMediaType",
     "IntegerSettings",
+    "InternalDockerImageRegion",
     "InternalDockerImageSettings",
     "Job",
     "JobPagedList",
@@ -293,6 +304,7 @@ __all__ = [
     "MultipartFormDataInput",
     "NextflowAnalysisInput",
     "NextflowAnalysisWithCustomInput",
+    "NextflowGitConfig",
     "NextflowJsonAnalysisInput",
     "NotificationChannel",
     "NotificationChannelList",
@@ -410,8 +422,11 @@ __all__ = [
     "TermsOfUse",
     "TermsOfUseAcceptance",
     "Token",
+    "UpdateCwlGitConfig",
+    "UpdateGitCredential",
     "UpdateMetadata",
     "UpdateMetadataFieldGroup",
+    "UpdateNextflowGitConfig",
     "UpdateSingleMetadataField",
     "UpdateStorageCredentialSecrets",
     "Upload",
@@ -456,6 +471,7 @@ from libica.openapi.v3.api.entitled_bundle_api import EntitledBundleApi as Entit
 from libica.openapi.v3.api.entitlement_detail_api import EntitlementDetailApi as EntitlementDetailApi
 from libica.openapi.v3.api.event_code_api import EventCodeApi as EventCodeApi
 from libica.openapi.v3.api.event_log_api import EventLogApi as EventLogApi
+from libica.openapi.v3.api.git_credentials_api import GitCredentialsApi as GitCredentialsApi
 from libica.openapi.v3.api.job_api import JobApi as JobApi
 from libica.openapi.v3.api.metadata_model_api import MetadataModelApi as MetadataModelApi
 from libica.openapi.v3.api.notification_channel_api import NotificationChannelApi as NotificationChannelApi
@@ -524,6 +540,7 @@ from libica.openapi.v3.models.analysis_input import AnalysisInput as AnalysisInp
 from libica.openapi.v3.models.analysis_input_data_mount import AnalysisInputDataMount as AnalysisInputDataMount
 from libica.openapi.v3.models.analysis_input_external_data import AnalysisInputExternalData as AnalysisInputExternalData
 from libica.openapi.v3.models.analysis_input_list import AnalysisInputList as AnalysisInputList
+from libica.openapi.v3.models.analysis_logs import AnalysisLogs as AnalysisLogs
 from libica.openapi.v3.models.analysis_output import AnalysisOutput as AnalysisOutput
 from libica.openapi.v3.models.analysis_output_list import AnalysisOutputList as AnalysisOutputList
 from libica.openapi.v3.models.analysis_output_mapping import AnalysisOutputMapping as AnalysisOutputMapping
@@ -551,6 +568,7 @@ from libica.openapi.v3.models.analysis_v3 import AnalysisV3 as AnalysisV3
 from libica.openapi.v3.models.analysis_v4 import AnalysisV4 as AnalysisV4
 from libica.openapi.v3.models.application import Application as Application
 from libica.openapi.v3.models.application_v4 import ApplicationV4 as ApplicationV4
+from libica.openapi.v3.models.archive_pipeline import ArchivePipeline as ArchivePipeline
 from libica.openapi.v3.models.aws_credentials import AwsCredentials as AwsCredentials
 from libica.openapi.v3.models.aws_temp_credentials import AwsTempCredentials as AwsTempCredentials
 from libica.openapi.v3.models.base_connection import BaseConnection as BaseConnection
@@ -586,6 +604,7 @@ from libica.openapi.v3.models.connector import Connector as Connector
 from libica.openapi.v3.models.connector_list import ConnectorList as ConnectorList
 from libica.openapi.v3.models.country import Country as Country
 from libica.openapi.v3.models.create_analysis_creation_batch import CreateAnalysisCreationBatch as CreateAnalysisCreationBatch
+from libica.openapi.v3.models.create_analysis_logs import CreateAnalysisLogs as CreateAnalysisLogs
 from libica.openapi.v3.models.create_analysis_tag import CreateAnalysisTag as CreateAnalysisTag
 from libica.openapi.v3.models.create_bundle import CreateBundle as CreateBundle
 from libica.openapi.v3.models.create_bundle_data_linking_batch import CreateBundleDataLinkingBatch as CreateBundleDataLinkingBatch
@@ -607,6 +626,7 @@ from libica.openapi.v3.models.create_file_and_upload_url import CreateFileAndUpl
 from libica.openapi.v3.models.create_file_data import CreateFileData as CreateFileData
 from libica.openapi.v3.models.create_folder import CreateFolder as CreateFolder
 from libica.openapi.v3.models.create_folder_and_temporary_credentials import CreateFolderAndTemporaryCredentials as CreateFolderAndTemporaryCredentials
+from libica.openapi.v3.models.create_git_credential import CreateGitCredential as CreateGitCredential
 from libica.openapi.v3.models.create_internal_docker_image import CreateInternalDockerImage as CreateInternalDockerImage
 from libica.openapi.v3.models.create_nextflow_analysis import CreateNextflowAnalysis as CreateNextflowAnalysis
 from libica.openapi.v3.models.create_nextflow_json_analysis import CreateNextflowJsonAnalysis as CreateNextflowJsonAnalysis
@@ -644,6 +664,7 @@ from libica.openapi.v3.models.cwl_analysis_output_json import CwlAnalysisOutputJ
 from libica.openapi.v3.models.cwl_analysis_structured_input import CwlAnalysisStructuredInput as CwlAnalysisStructuredInput
 from libica.openapi.v3.models.cwl_analysis_with_json_input import CwlAnalysisWithJsonInput as CwlAnalysisWithJsonInput
 from libica.openapi.v3.models.cwl_analysis_with_structured_input import CwlAnalysisWithStructuredInput as CwlAnalysisWithStructuredInput
+from libica.openapi.v3.models.cwl_git_config import CwlGitConfig as CwlGitConfig
 from libica.openapi.v3.models.cwl_json_analysis_input import CwlJsonAnalysisInput as CwlJsonAnalysisInput
 from libica.openapi.v3.models.cwl_tool_definition_list import CwlToolDefinitionList as CwlToolDefinitionList
 from libica.openapi.v3.models.data import Data as Data
@@ -659,10 +680,10 @@ from libica.openapi.v3.models.data_transfer_paged_list import DataTransferPagedL
 from libica.openapi.v3.models.data_update_group import DataUpdateGroup as DataUpdateGroup
 from libica.openapi.v3.models.data_url_with_path import DataUrlWithPath as DataUrlWithPath
 from libica.openapi.v3.models.data_url_with_path_list import DataUrlWithPathList as DataUrlWithPathList
+from libica.openapi.v3.models.deprecate_pipeline import DeprecatePipeline as DeprecatePipeline
 from libica.openapi.v3.models.docker_image import DockerImage as DockerImage
 from libica.openapi.v3.models.docker_image_access import DockerImageAccess as DockerImageAccess
 from libica.openapi.v3.models.docker_image_list import DockerImageList as DockerImageList
-from libica.openapi.v3.models.docker_image_region import DockerImageRegion as DockerImageRegion
 from libica.openapi.v3.models.docker_image_region_list import DockerImageRegionList as DockerImageRegionList
 from libica.openapi.v3.models.download import Download as Download
 from libica.openapi.v3.models.download_rule import DownloadRule as DownloadRule
@@ -686,6 +707,10 @@ from libica.openapi.v3.models.find_sample_date_condition import FindSampleDateCo
 from libica.openapi.v3.models.find_sample_number_condition import FindSampleNumberCondition as FindSampleNumberCondition
 from libica.openapi.v3.models.folder_details import FolderDetails as FolderDetails
 from libica.openapi.v3.models.folder_upload_session import FolderUploadSession as FolderUploadSession
+from libica.openapi.v3.models.git_credential import GitCredential as GitCredential
+from libica.openapi.v3.models.git_credential_list import GitCredentialList as GitCredentialList
+from libica.openapi.v3.models.ilmn_repo_docker_image_region import IlmnRepoDockerImageRegion as IlmnRepoDockerImageRegion
+from libica.openapi.v3.models.ilmn_repo_docker_image_settings import IlmnRepoDockerImageSettings as IlmnRepoDockerImageSettings
 from libica.openapi.v3.models.inline_view import InlineView as InlineView
 from libica.openapi.v3.models.input_form_base_space_data_details import InputFormBaseSpaceDataDetails as InputFormBaseSpaceDataDetails
 from libica.openapi.v3.models.input_form_data import InputFormData as InputFormData
@@ -705,6 +730,7 @@ from libica.openapi.v3.models.input_parameter_list import InputParameterList as 
 from libica.openapi.v3.models.input_part import InputPart as InputPart
 from libica.openapi.v3.models.input_part_media_type import InputPartMediaType as InputPartMediaType
 from libica.openapi.v3.models.integer_settings import IntegerSettings as IntegerSettings
+from libica.openapi.v3.models.internal_docker_image_region import InternalDockerImageRegion as InternalDockerImageRegion
 from libica.openapi.v3.models.internal_docker_image_settings import InternalDockerImageSettings as InternalDockerImageSettings
 from libica.openapi.v3.models.job import Job as Job
 from libica.openapi.v3.models.job_paged_list import JobPagedList as JobPagedList
@@ -719,6 +745,7 @@ from libica.openapi.v3.models.model_field import ModelField as ModelField
 from libica.openapi.v3.models.multipart_form_data_input import MultipartFormDataInput as MultipartFormDataInput
 from libica.openapi.v3.models.nextflow_analysis_input import NextflowAnalysisInput as NextflowAnalysisInput
 from libica.openapi.v3.models.nextflow_analysis_with_custom_input import NextflowAnalysisWithCustomInput as NextflowAnalysisWithCustomInput
+from libica.openapi.v3.models.nextflow_git_config import NextflowGitConfig as NextflowGitConfig
 from libica.openapi.v3.models.nextflow_json_analysis_input import NextflowJsonAnalysisInput as NextflowJsonAnalysisInput
 from libica.openapi.v3.models.notification_channel import NotificationChannel as NotificationChannel
 from libica.openapi.v3.models.notification_channel_list import NotificationChannelList as NotificationChannelList
@@ -836,8 +863,11 @@ from libica.openapi.v3.models.tenant_identifier import TenantIdentifier as Tenan
 from libica.openapi.v3.models.terms_of_use import TermsOfUse as TermsOfUse
 from libica.openapi.v3.models.terms_of_use_acceptance import TermsOfUseAcceptance as TermsOfUseAcceptance
 from libica.openapi.v3.models.token import Token as Token
+from libica.openapi.v3.models.update_cwl_git_config import UpdateCwlGitConfig as UpdateCwlGitConfig
+from libica.openapi.v3.models.update_git_credential import UpdateGitCredential as UpdateGitCredential
 from libica.openapi.v3.models.update_metadata import UpdateMetadata as UpdateMetadata
 from libica.openapi.v3.models.update_metadata_field_group import UpdateMetadataFieldGroup as UpdateMetadataFieldGroup
+from libica.openapi.v3.models.update_nextflow_git_config import UpdateNextflowGitConfig as UpdateNextflowGitConfig
 from libica.openapi.v3.models.update_single_metadata_field import UpdateSingleMetadataField as UpdateSingleMetadataField
 from libica.openapi.v3.models.update_storage_credential_secrets import UpdateStorageCredentialSecrets as UpdateStorageCredentialSecrets
 from libica.openapi.v3.models.upload import Upload as Upload
@@ -863,3 +893,4 @@ from libica.openapi.v3.models.workflow_v3 import WorkflowV3 as WorkflowV3
 from libica.openapi.v3.models.workflow_v4 import WorkflowV4 as WorkflowV4
 from libica.openapi.v3.models.workgroup import Workgroup as Workgroup
 from libica.openapi.v3.models.workgroup_list import WorkgroupList as WorkgroupList
+

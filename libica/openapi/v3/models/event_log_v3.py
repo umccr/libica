@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,16 +29,16 @@ class EventLogV3(BaseModel):
     """
     EventLogV3
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
-    owner_id: StrictStr = Field(alias="ownerId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    owner_id: UUID = Field(alias="ownerId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
     code: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The code of the event")
     description: Annotated[str, Field(min_length=1, strict=True, max_length=1000)] = Field(description="The details of the event")
     event_type_category: StrictStr = Field(description="The type of the event", alias="eventTypeCategory")
-    user_id: StrictStr = Field(alias="userId")
+    user_id: UUID = Field(alias="userId")
     __properties: ClassVar[List[str]] = ["id", "timeCreated", "timeModified", "ownerId", "tenantId", "tenantName", "code", "description", "eventTypeCategory", "userId"]
 
     @field_validator('event_type_category')

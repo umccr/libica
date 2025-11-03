@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **code** | **str** | The code of the pipeline | 
 **description** | **str** | The description of the pipeline | 
 **status** | **str** | The status of the pipeline | [optional] 
+**status_as_string** | **str** | The status of the pipeline as string (&#39;Draft&#39;, &#39;Released&#39;, &#39;Deprecated&#39;, &#39;Archived&#39;) | [optional] 
 **language** | **str** | The language that is used by the pipeline | 
 **language_version** | [**PipelineLanguageVersion**](PipelineLanguageVersion.md) |  | [optional] 
 **pipeline_tags** | [**PipelineTag**](PipelineTag.md) |  | 

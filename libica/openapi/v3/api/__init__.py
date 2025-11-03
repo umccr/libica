@@ -17,6 +17,7 @@ from libica.openapi.v3.api.entitled_bundle_api import EntitledBundleApi
 from libica.openapi.v3.api.entitlement_detail_api import EntitlementDetailApi
 from libica.openapi.v3.api.event_code_api import EventCodeApi
 from libica.openapi.v3.api.event_log_api import EventLogApi
+from libica.openapi.v3.api.git_credentials_api import GitCredentialsApi
 from libica.openapi.v3.api.job_api import JobApi
 from libica.openapi.v3.api.metadata_model_api import MetadataModelApi
 from libica.openapi.v3.api.notification_channel_api import NotificationChannelApi

@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from libica.openapi.v3.models.data import Data
 from libica.openapi.v3.models.folder_upload_session import FolderUploadSession
 from typing import Optional, Set
@@ -29,7 +30,7 @@ class ProjectFolderAndUploadSession(BaseModel):
     ProjectFolderAndUploadSession
     """ # noqa: E501
     data: Data
-    project_id: StrictStr = Field(alias="projectId")
+    project_id: UUID = Field(alias="projectId")
     upload_session: FolderUploadSession = Field(alias="uploadSession")
     __properties: ClassVar[List[str]] = ["data", "projectId", "uploadSession"]
 

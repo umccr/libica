@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.analysis_storage_v4 import AnalysisStorageV4
 from libica.openapi.v3.models.analysis_tag import AnalysisTag
 from libica.openapi.v3.models.application_v4 import ApplicationV4
@@ -35,7 +36,7 @@ class AnalysisV4(BaseModel):
     """
     AnalysisV4
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
     owner: UserIdentifier

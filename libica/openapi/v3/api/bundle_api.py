@@ -19,6 +19,7 @@ from typing_extensions import Annotated
 from pydantic import Field, StrictStr
 from typing import Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.bundle import Bundle
 from libica.openapi.v3.models.bundle_paged_list import BundlePagedList
 from libica.openapi.v3.models.create_bundle import CreateBundle
@@ -1099,7 +1100,7 @@ class BundleApi:
     @validate_call
     def get_bundle_terms_of_use(
         self,
-        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle of the terms of use to retrieve")],
+        bundle_id: Annotated[UUID, Field(description="The ID of the bundle of the terms of use to retrieve")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1165,7 +1166,7 @@ class BundleApi:
     @validate_call
     def get_bundle_terms_of_use_with_http_info(
         self,
-        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle of the terms of use to retrieve")],
+        bundle_id: Annotated[UUID, Field(description="The ID of the bundle of the terms of use to retrieve")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1231,7 +1232,7 @@ class BundleApi:
     @validate_call
     def get_bundle_terms_of_use_without_preload_content(
         self,
-        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle of the terms of use to retrieve")],
+        bundle_id: Annotated[UUID, Field(description="The ID of the bundle of the terms of use to retrieve")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1983,7 +1984,7 @@ class BundleApi:
     @validate_call
     def insert_bundle_terms_of_use(
         self,
-        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle to update")],
+        bundle_id: Annotated[UUID, Field(description="The ID of the bundle to update")],
         create_terms_of_use: CreateTermsOfUse,
         _request_timeout: Union[
             None,
@@ -2053,7 +2054,7 @@ class BundleApi:
     @validate_call
     def insert_bundle_terms_of_use_with_http_info(
         self,
-        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle to update")],
+        bundle_id: Annotated[UUID, Field(description="The ID of the bundle to update")],
         create_terms_of_use: CreateTermsOfUse,
         _request_timeout: Union[
             None,
@@ -2123,7 +2124,7 @@ class BundleApi:
     @validate_call
     def insert_bundle_terms_of_use_without_preload_content(
         self,
-        bundle_id: Annotated[StrictStr, Field(description="The ID of the bundle to update")],
+        bundle_id: Annotated[UUID, Field(description="The ID of the bundle to update")],
         create_terms_of_use: CreateTermsOfUse,
         _request_timeout: Union[
             None,

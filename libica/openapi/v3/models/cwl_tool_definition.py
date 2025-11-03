@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.link import Link
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,11 +30,11 @@ class CWLToolDefinition(BaseModel):
     """
     CWLToolDefinition
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
-    owner_id: StrictStr = Field(alias="ownerId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    owner_id: UUID = Field(alias="ownerId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
     name: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="Name of the tool definition")
     description: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=4000)]] = Field(default=None, description="Description of the tool definition")

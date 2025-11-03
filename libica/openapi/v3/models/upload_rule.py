@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.data_format import DataFormat
 from libica.openapi.v3.models.project import Project
 from typing import Optional, Set
@@ -30,11 +31,11 @@ class UploadRule(BaseModel):
     """
     UploadRule
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
-    owner_id: StrictStr = Field(alias="ownerId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    owner_id: UUID = Field(alias="ownerId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
     code: Annotated[str, Field(min_length=1, strict=True, max_length=300)]
     active: Optional[StrictBool] = None

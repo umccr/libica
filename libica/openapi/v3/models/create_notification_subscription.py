@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -31,7 +32,7 @@ class CreateNotificationSubscription(BaseModel):
     payload_version: Optional[StrictStr] = Field(default=None, description="The version of the notification event payload in case multiple versions exist. For analysis events possible values are [V3,V4]", alias="payloadVersion")
     filter_expression: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=2000)]] = Field(default=None, description="To be used when a notification applies to specific conditions.", alias="filterExpression")
     enabled: StrictBool = Field(description="Should this subscription be enabled or not?")
-    notification_channel_id: StrictStr = Field(description="The ID of the notification channel used to send on", alias="notificationChannelId")
+    notification_channel_id: UUID = Field(description="The ID of the notification channel used to send on", alias="notificationChannelId")
     __properties: ClassVar[List[str]] = ["eventCode", "payloadVersion", "filterExpression", "enabled", "notificationChannelId"]
 
     model_config = ConfigDict(

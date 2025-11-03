@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +27,7 @@ class Application(BaseModel):
     """
     Application
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     name: StrictStr = Field(description="The unique name identifying the application")
     type: StrictStr = Field(description="The type of the application")
     display_name: Optional[StrictStr] = Field(default=None, description="The display name of the application", alias="displayName")

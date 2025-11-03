@@ -17,9 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,7 +31,7 @@ class CreateCustomNotificationSubscription(BaseModel):
     custom_event_code: Annotated[str, Field(min_length=1, strict=True, max_length=20)] = Field(description="The custom event code to subscribe to", alias="customEventCode")
     filter_expression: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=2000)]] = Field(default=None, description="To be used when a notification applies to specific conditions.", alias="filterExpression")
     enabled: StrictBool = Field(description="Should this subscription be enabled or not?")
-    notification_channel_id: StrictStr = Field(description="The id of the notification channel used to send on", alias="notificationChannelId")
+    notification_channel_id: UUID = Field(description="The id of the notification channel used to send on", alias="notificationChannelId")
     __properties: ClassVar[List[str]] = ["customEventCode", "filterExpression", "enabled", "notificationChannelId"]
 
     model_config = ConfigDict(

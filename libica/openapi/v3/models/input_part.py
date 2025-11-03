@@ -27,11 +27,11 @@ class InputPart(BaseModel):
     """
     InputPart
     """ # noqa: E501
-    body_as_string: Optional[StrictStr] = Field(default=None, alias="bodyAsString")
-    content_type_from_message: Optional[StrictBool] = Field(default=None, alias="contentTypeFromMessage")
     media_type: Optional[InputPartMediaType] = Field(default=None, alias="mediaType")
     headers: Optional[Dict[str, List[StrictStr]]] = None
-    __properties: ClassVar[List[str]] = ["bodyAsString", "contentTypeFromMessage", "mediaType", "headers"]
+    content_type_from_message: Optional[StrictBool] = Field(default=None, alias="contentTypeFromMessage")
+    body_as_string: Optional[StrictStr] = Field(default=None, alias="bodyAsString")
+    __properties: ClassVar[List[str]] = ["mediaType", "headers", "contentTypeFromMessage", "bodyAsString"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,10 +87,10 @@ class InputPart(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "bodyAsString": obj.get("bodyAsString"),
-            "contentTypeFromMessage": obj.get("contentTypeFromMessage"),
             "mediaType": InputPartMediaType.from_dict(obj["mediaType"]) if obj.get("mediaType") is not None else None,
-            "headers": obj.get("headers")
+            "headers": obj.get("headers"),
+            "contentTypeFromMessage": obj.get("contentTypeFromMessage"),
+            "bodyAsString": obj.get("bodyAsString")
         })
         return _obj
 

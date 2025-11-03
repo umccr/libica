@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.application_v4 import ApplicationV4
 from libica.openapi.v3.models.user import User
 from libica.openapi.v3.models.workgroup import Workgroup
@@ -30,11 +31,11 @@ class ProjectPermissionV4(BaseModel):
     """
     ProjectPermissionV4
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
-    owner_id: StrictStr = Field(alias="ownerId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    owner_id: UUID = Field(alias="ownerId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
     role_project: StrictStr = Field(description="Possible values are: NONE, VIEWER, CONTRIBUTOR, ADMINISTRATOR, DATA_PROVIDER. More types could be added in a future release.", alias="roleProject")
     role_flow: StrictStr = Field(description="Possible values are: NONE, VIEWER, CONTRIBUTOR. More types could be added in a future release.", alias="roleFlow")

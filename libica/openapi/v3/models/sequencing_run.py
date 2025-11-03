@@ -17,9 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class SequencingRun(BaseModel):
     """
     SequencingRun
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     instrument_run_id: Annotated[str, Field(min_length=0, strict=True, max_length=255)] = Field(alias="instrumentRunId")
     name: Annotated[str, Field(min_length=0, strict=True, max_length=255)]
     __properties: ClassVar[List[str]] = ["id", "instrumentRunId", "name"]

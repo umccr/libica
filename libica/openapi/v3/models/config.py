@@ -29,7 +29,7 @@ class Config(BaseModel):
     """ # noqa: E501
     name: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="name of the report")
     regex: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="regex pattern of the filename")
-    format: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=255)]] = Field(default=None, description="Format of the file")
+    format: Optional[Annotated[str, Field(min_length=0, strict=True, max_length=255)]] = Field(default=None, description="Format of the file")
     __properties: ClassVar[List[str]] = ["name", "regex", "format"]
 
     model_config = ConfigDict(

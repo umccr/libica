@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.project_tag import ProjectTag
 from typing import Optional, Set
 from typing_extensions import Self
@@ -31,14 +32,14 @@ class CreateProject(BaseModel):
     name: Annotated[str, Field(min_length=1, strict=True, max_length=255)]
     short_description: Optional[Annotated[str, Field(min_length=1, strict=True, max_length=4000)]] = Field(default=None, alias="shortDescription")
     information: Optional[StrictStr] = Field(default=None, description="Information about the project. Note that the value of this field can be arbitrary large.")
-    project_owner_id: Optional[StrictStr] = Field(default=None, description="Owner of the project. Defaults to the current user.", alias="projectOwnerId")
-    region_id: StrictStr = Field(description="The region of the project. All data and pipeline executions will reside in this region.", alias="regionId")
+    project_owner_id: Optional[UUID] = Field(default=None, description="Owner of the project. Defaults to the current user.", alias="projectOwnerId")
+    region_id: UUID = Field(description="The region of the project. All data and pipeline executions will reside in this region.", alias="regionId")
     billing_mode: StrictStr = Field(description="The billing mode of the project. It determines who pays for the costs linked to the project.", alias="billingMode")
     data_sharing_enabled: StrictBool = Field(description="Indicates whether the Data and Samples created in this Project can be linked to other Projects.", alias="dataSharingEnabled")
     tags: Optional[ProjectTag] = None
-    storage_bundle_id: StrictStr = Field(alias="storageBundleId")
-    metadata_model_id: Optional[StrictStr] = Field(default=None, alias="metadataModelId")
-    storage_configuration_id: Optional[StrictStr] = Field(default=None, description="An optional storage configuration id to have self managed storage.", alias="storageConfigurationId")
+    storage_bundle_id: UUID = Field(alias="storageBundleId")
+    metadata_model_id: Optional[UUID] = Field(default=None, alias="metadataModelId")
+    storage_configuration_id: Optional[UUID] = Field(default=None, description="An optional storage configuration id to have self managed storage.", alias="storageConfigurationId")
     storage_configuration_subfolder: Optional[StrictStr] = Field(default=None, description="An optional subfolder that determines the object prefix of your self managed storage.  If not used, you will not be able to use this storage configuration for any future projects.", alias="storageConfigurationSubfolder")
     analysis_priority: Optional[StrictStr] = Field(default='MEDIUM', description="Indicates the priority given to a project and its analyses within a single tenant, where MEDIUM is the default value.", alias="analysisPriority")
     __properties: ClassVar[List[str]] = ["name", "shortDescription", "information", "projectOwnerId", "regionId", "billingMode", "dataSharingEnabled", "tags", "storageBundleId", "metadataModelId", "storageConfigurationId", "storageConfigurationSubfolder", "analysisPriority"]

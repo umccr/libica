@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from libica.openapi.v3.models.project_base_table import ProjectBaseTable
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,11 +29,11 @@ class BaseJob(BaseModel):
     """
     BaseJob
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
     time_modified: datetime = Field(alias="timeModified")
-    owner_id: StrictStr = Field(alias="ownerId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    owner_id: UUID = Field(alias="ownerId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
     description: Optional[StrictStr] = Field(default=None, description="A short description of the base job")
     table: Optional[ProjectBaseTable] = None

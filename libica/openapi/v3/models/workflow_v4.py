@@ -17,9 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.analysis_storage_v4 import AnalysisStorageV4
 from libica.openapi.v3.models.pipeline_language_version import PipelineLanguageVersion
 from libica.openapi.v3.models.pipeline_tag import PipelineTag
@@ -30,7 +31,7 @@ class WorkflowV4(BaseModel):
     """
     WorkflowV4
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     code: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The code of the workflow")
     urn: Annotated[str, Field(min_length=1, strict=True, max_length=2000)] = Field(description="The URN of the workflow. The format is urn:ilmn:ica:\\<type of the object\\>:\\<ID of the object\\>#\\<optional human readable hint representing the object\\>. The hint can be omitted, in that case the hashtag (#) must also be omitted.")
     description: Annotated[str, Field(min_length=1, strict=True, max_length=4000)] = Field(description="The description of the workflow")

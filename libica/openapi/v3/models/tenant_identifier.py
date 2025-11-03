@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +27,7 @@ class TenantIdentifier(BaseModel):
     """
     TenantIdentifier
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     name: Optional[StrictStr] = Field(default=None, description="The unique name of the tenant.")
     __properties: ClassVar[List[str]] = ["id", "name"]
 

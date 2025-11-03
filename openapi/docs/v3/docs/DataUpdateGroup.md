@@ -9,8 +9,10 @@ Name | Type | Description | Notes
 **data_ids** | **List[str]** |  | 
 **user_tags** | [**TagUpdate**](TagUpdate.md) |  | [optional] 
 **technical_tags** | [**TagUpdate**](TagUpdate.md) |  | [optional] 
-**will_be_archived_at** | **datetime** | The timestamp when the data should be archived. | [optional] 
-**will_be_deleted_at** | **datetime** | The timestamp when the data should be deleted. | [optional] 
+**will_be_archived_at** | **datetime** | The timestamp when the data should be archived. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional] 
+**will_be_deleted_at** | **datetime** | The timestamp when the data should be deleted. Format: yyyy-MM-dd&#39;T&#39;HH:mm:ss&#39;Z&#39; eg: 2021-01-30T08:30:00Z | [optional] 
+**clear_will_be_archived_at** | **bool** | Boolean to indicate that the willBeArchivedAt value should be cleared. | [optional] [default to False]
+**clear_will_be_deleted_at** | **bool** | Boolean to indicate that the willBeDeletedAt value should be cleared. | [optional] [default to False]
 
 ## Example
 

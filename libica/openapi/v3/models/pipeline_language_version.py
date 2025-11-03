@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class PipelineLanguageVersion(BaseModel):
     """
     PipelineLanguageVersion
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     name: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The name of the version")
     language: StrictStr = Field(description="The language of the version")
     __properties: ClassVar[List[str]] = ["id", "name", "language"]

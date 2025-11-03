@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,9 +33,9 @@ class CreateProjectPermissionV4(BaseModel):
     role_base: Annotated[str, Field(strict=True)] = Field(alias="roleBase")
     role_bench: Annotated[str, Field(strict=True)] = Field(alias="roleBench")
     membership_type: StrictStr = Field(description="How users are invited to the project", alias="membershipType")
-    user_id: Optional[StrictStr] = Field(default=None, description="the id of the user that should be given access, required when membershipType is USER", alias="userId")
+    user_id: Optional[UUID] = Field(default=None, description="the id of the user that should be given access, required when membershipType is USER", alias="userId")
     email_address: Optional[StrictStr] = Field(default=None, description="The email to invite a user on, required when membershipType is EMAIL", alias="emailAddress")
-    workgroup_id: Optional[StrictStr] = Field(default=None, description="the id of the workgroup to give access, required when membershipType is WORKGROUP", alias="workgroupId")
+    workgroup_id: Optional[UUID] = Field(default=None, description="the id of the workgroup to give access, required when membershipType is WORKGROUP", alias="workgroupId")
     upload_allowed: StrictBool = Field(description="Indicates if uploading data is allowed or not.", alias="uploadAllowed")
     download_allowed: StrictBool = Field(description="Indicates if downloading data is allowed or not.", alias="downloadAllowed")
     __properties: ClassVar[List[str]] = ["roleProject", "roleFlow", "roleBase", "roleBench", "membershipType", "userId", "emailAddress", "workgroupId", "uploadAllowed", "downloadAllowed"]

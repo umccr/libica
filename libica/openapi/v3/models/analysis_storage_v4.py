@@ -20,6 +20,7 @@ import json
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class AnalysisStorageV4(BaseModel):
     """
     AnalysisStorageV4
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     name: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The name of the storage option")
     description: Optional[StrictStr] = Field(default=None, description="The description about the storage option")
     __properties: ClassVar[List[str]] = ["id", "name", "description"]

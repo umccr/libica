@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from libica.openapi.v3.models.workflow_session_tag import WorkflowSessionTag
 from libica.openapi.v3.models.workflow_v3 import WorkflowV3
 from typing import Optional, Set
@@ -30,10 +31,10 @@ class WorkflowSessionV3(BaseModel):
     """
     WorkflowSessionV3
     """ # noqa: E501
-    id: StrictStr
+    id: UUID
     time_created: datetime = Field(alias="timeCreated")
-    owner_id: StrictStr = Field(alias="ownerId")
-    tenant_id: StrictStr = Field(alias="tenantId")
+    owner_id: UUID = Field(alias="ownerId")
+    tenant_id: UUID = Field(alias="tenantId")
     tenant_name: Optional[StrictStr] = Field(default=None, alias="tenantName")
     user_reference: Annotated[str, Field(min_length=1, strict=True, max_length=255)] = Field(description="The user reference of the workflow session", alias="userReference")
     workflow: WorkflowV3

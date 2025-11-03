@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from libica.openapi.v3.models.bundle_list import BundleList
 from libica.openapi.v3.models.pipeline_v4 import PipelineV4
 from typing import Optional, Set
@@ -29,7 +30,7 @@ class ProjectPipelineV4(BaseModel):
     ProjectPipelineV4
     """ # noqa: E501
     pipeline: PipelineV4
-    project_id: StrictStr = Field(alias="projectId")
+    project_id: UUID = Field(alias="projectId")
     bundle_links: BundleList = Field(alias="bundleLinks")
     __properties: ClassVar[List[str]] = ["pipeline", "projectId", "bundleLinks"]
 

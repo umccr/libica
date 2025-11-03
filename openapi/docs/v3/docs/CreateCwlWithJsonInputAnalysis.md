@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **tags** | [**CreateAnalysisTag**](CreateAnalysisTag.md) |  | [optional] 
 **analysis_storage_id** | **str** | The id of the storage to use for the analysis. | [optional] 
 **output_parent_folder_id** | **str** | The id or the urn of the folder in which the output folder should be created. | [optional] 
+**logs** | [**CreateAnalysisLogs**](CreateAnalysisLogs.md) |  | [optional] 
 **analysis_output** | [**List[AnalysisOutputMapping]**](AnalysisOutputMapping.md) |  | [optional] 
 **analysis_input** | [**CwlAnalysisWithJsonInput**](CwlAnalysisWithJsonInput.md) |  | 
 
