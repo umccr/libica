@@ -259,7 +259,7 @@ dict(one=1, two=2)</p></div>
 </dd>
 <dt id="libica.openapi.v3.configuration.Configuration"><code class="flex name class">
 <span>class <span class="ident">Configuration</span></span>
-<span>(</span><span>host: str | None = None,<br>api_key: Dict[str, str] | None = None,<br>api_key_prefix: Dict[str, str] | None = None,<br>username: str | None = None,<br>password: str | None = None,<br>access_token: str | None = None,<br>server_index: int | None = None,<br>server_variables: Dict[str, str] | None = None,<br>server_operation_index: Dict[int, int] | None = None,<br>server_operation_variables: Dict[int, Dict[str, str]] | None = None,<br>ignore_operation_servers: bool = False,<br>ssl_ca_cert: str | None = None,<br>retries: int | None = None,<br>ca_cert_data: str | bytes | None = None,<br>*,<br>debug: bool | None = None)</span>
+<span>(</span><span>host: str | None = None,<br>api_key: Dict[str, str] | None = None,<br>api_key_prefix: Dict[str, str] | None = None,<br>username: str | None = None,<br>password: str | None = None,<br>access_token: str | None = None,<br>server_index: int | None = None,<br>server_variables: Dict[str, str] | None = None,<br>server_operation_index: Dict[int, int] | None = None,<br>server_operation_variables: Dict[int, Dict[str, str]] | None = None,<br>ignore_operation_servers: bool = False,<br>ssl_ca_cert: str | None = None,<br>retries: int | None = None,<br>ca_cert_data: str | bytes | None = None,<br>cert_file: str | None = None,<br>key_file: str | None = None,<br>*,<br>debug: bool | None = None)</span>
 </code></dt>
 <dd>
 <details class="source">
@@ -298,6 +298,8 @@ dict(one=1, two=2)</p></div>
     :param retries: Number of retries for API requests.
     :param ca_cert_data: verify the peer using concatenated CA certificate data
       in PEM (str) or DER (bytes) format.
+    :param cert_file: the path to a client certificate file, for mTLS.
+    :param key_file: the path to a client key file, for mTLS. 
 
     :Example:
 
@@ -355,6 +357,8 @@ conf = libica.openapi.v3.Configuration(
         ssl_ca_cert: Optional[str]=None,
         retries: Optional[int] = None,
         ca_cert_data: Optional[Union[str, bytes]] = None,
+        cert_file: Optional[str]=None,
+        key_file: Optional[str]=None,
         *,
         debug: Optional[bool] = None,
     ) -&gt; None:
@@ -436,10 +440,10 @@ conf = libica.openapi.v3.Configuration(
         &#34;&#34;&#34;Set this to verify the peer using PEM (str) or DER (bytes)
            certificate data.
         &#34;&#34;&#34;
-        self.cert_file = None
+        self.cert_file = cert_file
         &#34;&#34;&#34;client certificate file
         &#34;&#34;&#34;
-        self.key_file = None
+        self.key_file = key_file
         &#34;&#34;&#34;client key file
         &#34;&#34;&#34;
         self.assert_hostname = None
@@ -805,6 +809,8 @@ conf = libica.openapi.v3.Configuration(
 :param retries: Number of retries for API requests.
 :param ca_cert_data: verify the peer using concatenated CA certificate data
   in PEM (str) or DER (bytes) format.
+:param cert_file: the path to a client certificate file, for mTLS.
+:param key_file: the path to a client key file, for mTLS.
 
 :Example:
 
