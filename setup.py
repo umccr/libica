@@ -10,7 +10,7 @@ setup(
     license="MIT",
     author="UMCCR and Contributors",
     author_email="services@umccr.org",
-    description="Python SDK for Illumina Connected Analytics",
+    description="Python SDK for Illumina BioInsight Platform Core",
     long_description=long_description,
     long_description_content_type="text/markdown",
     packages=find_packages(exclude=("tests**", "**test**", "docs")),
