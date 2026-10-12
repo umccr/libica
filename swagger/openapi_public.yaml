@@ -1,8 +1,8 @@
 openapi: 3.0.1
 info:
-  title: ICA Rest API
+  title: Platform Core Rest API
   description: |
-    This API can be used to interact with Illumina Connected Analytics.<br>
+    This API can be used to interact with Illumina BioInsight Platform Core.<br>
     <h2>Authentication</h2>
     <p>
     Authentication to the  API can be done in multiple ways:<br>
@@ -11,7 +11,7 @@ info:
     </p>
     <p>
     <h4>API-key</h4>
-    API keys are managed within the Illumina portal where you can manage your profile after you have logged on. The API-key has to be provided in the X-API-Key header parameter when executing API calls to ICA. In the background, a JWT will be requested at the IDP of Illumina to create a session. A good practice is to not use the API-key for every API call, but to first generate a JWT and to use that for authentication in subsequent calls.<br>
+    API keys are managed within the Illumina portal where you can manage your profile after you have logged on. The API-key has to be provided in the X-API-Key header parameter when executing API calls to Platform Core. In the background, a JWT will be requested at the IDP of Illumina to create a session. A good practice is to not use the API-key for every API call, but to first generate a JWT and to use that for authentication in subsequent calls.<br>
     </p>
     <p>
     <h4>JWT</h4>
@@ -3891,7 +3891,7 @@ paths:
       - Project Analysis
       summary: Retrieve the analysis logs.
       description: Retrieves the logs of the analysis. This endpoint only supports
-        analyses started after ICA CP v2.23 has been released.
+        analyses started after Platform Core v2.23 has been released.
       operationId: getAnalysisLogs
       parameters:
       - name: projectId
@@ -4228,10 +4228,10 @@ paths:
         content:
           application/vnd.illumina.v3+json:
             schema:
-              $ref: '#/components/schemas/AnalysisQueryParameters'
+              $ref: '#/components/schemas/AnalysisQueryParametersPipeline'
           application/json:
             schema:
-              $ref: '#/components/schemas/AnalysisQueryParameters'
+              $ref: '#/components/schemas/AnalysisQueryParametersPipeline'
       responses:
         default:
           description: A problem occurred.
@@ -5081,6 +5081,31 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "200":
           description: The bundle is successfully unlinked from the project.
+  /api/projects/{projectId}/selfManagedStorageConfiguration:
+    get:
+      tags:
+      - Project
+      summary: Retrieve a self managed storage configuration associated with the project.
+      operationId: getSelfManagedStorageConfiguration
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The self managed storage configuration is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/ProjectStorageConfiguration'
   /api/projects/{projectId}:hide:
     post:
       tags:
@@ -5845,6 +5870,14 @@ paths:
           \ not used in a run."
         schema:
           type: boolean
+      - name: sampleId
+        in: query
+        description: The sample IDs to filter on (maxItems=20).
+        schema:
+          maxItems: 20
+          type: array
+          items:
+            type: string
       - name: notLinkedToSample
         in: query
         description: When set to true only data that is unlinked to a sample will
@@ -5865,6 +5898,26 @@ paths:
           type: array
           items:
             type: string
+      - name: analysisId
+        in: query
+        description: The analysis ID that produced the data. This parameter will only
+          work for analyses started after the release of Platform Core v2.41. Max
+          of 20 ID
+        schema:
+          type: array
+          items:
+            type: string
+      - name: analysisDataType
+        in: query
+        description: The type of data produced by analyses. This parameter will only
+          work for analyses started after the release of Platform Core v2.41.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - OUTPUT
+            - LOG
       - name: pageOffset
         in: query
         description: "[only use with offset-based paging]<br>The amount of rows to\
@@ -7255,7 +7308,7 @@ paths:
       summary: Complete a trackable folder upload session.
       description: "Complete a trackable folder upload session. By completing the\
         \ folder upload session, and specifying how many files you have uploaded,\
-        \ ICA can ensure that all uploaded files are accounted for."
+        \ Platform Core can ensure that all uploaded files are accounted for."
       operationId: completeFolderUploadSession
       parameters:
       - name: projectId
@@ -8575,15 +8628,16 @@ paths:
       tags:
       - Project Permission
       summary: Create a project permission.
-      description: |
-        # Changelog
-        For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.
-
-        ## [V3]
-        Initial version
-        ## [V4]
-        Added 'Administrator' role for Bench.
-        The role attributes are strings instead of enums to support future additions in a backward compatible manner.
+      description: "# Changelog\nFor this endpoint multiple versions exist. Note that\
+        \ the values for request headers 'Content-Type' and 'Accept' must contain\
+        \ a matching version.\n\n## [V3] (Deprecated)\nInitial version\n\n**Backwards\
+        \ Compatibility Note:** For the roleBench field, when creating or updating\
+        \ a permission with the value CONTRIBUTOR, it will be automatically mapped\
+        \ to ADMINISTRATOR in the database to maintain backwards \n\ncompatibility.\
+        \ When retrieving permissions, both ADMINISTRATOR and CONTRIBUTOR bench roles\
+        \ are returned as CONTRIBUTOR in the v3 API response.\n\n## [V4]\nAdded 'Administrator'\
+        \ role for Bench.\nThe role attributes are strings instead of enums to support\
+        \ future additions in a backward compatible manner.\n"
       operationId: createProjectPermission
       parameters:
       - name: projectId
@@ -8777,6 +8831,9 @@ paths:
         "200":
           description: The list of project pipelines is successfully retrieved.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectPipelineListV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectPipelineList'
@@ -8875,6 +8932,136 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully unlinked from the project.
+  /api/projects/{projectId}/pipelines/{pipelineId}:draft:
+    post:
+      tags:
+      - Project Pipeline
+      summary: Update a git pipeline status to draft.
+      operationId: updateGitPipelineStatusToDraft
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The pipeline is successfully scheduled for updation of status
+            to draft.
+  /api/projects/{projectId}/pipelines/{pipelineId}/import:cancel:
+    post:
+      tags:
+      - Project Pipeline
+      summary: Cancel import of Git pipeline.
+      operationId: cancelGitPipelineImport
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the pipeline
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The import is successfully scheduled for cancelling.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelineV4'
+  /api/projects/{projectId}/pipelines/{pipelineId}:clone:
+    post:
+      tags:
+      - Project Pipeline
+      summary: Clone a project pipeline.
+      description: |
+        Attributes which can be updated:
+        - name
+        - version
+        - versionComment
+        - description
+        - languageVersion
+        - proprietary
+        - iconName
+      operationId: cloneProjectPipeline
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        description: The ID of the project pipeline to clone
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/PipelineClone'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "201":
+          description: The pipeline is successfully cloned.
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/PipelineV4'
+  /api/projects/{projectId}/pipelines/{pipelineId}:delete:
+    delete:
+      tags:
+      - Project Pipeline
+      summary: Delete a pipeline.
+      operationId: deleteProjectPipeline
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "204":
+          description: The pipeline is successfully scheduled for deletion.
   /api/projects/{projectId}/pipelines/{pipelineId}/inputParameters:
     get:
       tags:
@@ -8939,6 +9126,129 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/PipelineConfigurationParameterList'
+  /api/projects/{projectId}/pipelineGroups:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Retrieve a list of pipeline groups in a project.
+      description: Returns a paginated list of all pipeline groups in a project.
+      operationId: getPipelineGroups
+      parameters:
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        description: The ID of the project
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of pipeline groups is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelineGroupPagedList'
+  /api/projects/{projectId}/pipelineGroups/{pipelineGroupId}/pipelines:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Retrieve a list of pipelines for a pipeline group in a project.
+      description: Returns a paginated list of all pipelines for a pipeline group
+        in a project.
+      operationId: getPipelinesByGroup
+      parameters:
+      - name: includePipelineUsage
+        in: query
+        description: Include pipeline usage information in response
+        schema:
+          type: string
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: |
+          [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Additionally suffix with 'nulls last' or 'nulls first' to change the default null handling behavior when sorting. Multiple values should be separated with commas. An example: "?sort=sortAttribute1, sortAttribute2 desc nulls last"
+
+          The attributes for which sorting is supported:
+          - version
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        description: The ID of the project
+        required: true
+        schema:
+          type: string
+      - name: pipelineGroupId
+        in: path
+        description: The ID of the pipeline group
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of pipelines is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelinePagedListV4'
   /api/projects/{projectId}/pipelines/{pipelineId}/referenceSets:
     get:
       tags:
@@ -9075,6 +9385,41 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "204":
           description: The pipeline is successfully released.
+  /api/projects/{projectId}/pipelines/{pipelineId}/versionComment:
+    get:
+      tags:
+      - Project Pipeline
+      summary: Retrieve pipeline version comment.
+      description: Returns the version comment for a specific pipeline.
+      operationId: getPipelineVersionComment
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pipelineId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The pipeline version comment is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelineVersionComment'
+        "404":
+          description: The project or pipeline was not found.
+        "403":
+          description: Access to the project or pipeline is forbidden.
   /api/projects/{projectId}/pipelines/{pipelineId}/documentation/HTML:
     get:
       tags:
@@ -9161,7 +9506,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PipelineFileContentSpec'
+              $ref: '#/components/schemas/FileContentSpec'
         required: true
       responses:
         default:
@@ -9249,7 +9594,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PipelineFileContentSpec'
+              $ref: '#/components/schemas/FileContentSpec'
         required: true
       responses:
         default:
@@ -9354,7 +9699,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PipelineFileContentSpec'
+              $ref: '#/components/schemas/FileContentSpec'
         required: true
       responses:
         default:
@@ -9425,7 +9770,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PipelineFileContentSpec'
+              $ref: '#/components/schemas/FileContentSpec'
         required: true
       responses:
         default:
@@ -9496,7 +9841,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PipelineFileContentSpec'
+              $ref: '#/components/schemas/FileContentSpec'
         required: true
       responses:
         default:
@@ -9507,6 +9852,84 @@ paths:
                 $ref: '#/components/schemas/Problem'
         "200":
           description: The onRender file is successfully updated.
+  /api/projects/{projectId}/pipelines:search:
+    post:
+      tags:
+      - Project Pipeline
+      summary: Search pipelines.
+      operationId: searchPipelines
+      parameters:
+      - name: includePipelineUsage
+        in: query
+        description: Include pipeline usage information in response
+        schema:
+          type: string
+      - name: pageOffset
+        in: query
+        description: "[only use with offset-based paging]<br>The amount of rows to\
+          \ skip in the result. Ideally this is a multiple of the size parameter.\
+          \ Offset-based pagination has a result limit of 200K rows and does not guarantee\
+          \ unique results across pages"
+        schema:
+          type: string
+      - name: pageToken
+        in: query
+        description: "[only use with cursor-based paging]<br>The cursor to get subsequent\
+          \ results. The value to use is returned in the result when using cursor-based\
+          \ pagination. Cursor-based pagination guarantees complete and unique results\
+          \ across all pages."
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        description: "[can be used with both offset- and cursor-based paging]<br>The\
+          \ amount of rows to return. Use in combination with the offset (when using\
+          \ offset-based pagination) or cursor (when using cursor-based pagination)\
+          \ parameter to get subsequent results"
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: |
+          [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Additionally suffix with 'nulls last' or 'nulls first' to change the default null handling behavior when sorting. Multiple values should be separated with commas. An example: "?sort=sortAttribute1, sortAttribute2 desc nulls last"
+
+          The attributes for which sorting is supported:
+          - id
+          - pinned
+          - name
+          - lastUsed
+          - status
+          - description
+          - language
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        description: The ID of the project
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/vnd.illumina.v3+json:
+            schema:
+              $ref: '#/components/schemas/PipelineQuery'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineQuery'
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The list of project pipelines is successfully retrieved.
+          content:
+            application/vnd.illumina.v3+json:
+              schema:
+                $ref: '#/components/schemas/PipelinePagedListV4'
   /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles:
     get:
       tags:
@@ -9559,7 +9982,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PipelineFileContentSpec'
+              $ref: '#/components/schemas/FileContentSpec'
         required: true
       responses:
         default:
@@ -9574,162 +9997,6 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/PipelineFile'
-  /api/projects/{projectId}/pipelines/{pipelineId}/cwlGitConfig:
-    get:
-      tags:
-      - Project Pipeline
-      summary: Retrieve git config for a CWL project pipeline.
-      operationId: getProjectPipelineCwlGitConfig
-      parameters:
-      - name: projectId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: pipelineId
-        in: path
-        description: The ID of the project pipeline to retrieve the git config for
-        required: true
-        schema:
-          type: string
-      responses:
-        default:
-          description: A problem occurred.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        "200":
-          description: The git config is successfully retrieved.
-          content:
-            application/vnd.illumina.v3+json:
-              schema:
-                $ref: '#/components/schemas/CwlGitConfig'
-  /api/projects/{projectId}/pipelines/{pipelineId}/nextflowGitConfig:
-    get:
-      tags:
-      - Project Pipeline
-      summary: Retrieve git config for a Nextflow project pipeline.
-      operationId: getProjectPipelineNextflowGitConfig
-      parameters:
-      - name: projectId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: pipelineId
-        in: path
-        description: The ID of the project pipeline to retrieve the git config for
-        required: true
-        schema:
-          type: string
-      responses:
-        default:
-          description: A problem occurred.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        "200":
-          description: The git config is successfully retrieved.
-          content:
-            application/vnd.illumina.v3+json:
-              schema:
-                $ref: '#/components/schemas/NextflowGitConfig'
-  /api/projects/{projectId}/pipelines/{pipelineId}/cwlGitConfig:update:
-    post:
-      tags:
-      - Project Pipeline
-      summary: Update git config for CWL
-      operationId: updateCwlGitConfig
-      parameters:
-      - name: projectId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: pipelineId
-        in: path
-        description: The ID of the project pipeline for which to update the git config.
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/vnd.illumina.v3+json:
-            schema:
-              $ref: '#/components/schemas/UpdateCwlGitConfig'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateCwlGitConfig'
-        required: true
-      responses:
-        default:
-          description: A problem occurred.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        "201":
-          description: The git config is successfully updated.
-          headers:
-            ETag:
-              description: The current version of the resource. Can be passed to the
-                corresponding PUT endpoint to enable conflict exposure (409 response).
-              style: simple
-              schema:
-                type: string
-          content:
-            application/vnd.illumina.v3+json:
-              schema:
-                $ref: '#/components/schemas/CwlGitConfig'
-  /api/projects/{projectId}/pipelines/{pipelineId}/nextflowGitConfig:update:
-    post:
-      tags:
-      - Project Pipeline
-      summary: Update git config for Nextflow
-      operationId: updateNextflowGitConfig
-      parameters:
-      - name: projectId
-        in: path
-        required: true
-        schema:
-          type: string
-      - name: pipelineId
-        in: path
-        description: The ID of the project pipeline for which to update the git config.
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/vnd.illumina.v3+json:
-            schema:
-              $ref: '#/components/schemas/UpdateNextflowGitConfig'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/UpdateNextflowGitConfig'
-        required: true
-      responses:
-        default:
-          description: A problem occurred.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        "201":
-          description: The git config is successfully updated.
-          headers:
-            ETag:
-              description: The current version of the resource. Can be passed to the
-                corresponding PUT endpoint to enable conflict exposure (409 response).
-              style: simple
-              schema:
-                type: string
-          content:
-            application/vnd.illumina.v3+json:
-              schema:
-                $ref: '#/components/schemas/NextflowGitConfig'
   /api/projects/{projectId}/pipelines/{pipelineId}/inputForm/additionalFiles/{fileId}/content:
     get:
       tags:
@@ -9805,7 +10072,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/PipelineFileContentSpec'
+              $ref: '#/components/schemas/FileContentSpec'
         required: true
       responses:
         default:
@@ -9857,11 +10124,14 @@ paths:
       summary: Update the general attributes of a project pipeline.
       description: |
         Attributes which can be updated:
-        - code
+        - code (deprecated, use name & version instead)
+        - name
+        - version
+        - versionComment
         - description
         - languageVersion
         - proprietary
-        - resources
+        - iconName
       operationId: updateGeneralAttributesProjectPipeline
       parameters:
       - name: projectId
@@ -9925,37 +10195,6 @@ paths:
             application/vnd.illumina.v4+json:
               schema:
                 $ref: '#/components/schemas/PipelineV4'
-  /api/projects/{projectId}/pipelines:createNextflowJsonPipelineFromGit:
-    post:
-      tags:
-      - Project Pipeline
-      summary: Create a JSON based Nextflow pipeline within a project from Git.
-      operationId: createNextflowJsonPipelineFromGit
-      parameters:
-      - name: projectId
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/CreateNextflowJsonPipelineFromGit'
-        required: true
-      responses:
-        default:
-          description: A problem occurred.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        "201":
-          description: The Nextflow pipeline is successfully created.
-          content:
-            application/vnd.illumina.v4+json:
-              schema:
-                $ref: '#/components/schemas/PipelineV4'
   /api/projects/{projectId}/pipelines:createNextflowPipeline:
     post:
       tags:
@@ -9984,6 +10223,9 @@ paths:
         "201":
           description: The Nextflow pipeline is successfully created.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectPipelineV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectPipeline'
@@ -10004,37 +10246,6 @@ paths:
           multipart/form-data:
             schema:
               $ref: '#/components/schemas/CreateCwlJsonPipeline'
-        required: true
-      responses:
-        default:
-          description: A problem occurred.
-          content:
-            application/problem+json:
-              schema:
-                $ref: '#/components/schemas/Problem'
-        "201":
-          description: The CWL pipeline is successfully created.
-          content:
-            application/vnd.illumina.v4+json:
-              schema:
-                $ref: '#/components/schemas/ProjectPipelineV4'
-  /api/projects/{projectId}/pipelines:createCwlJsonPipelineFromGit:
-    post:
-      tags:
-      - Project Pipeline
-      summary: Create a JSON based CWL pipeline within a project from Git.
-      operationId: createCwlJsonPipelineFromGit
-      parameters:
-      - name: projectId
-        in: path
-        required: true
-        schema:
-          type: string
-      requestBody:
-        content:
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/CreateCwlJsonPipelineFromGit'
         required: true
       responses:
         default:
@@ -10077,6 +10288,9 @@ paths:
         "201":
           description: The CWL pipeline is successfully created.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/ProjectPipelineV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/ProjectPipeline'
@@ -11990,7 +12204,7 @@ paths:
           content:
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/StorageConfiguration'
+                $ref: '#/components/schemas/StorageConfigurationWithDetails'
   /api/storageConfigurations/{storageConfigurationId}:
     get:
       tags:
@@ -12023,7 +12237,7 @@ paths:
           content:
             application/vnd.illumina.v3+json:
               schema:
-                $ref: '#/components/schemas/StorageConfiguration'
+                $ref: '#/components/schemas/StorageConfigurationWithDetails'
   /api/storageConfigurations/{storageConfigurationId}/details:
     get:
       tags:
@@ -12102,6 +12316,14 @@ paths:
       tags:
       - Storage Credentials
       summary: Retrieve a list of storage credentials.
+      description: |
+        # Changelog
+        For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.
+
+        ## [V3]
+         * Initial version
+        ## [V4]
+         * Field type 'type' changed from enum to String.
       operationId: getStorageCredentials
       responses:
         default:
@@ -12113,6 +12335,9 @@ paths:
         "200":
           description: The list of storage credentials is successfully retrieved.
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/StorageCredentialListV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/StorageCredentialList'
@@ -12123,12 +12348,15 @@ paths:
       operationId: createStorageCredential
       requestBody:
         content:
+          application/vnd.illumina.v4+json:
+            schema:
+              $ref: '#/components/schemas/CreateStorageCredentialV4'
           application/vnd.illumina.v3+json:
             schema:
-              $ref: '#/components/schemas/CreateStorageCredential'
+              $ref: '#/components/schemas/CreateStorageCredentialV3'
           application/json:
             schema:
-              $ref: '#/components/schemas/CreateStorageCredential'
+              $ref: '#/components/schemas/CreateStorageCredentialV3'
         required: true
       responses:
         default:
@@ -12147,6 +12375,9 @@ paths:
               schema:
                 type: string
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/StorageCredentialV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/StorageCredential'
@@ -12155,6 +12386,14 @@ paths:
       tags:
       - Storage Credentials
       summary: Retrieve a storage credential.
+      description: |
+        # Changelog
+        For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.
+
+        ## [V3]
+         * Initial version
+        ## [V4]
+         * Field type 'type' changed from enum to String.
       operationId: getStorageCredential
       parameters:
       - name: storageCredentialId
@@ -12180,6 +12419,9 @@ paths:
               schema:
                 type: string
           content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/StorageCredentialV4'
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/StorageCredential'
@@ -13087,6 +13329,37 @@ paths:
             application/vnd.illumina.v3+json:
               schema:
                 $ref: '#/components/schemas/DataUrlWithPathList'
+  /api/projects/{projectId}/pipelines:importGitPipeline:
+    post:
+      tags:
+      - Project Pipeline
+      summary: Import a JSON based Git pipeline within a project.
+      operationId: importGitPipeline
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ImportGitPipeline'
+        required: true
+      responses:
+        default:
+          description: A problem occurred.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "200":
+          description: The pipeline is successfully scheduled for importing
+          content:
+            application/vnd.illumina.v4+json:
+              schema:
+                $ref: '#/components/schemas/PipelineV4'
   /api/projects/{projectId}/samples:search:
     post:
       tags:
@@ -13522,6 +13795,8 @@ components:
           maxLength: 255
           minLength: 1
           type: string
+        active:
+          type: boolean
     CreateBundle:
       required:
       - bundleReleaseVersion
@@ -13541,6 +13816,8 @@ components:
           type: string
           nullable: true
         bundleReleaseVersion:
+          maxLength: 255
+          minLength: 1
           type: string
         bundleVersionComment:
           type: string
@@ -13776,6 +14053,14 @@ components:
           nullable: true
         sequencingRun:
           $ref: '#/components/schemas/SequencingRun'
+        sourceAnalysisId:
+          type: string
+          format: uuid
+          nullable: true
+        sourceWorkflowSessionId:
+          type: string
+          format: uuid
+          nullable: true
       nullable: true
     Data:
       required:
@@ -14225,6 +14510,11 @@ components:
         isDefault:
           type: boolean
           description: An indication if this is the default in region for new projects
+        roleARN:
+          type: string
+          description: "The ARN (Amazon resource name) of the configuration, required\
+            \ for credential storage type AWS_ROLE, forbidden for others."
+      nullable: true
     User:
       required:
       - active
@@ -14577,7 +14867,7 @@ components:
           type: string
           nullable: true
         code:
-          maxLength: 255
+          maxLength: 296
           minLength: 1
           type: string
           description: The code of the pipeline
@@ -14650,6 +14940,10 @@ components:
           - CWL
           - NEXTFLOW
           - UNKNOWN
+        status:
+          pattern: SUPPORTED|DEPRECATED|NOTSUPPORTED
+          type: string
+          description: The status of the version
       nullable: true
     PipelineResources:
       type: object
@@ -15477,10 +15771,14 @@ components:
           type: string
       nullable: true
     IlmnRepoDockerImageRegion:
+      required:
+      - url
       type: object
       properties:
         region:
           $ref: '#/components/schemas/RegionV4'
+        url:
+          type: string
       nullable: true
     IlmnRepoDockerImageSettings:
       required:
@@ -15915,6 +16213,11 @@ components:
           type: string
         pipelineId:
           type: string
+        analysisStorageId:
+          type: string
+          description: The id of the storage to use for the analysis.
+          format: uuid
+          nullable: true
         analysisInput:
           $ref: '#/components/schemas/CwlAnalysisInput'
     NextflowAnalysisInput:
@@ -15947,6 +16250,11 @@ components:
           type: string
         pipelineId:
           type: string
+        analysisStorageId:
+          type: string
+          description: The id of the storage to use for the analysis.
+          format: uuid
+          nullable: true
         analysisInput:
           $ref: '#/components/schemas/NextflowAnalysisInput'
     ActivationCodeDetailList:
@@ -16307,7 +16615,7 @@ components:
           maxLength: 255
           minLength: 0
           type: string
-          description: The AWS region of the SNS notification channel
+          description: The AWS region of the SNS/SQS notification channel
           nullable: true
         application:
           $ref: '#/components/schemas/ApplicationV4'
@@ -16339,7 +16647,7 @@ components:
           maxLength: 255
           minLength: 1
           type: string
-          description: The AWS region of the SNS notification channel
+          description: The AWS region of the SNS/SQS notification channel
           nullable: true
     NotificationChannelList:
       required:
@@ -16399,6 +16707,56 @@ components:
           type: string
           description: Format of the file
           nullable: true
+        matchTarget:
+          pattern: FILE_NAME|FULL_PATH
+          type: string
+          description: "Selects which part of the analysis output file the regex is\
+            \ matched against. FILE_NAME matches against the file name only (segment\
+            \ after the last /). FULL_PATH matches against the file's full relative\
+            \ path within the analysis output tree. Defaults to FILE_NAME when omitted.\
+            \ One of: FILE_NAME, FULL_PATH."
+          nullable: true
+          default: FILE_NAME
+    GitPipelineImport:
+      required:
+      - commitId
+      - repositoryUrl
+      type: object
+      properties:
+        repositoryUrl:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: URL to the repository
+        gitCredentialId:
+          type: string
+          description: Id of the git credential
+          format: uuid
+          nullable: true
+        mainFilePath:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Path of the main file
+          nullable: true
+        commitId:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Id of the git commit
+        configFilePath:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Path of the config file
+          nullable: true
+        schemaFilePath:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Path of the schema file
+          nullable: true
+      nullable: true
     PipelineV4:
       required:
       - analysisStorage
@@ -16435,11 +16793,20 @@ components:
           $ref: '#/components/schemas/UserIdentifier'
         tenant:
           $ref: '#/components/schemas/TenantIdentifier'
+        pipelineGroup:
+          $ref: '#/components/schemas/PipelineGroupIdentifier'
         code:
+          maxLength: 296
+          minLength: 1
+          type: string
+          description: "The code of the pipeline. This is deprecated, use the name\
+            \ & version attributes instead"
+          deprecated: true
+        name:
           maxLength: 255
           minLength: 1
           type: string
-          description: The code of the pipeline
+          description: The name of the pipeline
         description:
           maxLength: 4000
           minLength: 1
@@ -16453,11 +16820,12 @@ components:
           - DRAFT
           - RELEASED
         statusAsString:
-          maxLength: 10
+          maxLength: 255
           minLength: 1
           type: string
           description: "The status of the pipeline as string ('Draft', 'Released',\
-            \ 'Deprecated', 'Archived')"
+            \ 'Deprecated', 'Archived', 'Importing', 'Import Cancelling', 'Import\
+            \ Incomplete', 'Import Failed')"
         language:
           type: string
           description: The language that is used by the pipeline
@@ -16486,6 +16854,43 @@ components:
           $ref: '#/components/schemas/PipelineReportConfig'
         resources:
           $ref: '#/components/schemas/PipelineResources'
+        gitPipelineImport:
+          $ref: '#/components/schemas/GitPipelineImport'
+        version:
+          type: string
+          description: The version number of the pipeline
+          nullable: true
+        latestVersionInGroup:
+          type: boolean
+          nullable: true
+        pipelineUsage:
+          $ref: '#/components/schemas/PipelineUsage'
+        iconName:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The icon name of the pipeline
+          nullable: true
+    PipelineGroupIdentifier:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+    PipelineLastUsed:
+      type: object
+      properties:
+        date:
+          type: string
+          description: The requested date of the last analysis started with the pipeline
+          format: date-time
+        analysisId:
+          type: string
+          description: The id of the last analysis started with the pipeline
+          format: uuid
+      description: The last used date of the pipeline
     PipelineReportConfig:
       type: object
       properties:
@@ -16495,6 +16900,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Config'
+      nullable: true
+    PipelineUsage:
+      type: object
+      properties:
+        lastUsed:
+          $ref: '#/components/schemas/PipelineLastUsed'
+        pinnedInProject:
+          type: boolean
+          description: The pinned state of the pipeline within the project
       nullable: true
     InputParameter:
       required:
@@ -17152,6 +17566,10 @@ components:
           $ref: '#/components/schemas/AnalysisTag'
         application:
           $ref: '#/components/schemas/ApplicationV4'
+        projectId:
+          type: string
+          format: uuid
+          nullable: true
     WorkflowV4:
       required:
       - analysisStorage
@@ -17237,8 +17655,26 @@ components:
           nullable: true
         tags:
           $ref: '#/components/schemas/WorkflowSessionTag'
+        sequencingRun:
+          $ref: '#/components/schemas/WorkflowSessionSequencingRun'
         application:
           $ref: '#/components/schemas/ApplicationV4'
+    WorkflowSessionSequencingRun:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The sequencing run number (SRN) related to the workflow session.
+          nullable: true
+        instrumentRunId:
+          type: string
+          description: The instrument run id related to the workflow session.
+          nullable: true
+        externalRunId:
+          type: string
+          description: The external sequencing run id related to the workflow session.
+          nullable: true
+      nullable: true
     AnalysisStep:
       required:
       - id
@@ -17308,22 +17744,25 @@ components:
         stdOutStream:
           type: string
           description: A WebSocket URL for reading the standard output log stream.
-            Might be closed by ICA as soon as the analysis step execution has finished.
+            Might be closed by Platform Core as soon as the analysis step execution
+            has finished.
           nullable: true
         stdErrData:
           $ref: '#/components/schemas/Data'
         stdErrStream:
           type: string
           description: A WebSocket URL for reading the standard error log stream.
-            Might be closed by ICA as soon as the analysis step execution has finished.
+            Might be closed by Platform Core as soon as the analysis step execution
+            has finished.
           nullable: true
       description: "Contains references to the standard output (stdout) and standard\
         \ error (stderr) log streams of an analysis step. In this object both log\
         \ streams could be provided in 2 different formats: as a WebSocket stream\
-        \ URL or as an ICA Data reference. The status of the analysis step determines\
-        \ which format is provided: a WebSocket URL during step execution, a Data\
-        \ reference after step execution. Note however that an analysis step might\
-        \ not expose log streams at all, which would result in this object being empty. "
+        \ URL or as an Platform Core Data reference. The status of the analysis step\
+        \ determines which format is provided: a WebSocket URL during step execution,\
+        \ a Data reference after step execution. Note however that an analysis step\
+        \ might not expose log streams at all, which would result in this object being\
+        \ empty. "
     AnalysisData:
       required:
       - dataId
@@ -17547,6 +17986,8 @@ components:
           type: string
         placeHolderText:
           type: string
+        tooltipText:
+          type: string
         values:
           type: array
           items:
@@ -17633,6 +18074,24 @@ components:
           nullable: true
           items:
             $ref: '#/components/schemas/AnalysisInputExternalData'
+        sampleValues:
+          type: array
+          description: Use 'sampleValues' for data fields.
+          nullable: true
+          items:
+            type: string
+            description: Use 'sampleValues' for data fields.
+            format: uuid
+            nullable: true
+        runSampleValues:
+          type: array
+          description: Use 'runSampleValues' for data fields.
+          nullable: true
+          items:
+            type: string
+            description: Use 'runSampleValues' for data fields.
+            format: uuid
+            nullable: true
     InputFormGroupField:
       type: object
       properties:
@@ -17653,6 +18112,8 @@ components:
         helpText:
           type: string
         placeHolderText:
+          type: string
+        tooltipText:
           type: string
         values:
           type: array
@@ -18168,7 +18629,7 @@ components:
             in offset based pagination)
           format: int64
           nullable: true
-    AnalysisQueryParameters:
+    AnalysisQueryParametersPipeline:
       type: object
       properties:
         reference:
@@ -18209,6 +18670,40 @@ components:
           items:
             type: string
             description: The reference-data-tags to filter on.
+            nullable: true
+        pipelineNames:
+          maxItems: 20
+          minItems: 0
+          type: array
+          description: The pipeline names to filter on. max of 20 allowed
+          nullable: true
+          items:
+            type: string
+            description: The pipeline names to filter on. max of 20 allowed
+            nullable: true
+        pipelineUUIDs:
+          maxItems: 20
+          minItems: 0
+          type: array
+          description: The pipeline unique ids to filter on. max of 20 allowed
+          nullable: true
+          items:
+            type: string
+            description: The pipeline unique ids to filter on. max of 20 allowed
+            format: uuid
+            nullable: true
+        sampleIds:
+          maxItems: 20
+          minItems: 0
+          type: array
+          description: The sample IDs to filter on. Only analyses where the sample
+            is used as input are returned. Max 20 allowed.
+          nullable: true
+          items:
+            type: string
+            description: The sample IDs to filter on. Only analyses where the sample
+              is used as input are returned. Max 20 allowed.
+            format: uuid
             nullable: true
     CreateCwlJsonAnalysis:
       required:
@@ -18483,7 +18978,6 @@ components:
       - dataSharingEnabled
       - name
       - regionId
-      - storageBundleId
       type: object
       properties:
         name:
@@ -18527,6 +19021,8 @@ components:
         storageBundleId:
           type: string
           format: uuid
+          nullable: true
+          deprecated: true
         metadataModelId:
           type: string
           format: uuid
@@ -18574,6 +19070,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProjectBundle'
+    ProjectStorageConfiguration:
+      required:
+      - storageConfigurationSubFolder
+      type: object
+      properties:
+        storageConfigurationSubFolder:
+          type: string
+          description: The location of the self managed storage
+        storageConfiguration:
+          $ref: '#/components/schemas/StorageConfiguration'
     ChangeProjectOwner:
       required:
       - newOwnerId
@@ -19189,6 +19695,10 @@ components:
             \ \"x-amz-server-side-encryption-aws-kms-key-id\" value. Value will be\
             \ ignored if encryption is \"AES256\""
           nullable: true
+        expirationTime:
+          type: string
+          description: The timestamp when the credentials expire.
+          format: date-time
       nullable: true
     RcloneTempCredentials:
       required:
@@ -19945,11 +20455,13 @@ components:
           description: "The timestamp when the data should be archived. Format: yyyy-MM-dd'T'HH:mm:ss'Z'\
             \ eg: 2021-01-30T08:30:00Z"
           format: date-time
+          nullable: true
         willBeDeletedAt:
           type: string
           description: "The timestamp when the data should be deleted. Format: yyyy-MM-dd'T'HH:mm:ss'Z'\
             \ eg: 2021-01-30T08:30:00Z"
           format: date-time
+          nullable: true
         clearWillBeArchivedAt:
           type: boolean
           description: Boolean to indicate that the willBeArchivedAt value should
@@ -20479,6 +20991,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Bundle'
+    ProjectPipelineListV4:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectPipelineV4'
+    ProjectPipelineV4:
+      required:
+      - bundleLinks
+      - pipeline
+      - projectId
+      type: object
+      properties:
+        pipeline:
+          $ref: '#/components/schemas/PipelineV4'
+        projectId:
+          type: string
+          format: uuid
+        bundleLinks:
+          $ref: '#/components/schemas/BundleList'
     ProjectPipeline:
       required:
       - bundleLinks
@@ -20502,21 +21037,138 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProjectPipeline'
-    ProjectPipelineV4:
+    PipelineClone:
       required:
-      - bundleLinks
-      - pipeline
-      - projectId
+      - name
       type: object
       properties:
-        pipeline:
-          $ref: '#/components/schemas/PipelineV4'
-        projectId:
+        name:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _/-]*$"
+          type: string
+          description: The name of the pipeline
+        version:
+          maxLength: 40
+          minLength: 1
+          pattern: .*\S.*
+          type: string
+          description: The version number of the pipeline. Use of semantic versioning
+            is recommended but not enforced.
+          nullable: true
+        versionComment:
+          maxLength: 4000
+          minLength: 0
+          type: string
+          nullable: true
+        description:
+          maxLength: 4000
+          minLength: 1
+          type: string
+          description: The description of the pipeline
+          nullable: true
+        languageVersion:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: 'Version of the pipeline language '
+          nullable: true
+        proprietary:
+          type: boolean
+          description: A boolean which indicates if the code of this pipeline is proprietary
+          nullable: true
+        iconName:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The icon name of the pipeline
+          nullable: true
+    PipelineGroup:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
           type: string
           format: uuid
-        bundleLinks:
-          $ref: '#/components/schemas/BundleList'
-    PipelineFileContentSpec:
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The name of the pipeline group
+    PipelineGroupPagedList:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineGroup'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    PipelinePagedListV4:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PipelineV4'
+        nextPageToken:
+          x-faker:
+            helpers.arrayElement: [[ "page1", "" ]]
+          maxLength: 2000
+          minLength: 0
+          type: string
+          description: The cursor to request the next page. For offset-based paging
+            the value is an empty string.
+          nullable: true
+        remainingRecords:
+          minimum: 0
+          type: integer
+          description: The number of records remaining (used in cursor based pagination)
+          format: int64
+          nullable: true
+        totalItemCount:
+          minimum: 0
+          type: integer
+          description: The total number of records matching the search criteria (used
+            in offset based pagination)
+          format: int64
+          nullable: true
+    PipelineVersionComment:
+      type: object
+      properties:
+        versionComment:
+          maxLength: 4000
+          minLength: 0
+          type: string
+          description: The version comment (up to 4000 characters)
+          nullable: true
+    FileContentSpec:
       required:
       - content
       type: object
@@ -20527,6 +21179,16 @@ components:
     InputPart:
       type: object
       properties:
+        contentTypeFromMessage:
+          type: boolean
+        bodyAsString:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
         mediaType:
           type: object
           properties:
@@ -20542,164 +21204,176 @@ components:
               type: boolean
             wildcardSubtype:
               type: boolean
-        headers:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        contentTypeFromMessage:
-          type: boolean
-        bodyAsString:
-          type: string
     MultipartFormDataInput:
       type: object
       properties:
-        formData:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/InputPart'
         formDataMap:
           type: object
           additionalProperties:
             type: array
             items:
               $ref: '#/components/schemas/InputPart'
+        formData:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/InputPart'
         preamble:
           type: string
         parts:
           type: array
           items:
             $ref: '#/components/schemas/InputPart'
-    CwlGitConfig:
-      required:
-      - commitId
-      - mainFilePath
-      - repositoryUrl
+    DateQuery:
       type: object
       properties:
-        repositoryUrl:
-          maxLength: 255
-          minLength: 1
+        before:
           type: string
-          description: URL to the repository
-        gitCredentialId:
+          description: Matches records where the attribute value is before this date
+          format: date-time
+        after:
           type: string
-          description: Id the of the git credential
-          format: uuid
-          nullable: true
-        mainFilePath:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: Path of the main file
-        commitId:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: Id the of the git commit
-      nullable: true
-    NextflowGitConfig:
-      required:
-      - commitId
-      - mainFilePath
-      - repositoryUrl
+          description: Matches records where the attribute value is after this date
+          format: date-time
+        empty:
+          type: boolean
+          description: Matches records where the attribute value is empty (null)
+      description: Filter on the last used date of the pipeline version
+    PipelineLanguageVersionStatusQuery:
       type: object
       properties:
-        repositoryUrl:
-          maxLength: 255
-          minLength: 1
+        values:
+          type: array
+          description: "The language version statuses to filter on. Possible values:\
+            \ 'Supported', 'Deprecated', 'Not Supported'."
+          items:
+            pattern: Supported|Deprecated|Not Supported
+            type: string
+            description: "The language version statuses to filter on. Possible values:\
+              \ 'Supported', 'Deprecated', 'Not Supported'."
+        matchMode:
+          pattern: INCLUDE|EXCLUDE
           type: string
-          description: URL to the repository
-        gitCredentialId:
-          type: string
-          description: Id the of the git credential
-          format: uuid
-          nullable: true
-        mainFilePath:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: Path of the main file
-        commitId:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: Id the of the git commit
-        configFilePath:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: Path of the config file
-          nullable: true
-    UpdateCwlGitConfig:
-      required:
-      - commitId
-      - mainFilePath
-      - repositoryUrl
+          description: "Whether to include or exclude pipelines matching the given\
+            \ statuses. INCLUDE returns only pipelines whose language version status\
+            \ is in the list. EXCLUDE returns pipelines whose language version status\
+            \ is NOT in the list, including pipelines with no language version status\
+            \ set. Defaults to INCLUDE when not provided. Allowed values: INCLUDE,\
+            \ EXCLUDE."
+      description: Filter on the language version status of the pipeline version.
+    PipelineQuery:
       type: object
       properties:
-        repositoryUrl:
-          maxLength: 255
-          minLength: 1
+        ids:
+          maxItems: 10
+          minItems: 0
+          type: array
+          description: Filter on the UUID of the pipeline version
+          items:
+            type: string
+            description: Filter on the UUID of the pipeline version
+            format: uuid
+        pipelineGroups:
+          maxItems: 10
+          minItems: 0
+          type: array
+          description: Filter on the UUID of the pipeline group containing pipeline
+            versions
+          items:
+            type: string
+            description: Filter on the UUID of the pipeline group containing pipeline
+              versions
+            format: uuid
+        name:
+          $ref: '#/components/schemas/StringQuery'
+        version:
+          $ref: '#/components/schemas/StringQuery'
+        description:
+          $ref: '#/components/schemas/StringQuery'
+        statuses:
+          type: array
+          description: "Filter on the status of the pipeline version. Possible values:\
+            \ 'Draft', 'Released', 'Deprecated', 'Archived', 'Importing', 'Import\
+            \ Cancelling', 'Import Incomplete', 'Import Failed'."
+          items:
+            pattern: Draft|Released|Deprecated|Archived|Importing|Import Cancelling|Import
+              Incomplete|Import Failed
+            type: string
+            description: "Filter on the status of the pipeline version. Possible values:\
+              \ 'Draft', 'Released', 'Deprecated', 'Archived', 'Importing', 'Import\
+              \ Cancelling', 'Import Incomplete', 'Import Failed'."
+        pipelineLanguage:
+          pattern: Nextflow|CWL
           type: string
-          description: URL to the repository
-        gitCredentialId:
-          type: string
-          description: Id the of the git credential
-          format: uuid
-          nullable: true
-        mainFilePath:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: Path of the main file
-        commitId:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: Id the of the git commit
-    UpdateNextflowGitConfig:
-      required:
-      - commitId
-      - mainFilePath
-      - repositoryUrl
+          description: "Filter on the pipeline language of the pipeline version. Possible\
+            \ values: 'Nextflow', 'CWL'."
+        pipelineLanguageVersionStatus:
+          $ref: '#/components/schemas/PipelineLanguageVersionStatusQuery'
+        lastUsed:
+          $ref: '#/components/schemas/DateQuery'
+        pinned:
+          type: boolean
+          description: Filter on the pinned state of the pipeline version
+        owners:
+          maxItems: 10
+          minItems: 0
+          type: array
+          description: Filter on the owner of the pipeline version
+          items:
+            type: string
+            description: Filter on the owner of the pipeline version
+            format: uuid
+        numberOfVersionsToIncludeForEachPipelineGroup:
+          type: integer
+          description: "Number of pipeline versions to include for each pipeline group.\
+            \ If provided, offset based paging will always be used. If not provided,\
+            \ all versions will be included."
+          format: int32
+    StringQuery:
       type: object
       properties:
-        repositoryUrl:
-          maxLength: 255
-          minLength: 1
+        equals:
           type: string
-          description: URL to the repository
-        gitCredentialId:
+          description: Matches records where the attribute value equals this string
+        contains:
           type: string
-          description: Id the of the git credential
-          format: uuid
-          nullable: true
-        mainFilePath:
-          maxLength: 255
-          minLength: 1
+          description: Matches records where the attribute value contains this string
+        startsWith:
           type: string
-          description: Path of the main file
-        commitId:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: Id the of the git commit
-        configFilePath:
-          maxLength: 255
-          minLength: 1
-          type: string
-          description: Path of the config file
-          nullable: true
+          description: Matches records where the attribute value starts with this
+            string
+      description: Filter on the description of the pipeline version. Only one of
+        the fields can be provided.
     PipelineUpdate:
       type: object
       properties:
         code:
           maxLength: 255
           minLength: 1
+          pattern: "^[a-zA-Z0-9 _/-]*$"
           type: string
-          description: The code of the pipeline
+          description: "The code of the pipeline. This is deprecated, use the name\
+            \ & version attributes instead"
+          nullable: true
+          deprecated: true
+        name:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _/-]*$"
+          type: string
+          description: The name of the pipeline
+          nullable: true
+        version:
+          maxLength: 40
+          minLength: 1
+          pattern: .*\S.*
+          type: string
+          description: The version number of the pipeline. Use of semantic versioning
+            is recommended but not enforced.
+          nullable: true
+        versionComment:
+          maxLength: 4000
+          minLength: 0
+          type: string
           nullable: true
         description:
           maxLength: 4000
@@ -20719,10 +21393,15 @@ components:
           nullable: true
         resources:
           $ref: '#/components/schemas/PipelineResources'
+        iconName:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The icon name of the pipeline
+          nullable: true
     CreateNextflowJsonPipeline:
       required:
       - analysisStorageId
-      - code
       - description
       - inputFormFile
       - mainNextflowFile
@@ -20731,9 +21410,19 @@ components:
         code:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
+          pattern: "^[a-zA-Z0-9 _/-]*$"
           type: string
-          description: The code of the pipeline
+          description: "The code of the pipeline. This is deprecated, use the name\
+            \ & version attributes instead"
+          nullable: true
+          deprecated: true
+        name:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _/-]*$"
+          type: string
+          description: The name of the pipeline
+          nullable: true
         pipelineLanguageVersionId:
           type: string
           description: The id of the Nextflow version to use for the pipeline.
@@ -20764,11 +21453,20 @@ components:
           format: binary
         onRenderFile:
           type: string
-          description: A file that will render the current state of the input form.
+          description: A file with javascript that will be executed and can act on
+            the current state of the input form while editing the form during render.
           format: binary
         onSubmitFile:
           type: string
-          description: A file that will submit the current state of the input form.
+          description: A file with javascript that will be executed and can act on
+            the current state of the input form on setting values when the analysis
+            is submitted.
+          format: binary
+        onFinishedFile:
+          type: string
+          description: A file with javascript that will be executed when an analysis
+            reaches a final state and can act on the setting values and produced output
+            files.
           format: binary
         otherInputFormFiles:
           type: array
@@ -20786,16 +21484,10 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         versionComment:
+          maxLength: 4000
+          minLength: 0
           type: string
           nullable: true
-        categories:
-          maxItems: 4000
-          minItems: 1
-          type: array
-          nullable: true
-          items:
-            type: string
-            nullable: true
         htmlDocumentation:
           type: string
           nullable: true
@@ -20812,91 +21504,23 @@ components:
           $ref: '#/components/schemas/PipelineReportConfig'
         resources:
           $ref: '#/components/schemas/PipelineResources'
-    CreateNextflowJsonPipelineFromGit:
-      required:
-      - analysisStorageId
-      - code
-      - description
-      - inputFormFile
-      - nextflowGitConfig
-      type: object
-      properties:
-        code:
+        version:
+          maxLength: 40
+          minLength: 1
+          pattern: .*\S.*
+          type: string
+          description: The version number of the pipeline. Use of semantic versioning
+            is recommended but not enforced.
+          nullable: true
+        iconName:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
           type: string
-          description: The code of the pipeline
-        pipelineLanguageVersionId:
-          type: string
-          description: The id of the Nextflow version to use for the pipeline.
-          format: uuid
+          description: The icon name of the pipeline
           nullable: true
-        description:
-          maxLength: 4000
-          minLength: 1
-          type: string
-          description: The description of the pipeline
-        inputFormFile:
-          type: string
-          description: The JSON based input form.
-          format: binary
-        onRenderFile:
-          type: string
-          description: A file that will render the current state of the input form.
-          format: binary
-        onSubmitFile:
-          type: string
-          description: A file that will submit the current state of the input form.
-          format: binary
-        otherInputFormFiles:
-          type: array
-          items:
-            type: string
-            description: Other input form files referenced from the main input form
-              file.
-            format: binary
-        metadataModelFile:
-          type: string
-          description: The metadata model json file(contents can be retrieved from
-            the controlplane).
-          format: binary
-          nullable: true
-        links:
-          $ref: '#/components/schemas/Links'
-        versionComment:
-          type: string
-          nullable: true
-        categories:
-          maxItems: 4000
-          minItems: 1
-          type: array
-          nullable: true
-          items:
-            type: string
-            nullable: true
-        htmlDocumentation:
-          type: string
-          nullable: true
-        analysisStorageId:
-          type: string
-          description: The id of the storage to use for the pipeline.
-          format: uuid
-        proprietary:
-          type: boolean
-          description: A boolean which indicates if the code of this pipeline is proprietary
-          nullable: true
-          default: false
-        reportConfigs:
-          $ref: '#/components/schemas/PipelineReportConfig'
-        nextflowGitConfig:
-          $ref: '#/components/schemas/NextflowGitConfig'
-        resources:
-          $ref: '#/components/schemas/PipelineResources'
     CreateNextflowPipeline:
       required:
       - analysisStorageId
-      - code
       - description
       - mainNextflowFile
       - parametersXmlFile
@@ -20905,9 +21529,19 @@ components:
         code:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
+          pattern: "^[a-zA-Z0-9 _/-]*$"
           type: string
-          description: The code of the pipeline
+          description: "The code of the pipeline. This is deprecated, use the name\
+            \ & version attributes instead"
+          nullable: true
+          deprecated: true
+        name:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _/-]*$"
+          type: string
+          description: The name of the pipeline
+          nullable: true
         pipelineLanguageVersionId:
           type: string
           description: The id of the Nextflow version to use for the pipeline.
@@ -20944,16 +21578,10 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         versionComment:
+          maxLength: 4000
+          minLength: 0
           type: string
           nullable: true
-        categories:
-          maxItems: 4000
-          minItems: 1
-          type: array
-          nullable: true
-          items:
-            type: string
-            nullable: true
         htmlDocumentation:
           type: string
           nullable: true
@@ -20970,10 +21598,23 @@ components:
           $ref: '#/components/schemas/PipelineReportConfig'
         resources:
           $ref: '#/components/schemas/PipelineResources'
+        version:
+          maxLength: 40
+          minLength: 1
+          pattern: .*\S.*
+          type: string
+          description: The version number of the pipeline. Use of semantic versioning
+            is recommended but not enforced.
+          nullable: true
+        iconName:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The icon name of the pipeline
+          nullable: true
     CreateCwlJsonPipeline:
       required:
       - analysisStorageId
-      - code
       - description
       - inputFormFile
       - workflowCwlFile
@@ -20982,9 +21623,19 @@ components:
         code:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
+          pattern: "^[a-zA-Z0-9 _/-]*$"
           type: string
-          description: The code of the CWL pipeline
+          description: "The code of the CWL pipeline. This is deprecated, use the\
+            \ name & version attributes instead"
+          nullable: true
+          deprecated: true
+        name:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _/-]*$"
+          type: string
+          description: The name of the CWL pipeline
+          nullable: true
         description:
           maxLength: 4000
           minLength: 1
@@ -21006,11 +21657,20 @@ components:
           format: binary
         onRenderFile:
           type: string
-          description: A file that will render the current state of the input form.
+          description: A file with javascript that will be executed and can act on
+            the current state of the input form while editing the form during render.
           format: binary
         onSubmitFile:
           type: string
-          description: A file that will submit the current state of the input form.
+          description: A file with javascript that will be executed and can act on
+            the current state of the input form on setting values when the analysis
+            is submitted.
+          format: binary
+        onFinishedFile:
+          type: string
+          description: A file with javascript that will be executed when an analysis
+            reaches a final state and can act on the setting values and produced output
+            files.
           format: binary
         otherInputFormFiles:
           type: array
@@ -21028,6 +21688,8 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         versionComment:
+          maxLength: 4000
+          minLength: 0
           type: string
           nullable: true
         categories:
@@ -21054,86 +21716,23 @@ components:
           $ref: '#/components/schemas/PipelineReportConfig'
         resources:
           $ref: '#/components/schemas/PipelineResources'
-    CreateCwlJsonPipelineFromGit:
-      required:
-      - analysisStorageId
-      - code
-      - cwlGitConfig
-      - description
-      - inputFormFile
-      type: object
-      properties:
-        code:
+        version:
+          maxLength: 40
+          minLength: 1
+          pattern: .*\S.*
+          type: string
+          description: The version number of the pipeline. Use of semantic versioning
+            is recommended but not enforced.
+          nullable: true
+        iconName:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
           type: string
-          description: The code of the CWL pipeline
-        description:
-          maxLength: 4000
-          minLength: 1
-          type: string
-          description: The description of the CWL pipeline
-        inputFormFile:
-          type: string
-          description: The JSON based input form.
-          format: binary
-        onRenderFile:
-          type: string
-          description: A file that will render the current state of the input form.
-          format: binary
-        onSubmitFile:
-          type: string
-          description: A file that will submit the current state of the input form.
-          format: binary
-        otherInputFormFiles:
-          type: array
-          items:
-            type: string
-            description: Other input form files referenced from the main input form
-              file.
-            format: binary
-        metadataModelFile:
-          type: string
-          description: The metadata model json file(contents can be retrieved from
-            the controlplane).
-          format: binary
+          description: The icon name of the pipeline
           nullable: true
-        links:
-          $ref: '#/components/schemas/Links'
-        versionComment:
-          type: string
-          nullable: true
-        categories:
-          maxItems: 4000
-          minItems: 1
-          type: array
-          nullable: true
-          items:
-            type: string
-            nullable: true
-        htmlDocumentation:
-          type: string
-          nullable: true
-        analysisStorageId:
-          type: string
-          description: The id of the storage to use for the pipeline.
-          format: uuid
-        proprietary:
-          type: boolean
-          description: A boolean which indicates if the code of this pipeline is proprietary
-          nullable: true
-          default: false
-        reportConfigs:
-          $ref: '#/components/schemas/PipelineReportConfig'
-        cwlGitConfig:
-          $ref: '#/components/schemas/CwlGitConfig'
-        resources:
-          $ref: '#/components/schemas/PipelineResources'
     CreateCwlPipeline:
       required:
       - analysisStorageId
-      - code
       - description
       - parametersXmlFile
       - workflowCwlFile
@@ -21142,9 +21741,19 @@ components:
         code:
           maxLength: 255
           minLength: 1
-          pattern: "^[a-zA-Z0-9 _-]*(/[a-zA-Z0-9 _-]+)*$"
+          pattern: "^[a-zA-Z0-9 _/-]*$"
           type: string
-          description: The code of the CWL pipeline
+          description: "The code of the CWL pipeline. This is deprecated, use the\
+            \ name & version attributes instead"
+          nullable: true
+          deprecated: true
+        name:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _/-]*$"
+          type: string
+          description: The name of the CWL pipeline
+          nullable: true
         description:
           maxLength: 4000
           minLength: 1
@@ -21172,6 +21781,8 @@ components:
         links:
           $ref: '#/components/schemas/Links'
         versionComment:
+          maxLength: 4000
+          minLength: 0
           type: string
           nullable: true
         categories:
@@ -21198,6 +21809,20 @@ components:
           $ref: '#/components/schemas/PipelineReportConfig'
         resources:
           $ref: '#/components/schemas/PipelineResources'
+        version:
+          maxLength: 40
+          minLength: 1
+          pattern: .*\S.*
+          type: string
+          description: The version number of the pipeline. Use of semantic versioning
+            is recommended but not enforced.
+          nullable: true
+        iconName:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The icon name of the pipeline
+          nullable: true
     ProjectSample:
       required:
       - projectId
@@ -21301,6 +21926,48 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SampleHistory'
+    AnalysisQueryParameters:
+      type: object
+      properties:
+        reference:
+          type: string
+          description: The reference to filter on.
+          nullable: true
+        userReference:
+          type: string
+          description: The user-reference to filter on.
+          nullable: true
+        status:
+          type: array
+          items:
+            pattern: REQUESTED|QUEUED|INITIALIZING|PREPARING_INPUTS|IN_PROGRESS|GENERATING_OUTPUTS|AWAITING_INPUT|ABORTING|SUCCEEDED|FAILED|FAILED_FINAL|ABORTED
+            type: string
+            description: The status to filter on.
+            nullable: true
+        userTags:
+          type: array
+          description: The user-tags to filter on.
+          nullable: true
+          items:
+            type: string
+            description: The user-tags to filter on.
+            nullable: true
+        technicalTags:
+          type: array
+          description: The technical-tags to filter on.
+          nullable: true
+          items:
+            type: string
+            description: The technical-tags to filter on.
+            nullable: true
+        referenceTags:
+          type: array
+          description: The reference-data-tags to filter on.
+          nullable: true
+          items:
+            type: string
+            description: The reference-data-tags to filter on.
+            nullable: true
     FieldId:
       required:
       - id
@@ -21775,10 +22442,10 @@ components:
         keyPrefix:
           pattern: ^(?!/).*/$
           type: string
-          description: "Key prefix within the bucket for ICA to operate within. Data\
-            \ may only be created having this prefix and the given credentials will\
-            \ only give access to it. If not set, default is to allow operation on\
-            \ the full bucket. No leading slash, and must end with a trailing slash."
+          description: "Key prefix within the bucket for Platform Core to operate\
+            \ within. Data may only be created having this prefix and the given credentials\
+            \ will only give access to it. If not set, default is to allow operation\
+            \ on the full bucket. No leading slash, and must end with a trailing slash."
           nullable: true
         serverSideEncryptionAlgorithm:
           type: string
@@ -21797,46 +22464,13 @@ components:
             \ ignored if encryption is \"AES256\"."
           nullable: true
       nullable: true
-    CreateStorageConfiguration:
-      required:
-      - name
-      - regionId
-      - storageCredentialId
-      - type
-      type: object
-      properties:
-        name:
-          maxLength: 15
-          minLength: 3
-          pattern: "^[a-z0-9][a-z0-9.-]*[a-z0-9]$"
-          type: string
-          description: The name of the configuration
-        description:
-          maxLength: 1000
-          minLength: 0
-          type: string
-          description: An optional description
-          nullable: true
-        storageCredentialId:
-          type: string
-          description: The id of the storage credential
-          format: uuid
-        type:
-          type: string
-          description: The type of configuration
-          enum:
-          - AWS_S3
-        awsDetails:
-          $ref: '#/components/schemas/AWSDetails'
-        regionId:
-          type: string
-          description: The id of the region where the bucket will be located
-          format: uuid
     StorageConfigurationDetails:
       type: object
       properties:
         awsS3:
           $ref: '#/components/schemas/AWSDetails'
+        storageCredential:
+          $ref: '#/components/schemas/StorageCredentialV4'
     StorageConfigurationWithDetails:
       required:
       - id
@@ -21901,8 +22535,88 @@ components:
         isDefault:
           type: boolean
           description: An indication if this is the default in region for new projects
+        roleARN:
+          type: string
+          description: "The ARN (Amazon resource name) of the configuration, required\
+            \ for credential storage type AWS_ROLE, forbidden for others."
         storageConfigurationDetails:
           $ref: '#/components/schemas/StorageConfigurationDetails'
+    StorageCredentialV4:
+      required:
+      - id
+      - name
+      - ownerId
+      - tenantId
+      - timeCreated
+      - timeModified
+      - type
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        timeCreated:
+          type: string
+          format: date-time
+        timeModified:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+          format: uuid
+        tenantId:
+          type: string
+          format: uuid
+        tenantName:
+          type: string
+          nullable: true
+        name:
+          maxLength: 150
+          minLength: 1
+          type: string
+        type:
+          type: string
+        awsRoleSessionNamePrefix:
+          type: string
+    CreateStorageConfiguration:
+      required:
+      - name
+      - regionId
+      - storageCredentialId
+      - type
+      type: object
+      properties:
+        name:
+          maxLength: 15
+          minLength: 3
+          pattern: "^[a-z0-9][a-z0-9.-]*[a-z0-9]$"
+          type: string
+          description: The name of the configuration
+        description:
+          maxLength: 1000
+          minLength: 0
+          type: string
+          description: An optional description
+          nullable: true
+        storageCredentialId:
+          type: string
+          description: The id of the storage credential
+          format: uuid
+        type:
+          type: string
+          description: The type of configuration
+          enum:
+          - AWS_S3
+        awsDetails:
+          $ref: '#/components/schemas/AWSDetails'
+        regionId:
+          type: string
+          description: The id of the region where the bucket will be located
+          format: uuid
+        roleARN:
+          type: string
+          description: "The ARN (Amazon resource name) of the configuration, required\
+            \ for credential storage type AWS_ROLE, forbidden for others."
     StorageConfigurationWithDetailsList:
       required:
       - items
@@ -21968,7 +22682,7 @@ components:
           type: string
           description: The secret access key found in aws console
       nullable: true
-    CreateStorageCredential:
+    CreateStorageCredentialV4:
       required:
       - name
       - type
@@ -21980,13 +22694,40 @@ components:
           pattern: "^[a-zA-Z0-9_-]*$"
           type: string
           description: The name of the credentials
+        awsCredentials:
+          $ref: '#/components/schemas/AwsCredentials'
+        type:
+          pattern: AWS_USER|AWS_ROLE
+          type: string
+          description: "The type of the credentials. Allowed values : AWS_USER, AWS_ROLE."
+    CreateStorageCredentialV3:
+      required:
+      - name
+      - type
+      type: object
+      properties:
+        name:
+          maxLength: 150
+          minLength: 1
+          pattern: "^[a-zA-Z0-9_-]*$"
+          type: string
+          description: The name of the credentials
+        awsCredentials:
+          $ref: '#/components/schemas/AwsCredentials'
         type:
           type: string
           description: The type of the credentials
           enum:
           - AWS_USER
-        awsCredentials:
-          $ref: '#/components/schemas/AwsCredentials'
+    StorageCredentialListV4:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/StorageCredentialV4'
     StorageCredentialList:
       required:
       - items
@@ -22360,6 +23101,95 @@ components:
           type: array
           items:
             type: string
+    ImportGitPipeline:
+      required:
+      - commitId
+      - defaultStorageType
+      - language
+      - repositoryUrl
+      - version
+      type: object
+      properties:
+        language:
+          pattern: CWL|NEXTFLOW|UNKNOWN
+          type: string
+          description: The language that is used by the pipeline
+        code:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _/-]*$"
+          type: string
+          description: "The code of the pipeline. This is deprecated, use the name\
+            \ & version attributes instead"
+          nullable: true
+          deprecated: true
+        name:
+          maxLength: 255
+          minLength: 1
+          pattern: "^[a-zA-Z0-9 _/-]*$"
+          type: string
+          description: The name of the pipeline
+          nullable: true
+        description:
+          maxLength: 4000
+          minLength: 1
+          type: string
+          description: The description of the pipeline
+          nullable: true
+        defaultStorageType:
+          type: string
+          description: The type of the compute storage.
+        proprietary:
+          type: boolean
+          description: A boolean which indicates if the code of this pipeline is proprietary
+          nullable: true
+          default: false
+        version:
+          maxLength: 40
+          minLength: 1
+          type: string
+          description: The version number of the pipeline. Use of semantic versioning
+            is recommended but not enforced.
+        reportConfigs:
+          $ref: '#/components/schemas/PipelineReportConfig'
+        repositoryUrl:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: URL to the repository
+        gitCredentialId:
+          type: string
+          description: Id of the git credential
+          format: uuid
+        commitId:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Id of the git commit
+        mainFilePath:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Path of the main file
+          nullable: true
+        configFilePath:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Path of the config file
+          nullable: true
+        schemaFilePath:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: Path of the schema file
+          nullable: true
+        iconName:
+          maxLength: 255
+          minLength: 1
+          type: string
+          description: The icon name of the pipeline
+          nullable: true
     ProjectSamplePagedList:
       required:
       - items
