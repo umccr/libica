@@ -5,7 +5,7 @@
 [![PyPI](https://img.shields.io/pypi/v/libica?style=flat)](https://pypi.org/project/libica) 
 [![PyPI - License](https://img.shields.io/pypi/l/libica?style=flat)](https://opensource.org/licenses/MIT)
 
-Python SDK to programmatically call Illumina Connected Analytics (ICA) Genomic (multi-omics) data platform and BioInformatics web services.
+Python SDK to programmatically call Illumina BioInsight Platform Core Genomic (multi-omics) data platform and BioInformatics web services.
 
 - ICA API: https://help.ica.illumina.com/reference/r-api
 - Install through ``pip`` like so:
