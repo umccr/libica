@@ -1143,7 +1143,7 @@ Name | Type | Description  | Notes
 
 Retrieve the analysis logs.
 
-Retrieves the logs of the analysis. This endpoint only supports analyses started after ICA CP v2.23 has been released.
+Retrieves the logs of the analysis. This endpoint only supports analyses started after Platform Core v2.23 has been released.
 
 ### Example
 
@@ -1921,7 +1921,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **search_analyses**
-> AnalysisPagedListV4 search_analyses(project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort, analysis_query_parameters=analysis_query_parameters)
+> AnalysisPagedListV4 search_analyses(project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort, analysis_query_parameters_pipeline=analysis_query_parameters_pipeline)
 
 Search analyses.
 
@@ -1933,7 +1933,7 @@ Search analyses.
 ```python
 import libica.openapi.v3
 from libica.openapi.v3.models.analysis_paged_list_v4 import AnalysisPagedListV4
-from libica.openapi.v3.models.analysis_query_parameters import AnalysisQueryParameters
+from libica.openapi.v3.models.analysis_query_parameters_pipeline import AnalysisQueryParametersPipeline
 from libica.openapi.v3.rest import ApiException
 from pprint import pprint
 
@@ -1968,11 +1968,11 @@ with libica.openapi.v3.ApiClient(configuration) as api_client:
     page_token = 'page_token_example' # str | [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = 'page_size_example' # str | [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results (optional)
     sort = 'sort_example' # str | [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2 desc\"  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary  (optional)
-    analysis_query_parameters = libica.openapi.v3.AnalysisQueryParameters() # AnalysisQueryParameters |  (optional)
+    analysis_query_parameters_pipeline = libica.openapi.v3.AnalysisQueryParametersPipeline() # AnalysisQueryParametersPipeline |  (optional)
 
     try:
         # Search analyses.
-        api_response = api_instance.search_analyses(project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort, analysis_query_parameters=analysis_query_parameters)
+        api_response = api_instance.search_analyses(project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort, analysis_query_parameters_pipeline=analysis_query_parameters_pipeline)
         print("The response of ProjectAnalysisApi->search_analyses:\n")
         pprint(api_response)
     except Exception as e:
@@ -1991,7 +1991,7 @@ Name | Type | Description  | Notes
  **page_token** | **str**| [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional] 
  **page_size** | **str**| [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results | [optional] 
  **sort** | **str**| [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;sortAttribute1, sortAttribute2 desc\&quot;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary  | [optional] 
- **analysis_query_parameters** | [**AnalysisQueryParameters**](AnalysisQueryParameters.md)|  | [optional] 
+ **analysis_query_parameters_pipeline** | [**AnalysisQueryParametersPipeline**](AnalysisQueryParametersPipeline.md)|  | [optional] 
 
 ### Return type
 

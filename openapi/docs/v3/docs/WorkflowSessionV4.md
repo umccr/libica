@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **end_date** | **datetime** | When the workflow session was finished | [optional] 
 **summary** | **str** | The summary of the workflow session | [optional] 
 **tags** | [**WorkflowSessionTag**](WorkflowSessionTag.md) |  | 
+**sequencing_run** | [**WorkflowSessionSequencingRun**](WorkflowSessionSequencingRun.md) |  | [optional] 
 **application** | [**ApplicationV4**](ApplicationV4.md) |  | [optional] 
 
 ## Example

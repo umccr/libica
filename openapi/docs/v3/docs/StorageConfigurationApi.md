@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **create_storage_configuration**
-> StorageConfiguration create_storage_configuration(create_storage_configuration)
+> StorageConfigurationWithDetails create_storage_configuration(create_storage_configuration)
 
 Create a new storage configuration
 
@@ -25,7 +25,7 @@ Create a new storage configuration
 ```python
 import libica.openapi.v3
 from libica.openapi.v3.models.create_storage_configuration import CreateStorageConfiguration
-from libica.openapi.v3.models.storage_configuration import StorageConfiguration
+from libica.openapi.v3.models.storage_configuration_with_details import StorageConfigurationWithDetails
 from libica.openapi.v3.rest import ApiException
 from pprint import pprint
 
@@ -77,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StorageConfiguration**](StorageConfiguration.md)
+[**StorageConfigurationWithDetails**](StorageConfigurationWithDetails.md)
 
 ### Authorization
 
@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_storage_configuration**
-> StorageConfiguration get_storage_configuration(storage_configuration_id)
+> StorageConfigurationWithDetails get_storage_configuration(storage_configuration_id)
 
 Retrieve a storage configuration.
 
@@ -109,7 +109,7 @@ Retrieve a storage configuration.
 
 ```python
 import libica.openapi.v3
-from libica.openapi.v3.models.storage_configuration import StorageConfiguration
+from libica.openapi.v3.models.storage_configuration_with_details import StorageConfigurationWithDetails
 from libica.openapi.v3.rest import ApiException
 from pprint import pprint
 
@@ -161,7 +161,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StorageConfiguration**](StorageConfiguration.md)
+[**StorageConfigurationWithDetails**](StorageConfigurationWithDetails.md)
 
 ### Authorization
 

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **billing_mode** | **str** | The billing mode of the project. It determines who pays for the costs linked to the project. | 
 **data_sharing_enabled** | **bool** | Indicates whether the Data and Samples created in this Project can be linked to other Projects. | 
 **tags** | [**ProjectTag**](ProjectTag.md) |  | [optional] 
-**storage_bundle_id** | **str** |  | 
+**storage_bundle_id** | **str** |  | [optional] 
 **metadata_model_id** | **str** |  | [optional] 
 **storage_configuration_id** | **str** | An optional storage configuration id to have self managed storage. | [optional] 
 **storage_configuration_subfolder** | **str** | An optional subfolder that determines the object prefix of your self managed storage.  If not used, you will not be able to use this storage configuration for any future projects. | [optional] 

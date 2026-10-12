@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **values** | **List[Optional[str]]** | Use &#39;values&#39; for all fields except data fields. Use string values to avoid rounding of numbers with a high precision. Values of length 0 for textbox type fields will be treated as null. | [optional] 
 **data_values** | [**List[InputFormData]**](InputFormData.md) | Use &#39;dataValues&#39; for data fields. | [optional] 
 **external_data_values** | [**List[AnalysisInputExternalData]**](AnalysisInputExternalData.md) | Use &#39;externalDataValues&#39; for external data | [optional] 
+**sample_values** | **List[Optional[str]]** | Use &#39;sampleValues&#39; for data fields. | [optional] 
+**run_sample_values** | **List[Optional[str]]** | Use &#39;runSampleValues&#39; for data fields. | [optional] 
 
 ## Example
 

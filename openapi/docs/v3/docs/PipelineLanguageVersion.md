@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **id** | **str** |  | 
 **name** | **str** | The name of the version | 
 **language** | **str** | The language of the version | 
+**status** | **str** | The status of the version | [optional] 
 
 ## Example
 

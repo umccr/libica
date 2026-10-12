@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **error_message** | **str** | An optional error message when something went wrong with the configuration | [optional] 
 **region** | [**Region**](Region.md) |  | 
 **is_default** | **bool** | An indication if this is the default in region for new projects | 
+**role_arn** | **str** | The ARN (Amazon resource name) of the configuration, required for credential storage type AWS_ROLE, forbidden for others. | [optional] 
 
 ## Example
 

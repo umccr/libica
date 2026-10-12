@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **min_max_values_message** | **str** |  | [optional] 
 **help_text** | **str** |  | [optional] 
 **place_holder_text** | **str** |  | [optional] 
+**tooltip_text** | **str** |  | [optional] 
 **values** | **List[str]** |  | [optional] 
 **data_values** | [**List[InputFormWithExternalData]**](InputFormWithExternalData.md) |  | [optional] 
 **min_length** | **int** |  | [optional] 

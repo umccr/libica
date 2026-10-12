@@ -11,10 +11,12 @@ Name | Type | Description | Notes
 **time_modified** | **datetime** |  | 
 **owner** | [**UserIdentifier**](UserIdentifier.md) |  | 
 **tenant** | [**TenantIdentifier**](TenantIdentifier.md) |  | 
-**code** | **str** | The code of the pipeline | 
+**pipeline_group** | [**PipelineGroupIdentifier**](PipelineGroupIdentifier.md) |  | [optional] 
+**code** | **str** | The code of the pipeline. This is deprecated, use the name &amp; version attributes instead | 
+**name** | **str** | The name of the pipeline | [optional] 
 **description** | **str** | The description of the pipeline | 
 **status** | **str** | The status of the pipeline | [optional] 
-**status_as_string** | **str** | The status of the pipeline as string (&#39;Draft&#39;, &#39;Released&#39;, &#39;Deprecated&#39;, &#39;Archived&#39;) | [optional] 
+**status_as_string** | **str** | The status of the pipeline as string (&#39;Draft&#39;, &#39;Released&#39;, &#39;Deprecated&#39;, &#39;Archived&#39;, &#39;Importing&#39;, &#39;Import Cancelling&#39;, &#39;Import Incomplete&#39;, &#39;Import Failed&#39;) | [optional] 
 **language** | **str** | The language that is used by the pipeline | 
 **language_version** | [**PipelineLanguageVersion**](PipelineLanguageVersion.md) |  | [optional] 
 **pipeline_tags** | [**PipelineTag**](PipelineTag.md) |  | 
@@ -23,6 +25,11 @@ Name | Type | Description | Notes
 **input_form_type** | **str** | The type of the inputform used. | [optional] 
 **report_configs** | [**PipelineReportConfig**](PipelineReportConfig.md) |  | [optional] 
 **resources** | [**PipelineResources**](PipelineResources.md) |  | [optional] 
+**git_pipeline_import** | [**GitPipelineImport**](GitPipelineImport.md) |  | [optional] 
+**version** | **str** | The version number of the pipeline | [optional] 
+**latest_version_in_group** | **bool** |  | [optional] 
+**pipeline_usage** | [**PipelineUsage**](PipelineUsage.md) |  | [optional] 
+**icon_name** | **str** | The icon name of the pipeline | [optional] 
 
 ## Example
 

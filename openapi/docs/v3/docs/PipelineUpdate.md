@@ -5,11 +5,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **str** | The code of the pipeline | [optional] 
+**code** | **str** | The code of the pipeline. This is deprecated, use the name &amp; version attributes instead | [optional] 
+**name** | **str** | The name of the pipeline | [optional] 
+**version** | **str** | The version number of the pipeline. Use of semantic versioning is recommended but not enforced. | [optional] 
+**version_comment** | **str** |  | [optional] 
 **description** | **str** | The description of the pipeline | [optional] 
 **language_version** | **str** | Version of the pipeline language  | [optional] 
 **proprietary** | **bool** | A boolean which indicates if the code of this pipeline is proprietary | [optional] 
 **resources** | [**PipelineResources**](PipelineResources.md) |  | [optional] 
+**icon_name** | **str** | The icon name of the pipeline | [optional] 
 
 ## Example
 

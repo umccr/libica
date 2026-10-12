@@ -5,10 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**media_type** | [**InputPartMediaType**](InputPartMediaType.md) |  | [optional] 
-**headers** | **Dict[str, List[str]]** |  | [optional] 
 **content_type_from_message** | **bool** |  | [optional] 
 **body_as_string** | **str** |  | [optional] 
+**headers** | **Dict[str, List[str]]** |  | [optional] 
+**media_type** | [**InputPartMediaType**](InputPartMediaType.md) |  | [optional] 
 
 ## Example
 

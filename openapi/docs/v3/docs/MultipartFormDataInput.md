@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**form_data** | [**Dict[str, InputPart]**](InputPart.md) |  | [optional] 
 **form_data_map** | **Dict[str, List[InputPart]]** |  | [optional] 
+**form_data** | [**Dict[str, InputPart]**](InputPart.md) |  | [optional] 
 **preamble** | **str** |  | [optional] 
 **parts** | [**List[InputPart]**](InputPart.md) |  | [optional] 
 

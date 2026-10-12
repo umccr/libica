@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **aws_s3** | [**AWSDetails**](AWSDetails.md) |  | [optional] 
+**storage_credential** | [**StorageCredentialV4**](StorageCredentialV4.md) |  | [optional] 
 
 ## Example
 
