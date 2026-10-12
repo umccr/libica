@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **name** | **str** | name of the report | 
 **regex** | **str** | regex pattern of the filename | 
 **format** | **str** | Format of the file | [optional] 
+**match_target** | **str** | Selects which part of the analysis output file the regex is matched against. FILE_NAME matches against the file name only (segment after the last /). FULL_PATH matches against the file&#39;s full relative path within the analysis output tree. Defaults to FILE_NAME when omitted. One of: FILE_NAME, FULL_PATH. | [optional] [default to 'FILE_NAME']
 
 ## Example
 

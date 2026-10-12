@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **region** | [**RegionV4**](RegionV4.md) |  | [optional] 
+**url** | **str** |  | 
 
 ## Example
 

@@ -22,6 +22,7 @@ Name | Type | Description | Notes
 **analysis_priority** | **str** | The priority of the analysis | [optional] 
 **tags** | [**AnalysisTag**](AnalysisTag.md) |  | 
 **application** | [**ApplicationV4**](ApplicationV4.md) |  | [optional] 
+**project_id** | **str** |  | [optional] 
 
 ## Example
 

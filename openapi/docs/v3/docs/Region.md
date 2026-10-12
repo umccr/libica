@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **code** | **str** |  | 
 **country** | [**Country**](Country.md) |  | 
 **city_name** | **str** |  | 
+**active** | **bool** |  | [optional] 
 
 ## Example
 

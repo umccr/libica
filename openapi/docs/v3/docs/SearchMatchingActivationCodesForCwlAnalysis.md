@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **project_id** | **str** |  | 
 **pipeline_id** | **str** |  | 
+**analysis_storage_id** | **str** | The id of the storage to use for the analysis. | [optional] 
 **analysis_input** | [**CwlAnalysisInput**](CwlAnalysisInput.md) |  | 
 
 ## Example

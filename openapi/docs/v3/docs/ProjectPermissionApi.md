@@ -18,8 +18,13 @@ Create a project permission.
 # Changelog
 For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.
 
-## [V3]
+## [V3] (Deprecated)
 Initial version
+
+**Backwards Compatibility Note:** For the roleBench field, when creating or updating a permission with the value CONTRIBUTOR, it will be automatically mapped to ADMINISTRATOR in the database to maintain backwards 
+
+compatibility. When retrieving permissions, both ADMINISTRATOR and CONTRIBUTOR bench roles are returned as CONTRIBUTOR in the v3 API response.
+
 ## [V4]
 Added 'Administrator' role for Bench.
 The role attributes are strings instead of enums to support future additions in a backward compatible manner.

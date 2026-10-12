@@ -26,6 +26,8 @@ Name | Type | Description | Notes
 **will_be_archived_at** | **datetime** | Specifies when the data object will be archived. | [optional] 
 **will_be_deleted_at** | **datetime** | Specifies when the data object will be deleted. | [optional] 
 **sequencing_run** | [**SequencingRun**](SequencingRun.md) |  | [optional] 
+**source_analysis_id** | **str** |  | [optional] 
+**source_workflow_session_id** | **str** |  | [optional] 
 
 ## Example
 

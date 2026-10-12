@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **type** | **str** | The type of configuration | 
 **aws_details** | [**AWSDetails**](AWSDetails.md) |  | [optional] 
 **region_id** | **str** | The id of the region where the bucket will be located | 
+**role_arn** | **str** | The ARN (Amazon resource name) of the configuration, required for credential storage type AWS_ROLE, forbidden for others. | [optional] 
 
 ## Example
 

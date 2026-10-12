@@ -213,7 +213,7 @@ void (empty response body)
 
 Complete a trackable folder upload session.
 
-Complete a trackable folder upload session. By completing the folder upload session, and specifying how many files you have uploaded, ICA can ensure that all uploaded files are accounted for.
+Complete a trackable folder upload session. By completing the folder upload session, and specifying how many files you have uploaded, Platform Core can ensure that all uploaded files are accounted for.
 
 ### Example
 
@@ -2205,7 +2205,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_project_data_list**
-> ProjectDataPagedList get_project_data_list(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, non_indexed_folders=non_indexed_folders, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, not_linked_to_sample=not_linked_to_sample, instrument_run_id=instrument_run_id, owning_project_id=owning_project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
+> ProjectDataPagedList get_project_data_list(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, non_indexed_folders=non_indexed_folders, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, sample_id=sample_id, not_linked_to_sample=not_linked_to_sample, instrument_run_id=instrument_run_id, owning_project_id=owning_project_id, analysis_id=analysis_id, analysis_data_type=analysis_data_type, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
 
 Retrieve the list of project data.
 
@@ -2275,9 +2275,12 @@ with libica.openapi.v3.ApiClient(configuration) as api_client:
     technical_tag = ['technical_tag_example'] # List[str] | The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done. (optional)
     technical_tag_match_mode = 'technical_tag_match_mode_example' # str | How the technicalTags are filtered.  (optional)
     not_in_run = True # bool | When set to true, the data will be filtered on data which is not used in a run. (optional)
+    sample_id = ['sample_id_example'] # List[str] | The sample IDs to filter on (maxItems=20). (optional)
     not_linked_to_sample = True # bool | When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File. (optional)
     instrument_run_id = ['instrument_run_id_example'] # List[str] | The instrument run IDs of the sequencing runs to filter on. (optional)
     owning_project_id = ['owning_project_id_example'] # List[str] | The owning project ID to filter on. (optional)
+    analysis_id = ['analysis_id_example'] # List[str] | The analysis ID that produced the data. This parameter will only work for analyses started after the release of Platform Core v2.41. Max of 20 ID (optional)
+    analysis_data_type = ['analysis_data_type_example'] # List[str] | The type of data produced by analyses. This parameter will only work for analyses started after the release of Platform Core v2.41. (optional)
     page_offset = 'page_offset_example' # str | [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
     page_token = 'page_token_example' # str | [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = 'page_size_example' # str | [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results (optional)
@@ -2285,7 +2288,7 @@ with libica.openapi.v3.ApiClient(configuration) as api_client:
 
     try:
         # Retrieve the list of project data.
-        api_response = api_instance.get_project_data_list(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, non_indexed_folders=non_indexed_folders, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, not_linked_to_sample=not_linked_to_sample, instrument_run_id=instrument_run_id, owning_project_id=owning_project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
+        api_response = api_instance.get_project_data_list(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, non_indexed_folders=non_indexed_folders, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, sample_id=sample_id, not_linked_to_sample=not_linked_to_sample, instrument_run_id=instrument_run_id, owning_project_id=owning_project_id, analysis_id=analysis_id, analysis_data_type=analysis_data_type, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
         print("The response of ProjectDataApi->get_project_data_list:\n")
         pprint(api_response)
     except Exception as e:
@@ -2328,9 +2331,12 @@ Name | Type | Description  | Notes
  **technical_tag** | [**List[str]**](str.md)| The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done. | [optional] 
  **technical_tag_match_mode** | **str**| How the technicalTags are filtered.  | [optional] 
  **not_in_run** | **bool**| When set to true, the data will be filtered on data which is not used in a run. | [optional] 
+ **sample_id** | [**List[str]**](str.md)| The sample IDs to filter on (maxItems&#x3D;20). | [optional] 
  **not_linked_to_sample** | **bool**| When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File. | [optional] 
  **instrument_run_id** | [**List[str]**](str.md)| The instrument run IDs of the sequencing runs to filter on. | [optional] 
  **owning_project_id** | [**List[str]**](str.md)| The owning project ID to filter on. | [optional] 
+ **analysis_id** | [**List[str]**](str.md)| The analysis ID that produced the data. This parameter will only work for analyses started after the release of Platform Core v2.41. Max of 20 ID | [optional] 
+ **analysis_data_type** | [**List[str]**](str.md)| The type of data produced by analyses. This parameter will only work for analyses started after the release of Platform Core v2.41. | [optional] 
  **page_offset** | **str**| [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional] 
  **page_token** | **str**| [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional] 
  **page_size** | **str**| [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results | [optional] 
