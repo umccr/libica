@@ -227,6 +227,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                                     ),
                                 ),
                             ],
+                            sample_values=[
+                                "sample_values_example",
+                            ],
+                            run_sample_values=[
+                                "run_sample_values_example",
+                            ],
                         ),
                     ],
                     groups=[
@@ -260,6 +266,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                                                         path_prefix="path_prefix_example",
                                                     ),
                                                 ),
+                                            ],
+                                            sample_values=[
+                                                "sample_values_example",
+                                            ],
+                                            run_sample_values=[
+                                                "run_sample_values_example",
                                             ],
                                         ),
                                     ],

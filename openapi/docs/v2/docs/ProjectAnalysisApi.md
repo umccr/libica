@@ -678,6 +678,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                             ),
                         ),
                     ],
+                    sample_values=[
+                        "sample_values_example",
+                    ],
+                    run_sample_values=[
+                        "run_sample_values_example",
+                    ],
                 ),
             ],
             groups=[
@@ -711,6 +717,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                                                 path_prefix="path_prefix_example",
                                             ),
                                         ),
+                                    ],
+                                    sample_values=[
+                                        "sample_values_example",
+                                    ],
+                                    run_sample_values=[
+                                        "run_sample_values_example",
                                     ],
                                 ),
                             ],
@@ -1207,6 +1219,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                             ),
                         ),
                     ],
+                    sample_values=[
+                        "sample_values_example",
+                    ],
+                    run_sample_values=[
+                        "run_sample_values_example",
+                    ],
                 ),
             ],
             groups=[
@@ -1240,6 +1258,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                                                 path_prefix="path_prefix_example",
                                             ),
                                         ),
+                                    ],
+                                    sample_values=[
+                                        "sample_values_example",
+                                    ],
+                                    run_sample_values=[
+                                        "run_sample_values_example",
                                     ],
                                 ),
                             ],
@@ -1682,7 +1706,7 @@ Name | Type | Description  | Notes
 
 Retrieve the analysis logs.
 
-Retrieves the logs of the analysis. This endpoint only supports analyses started after ICA CP v2.23 has been released.
+Retrieves the logs of the analysis. This endpoint only supports analyses started after Platform Core v2.23 has been released.
 
 ### Example
 
@@ -2473,8 +2497,8 @@ Search analyses.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import project_analysis_api
-from libica.openapi.v2.model.analysis_query_parameters import AnalysisQueryParameters
 from libica.openapi.v2.model.analysis_paged_list_v4 import AnalysisPagedListV4
+from libica.openapi.v2.model.analysis_query_parameters_pipeline import AnalysisQueryParametersPipeline
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -2508,7 +2532,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     page_token = "pageToken_example" # str | [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = "pageSize_example" # str | [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results (optional)
     sort = "sort_example" # str | [only use with offset-based paging]<br>Which field to order the results by. The default order is ascending, suffix with ' desc' to sort descending (suffix ' asc' also works for ascending). Multiple values should be separated with commas. An example: \"?sort=sortAttribute1, sortAttribute2 desc\"  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary  (optional)
-    analysis_query_parameters = AnalysisQueryParameters(
+    analysis_query_parameters_pipeline = AnalysisQueryParametersPipeline(
         reference="reference_example",
         user_reference="user_reference_example",
         status=[
@@ -2523,7 +2547,16 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
         reference_tags=[
             "reference_tags_example",
         ],
-    ) # AnalysisQueryParameters |  (optional)
+        pipeline_names=[
+            "pipeline_names_example",
+        ],
+        pipeline_uuids=[
+            "pipeline_uuids_example",
+        ],
+        sample_ids=[
+            "sample_ids_example",
+        ],
+    ) # AnalysisQueryParametersPipeline |  (optional)
 
     # example passing only required values which don't have defaults set
     try:
@@ -2537,7 +2570,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Search analyses.
-        api_response = api_instance.search_analyses(project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort, analysis_query_parameters=analysis_query_parameters)
+        api_response = api_instance.search_analyses(project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort, analysis_query_parameters_pipeline=analysis_query_parameters_pipeline)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectAnalysisApi->search_analyses: %s\n" % e)
@@ -2553,7 +2586,7 @@ Name | Type | Description  | Notes
  **page_token** | **str**| [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
  **page_size** | **str**| [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results | [optional]
  **sort** | **str**| [only use with offset-based paging]&lt;br&gt;Which field to order the results by. The default order is ascending, suffix with &#39; desc&#39; to sort descending (suffix &#39; asc&#39; also works for ascending). Multiple values should be separated with commas. An example: \&quot;?sort&#x3D;sortAttribute1, sortAttribute2 desc\&quot;  The attributes for which sorting is supported: - reference - userReference - pipeline - status - startDate - endDate - summary  | [optional]
- **analysis_query_parameters** | [**AnalysisQueryParameters**](AnalysisQueryParameters.md)|  | [optional]
+ **analysis_query_parameters_pipeline** | [**AnalysisQueryParametersPipeline**](AnalysisQueryParametersPipeline.md)|  | [optional]
 
 ### Return type
 
@@ -2651,7 +2684,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 id="id_example",
                 name="name_example",
             ),
+            pipeline_group=PipelineGroupIdentifier(
+                id="id_example",
+            ),
             code="code_example",
+            name="name_example",
             description="description_example",
             status="DRAFT",
             status_as_string="status_as_string_example",
@@ -2660,6 +2697,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 id="id_example",
                 name="name_example",
                 language="CWL",
+                status="NOTSUPPORTE",
             ),
             pipeline_tags=PipelineTag(
                 technical_tags=[
@@ -2679,6 +2717,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                         name="name_example",
                         regex="regex_example",
                         format="format_example",
+                        match_target="FILE_NAME",
                     ),
                 ],
             ),
@@ -2688,6 +2727,24 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 gpu=True,
                 software_only=True,
             ),
+            git_pipeline_import=GitPipelineImport(
+                repository_url="repository_url_example",
+                git_credential_id="git_credential_id_example",
+                main_file_path="main_file_path_example",
+                commit_id="commit_id_example",
+                config_file_path="config_file_path_example",
+                schema_file_path="schema_file_path_example",
+            ),
+            version="version_example",
+            latest_version_in_group=True,
+            pipeline_usage=PipelineUsage(
+                last_used=PipelineLastUsed(
+                    date=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                    analysis_id="analysis_id_example",
+                ),
+                pinned_in_project=True,
+            ),
+            icon_name="icon_name_example",
         ),
         workflow_session=WorkflowSessionV4(
             id="id_example",
@@ -2709,6 +2766,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     id="id_example",
                     name="name_example",
                     language="CWL",
+                    status="NOTSUPPORTE",
                 ),
                 workflow_tags=PipelineTag(
                     technical_tags=[
@@ -2732,6 +2790,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 user_tags=[
                     "user_tags_example",
                 ],
+            ),
+            sequencing_run=WorkflowSessionSequencingRun(
+                id="id_example",
+                instrument_run_id="instrument_run_id_example",
+                external_run_id="external_run_id_example",
             ),
             application=ApplicationV4(
                 id="id_example",
@@ -2763,6 +2826,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             id="id_example",
             name="name_example",
         ),
+        project_id="project_id_example",
     ) # AnalysisV4 | 
     if_match = "If-Match_example" # str | Optional header parameter to enable conflict exposure. If the client provides this header, then it must contains the client's most recent value of the 'ETag' response header, and the server will respond with a 409 code if it detects a conflict. If the client does not provide this header, then the server will not do a conflict check, which means that as a client you can override the resource even when the server has a more recent version. (optional)
 

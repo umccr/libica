@@ -59,6 +59,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     search_matching_activation_codes_for_cwl_analysis = SearchMatchingActivationCodesForCwlAnalysis(
         project_id="project_id_example",
         pipeline_id="pipeline_id_example",
+        analysis_storage_id="analysis_storage_id_example",
         analysis_input=CwlAnalysisInput(),
     ) # SearchMatchingActivationCodesForCwlAnalysis | 
 
@@ -150,6 +151,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     search_matching_activation_codes_for_nextflow_analysis = SearchMatchingActivationCodesForNextflowAnalysis(
         project_id="project_id_example",
         pipeline_id="pipeline_id_example",
+        analysis_storage_id="analysis_storage_id_example",
         analysis_input=NextflowAnalysisInput(
             inputs=[
                 AnalysisDataInput(
@@ -286,6 +288,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     search_matching_activation_codes_for_cwl_analysis = SearchMatchingActivationCodesForCwlAnalysis(
         project_id="project_id_example",
         pipeline_id="pipeline_id_example",
+        analysis_storage_id="analysis_storage_id_example",
         analysis_input=CwlAnalysisInput(),
     ) # SearchMatchingActivationCodesForCwlAnalysis | 
 
@@ -377,6 +380,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     search_matching_activation_codes_for_nextflow_analysis = SearchMatchingActivationCodesForNextflowAnalysis(
         project_id="project_id_example",
         pipeline_id="pipeline_id_example",
+        analysis_storage_id="analysis_storage_id_example",
         analysis_input=NextflowAnalysisInput(
             inputs=[
                 AnalysisDataInput(

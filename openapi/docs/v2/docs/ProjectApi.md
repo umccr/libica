@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_project_bundle**](ProjectApi.md#get_project_bundle) | **GET** /api/projects/{projectId}/bundles/{bundleId} | Retrieve a project bundle.
 [**get_project_bundles**](ProjectApi.md#get_project_bundles) | **GET** /api/projects/{projectId}/bundles | Retrieve project bundles.
 [**get_projects**](ProjectApi.md#get_projects) | **GET** /api/projects | Retrieve a list of projects.
+[**get_self_managed_storage_configuration**](ProjectApi.md#get_self_managed_storage_configuration) | **GET** /api/projects/{projectId}/selfManagedStorageConfiguration | Retrieve a self managed storage configuration associated with the project.
 [**hide_project**](ProjectApi.md#hide_project) | **POST** /api/projects/{projectId}:hide | Hide a project.
 [**link_project_bundle**](ProjectApi.md#link_project_bundle) | **POST** /api/projects/{projectId}/bundles/{bundleId} | Link a bundle to a project.
 [**unlink_project_bundle**](ProjectApi.md#unlink_project_bundle) | **DELETE** /api/projects/{projectId}/bundles/{bundleId} | Unlink a bundle from a project.
@@ -572,6 +573,90 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_self_managed_storage_configuration**
+> ProjectStorageConfiguration get_self_managed_storage_configuration(project_id)
+
+Retrieve a self managed storage configuration associated with the project.
+
+### Example
+
+* Api Key Authentication (ApiKeyAuth):
+* Bearer (JWT) Authentication (JwtAuth):
+
+```python
+import time
+import libica.openapi.v2
+from libica.openapi.v2.api import project_api
+from libica.openapi.v2.model.project_storage_configuration import ProjectStorageConfiguration
+from libica.openapi.v2.model.problem import Problem
+from pprint import pprint
+# Defining the host is optional and defaults to /ica/rest
+# See configuration.py for a list of all supported configuration parameters.
+configuration = libica.openapi.v2.Configuration(
+    host = "/ica/rest"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: ApiKeyAuth
+configuration.api_key['ApiKeyAuth'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['ApiKeyAuth'] = 'Bearer'
+
+# Configure Bearer authorization (JWT): JwtAuth
+configuration = libica.openapi.v2.Configuration(
+    access_token = 'YOUR_BEARER_TOKEN'
+)
+
+# Enter a context with an instance of the API client
+with libica.openapi.v2.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = project_api.ProjectApi(api_client)
+    project_id = "projectId_example" # str | 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Retrieve a self managed storage configuration associated with the project.
+        api_response = api_instance.get_self_managed_storage_configuration(project_id)
+        pprint(api_response)
+    except libica.openapi.v2.ApiException as e:
+        print("Exception when calling ProjectApi->get_self_managed_storage_configuration: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **project_id** | **str**|  |
+
+### Return type
+
+[**ProjectStorageConfiguration**](ProjectStorageConfiguration.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth), [JwtAuth](../README.md#JwtAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The self managed storage configuration is successfully retrieved. |  -  |
+**0** | A problem occurred. |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **hide_project**
 > hide_project(project_id)
 
@@ -903,6 +988,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                 region="region_example",
             ),
             city_name="city_name_example",
+            active=True,
         ),
         billing_mode="PROJECT",
         data_sharing_enabled=True,
@@ -943,6 +1029,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     region="region_example",
                 ),
                 city_name="city_name_example",
+                active=True,
             ),
         ),
         self_managed_storage_configuration=StorageConfiguration(
@@ -977,8 +1064,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     region="region_example",
                 ),
                 city_name="city_name_example",
+                active=True,
             ),
             is_default=True,
+            role_arn="role_arn_example",
         ),
         analysis_priority="LOW",
         metadata_model=MetadataModel(

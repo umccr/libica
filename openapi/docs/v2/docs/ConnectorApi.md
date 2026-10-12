@@ -1454,6 +1454,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     region="region_example",
                 ),
                 city_name="city_name_example",
+                active=True,
             ),
             billing_mode="PROJECT",
             data_sharing_enabled=True,
@@ -1494,6 +1495,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                         region="region_example",
                     ),
                     city_name="city_name_example",
+                    active=True,
                 ),
             ),
             self_managed_storage_configuration=StorageConfiguration(
@@ -1528,8 +1530,10 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                         region="region_example",
                     ),
                     city_name="city_name_example",
+                    active=True,
                 ),
                 is_default=True,
+                role_arn="role_arn_example",
             ),
             analysis_priority="LOW",
             metadata_model=MetadataModel(
