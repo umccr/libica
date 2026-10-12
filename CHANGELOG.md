@@ -1,3 +1,9 @@
+3.3
+-----
+* Release date: 2026-10-12
+* Updated for upstream API Release -- [BioInsight Platform Core v2.49.0](https://help.ica.illumina.com/reference/software-release-notes/2026#id-2026-september-30-platform-core-v2.49.0)
+* See [milestone 3.3 for all related PRs](https://github.com/umccr/libica/milestone/15?closed=1)
+
 3.2
 -----
 * Release date: 2025-11-03
