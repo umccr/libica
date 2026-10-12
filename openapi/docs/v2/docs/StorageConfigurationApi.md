@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 
 # **create_storage_configuration**
-> StorageConfiguration create_storage_configuration(create_storage_configuration)
+> StorageConfigurationWithDetails create_storage_configuration(create_storage_configuration)
 
 Create a new storage configuration
 
@@ -26,7 +26,7 @@ Create a new storage configuration
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import storage_configuration_api
-from libica.openapi.v2.model.storage_configuration import StorageConfiguration
+from libica.openapi.v2.model.storage_configuration_with_details import StorageConfigurationWithDetails
 from libica.openapi.v2.model.create_storage_configuration import CreateStorageConfiguration
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -68,6 +68,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
             server_side_encryption_key="server_side_encryption_key_example",
         ),
         region_id="region_id_example",
+        role_arn="role_arn_example",
     ) # CreateStorageConfiguration | 
 
     # example passing only required values which don't have defaults set
@@ -88,7 +89,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StorageConfiguration**](StorageConfiguration.md)
+[**StorageConfigurationWithDetails**](StorageConfigurationWithDetails.md)
 
 ### Authorization
 
@@ -110,7 +111,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_storage_configuration**
-> StorageConfiguration get_storage_configuration(storage_configuration_id)
+> StorageConfigurationWithDetails get_storage_configuration(storage_configuration_id)
 
 Retrieve a storage configuration.
 
@@ -123,7 +124,7 @@ Retrieve a storage configuration.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import storage_configuration_api
-from libica.openapi.v2.model.storage_configuration import StorageConfiguration
+from libica.openapi.v2.model.storage_configuration_with_details import StorageConfigurationWithDetails
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -172,7 +173,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StorageConfiguration**](StorageConfiguration.md)
+[**StorageConfigurationWithDetails**](StorageConfigurationWithDetails.md)
 
 ### Authorization
 

@@ -215,7 +215,7 @@ void (empty response body)
 
 Complete a trackable folder upload session.
 
-Complete a trackable folder upload session. By completing the folder upload session, and specifying how many files you have uploaded, ICA can ensure that all uploaded files are accounted for.
+Complete a trackable folder upload session. By completing the folder upload session, and specifying how many files you have uploaded, Platform Core can ensure that all uploaded files are accounted for.
 
 ### Example
 
@@ -2537,6 +2537,9 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     ] # [str] | The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done. (optional)
     technical_tag_match_mode = "EXACT" # str | How the technicalTags are filtered.  (optional)
     not_in_run = True # bool | When set to true, the data will be filtered on data which is not used in a run. (optional)
+    sample_id = [
+        "sampleId_example",
+    ] # [str] | The sample IDs to filter on (maxItems=20). (optional)
     not_linked_to_sample = True # bool | When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File. (optional)
     instrument_run_id = [
         "instrumentRunId_example",
@@ -2544,6 +2547,12 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     owning_project_id = [
         "owningProjectId_example",
     ] # [str] | The owning project ID to filter on. (optional)
+    analysis_id = [
+        "analysisId_example",
+    ] # [str] | The analysis ID that produced the data. This parameter will only work for analyses started after the release of Platform Core v2.41. Max of 20 ID (optional)
+    analysis_data_type = [
+        "OUTPUT",
+    ] # [str] | The type of data produced by analyses. This parameter will only work for analyses started after the release of Platform Core v2.41. (optional)
     page_offset = "pageOffset_example" # str | [only use with offset-based paging]<br>The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages (optional)
     page_token = "pageToken_example" # str | [only use with cursor-based paging]<br>The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. (optional)
     page_size = "pageSize_example" # str | [can be used with both offset- and cursor-based paging]<br>The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results (optional)
@@ -2561,7 +2570,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
     # and optional values
     try:
         # Retrieve the list of project data.
-        api_response = api_instance.get_project_data_list(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, non_indexed_folders=non_indexed_folders, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, not_linked_to_sample=not_linked_to_sample, instrument_run_id=instrument_run_id, owning_project_id=owning_project_id, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
+        api_response = api_instance.get_project_data_list(project_id, full_text=full_text, id=id, filename=filename, filename_match_mode=filename_match_mode, file_path=file_path, file_path_match_mode=file_path_match_mode, status=status, format_id=format_id, format_code=format_code, type=type, non_indexed_folders=non_indexed_folders, parent_folder_id=parent_folder_id, parent_folder_path=parent_folder_path, creation_date_after=creation_date_after, creation_date_before=creation_date_before, status_date_after=status_date_after, status_date_before=status_date_before, user_tag=user_tag, user_tag_match_mode=user_tag_match_mode, run_input_tag=run_input_tag, run_input_tag_match_mode=run_input_tag_match_mode, run_output_tag=run_output_tag, run_output_tag_match_mode=run_output_tag_match_mode, connector_tag=connector_tag, connector_tag_match_mode=connector_tag_match_mode, technical_tag=technical_tag, technical_tag_match_mode=technical_tag_match_mode, not_in_run=not_in_run, sample_id=sample_id, not_linked_to_sample=not_linked_to_sample, instrument_run_id=instrument_run_id, owning_project_id=owning_project_id, analysis_id=analysis_id, analysis_data_type=analysis_data_type, page_offset=page_offset, page_token=page_token, page_size=page_size, sort=sort)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling ProjectDataApi->get_project_data_list: %s\n" % e)
@@ -2601,9 +2610,12 @@ Name | Type | Description  | Notes
  **technical_tag** | **[str]**| The technicalTags to filter on. The techTagMatchMode-parameter determines how the filtering is done. | [optional]
  **technical_tag_match_mode** | **str**| How the technicalTags are filtered.  | [optional]
  **not_in_run** | **bool**| When set to true, the data will be filtered on data which is not used in a run. | [optional]
+ **sample_id** | **[str]**| The sample IDs to filter on (maxItems&#x3D;20). | [optional]
  **not_linked_to_sample** | **bool**| When set to true only data that is unlinked to a sample will be returned.  This filter implies a filter of type File. | [optional]
  **instrument_run_id** | **[str]**| The instrument run IDs of the sequencing runs to filter on. | [optional]
  **owning_project_id** | **[str]**| The owning project ID to filter on. | [optional]
+ **analysis_id** | **[str]**| The analysis ID that produced the data. This parameter will only work for analyses started after the release of Platform Core v2.41. Max of 20 ID | [optional]
+ **analysis_data_type** | **[str]**| The type of data produced by analyses. This parameter will only work for analyses started after the release of Platform Core v2.41. | [optional]
  **page_offset** | **str**| [only use with offset-based paging]&lt;br&gt;The amount of rows to skip in the result. Ideally this is a multiple of the size parameter. Offset-based pagination has a result limit of 200K rows and does not guarantee unique results across pages | [optional]
  **page_token** | **str**| [only use with cursor-based paging]&lt;br&gt;The cursor to get subsequent results. The value to use is returned in the result when using cursor-based pagination. Cursor-based pagination guarantees complete and unique results across all pages. | [optional]
  **page_size** | **str**| [can be used with both offset- and cursor-based paging]&lt;br&gt;The amount of rows to return. Use in combination with the offset (when using offset-based pagination) or cursor (when using cursor-based pagination) parameter to get subsequent results | [optional]
@@ -3359,6 +3371,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                         region="region_example",
                     ),
                     city_name="city_name_example",
+                    active=True,
                 ),
                 application=ApplicationV4(
                     id="id_example",
@@ -3371,6 +3384,8 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     instrument_run_id="instrument_run_id_example",
                     name="name_example",
                 ),
+                source_analysis_id="source_analysis_id_example",
+                source_workflow_session_id="source_workflow_session_id_example",
             ),
             folder_details=FolderDetails(
                 non_indexed=True,

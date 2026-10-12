@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_storage_credential**
-> StorageCredential create_storage_credential(create_storage_credential)
+> StorageCredentialV4 create_storage_credential(create_storage_credential_v4)
 
 Create a new storage credential
 
@@ -25,8 +25,10 @@ Create a new storage credential
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import storage_credentials_api
-from libica.openapi.v2.model.create_storage_credential import CreateStorageCredential
+from libica.openapi.v2.model.storage_credential_v4 import StorageCredentialV4
 from libica.openapi.v2.model.storage_credential import StorageCredential
+from libica.openapi.v2.model.create_storage_credential_v4 import CreateStorageCredentialV4
+from libica.openapi.v2.model.create_storage_credential_v3 import CreateStorageCredentialV3
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
 # Defining the host is optional and defaults to /ica/rest
@@ -55,19 +57,19 @@ configuration = libica.openapi.v2.Configuration(
 with libica.openapi.v2.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = storage_credentials_api.StorageCredentialsApi(api_client)
-    create_storage_credential = CreateStorageCredential(
+    create_storage_credential_v4 = CreateStorageCredentialV4(
         name="zBAMDTMv2D2ylmgd10Z3UB",
-        type="AWS_USER",
         aws_credentials=AwsCredentials(
             access_key_id="+",
             secret_access_key="+",
         ),
-    ) # CreateStorageCredential | 
+        type="AWS_ROL",
+    ) # CreateStorageCredentialV4 | 
 
     # example passing only required values which don't have defaults set
     try:
         # Create a new storage credential
-        api_response = api_instance.create_storage_credential(create_storage_credential)
+        api_response = api_instance.create_storage_credential(create_storage_credential_v4)
         pprint(api_response)
     except libica.openapi.v2.ApiException as e:
         print("Exception when calling StorageCredentialsApi->create_storage_credential: %s\n" % e)
@@ -78,11 +80,11 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_storage_credential** | [**CreateStorageCredential**](CreateStorageCredential.md)|  |
+ **create_storage_credential_v4** | [**CreateStorageCredentialV4**](CreateStorageCredentialV4.md)|  |
 
 ### Return type
 
-[**StorageCredential**](StorageCredential.md)
+[**StorageCredentialV4**](StorageCredentialV4.md)
 
 ### Authorization
 
@@ -90,8 +92,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/vnd.illumina.v3+json, application/json
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Content-Type**: application/vnd.illumina.v4+json, application/vnd.illumina.v3+json, application/json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -104,9 +106,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_storage_credential**
-> StorageCredential get_storage_credential(storage_credential_id)
+> StorageCredentialV4 get_storage_credential(storage_credential_id)
 
 Retrieve a storage credential.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type 'type' changed from enum to String. 
 
 ### Example
 
@@ -117,6 +121,7 @@ Retrieve a storage credential.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import storage_credentials_api
+from libica.openapi.v2.model.storage_credential_v4 import StorageCredentialV4
 from libica.openapi.v2.model.storage_credential import StorageCredential
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -166,7 +171,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**StorageCredential**](StorageCredential.md)
+[**StorageCredentialV4**](StorageCredentialV4.md)
 
 ### Authorization
 
@@ -175,7 +180,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details
@@ -188,9 +193,11 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_storage_credentials**
-> StorageCredentialList get_storage_credentials()
+> StorageCredentialListV4 get_storage_credentials()
 
 Retrieve a list of storage credentials.
+
+# Changelog For this endpoint multiple versions exist. Note that the values for request headers 'Content-Type' and 'Accept' must contain a matching version.  ## [V3]  * Initial version ## [V4]  * Field type 'type' changed from enum to String. 
 
 ### Example
 
@@ -201,6 +208,7 @@ Retrieve a list of storage credentials.
 import time
 import libica.openapi.v2
 from libica.openapi.v2.api import storage_credentials_api
+from libica.openapi.v2.model.storage_credential_list_v4 import StorageCredentialListV4
 from libica.openapi.v2.model.storage_credential_list import StorageCredentialList
 from libica.openapi.v2.model.problem import Problem
 from pprint import pprint
@@ -246,7 +254,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**StorageCredentialList**](StorageCredentialList.md)
+[**StorageCredentialListV4**](StorageCredentialListV4.md)
 
 ### Authorization
 
@@ -255,7 +263,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json, application/vnd.illumina.v3+json
+ - **Accept**: application/problem+json, application/vnd.illumina.v4+json, application/vnd.illumina.v3+json
 
 
 ### HTTP response details

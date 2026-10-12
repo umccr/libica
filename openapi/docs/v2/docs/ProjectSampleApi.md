@@ -2123,6 +2123,7 @@ with libica.openapi.v2.ApiClient(configuration) as api_client:
                     region="region_example",
                 ),
                 city_name="city_name_example",
+                active=True,
             ),
             application=ApplicationV4(
                 id="id_example",
