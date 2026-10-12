@@ -1,7 +1,7 @@
 repos:
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
       - id: check-added-large-files
         exclude: ^(package-lock.json|docs/)
@@ -16,10 +16,10 @@ repos:
         args: [ --branch, main, --branch, master, --pattern, release/.* ]
 
 #  - repo: https://github.com/psf/black
-#    rev: 23.3.0
+#    rev: 26.10.1
 #    hooks:
 #      - id: black
-#        language_version: python3.10
+#        language_version: python3.13
 #        args: [ '--check' ]
 #        exclude: ^(skel/)
 

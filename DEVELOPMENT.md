@@ -49,6 +49,21 @@ make test
 ```
 
 ```
+pytest libica/openapi/v2/test
+pytest libica/openapi/v3/test
+```
+
+```
+pytest --no-cov tests/v2
+pytest --no-cov tests/v3
+```
+
+```
+pytest --collect-only --no-cov tests/v2
+pytest --collect-only --no-cov tests/v3
+```
+
+```
 make ps
 make test_icav2_mock
 docker compose logs
