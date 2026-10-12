@@ -10,7 +10,7 @@ services:
   v2:
     image: stoplight/prism:5
     platform: linux/amd64
-    command: mock -d -h 0.0.0.0 "/swagger/openapi_public.yaml"
+    command: mock -d -h 0.0.0.0 "/swagger/openapi_public.yaml" --multiprocess=false
     restart: always
     ports:
       - "4015:4010"
